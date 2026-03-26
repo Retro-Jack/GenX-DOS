@@ -1054,7 +1054,8 @@
                         var poll = setInterval(function() {
                             if (win.closed) {
                                 clearInterval(poll);
-                                executeBatch('cd ..\nmenu\n');
+                                enterCmd('cd ..\n');
+                                enterCmd('menu\n');
                             }
                         }, 500);
                     }
