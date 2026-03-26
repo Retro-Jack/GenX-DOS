@@ -1049,7 +1049,15 @@
             var fbase = fname.split('.')[0];
             if (fname == file || fbase == file) {
                 if (typeof fsc.files[i].link !== 'undefined') {
-                    window.open(fsc.files[i].link, "_blank");
+                    var win = window.open(fsc.files[i].link, "_blank");
+                    if (win) {
+                        var poll = setInterval(function() {
+                            if (win.closed) {
+                                clearInterval(poll);
+                                executeBatch('cd ..\nmenu\n');
+                            }
+                        }, 500);
+                    }
                     return 1;
                 }
                 if (typeof fsc.files[i].data !== 'undefined' && fname.split('.')[1] == 'bat') {
