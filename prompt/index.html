@@ -366,7 +366,316 @@
                             }
                         ],
                         files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\DOS\\SHAREWRE\ndir/w/o\n' }]
+                    },
+
+                    // ── CONSOLE ──────────────────────────────────────────────────────────
+                    {
+                        name: 'CONSOLE',
+                        directories: [
+
+                            // ATARI
+                            {
+                                name: 'ATARI',
+                                directories: [
+                                    { name: '2600',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: '5200',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: '7800',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'LYNX',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'JAGUAR', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\ATARI\ndir/w/o\n' }]
+                            },
+
+                            // NINTENDO
+                            {
+                                name: 'NINTENDO',
+                                directories: [
+                                    { name: 'NES',    directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'SNES',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'GB',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'GBC',    directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'VB',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'N64',    directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\NINTENDO\ndir/w/o\n' }]
+                            },
+
+                            // SEGA
+                            {
+                                name: 'SEGA',
+                                directories: [
+                                    { name: 'SMS',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'GENESIS', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'SCD',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: '32X',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'GG',      directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'SATURN',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\SEGA\ndir/w/o\n' }]
+                            },
+
+                            // NEC
+                            {
+                                name: 'NEC',
+                                directories: [
+                                    { name: 'PCENGINE', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'PCFX',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\NEC\ndir/w/o\n' }]
+                            },
+
+                            // SNK
+                            {
+                                name: 'SNK',
+                                directories: [
+                                    { name: 'NEOGEO', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\SNK\ndir/w/o\n' }]
+                            },
+
+                            // MATTEL
+                            {
+                                name: 'MATTEL',
+                                directories: [
+                                    { name: 'INTV', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\MATTEL\ndir/w/o\n' }]
+                            },
+
+                            // COLECO
+                            {
+                                name: 'COLECO',
+                                directories: [
+                                    { name: 'CVISION', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\COLECO\ndir/w/o\n' }]
+                            },
+
+                            // MAGNAVOX
+                            {
+                                name: 'MAGNAVOX',
+                                directories: [
+                                    { name: 'ODYSSEY2', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\MAGNAVOX\ndir/w/o\n' }]
+                            },
+
+                            // PHILIPS
+                            {
+                                name: 'PHILIPS',
+                                directories: [
+                                    { name: 'CDI', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\PHILIPS\ndir/w/o\n' }]
+                            },
+
+                            // 3DO
+                            {
+                                name: '3DO',
+                                directories: [
+                                    { name: '3DO', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\3DO\ndir/w/o\n' }]
+                            },
+
+                            // BANDAI
+                            {
+                                name: 'BANDAI',
+                                directories: [
+                                    { name: 'WSWAN',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'WSWANC', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\BANDAI\ndir/w/o\n' }]
+                            }
+
+                        ],
+                        files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\ndir/w/o\n' }]
+                    },
+
+                    // ── HOME COMPUTERS ────────────────────────────────────────────────────
+                    {
+                        name: 'HOMECOMP',
+                        directories: [
+
+                            // COMMODORE
+                            {
+                                name: 'COMMODORE',
+                                directories: [
+                                    { name: 'VIC20',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_vic20' }] },
+                                    { name: 'C64',    directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_c64' }] },
+                                    { name: 'PLUS4',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_c64' }] },
+                                    { name: 'C128',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_c64' }] },
+                                    {
+                                        name: 'AMIGA',
+                                        directories: [
+                                            { name: 'A500',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_amiga' }] },
+                                            { name: 'A600',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_amiga' }] },
+                                            { name: 'A1200', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_amiga' }] },
+                                            { name: 'A2000', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_amiga' }] },
+                                            { name: 'CD32',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_amiga' }] }
+                                        ],
+                                        files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\COMMODORE\\AMIGA\ndir/w/o\n' }]
+                                    }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\COMMODORE\ndir/w/o\n' }]
+                            },
+
+                            // ATARI
+                            {
+                                name: 'ATARI',
+                                directories: [
+                                    { name: '400',    directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_atari_8bit' }] },
+                                    { name: '800',    directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_atari_8bit' }] },
+                                    { name: 'XLXE',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_atari_8bit' }] },
+                                    { name: 'ST',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_atari_st' }] },
+                                    { name: 'STE',    directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_atari_st' }] },
+                                    { name: 'TT',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_atari_st' }] },
+                                    { name: 'FALCON', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_atari_st' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\ATARI\ndir/w/o\n' }]
+                            },
+
+                            // SINCLAIR
+                            {
+                                name: 'SINCLAIR',
+                                directories: [
+                                    { name: 'ZX81',    directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_zx_spectrum' }] },
+                                    { name: 'SPEC16',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_zx_spectrum' }] },
+                                    { name: 'SPEC48',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_zx_spectrum' }] },
+                                    { name: 'SPEC128', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_zx_spectrum' }] },
+                                    { name: 'SPECPLS', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_zx_spectrum' }] },
+                                    { name: 'SPEC+2',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_zx_spectrum' }] },
+                                    { name: 'SPEC+3',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_zx_spectrum' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\SINCLAIR\ndir/w/o\n' }]
+                            },
+
+                            // AMSTRAD
+                            {
+                                name: 'AMSTRAD',
+                                directories: [
+                                    { name: 'CPC464',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_cpc' }] },
+                                    { name: 'CPC664',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_cpc' }] },
+                                    { name: 'CPC6128', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_cpc' }] },
+                                    { name: 'PCW',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_cpc' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\AMSTRAD\ndir/w/o\n' }]
+                            },
+
+                            // APPLE
+                            {
+                                name: 'APPLE',
+                                directories: [
+                                    { name: 'APPLEII',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_apple2' }] },
+                                    { name: 'APPLEIIE', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_apple2' }] },
+                                    { name: 'IIGS',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_apple2' }] },
+                                    { name: 'MAC',      directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_mac' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\APPLE\ndir/w/o\n' }]
+                            },
+
+                            // ACORN
+                            {
+                                name: 'ACORN',
+                                directories: [
+                                    { name: 'BBC',      directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_bbc_micro' }] },
+                                    { name: 'ELECTRON', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_bbc_micro' }] },
+                                    { name: 'ARCHIM',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_bbc_micro' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\ACORN\ndir/w/o\n' }]
+                            },
+
+                            // MSX (multi-manufacturer standard)
+                            {
+                                name: 'MSX',
+                                directories: [
+                                    { name: 'MSX1',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_msx' }] },
+                                    { name: 'MSX2',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_msx' }] },
+                                    { name: 'MSX2P', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_msx' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\MSX\ndir/w/o\n' }]
+                            },
+
+                            // TANDY
+                            {
+                                name: 'TANDY',
+                                directories: [
+                                    { name: 'TRS80', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'COCO',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'COCO2', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'COCO3', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\TANDY\ndir/w/o\n' }]
+                            },
+
+                            // TEXAS INSTRUMENTS
+                            {
+                                name: 'TI',
+                                directories: [
+                                    { name: 'TI994A', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\TI\ndir/w/o\n' }]
+                            },
+
+                            // NEC (home computers)
+                            {
+                                name: 'NEC',
+                                directories: [
+                                    { name: 'PC6001', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'PC88',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'PC98',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\NEC\ndir/w/o\n' }]
+                            },
+
+                            // SHARP
+                            {
+                                name: 'SHARP',
+                                directories: [
+                                    { name: 'MZ',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'X68K', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\SHARP\ndir/w/o\n' }]
+                            },
+
+                            // FUJITSU
+                            {
+                                name: 'FUJITSU',
+                                directories: [
+                                    { name: 'FM7',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'FM77',    directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'FMTOWNS', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\FUJITSU\ndir/w/o\n' }]
+                            },
+
+                            // THOMSON
+                            {
+                                name: 'THOMSON',
+                                directories: [
+                                    { name: 'TO7', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'MO5', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'TO8', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'MO6', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\THOMSON\ndir/w/o\n' }]
+                            },
+
+                            // ORIC
+                            {
+                                name: 'ORIC',
+                                directories: [
+                                    { name: 'ORIC1',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'ATMOS',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] },
+                                    { name: 'ORIC16', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
+                                ],
+                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\ORIC\ndir/w/o\n' }]
+                            }
+
+                        ],
+                        files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\ndir/w/o\n' }]
                     }
+
                 ],
                 files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\ndir/w/o\n' }]
             }
