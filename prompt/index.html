@@ -893,7 +893,10 @@
             }
         ],
         files: [
-            { name: 'autoexec.bat', data: 'c:\ncd emulators\nmenu\n' },
+            { name: 'autoexec.bat', data: 'c:\ncls\ndir/w/o\n' },
+            { name: 'menu.bat',     data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º  LGR-DOS  EMULATOR  LAUNCHER                º\necho ÌÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¹\necho º                                             º\necho º  1.  EMULATORS   Emulator Library           º\necho º  2.  LGR         Social Links               º\necho º                                             º\necho ÌÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¹\necho º  Type a number and press ENTER              º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+            { name: '1.bat',        data: 'cd emulators\nmenu\n' },
+            { name: '2.bat',        data: 'cd lgr\ndir/w/o\n' },
             { name: 'changes.bat',  data: 'echo off\necho 1. basic echo echo off, echo on support\necho 2. concatenate commands with [&]. Eg: "cd\\games \\& dir/w/o"\necho 3. secret searching command should work in IE8+? maybe.\necho 4. command structure modified to be more modular\necho 5. Think the FF "up" bug is fixed, this time...\necho on' }
         ]
     }];
