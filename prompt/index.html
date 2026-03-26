@@ -1,749 +1,790 @@
+<!DOCTYPE html>
 <html>
+
+<!-- ============================================================
+     HEAD
+     ============================================================ -->
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=8" >
-<meta name=Generator content="Mike">
-<meta name=Originator content="Mike's brain -- thanks, Mike!">
-<title>LGR-DOS Command Prompt, 637Kb free</title>
-<style>
-.prompt{width:960;height:720px; background-color:#000; border:0px solid #888;}
-.font {
-	background: url(img/f12.7.png) no-repeat 0px 0px;
-	width:12px;
-	height:12px;
-	float:left;
-	overflow:hidden;
-}
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta name="Generator" content="Mike">
+    <meta name="Originator" content="Mike's brain -- thanks, Mike!">
+    <title>LGR-DOS Emulator Launcher, 637Kb free</title>
 
-</style>d
-<script src="classList.min.js"></script>
-<!--[if IE]><script>var isIE = true; </script><![endif]-->
-<script>
-if(typeof isIE === 'undefined') isIE = false;
-var pal = ["#000000","#0000aa","#00aa00","#00aaaa","#aa0000","#aa00aa","#aa5500","#aaaaaa","#555555","#5555ff","#55ff55","#55ffff","#ff5555","#ff55ff","#ffff55","#ffffff"];
-var fontSrc = [];
-function goFontGo() {
-	var strStyle = "", fontMapCharWidth = 12, fontMapCharHeight = 12;
-	for(var i=0; i<(16*16); i++) {
-	  var x = i%16;
-	  var y = (i-x)/16;
-	  strStyle += '.f-' + i + ' { background-position:-' + ((x*fontMapCharWidth)-0) + 'px -' + ((y*fontMapCharHeight)-0) + 'px; } ';
-	}
-	var fontStyle = document.createElement('style');
-	fontStyle.type = "text/css";
-	if (fontStyle.styleSheet) {
-		fontStyle.styleSheet.cssText = strStyle + " .f-n { background-position:0px 0px; float:none; width:0px;} .f-cursor { margin-right:-8px; }";
-	} else {
-		fontStyle.appendChild(document.createTextNode(strStyle + " .f-n { background-position:0px 0px; float:none; width:0px;} .f-cursor { margin-right:-8px; }"));
-	}
-	document.body.appendChild(fontStyle);
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" type="image/gif" href="animated_favicon1.gif">
 
-	var fontsDiv = document.getElementById('fonts');
-	if(!isIE && false) {	//this stuff is slow... but might be useful somewhere else...
-		//now generate the font colors:
-		var c = document.getElementById('cv');
-		var g = c.getContext('2d');
-		c.width = 192;
-		c.height = 192;
-		var fontBaseImg;
-		if(typeof debugImgs === 'function') fontBaseImg = debugImgs();
-		else fontBaseImg = document.getElementById('font-base');
-		for(var i=0; i<pal.length; i++) {
-			g.fillStyle = pal[i];
-			g.fillRect(0,0,192,192);
-			g.globalCompositeOperation = "destination-atop";
-			g.drawImage(fontBaseImg,0,0);
-			g.globalCompositeOperation = "source-over";
-			var img = document.createElement('img');
-			//console.log(c.toDataURL("image/png"));
-			img.src=c.toDataURL("image/png");
-			fontSrc[i] = img.src;
-			img.id='font-' + i;
-			fontsDiv.appendChild(img);
-		}
-	} else {
-		//dummy up the image elements, reuse the base image... ;-?
-		for(var i=0; i<pal.length; i++) {
-			var img = document.createElement('img');
-			//console.log(c.toDataURL("image/png"));
-			img.src='img/f12.' + i + '.png';
-			fontSrc[i] = img.src;
-			img.id='font-' + i;
-			fontsDiv.appendChild(img);
-		}
-	}
-}
-function addClass(el,c) {
-	if(typeof el.classList !=='undefined') {
-		el.classList.add(c);
-		return;
-	}
-	el.className += ' ' + c;
-}
-function remClass(el,c) {
-	if(typeof el.classList !=='undefined') {
-		el.classList.remove(c);
-		return;
-	}
-	el.className = el.className.replace(' ' + c, '');
-}
-function gotClass(el,c) {
-	if(typeof el.classList !=='undefined') {
-		return el.classList.contains(c);
-	}
-	return el.className.indexOf(' ' + c)!=-1;
-}
-var kb = {};//{'189':45,'187':43,'192':96};
-var txtPal = {bg:0,fg:7};
-document.onkeypress = function(e) { 
-	if(typeof e === 'undefined') e = event;
-	if(true) {
-		
-	}
-	var c = document.createElement('div');
-	addClass(c,'font');//c.classList.add('font');
-	var k = (kb[e.keyCode || e.charCode] || e.keyCode || e.charCode);
-	if(k==38 && kUp==true) return;
-	if(k==40 && kDown==true) return;
-	if(k==13) {
-		//console.log('command:');
-		if(!promptMode) {
-			var strCMD = "";
-			var el = cursorEl
-			//while(!el.previousSibling.classList.contains('p')) {
-			while(!gotClass(el.previousSibling,'p')) {
-				el = el.previousSibling;
-				strCMD = el.getAttribute('v') + strCMD;
-				
-			}
-			//console.log(strCMD);
-			handleCmd(strCMD);
-			return;
-		}
-		k = 'n';
-	}
-	if(k==8) {
-		if(gotClass(cursorEl.previousSibling,'p')) return;
-		cursorEl.parentElement.removeChild(cursorEl.previousSibling);
-		return;
-	}
-	addClass(c,'f-' + k);//c.classList.add('f-' + k);
-	if(promptMode) addClass(c,'p');//c.classList.add('p');
-	c.setAttribute('v', String.fromCharCode(k));
-	if(k==13) c.setAttribute('v', '\n');
-	
-	//handle color palette stuff:
-	c.style.backgroundColor = pal[txtPal.bg];
-	c.style.backgroundImage = 'url(' + fontSrc[txtPal.fg] + ')';
-	
-	promptEl.insertBefore(c,cursorEl);
-	//handle max 60 lines:
-	if(document.querySelectorAll('.f-n').length>=60){
-		var nl=document.querySelectorAll('.f-n')[0];	//first line break
-		var iMax=0;//track length of search - only remove one line...
-		if(nl==promptEl.firstChild) {	//if it's just a single line break on the line, remove it...
-			promptEl.removeChild(nl);
-		} else {//otherwise go thought the elements until we reach the nl (or max len for a line).
-			while(promptEl.firstChild!=nl || iMax==79) {
-				promptEl.removeChild(promptEl.firstChild);
-				iMax++;
-			}
-			promptEl.removeChild(nl);//remove the nl el.
-		}
-	}
-	if(typeof e.stopPropagation === 'undefined') e.stopPropagation = function(){};
-	if(typeof e.preventDefault === 'undefined') e.preventDefault = function(){};
-	e.stopPropagation(); e.preventDefault(); 
-	return false;
-}
-function doKeyDown(e) { 
-	if(typeof e === 'undefined') e = event;
-	if(typeof e.stopPropagation === 'undefined') e.stopPropagation = function(){};
-	if(typeof e.preventDefault === 'undefined') e.preventDefault = function(){};
-	var k = (kb[e.keyCode || e.charCode] || e.keyCode || e.charCode);
-	if(k==8) {
-		e.stopPropagation(); e.preventDefault();
-		if(window.navigator.userAgent.toLowerCase().indexOf("firefox")==-1)document.onkeypress({keyCode:8});
-		return false;
-	}
-	//console.log(k);
-	var up = 38, down = 40;
-	if(k==up && cmdStackIdx>-1) {
-		//loop through from cursor back to the first promt char. remove each one,
-		var el = cursorEl
-		var hold;
-		while(!gotClass(el,'p')) {
-			hold = el;
-			el = el.previousSibling;
-			if(hold!==cursorEl) promptEl.removeChild(hold);
-		}
-		//now enter the command on the stack at the current location
-		if(cmdStackIdx>=cmdStack.length)cmdStackIdx--;
-		enterCmd(cmdStack[cmdStackIdx]);
-		//now move the stack idx pointer back one
-		cmdStackIdx--;
-	}
-	if(k==down && cmdStackIdx<cmdStack.length) {
-		//loop through from cursor back to the first promt char. remove each one,
-		var el = cursorEl
-		var hold;
-		while(!gotClass(el,'p')) {
-			hold = el;
-			el = el.previousSibling;
-			if(hold!==cursorEl) promptEl.removeChild(hold);
-		}
-		cmdStackIdx++;
-		if(cmdStackIdx>=cmdStack.length)enterCmd('');
-		//now enter the command on the stack at the current location
-		else enterCmd(cmdStack[cmdStackIdx]);
-	}
-	if(k==down) kDown=true;
-	if(k==up)   kUp=true;
-	if(k==down || k==up) {
-		e.stopPropagation(); e.preventDefault();
-		return false;
-	}
-	//console.log('stack index: ' + cmdStackIdx);
-}
-var kUp=false,kDown=false;
-function doKeyUp(e) {
-	if(typeof e === 'undefined') e = event;
-	if(typeof e.stopPropagation === 'undefined') e.stopPropagation = function(){};
-	if(typeof e.preventDefault === 'undefined') e.preventDefault = function(){};
-	var k = (kb[e.keyCode || e.charCode] || e.keyCode || e.charCode);
-	var up = 38, down = 40;
-	if(k==down) kDown=false;
-	if(k==up)   kUp=false;
-	
-	e.stopPropagation(); e.preventDefault(); return false;
-	
-}
-var cursorEl, promptEl;
-function init() {
-	//moved these definitions here, because some browsers were overriding them...?
-	goFontGo();
-	document.onkeydown = doKeyDown;
-	document.onkeyup = doKeyUp;
-	
-	cursorEl = document.getElementById('cursor');
-	promptEl = document.getElementById('prompt');
-	curItvl = setInterval(function(){if(cursorEl.style.opacity!=1)cursorEl.style.opacity=1; else cursorEl.style.opacity=0;},150);
-	prompt();
-	var autoexec = false;
-	for(var i=0; i<fs[0].files.length; i++)  {
-		if(fs[0].files[i].name.toLowerCase() == 'autoexec.bat' && typeof fs[0].files[i].data !== 'undefined') {
-			autoexec = fs[0].files[i].data;
-			break;
-		}
-	}
-	if(autoexec != false) {
-		executeBatch(autoexec);
-	}
-}
+    <!-- Styles -->
+    <style>
+        .prompt {
+            width: 960;
+            height: 720px;
+            background-color: #000;
+            border: 0px solid #888;
+        }
+        .font {
+            background: url(img/f12.7.png) no-repeat 0px 0px;
+            width: 12px;
+            height: 12px;
+            float: left;
+            overflow: hidden;
+        }
+    </style>
 
-function enterCmd(d) {
-	for(var i=0; i<d.length; i++) {
-		if(d.charAt(i)=='\n') document.onkeypress({keyCode:13,stopPropagation:function(){},preventDefault:function(){}});
-		else document.onkeypress({keyCode:d.charCodeAt(i),stopPropagation:function(){},preventDefault:function(){}});
-	}
-}
+    <!-- classList polyfill (for older IE) -->
+    <script src="classList.min.js"></script>
 
-function executeBatch(d) {
-	var cmds = d.split('\n');
-	for(var i=0; i<cmds.length; i++) {
-		if(cmds[i].length>0)
-			handleCmd(cmds[i]);
-		//if(d.charAt(i)=='\n') document.onkeypress({keyCode:13,stopPropagation:function(){},preventDefault:function(){}});
-		//else document.onkeypress({keyCode:d.charCodeAt(i),stopPropagation:function(){},preventDefault:function(){}});
-		
-	}
-	//turn echo on in case the script didn't...
-	bEchoOff = false;
-}
+    <!-- IE detection -->
+    <!--[if IE]><script>var isIE = true;</script><![endif]-->
 
-var fs=
-[{name:'c',
-	directories:[	
-		{name:'LGR',directories:[],
-			files:[
-				{name:'YOUTUBE.COM',	link:'https://www.youtube.com/@LGR'},
-				{name:'BSKY.COM',	link:'https://bsky.app/profile/lgr-yt.bsky.social'},
-				{name:'REDDIT.BAT',	link:'https://www.reddit.com/r/LGR/'},
-				{name:'DONATE.BAT',	link:'http://donate.lazygamereviews.com/'},
-				{name:'PATREON.COM',	link:'https://www.patreon.com/LazyGameReviews'},
-			]
-		},
-		{name:'GAMES',directories:[
-			{name:'DOOM',directories:[],
-				files:[
-					{name:'doom.exe',		link:'https://archive.org/details/The_Ultimate_Doom'}
-				]
-		},
-			{name:'DUKE2',directories:[],
-				files:[
-					{name:'nukem2.exe',		link:'https://archive.org/details/DukeNukemIi'}
-				]
-		},
-			{name:'ZORK',directories:[],
-				files:[
-					{name:'zork.exe',		link:'https://archive.org/details/msdos_Zork_I_-_The_Great_Underground_Empire_1980'}
-				]
-		},
-			{name:'GALAXY',directories:[],
-				files:[
-					{name:'keen4e.exe',		link:'https://archive.org/details/CommanderKeenGoodbyeGalaxy'}
-				]
-		},
-			{name:'OOTW',directories:[],
-				files:[
-					{name:'ootw.exe',		link:'https://archive.org/details/msdos_Out_of_This_World_1991'}
-				]
-		},
-			{name:'EPICPIN',directories:[],
-				files:[
-					{name:'pinball.exe',		link:'https://archive.org/details/msdos_Epic_Pinball_-_The_Complete_Collection_1995'}
-				]
-		},
-			{name:'TYRIAN',directories:[],
-				files:[
-					{name:'tyrian.exe',		link:'https://archive.org/details/TyrianV2.1SW1996EpicMegaGamesInc.Action'}
-				]
-		},
-			{name:'SC2KCD',directories:[],
-				files:[
-					{name:'sc2000.exe',		link:'https://archive.org/details/msdos_SimCity_2000_-_CD_Collection_1994'}
-				]
-		},
-			{name:'SHAREWRE',directories:[],
-				files:[
-{name:"xmaslm93.bat",link:"http://www.classicdosgames.com/online/xmaslm93.html"},{name:"amath.bat",link:"http://www.classicdosgames.com/online/$amath.html"},{name:"ccomic5.bat",link:"http://www.classicdosgames.com/online/ccomic5.html"},{name:"ta_demo.bat",link:"http://www.classicdosgames.com/online/ta_demo.html"},{name:"sharks12.bat",link:"http://www.classicdosgames.com/online/sharks12.html"},{name:"alondark.bat",link:"http://www.classicdosgames.com/online/alondark.html"},{name:"alpman11.bat",link:"http://www.classicdosgames.com/online/alpman11.html"},{name:"demrayus.bat",link:"http://www.classicdosgames.com/online/demrayus.html"},{name:"anc1s.bat",link:"http://www.classicdosgames.com/online/anc1s.html"},{name:"antrun30.bat",link:"http://www.classicdosgames.com/online/antrun30.html"},{name:"achkv12.bat",link:"http://www.classicdosgames.com/online/achkv12.html"},{name:"aspetra.bat",link:"http://www.classicdosgames.com/online/aspetra.html"},{name:"astro.bat",link:"http://www.classicdosgames.com/online/astro.html"},{name:"axia-w95.bat",link:"http://www.classicdosgames.com/online/axia-w95.html"},{name:"ballon20.bat",link:"http://www.classicdosgames.com/online/ballon20.html"},{name:"banyon2.bat",link:"http://www.classicdosgames.com/online/banyon2.html"},{name:"btour49.bat",link:"http://www.classicdosgames.com/online/btour49.html"},{name:"atlant22.bat",link:"http://www.classicdosgames.com/online/atlant22.html"},{name:"billy40.bat",link:"http://www.classicdosgames.com/online/billy40.html"},{name:"1bs30.bat",link:"http://www.classicdosgames.com/online/1bs30.html"},{name:"blnwar11.bat",link:"http://www.classicdosgames.com/online/blnwar11.html"},{name:"bman10.bat",link:"http://www.classicdosgames.com/online/bman10.html"},{name:"brix1.bat",link:"http://www.classicdosgames.com/online/brix1.html"},{name:"bm2demo.bat",link:"http://www.classicdosgames.com/online/bm2demo.html"},{name:"capflag5.bat",link:"http://www.classicdosgames.com/online/capflag5.html"},{name:"cargobay.bat",link:"http://www.classicdosgames.com/online/cargobay.html"},{name:"castle.bat",link:"http://www.classicdosgames.com/online/castle.html"},{name:"catch.bat",link:"http://www.classicdosgames.com/online/catch.html"},{name:"cengine.bat",link:"http://www.classicdosgames.com/online/cengine.html"},{name:"charlie.bat",link:"http://www.classicdosgames.com/online/charlie.html"},{name:"cipher22.bat",link:"http://www.classicdosgames.com/online/cipher22.html"},{name:"cisco.bat",link:"http://www.classicdosgames.com/online/cisco.html"},{name:"k6_demo.bat",link:"http://www.classicdosgames.com/online/k6_demo.html"},{name:"4keen.bat",link:"http://www.classicdosgames.com/online/4keen.html"},{name:"1keen.bat",link:"http://www.classicdosgames.com/online/1keen.html"},{name:"coolspot.bat",link:"http://www.classicdosgames.com/online/coolspot.html"},{name:"cc3d342.bat",link:"http://www.classicdosgames.com/online/cc3d342.html"},{name:"1cosmo.bat",link:"http://www.classicdosgames.com/online/1cosmo.html"},{name:"7crates.bat",link:"http://www.classicdosgames.com/online/7crates.html"},{name:"cshuf15.bat",link:"http://www.classicdosgames.com/online/cshuf15.html"},{name:"crushr32.bat",link:"http://www.classicdosgames.com/online/crushr32.html"},{name:"1cc10a.bat",link:"http://www.classicdosgames.com/online/1cc10a.html"},{name:"cyberkid.bat",link:"http://www.classicdosgames.com/online/cyberkid.html"},{name:"desc14sw.bat",link:"http://www.classicdosgames.com/online/desc14sw.html"},{name:"detroit.bat",link:"http://www.classicdosgames.com/online/detroit.html"},{name:"aladdemo.bat",link:"http://www.classicdosgames.com/online/aladdemo.html"},{name:"beauty.bat",link:"http://www.classicdosgames.com/online/beauty.html"},{name:"dnd_121.bat",link:"http://www.classicdosgames.com/online/dnd_121.html"},{name:"doom19s.bat",link:"http://www.classicdosgames.com/online/doom19s.html"},{name:"dotso11.bat",link:"http://www.classicdosgames.com/online/dotso11.html"},{name:"doubol.bat",link:"http://www.classicdosgames.com/online/doubol.html"},{name:"drgnbn12.bat",link:"http://www.classicdosgames.com/online/drgnbn12.html"},{name:"1duke.bat",link:"http://www.classicdosgames.com/online/1duke.html"},{name:"3dduke13.bat",link:"http://www.classicdosgames.com/online/3dduke13.html"},{name:"4duke.bat",link:"http://www.classicdosgames.com/online/4duke.html"},{name:"dnd_201.bat",link:"http://www.classicdosgames.com/online/dnd_201.html"},{name:"ewj_1.bat",link:"http://www.classicdosgames.com/online/ewj_1.html"},{name:"egatrk31.bat",link:"http://www.classicdosgames.com/online/egatrk31.html"},{name:"elecnoid.bat",link:"http://www.classicdosgames.com/online/elecnoid.html"},{name:"epicbb.bat",link:"http://www.classicdosgames.com/online/epicbb.html"},{name:"epicpn21.bat",link:"http://www.classicdosgames.com/online/epicpn21.html"},{name:"temim.bat",link:"http://www.classicdosgames.com/online/temim.html"},{name:"xpsw1.bat",link:"http://www.classicdosgames.com/online/xpsw1.html"},{name:"fuzzy100.bat",link:"http://www.classicdosgames.com/online/fuzzy100.html"},{name:"glacta11.bat",link:"http://www.classicdosgames.com/online/glacta11.html"},{name:"goblins.bat",link:"http://www.classicdosgames.com/online/goblins.html"},{name:"gob2_prv.bat",link:"http://www.classicdosgames.com/online/gob2_prv.html"},{name:"gobman11.bat",link:"http://www.classicdosgames.com/online/gobman11.html"},{name:"googol36.bat",link:"http://www.classicdosgames.com/online/googol36.html"},{name:"goorev36.bat",link:"http://www.classicdosgames.com/online/goorev36.html"},{name:"htic_v12.bat",link:"http://www.classicdosgames.com/online/htic_v12.html"},{name:"hero.bat",link:"http://www.classicdosgames.com/online/hero.html"},{name:"hexndemo.bat",link:"http://www.classicdosgames.com/online/hexndemo.html"},{name:"hexx14.bat",link:"http://www.classicdosgames.com/online/hexx14.html"},{name:"1hp11.bat",link:"http://www.classicdosgames.com/online/1hp11.html"},{name:"xmaslm94.bat",link:"http://www.classicdosgames.com/online/xmaslm94.html"},{name:"hubie_12.bat",link:"http://www.classicdosgames.com/online/hubie_12.html"},{name:"hugo2.bat",link:"http://www.classicdosgames.com/online/hugo2.html"},{name:"hugo3.bat",link:"http://www.classicdosgames.com/online/hugo3.html"},{name:"hugo1.bat",link:"http://www.classicdosgames.com/online/hugo1.html"},{name:"dr_rip11.bat",link:"http://www.classicdosgames.com/online/dr_rip11.html"},{name:"timdemo.bat",link:"http://www.classicdosgames.com/online/timdemo.html"},{name:"incun.bat",link:"http://www.classicdosgames.com/online/incun.html"},{name:"fatetdt.bat",link:"http://www.classicdosgames.com/online/fatetdt.html"},{name:"sampler.bat",link:"http://www.classicdosgames.com/online/sampler.html"},{name:"infcmsam.bat",link:"http://www.classicdosgames.com/online/infcmsam.html"},{name:"bats1sw.bat",link:"http://www.classicdosgames.com/online/bats1sw.html"},{name:"iron.bat",link:"http://www.classicdosgames.com/online/iron.html"},{name:"islewr31.bat",link:"http://www.classicdosgames.com/online/islewr31.html"},{name:"1jazz13.bat",link:"http://www.classicdosgames.com/online/1jazz13.html"},{name:"1jelly2.bat",link:"http://www.classicdosgames.com/online/1jelly2.html"},{name:"jill.bat",link:"http://www.classicdosgames.com/online/$jill.html"},{name:"keendr13.bat",link:"http://www.classicdosgames.com/online/keendr13.html"},{name:"kosynk11.bat",link:"http://www.classicdosgames.com/online/kosynk11.html"},{name:"lavacp11.bat",link:"http://www.classicdosgames.com/online/lavacp11.html"},{name:"lemmings.bat",link:"http://www.classicdosgames.com/online/lemmings.html"},{name:"lionking.bat",link:"http://www.classicdosgames.com/online/lionking.html"},{name:"llarry12.bat",link:"http://www.classicdosgames.com/online/llarry12.html"},{name:"sampler.bat",link:"http://www.classicdosgames.com/online/sampler.html"},{name:"lostdemo.bat",link:"http://www.classicdosgames.com/online/lostdemo.html"},{name:"lugnut22.bat",link:"http://www.classicdosgames.com/online/lugnut22.html"},{name:"paints.bat",link:"http://www.classicdosgames.com/online/paints.html"},{name:"mpdemo.bat",link:"http://www.classicdosgames.com/online/mpdemo.html"},{name:"mahjng42.bat",link:"http://www.classicdosgames.com/online/mahjng42.html"},{name:"1math.bat",link:"http://www.classicdosgames.com/online/1math.html"},{name:"mmxdemo.bat",link:"http://www.classicdosgames.com/online/mmxdemo.html"},{name:"micemz12.bat",link:"http://www.classicdosgames.com/online/micemz12.html"},{name:"1bash21.bat",link:"http://www.classicdosgames.com/online/1bash21.html"},{name:"entrap.bat",link:"http://www.classicdosgames.com/online/entrap.html"},{name:"moraf50d.bat",link:"http://www.classicdosgames.com/online/moraf50d.html"},{name:"rev32.bat",link:"http://www.classicdosgames.com/online/rev32.html"},{name:"stones31.bat",link:"http://www.classicdosgames.com/online/stones31.html"},{name:"mk3demo.bat",link:"http://www.classicdosgames.com/online/mk3demo.html"},{name:"mvpbr303.bat",link:"http://www.classicdosgames.com/online/mvpbr303.html"},{name:"1mystic.bat",link:"http://www.classicdosgames.com/online/1mystic.html"},{name:"nhl96.bat",link:"http://www.classicdosgames.com/online/nhl96.html"},{name:"nhlpa94.bat",link:"http://www.classicdosgames.com/online/nhlpa94.html"},{name:"ntraid01.bat",link:"http://www.classicdosgames.com/online/ntraid01.html"},{name:"nite3d20.bat",link:"http://www.classicdosgames.com/online/nite3d20.html"},{name:"nrsedos.bat",link:"http://www.classicdosgames.com/online/nrsedos.html"},{name:"numlo10.bat",link:"http://www.classicdosgames.com/online/numlo10.html"},{name:"oilcap71.bat",link:"http://www.classicdosgames.com/online/oilcap71.html"},{name:"world.bat",link:"http://www.classicdosgames.com/online/world.html"},{name:"1paga.bat",link:"http://www.classicdosgames.com/online/1paga.html"},{name:"pcm10.bat",link:"http://www.classicdosgames.com/online/pcm10.html"},{name:"pickle.bat",link:"http://www.classicdosgames.com/online/pickle.html"},{name:"pbdreams.bat",link:"http://www.classicdosgames.com/online/pbdreams.html"},{name:"pinbfan.bat",link:"http://www.classicdosgames.com/online/pinbfan.html"},{name:"infcmsam.bat",link:"http://www.classicdosgames.com/online/infcmsam.html"},{name:"prince.bat",link:"http://www.classicdosgames.com/online/prince.html"},{name:"pop2demo.bat",link:"http://www.classicdosgames.com/online/pop2demo.html"},{name:"px.bat",link:"http://www.classicdosgames.com/online/px.html"},{name:"pros.bat",link:"http://www.classicdosgames.com/online/pros.html"},{name:"puttmoon.bat",link:"http://www.classicdosgames.com/online/puttmoon.html"},{name:"puttpara.bat",link:"http://www.classicdosgames.com/online/puttpara.html"},{name:"quake106.bat",link:"http://www.classicdosgames.com/online/quake106.html"},{name:"1rap12.bat",link:"http://www.classicdosgames.com/online/1rap12.html"},{name:"demoray.bat",link:"http://www.classicdosgames.com/online/demoray.html"},{name:"1roc.bat",link:"http://www.classicdosgames.com/online/1roc.html"},{name:"rrover.bat",link:"http://www.classicdosgames.com/online/rrover.html"},{name:"rescue.bat",link:"http://www.classicdosgames.com/online/rescue.html"},{name:"1rotm.bat",link:"http://www.classicdosgames.com/online/1rotm.html"},{name:"1rott13.bat",link:"http://www.classicdosgames.com/online/1rott13.html"},{name:"1rm2.bat",link:"http://www.classicdosgames.com/online/1rm2.html"},{name:"1robo3.bat",link:"http://www.classicdosgames.com/online/1robo3.html"},{name:"round42.bat",link:"http://www.classicdosgames.com/online/round42.html"},{name:"snmdemo.bat",link:"http://www.classicdosgames.com/online/snmdemo.html"},{name:"scorch15.bat",link:"http://www.classicdosgames.com/online/scorch15.html"},{name:"scram12.bat",link:"http://www.classicdosgames.com/online/scram12.html"},{name:"scuba40.bat",link:"http://www.classicdosgames.com/online/scuba40.html"},{name:"searun10.bat",link:"http://www.classicdosgames.com/online/searun10.html"},{name:"guess11.bat",link:"http://www.classicdosgames.com/online/guess11.html"},{name:"1sa10a.bat",link:"http://www.classicdosgames.com/online/1sa10a.html"},{name:"sampler.bat",link:"http://www.classicdosgames.com/online/sampler.html"},{name:"seeksw1.bat",link:"http://www.classicdosgames.com/online/seeksw1.html"},{name:"silvdemo.bat",link:"http://www.classicdosgames.com/online/silvdemo.html"},{name:"shadow.bat",link:"http://www.classicdosgames.com/online/shadow.html"},{name:"sherlock.bat",link:"http://www.classicdosgames.com/online/sherlock.html"},{name:"shootg33.bat",link:"http://www.classicdosgames.com/online/shootg33.html"},{name:"citydemo.bat",link:"http://www.classicdosgames.com/online/citydemo.html"},{name:"simc2000.bat",link:"http://www.classicdosgames.com/online/simc2000.html"},{name:"sinkem.bat",link:"http://www.classicdosgames.com/online/sinkem.html"},{name:"backfor.bat",link:"http://www.classicdosgames.com/online/backfor.html"},{name:"skunny.bat",link:"http://www.classicdosgames.com/online/skunny.html"},{name:"draid.bat",link:"http://www.classicdosgames.com/online/draid.html"},{name:"lspace.bat",link:"http://www.classicdosgames.com/online/lspace.html"},{name:"pizza.bat",link:"http://www.classicdosgames.com/online/pizza.html"},{name:"wwest.bat",link:"http://www.classicdosgames.com/online/wwest.html"},{name:"skart14.bat",link:"http://www.classicdosgames.com/online/skart14.html"},{name:"snow10.bat",link:"http://www.classicdosgames.com/online/snow10.html"},{name:"solar.bat",link:"http://www.classicdosgames.com/online/$solar.html"},{name:"solitile.bat",link:"http://www.classicdosgames.com/online/solitile.html"},{name:"storm1a.bat",link:"http://www.classicdosgames.com/online/storm1a.html"},{name:"ssn.bat",link:"http://www.classicdosgames.com/online/ssn.html"},{name:"sodemo.bat",link:"http://www.classicdosgames.com/online/sodemo.html"},{name:"spider21.bat",link:"http://www.classicdosgames.com/online/spider21.html"},{name:"dforces1.bat",link:"http://www.classicdosgames.com/online/dforces1.html"},{name:"starfr14.bat",link:"http://www.classicdosgames.com/online/starfr14.html"},{name:"strife11.bat",link:"http://www.classicdosgames.com/online/strife11.html"},{name:"angelo.bat",link:"http://www.classicdosgames.com/online/angelo.html"},{name:"sw.bat",link:"http://www.classicdosgames.com/online/sw.html"},{name:"sfly21.bat",link:"http://www.classicdosgames.com/online/sfly21.html"},{name:"suprfrog.bat",link:"http://www.classicdosgames.com/online/suprfrog.html"},{name:"syndemo.bat",link:"http://www.classicdosgames.com/online/syndemo.html"},{name:"bomb32.bat",link:"http://www.classicdosgames.com/online/bomb32.html"},{name:"tmatch12.bat",link:"http://www.classicdosgames.com/online/tmatch12.html"},{name:"tombdemo.bat",link:"http://www.classicdosgames.com/online/tombdemo.html"},{name:"tntdem.bat",link:"http://www.classicdosgames.com/online/tntdem.html"},{name:"tribolo.bat",link:"http://www.classicdosgames.com/online/tribolo.html"},{name:"trugg10.bat",link:"http://www.classicdosgames.com/online/trugg10.html"},{name:"tubes110.bat",link:"http://www.classicdosgames.com/online/tubes110.html"},{name:"tubworld.bat",link:"http://www.classicdosgames.com/online/tubworld.html"},{name:"ubb.bat",link:"http://www.classicdosgames.com/online/ubb.html"},{name:"vgacon40.bat",link:"http://www.classicdosgames.com/online/vgacon40.html"},{name:"vshark20.bat",link:"http://www.classicdosgames.com/online/vshark20.html"},{name:"1_vnyl11.bat",link:"http://www.classicdosgames.com/online/1_vnyl11.html"},{name:"1wacky.bat",link:"http://www.classicdosgames.com/online/1wacky.html"},{name:"war-8.bat",link:"http://www.classicdosgames.com/online/war-8%7D!.html"},{name:"war1demo.bat",link:"http://www.classicdosgames.com/online/war1demo.html"},{name:"war2demo.bat",link:"http://www.classicdosgames.com/online/war2demo.html"},{name:"1wolf14.bat",link:"http://www.classicdosgames.com/online/1wolf14.html"},{name:"wolfiesj.bat",link:"http://www.classicdosgames.com/online/wolfiesj.html"},{name:"wordle12.bat",link:"http://www.classicdosgames.com/online/wordle12.html"},{name:"wordmx11.bat",link:"http://www.classicdosgames.com/online/wordmx11.html"},{name:"1rescue.bat",link:"http://www.classicdosgames.com/online/1rescue.html"},{name:"9empire.bat",link:"http://www.classicdosgames.com/online/9empire.html"},{name:"wrf5.bat",link:"http://www.classicdosgames.com/online/wrf5.html"},{name:"xatax.bat",link:"http://www.classicdosgames.com/online/xatax.html"},{name:"zone66.bat",link:"http://www.classicdosgames.com/online/$zone66.html"},{name:"zoolplay.bat",link:"http://www.classicdosgames.com/online/zoolplay.html"},{name:"infcmsam.bat",link:"http://www.classicdosgames.com/online/infcmsam.html"},{name:"zorrod.bat",link:"http://www.classicdosgames.com/online/zorrod.html"}
-				]
-			},
-			{name:'WOLF3D',directories:[],
-				files:[
-					{name:'wolf3d.exe',		link:'https://classicreload.com/wolfenstein-3d.html'}
-				]
-			}],
-			files:[{name:'sw.bat',data:'cls\ncd\\GAMES\\SHAREWRE\ndir/w/o\n'}]
-		}],
-	files:[{name:'autoexec.bat',data:'c:\ncd lgr\ncls\ndir/w/o\n'},
-			{name:'changes.bat',	data:'echo off\nsetcol 4e\necho 1. basic echo echo off, echo on support\necho 2. concatenate commands with [&]. Eg: "cd\\games \\& dir/w/o"\necho 3. secret searching command should work in IE8+? maybe.\necho 4. command structure modified to be more modular\necho 5. Think the FF "up" bug is fixed, this time...\nsetcol 07\necho on'}]
-}];
-var path = [0];
-var promptMode = false;
-function prompt(txt) {
-	if(bEchoOff) return;
-	if(typeof txt === 'undefined') {
-		var strPrompt = "";
-		strPrompt+= fs[path[0]].name + ':\\';
-		var fsc = fs[path[0]].directories;
-		for(var i=1; i<path.length; i++) {
-			strPrompt+= fsc[path[i]].name;
-			if(i<path.length-1)strPrompt+= '\\';
-			fsc = fsc[path[i]].directories;
-		}
-		strPrompt= strPrompt.toUpperCase() + '>';
-	} else strPrompt = txt;
-	promptMode = true;
-	for(var i=0; i<strPrompt.length; i++) {
-		document.onkeypress({keyCode:strPrompt.charCodeAt(i),stopPropagation:function(){},preventDefault:function(){}});
-	}
-	promptMode = false;
-}
-var bEchoOff = false;
-function echo(str) {
-	promptMode = true;
-	var offset=0;
-	for(var i=0; i<str.length; i++) {
-		if((i-offset)%80==0 && i!=0) document.onkeypress({keyCode:13,stopPropagation:function(){},preventDefault:function(){}});
-		if(str.charAt(i)=='\n') {
-			document.onkeypress({keyCode:13,stopPropagation:function(){},preventDefault:function(){}});
-			offset=i%80;
-		}
-		else document.onkeypress({keyCode:str.charCodeAt(i),stopPropagation:function(){},preventDefault:function(){}});
-	}
-	document.onkeypress({keyCode:13,stopPropagation:function(){},preventDefault:function(){}});
-	promptMode = false;
-}
+    <script>
+    if (typeof isIE === 'undefined') isIE = false;
 
-function pad(str,len,right) {
-	var strP = '';
-	for(var i=0; i<len-str.length;i++) strP+=' ';
-	if(right) return str + strP;
-	return strP + str;
-}
-function dir(sw) {
-	if(typeof sw !== 'undefined') sw = sw.toLowerCase();
-	else sw = '';
-	
-	var strPrompt = "";
-	strPrompt+= fs[path[0]].name + ':\\';
-	var fsc = fs[path[0]];
-	for(var i=1; i<path.length; i++) {
-		strPrompt+= fsc.directories[path[i]].name + '\\';
-		fsc = fsc.directories[path[i]];
-	}
-	var listD = [],
-		listF = [];
-	for(var i=0; i<fsc.directories.length; i++) {
-		//console.log(fsc.directories[i].name);
-		var id=listD.length;
-		//listD[id] = pad('[' + fsc.directories[i].name + ']',16,true);
-		listD[id] = fsc.directories[i].name;
-	}
-	for(var i=0; i<fsc.files.length; i++) {
-		//console.log(fsc.files[i].name);
-		var id=listF.length;
-		listF[id] = fsc.files[i].name;
-	}
-	var swW=sw.indexOf('/w')!=-1, swO=sw.indexOf('/o')!=-1, swP=sw.indexOf('/p')!=-1;
-	if(swO) { //order the lists alphabetically:
-		listD.sort();
-		listF.sort();
-	}
-	if(path.length>1) {
-		var navDirs = ['.','..'];
-		navDirs[0].refID=-1;
-		navDirs[1].refID=-1;
-		listD = navDirs.concat(listD);
-	}
-	
-	echo('Directory of ' + strPrompt.toUpperCase() + '.');
-	var totalSize=0;
-	
-	//normal/details mode output
-	var iMax = listD.length; if(listF.length>iMax) iMax = listF.length;
-	for(var i=0; i<iMax; i++) {
-		var fdat = '';
-		for(var f=0; f<fsc.files.length; f++) {
-			if(pad(fsc.files[f].name,16,true)==listF[i] && typeof fsc.files[f].data !== 'undefined') {
-				fdat=fsc.files[f].data;
-				break;
-			}
-		}
-		
-		if(swW) {
-			if(i<listD.length) {
-				listD[i] = pad('[' + listD[i] + ']',16,true);
-			}
-			if(i<listF.length) {
-				var iSize = fdat.length || 1337/listF.length;
-				totalSize+=iSize;
-				listF[i] = pad(listF[i],16,true);
-			}
-		} else {
-			if(i<listD.length) {
-				listD[i] = '31/01/1993  01:02 AM    ' + pad('<DIR>',16,true) + pad(listD[i],16,true);
-			}
-			if(i<listF.length) {
-				var iSize = fdat.length || 1337/listF.length;
-				totalSize+=iSize;
-				listF[i] = '31/01/1993  01:02 AM    ' + pad(Math.floor(iSize)+' ',16,false) + pad(listF[i],16,true);
-			}
-		}
-	}
-	
-	if(swW) {
-		//wide mode output:
-		echo(listD.join('') + listF.join(''));
-	} else {
-		echo(listD.join('\n') + '\n' + listF.join('\n'));
-	}
-	
-	echo(pad(pad((fsc.files.length)+'',5,false) + ' File(s)',16,true) + pad(Math.ceil(totalSize)+' ',16,false) + 'Bytes.');
-	echo(pad(pad((fsc.directories.length+2)+'',5,false) + ' Dir(s)',16,true) + pad('111,744 ',16,false) + 'Bytes free.');
-	echo('');
-}
+    // ============================================================
+    // PALETTE
+    // 16-color CGA/EGA palette (indices 0-15)
+    // ============================================================
+    var pal = [
+        "#000000", "#0000aa", "#00aa00", "#00aaaa",
+        "#aa0000", "#aa00aa", "#aa5500", "#aaaaaa",
+        "#555555", "#5555ff", "#55ff55", "#55ffff",
+        "#ff5555", "#ff55ff", "#ffff55", "#ffffff"
+    ];
 
-function attemptExec(file) {
-	file = file.toLowerCase();
-	var fsc = fs[path[0]];
-	for(var i=1; i<path.length; i++) {
-		fsc = fsc.directories[path[i]];
-	}
-	for(var i=0; i<fsc.files.length; i++) {
-		//console.log(fsc.files[i].name);
-		if((fsc.files[i].name.toLowerCase() == file || fsc.files[i].name.toLowerCase().split('.')[0] == file) && typeof fsc.files[i].link !== 'undefined') {
-			//window.location.href = fsc.files[i].link;
-			window.open(fsc.files[i].link,"_blank");
-			return 1;
-		}
-		if((fsc.files[i].name.toLowerCase() == file || fsc.files[i].name.toLowerCase().split('.')[0] == file) && (typeof fsc.files[i].data !== 'undefined' && fsc.files[i].name.toLowerCase().split('.')[1]=='bat')) {
-			prompt();
-			executeBatch(fsc.files[i].data);
-			return 2;
-		}
-	}
-	return 0;
-}
+    // ============================================================
+    // FONT SYSTEM
+    // Generates CSS background-position rules for each character
+    // in the 16x16 bitmap font sprite sheet, then loads per-color
+    // font images into a hidden #fonts div.
+    // ============================================================
+    var fontSrc = [];
 
-function cd(dir) {
-	if(dir.charAt(dir.length-1)=='\\' && dir.length>3){
-		//console.log('dir is : ' + dir);
-		dir = dir.substr(0,dir.length-1);
-		//console.log('dir is now : ' + dir);
-	}
-	dir = dir.toLowerCase();
-	while(dir.charAt(0)==' ' && dir.length>0) dir = dir.substr(1);
-	if(dir.charAt(0)=='\\' && dir.length==1) {
-		path = [0];
-		return true;
-	}
-	if(dir.charAt(0)=='\\') {
-		//look up path from drive root...
-		var dir=dir.split('\\');
-		var newPath = [0];
-		var fsc = fs[newPath[0]];
-		for(var d=1; d<dir.length; d++) {
-			var bFound = false;
-			for(var i=0; i<fsc.directories.length; i++) {	//get to current directory:
-				//fsc = fsc.directories[i];
-				if(fsc.directories[i].name.toLowerCase() == dir[d]) {
-					newPath[d] = i;
-					fsc = fsc.directories[newPath[d]];
-					bFound = true;
-					break;
-				}
-			}
-			if(!bFound) {
-				return false;
-			}
-			
-		}
-		path = newPath;
-		return true;
-	} else {
-		if(dir=='..' && path.length>1) {
-			path.pop();
-			return true;
-		}
-		if(dir=='.') {
-			return true;
-		}
-		if(dir.substr(0,3)=='..\\' && path.length>1) {
-			dir = dir.substr(3);
-			path.pop();
-		}
-		//look up path from current dir.
-		var fsc = fs[path[0]];
-		for(var i=1; i<path.length; i++) {	//get to current directory:
-			fsc = fsc.directories[path[i]];
-		}
-		if(dir.substr(0,2)=='.\\') dir = dir.substr(2);
-		//now see if we have a directory with the same name as requested...
-		for(var i=0; i<fsc.directories.length; i++) {
-			if(fsc.directories[i].name.toLowerCase() == dir) {
-				//yep...
-				path[path.length] = i;
-				return true;
-			}
-		}
-	}
-	return false;
-}
-function type(file) {
-	file = file.toLowerCase();
-	//look up path from current file.
-	var fsc = fs[path[0]];
-	for(var i=1; i<path.length; i++) {	//get to current directory:
-		fsc = fsc.directories[path[i]];
-	}
-	//now see if we have a file with the same name as requested...
-	for(var i=0; i<fsc.files.length; i++) {
-		if(fsc.files[i].name.toLowerCase() == file || fsc.files[i].name.toLowerCase().split('.')[0] == file) {
-			//yep...
-			if(typeof fsc.files[i].data !=='undefined') {
-				echo(fsc.files[i].data);
-				return true;
-			}
-			if(typeof fsc.files[i].link !=='undefined') {
-				echo(fsc.files[i].link);
-				return true;
-			}
-		}
-	}
-	echo('The syntax of the command is incorrect.');
-	return false;
-}
+    function goFontGo() {
+        var strStyle = "", fontMapCharWidth = 12, fontMapCharHeight = 12;
+        for (var i = 0; i < (16 * 16); i++) {
+            var x = i % 16;
+            var y = (i - x) / 16;
+            strStyle += '.f-' + i + ' { background-position:-' + ((x * fontMapCharWidth) - 0) + 'px -' + ((y * fontMapCharHeight) - 0) + 'px; } ';
+        }
+        var fontStyle = document.createElement('style');
+        fontStyle.type = "text/css";
+        if (fontStyle.styleSheet) {
+            fontStyle.styleSheet.cssText = strStyle + " .f-n { background-position:0px 0px; float:none; width:0px;} .f-cursor { margin-right:-8px; }";
+        } else {
+            fontStyle.appendChild(document.createTextNode(strStyle + " .f-n { background-position:0px 0px; float:none; width:0px;} .f-cursor { margin-right:-8px; }"));
+        }
+        document.body.appendChild(fontStyle);
 
-var commands={};
-function registerCmd(name, method, replace) {
-	if(typeof commands[name] !== 'undefined' && replace!==true) {
-		console.log('command ' + name + ' already exists.');
-	}
-	commands[name] = {	name 	: name,
-						method 	: method
-					};
-}
-
-function handleCmd(cmd) {
-	//console.log(cmd.split(' & ').length);
-	if(cmd.split(' & ').length>1) {
-		var cmds = cmd.split(' & ');
-		echo('\n');
-		prompt();
-		for(var i=0; i<cmds.length; i++) {
-			console.log(cmds[i] + ' |> ' + i);
-			prompt(cmds[i]);
-			handleCmd(cmds[i]);
-		}
-		return;
-	}
-	if(ctxStack.length>0) {
-		ctxStack[ctxStack.length-1].handleCmd(cmd);
-		return;
-	}
-	cmd = cmd.replace(' \\& ', ' & ');
-	if(!bEchoOff) { //prompt('');
-		promptMode = true;
-		document.onkeypress({keyCode:13,stopPropagation:function(){},preventDefault:function(){}});
-		promptMode = false;
-	}
-	cmdStack[cmdStack.length] = cmd;
-	cmdStackIdx = cmdStack.length-1;
-	
-	
-	//fist handle these:
-	if(cmd=='' && !bEchoOff) echo('');	//just hit return, no cmd typed
-	if(cmd.charAt(1)==':' && cmd.replace(' ','').length==2) {
-		//trying to change to another drive...
-		//todo: implement a secret "a:" with something fun on it...
-	}
-	
-	//a slightly less hacky way to handle cmds:
-	var c = cmd.toLowerCase().split(/ |\\|\.\\|\.\.|\//i)[0];
-	if(typeof commands[c] !== 'undefined') {
-		if(typeof commands[c].method === 'function') {
-			if(commands[c].method(cmd.substr(c.length))!==false) {	//some commands don't want to display prompt once executed...
-				prompt();
-			}
-			return;
-		}
-	}
-	//try and execut a file, or error:
-	if(cmd.replace(' ','')!='') {
-		var r=attemptExec(c);
-		if(!r){
-			echo('Bad command or file name');
-			//console.log('command not found');
-		} else if(r==2) {
-			return;
-		}
-	}
-	prompt();
-}
-registerCmd('exit', function() { echo("I'm sorry, Dave, I'm afraid I can't do that."); });
-registerCmd('del', function() { echo("File(s) too important for me to allow you to jeopardize."); });
-registerCmd('rmdir', function() { echo("Bad command or go away."); });
-registerCmd('chkdsk', function() { echo("*Checking...*  Yep, that's a disk."); });
-registerCmd('help', function() { echo("Surely you can figure this out! But if not, just start typing topics/commands of interest. Works best in Chrome, otherwise backspace may not work."); });
-registerCmd('format', function() { echo("Specified drive does not exist. Anarchist."); });
-registerCmd('edlin', function() { echo("Whoa now, this is LGR-DOS not MS-DOS!"); });
-registerCmd('edit', function() { echo("Illegal command: edit."); });
-registerCmd('debug', function() { echo("Program terminated normally (0000)"); });
-registerCmd('attrib', function() { echo("A ttrib is a terrible thing to waste."); });
-registerCmd('lgr', function() { txtPal.fg=2; echo("You have fine taste."); });
-registerCmd('zerocool', function() { txtPal.fg=11; txtPal.bg=1; echo("HACK THE PLANET!"); });
-registerCmd('dopefish', function() { 
-	echo("Lives!");
-	var dope = [1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,0,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,2,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,2,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,0,0,9,1,9,1,9,1,9,1,9,1,9,1,9,0,2,2,2,2,0,1,9,1,9,1,9,1,9,1,9,1,2,2,2,2,2,2,0,1,9,1,9,1,9,1,9,1,2,2,2,2,2,2,2,2,9,1,9,1,9,1,9,1,9,2,0,15,15,8,2,2,2,2,9,1,9,1,9,1,9,0,2,15,15,15,15,2,2,2,2,1,9,1,9,1,9,1,2,2,15,15,15,15,2,15,2,2,0,1,9,1,9,1,9,2,0,15,15,0,15,15,15,15,2,2,9,2,0,1,9,1,2,15,15,0,0,0,15,15,15,2,2,1,2,2,9,1,9,2,15,15,0,0,0,0,15,15,2,2,2,2,2,0,9,1,2,15,15,0,0,0,0,0,15,2,2,2,2,2,2,0,9,2,15,15,0,0,0,0,15,15,2,0,8,2,2,2,2,0,2,15,15,15,0,0,15,15,2,2,2,0,2,2,2,2,2,2,0,15,15,15,2,2,2,2,0,2,2,1,2,2,2,2,2,2,7,15,8,2,2,2,0,4,0,2,9,1,2,2,0,2,2,2,2,2,0,15,15,0,4,0,2,2,9,8,2,1,2,2,2,15,15,15,15,15,0,0,0,2,2,1,9,0,9,2,2,2,15,15,15,15,15,0,0,0,2,2,9,1,0,2,2,2,2,15,15,15,15,15,0,4,0,2,2,1,9,1,2,8,2,2,15,15,15,15,15,0,0,2,2,1,9,1,9,2,9,2,2,15,15,15,15,15,0,2,2,8,9,1,9,1,9,1,2,2,0,0,0,0,0,0,2,2,0,1,9,1,9,1,9,2,0,2,2,0,2,2,2,2,0,1,9,1,9,1,9,1,0,2,2,2,0,8,2,2,0,0,9,1,9,1,9,1,9,1,2,0,2,2,0,0,0,0,9,1,9,1,9,1,9,1,9,0,2,0,0,0,0,8,9,1,9,1,9,1,9,1,9,1,9,0,2,2,2,2,0,1,9,1,9,1,9,1,9,1,9,1,9,0,0,0,9,1,9,1,9,1,9];
-	for(var y=0; y<32; y+=2) {
-		for(var x=0; x<17; x++) {
-			var c = document.createElement('div');
-			addClass(c,'font');
-			addClass(c,'f-' + 220);
-			c.style.backgroundColor = pal[dope[y*17+x]];
-			c.style.backgroundImage = 'url(' + fontSrc[dope[(y+1)*17+x]] + ')';
-			promptEl.insertBefore(c,cursorEl);
-		}
-		var c = document.createElement('div');
-		addClass(c,'font');
-		addClass(c,'f-n');
-		promptEl.insertBefore(c,cursorEl);
-	}
-});
-registerCmd('quit', function() { echo("You're just gonna quit, huh? Good luck with that."); });
-registerCmd('echo', function(cmd) {
-	if(cmd.charAt(0)==' ')cmd=cmd.substr(1);
-	if(cmd=='off') {
-		bEchoOff = true;
-		return;
-	}
-	if(cmd=='on') {
-		bEchoOff = false;
-		return;
-	}
-	echo(cmd);
-});
-registerCmd('type', function(cmd) {
-	if(cmd.charAt(0)==' ')cmd=cmd.substr(1);
-	type(cmd);
-});
-registerCmd('cls', function(cmd) {
-	promptEl.innerHTML = '<div id="cursor" class="font f-95 f-cursor"></div>';
-	cursorEl = document.getElementById('cursor');
-});
-registerCmd('dir', function(cmd) {
-	if(cmd.charAt(0)==' ')cmd=cmd.substr(1);
-	dir(cmd);
-});
-registerCmd('cd', function(cmd) {
-	if(cmd.charAt(0)==' ')cmd=cmd.substr(1);
-	if(!cd(cmd.toLowerCase().replace('cd',''))) {
-		//console.log('no directory');
-		echo('The system cannot find the path specified.');
-	}
-});
-registerCmd('setcol', function(cmd) {
-	if(cmd.charAt(0)==' ')cmd=cmd.substr(1);
-	if(cmd.length!=2) {
-		echo('invalid command');
-	} else {
-		var b = Number('0x' + cmd.charAt(0),16);
-		var f = Number('0x' + cmd.charAt(1),16);
-		if(b+''!='NaN' && f+''!= 'NaN') {
-			txtPal.bg = b;
-			txtPal.fg = f;
-		} else { echo('invalid command'); }
-	}
-});
-
-var cmdStack = [];
-var cmdStackIdx=-1;
-var ctxStack = []; //eg which program is running,etc... weird hack because I don't want to rewrite half the code. lol.
-
-var curItvl;
-
-
-</script>
-<script type="application/javascript">
-	//we send this too google so they know we aren't abusing their service.
-	var clientIP = false;
-    function getip(json){
-      clientIP = json.ip; // alerts the ip address
+        var fontsDiv = document.getElementById('fonts');
+        if (!isIE && false) {    // canvas-based color generation (slow — disabled)
+            var c = document.getElementById('cv');
+            var g = c.getContext('2d');
+            c.width = 192;
+            c.height = 192;
+            var fontBaseImg;
+            if (typeof debugImgs === 'function') fontBaseImg = debugImgs();
+            else fontBaseImg = document.getElementById('font-base');
+            for (var i = 0; i < pal.length; i++) {
+                g.fillStyle = pal[i];
+                g.fillRect(0, 0, 192, 192);
+                g.globalCompositeOperation = "destination-atop";
+                g.drawImage(fontBaseImg, 0, 0);
+                g.globalCompositeOperation = "source-over";
+                var img = document.createElement('img');
+                img.src = c.toDataURL("image/png");
+                fontSrc[i] = img.src;
+                img.id = 'font-' + i;
+                fontsDiv.appendChild(img);
+            }
+        } else {    // use pre-rendered per-color PNG files
+            for (var i = 0; i < pal.length; i++) {
+                var img = document.createElement('img');
+                img.src = 'img/f12.' + i + '.png';
+                fontSrc[i] = img.src;
+                img.id = 'font-' + i;
+                fontsDiv.appendChild(img);
+            }
+        }
     }
-</script>
-<script src="ggl.js"></script>
-<link rel="shortcut icon" href="favicon.ico" >
-<link rel="icon" type="image/gif" href="animated_favicon1.gif" >
+
+    // ============================================================
+    // CLASS UTILITIES
+    // Cross-browser classList wrappers (supports IE without classList)
+    // ============================================================
+    function addClass(el, c) {
+        if (typeof el.classList !== 'undefined') { el.classList.add(c); return; }
+        el.className += ' ' + c;
+    }
+    function remClass(el, c) {
+        if (typeof el.classList !== 'undefined') { el.classList.remove(c); return; }
+        el.className = el.className.replace(' ' + c, '');
+    }
+    function gotClass(el, c) {
+        if (typeof el.classList !== 'undefined') return el.classList.contains(c);
+        return el.className.indexOf(' ' + c) != -1;
+    }
+
+    // ============================================================
+    // KEYBOARD STATE & COLOR
+    // ============================================================
+    var kb = {}; // keycode remapping table (currently empty)
+    var txtPal = { bg: 0, fg: 7 }; // current foreground/background palette indices
+
+    // ============================================================
+    // KEYBOARD HANDLER — keypress
+    // Handles printable character input, Enter, and Backspace.
+    // Each keystroke renders a font div into the prompt area.
+    // ============================================================
+    document.onkeypress = function(e) {
+        if (typeof e === 'undefined') e = event;
+
+        var c = document.createElement('div');
+        addClass(c, 'font');
+        var k = (kb[e.keyCode || e.charCode] || e.keyCode || e.charCode);
+
+        if (k == 38 && kUp == true)   return;
+        if (k == 40 && kDown == true) return;
+
+        // Enter key — submit command
+        if (k == 13) {
+            if (!promptMode) {
+                var strCMD = "";
+                var el = cursorEl;
+                while (!gotClass(el.previousSibling, 'p')) {
+                    el = el.previousSibling;
+                    strCMD = el.getAttribute('v') + strCMD;
+                }
+                handleCmd(strCMD);
+                return;
+            }
+            k = 'n';
+        }
+
+        // Backspace key — delete previous character
+        if (k == 8) {
+            if (gotClass(cursorEl.previousSibling, 'p')) return;
+            cursorEl.parentElement.removeChild(cursorEl.previousSibling);
+            return;
+        }
+
+        // Render the character as a font div
+        addClass(c, 'f-' + k);
+        if (promptMode) addClass(c, 'p');
+        c.setAttribute('v', String.fromCharCode(k));
+        if (k == 13) c.setAttribute('v', '\n');
+
+        c.style.backgroundColor  = pal[txtPal.bg];
+        c.style.backgroundImage  = 'url(' + fontSrc[txtPal.fg] + ')';
+
+        promptEl.insertBefore(c, cursorEl);
+
+        // Enforce max 60 visible lines — remove oldest line when exceeded
+        if (document.querySelectorAll('.f-n').length >= 60) {
+            var nl = document.querySelectorAll('.f-n')[0];
+            var iMax = 0;
+            if (nl == promptEl.firstChild) {
+                promptEl.removeChild(nl);
+            } else {
+                while (promptEl.firstChild != nl || iMax == 79) {
+                    promptEl.removeChild(promptEl.firstChild);
+                    iMax++;
+                }
+                promptEl.removeChild(nl);
+            }
+        }
+
+        if (typeof e.stopPropagation === 'undefined') e.stopPropagation = function() {};
+        if (typeof e.preventDefault  === 'undefined') e.preventDefault  = function() {};
+        e.stopPropagation(); e.preventDefault();
+        return false;
+    };
+
+    // ============================================================
+    // KEYBOARD HANDLER — keydown
+    // Handles Backspace (Firefox fix), and Up/Down arrow
+    // history navigation through the command stack.
+    // ============================================================
+    function doKeyDown(e) {
+        if (typeof e === 'undefined') e = event;
+        if (typeof e.stopPropagation === 'undefined') e.stopPropagation = function() {};
+        if (typeof e.preventDefault  === 'undefined') e.preventDefault  = function() {};
+
+        var k = (kb[e.keyCode || e.charCode] || e.keyCode || e.charCode);
+
+        // Backspace — Firefox doesn't fire keypress for backspace
+        if (k == 8) {
+            e.stopPropagation(); e.preventDefault();
+            if (window.navigator.userAgent.toLowerCase().indexOf("firefox") == -1)
+                document.onkeypress({ keyCode: 8 });
+            return false;
+        }
+
+        var up = 38, down = 40;
+
+        // Up arrow — step backward through command history
+        if (k == up && cmdStackIdx > -1) {
+            var el = cursorEl, hold;
+            while (!gotClass(el, 'p')) {
+                hold = el;
+                el = el.previousSibling;
+                if (hold !== cursorEl) promptEl.removeChild(hold);
+            }
+            if (cmdStackIdx >= cmdStack.length) cmdStackIdx--;
+            enterCmd(cmdStack[cmdStackIdx]);
+            cmdStackIdx--;
+        }
+
+        // Down arrow — step forward through command history
+        if (k == down && cmdStackIdx < cmdStack.length) {
+            var el = cursorEl, hold;
+            while (!gotClass(el, 'p')) {
+                hold = el;
+                el = el.previousSibling;
+                if (hold !== cursorEl) promptEl.removeChild(hold);
+            }
+            cmdStackIdx++;
+            if (cmdStackIdx >= cmdStack.length) enterCmd('');
+            else enterCmd(cmdStack[cmdStackIdx]);
+        }
+
+        if (k == down) kDown = true;
+        if (k == up)   kUp   = true;
+        if (k == down || k == up) {
+            e.stopPropagation(); e.preventDefault();
+            return false;
+        }
+    }
+
+    // ============================================================
+    // KEYBOARD HANDLER — keyup
+    // Resets arrow-key held state.
+    // ============================================================
+    var kUp = false, kDown = false;
+    function doKeyUp(e) {
+        if (typeof e === 'undefined') e = event;
+        if (typeof e.stopPropagation === 'undefined') e.stopPropagation = function() {};
+        if (typeof e.preventDefault  === 'undefined') e.preventDefault  = function() {};
+
+        var k = (kb[e.keyCode || e.charCode] || e.keyCode || e.charCode);
+        if (k == 40) kDown = false;
+        if (k == 38) kUp   = false;
+
+        e.stopPropagation(); e.preventDefault(); return false;
+    }
+
+    // ============================================================
+    // INITIALIZATION
+    // Wires up the DOM, starts the cursor blink interval,
+    // renders the prompt, and runs AUTOEXEC.BAT if present.
+    // ============================================================
+    var cursorEl, promptEl;
+    function init() {
+        goFontGo();
+        document.onkeydown = doKeyDown;
+        document.onkeyup   = doKeyUp;
+
+        cursorEl = document.getElementById('cursor');
+        promptEl = document.getElementById('prompt');
+
+        curItvl = setInterval(function() {
+            cursorEl.style.opacity = (cursorEl.style.opacity != 1) ? 1 : 0;
+        }, 150);
+
+        prompt();
+
+        // Run AUTOEXEC.BAT from root of C: if it exists
+        var autoexec = false;
+        for (var i = 0; i < fs[0].files.length; i++) {
+            if (fs[0].files[i].name.toLowerCase() == 'autoexec.bat' && typeof fs[0].files[i].data !== 'undefined') {
+                autoexec = fs[0].files[i].data;
+                break;
+            }
+        }
+        if (autoexec != false) executeBatch(autoexec);
+    }
+
+    // Simulate typing a string into the prompt
+    function enterCmd(d) {
+        for (var i = 0; i < d.length; i++) {
+            if (d.charAt(i) == '\n')
+                document.onkeypress({ keyCode: 13, stopPropagation: function() {}, preventDefault: function() {} });
+            else
+                document.onkeypress({ keyCode: d.charCodeAt(i), stopPropagation: function() {}, preventDefault: function() {} });
+        }
+    }
+
+    // Execute a multi-line batch script string line by line
+    function executeBatch(d) {
+        var cmds = d.split('\n');
+        for (var i = 0; i < cmds.length; i++) {
+            if (cmds[i].length > 0) handleCmd(cmds[i]);
+        }
+        bEchoOff = false; // always restore echo after a batch
+    }
+
+    // ============================================================
+    // VIRTUAL FILESYSTEM
+    // Simulated C: drive with directories and files.
+    // Files have either a `link` (opens in new tab) or
+    // `data` (plain text / batch script content).
+    // ============================================================
+    var fs = [{
+        name: 'c',
+        directories: [
+            {
+                name: 'LGR',
+                directories: [],
+                files: [
+                    { name: 'YOUTUBE.COM', link: 'https://www.youtube.com/@LGR' },
+                    { name: 'BSKY.COM',    link: 'https://bsky.app/profile/lgr-yt.bsky.social' },
+                    { name: 'REDDIT.BAT',  link: 'https://www.reddit.com/r/LGR/' },
+                    { name: 'DONATE.BAT',  link: 'http://donate.lazygamereviews.com/' },
+                    { name: 'PATREON.COM', link: 'https://www.patreon.com/LazyGameReviews' }
+                ]
+            },
+            {
+                name: 'EMULATORS',
+                directories: [
+                    {
+                        name: 'DOS',
+                        directories: [
+                            { name: 'DOOM',    directories: [], files: [{ name: 'doom.exe',    link: 'https://archive.org/details/The_Ultimate_Doom' }] },
+                            { name: 'DUKE2',   directories: [], files: [{ name: 'nukem2.exe',  link: 'https://archive.org/details/DukeNukemIi' }] },
+                            { name: 'ZORK',    directories: [], files: [{ name: 'zork.exe',    link: 'https://archive.org/details/msdos_Zork_I_-_The_Great_Underground_Empire_1980' }] },
+                            { name: 'GALAXY',  directories: [], files: [{ name: 'keen4e.exe',  link: 'https://archive.org/details/CommanderKeenGoodbyeGalaxy' }] },
+                            { name: 'OOTW',    directories: [], files: [{ name: 'ootw.exe',    link: 'https://archive.org/details/msdos_Out_of_This_World_1991' }] },
+                            { name: 'EPICPIN', directories: [], files: [{ name: 'pinball.exe', link: 'https://archive.org/details/msdos_Epic_Pinball_-_The_Complete_Collection_1995' }] },
+                            { name: 'TYRIAN',  directories: [], files: [{ name: 'tyrian.exe',  link: 'https://archive.org/details/TyrianV2.1SW1996EpicMegaGamesInc.Action' }] },
+                            { name: 'SC2KCD',  directories: [], files: [{ name: 'sc2000.exe',  link: 'https://archive.org/details/msdos_SimCity_2000_-_CD_Collection_1994' }] },
+                            { name: 'WOLF3D',  directories: [], files: [{ name: 'wolf3d.exe',  link: 'https://classicreload.com/wolfenstein-3d.html' }] },
+                            {
+                                name: 'SHAREWRE',
+                                directories: [],
+                                files: [
+                                    {name:"xmaslm93.bat",link:"http://www.classicdosgames.com/online/xmaslm93.html"},{name:"amath.bat",link:"http://www.classicdosgames.com/online/$amath.html"},{name:"ccomic5.bat",link:"http://www.classicdosgames.com/online/ccomic5.html"},{name:"ta_demo.bat",link:"http://www.classicdosgames.com/online/ta_demo.html"},{name:"sharks12.bat",link:"http://www.classicdosgames.com/online/sharks12.html"},{name:"alondark.bat",link:"http://www.classicdosgames.com/online/alondark.html"},{name:"alpman11.bat",link:"http://www.classicdosgames.com/online/alpman11.html"},{name:"demrayus.bat",link:"http://www.classicdosgames.com/online/demrayus.html"},{name:"anc1s.bat",link:"http://www.classicdosgames.com/online/anc1s.html"},{name:"antrun30.bat",link:"http://www.classicdosgames.com/online/antrun30.html"},{name:"achkv12.bat",link:"http://www.classicdosgames.com/online/achkv12.html"},{name:"aspetra.bat",link:"http://www.classicdosgames.com/online/aspetra.html"},{name:"astro.bat",link:"http://www.classicdosgames.com/online/astro.html"},{name:"axia-w95.bat",link:"http://www.classicdosgames.com/online/axia-w95.html"},{name:"ballon20.bat",link:"http://www.classicdosgames.com/online/ballon20.html"},{name:"banyon2.bat",link:"http://www.classicdosgames.com/online/banyon2.html"},{name:"btour49.bat",link:"http://www.classicdosgames.com/online/btour49.html"},{name:"atlant22.bat",link:"http://www.classicdosgames.com/online/atlant22.html"},{name:"billy40.bat",link:"http://www.classicdosgames.com/online/billy40.html"},{name:"1bs30.bat",link:"http://www.classicdosgames.com/online/1bs30.html"},{name:"blnwar11.bat",link:"http://www.classicdosgames.com/online/blnwar11.html"},{name:"bman10.bat",link:"http://www.classicdosgames.com/online/bman10.html"},{name:"brix1.bat",link:"http://www.classicdosgames.com/online/brix1.html"},{name:"bm2demo.bat",link:"http://www.classicdosgames.com/online/bm2demo.html"},{name:"capflag5.bat",link:"http://www.classicdosgames.com/online/capflag5.html"},{name:"cargobay.bat",link:"http://www.classicdosgames.com/online/cargobay.html"},{name:"castle.bat",link:"http://www.classicdosgames.com/online/castle.html"},{name:"catch.bat",link:"http://www.classicdosgames.com/online/catch.html"},{name:"cengine.bat",link:"http://www.classicdosgames.com/online/cengine.html"},{name:"charlie.bat",link:"http://www.classicdosgames.com/online/charlie.html"},{name:"cipher22.bat",link:"http://www.classicdosgames.com/online/cipher22.html"},{name:"cisco.bat",link:"http://www.classicdosgames.com/online/cisco.html"},{name:"k6_demo.bat",link:"http://www.classicdosgames.com/online/k6_demo.html"},{name:"4keen.bat",link:"http://www.classicdosgames.com/online/4keen.html"},{name:"1keen.bat",link:"http://www.classicdosgames.com/online/1keen.html"},{name:"coolspot.bat",link:"http://www.classicdosgames.com/online/coolspot.html"},{name:"cc3d342.bat",link:"http://www.classicdosgames.com/online/cc3d342.html"},{name:"1cosmo.bat",link:"http://www.classicdosgames.com/online/1cosmo.html"},{name:"7crates.bat",link:"http://www.classicdosgames.com/online/7crates.html"},{name:"cshuf15.bat",link:"http://www.classicdosgames.com/online/cshuf15.html"},{name:"crushr32.bat",link:"http://www.classicdosgames.com/online/crushr32.html"},{name:"1cc10a.bat",link:"http://www.classicdosgames.com/online/1cc10a.html"},{name:"cyberkid.bat",link:"http://www.classicdosgames.com/online/cyberkid.html"},{name:"desc14sw.bat",link:"http://www.classicdosgames.com/online/desc14sw.html"},{name:"detroit.bat",link:"http://www.classicdosgames.com/online/detroit.html"},{name:"aladdemo.bat",link:"http://www.classicdosgames.com/online/aladdemo.html"},{name:"beauty.bat",link:"http://www.classicdosgames.com/online/beauty.html"},{name:"dnd_121.bat",link:"http://www.classicdosgames.com/online/dnd_121.html"},{name:"doom19s.bat",link:"http://www.classicdosgames.com/online/doom19s.html"},{name:"dotso11.bat",link:"http://www.classicdosgames.com/online/dotso11.html"},{name:"doubol.bat",link:"http://www.classicdosgames.com/online/doubol.html"},{name:"drgnbn12.bat",link:"http://www.classicdosgames.com/online/drgnbn12.html"},{name:"1duke.bat",link:"http://www.classicdosgames.com/online/1duke.html"},{name:"3dduke13.bat",link:"http://www.classicdosgames.com/online/3dduke13.html"},{name:"4duke.bat",link:"http://www.classicdosgames.com/online/4duke.html"},{name:"dnd_201.bat",link:"http://www.classicdosgames.com/online/dnd_201.html"},{name:"ewj_1.bat",link:"http://www.classicdosgames.com/online/ewj_1.html"},{name:"egatrk31.bat",link:"http://www.classicdosgames.com/online/egatrk31.html"},{name:"elecnoid.bat",link:"http://www.classicdosgames.com/online/elecnoid.html"},{name:"epicbb.bat",link:"http://www.classicdosgames.com/online/epicbb.html"},{name:"epicpn21.bat",link:"http://www.classicdosgames.com/online/epicpn21.html"},{name:"temim.bat",link:"http://www.classicdosgames.com/online/temim.html"},{name:"xpsw1.bat",link:"http://www.classicdosgames.com/online/xpsw1.html"},{name:"fuzzy100.bat",link:"http://www.classicdosgames.com/online/fuzzy100.html"},{name:"glacta11.bat",link:"http://www.classicdosgames.com/online/glacta11.html"},{name:"goblins.bat",link:"http://www.classicdosgames.com/online/goblins.html"},{name:"gob2_prv.bat",link:"http://www.classicdosgames.com/online/gob2_prv.html"},{name:"gobman11.bat",link:"http://www.classicdosgames.com/online/gobman11.html"},{name:"googol36.bat",link:"http://www.classicdosgames.com/online/googol36.html"},{name:"goorev36.bat",link:"http://www.classicdosgames.com/online/goorev36.html"},{name:"htic_v12.bat",link:"http://www.classicdosgames.com/online/htic_v12.html"},{name:"hero.bat",link:"http://www.classicdosgames.com/online/hero.html"},{name:"hexndemo.bat",link:"http://www.classicdosgames.com/online/hexndemo.html"},{name:"hexx14.bat",link:"http://www.classicdosgames.com/online/hexx14.html"},{name:"1hp11.bat",link:"http://www.classicdosgames.com/online/1hp11.html"},{name:"xmaslm94.bat",link:"http://www.classicdosgames.com/online/xmaslm94.html"},{name:"hubie_12.bat",link:"http://www.classicdosgames.com/online/hubie_12.html"},{name:"hugo2.bat",link:"http://www.classicdosgames.com/online/hugo2.html"},{name:"hugo3.bat",link:"http://www.classicdosgames.com/online/hugo3.html"},{name:"hugo1.bat",link:"http://www.classicdosgames.com/online/hugo1.html"},{name:"dr_rip11.bat",link:"http://www.classicdosgames.com/online/dr_rip11.html"},{name:"timdemo.bat",link:"http://www.classicdosgames.com/online/timdemo.html"},{name:"incun.bat",link:"http://www.classicdosgames.com/online/incun.html"},{name:"fatetdt.bat",link:"http://www.classicdosgames.com/online/fatetdt.html"},{name:"sampler.bat",link:"http://www.classicdosgames.com/online/sampler.html"},{name:"infcmsam.bat",link:"http://www.classicdosgames.com/online/infcmsam.html"},{name:"bats1sw.bat",link:"http://www.classicdosgames.com/online/bats1sw.html"},{name:"iron.bat",link:"http://www.classicdosgames.com/online/iron.html"},{name:"islewr31.bat",link:"http://www.classicdosgames.com/online/islewr31.html"},{name:"1jazz13.bat",link:"http://www.classicdosgames.com/online/1jazz13.html"},{name:"1jelly2.bat",link:"http://www.classicdosgames.com/online/1jelly2.html"},{name:"jill.bat",link:"http://www.classicdosgames.com/online/$jill.html"},{name:"keendr13.bat",link:"http://www.classicdosgames.com/online/keendr13.html"},{name:"kosynk11.bat",link:"http://www.classicdosgames.com/online/kosynk11.html"},{name:"lavacp11.bat",link:"http://www.classicdosgames.com/online/lavacp11.html"},{name:"lemmings.bat",link:"http://www.classicdosgames.com/online/lemmings.html"},{name:"lionking.bat",link:"http://www.classicdosgames.com/online/lionking.html"},{name:"llarry12.bat",link:"http://www.classicdosgames.com/online/llarry12.html"},{name:"sampler.bat",link:"http://www.classicdosgames.com/online/sampler.html"},{name:"lostdemo.bat",link:"http://www.classicdosgames.com/online/lostdemo.html"},{name:"lugnut22.bat",link:"http://www.classicdosgames.com/online/lugnut22.html"},{name:"paints.bat",link:"http://www.classicdosgames.com/online/paints.html"},{name:"mpdemo.bat",link:"http://www.classicdosgames.com/online/mpdemo.html"},{name:"mahjng42.bat",link:"http://www.classicdosgames.com/online/mahjng42.html"},{name:"1math.bat",link:"http://www.classicdosgames.com/online/1math.html"},{name:"mmxdemo.bat",link:"http://www.classicdosgames.com/online/mmxdemo.html"},{name:"micemz12.bat",link:"http://www.classicdosgames.com/online/micemz12.html"},{name:"1bash21.bat",link:"http://www.classicdosgames.com/online/1bash21.html"},{name:"entrap.bat",link:"http://www.classicdosgames.com/online/entrap.html"},{name:"moraf50d.bat",link:"http://www.classicdosgames.com/online/moraf50d.html"},{name:"rev32.bat",link:"http://www.classicdosgames.com/online/rev32.html"},{name:"stones31.bat",link:"http://www.classicdosgames.com/online/stones31.html"},{name:"mk3demo.bat",link:"http://www.classicdosgames.com/online/mk3demo.html"},{name:"mvpbr303.bat",link:"http://www.classicdosgames.com/online/mvpbr303.html"},{name:"1mystic.bat",link:"http://www.classicdosgames.com/online/1mystic.html"},{name:"nhl96.bat",link:"http://www.classicdosgames.com/online/nhl96.html"},{name:"nhlpa94.bat",link:"http://www.classicdosgames.com/online/nhlpa94.html"},{name:"ntraid01.bat",link:"http://www.classicdosgames.com/online/ntraid01.html"},{name:"nite3d20.bat",link:"http://www.classicdosgames.com/online/nite3d20.html"},{name:"nrsedos.bat",link:"http://www.classicdosgames.com/online/nrsedos.html"},{name:"numlo10.bat",link:"http://www.classicdosgames.com/online/numlo10.html"},{name:"oilcap71.bat",link:"http://www.classicdosgames.com/online/oilcap71.html"},{name:"world.bat",link:"http://www.classicdosgames.com/online/world.html"},{name:"1paga.bat",link:"http://www.classicdosgames.com/online/1paga.html"},{name:"pcm10.bat",link:"http://www.classicdosgames.com/online/pcm10.html"},{name:"pickle.bat",link:"http://www.classicdosgames.com/online/pickle.html"},{name:"pbdreams.bat",link:"http://www.classicdosgames.com/online/pbdreams.html"},{name:"pinbfan.bat",link:"http://www.classicdosgames.com/online/pinbfan.html"},{name:"infcmsam.bat",link:"http://www.classicdosgames.com/online/infcmsam.html"},{name:"prince.bat",link:"http://www.classicdosgames.com/online/prince.html"},{name:"pop2demo.bat",link:"http://www.classicdosgames.com/online/pop2demo.html"},{name:"px.bat",link:"http://www.classicdosgames.com/online/px.html"},{name:"pros.bat",link:"http://www.classicdosgames.com/online/pros.html"},{name:"puttmoon.bat",link:"http://www.classicdosgames.com/online/puttmoon.html"},{name:"puttpara.bat",link:"http://www.classicdosgames.com/online/puttpara.html"},{name:"quake106.bat",link:"http://www.classicdosgames.com/online/quake106.html"},{name:"1rap12.bat",link:"http://www.classicdosgames.com/online/1rap12.html"},{name:"demoray.bat",link:"http://www.classicdosgames.com/online/demoray.html"},{name:"1roc.bat",link:"http://www.classicdosgames.com/online/1roc.html"},{name:"rrover.bat",link:"http://www.classicdosgames.com/online/rrover.html"},{name:"rescue.bat",link:"http://www.classicdosgames.com/online/rescue.html"},{name:"1rotm.bat",link:"http://www.classicdosgames.com/online/1rotm.html"},{name:"1rott13.bat",link:"http://www.classicdosgames.com/online/1rott13.html"},{name:"1rm2.bat",link:"http://www.classicdosgames.com/online/1rm2.html"},{name:"1robo3.bat",link:"http://www.classicdosgames.com/online/1robo3.html"},{name:"round42.bat",link:"http://www.classicdosgames.com/online/round42.html"},{name:"snmdemo.bat",link:"http://www.classicdosgames.com/online/snmdemo.html"},{name:"scorch15.bat",link:"http://www.classicdosgames.com/online/scorch15.html"},{name:"scram12.bat",link:"http://www.classicdosgames.com/online/scram12.html"},{name:"scuba40.bat",link:"http://www.classicdosgames.com/online/scuba40.html"},{name:"searun10.bat",link:"http://www.classicdosgames.com/online/searun10.html"},{name:"guess11.bat",link:"http://www.classicdosgames.com/online/guess11.html"},{name:"1sa10a.bat",link:"http://www.classicdosgames.com/online/1sa10a.html"},{name:"sampler.bat",link:"http://www.classicdosgames.com/online/sampler.html"},{name:"seeksw1.bat",link:"http://www.classicdosgames.com/online/seeksw1.html"},{name:"silvdemo.bat",link:"http://www.classicdosgames.com/online/silvdemo.html"},{name:"shadow.bat",link:"http://www.classicdosgames.com/online/shadow.html"},{name:"sherlock.bat",link:"http://www.classicdosgames.com/online/sherlock.html"},{name:"shootg33.bat",link:"http://www.classicdosgames.com/online/shootg33.html"},{name:"citydemo.bat",link:"http://www.classicdosgames.com/online/citydemo.html"},{name:"simc2000.bat",link:"http://www.classicdosgames.com/online/simc2000.html"},{name:"sinkem.bat",link:"http://www.classicdosgames.com/online/sinkem.html"},{name:"backfor.bat",link:"http://www.classicdosgames.com/online/backfor.html"},{name:"skunny.bat",link:"http://www.classicdosgames.com/online/skunny.html"},{name:"draid.bat",link:"http://www.classicdosgames.com/online/draid.html"},{name:"lspace.bat",link:"http://www.classicdosgames.com/online/lspace.html"},{name:"pizza.bat",link:"http://www.classicdosgames.com/online/pizza.html"},{name:"wwest.bat",link:"http://www.classicdosgames.com/online/wwest.html"},{name:"skart14.bat",link:"http://www.classicdosgames.com/online/skart14.html"},{name:"snow10.bat",link:"http://www.classicdosgames.com/online/snow10.html"},{name:"solar.bat",link:"http://www.classicdosgames.com/online/$solar.html"},{name:"solitile.bat",link:"http://www.classicdosgames.com/online/solitile.html"},{name:"storm1a.bat",link:"http://www.classicdosgames.com/online/storm1a.html"},{name:"ssn.bat",link:"http://www.classicdosgames.com/online/ssn.html"},{name:"sodemo.bat",link:"http://www.classicdosgames.com/online/sodemo.html"},{name:"spider21.bat",link:"http://www.classicdosgames.com/online/spider21.html"},{name:"dforces1.bat",link:"http://www.classicdosgames.com/online/dforces1.html"},{name:"starfr14.bat",link:"http://www.classicdosgames.com/online/starfr14.html"},{name:"strife11.bat",link:"http://www.classicdosgames.com/online/strife11.html"},{name:"angelo.bat",link:"http://www.classicdosgames.com/online/angelo.html"},{name:"sw.bat",link:"http://www.classicdosgames.com/online/sw.html"},{name:"sfly21.bat",link:"http://www.classicdosgames.com/online/sfly21.html"},{name:"suprfrog.bat",link:"http://www.classicdosgames.com/online/suprfrog.html"},{name:"syndemo.bat",link:"http://www.classicdosgames.com/online/syndemo.html"},{name:"bomb32.bat",link:"http://www.classicdosgames.com/online/bomb32.html"},{name:"tmatch12.bat",link:"http://www.classicdosgames.com/online/tmatch12.html"},{name:"tombdemo.bat",link:"http://www.classicdosgames.com/online/tombdemo.html"},{name:"tntdem.bat",link:"http://www.classicdosgames.com/online/tntdem.html"},{name:"tribolo.bat",link:"http://www.classicdosgames.com/online/tribolo.html"},{name:"trugg10.bat",link:"http://www.classicdosgames.com/online/trugg10.html"},{name:"tubes110.bat",link:"http://www.classicdosgames.com/online/tubes110.html"},{name:"tubworld.bat",link:"http://www.classicdosgames.com/online/tubworld.html"},{name:"ubb.bat",link:"http://www.classicdosgames.com/online/ubb.html"},{name:"vgacon40.bat",link:"http://www.classicdosgames.com/online/vgacon40.html"},{name:"vshark20.bat",link:"http://www.classicdosgames.com/online/vshark20.html"},{name:"1_vnyl11.bat",link:"http://www.classicdosgames.com/online/1_vnyl11.html"},{name:"1wacky.bat",link:"http://www.classicdosgames.com/online/1wacky.html"},{name:"war-8.bat",link:"http://www.classicdosgames.com/online/war-8%7D!.html"},{name:"war1demo.bat",link:"http://www.classicdosgames.com/online/war1demo.html"},{name:"war2demo.bat",link:"http://www.classicdosgames.com/online/war2demo.html"},{name:"1wolf14.bat",link:"http://www.classicdosgames.com/online/1wolf14.html"},{name:"wolfiesj.bat",link:"http://www.classicdosgames.com/online/wolfiesj.html"},{name:"wordle12.bat",link:"http://www.classicdosgames.com/online/wordle12.html"},{name:"wordmx11.bat",link:"http://www.classicdosgames.com/online/wordmx11.html"},{name:"1rescue.bat",link:"http://www.classicdosgames.com/online/1rescue.html"},{name:"9empire.bat",link:"http://www.classicdosgames.com/online/9empire.html"},{name:"wrf5.bat",link:"http://www.classicdosgames.com/online/wrf5.html"},{name:"xatax.bat",link:"http://www.classicdosgames.com/online/xatax.html"},{name:"zone66.bat",link:"http://www.classicdosgames.com/online/$zone66.html"},{name:"zoolplay.bat",link:"http://www.classicdosgames.com/online/zoolplay.html"},{name:"infcmsam.bat",link:"http://www.classicdosgames.com/online/infcmsam.html"},{name:"zorrod.bat",link:"http://www.classicdosgames.com/online/zorrod.html"}
+                                ]
+                            }
+                        ],
+                        files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\DOS\\SHAREWRE\ndir/w/o\n' }]
+                    }
+                ],
+                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\ndir/w/o\n' }]
+            }
+        ],
+        files: [
+            { name: 'autoexec.bat', data: 'c:\ncd emulators\ncls\ndir/w/o\n' },
+            { name: 'changes.bat',  data: 'echo off\nsetcol 4e\necho 1. basic echo echo off, echo on support\necho 2. concatenate commands with [&]. Eg: "cd\\games \\& dir/w/o"\necho 3. secret searching command should work in IE8+? maybe.\necho 4. command structure modified to be more modular\necho 5. Think the FF "up" bug is fixed, this time...\nsetcol 07\necho on' }
+        ]
+    }];
+
+    // Current directory path as array of indices into fs[0].directories
+    var path = [0];
+
+    // ============================================================
+    // PROMPT & DISPLAY
+    // ============================================================
+    var promptMode = false;
+
+    // Print the current drive/path prompt (e.g. C:\LGR>), or a custom string
+    function prompt(txt) {
+        if (bEchoOff) return;
+        if (typeof txt === 'undefined') {
+            var strPrompt = "";
+            strPrompt += fs[path[0]].name + ':\\';
+            var fsc = fs[path[0]].directories;
+            for (var i = 1; i < path.length; i++) {
+                strPrompt += fsc[path[i]].name;
+                if (i < path.length - 1) strPrompt += '\\';
+                fsc = fsc[path[i]].directories;
+            }
+            strPrompt = strPrompt.toUpperCase() + '>';
+        } else {
+            strPrompt = txt;
+        }
+        promptMode = true;
+        for (var i = 0; i < strPrompt.length; i++) {
+            document.onkeypress({ keyCode: strPrompt.charCodeAt(i), stopPropagation: function() {}, preventDefault: function() {} });
+        }
+        promptMode = false;
+    }
+
+    var bEchoOff = false;
+
+    // Print a string to the terminal, wrapping at 80 columns
+    function echo(str) {
+        promptMode = true;
+        var offset = 0;
+        for (var i = 0; i < str.length; i++) {
+            if ((i - offset) % 80 == 0 && i != 0)
+                document.onkeypress({ keyCode: 13, stopPropagation: function() {}, preventDefault: function() {} });
+            if (str.charAt(i) == '\n') {
+                document.onkeypress({ keyCode: 13, stopPropagation: function() {}, preventDefault: function() {} });
+                offset = i % 80;
+            } else {
+                document.onkeypress({ keyCode: str.charCodeAt(i), stopPropagation: function() {}, preventDefault: function() {} });
+            }
+        }
+        document.onkeypress({ keyCode: 13, stopPropagation: function() {}, preventDefault: function() {} });
+        promptMode = false;
+    }
+
+    // Right- or left-pad a string to a given length
+    function pad(str, len, right) {
+        var strP = '';
+        for (var i = 0; i < len - str.length; i++) strP += ' ';
+        if (right) return str + strP;
+        return strP + str;
+    }
+
+    // ============================================================
+    // FILESYSTEM COMMANDS — dir
+    // Lists contents of the current directory.
+    // Supports /w (wide), /o (ordered/sorted), /p (paged — stub).
+    // ============================================================
+    function dir(sw) {
+        if (typeof sw !== 'undefined') sw = sw.toLowerCase();
+        else sw = '';
+
+        var strPrompt = "";
+        strPrompt += fs[path[0]].name + ':\\';
+        var fsc = fs[path[0]];
+        for (var i = 1; i < path.length; i++) {
+            strPrompt += fsc.directories[path[i]].name + '\\';
+            fsc = fsc.directories[path[i]];
+        }
+
+        var listD = [], listF = [];
+        for (var i = 0; i < fsc.directories.length; i++) listD[listD.length] = fsc.directories[i].name;
+        for (var i = 0; i < fsc.files.length; i++)      listF[listF.length] = fsc.files[i].name;
+
+        var swW = sw.indexOf('/w') != -1,
+            swO = sw.indexOf('/o') != -1,
+            swP = sw.indexOf('/p') != -1;
+
+        if (swO) { listD.sort(); listF.sort(); }
+
+        // Add . and .. navigation entries when not in root
+        if (path.length > 1) {
+            var navDirs = ['.', '..'];
+            navDirs[0].refID = -1;
+            navDirs[1].refID = -1;
+            listD = navDirs.concat(listD);
+        }
+
+        echo('Directory of ' + strPrompt.toUpperCase() + '.');
+        var totalSize = 0;
+
+        var iMax = listD.length;
+        if (listF.length > iMax) iMax = listF.length;
+
+        for (var i = 0; i < iMax; i++) {
+            var fdat = '';
+            for (var f = 0; f < fsc.files.length; f++) {
+                if (pad(fsc.files[f].name, 16, true) == listF[i] && typeof fsc.files[f].data !== 'undefined') {
+                    fdat = fsc.files[f].data;
+                    break;
+                }
+            }
+            if (swW) {
+                if (i < listD.length) listD[i] = pad('[' + listD[i] + ']', 16, true);
+                if (i < listF.length) {
+                    var iSize = fdat.length || 1337 / listF.length;
+                    totalSize += iSize;
+                    listF[i] = pad(listF[i], 16, true);
+                }
+            } else {
+                if (i < listD.length) listD[i] = '31/01/1993  01:02 AM    ' + pad('<DIR>', 16, true) + pad(listD[i], 16, true);
+                if (i < listF.length) {
+                    var iSize = fdat.length || 1337 / listF.length;
+                    totalSize += iSize;
+                    listF[i] = '31/01/1993  01:02 AM    ' + pad(Math.floor(iSize) + ' ', 16, false) + pad(listF[i], 16, true);
+                }
+            }
+        }
+
+        if (swW) echo(listD.join('') + listF.join(''));
+        else     echo(listD.join('\n') + '\n' + listF.join('\n'));
+
+        echo(pad(pad((fsc.files.length) + '', 5, false) + ' File(s)', 16, true) + pad(Math.ceil(totalSize) + ' ', 16, false) + 'Bytes.');
+        echo(pad(pad((fsc.directories.length + 2) + '', 5, false) + ' Dir(s)', 16, true) + pad('111,744 ', 16, false) + 'Bytes free.');
+        echo('');
+    }
+
+    // ============================================================
+    // FILESYSTEM COMMANDS — attemptExec
+    // Tries to run a file in the current directory by name.
+    // Returns: 0=not found, 1=link opened, 2=batch executed.
+    // ============================================================
+    function attemptExec(file) {
+        file = file.toLowerCase();
+        var fsc = fs[path[0]];
+        for (var i = 1; i < path.length; i++) fsc = fsc.directories[path[i]];
+
+        for (var i = 0; i < fsc.files.length; i++) {
+            var fname = fsc.files[i].name.toLowerCase();
+            var fbase = fname.split('.')[0];
+            if (fname == file || fbase == file) {
+                if (typeof fsc.files[i].link !== 'undefined') {
+                    window.open(fsc.files[i].link, "_blank");
+                    return 1;
+                }
+                if (typeof fsc.files[i].data !== 'undefined' && fname.split('.')[1] == 'bat') {
+                    prompt();
+                    executeBatch(fsc.files[i].data);
+                    return 2;
+                }
+            }
+        }
+        return 0;
+    }
+
+    // ============================================================
+    // FILESYSTEM COMMANDS — cd
+    // Changes the current directory. Supports absolute paths
+    // (starting with \), relative paths, . and .. navigation.
+    // ============================================================
+    function cd(dir) {
+        if (dir.charAt(dir.length - 1) == '\\' && dir.length > 3)
+            dir = dir.substr(0, dir.length - 1);
+
+        dir = dir.toLowerCase();
+        while (dir.charAt(0) == ' ' && dir.length > 0) dir = dir.substr(1);
+
+        // cd \ — go to drive root
+        if (dir.charAt(0) == '\\' && dir.length == 1) { path = [0]; return true; }
+
+        // Absolute path from root
+        if (dir.charAt(0) == '\\') {
+            var dir = dir.split('\\');
+            var newPath = [0];
+            var fsc = fs[newPath[0]];
+            for (var d = 1; d < dir.length; d++) {
+                var bFound = false;
+                for (var i = 0; i < fsc.directories.length; i++) {
+                    if (fsc.directories[i].name.toLowerCase() == dir[d]) {
+                        newPath[d] = i;
+                        fsc = fsc.directories[newPath[d]];
+                        bFound = true;
+                        break;
+                    }
+                }
+                if (!bFound) return false;
+            }
+            path = newPath;
+            return true;
+        }
+
+        // Relative path
+        if (dir == '..' && path.length > 1) { path.pop(); return true; }
+        if (dir == '.') { return true; }
+        if (dir.substr(0, 3) == '..\\'  && path.length > 1) { dir = dir.substr(3); path.pop(); }
+
+        var fsc = fs[path[0]];
+        for (var i = 1; i < path.length; i++) fsc = fsc.directories[path[i]];
+        if (dir.substr(0, 2) == '.\\') dir = dir.substr(2);
+
+        for (var i = 0; i < fsc.directories.length; i++) {
+            if (fsc.directories[i].name.toLowerCase() == dir) {
+                path[path.length] = i;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // ============================================================
+    // FILESYSTEM COMMANDS — type
+    // Prints the contents (data or link) of a file.
+    // ============================================================
+    function type(file) {
+        file = file.toLowerCase();
+        var fsc = fs[path[0]];
+        for (var i = 1; i < path.length; i++) fsc = fsc.directories[path[i]];
+
+        for (var i = 0; i < fsc.files.length; i++) {
+            var fname = fsc.files[i].name.toLowerCase();
+            if (fname == file || fname.split('.')[0] == file) {
+                if (typeof fsc.files[i].data  !== 'undefined') { echo(fsc.files[i].data);  return true; }
+                if (typeof fsc.files[i].link  !== 'undefined') { echo(fsc.files[i].link);  return true; }
+            }
+        }
+        echo('The syntax of the command is incorrect.');
+        return false;
+    }
+
+    // ============================================================
+    // COMMAND REGISTRY
+    // Commands are registered by name and dispatched via handleCmd.
+    // ============================================================
+    var commands = {};
+
+    function registerCmd(name, method, replace) {
+        if (typeof commands[name] !== 'undefined' && replace !== true) {
+            console.log('command ' + name + ' already exists.');
+        }
+        commands[name] = { name: name, method: method };
+    }
+
+    function handleCmd(cmd) {
+        // Handle command chaining with ' & '
+        if (cmd.split(' & ').length > 1) {
+            var cmds = cmd.split(' & ');
+            echo('\n');
+            prompt();
+            for (var i = 0; i < cmds.length; i++) {
+                console.log(cmds[i] + ' |> ' + i);
+                prompt(cmds[i]);
+                handleCmd(cmds[i]);
+            }
+            return;
+        }
+
+        if (ctxStack.length > 0) { ctxStack[ctxStack.length - 1].handleCmd(cmd); return; }
+
+        cmd = cmd.replace(' \\& ', ' & ');
+
+        if (!bEchoOff) {
+            promptMode = true;
+            document.onkeypress({ keyCode: 13, stopPropagation: function() {}, preventDefault: function() {} });
+            promptMode = false;
+        }
+
+        cmdStack[cmdStack.length] = cmd;
+        cmdStackIdx = cmdStack.length - 1;
+
+        if (cmd == '' && !bEchoOff) echo('');
+        if (cmd.charAt(1) == ':' && cmd.replace(' ', '').length == 2) {
+            // Drive change (e.g. A:) — stub, not implemented
+        }
+
+        // Dispatch to registered command handler
+        var c = cmd.toLowerCase().split(/ |\\|\.\\|\.\.|\//i)[0];
+        if (typeof commands[c] !== 'undefined') {
+            if (typeof commands[c].method === 'function') {
+                if (commands[c].method(cmd.substr(c.length)) !== false) prompt();
+                return;
+            }
+        }
+
+        // Try running a file, or print error
+        if (cmd.replace(' ', '') != '') {
+            var r = attemptExec(c);
+            if (!r)    echo('Bad command or file name');
+            else if (r == 2) return;
+        }
+        prompt();
+    }
+
+    // ============================================================
+    // BUILT-IN COMMANDS
+    // ============================================================
+    registerCmd('exit',    function()    { echo("I'm sorry, Dave, I'm afraid I can't do that."); });
+    registerCmd('del',     function()    { echo("File(s) too important for me to allow you to jeopardize."); });
+    registerCmd('rmdir',   function()    { echo("Bad command or go away."); });
+    registerCmd('chkdsk',  function()    { echo("*Checking...*  Yep, that's a disk."); });
+    registerCmd('help',    function()    { echo("Surely you can figure this out! But if not, just start typing topics/commands of interest. Works best in Chrome, otherwise backspace may not work."); });
+    registerCmd('format',  function()    { echo("Specified drive does not exist. Anarchist."); });
+    registerCmd('edlin',   function()    { echo("Whoa now, this is LGR-DOS not MS-DOS!"); });
+    registerCmd('edit',    function()    { echo("Illegal command: edit."); });
+    registerCmd('debug',   function()    { echo("Program terminated normally (0000)"); });
+    registerCmd('attrib',  function()    { echo("A ttrib is a terrible thing to waste."); });
+    registerCmd('lgr',     function()    { txtPal.fg = 2; echo("You have fine taste."); });
+    registerCmd('zerocool',function()    { txtPal.fg = 11; txtPal.bg = 1; echo("HACK THE PLANET!"); });
+    registerCmd('quit',    function()    { echo("You're just gonna quit, huh? Good luck with that."); });
+
+    registerCmd('dopefish', function() {
+        echo("Lives!");
+        var dope = [1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,0,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,2,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,2,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,0,0,9,1,9,1,9,1,9,1,9,1,9,1,9,0,2,2,2,2,0,1,9,1,9,1,9,1,9,1,9,1,2,2,2,2,2,2,0,1,9,1,9,1,9,1,9,1,2,2,2,2,2,2,2,2,9,1,9,1,9,1,9,1,9,2,0,15,15,8,2,2,2,2,9,1,9,1,9,1,9,0,2,15,15,15,15,2,2,2,2,1,9,1,9,1,9,1,2,2,15,15,15,15,2,15,2,2,0,1,9,1,9,1,9,2,0,15,15,0,15,15,15,15,2,2,9,2,0,1,9,1,2,15,15,0,0,0,15,15,15,2,2,1,2,2,9,1,9,2,15,15,0,0,0,0,15,15,2,2,2,2,2,0,9,1,2,15,15,0,0,0,0,0,15,2,2,2,2,2,2,0,9,2,15,15,0,0,0,0,15,15,2,0,8,2,2,2,2,0,2,15,15,15,0,0,15,15,2,2,2,0,2,2,2,2,2,2,0,15,15,15,2,2,2,2,0,2,2,1,2,2,2,2,2,2,7,15,8,2,2,2,0,4,0,2,9,1,2,2,0,2,2,2,2,2,0,15,15,0,4,0,2,2,9,8,2,1,2,2,2,15,15,15,15,15,0,0,0,2,2,1,9,0,9,2,2,2,15,15,15,15,15,0,0,0,2,2,9,1,0,2,2,2,2,15,15,15,15,15,0,4,0,2,2,1,9,1,2,8,2,2,15,15,15,15,15,0,0,2,2,1,9,1,9,2,9,2,2,15,15,15,15,15,0,2,2,8,9,1,9,1,9,1,2,2,0,0,0,0,0,0,2,2,0,1,9,1,9,1,9,2,0,2,2,0,2,2,2,2,0,1,9,1,9,1,9,1,0,2,2,2,0,8,2,2,0,0,9,1,9,1,9,1,9,1,2,0,2,2,0,0,0,0,9,1,9,1,9,1,9,1,9,0,2,0,0,0,0,8,9,1,9,1,9,1,9,1,9,1,9,0,2,2,2,2,0,1,9,1,9,1,9,1,9,1,9,1,9,0,0,0,9,1,9,1,9,1,9];
+        for (var y = 0; y < 32; y += 2) {
+            for (var x = 0; x < 17; x++) {
+                var c = document.createElement('div');
+                addClass(c, 'font');
+                addClass(c, 'f-' + 220);
+                c.style.backgroundColor = pal[dope[y * 17 + x]];
+                c.style.backgroundImage = 'url(' + fontSrc[dope[(y + 1) * 17 + x]] + ')';
+                promptEl.insertBefore(c, cursorEl);
+            }
+            var c = document.createElement('div');
+            addClass(c, 'font');
+            addClass(c, 'f-n');
+            promptEl.insertBefore(c, cursorEl);
+        }
+    });
+
+    registerCmd('echo', function(cmd) {
+        if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
+        if (cmd == 'off') { bEchoOff = true;  return; }
+        if (cmd == 'on')  { bEchoOff = false; return; }
+        echo(cmd);
+    });
+    registerCmd('type', function(cmd) {
+        if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
+        type(cmd);
+    });
+    registerCmd('cls', function() {
+        promptEl.innerHTML = '<div id="cursor" class="font f-95 f-cursor"></div>';
+        cursorEl = document.getElementById('cursor');
+    });
+    registerCmd('dir', function(cmd) {
+        if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
+        dir(cmd);
+    });
+    registerCmd('cd', function(cmd) {
+        if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
+        if (!cd(cmd.toLowerCase().replace('cd', '')))
+            echo('The system cannot find the path specified.');
+    });
+    registerCmd('setcol', function(cmd) {
+        if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
+        if (cmd.length != 2) {
+            echo('invalid command');
+        } else {
+            var b = Number('0x' + cmd.charAt(0), 16);
+            var f = Number('0x' + cmd.charAt(1), 16);
+            if (b + '' != 'NaN' && f + '' != 'NaN') { txtPal.bg = b; txtPal.fg = f; }
+            else echo('invalid command');
+        }
+    });
+
+    // ============================================================
+    // RUNTIME STATE
+    // ============================================================
+    var cmdStack    = [];   // history of entered commands
+    var cmdStackIdx = -1;   // current position in history (for up/down navigation)
+    var ctxStack    = [];   // active program context stack (for context-aware input)
+    var curItvl;            // cursor blink interval handle
+
+    </script>
+
+    <!-- Google IP detection (lets Google know we're not abusing their service) -->
+    <script type="application/javascript">
+        var clientIP = false;
+        function getip(json) { clientIP = json.ip; }
+    </script>
+    <script src="ggl.js"></script>
+
 </head>
-<body bgcolor=black style="" onload="init()">
-<br><br><br>
-<div id="prompt" class="prompt" style="text-align:center; margin-left:auto; margin-right:auto;">
-	<div id="cursor" class="font f-95 f-cursor"></div>
-</div>
-<!-- thought we might be able to skip the age check... but seems like referer is checked or something...
-<form id="wolf3d" method="post" name="agevalidate" action="http://www.wolfenstein.com/?c=1">
-	<input name="agemon" type="hidden" value="6" > 
-	<input name="ageday" type="hidden" size="2" value="1" > 
-	<input name="ageyr" type="hidden" size="4" value="1983" >
-</form>
-<script src="http://www.wolfenstein.com/?c=1"></script>--><!-- get a cookie so we can submit the form?-->
-<div style="display:none;">
-	<canvas id="cv" width="400" height="300"></canvas>
-	<img src="img/f12.7.png" id="font-base" alt="" />
-</div>
-<div id="fonts" style="display:none;">
-</div>
-<!--<script type="application/javascript" src="http://jsonip.appspot.com/?callback=getip"></script>-->
+
+<!-- ============================================================
+     BODY
+     ============================================================ -->
+<body bgcolor="black" onload="init()">
+
+    <br><br><br>
+
+    <!-- Terminal prompt area -->
+    <div id="prompt" class="prompt" style="text-align:center; margin-left:auto; margin-right:auto;">
+        <div id="cursor" class="font f-95 f-cursor"></div>
+    </div>
+
+    <!-- Hidden canvas and font image used for color font generation -->
+    <div style="display:none;">
+        <canvas id="cv" width="400" height="300"></canvas>
+        <img src="img/f12.7.png" id="font-base" alt="">
+    </div>
+
+    <!-- Hidden container where per-color font images are loaded -->
+    <div id="fonts" style="display:none;"></div>
+
 </body>
 </html>
