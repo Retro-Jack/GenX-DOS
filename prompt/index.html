@@ -365,7 +365,20 @@
                                 ]
                             }
                         ],
-                        files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\DOS\\SHAREWRE\ndir/w/o\n' }]
+                        files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  DOS  -  MS-DOS SOFTWARE                  |\necho +---------------------------------------------+\necho |                                           |\necho |   1.  DOOM      Ultimate Doom             |\necho |   2.  DUKE2     Duke Nukem II             |\necho |   3.  ZORK      Zork I                    |\necho |   4.  GALAXY    Cmdr Keen: Goodbye Galaxy |\necho |   5.  OOTW      Out of This World         |\necho |   6.  EPICPIN   Epic Pinball              |\necho |   7.  TYRIAN    Tyrian 2.1                |\necho |   8.  SC2KCD    SimCity 2000 CD           |\necho |   9.  WOLF3D    Wolfenstein 3D            |\necho |  10.  SHAREWRE  150+ Shareware titles     |\necho |   0.  Back                                |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd doom\ndoom\n' },
+                    { name: '2.bat', data: 'cd duke2\nnukem2\n' },
+                    { name: '3.bat', data: 'cd zork\nzork\n' },
+                    { name: '4.bat', data: 'cd galaxy\nkeen4e\n' },
+                    { name: '5.bat', data: 'cd ootw\nootw\n' },
+                    { name: '6.bat', data: 'cd epicpin\npinball\n' },
+                    { name: '7.bat', data: 'cd tyrian\ntyrian\n' },
+                    { name: '8.bat', data: 'cd sc2kcd\nsc2000\n' },
+                    { name: '9.bat', data: 'cd wolf3d\nwolf3d\n' },
+                    { name: '10.bat', data: 'cd sharewre\ndir/w/o\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                     },
 
                     // ── CONSOLE ──────────────────────────────────────────────────────────
@@ -383,7 +396,15 @@
                                     { name: 'LYNX',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/lynx-library' }] },
                                     { name: 'JAGUAR', directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\ATARI\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  ATARI  CONSOLES                          |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  2600    Atari 2600           [LAUNCH]|\necho |  2.  5200    Atari 5200           [LAUNCH]|\necho |  3.  7800    Atari 7800           [LAUNCH]|\necho |  4.  LYNX    Atari Lynx           [LAUNCH]|\necho |  5.  JAGUAR  Atari Jaguar         [no emu]|\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd 2600\nlaunch\n' },
+                    { name: '2.bat', data: 'cd 5200\nlaunch\n' },
+                    { name: '3.bat', data: 'cd 7800\nlaunch\n' },
+                    { name: '4.bat', data: 'cd lynx\nlaunch\n' },
+                    { name: '5.bat', data: 'echo No emulator available for Atari Jaguar.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // NINTENDO
@@ -397,7 +418,16 @@
                                     { name: 'VB',   directories: [], files: [] },
                                     { name: 'N64',  directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\NINTENDO\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  NINTENDO  CONSOLES                       |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  NES    Nintendo Ent. System  [LAUNCH]|\necho |  2.  SNES   Super Nintendo        [no emu]|\necho |  3.  GB     Game Boy              [no emu]|\necho |  4.  GBC    Game Boy Color        [no emu]|\necho |  5.  VB     Virtual Boy           [no emu]|\necho |  6.  N64    Nintendo 64           [no emu]|\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd nes\nlaunch\n' },
+                    { name: '2.bat', data: 'echo No emulator available for Super Nintendo.\nmenu\n' },
+                    { name: '3.bat', data: 'echo No emulator available for Game Boy.\nmenu\n' },
+                    { name: '4.bat', data: 'echo No emulator available for Game Boy Color.\nmenu\n' },
+                    { name: '5.bat', data: 'echo No emulator available for Virtual Boy.\nmenu\n' },
+                    { name: '6.bat', data: 'echo No emulator available for Nintendo 64.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // SEGA
@@ -411,7 +441,16 @@
                                     { name: 'GG',      directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/gamegear_library' }] },
                                     { name: 'SATURN',  directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\SEGA\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  SEGA  CONSOLES                           |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  SMS     Master System        [LAUNCH]|\necho |  2.  GENESIS Mega Drive/Genesis   [LAUNCH]|\necho |  3.  32X     Sega 32X             [LAUNCH]|\necho |  4.  GG      Game Gear            [LAUNCH]|\necho |  5.  SCD     Sega CD              [no emu]|\necho |  6.  SATURN  Saturn               [no emu]|\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd sms\nlaunch\n' },
+                    { name: '2.bat', data: 'cd genesis\nlaunch\n' },
+                    { name: '3.bat', data: 'cd 32x\nlaunch\n' },
+                    { name: '4.bat', data: 'cd gg\nlaunch\n' },
+                    { name: '5.bat', data: 'echo No emulator available for Sega CD.\nmenu\n' },
+                    { name: '6.bat', data: 'echo No emulator available for Saturn.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // NEC
@@ -421,7 +460,12 @@
                                     { name: 'PCENGINE', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/tg16_library' }] },
                                     { name: 'PCFX',     directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\NEC\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  NEC  CONSOLES                            |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  PCENGINE  TurboGrafx-16      [LAUNCH]|\necho |  2.  PCFX      PC-FX              [no emu]|\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd pcengine\nlaunch\n' },
+                    { name: '2.bat', data: 'echo No emulator available for PC-FX.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // SNK
@@ -430,7 +474,11 @@
                                 directories: [
                                     { name: 'NEOGEO', directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\SNK\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  SNK  CONSOLES                            |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  NEOGEO  Neo Geo              [no emu]|\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for Neo Geo.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // MATTEL
@@ -439,7 +487,11 @@
                                 directories: [
                                     { name: 'INTV', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\MATTEL\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  MATTEL  CONSOLES                         |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  INTV  Intellivision         [LAUNCH] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd intv\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // COLECO
@@ -448,7 +500,11 @@
                                 directories: [
                                     { name: 'CVISION', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\COLECO\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  COLECO  CONSOLES                         |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  CVISION  ColecoVision       [LAUNCH] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd cvision\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // MAGNAVOX
@@ -457,7 +513,11 @@
                                 directories: [
                                     { name: 'ODYSSEY2', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/consolelivingroom' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\MAGNAVOX\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  MAGNAVOX  CONSOLES                       |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  ODYSSEY2  Odyssey 2         [LAUNCH] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd odyssey2\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // PHILIPS
@@ -466,7 +526,11 @@
                                 directories: [
                                     { name: 'CDI', directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\PHILIPS\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  PHILIPS  CONSOLES                        |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  CDI   Philips CD-i          [no emu] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for Philips CD-i.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // 3DO
@@ -475,7 +539,11 @@
                                 directories: [
                                     { name: '3DO', directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\3DO\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  3DO  CONSOLE                             |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  3DO   3DO Interactive        [no emu]|\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for 3DO.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // BANDAI
@@ -485,11 +553,30 @@
                                     { name: 'WSWAN',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/wonderswan-library' }] },
                                     { name: 'WSWANC', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/wonderswan-library' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\\BANDAI\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  BANDAI  CONSOLES                         |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  WSWAN   WonderSwan           [LAUNCH]|\necho |  2.  WSWANC  WonderSwan Color     [LAUNCH]|\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd wswan\nlaunch\n' },
+                    { name: '2.bat', data: 'cd wswanc\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             }
 
                         ],
-                        files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\CONSOLE\ndir/w/o\n' }]
+                        files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  CONSOLE  SYSTEMS                         |\necho +---------------------------------------------+\necho |                                           |\necho |   1.  ATARI      2600, 5200, 7800, Lynx   |\necho |   2.  NINTENDO   NES, SNES, N64 ...       |\necho |   3.  SEGA       SMS, Genesis, GG ...     |\necho |   4.  NEC        TurboGrafx-16            |\necho |   5.  SNK        Neo Geo                  |\necho |   6.  MATTEL     Intellivision            |\necho |   7.  COLECO     ColecoVision             |\necho |   8.  MAGNAVOX   Odyssey 2                |\necho |   9.  PHILIPS    CD-i                     |\necho |  10.  3DO        3DO Interactive          |\necho |  11.  BANDAI     WonderSwan               |\necho |   0.  Back                                |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd atari\nmenu\n' },
+                    { name: '2.bat', data: 'cd nintendo\nmenu\n' },
+                    { name: '3.bat', data: 'cd sega\nmenu\n' },
+                    { name: '4.bat', data: 'cd nec\nmenu\n' },
+                    { name: '5.bat', data: 'cd snk\nmenu\n' },
+                    { name: '6.bat', data: 'cd mattel\nmenu\n' },
+                    { name: '7.bat', data: 'cd coleco\nmenu\n' },
+                    { name: '8.bat', data: 'cd magnavox\nmenu\n' },
+                    { name: '9.bat', data: 'cd philips\nmenu\n' },
+                    { name: '10.bat', data: 'cd 3do\nmenu\n' },
+                    { name: '11.bat', data: 'cd bandai\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                     },
 
                     // ── HOME COMPUTERS ────────────────────────────────────────────────────
@@ -514,10 +601,26 @@
                                             { name: 'A2000', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_amiga' }] },
                                             { name: 'CD32',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_amiga' }] }
                                         ],
-                                        files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\COMMODORE\\AMIGA\ndir/w/o\n' }]
+                                        files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  COMMODORE  AMIGA                         |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  A500   Amiga 500            [LAUNCH] |\necho |  2.  A600   Amiga 600            [LAUNCH] |\necho |  3.  A1200  Amiga 1200           [LAUNCH] |\necho |  4.  A2000  Amiga 2000           [LAUNCH] |\necho |  5.  CD32   Amiga CD32           [LAUNCH] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd a500\nlaunch\n' },
+                    { name: '2.bat', data: 'cd a600\nlaunch\n' },
+                    { name: '3.bat', data: 'cd a1200\nlaunch\n' },
+                    { name: '4.bat', data: 'cd a2000\nlaunch\n' },
+                    { name: '5.bat', data: 'cd cd32\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                                     }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\COMMODORE\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  COMMODORE  COMPUTERS                     |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  VIC20  Commodore VIC-20     [no emu] |\necho |  2.  C64    Commodore 64         [LAUNCH] |\necho |  3.  PLUS4  Commodore Plus/4     [LAUNCH] |\necho |  4.  C128   Commodore 128        [LAUNCH] |\necho |  5.  AMIGA  Amiga (all models)            |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for VIC-20.\nmenu\n' },
+                    { name: '2.bat', data: 'cd c64\nlaunch\n' },
+                    { name: '3.bat', data: 'cd plus4\nlaunch\n' },
+                    { name: '4.bat', data: 'cd c128\nlaunch\n' },
+                    { name: '5.bat', data: 'cd amiga\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // ATARI
@@ -532,7 +635,17 @@
                                     { name: 'TT',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_atari_st_games' }] },
                                     { name: 'FALCON', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_atari_st_games' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\ATARI\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  ATARI  HOME  COMPUTERS                   |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  400     Atari 400           [LAUNCH] |\necho |  2.  800     Atari 800           [LAUNCH] |\necho |  3.  XLXE    Atari XL/XE         [LAUNCH] |\necho |  4.  ST      Atari ST            [LAUNCH] |\necho |  5.  STE     Atari STE           [LAUNCH] |\necho |  6.  TT      Atari TT            [LAUNCH] |\necho |  7.  FALCON  Atari Falcon        [LAUNCH] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd 400\nlaunch\n' },
+                    { name: '2.bat', data: 'cd 800\nlaunch\n' },
+                    { name: '3.bat', data: 'cd xlxe\nlaunch\n' },
+                    { name: '4.bat', data: 'cd st\nlaunch\n' },
+                    { name: '5.bat', data: 'cd ste\nlaunch\n' },
+                    { name: '6.bat', data: 'cd tt\nlaunch\n' },
+                    { name: '7.bat', data: 'cd falcon\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // SINCLAIR
@@ -547,7 +660,17 @@
                                     { name: 'SPEC+2',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_zx_spectrum' }] },
                                     { name: 'SPEC+3',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_zx_spectrum' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\SINCLAIR\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  SINCLAIR  COMPUTERS                      |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  ZX81     Sinclair ZX81      [LAUNCH] |\necho |  2.  SPEC16   ZX Spectrum 16K    [LAUNCH] |\necho |  3.  SPEC48   ZX Spectrum 48K    [LAUNCH] |\necho |  4.  SPEC128  ZX Spectrum 128K   [LAUNCH] |\necho |  5.  SPECPLS  Spectrum Plus      [LAUNCH] |\necho |  6.  SPEC+2   Spectrum +2        [LAUNCH] |\necho |  7.  SPEC+3   Spectrum +3        [LAUNCH] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd zx81\nlaunch\n' },
+                    { name: '2.bat', data: 'cd spec16\nlaunch\n' },
+                    { name: '3.bat', data: 'cd spec48\nlaunch\n' },
+                    { name: '4.bat', data: 'cd spec128\nlaunch\n' },
+                    { name: '5.bat', data: 'cd specpls\nlaunch\n' },
+                    { name: '6.bat', data: 'cd spec+2\nlaunch\n' },
+                    { name: '7.bat', data: 'cd spec+3\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // AMSTRAD
@@ -559,7 +682,14 @@
                                     { name: 'CPC6128', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_cpc' }] },
                                     { name: 'PCW',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_cpc' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\AMSTRAD\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  AMSTRAD  COMPUTERS                       |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  CPC464   Amstrad CPC 464    [LAUNCH] |\necho |  2.  CPC664   Amstrad CPC 664    [LAUNCH] |\necho |  3.  CPC6128  Amstrad CPC 6128   [LAUNCH] |\necho |  4.  PCW      Amstrad PCW        [LAUNCH] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd cpc464\nlaunch\n' },
+                    { name: '2.bat', data: 'cd cpc664\nlaunch\n' },
+                    { name: '3.bat', data: 'cd cpc6128\nlaunch\n' },
+                    { name: '4.bat', data: 'cd pcw\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // APPLE
@@ -571,7 +701,14 @@
                                     { name: 'IIGS',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_apple_games' }] },
                                     { name: 'MAC',      directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_mac' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\APPLE\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  APPLE  COMPUTERS                         |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  APPLEII   Apple II          [LAUNCH] |\necho |  2.  APPLEIIE  Apple IIe         [LAUNCH] |\necho |  3.  IIGS      Apple IIgs        [LAUNCH] |\necho |  4.  MAC       Macintosh         [LAUNCH] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd appleii\nlaunch\n' },
+                    { name: '2.bat', data: 'cd appleiie\nlaunch\n' },
+                    { name: '3.bat', data: 'cd iigs\nlaunch\n' },
+                    { name: '4.bat', data: 'cd mac\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // ACORN
@@ -582,7 +719,13 @@
                                     { name: 'ELECTRON', directories: [], files: [] },
                                     { name: 'ARCHIM',   directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\ACORN\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  ACORN  COMPUTERS                         |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  BBC       BBC Micro          [no emu]|\necho |  2.  ELECTRON  Acorn Electron     [no emu]|\necho |  3.  ARCHIM    Acorn Archimedes   [no emu]|\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for BBC Micro.\nmenu\n' },
+                    { name: '2.bat', data: 'echo No emulator available for Acorn Electron.\nmenu\n' },
+                    { name: '3.bat', data: 'echo No emulator available for Acorn Archimedes.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // MSX (multi-manufacturer standard)
@@ -593,7 +736,13 @@
                                     { name: 'MSX2',  directories: [], files: [] },
                                     { name: 'MSX2P', directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\MSX\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  MSX  COMPUTERS                           |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  MSX1   MSX 1              [no emu]   |\necho |  2.  MSX2   MSX 2              [no emu]   |\necho |  3.  MSX2P  MSX 2+             [no emu]   |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for MSX 1.\nmenu\n' },
+                    { name: '2.bat', data: 'echo No emulator available for MSX 2.\nmenu\n' },
+                    { name: '3.bat', data: 'echo No emulator available for MSX 2+.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // TANDY
@@ -605,7 +754,14 @@
                                     { name: 'COCO2', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_coco2' }] },
                                     { name: 'COCO3', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_coco2' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\TANDY\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  TANDY  COMPUTERS                         |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  TRS80  TRS-80               [no emu] |\necho |  2.  COCO   Color Computer       [LAUNCH] |\necho |  3.  COCO2  Color Computer 2     [LAUNCH] |\necho |  4.  COCO3  Color Computer 3     [LAUNCH] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for TRS-80.\nmenu\n' },
+                    { name: '2.bat', data: 'cd coco\nlaunch\n' },
+                    { name: '3.bat', data: 'cd coco2\nlaunch\n' },
+                    { name: '4.bat', data: 'cd coco3\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // TEXAS INSTRUMENTS
@@ -614,7 +770,11 @@
                                 directories: [
                                     { name: 'TI994A', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/basic-games-ti99' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\TI\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  TEXAS INSTRUMENTS COMPUTERS              |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  TI994A  TI-99/4A           [LAUNCH]  |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd ti994a\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // NEC (home computers)
@@ -625,7 +785,13 @@
                                     { name: 'PC88',   directories: [], files: [] },
                                     { name: 'PC98',   directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\NEC\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  NEC  COMPUTERS                           |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  PC6001  NEC PC-6001         [no emu] |\necho |  2.  PC88    NEC PC-8801         [no emu] |\necho |  3.  PC98    NEC PC-9801         [no emu] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for NEC PC-6001.\nmenu\n' },
+                    { name: '2.bat', data: 'echo No emulator available for NEC PC-8801.\nmenu\n' },
+                    { name: '3.bat', data: 'echo No emulator available for NEC PC-9801.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // SHARP
@@ -635,7 +801,12 @@
                                     { name: 'MZ',   directories: [], files: [] },
                                     { name: 'X68K', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary-x68k' }] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\SHARP\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  SHARP  COMPUTERS                         |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  MZ    Sharp MZ Series       [no emu] |\necho |  2.  X68K  Sharp X68000          [LAUNCH] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for Sharp MZ Series.\nmenu\n' },
+                    { name: '2.bat', data: 'cd x68k\nlaunch\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // FUJITSU
@@ -646,7 +817,13 @@
                                     { name: 'FM77',    directories: [], files: [] },
                                     { name: 'FMTOWNS', directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\FUJITSU\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  FUJITSU  COMPUTERS                       |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  FM7      Fujitsu FM-7       [no emu] |\necho |  2.  FM77     Fujitsu FM-77      [no emu] |\necho |  3.  FMTOWNS  FM Towns           [no emu] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for Fujitsu FM-7.\nmenu\n' },
+                    { name: '2.bat', data: 'echo No emulator available for Fujitsu FM-77.\nmenu\n' },
+                    { name: '3.bat', data: 'echo No emulator available for FM Towns.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // THOMSON
@@ -658,7 +835,14 @@
                                     { name: 'TO8', directories: [], files: [] },
                                     { name: 'MO6', directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\THOMSON\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  THOMSON  COMPUTERS                       |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  TO7   Thomson TO7           [no emu] |\necho |  2.  MO5   Thomson MO5           [no emu] |\necho |  3.  TO8   Thomson TO8           [no emu] |\necho |  4.  MO6   Thomson MO6           [no emu] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for Thomson TO7.\nmenu\n' },
+                    { name: '2.bat', data: 'echo No emulator available for Thomson MO5.\nmenu\n' },
+                    { name: '3.bat', data: 'echo No emulator available for Thomson TO8.\nmenu\n' },
+                    { name: '4.bat', data: 'echo No emulator available for Thomson MO6.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             },
 
                             // ORIC
@@ -669,19 +853,47 @@
                                     { name: 'ATMOS',  directories: [], files: [] },
                                     { name: 'ORIC16', directories: [], files: [] }
                                 ],
-                                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\\ORIC\ndir/w/o\n' }]
+                                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  ORIC  COMPUTERS                          |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  ORIC1   Oric-1              [no emu] |\necho |  2.  ATMOS   Oric Atmos          [no emu] |\necho |  3.  ORIC16  Oric-16             [no emu] |\necho |  0.  Back                                 |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'echo No emulator available for Oric-1.\nmenu\n' },
+                    { name: '2.bat', data: 'echo No emulator available for Oric Atmos.\nmenu\n' },
+                    { name: '3.bat', data: 'echo No emulator available for Oric-16.\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                             }
 
                         ],
-                        files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\\HOMECOMP\ndir/w/o\n' }]
+                        files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  HOME  COMPUTERS                          |\necho +---------------------------------------------+\necho |                                           |\necho |   1.  COMMODORE  C64, Amiga ...           |\necho |   2.  ATARI      400/800, ST, Falcon      |\necho |   3.  SINCLAIR   ZX Spectrum, ZX81        |\necho |   4.  AMSTRAD    CPC, PCW                 |\necho |   5.  APPLE      Apple II, Mac            |\necho |   6.  ACORN      BBC, Electron, Archimedes|\necho |   7.  MSX        MSX 1/2                  |\necho |   8.  TANDY      TRS-80, Color Computer   |\necho |   9.  TI         TI-99/4A                 |\necho |  10.  NEC        PC-88, PC-98 ...         |\necho |  11.  SHARP      MZ, X68000               |\necho |  12.  FUJITSU    FM-7, FM Towns           |\necho |  13.  THOMSON    TO7, MO5 ...             |\necho |  14.  ORIC       Oric-1, Atmos            |\necho |   0.  Back                                |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd commodore\nmenu\n' },
+                    { name: '2.bat', data: 'cd atari\nmenu\n' },
+                    { name: '3.bat', data: 'cd sinclair\nmenu\n' },
+                    { name: '4.bat', data: 'cd amstrad\nmenu\n' },
+                    { name: '5.bat', data: 'cd apple\nmenu\n' },
+                    { name: '6.bat', data: 'cd acorn\nmenu\n' },
+                    { name: '7.bat', data: 'cd msx\nmenu\n' },
+                    { name: '8.bat', data: 'cd tandy\nmenu\n' },
+                    { name: '9.bat', data: 'cd ti\nmenu\n' },
+                    { name: '10.bat', data: 'cd nec\nmenu\n' },
+                    { name: '11.bat', data: 'cd sharp\nmenu\n' },
+                    { name: '12.bat', data: 'cd fujitsu\nmenu\n' },
+                    { name: '13.bat', data: 'cd thomson\nmenu\n' },
+                    { name: '14.bat', data: 'cd oric\nmenu\n' },
+                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                ]
                     }
 
                 ],
-                files: [{ name: 'sw.bat', data: 'cls\ncd\\EMULATORS\ndir/w/o\n' }]
+                files: [
+                    { name: 'menu.bat', data: 'echo off\nsetcol 17\ncls\necho +=============================================+\necho |  LGR  EMULATOR  LAUNCHER                  |\necho +---------------------------------------------+\necho |                                           |\necho |  1.  DOS         MS-DOS Software          |\necho |  2.  CONSOLE     Games Consoles           |\necho |  3.  HOMECOMP    Home Computers           |\necho |                                           |\necho +---------------------------------------------+\necho |  Type a number and press ENTER              |\necho +=============================================+\necho on\n' },
+                    { name: '1.bat', data: 'cd dos\nmenu\n' },
+                    { name: '2.bat', data: 'cd console\nmenu\n' },
+                    { name: '3.bat', data: 'cd homecomp\nmenu\n' }
+                ]
             }
         ],
         files: [
-            { name: 'autoexec.bat', data: 'c:\ncd emulators\ncls\ndir/w/o\n' },
+            { name: 'autoexec.bat', data: 'c:\ncd emulators\nmenu\n' },
             { name: 'changes.bat',  data: 'echo off\nsetcol 4e\necho 1. basic echo echo off, echo on support\necho 2. concatenate commands with [&]. Eg: "cd\\games \\& dir/w/o"\necho 3. secret searching command should work in IE8+? maybe.\necho 4. command structure modified to be more modular\necho 5. Think the FF "up" bug is fixed, this time...\nsetcol 07\necho on' }
         ]
     }];
