@@ -6,7 +6,7 @@
      ============================================================ -->
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="2; URL=prompt.html">
+    <meta http-equiv="refresh" content="4; URL=prompt/index.html">
     <title>Lazy Game Reviews - Official Awesomepage</title>
 
     <!-- Favicons -->
@@ -23,49 +23,97 @@
 
         body {
             background-color: black;
-            color: #aaaaaa;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 13px;
-            line-height: 1.4;
             padding: 14px 18px;
         }
 
-        b {
-            color: white;
-        }
-
-        .gap {
-            display: block;
-            height: 1.4em;
+        .font {
+            background: url(prompt/img/f12.7.png) no-repeat 0px 0px;
+            width: 12px;
+            height: 12px;
+            float: left;
+            overflow: hidden;
         }
     </style>
+
+    <script>
+
+    // Generate CSS background-position rules for each of the 256 characters
+    // in the 16x16 bitmap font sprite sheet (12x12px per glyph).
+    function goFontGo() {
+        var strStyle = '';
+        for (var i = 0; i < 256; i++) {
+            var x = i % 16, y = Math.floor(i / 16);
+            strStyle += '.f-' + i + '{background-position:-' + (x * 12) + 'px -' + (y * 12) + 'px}';
+        }
+        strStyle += '.f-n{background-position:0px 0px;float:none;width:0px}';
+        var s = document.createElement('style');
+        s.appendChild(document.createTextNode(strStyle));
+        document.head.appendChild(s);
+    }
+
+    // Append character divs for a string. Pass a font image URL to override
+    // the default grey (f12.7.png), e.g. white (f12.15.png) for bright text.
+    function appendChars(container, str, imgOverride) {
+        for (var i = 0; i < str.length; i++) {
+            var d = document.createElement('div');
+            d.className = 'font f-' + str.charCodeAt(i);
+            if (imgOverride) d.style.backgroundImage = 'url(' + imgOverride + ')';
+            container.appendChild(d);
+        }
+    }
+
+    // Append a newline marker div
+    function appendNewline(container) {
+        var d = document.createElement('div');
+        d.className = 'font f-n';
+        container.appendChild(d);
+    }
+
+    // Render a line from an array of {text, img} segments, then newline
+    function renderLine(container, segments) {
+        for (var i = 0; i < segments.length; i++) {
+            appendChars(container, segments[i].text, segments[i].img || null);
+        }
+        appendNewline(container);
+    }
+
+    var WHITE = 'prompt/img/f12.15.png';
+    function g(t) { return { text: t }; }           // grey (default)
+    function w(t) { return { text: t, img: WHITE }; } // white (bright)
+
+    function init() {
+        goFontGo();
+        var s = document.getElementById('screen');
+
+        renderLine(s, [g('Award Modular BIOS v4.51PG, An Energy Star Ally')]);
+        renderLine(s, [g('Copyright (C) 1984-97, Award Software, Inc.')]);
+        appendNewline(s);
+        renderLine(s, [g('(SSXWUQ@E) Intel i430VX PCIset (TM)')]);
+        appendNewline(s);
+        renderLine(s, [g('PENTIUM-S CPU at 75MHz')]);
+        renderLine(s, [g('Memory Test : 32768K OK')]);
+        appendNewline(s);
+        renderLine(s, [g('Award Plug and Play BIOS Extension v1.0A')]);
+        renderLine(s, [g('Copyright (C) 1997, Award Software, Inc.')]);
+        renderLine(s, [g('  Detecting IDE Primary Master ... (Press '), w('F4'), g(' to skip)')]);
+        appendNewline(s);
+        appendNewline(s);
+        appendNewline(s);
+        appendNewline(s);
+        appendNewline(s);
+        appendNewline(s);
+        appendNewline(s);
+        renderLine(s, [g('Press '), w('DEL'), g(' to enter SETUP')]);
+        renderLine(s, [g('12/10/97-i430VX,UMC86669-2A59GH2BC-00')]);
+    }
+
+    </script>
 </head>
 
 <!-- ============================================================
      BODY
      ============================================================ -->
-<body>
-
-    <p>Award Modular BIOS v4.51PG, An Energy Star Ally</p>
-    <p>Copyright (C) 1984-97, Award Software, Inc.</p>
-    <span class="gap"></span>
-    <p>(SSXWUQ@E) Intel i430VX PCIset (TM)</p>
-    <span class="gap"></span>
-    <p>PENTIUM-S CPU at 75MHz</p>
-    <p>Memory Test : 32768K OK</p>
-    <span class="gap"></span>
-    <p>Award Plug and Play BIOS Extension v1.0A</p>
-    <p>Copyright (C) 1997, Award Software, Inc.</p>
-    <p>&nbsp; Detecting IDE Primary Master ... (Press <b>F4</b> to skip)</p>
-    <span class="gap"></span>
-    <span class="gap"></span>
-    <span class="gap"></span>
-    <span class="gap"></span>
-    <span class="gap"></span>
-    <span class="gap"></span>
-    <span class="gap"></span>
-    <p>Press <b>DEL</b> to enter SETUP</p>
-    <p>12/10/97-i430VX,UMC86669-2A59GH2BC-00</p>
-
+<body onload="init()">
+    <div id="screen"></div>
 </body>
 </html>
