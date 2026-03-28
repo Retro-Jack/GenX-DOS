@@ -419,7 +419,7 @@
 
                 ],
                 files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              EMULATOR  LAUNCHER              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  DOS         MS-DOS Software            º\necho º  2.  CONSOLE     Games Consoles             º\necho º  3.  HOMECOMP    Home Computers             º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             EMULATOR  LAUNCHER              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  DOS         MS-DOS Software            º\necho º  2.  CONSOLE     Games Consoles             º\necho º  3.  HOMECOMP    Home Computers             º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
                     { name: '1.bat', data: 'cd dos\nmenu\n' },
                     { name: '2.bat', data: 'cd console\nmenu\n' },
                     { name: '3.bat', data: 'cd homecomp\nmenu\n' },
@@ -429,7 +429,7 @@
         ],
         files: [
             { name: 'autoexec.bat', data: 'c:\ncls\nmenu\n' },
-            { name: 'menu.bat',     data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º           DOS  EMULATOR  LAUNCHER            º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  EMULATORS   Emulator Library           º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+            { name: 'menu.bat',     data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º           DOS  EMULATOR  LAUNCHER           º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  EMULATORS   Emulator Library           º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
             { name: '1.bat',        data: 'cd emulators\nmenu\n' },
             { name: 'changes.bat',  data: 'echo off\necho 1. Dedicated online emulators for all console systems\necho 2. Game submenus with 15-18 titles per console\necho 3. Full 16-colour font palette\necho 4. Award BIOS splash screen\necho on\n' }
         ]
