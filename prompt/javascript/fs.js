@@ -115,16 +115,14 @@
                                     {name:'2600',directories:[{name:'GAMES',directories:[],files:[{name:'menu.bat',data:'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             ATARI  2600  GAMES              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  ADVENTURE Adventure                   º\necho º   2.  ASTEROIDS Asteroids                   º\necho º   3.  DEFENDER  Defender                    º\necho º   4.  DKONG     Donkey Kong                 º\necho º   5.  FROGGER   Frogger                     º\necho º   6.  PACMAN    Pac-Man                     º\necho º   7.  PITFALL   Pitfall!                    º\necho º   8.  INVADERS  Space Invaders              º\necho º   9.  BREAKOUT  Breakout                    º\necho º  10.  MISSILE   Missile Command             º\necho º  11.  KABOOM!   Kaboom!                     º\necho º  12.  YARS      Yar\'s Revenge               º\necho º  13.  SEAQUEST  Seaquest                    º\necho º  14.  CENTIPEDE Centipede                   º\necho º  15.  RIVERRAID River Raid                  º\necho º  16.  ENDURO    Enduro                      º\necho º  17.  BERZERK   Berzerk                     º\necho º  18.  Q*BERT    Q*Bert                      º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º   0.  BACK      System Menu                 º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n'},{name:'0.bat',data:'cd ..\nmenu\n'},{name:'1.bat',data:'adventure\n'},{name:'2.bat',data:'asteroids\n'},{name:'3.bat',data:'defender\n'},{name:'4.bat',data:'dkong\n'},{name:'5.bat',data:'frogger\n'},{name:'6.bat',data:'pacman\n'},{name:'7.bat',data:'pitfall\n'},{name:'8.bat',data:'invaders\n'},{name:'9.bat',data:'breakout\n'},{name:'10.bat',data:'missile\n'},{name:'11.bat',data:'kaboom\n'},{name:'12.bat',data:'yars\n'},{name:'13.bat',data:'seaquest\n'},{name:'14.bat',data:'centipede\n'},{name:'15.bat',data:'riverraid\n'},{name:'16.bat',data:'enduro\n'},{name:'17.bat',data:'berzerk\n'},{name:'18.bat',data:'qbert\n'},{name:'adventure.bat',link:'https://www.virtualatari.org/soft.php?soft=Adventure'},{name:'asteroids.bat',link:'https://www.virtualatari.org/soft.php?soft=Asteroids'},{name:'defender.bat',link:'https://www.virtualatari.org/soft.php?soft=Defender'},{name:'dkong.bat',link:'https://www.virtualatari.org/soft.php?soft=Donkey_Kong'},{name:'frogger.bat',link:'https://www.virtualatari.org/soft.php?soft=Frogger'},{name:'pacman.bat',link:'https://www.virtualatari.org/soft.php?soft=Pac_Man'},{name:'pitfall.bat',link:'https://www.virtualatari.org/soft.php?soft=Pitfall'},{name:'invaders.bat',link:'https://www.virtualatari.org/soft.php?soft=Space_Invaders'},{name:'breakout.bat',link:'https://www.virtualatari.org/soft.php?soft=Breakout'},{name:'missile.bat',link:'https://www.virtualatari.org/soft.php?soft=Missile_Command'},{name:'kaboom.bat',link:'https://www.virtualatari.org/soft.php?soft=Kaboom'},{name:'yars.bat',link:'https://www.virtualatari.org/soft.php?soft=Yars_Revenge'},{name:'seaquest.bat',link:'https://www.virtualatari.org/soft.php?soft=Seaquest'},{name:'centipede.bat',link:'https://www.virtualatari.org/soft.php?soft=Centipede'},{name:'riverraid.bat',link:'https://www.virtualatari.org/soft.php?soft=River_Raid'},{name:'enduro.bat',link:'https://www.virtualatari.org/soft.php?soft=Enduro'},{name:'berzerk.bat',link:'https://www.virtualatari.org/soft.php?soft=Berzerk'},{name:'qbert.bat',link:'https://www.virtualatari.org/soft.php?soft=Qbert'}]}],files:[{name:'launch.exe',link:'https://javatari.org/'},{name:'menu.bat',data:'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º                 ATARI  2600                 º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  LAUNCH    Launch Emulator             º\necho º   2.  GAMES     Browse Game Titles          º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º   0.  BACK      Parent Menu                 º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n'},{name:'1.bat',data:'launch\n'},{name:'2.bat',data:'cd games\nmenu\n'},{name:'0.bat',data:'cd ..\nmenu\n'}]},
                                     {name:'5200',directories:[{name:'GAMES',directories:[],files:[{name:'menu.bat',data:'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             ATARI  5200  GAMES              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  PITFALL   Pitfall!                    º\necho º   2.  DKONG     Donkey Kong                 º\necho º   3.  ZAXXON    Zaxxon                      º\necho º   4.  RIVERRAID River Raid                  º\necho º   5.  GALAXIAN  Galaxian                    º\necho º   6.  CRYSTALC  Crystal Castles             º\necho º   7.  FROGGER2  Frogger II                  º\necho º   8.  CHOPLIT.  Choplifter                  º\necho º   9.  MOONPTRL  Moon Patrol                 º\necho º  10.  ROBOTRON  Robotron: 2084              º\necho º  11.  MONTEZUMA Montezuma\'s Rvg             º\necho º  12.  POPEYE    Popeye                      º\necho º  13.  PENGO     Pengo                       º\necho º  14.  TAPPER    Tapper                      º\necho º  15.  VANGUARD  Vanguard                    º\necho º  16.  H.E.R.O.  H.E.R.O.                    º\necho º  17.  MR. DO!   Mr. Do!                     º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º   0.  BACK      System Menu                 º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n'},{name:'0.bat',data:'cd ..\nmenu\n'},{name:'1.bat',data:'pitfall\n'},{name:'2.bat',data:'dkong\n'},{name:'3.bat',data:'zaxxon\n'},{name:'4.bat',data:'riverraid\n'},{name:'5.bat',data:'galaxian\n'},{name:'6.bat',data:'crystalc\n'},{name:'7.bat',data:'frogger2\n'},{name:'8.bat',data:'chopliftr\n'},{name:'9.bat',data:'moonpatrl\n'},{name:'10.bat',data:'robotron\n'},{name:'11.bat',data:'montezuma\n'},{name:'12.bat',data:'popeye\n'},{name:'13.bat',data:'pengo\n'},{name:'14.bat',data:'tapper\n'},{name:'15.bat',data:'vanguard\n'},{name:'16.bat',data:'hero\n'},{name:'17.bat',data:'mrdo\n'},{name:'pitfall.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=pitfall.atr'},{name:'dkong.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=donkey%20kong.atr'},{name:'zaxxon.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=zaxxon.atr'},{name:'riverraid.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=river%20raid.atr'},{name:'galaxian.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=galaxian.atr'},{name:'crystalc.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=crystal%20castles.atr'},{name:'frogger2.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=frogger%202.atr'},{name:'chopliftr.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=choplifter%20(color).atr'},{name:'moonpatrl.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=moon%20patrol.atr'},{name:'robotron.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=robotron%202048.atr'},{name:'montezuma.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=montezumas%20revenge.atr'},{name:'popeye.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=popeye.atr'},{name:'pengo.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=pengo.atr'},{name:'tapper.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=tapper.atr'},{name:'vanguard.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=vanguard.atr'},{name:'hero.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=hero.atr'},{name:'mrdo.bat',link:'https://www.free80sarcade.com/atari5200.php?disk_filename=mr%20do.atr'}]}],files:[{name:'launch.exe',link:'https://www.free80sarcade.com/all5200games.php'},{name:'menu.bat',data:'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º                 ATARI  5200                 º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  LAUNCH    Launch Emulator             º\necho º   2.  GAMES     Browse Game Titles          º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º   0.  BACK      Parent Menu                 º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n'},{name:'1.bat',data:'launch\n'},{name:'2.bat',data:'cd games\nmenu\n'},{name:'0.bat',data:'cd ..\nmenu\n'}]},
                                     {name:'7800',directories:[{name:'GAMES',directories:[],files:[{name:'menu.bat',data:'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             ATARI  7800  GAMES              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  GALAGA    Galaga                      º\necho º   2.  JOUST     Joust                       º\necho º   3.  INVADERS  Space Invaders              º\necho º   4.  DKONG     Donkey Kong                 º\necho º   5.  ROBOTRON  Robotron 2084               º\necho º   6.  MSPACMAN  Ms. Pac-Man                 º\necho º   7.  DIG DUG   Dig Dug                     º\necho º   8.  POLEPOS2  Pole Position II            º\necho º   9.  XEVIOUS   Xevious                     º\necho º  10.  DSRTFALCN Desert Falcon               º\necho º  11.  FOODFIGHT Food Fight                  º\necho º  12.  BALLBLAZR Ballblazer                  º\necho º  13.  RAMPAGE   Rampage                     º\necho º  14.  DBL DRGON Double Dragon               º\necho º  15.  IKARI WAR Ikari Warriors              º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º   0.  BACK      System Menu                 º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n'},{name:'0.bat',data:'cd ..\nmenu\n'},{name:'1.bat',data:'galaga\n'},{name:'2.bat',data:'joust\n'},{name:'3.bat',data:'invaders\n'},{name:'4.bat',data:'dkong\n'},{name:'5.bat',data:'robotron\n'},{name:'6.bat',data:'mspacman\n'},{name:'7.bat',data:'digdug\n'},{name:'8.bat',data:'polepos2\n'},{name:'9.bat',data:'xevious\n'},{name:'10.bat',data:'dsrtfalcn\n'},{name:'11.bat',data:'foodfight\n'},{name:'12.bat',data:'ballblazr\n'},{name:'13.bat',data:'rampage\n'},{name:'14.bat',data:'dbldragon\n'},{name:'15.bat',data:'ikari\n'},{name:'galaga.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Galaga%20(1987)%20(Atari)'},{name:'joust.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Joust%20(1987)%20(Atari)'},{name:'invaders.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Space%20Invaders'},{name:'dkong.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Donkey%20Kong%20(1988)%20(Atari)'},{name:'robotron.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Robotron%202084%20(1987)%20(Atari)'},{name:'mspacman.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Ms%20Pac-Man%20(1987)%20(Atari)'},{name:'digdug.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Dig%20Dug%20(1987)%20(Atari)'},{name:'polepos2.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Pole%20Position%20II%20(1987)%20(Atari)'},{name:'xevious.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Xevious%20(1987)%20(Atari)'},{name:'dsrtfalcn.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Desert%20Falcon%20(1987)%20(Atari)'},{name:'foodfight.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Food%20Fight%20(1987)%20(Atari)'},{name:'ballblazr.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Ballblazer%20(1987)%20(Atari-Lucasfilm)'},{name:'rampage.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Rampage%20(1989)%20(Activision)%20%5B!%5D'},{name:'dbldragon.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Double%20Dragon%20(1989)%20(Activision)%20%5B!%5D'},{name:'ikari.bat',link:'https://www.free80sarcade.com/atari7800.php?cart=Ikari%20Warriors%20(1989)%20(Atari)'}]}],files:[{name:'launch.exe',link:'https://www.free80sarcade.com/all7800games.php'},{name:'menu.bat',data:'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º                 ATARI  7800                 º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  LAUNCH    Launch Emulator             º\necho º   2.  GAMES     Browse Game Titles          º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º   0.  BACK      Parent Menu                 º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n'},{name:'1.bat',data:'launch\n'},{name:'2.bat',data:'cd games\nmenu\n'},{name:'0.bat',data:'cd ..\nmenu\n'}]},
-                                    { name: 'LYNX',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/lynx-library' }] },
-                                    { name: 'JAGUAR', directories: [], files: [] }
+                                    { name: 'LYNX',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/lynx-library' }] }
                                 ],
                                 files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               ATARI  CONSOLES               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  2600    Atari 2600           [LAUNCH]  º\necho º  2.  5200    Atari 5200           [LAUNCH]  º\necho º  3.  7800    Atari 7800           [LAUNCH]  º\necho º  4.  LYNX    Atari Lynx           [LAUNCH]  º\necho º  5.  JAGUAR  Atari Jaguar         [no emu]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               ATARI  CONSOLES               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  2600    Atari 2600           [LAUNCH]  º\necho º  2.  5200    Atari 5200           [LAUNCH]  º\necho º  3.  7800    Atari 7800           [LAUNCH]  º\necho º  4.  LYNX    Atari Lynx           [LAUNCH]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
                     { name: '1.bat', data: 'cd 2600\nmenu\n' },
                     { name: '2.bat', data: 'cd 5200\nmenu\n' },
                     { name: '3.bat', data: 'cd 7800\nmenu\n' },
                     { name: '4.bat', data: 'cd lynx\nlaunch\n' },
-                    { name: '5.bat', data: 'echo No emulator available for Atari Jaguar.\nmenu\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                             },
@@ -134,20 +132,10 @@
                                 name: 'NINTENDO',
                                 directories: [
                                     {name:'NES',directories:[{name:'GAMES',directories:[],files:[{name:'menu.bat',data:'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º            NINTENDO  NES  GAMES             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  CONTRA    Contra                      º\necho º   2.  TETRIS    Tetris                      º\necho º   3.  MEGAMAN   Mega Man                    º\necho º   4.  EXCITE    Excitebike                  º\necho º   5.  PACMAN    Pac-Man (Namco)             º\necho º   6.  BOMBERM   Bomberman                   º\necho º   7.  1942      1942                        º\necho º   8.  BATTLEC   Battle City                 º\necho º   9.  MARIO     Super Mario Bros.           º\necho º  10.  MARIO 3   Super Mario Bros. 3         º\necho º  11.  CASTLVNIA Castlevania                 º\necho º  12.  METROID   Metroid                     º\necho º  13.  MEGAMAN 2 Mega Man 2                  º\necho º  14.  DUCK HUNT Duck Hunt                   º\necho º  15.  NNJA GADN Ninja Gaiden                º\necho º  16.  PUNCH-OUT Mike Tyson\'s P-O!!          º\necho º  17.  DBL DRGON Double Dragon               º\necho º  18.  FINALFNTS Final Fantasy               º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º   0.  BACK      System Menu                 º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n'},{name:'0.bat',data:'cd ..\nmenu\n'},{name:'1.bat',data:'contra\n'},{name:'2.bat',data:'tetris\n'},{name:'3.bat',data:'megaman\n'},{name:'4.bat',data:'excite\n'},{name:'5.bat',data:'pacman\n'},{name:'6.bat',data:'bomberm\n'},{name:'7.bat',data:'1942\n'},{name:'8.bat',data:'battlec\n'},{name:'9.bat',data:'smb\n'},{name:'10.bat',data:'smb3\n'},{name:'11.bat',data:'castlvnia\n'},{name:'12.bat',data:'metroid\n'},{name:'13.bat',data:'megaman2\n'},{name:'14.bat',data:'duckhunt\n'},{name:'15.bat',data:'ninjagadn\n'},{name:'16.bat',data:'punchout\n'},{name:'17.bat',data:'dbldragon\n'},{name:'18.bat',data:'finalfnts\n'},{name:'contra.bat',link:'https://www.retrogames.cc/nes-games/contra-usa.html'},{name:'tetris.bat',link:'https://www.retrogames.cc/nes-games/tetris-usa.html'},{name:'megaman.bat',link:'https://www.retrogames.cc/nes-games/mega-man-usa.html'},{name:'excite.bat',link:'https://www.retrogames.cc/nes-games/excitebike-europe.html'},{name:'pacman.bat',link:'https://www.retrogames.cc/nes-games/pac-man-usa-namco.html'},{name:'bomberm.bat',link:'https://www.retrogames.cc/nes-games/bomberman-usa.html'},{name:'1942.bat',link:'https://www.retrogames.cc/nes-games/1942-japan-usa.html'},{name:'battlec.bat',link:'https://www.retrogames.cc/nes-games/battle-city-japan.html'},{name:'smb.bat',link:'https://www.retrogames.cc/nes-games/super-mario-bros-japan-usa.html'},{name:'smb3.bat',link:'https://www.retrogames.cc/nes-games/super-mario-bros-3-usa.html'},{name:'castlvnia.bat',link:'https://www.retrogames.cc/nes-games/castlevania-usa.html'},{name:'metroid.bat',link:'https://www.retrogames.cc/nes-games/metroid-usa.html'},{name:'megaman2.bat',link:'https://www.retrogames.cc/nes-games/mega-man-2-usa.html'},{name:'duckhunt.bat',link:'https://www.retrogames.cc/nes-games/duck-hunt-world.html'},{name:'ninjagadn.bat',link:'https://www.retrogames.cc/nes-games/ninja-gaiden-usa.html'},{name:'punchout.bat',link:'https://www.retrogames.cc/nes-games/mike-tyson-s-punch-out-usa.html'},{name:'dbldragon.bat',link:'https://www.retrogames.cc/nes-games/double-dragon-usa.html'},{name:'finalfnts.bat',link:'https://www.retrogames.cc/nes-games/final-fantasy-usa.html'}]}],files:[{name:'launch.exe',link:'https://www.retrogames.cc/nes-games'},{name:'menu.bat',data:'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º                NINTENDO  NES                º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  LAUNCH    Launch Emulator             º\necho º   2.  GAMES     Browse Game Titles          º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º   0.  BACK      Parent Menu                 º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n'},{name:'1.bat',data:'launch\n'},{name:'2.bat',data:'cd games\nmenu\n'},{name:'0.bat',data:'cd ..\nmenu\n'}]},
-                                    { name: 'SNES', directories: [], files: [] },
-                                    { name: 'GB',   directories: [], files: [] },
-                                    { name: 'GBC',  directories: [], files: [] },
-                                    { name: 'VB',   directories: [], files: [] },
-                                    { name: 'N64',  directories: [], files: [] }
                                 ],
                                 files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             NINTENDO  CONSOLES              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  NES    Nintendo Ent. System  [LAUNCH]  º\necho º  2.  SNES   Super Nintendo        [no emu]  º\necho º  3.  GB     Game Boy              [no emu]  º\necho º  4.  GBC    Game Boy Color        [no emu]  º\necho º  5.  VB     Virtual Boy           [no emu]  º\necho º  6.  N64    Nintendo 64           [no emu]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             NINTENDO  CONSOLES              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  NES    Nintendo Ent. System  [LAUNCH]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
                     { name: '1.bat', data: 'cd nes\nmenu\n' },
-                    { name: '2.bat', data: 'echo No emulator available for Super Nintendo.\nmenu\n' },
-                    { name: '3.bat', data: 'echo No emulator available for Game Boy.\nmenu\n' },
-                    { name: '4.bat', data: 'echo No emulator available for Game Boy Color.\nmenu\n' },
-                    { name: '5.bat', data: 'echo No emulator available for Virtual Boy.\nmenu\n' },
-                    { name: '6.bat', data: 'echo No emulator available for Nintendo 64.\nmenu\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                             },
@@ -158,19 +146,15 @@
                                 directories: [
                                     { name: 'SMS',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/sega_sms_library' }] },
                                     { name: 'GENESIS', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/sega_genesis_library' }] },
-                                    { name: 'SCD',     directories: [], files: [] },
                                     { name: '32X',     directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/sega_genesis_library' }] },
-                                    { name: 'GG',      directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/gamegear_library' }] },
-                                    { name: 'SATURN',  directories: [], files: [] }
+                                    { name: 'GG',      directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/gamegear_library' }] }
                                 ],
                                 files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               SEGA  CONSOLES                º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  SMS     Master System        [LAUNCH]  º\necho º  2.  GENESIS Mega Drive/Genesis   [LAUNCH]  º\necho º  3.  32X     Sega 32X             [LAUNCH]  º\necho º  4.  GG      Game Gear            [LAUNCH]  º\necho º  5.  SCD     Sega CD              [no emu]  º\necho º  6.  SATURN  Saturn               [no emu]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               SEGA  CONSOLES                º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  SMS     Master System        [LAUNCH]  º\necho º  2.  GENESIS Mega Drive/Genesis   [LAUNCH]  º\necho º  3.  32X     Sega 32X             [LAUNCH]  º\necho º  4.  GG      Game Gear            [LAUNCH]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
                     { name: '1.bat', data: 'cd sms\nlaunch\n' },
                     { name: '2.bat', data: 'cd genesis\nlaunch\n' },
                     { name: '3.bat', data: 'cd 32x\nlaunch\n' },
                     { name: '4.bat', data: 'cd gg\nlaunch\n' },
-                    { name: '5.bat', data: 'echo No emulator available for Sega CD.\nmenu\n' },
-                    { name: '6.bat', data: 'echo No emulator available for Saturn.\nmenu\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                             },
@@ -179,26 +163,11 @@
                             {
                                 name: 'NEC',
                                 directories: [
-                                    { name: 'PCENGINE', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/tg16_library' }] },
-                                    { name: 'PCFX',     directories: [], files: [] }
+                                    { name: 'PCENGINE', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/tg16_library' }] }
                                 ],
                                 files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º                NEC  CONSOLES                º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  PCENGINE  TurboGrafx-16      [LAUNCH]  º\necho º  2.  PCFX      PC-FX              [no emu]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º                NEC  CONSOLES                º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  PCENGINE  TurboGrafx-16      [LAUNCH]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
                     { name: '1.bat', data: 'cd pcengine\nlaunch\n' },
-                    { name: '2.bat', data: 'echo No emulator available for PC-FX.\nmenu\n' },
-                    { name: '0.bat', data: 'cd ..\nmenu\n' }
-                ]
-                            },
-
-                            // SNK
-                            {
-                                name: 'SNK',
-                                directories: [
-                                    { name: 'NEOGEO', directories: [], files: [] }
-                                ],
-                                files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º                SNK  CONSOLES                º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  NEOGEO  Neo Geo              [no emu]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for Neo Geo.\nmenu\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                             },
@@ -242,32 +211,6 @@
                 ]
                             },
 
-                            // PHILIPS
-                            {
-                                name: 'PHILIPS',
-                                directories: [
-                                    { name: 'CDI', directories: [], files: [] }
-                                ],
-                                files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              PHILIPS  CONSOLES              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  CDI   Philips CD-i          [no emu]   º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for Philips CD-i.\nmenu\n' },
-                    { name: '0.bat', data: 'cd ..\nmenu\n' }
-                ]
-                            },
-
-                            // 3DO
-                            {
-                                name: '3DO',
-                                directories: [
-                                    { name: '3DO', directories: [], files: [] }
-                                ],
-                                files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º                3DO  CONSOLE                 º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  3DO   3DO Interactive        [no emu]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for 3DO.\nmenu\n' },
-                    { name: '0.bat', data: 'cd ..\nmenu\n' }
-                ]
-                            },
-
                             // BANDAI
                             {
                                 name: 'BANDAI',
@@ -285,18 +228,15 @@
 
                         ],
                         files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              CONSOLE  SYSTEMS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  ATARI      2600, 5200, 7800, Lynx     º\necho º   2.  NINTENDO   NES, SNES, N64 ...         º\necho º   3.  SEGA       SMS, Genesis, GG ...       º\necho º   4.  NEC        TurboGrafx-16              º\necho º   5.  SNK        Neo Geo                    º\necho º   6.  MATTEL     Intellivision              º\necho º   7.  COLECO     ColecoVision               º\necho º   8.  MAGNAVOX   Odyssey 2                  º\necho º   9.  PHILIPS    CD-i                       º\necho º  10.  3DO        3DO Interactive            º\necho º  11.  BANDAI     WonderSwan                 º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              CONSOLE  SYSTEMS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  ATARI      2600, 5200, 7800, Lynx     º\necho º   2.  NINTENDO   NES                        º\necho º   3.  SEGA       SMS, Genesis, GG           º\necho º   4.  NEC        TurboGrafx-16              º\necho º   5.  MATTEL     Intellivision              º\necho º   6.  COLECO     ColecoVision               º\necho º   7.  MAGNAVOX   Odyssey 2                  º\necho º   8.  BANDAI     WonderSwan                 º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
                     { name: '1.bat', data: 'cd atari\nmenu\n' },
                     { name: '2.bat', data: 'cd nintendo\nmenu\n' },
                     { name: '3.bat', data: 'cd sega\nmenu\n' },
                     { name: '4.bat', data: 'cd nec\nmenu\n' },
-                    { name: '5.bat', data: 'cd snk\nmenu\n' },
-                    { name: '6.bat', data: 'cd mattel\nmenu\n' },
-                    { name: '7.bat', data: 'cd coleco\nmenu\n' },
-                    { name: '8.bat', data: 'cd magnavox\nmenu\n' },
-                    { name: '9.bat', data: 'cd philips\nmenu\n' },
-                    { name: '10.bat', data: 'cd 3do\nmenu\n' },
-                    { name: '11.bat', data: 'cd bandai\nmenu\n' },
+                    { name: '5.bat', data: 'cd mattel\nmenu\n' },
+                    { name: '6.bat', data: 'cd coleco\nmenu\n' },
+                    { name: '7.bat', data: 'cd magnavox\nmenu\n' },
+                    { name: '8.bat', data: 'cd bandai\nmenu\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                     },
@@ -310,7 +250,6 @@
                             {
                                 name: 'COMMODORE',
                                 directories: [
-                                    { name: 'VIC20',  directories: [], files: [] },
                                     { name: 'C64',    directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_c64' }] },
                                     { name: 'PLUS4',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_c64' }] },
                                     { name: 'C128',   directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_c64' }] },
@@ -335,12 +274,11 @@
                                     }
                                 ],
                                 files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º            COMMODORE  COMPUTERS             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  VIC20  Commodore VIC-20     [no emu]   º\necho º  2.  C64    Commodore 64         [LAUNCH]   º\necho º  3.  PLUS4  Commodore Plus/4     [LAUNCH]   º\necho º  4.  C128   Commodore 128        [LAUNCH]   º\necho º  5.  AMIGA  Amiga (all models)              º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for VIC-20.\nmenu\n' },
-                    { name: '2.bat', data: 'cd c64\nlaunch\n' },
-                    { name: '3.bat', data: 'cd plus4\nlaunch\n' },
-                    { name: '4.bat', data: 'cd c128\nlaunch\n' },
-                    { name: '5.bat', data: 'cd amiga\nmenu\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º            COMMODORE  COMPUTERS             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  C64    Commodore 64         [LAUNCH]   º\necho º  2.  PLUS4  Commodore Plus/4     [LAUNCH]   º\necho º  3.  C128   Commodore 128        [LAUNCH]   º\necho º  4.  AMIGA  Amiga (all models)              º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: '1.bat', data: 'cd c64\nlaunch\n' },
+                    { name: '2.bat', data: 'cd plus4\nlaunch\n' },
+                    { name: '3.bat', data: 'cd c128\nlaunch\n' },
+                    { name: '4.bat', data: 'cd amiga\nmenu\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                             },
@@ -433,55 +371,19 @@
                 ]
                             },
 
-                            // ACORN
-                            {
-                                name: 'ACORN',
-                                directories: [
-                                    { name: 'BBC',      directories: [], files: [] },
-                                    { name: 'ELECTRON', directories: [], files: [] },
-                                    { name: 'ARCHIM',   directories: [], files: [] }
-                                ],
-                                files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              ACORN  COMPUTERS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  BBC       BBC Micro          [no emu]  º\necho º  2.  ELECTRON  Acorn Electron     [no emu]  º\necho º  3.  ARCHIM    Acorn Archimedes   [no emu]  º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for BBC Micro.\nmenu\n' },
-                    { name: '2.bat', data: 'echo No emulator available for Acorn Electron.\nmenu\n' },
-                    { name: '3.bat', data: 'echo No emulator available for Acorn Archimedes.\nmenu\n' },
-                    { name: '0.bat', data: 'cd ..\nmenu\n' }
-                ]
-                            },
-
-                            // MSX (multi-manufacturer standard)
-                            {
-                                name: 'MSX',
-                                directories: [
-                                    { name: 'MSX1',  directories: [], files: [] },
-                                    { name: 'MSX2',  directories: [], files: [] },
-                                    { name: 'MSX2P', directories: [], files: [] }
-                                ],
-                                files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               MSX  COMPUTERS                º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  MSX1   MSX 1              [no emu]     º\necho º  2.  MSX2   MSX 2              [no emu]     º\necho º  3.  MSX2P  MSX 2+             [no emu]     º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for MSX 1.\nmenu\n' },
-                    { name: '2.bat', data: 'echo No emulator available for MSX 2.\nmenu\n' },
-                    { name: '3.bat', data: 'echo No emulator available for MSX 2+.\nmenu\n' },
-                    { name: '0.bat', data: 'cd ..\nmenu\n' }
-                ]
-                            },
-
                             // TANDY
                             {
                                 name: 'TANDY',
                                 directories: [
-                                    { name: 'TRS80', directories: [], files: [] },
                                     { name: 'COCO',  directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_coco2' }] },
                                     { name: 'COCO2', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_coco2' }] },
                                     { name: 'COCO3', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary_coco2' }] }
                                 ],
                                 files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              TANDY  COMPUTERS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  TRS80  TRS-80               [no emu]   º\necho º  2.  COCO   Color Computer       [LAUNCH]   º\necho º  3.  COCO2  Color Computer 2     [LAUNCH]   º\necho º  4.  COCO3  Color Computer 3     [LAUNCH]   º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for TRS-80.\nmenu\n' },
-                    { name: '2.bat', data: 'cd coco\nlaunch\n' },
-                    { name: '3.bat', data: 'cd coco2\nlaunch\n' },
-                    { name: '4.bat', data: 'cd coco3\nlaunch\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              TANDY  COMPUTERS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  COCO   Color Computer       [LAUNCH]   º\necho º  2.  COCO2  Color Computer 2     [LAUNCH]   º\necho º  3.  COCO3  Color Computer 3     [LAUNCH]   º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: '1.bat', data: 'cd coco\nlaunch\n' },
+                    { name: '2.bat', data: 'cd coco2\nlaunch\n' },
+                    { name: '3.bat', data: 'cd coco3\nlaunch\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                             },
@@ -499,108 +401,31 @@
                 ]
                             },
 
-                            // NEC (home computers)
-                            {
-                                name: 'NEC',
-                                directories: [
-                                    { name: 'PC6001', directories: [], files: [] },
-                                    { name: 'PC88',   directories: [], files: [] },
-                                    { name: 'PC98',   directories: [], files: [] }
-                                ],
-                                files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               NEC  COMPUTERS                º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  PC6001  NEC PC-6001         [no emu]   º\necho º  2.  PC88    NEC PC-8801         [no emu]   º\necho º  3.  PC98    NEC PC-9801         [no emu]   º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for NEC PC-6001.\nmenu\n' },
-                    { name: '2.bat', data: 'echo No emulator available for NEC PC-8801.\nmenu\n' },
-                    { name: '3.bat', data: 'echo No emulator available for NEC PC-9801.\nmenu\n' },
-                    { name: '0.bat', data: 'cd ..\nmenu\n' }
-                ]
-                            },
-
                             // SHARP
                             {
                                 name: 'SHARP',
                                 directories: [
-                                    { name: 'MZ',   directories: [], files: [] },
                                     { name: 'X68K', directories: [], files: [{ name: 'launch.exe', link: 'https://archive.org/details/softwarelibrary-x68k' }] }
                                 ],
                                 files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              SHARP  COMPUTERS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  MZ    Sharp MZ Series       [no emu]   º\necho º  2.  X68K  Sharp X68000          [LAUNCH]   º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for Sharp MZ Series.\nmenu\n' },
-                    { name: '2.bat', data: 'cd x68k\nlaunch\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              SHARP  COMPUTERS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  X68K  Sharp X68000          [LAUNCH]   º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: '1.bat', data: 'cd x68k\nlaunch\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                             },
 
-                            // FUJITSU
-                            {
-                                name: 'FUJITSU',
-                                directories: [
-                                    { name: 'FM7',     directories: [], files: [] },
-                                    { name: 'FM77',    directories: [], files: [] },
-                                    { name: 'FMTOWNS', directories: [], files: [] }
-                                ],
-                                files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             FUJITSU  COMPUTERS              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  FM7      Fujitsu FM-7       [no emu]   º\necho º  2.  FM77     Fujitsu FM-77      [no emu]   º\necho º  3.  FMTOWNS  FM Towns           [no emu]   º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for Fujitsu FM-7.\nmenu\n' },
-                    { name: '2.bat', data: 'echo No emulator available for Fujitsu FM-77.\nmenu\n' },
-                    { name: '3.bat', data: 'echo No emulator available for FM Towns.\nmenu\n' },
-                    { name: '0.bat', data: 'cd ..\nmenu\n' }
-                ]
-                            },
-
-                            // THOMSON
-                            {
-                                name: 'THOMSON',
-                                directories: [
-                                    { name: 'TO7', directories: [], files: [] },
-                                    { name: 'MO5', directories: [], files: [] },
-                                    { name: 'TO8', directories: [], files: [] },
-                                    { name: 'MO6', directories: [], files: [] }
-                                ],
-                                files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             THOMSON  COMPUTERS              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  TO7   Thomson TO7           [no emu]   º\necho º  2.  MO5   Thomson MO5           [no emu]   º\necho º  3.  TO8   Thomson TO8           [no emu]   º\necho º  4.  MO6   Thomson MO6           [no emu]   º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for Thomson TO7.\nmenu\n' },
-                    { name: '2.bat', data: 'echo No emulator available for Thomson MO5.\nmenu\n' },
-                    { name: '3.bat', data: 'echo No emulator available for Thomson TO8.\nmenu\n' },
-                    { name: '4.bat', data: 'echo No emulator available for Thomson MO6.\nmenu\n' },
-                    { name: '0.bat', data: 'cd ..\nmenu\n' }
-                ]
-                            },
-
-                            // ORIC
-                            {
-                                name: 'ORIC',
-                                directories: [
-                                    { name: 'ORIC1',  directories: [], files: [] },
-                                    { name: 'ATMOS',  directories: [], files: [] },
-                                    { name: 'ORIC16', directories: [], files: [] }
-                                ],
-                                files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               ORIC  COMPUTERS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º  1.  ORIC1   Oric-1              [no emu]   º\necho º  2.  ATMOS   Oric Atmos          [no emu]   º\necho º  3.  ORIC16  Oric-16             [no emu]   º\necho º                                             º\necho º  0.  Back                                   º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'echo No emulator available for Oric-1.\nmenu\n' },
-                    { name: '2.bat', data: 'echo No emulator available for Oric Atmos.\nmenu\n' },
-                    { name: '3.bat', data: 'echo No emulator available for Oric-16.\nmenu\n' },
-                    { name: '0.bat', data: 'cd ..\nmenu\n' }
-                ]
-                            }
 
                         ],
                         files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               HOME  COMPUTERS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  COMMODORE  C64, Amiga ...             º\necho º   2.  ATARI      400/800, ST, Falcon        º\necho º   3.  SINCLAIR   ZX Spectrum, ZX81          º\necho º   4.  AMSTRAD    CPC, PCW                   º\necho º   5.  APPLE      Apple II, Mac              º\necho º   6.  ACORN      BBC, Electron, Archimedes  º\necho º   7.  MSX        MSX 1/2                    º\necho º   8.  TANDY      TRS-80, Color Computer     º\necho º   9.  TI         TI-99/4A                   º\necho º  10.  NEC        PC-88, PC-98 ...           º\necho º  11.  SHARP      MZ, X68000                 º\necho º  12.  FUJITSU    FM-7, FM Towns             º\necho º  13.  THOMSON    TO7, MO5 ...               º\necho º  14.  ORIC       Oric-1, Atmos              º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               HOME  COMPUTERS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  COMMODORE  C64, Amiga ...             º\necho º   2.  ATARI      400/800, ST, Falcon        º\necho º   3.  SINCLAIR   ZX Spectrum, ZX81          º\necho º   4.  AMSTRAD    CPC, PCW                   º\necho º   5.  APPLE      Apple II, Mac              º\necho º   6.  TANDY      Color Computer             º\necho º   7.  TI         TI-99/4A                   º\necho º   8.  SHARP      X68000                     º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
                     { name: '1.bat', data: 'cd commodore\nmenu\n' },
                     { name: '2.bat', data: 'cd atari\nmenu\n' },
                     { name: '3.bat', data: 'cd sinclair\nmenu\n' },
                     { name: '4.bat', data: 'cd amstrad\nmenu\n' },
                     { name: '5.bat', data: 'cd apple\nmenu\n' },
-                    { name: '6.bat', data: 'cd acorn\nmenu\n' },
-                    { name: '7.bat', data: 'cd msx\nmenu\n' },
-                    { name: '8.bat', data: 'cd tandy\nmenu\n' },
-                    { name: '9.bat', data: 'cd ti\nmenu\n' },
-                    { name: '10.bat', data: 'cd nec\nmenu\n' },
-                    { name: '11.bat', data: 'cd sharp\nmenu\n' },
-                    { name: '12.bat', data: 'cd fujitsu\nmenu\n' },
-                    { name: '13.bat', data: 'cd thomson\nmenu\n' },
-                    { name: '14.bat', data: 'cd oric\nmenu\n' },
+                    { name: '6.bat', data: 'cd tandy\nmenu\n' },
+                    { name: '7.bat', data: 'cd ti\nmenu\n' },
+                    { name: '8.bat', data: 'cd sharp\nmenu\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                     }
