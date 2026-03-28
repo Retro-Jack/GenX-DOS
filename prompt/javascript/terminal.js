@@ -21,7 +21,7 @@ function executeBatch(d) {
 // PROMPT & DISPLAY
 // ============================================================
 
-// Print the current drive/path prompt (e.g. C:\LGR>), or a custom string
+// Print the current drive/path prompt (e.g. C:\>), or a custom string
 function prompt(txt) {
     if (bEchoOff) return;
     if (typeof txt === 'undefined') {

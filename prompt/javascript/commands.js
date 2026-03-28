@@ -7,11 +7,10 @@ registerCmd('rmdir',   function()    { echo("Bad command or go away."); });
 registerCmd('chkdsk',  function()    { echo("*Checking...*  Yep, that's a disk."); });
 registerCmd('help',    function()    { echo("Surely you can figure this out! But if not, just start typing topics/commands of interest. Works best in Chrome, otherwise backspace may not work."); });
 registerCmd('format',  function()    { echo("Specified drive does not exist. Anarchist."); });
-registerCmd('edlin',   function()    { echo("Whoa now, this is LGR-DOS not MS-DOS!"); });
+registerCmd('edlin',   function()    { echo("Whoa now, this is not MS-DOS!"); });
 registerCmd('edit',    function()    { echo("Illegal command: edit."); });
 registerCmd('debug',   function()    { echo("Program terminated normally (0000)"); });
 registerCmd('attrib',  function()    { echo("A ttrib is a terrible thing to waste."); });
-registerCmd('lgr',     function()    { txtPal.fg = 2; echo("You have fine taste."); });
 registerCmd('zerocool',function()    { txtPal.fg = 11; txtPal.bg = 1; echo("HACK THE PLANET!"); });
 registerCmd('quit',    function()    { echo("You're just gonna quit, huh? Good luck with that."); });
 
