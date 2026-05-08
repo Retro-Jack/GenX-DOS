@@ -10,6 +10,18 @@
             {
                 name: 'EMULATORS',
                 directories: [
+                    // ── DOS ──────────────────────────────────────────────────────────────
+                    {
+                        name: 'DOS',
+                        directories: [],
+                        files: [
+                            {name:'menu.bat',data:'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º           DOS  -  MS-DOS SOFTWARE           º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  DOOM      Doom                        º\necho º   2.  DUKE      Duke Nukem                  º\necho º   3.  ZORK      Zork I                      º\necho º   4.  KEEN      Commander Keen              º\necho º   5.  OOTW      Out of This World           º\necho º   6.  EPICPIN   Epic Pinball                º\necho º   7.  TYRIAN    Tyrian                      º\necho º   8.  SIMCITY   SimCity                     º\necho º   9.  WOLF3D    Wolfenstein 3D              º\necho º  10.  POP       Prince of Persia            º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n'},
+                            {name:'0.bat',data:'echo off\ncd ..\nmenu\n'},
+                            {name:'1.bat',data:'doom\n'},{name:'2.bat',data:'duke1\n'},{name:'3.bat',data:'zork\n'},{name:'4.bat',data:'keen1\n'},{name:'5.bat',data:'ootw\n'},{name:'6.bat',data:'epicpin\n'},{name:'7.bat',data:'tyrian\n'},{name:'8.bat',data:'simcity\n'},{name:'9.bat',data:'wolf3d\n'},{name:'10.bat',data:'pop\n'},
+                            {name:'doom.bat',link:'../emulators/jsdos/play.html?game=doom'},{name:'duke1.bat',link:'../emulators/jsdos/play.html?game=duke1'},{name:'zork.bat',link:'../emulators/jsdos/play.html?game=zork'},{name:'keen1.bat',link:'../emulators/jsdos/play.html?game=keen1'},{name:'ootw.bat',link:'../emulators/jsdos/play.html?game=ootw'},{name:'epicpin.bat',link:'../emulators/jsdos/play.html?game=epicpin'},{name:'tyrian.bat',link:'../emulators/jsdos/play.html?game=tyrian'},{name:'simcity.bat',link:'../emulators/jsdos/play.html?game=simcity'},{name:'wolf3d.bat',link:'../emulators/jsdos/play.html?game=wolf3d'},{name:'pop.bat',link:'../emulators/jsdos/play.html?game=pop'}
+                        ]
+                    },
+
                     // ── CONSOLE ──────────────────────────────────────────────────────────
                     {
                         name: 'CONSOLE',
@@ -196,9 +208,10 @@
 
                 ],
                 files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             EMULATOR  LAUNCHER              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  CONSOLE     Games Consoles            º\necho º   2.  HOMECOMP    Home Computers            º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
-                    { name: '1.bat', data: 'cd console\nmenu\n' },
-                    { name: '2.bat', data: 'cd homecomp\nmenu\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             EMULATOR  LAUNCHER              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  DOS         MS-DOS Software           º\necho º   2.  CONSOLE     Games Consoles            º\necho º   3.  HOMECOMP    Home Computers            º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: '1.bat', data: 'cd dos\nmenu\n' },
+                    { name: '2.bat', data: 'cd console\nmenu\n' },
+                    { name: '3.bat', data: 'cd homecomp\nmenu\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
             }

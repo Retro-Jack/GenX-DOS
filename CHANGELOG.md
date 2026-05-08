@@ -3,8 +3,7 @@
 ## [Unreleased]
 
 ### Removed
-- Entire MS-DOS menu (`c/EMULATORS/DOS/`) — the 9 root games (Doom, Duke Nukem II, Zork I, Commander Keen 4, Out of This World, Epic Pinball, Tyrian, SimCity 2000 CD, Wolfenstein 3D) plus the SHAREWRE submenu and its 6 sub-categories (FPS, PLATFORM, ACTION, ADVENTURE, PUZZLE, STRATEGY) covering 208 classicdosgames.com links. The DOS aesthetic of the site is unchanged; only the in-prompt MS-DOS software listings are gone.
-- `EMULATOR LAUNCHER` parent menu now lists `1. CONSOLE`, `2. HOMECOMP` (was `1. DOS`, `2. CONSOLE`, `3. HOMECOMP`); `1.bat`/`2.bat`/`3.bat` renumbered accordingly.
+- SHAREWRE submenu under MS-DOS — the 6 sub-categories (FPS, PLATFORM, ACTION, ADVENTURE, PUZZLE, STRATEGY) covering 208 classicdosgames.com links. The MS-DOS menu was rebuilt fresh from scratch under the standard self-host recipe (see Added below); the Shareware Library did not return.
 
 ### Changed
 - Trimmed each platform's GAMES menu to top-10 most popular titles. NES dropped Mega Man 1, Excitebike, Pac-Man, Bomberman, 1942, Battle City, Ninja Gaiden, Double Dragon (18→10). Genesis dropped Streets of Rage 1, Altered Beast, Shinobi III, ToeJam & Earl, Vectorman (15→10). BBC dropped Repton 2, Zalaga, Hopper, Stryker's Run, Castle Quest (15→10). Atari 2600 dropped Defender, Donkey Kong, Frogger, Kaboom!, Seaquest, Enduro, Berzerk, Q*Bert (18→10). Corresponding `roms/`/`discs/` files and `games.json` entries removed.
@@ -18,6 +17,10 @@
 - Added an extended-ASCII boot configuration table above the root `DOS  EMULATOR  LAUNCHER` menu — 80-col double-rule outer border (matching the rest of the site's menu style), single-rule column divider, two-column hardware fields styled after a 486-era POST screen.
 
 ### Added
+- Self-hosted MS-DOS emulator (caiiiycuk/js-dos v8.3.20, GPL-2.0) at `emulators/jsdos/` — `js-dos.js` (~310 KB) + `js-dos.css` + `emulators/wdosbox.{js,wasm}` (~1.6 MB) + `wlibzip.{js,wasm}` (~190 KB) + `emulators.js` (~72 KB). Skipped `wdosbox-x.{js,wasm}` (~7 MB DOSBox-X variant) — the standard wdosbox handles all 10 catalogue games. `play.html` reads `?game=<key>`, looks up `{title, bundle}` in `games.json`, and calls `Dos(div, { url: bundle })`.
+- `emulators/jsdos/games.json`: 10-entry MS-DOS catalogue mapping keys to local `.jsdos` bundle paths.
+- `emulators/jsdos/bundles/`: 10 `.jsdos` bundles (~22 MB total, sourced from archive.org). Each bundle is a zip of the original DOS files plus `.jsdos/dosbox.conf` containing the `[autoexec]` (`cd <subdir>` then run the `.exe`). Catalogue: Doom (Ultimate Doom = Doom 1 + episode 4), Duke Nukem (1991), Zork I (frotz interpreter), Commander Keen 1 "Marooned on Mars", Out of This World, Epic Pinball, Tyrian (1995, freeware), SimCity (1989, "Classic"), Wolfenstein 3D, Prince of Persia (1989). Picked the first game in each franchise (e.g. Duke 1 not Duke II, Keen 1 not Keen 4, SimCity not SimCity 2000) per the franchise-first convention.
+- `prompt/javascript/fs.js`: Re-introduced `c/EMULATORS/DOS/` directory with a flat 10-entry menu linking each game to `../emulators/jsdos/play.html?game=<key>`. `EMULATOR LAUNCHER` parent menu lists `1. DOS`, `2. CONSOLE`, `3. HOMECOMP` again with `*.bat` renumbered accordingly.
 - Self-hosted Javatari emulator (ppeccin/javatari.js v5.0.4, AGPL-3.0, pure-JS Atari 2600) at `emulators/javatari/` — `javatari.js` (~700 KB) plus `play.html` wrapper that reads `?game=<key>`, looks up `{title, rom}` in `games.json`, sets `?ROM=<path>` on the URL, and injects `javatari.js` (which reads its config from URL params at script load).
 - `emulators/javatari/games.json`: 10-entry Atari 2600 catalogue mapping keys to local ROM paths.
 - `emulators/javatari/roms/`: 10 Atari 2600 ROMs (~52 KB total, extracted from `.zip` archives in archive.org item `cylums-atari-2600-rom-collection`); covers Adventure, Asteroids, Pac-Man, Pitfall!, Space Invaders, Missile Command, Breakout, Yars' Revenge, River Raid, Centipede.
