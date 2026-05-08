@@ -2,7 +2,11 @@
 
 ## [Unreleased]
 
+### Changed
+- Swapped MS-DOS emulator from caiiiycuk/js-dos v8 to db48x/Emularity (em-dosbox, GPL-3.0). New tree at `emulators/emularity/`: `loader.js` (~116 KB), `browserfs.min.js` (~248 KB), `es6-promise.js` (~28 KB), `emulators/em-dosbox/dosbox-sync.{js,mem}` (~5.6 MB), `play.html` wrapper, `games.json` catalogue, and 10 plain DOS-file zips in `bundles/` (~28 MB total — bundles re-zipped without the js-dos `.jsdos/dosbox.conf` config dir; `games.json` now stores `{title, zip, exe}` and `play.html` boots via Emularity's `Emulator` + `DosBoxLoader.mountZip` + `startExe`). `prompt/javascript/fs.js` repointed all 10 DOS game `.bat` links from `../emulators/jsdos/play.html?game=<key>` to `../emulators/emularity/play.html?game=<key>`.
+
 ### Removed
+- `emulators/jsdos/` — caiiiycuk/js-dos v8 self-hosted runtime and `.jsdos` bundles, superseded by `emulators/emularity/` (see Changed above).
 - SHAREWRE submenu under MS-DOS — the 6 sub-categories (FPS, PLATFORM, ACTION, ADVENTURE, PUZZLE, STRATEGY) covering 208 classicdosgames.com links. The MS-DOS menu was rebuilt fresh from scratch under the standard self-host recipe (see Added below); the Shareware Library did not return.
 - Stripped pure documentation from every `.jsdos` bundle: READMEs, FAQs, manuals, order forms, help systems (`*.DOC`, `*.TXT`, `*.HLP`, `*.GID`, `*.CNT`, `*.FRM`, `*.DIZ`, `*.NFO`), Apogee shareware ad programs (`CATALOG.EXE`, `DEALERS.EXE`, `SWCBBS.EXE`, `DN2HELP.EXE`, `DNHINT.EXE`), and the whole `Wolf3D/WOLF3D/HELP/` subdir. Game data, configs, sound driver subdirs, and DOS extenders kept. Net change ~−624 KB across the 10 bundles.
 

@@ -23,7 +23,7 @@ emulators/
   jsnes/                  NES            — pure-JS bundle + 10 .nes ROMs
   genesis/                Sega Genesis   — Emscripten bundle + 10 .bin ROMs
   javatari/               Atari 2600     — pure-JS bundle + 10 .a26 ROMs
-  jsdos/                  MS-DOS         — js-dos v8 + 10 .jsdos game bundles
+  emularity/              MS-DOS         — Emularity (em-dosbox) + 10 zipped game bundles
 ```
 
 ## Self-hosted emulators
@@ -34,7 +34,7 @@ emulators/
 | NES       | bfirsh/jsnes v2.1.0             | `play.html?game=<key>`                   |
 | Genesis   | lrusso/Genesis (PicoDrive port) | `play.html?game=<key>`                   |
 | 2600      | ppeccin/javatari.js v5.0.4      | `play.html?game=<key>`                   |
-| MS-DOS    | caiiiycuk/js-dos v8.3.20        | `play.html?game=<key>`                   |
+| MS-DOS    | db48x/emularity (em-dosbox)     | `play.html?game=<key>`                   |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
@@ -56,4 +56,4 @@ See the [wiki](https://github.com/Retro-Jack/DOS-Site/wiki):
 - JSNES: Apache-2.0 (bfirsh/jsnes)
 - Genesis (lrusso): GPL-2.0 (notaz/PicoDrive port)
 - Javatari: AGPL-3.0 (ppeccin/javatari.js)
-- js-dos: GPL-2.0 (caiiiycuk/js-dos)
+- Emularity: GPL-3.0 (db48x/emularity, em-dosbox)
