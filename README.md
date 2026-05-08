@@ -26,11 +26,12 @@ emulators/
 
 ## Self-hosted emulators
 
-| System    | Vendor                          | URL pattern                              |
+| System    | Copied from                     | URL pattern                              |
 |-----------|---------------------------------|------------------------------------------|
 | BBC Micro | mattgodbolt/jsbeeb v1.12.0      | `?disc1=<path>.ssd&autoboot`             |
 | NES       | bfirsh/jsnes v2.1.0             | `play.html?game=<key>`                   |
 | Genesis   | lrusso/Genesis (PicoDrive port) | `play.html?game=<key>`                   |
+| 2600      | ppeccin/javatari.js v5.0.4      | `play.html?game=<key>`                   |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 

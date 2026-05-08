@@ -25,7 +25,7 @@
 - Self-hosted JSBeeb emulator at `emulators/jsbeeb/` (v1.12.0); built `dist/` produced via `npm run build`
 - `prompt/javascript/fs.js`: Repointed all 15 BBC Micro game links from `https://bbc.xania.org/?...` to `../emulators/jsbeeb/dist/?...`
 - `emulators/jsbeeb/dist/discs/`: Bundled 15 BBC Micro disc images locally (~3.4 MB) so jsbeeb no longer fetches from `stairwaytohell.com` at runtime. Originally bundled the .zip files but jsbeeb's default-schema disc loader (`disc.load("discs/" + path)`) doesn't unzip — only the `sth:`/`http:`/`https:` branches do. Switched to extracting the inner `.ssd` from each zip and serving those directly, so URLs are now `?disc1=<path>.ssd&autoboot` instead of `?disc1=<path>.zip&autoboot`. Six STH paths corrected during the move: ChuckieEgg `AF/`→`AnF/`, Zalaga `Acornsoft/`→`Aardvark/`, Snapper `Acornsoft/Snapper`→`Acornsoft/Snapper-v1-alt`, ManicMiner `Tynesoft/`→`SoftwareProjects/`, CastleQuest `Superior/`→`Micropower/`, Uridium `Superior/`→`Hewson/`
-- Self-hosted JSNES emulator at `emulators/jsnes/` (v2.1.0); vendored published bundle `dist/jsnes.min.js` from npm (~136 KB)
+- Self-hosted JSNES emulator at `emulators/jsnes/` (v2.1.0); copied published bundle `dist/jsnes.min.js` from npm (~136 KB)
 - `emulators/jsnes/play.html`: Static wrapper that reads `?game=<key>`, looks up `{title, rom}` in `games.json`, and boots the ROM via `jsnes.Browser`
 - `emulators/jsnes/games.json`: 18-entry NES catalogue mapping keys (matching the `.bat` names in `fs.js`) to local ROM paths under `roms/`
 - `emulators/jsnes/roms/`: 18 NES ROMs (~2.5 MB total) sourced from archive.org item `nintendo-entertainment-system-nes-roms-europeusa`; bundled locally because archive.org doesn't set CORS headers for direct browser fetch
