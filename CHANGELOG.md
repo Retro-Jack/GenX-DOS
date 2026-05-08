@@ -6,6 +6,7 @@
 - Swapped MS-DOS emulator from caiiiycuk/js-dos v8 to db48x/Emularity (em-dosbox, GPL-3.0). New tree at `emulators/emularity/`: `loader.js` (~116 KB), `browserfs.min.js` (~248 KB), `es6-promise.js` (~28 KB), `emulators/em-dosbox/dosbox-sync.{js,mem}` (~5.6 MB), `play.html` wrapper, `games.json` catalogue, and 10 plain DOS-file zips in `bundles/` (~28 MB total — bundles re-zipped without the js-dos `.jsdos/dosbox.conf` config dir; `games.json` now stores `{title, zip, exe}` and `play.html` boots via Emularity's `Emulator` + `DosBoxLoader.mountZip` + `startExe`). `prompt/javascript/fs.js` repointed all 10 DOS game `.bat` links from `../emulators/jsdos/play.html?game=<key>` to `../emulators/emularity/play.html?game=<key>`.
 
 ### Added
+- `<noscript>` fallback on all 7 HTML entry points (`index.html`, `prompt/index.html`, `emulators/{emularity,genesis,javatari,jsbeeb/dist,jsnes}/{play,index}.html`). Identical fixed-position black-on-grey monospace overlay reading "JavaScript Required — This site is a client-side DOS terminal and emulator suite. It needs JavaScript to run. Enable JavaScript and reload." Renders only when scripts are disabled; invisible to JS-enabled visitors.
 - `emulators/emularity/logo/emularity_color_small.png`: 1×1 transparent placeholder PNG. Emularity's `loader.js` draws a logo on the canvas during boot and 404s on this asset otherwise; the placeholder silences the request without copying the upstream branding.
 
 ### Removed
