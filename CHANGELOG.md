@@ -11,6 +11,7 @@
 
 ### Documentation
 - Added top-level `README.md` describing the site layout, emulator integration recipe, menu structure, and jsbeeb disc URL semantics.
+- Removed all LGR / Lazy Game Reviews references from current content: `index.html` title now "DOS Emulator Launcher"; `README.md` retitled "DOS-Site" with neutral description and license attribution.
 
 ### Added
 - Self-hosted lrusso/Genesis emulator (Emscripten port of PicoDrive, pure-JS) at `emulators/genesis/` — `Genesis.min.js` (~2.1 MB) plus `play.html` wrapper that reads `?game=<key>`, looks up `{title, rom}` in `games.json`, fetches the ROM via XHR, and boots via `embedGenesis(...)`
