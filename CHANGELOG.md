@@ -5,6 +5,9 @@
 ### Changed
 - Swapped MS-DOS emulator from caiiiycuk/js-dos v8 to db48x/Emularity (em-dosbox, GPL-3.0). New tree at `emulators/emularity/`: `loader.js` (~116 KB), `browserfs.min.js` (~248 KB), `es6-promise.js` (~28 KB), `emulators/em-dosbox/dosbox-sync.{js,mem}` (~5.6 MB), `play.html` wrapper, `games.json` catalogue, and 10 plain DOS-file zips in `bundles/` (~28 MB total — bundles re-zipped without the js-dos `.jsdos/dosbox.conf` config dir; `games.json` now stores `{title, zip, exe}` and `play.html` boots via Emularity's `Emulator` + `DosBoxLoader.mountZip` + `startExe`). `prompt/javascript/fs.js` repointed all 10 DOS game `.bat` links from `../emulators/jsdos/play.html?game=<key>` to `../emulators/emularity/play.html?game=<key>`.
 
+### Added
+- `emulators/emularity/logo/emularity_color_small.png`: 1×1 transparent placeholder PNG. Emularity's `loader.js` draws a logo on the canvas during boot and 404s on this asset otherwise; the placeholder silences the request without copying the upstream branding.
+
 ### Removed
 - `emulators/jsdos/` — caiiiycuk/js-dos v8 self-hosted runtime and `.jsdos` bundles, superseded by `emulators/emularity/` (see Changed above).
 - SHAREWRE submenu under MS-DOS — the 6 sub-categories (FPS, PLATFORM, ACTION, ADVENTURE, PUZZLE, STRATEGY) covering 208 classicdosgames.com links. The MS-DOS menu was rebuilt fresh from scratch under the standard self-host recipe (see Added below); the Shareware Library did not return.
