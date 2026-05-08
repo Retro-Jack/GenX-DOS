@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+- Trimmed each platform's GAMES menu to top-10 most popular titles. NES dropped Mega Man 1, Excitebike, Pac-Man, Bomberman, 1942, Battle City, Ninja Gaiden, Double Dragon (18→10). Genesis dropped Streets of Rage 1, Altered Beast, Shinobi III, ToeJam & Earl, Vectorman (15→10). BBC dropped Repton 2, Zalaga, Hopper, Stryker's Run, Castle Quest (15→10). Corresponding `roms/`/`discs/` files and `games.json` entries removed.
+- Added `PROMPT` entry (item 11) to BBC GAMES menu — links to `../emulators/jsbeeb/dist/` with no `disc1`/`autoboot`, drops the user at the bare BASIC `>` prompt. Other home computers will get the same option as they're self-hosted.
+
 ### Added
 - Self-hosted lrusso/Genesis emulator (Emscripten port of PicoDrive, pure-JS) at `emulators/genesis/` — `Genesis.min.js` (~2.1 MB) plus `play.html` wrapper that reads `?game=<key>`, looks up `{title, rom}` in `games.json`, fetches the ROM via XHR, and boots via `embedGenesis(...)`
 - `emulators/genesis/games.json`: 15-entry Genesis catalogue mapping keys to local ROM paths
