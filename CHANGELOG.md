@@ -4,6 +4,7 @@
 
 ### Removed
 - SHAREWRE submenu under MS-DOS — the 6 sub-categories (FPS, PLATFORM, ACTION, ADVENTURE, PUZZLE, STRATEGY) covering 208 classicdosgames.com links. The MS-DOS menu was rebuilt fresh from scratch under the standard self-host recipe (see Added below); the Shareware Library did not return.
+- Stripped pure documentation from every `.jsdos` bundle: READMEs, FAQs, manuals, order forms, help systems (`*.DOC`, `*.TXT`, `*.HLP`, `*.GID`, `*.CNT`, `*.FRM`, `*.DIZ`, `*.NFO`), Apogee shareware ad programs (`CATALOG.EXE`, `DEALERS.EXE`, `SWCBBS.EXE`, `DN2HELP.EXE`, `DNHINT.EXE`), and the whole `Wolf3D/WOLF3D/HELP/` subdir. Game data, configs, sound driver subdirs, and DOS extenders kept. Net change ~−624 KB across the 10 bundles.
 
 ### Changed
 - Trimmed each platform's GAMES menu to top-10 most popular titles. NES dropped Mega Man 1, Excitebike, Pac-Man, Bomberman, 1942, Battle City, Ninja Gaiden, Double Dragon (18→10). Genesis dropped Streets of Rage 1, Altered Beast, Shinobi III, ToeJam & Earl, Vectorman (15→10). BBC dropped Repton 2, Zalaga, Hopper, Stryker's Run, Castle Quest (15→10). Atari 2600 dropped Defender, Donkey Kong, Frogger, Kaboom!, Seaquest, Enduro, Berzerk, Q*Bert (18→10). Corresponding `roms/`/`discs/` files and `games.json` entries removed.
