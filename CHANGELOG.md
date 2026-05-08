@@ -11,6 +11,7 @@
 
 ### Documentation
 - Added top-level `README.md` describing the site layout, emulator integration recipe, menu structure, and jsbeeb disc URL semantics.
+- Added an extended-ASCII boot configuration table above the root `DOS  EMULATOR  LAUNCHER` menu — 80-col double-rule outer border (matching the rest of the site's menu style), single-rule column divider, two-column hardware fields styled after a 486-era POST screen.
 
 ### Added
 - Self-hosted lrusso/Genesis emulator (Emscripten port of PicoDrive, pure-JS) at `emulators/genesis/` — `Genesis.min.js` (~2.1 MB) plus `play.html` wrapper that reads `?game=<key>`, looks up `{title, rom}` in `games.json`, fetches the ROM via XHR, and boots via `embedGenesis(...)`
