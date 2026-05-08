@@ -1,0 +1,62 @@
+{
+  "sonic1": {
+    "title": "Sonic the Hedgehog",
+    "rom": "roms/sonic1.bin"
+  },
+  "sonic2": {
+    "title": "Sonic the Hedgehog 2",
+    "rom": "roms/sonic2.bin"
+  },
+  "sonic3": {
+    "title": "Sonic the Hedgehog 3",
+    "rom": "roms/sonic3.bin"
+  },
+  "sor": {
+    "title": "Streets of Rage",
+    "rom": "roms/sor.bin"
+  },
+  "sor2": {
+    "title": "Streets of Rage 2",
+    "rom": "roms/sor2.bin"
+  },
+  "altbeast": {
+    "title": "Altered Beast",
+    "rom": "roms/altbeast.bin"
+  },
+  "ps4": {
+    "title": "Phantasy Star IV",
+    "rom": "roms/ps4.bin"
+  },
+  "gunstar": {
+    "title": "Gunstar Heroes",
+    "rom": "roms/gunstar.bin"
+  },
+  "ecco": {
+    "title": "Ecco the Dolphin",
+    "rom": "roms/ecco.bin"
+  },
+  "comix": {
+    "title": "Comix Zone",
+    "rom": "roms/comix.bin"
+  },
+  "shinobi3": {
+    "title": "Shinobi III",
+    "rom": "roms/shinobi3.bin"
+  },
+  "toejam": {
+    "title": "ToeJam & Earl",
+    "rom": "roms/toejam.bin"
+  },
+  "vectorm": {
+    "title": "Vectorman",
+    "rom": "roms/vectorm.bin"
+  },
+  "ewjim": {
+    "title": "Earthworm Jim",
+    "rom": "roms/ewjim.bin"
+  },
+  "mk": {
+    "title": "Mortal Kombat",
+    "rom": "roms/mk.bin"
+  }
+}
