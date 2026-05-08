@@ -1,0 +1,74 @@
+{
+  "contra": {
+    "title": "Contra",
+    "rom": "roms/contra.nes"
+  },
+  "tetris": {
+    "title": "Tetris",
+    "rom": "roms/tetris.nes"
+  },
+  "megaman": {
+    "title": "Mega Man",
+    "rom": "roms/megaman.nes"
+  },
+  "excite": {
+    "title": "Excitebike",
+    "rom": "roms/excite.nes"
+  },
+  "pacman": {
+    "title": "Pac-Man",
+    "rom": "roms/pacman.nes"
+  },
+  "bomberm": {
+    "title": "Bomberman",
+    "rom": "roms/bomberm.nes"
+  },
+  "1942": {
+    "title": "1942",
+    "rom": "roms/1942.nes"
+  },
+  "battlec": {
+    "title": "Battle City",
+    "rom": "roms/battlec.nes"
+  },
+  "smb": {
+    "title": "Super Mario Bros.",
+    "rom": "roms/smb.nes"
+  },
+  "smb3": {
+    "title": "Super Mario Bros. 3",
+    "rom": "roms/smb3.nes"
+  },
+  "castlvnia": {
+    "title": "Castlevania",
+    "rom": "roms/castlvnia.nes"
+  },
+  "metroid": {
+    "title": "Metroid",
+    "rom": "roms/metroid.nes"
+  },
+  "megaman2": {
+    "title": "Mega Man 2",
+    "rom": "roms/megaman2.nes"
+  },
+  "duckhunt": {
+    "title": "Duck Hunt",
+    "rom": "roms/duckhunt.nes"
+  },
+  "ninjagadn": {
+    "title": "Ninja Gaiden",
+    "rom": "roms/ninjagadn.nes"
+  },
+  "punchout": {
+    "title": "Mike Tyson's Punch-Out!!",
+    "rom": "roms/punchout.nes"
+  },
+  "dbldragon": {
+    "title": "Double Dragon",
+    "rom": "roms/dbldragon.nes"
+  },
+  "finalfnts": {
+    "title": "Final Fantasy",
+    "rom": "roms/finalfnts.nes"
+  }
+}

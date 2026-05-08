@@ -5,6 +5,13 @@
 ### Added
 - Self-hosted JSBeeb emulator at `emulators/jsbeeb/` (v1.12.0); built `dist/` produced via `npm run build`
 - `prompt/javascript/fs.js`: Repointed all 15 BBC Micro game links from `https://bbc.xania.org/?...` to `../emulators/jsbeeb/dist/?...`; URL params (`disc1=sth:...&autoboot`) preserved so STH archive boot path is unchanged
+- Self-hosted JSNES emulator at `emulators/jsnes/` (v2.1.0); vendored published bundle `dist/jsnes.min.js` from npm (~136 KB)
+- `emulators/jsnes/play.html`: Static wrapper that reads `?game=<key>`, looks up `{title, rom}` in `games.json`, and boots the ROM via `jsnes.Browser`
+- `emulators/jsnes/games.json`: 18-entry NES catalogue mapping keys (matching the `.bat` names in `fs.js`) to local ROM paths under `roms/`
+- `emulators/jsnes/roms/`: 18 NES ROMs (~2.5 MB total) sourced from archive.org item `nintendo-entertainment-system-nes-roms-europeusa`; bundled locally because archive.org doesn't set CORS headers for direct browser fetch
+- `prompt/javascript/fs.js`: Repointed all 18 NES game links from `https://www.retrogames.cc/nes-games/...` to `../emulators/jsnes/play.html?game=<key>`
+
+  (EmulatorJS was attempted first under `emulators/emulatorjs/` and dropped — its loader's `"../"` path-prepend logic conflicted with relative `EJS_pathtodata` config and rendered a blank screen even after switching to absolute paths. JSNES has a simpler embed API and worked first try.)
 
 ### Removed
 - `emulators/jsbeeb/index.html`: Stripped upstream Google Analytics (`gtag` snippet for `G-Z9ZN3S7XRE`) and tightened CSP to drop `*.google-analytics.com` / `*.google.com` allowances; rebuilt `dist/`
