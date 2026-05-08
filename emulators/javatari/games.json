@@ -1,0 +1,12 @@
+{
+  "adventure":  { "title": "Adventure",        "rom": "roms/adventure.a26"  },
+  "asteroids":  { "title": "Asteroids",        "rom": "roms/asteroids.a26"  },
+  "pacman":     { "title": "Pac-Man",          "rom": "roms/pacman.a26"     },
+  "pitfall":    { "title": "Pitfall!",         "rom": "roms/pitfall.a26"    },
+  "invaders":   { "title": "Space Invaders",   "rom": "roms/invaders.a26"   },
+  "missile":    { "title": "Missile Command",  "rom": "roms/missile.a26"    },
+  "breakout":   { "title": "Breakout",         "rom": "roms/breakout.a26"   },
+  "yars":       { "title": "Yars' Revenge",    "rom": "roms/yars.a26"       },
+  "riverraid":  { "title": "River Raid",       "rom": "roms/riverraid.a26"  },
+  "centipede":  { "title": "Centipede",        "rom": "roms/centipede.a26"  }
+}
