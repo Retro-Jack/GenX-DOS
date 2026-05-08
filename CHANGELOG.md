@@ -3,6 +3,10 @@
 ## [Unreleased]
 
 ### Added
+- Self-hosted lrusso/Genesis emulator (Emscripten port of PicoDrive, pure-JS) at `emulators/genesis/` — `Genesis.min.js` (~2.1 MB) plus `play.html` wrapper that reads `?game=<key>`, looks up `{title, rom}` in `games.json`, fetches the ROM via XHR, and boots via `embedGenesis(...)`
+- `emulators/genesis/games.json`: 15-entry Genesis catalogue mapping keys to local ROM paths
+- `emulators/genesis/roms/`: 15 Genesis ROMs (~23 MB total, extracted from `.zip` archives at archive.org item `sega-genesis-romset-ultra-usa`); covers Sonic 1/2/3, Streets of Rage 1/2, Altered Beast, Phantasy Star IV, Gunstar Heroes, Ecco the Dolphin, Comix Zone, Shinobi III, ToeJam & Earl, Vectorman, Earthworm Jim, Mortal Kombat
+- `prompt/javascript/fs.js`: Re-introduced SEGA branch — CONSOLE → SEGA → GENESIS → GAMES with 15 numbered entries; CONSOLE top-level menu renumbered to insert SEGA at position 3 (1.ATARI, 2.NINTENDO, 3.SEGA, 4.MATTEL, 5.COLECO, 6.MAGNAVOX); each game `.bat` links to `../emulators/genesis/play.html?game=<key>`
 - Self-hosted JSBeeb emulator at `emulators/jsbeeb/` (v1.12.0); built `dist/` produced via `npm run build`
 - `prompt/javascript/fs.js`: Repointed all 15 BBC Micro game links from `https://bbc.xania.org/?...` to `../emulators/jsbeeb/dist/?...`; URL params (`disc1=sth:...&autoboot`) preserved so STH archive boot path is unchanged
 - Self-hosted JSNES emulator at `emulators/jsnes/` (v2.1.0); vendored published bundle `dist/jsnes.min.js` from npm (~136 KB)

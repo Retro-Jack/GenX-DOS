@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Game</title>
+    <style>
+      html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
+      body { display: flex; align-items: center; justify-content: center; }
+      #game { width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
+      #game canvas { width: 100% !important; height: 100% !important; image-rendering: pixelated; }
+      .err { padding: 20px; }
+      .hint { position: fixed; bottom: 8px; left: 8px; font-size: 11px; color: #888; pointer-events: none; }
+    </style>
+    <script src="Genesis.min.js"></script>
+  </head>
+  <body>
+    <div id="game"></div>
+    <div class="hint">DPad: arrows &nbsp; A/B/C: A/S/D &nbsp; X/Y/Z: Q/W/E &nbsp; Start: Enter &nbsp; Mode: Z &nbsp; (click to enable audio)</div>
+    <script>
+      (async function () {
+        const params = new URLSearchParams(location.search);
+        const key = params.get("game");
+        if (!key) {
+          document.body.innerHTML = '<div class="err">Missing ?game=&lt;key&gt; parameter.</div>';
+          return;
+        }
+        let games;
+        try {
+          games = await (await fetch("games.json")).json();
+        } catch (e) {
+          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + "</div>";
+          return;
+        }
+        const game = games[key];
+        if (!game) {
+          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + "</div>";
+          return;
+        }
+        document.title = game.title || key;
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", game.rom, true);
+        xhr.responseType = "arraybuffer";
+        xhr.addEventListener("readystatechange", function () {
+          if (xhr.readyState !== 4) return;
+          if (xhr.status !== 200) {
+            document.body.innerHTML = '<div class="err">ROM load failed: HTTP ' + xhr.status + "</div>";
+            return;
+          }
+          embedGenesis({
+            container: "game",
+            name: game.title || key,
+            rom: xhr.response,
+            soundEnabled: true,
+            backText: "BACK",
+            soundText: "SOUND",
+            loadText: "LOAD",
+            saveText: "SAVE",
+            player1: {
+              up: "ArrowUp", down: "ArrowDown", left: "ArrowLeft", right: "ArrowRight",
+              start: "Enter", mode: "KeyZ",
+              a: "KeyA", b: "KeyS", c: "KeyD",
+              x: "KeyQ", y: "KeyW", z: "KeyE",
+            },
+            player2: {
+              up: "KeyI", down: "KeyK", left: "KeyJ", right: "KeyL",
+              start: "KeyH", mode: "KeyV",
+              a: "KeyB", b: "KeyN", c: "KeyM",
+              x: "KeyU", y: "KeyO", z: "KeyP",
+            },
+          });
+        });
+        xhr.send(null);
+      })();
+    </script>
+  </body>
+</html>

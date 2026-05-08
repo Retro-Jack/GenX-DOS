@@ -125,6 +125,19 @@
                 ]
                             },
 
+                            // SEGA
+                            {
+                                name: 'SEGA',
+                                directories: [
+                                    {name:'GENESIS',directories:[{name:'GAMES',directories:[],files:[{name:'menu.bat',data:'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º            SEGA  GENESIS  GAMES             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  SONIC1   Sonic the Hedgehog           º\necho º   2.  SONIC2   Sonic the Hedgehog 2         º\necho º   3.  SONIC3   Sonic the Hedgehog 3         º\necho º   4.  SOR      Streets of Rage              º\necho º   5.  SOR2     Streets of Rage 2            º\necho º   6.  ALTBEAST Altered Beast                º\necho º   7.  PS4      Phantasy Star IV             º\necho º   8.  GUNSTAR  Gunstar Heroes               º\necho º   9.  ECCO     Ecco the Dolphin             º\necho º  10.  COMIX    Comix Zone                   º\necho º  11.  SHINOBI3 Shinobi III                  º\necho º  12.  TOEJAM   ToeJam & Earl                º\necho º  13.  VECTORM  Vectorman                    º\necho º  14.  EWJIM    Earthworm Jim                º\necho º  15.  MK       Mortal Kombat                º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n'},{name:'0.bat',data:'echo off\ncd ..\ncd ..\nmenu\n'},{name:'1.bat',data:'sonic1\n'},{name:'2.bat',data:'sonic2\n'},{name:'3.bat',data:'sonic3\n'},{name:'4.bat',data:'sor\n'},{name:'5.bat',data:'sor2\n'},{name:'6.bat',data:'altbeast\n'},{name:'7.bat',data:'ps4\n'},{name:'8.bat',data:'gunstar\n'},{name:'9.bat',data:'ecco\n'},{name:'10.bat',data:'comix\n'},{name:'11.bat',data:'shinobi3\n'},{name:'12.bat',data:'toejam\n'},{name:'13.bat',data:'vectorm\n'},{name:'14.bat',data:'ewjim\n'},{name:'15.bat',data:'mk\n'},{name:'sonic1.bat',link:'../emulators/genesis/play.html?game=sonic1'},{name:'sonic2.bat',link:'../emulators/genesis/play.html?game=sonic2'},{name:'sonic3.bat',link:'../emulators/genesis/play.html?game=sonic3'},{name:'sor.bat',link:'../emulators/genesis/play.html?game=sor'},{name:'sor2.bat',link:'../emulators/genesis/play.html?game=sor2'},{name:'altbeast.bat',link:'../emulators/genesis/play.html?game=altbeast'},{name:'ps4.bat',link:'../emulators/genesis/play.html?game=ps4'},{name:'gunstar.bat',link:'../emulators/genesis/play.html?game=gunstar'},{name:'ecco.bat',link:'../emulators/genesis/play.html?game=ecco'},{name:'comix.bat',link:'../emulators/genesis/play.html?game=comix'},{name:'shinobi3.bat',link:'../emulators/genesis/play.html?game=shinobi3'},{name:'toejam.bat',link:'../emulators/genesis/play.html?game=toejam'},{name:'vectorm.bat',link:'../emulators/genesis/play.html?game=vectorm'},{name:'ewjim.bat',link:'../emulators/genesis/play.html?game=ewjim'},{name:'mk.bat',link:'../emulators/genesis/play.html?game=mk'}]}],files:[{name:'menu.bat',data:'echo off\ncd games\nmenu\necho on\n'}]}
+                                ],
+                                files: [
+                                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º                SEGA  CONSOLES               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  GENESIS  Sega Genesis          [GAMES]º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                                    { name: '1.bat', data: 'cd genesis\ncd games\nmenu\n' },
+                                    { name: '0.bat', data: 'cd ..\nmenu\n' }
+                                ]
+                            },
+
                             // MATTEL
                             {
                                 name: 'MATTEL',
@@ -167,12 +180,13 @@
 
                         ],
                         files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              CONSOLE  SYSTEMS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  ATARI      2600, 5200, 7800           º\necho º   2.  NINTENDO   NES                        º\necho º   3.  MATTEL     Intellivision              º\necho º   4.  COLECO     ColecoVision               º\necho º   5.  MAGNAVOX   Odyssey 2                  º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              CONSOLE  SYSTEMS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  ATARI      2600, 5200, 7800           º\necho º   2.  NINTENDO   NES                        º\necho º   3.  SEGA       Genesis                    º\necho º   4.  MATTEL     Intellivision              º\necho º   5.  COLECO     ColecoVision               º\necho º   6.  MAGNAVOX   Odyssey 2                  º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho on\n' },
                     { name: '1.bat', data: 'cd atari\nmenu\n' },
                     { name: '2.bat', data: 'cd nintendo\nmenu\n' },
-                    { name: '3.bat', data: 'cd mattel\nmenu\n' },
-                    { name: '4.bat', data: 'cd coleco\nmenu\n' },
-                    { name: '5.bat', data: 'cd magnavox\nmenu\n' },
+                    { name: '3.bat', data: 'cd sega\nmenu\n' },
+                    { name: '4.bat', data: 'cd mattel\nmenu\n' },
+                    { name: '5.bat', data: 'cd coleco\nmenu\n' },
+                    { name: '6.bat', data: 'cd magnavox\nmenu\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                     },
