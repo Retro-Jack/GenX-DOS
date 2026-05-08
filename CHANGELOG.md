@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Removed
+- Entire MS-DOS menu (`c/EMULATORS/DOS/`) — the 9 root games (Doom, Duke Nukem II, Zork I, Commander Keen 4, Out of This World, Epic Pinball, Tyrian, SimCity 2000 CD, Wolfenstein 3D) plus the SHAREWRE submenu and its 6 sub-categories (FPS, PLATFORM, ACTION, ADVENTURE, PUZZLE, STRATEGY) covering 208 classicdosgames.com links. The DOS aesthetic of the site is unchanged; only the in-prompt MS-DOS software listings are gone.
+- `EMULATOR LAUNCHER` parent menu now lists `1. CONSOLE`, `2. HOMECOMP` (was `1. DOS`, `2. CONSOLE`, `3. HOMECOMP`); `1.bat`/`2.bat`/`3.bat` renumbered accordingly.
+
 ### Changed
 - Trimmed each platform's GAMES menu to top-10 most popular titles. NES dropped Mega Man 1, Excitebike, Pac-Man, Bomberman, 1942, Battle City, Ninja Gaiden, Double Dragon (18→10). Genesis dropped Streets of Rage 1, Altered Beast, Shinobi III, ToeJam & Earl, Vectorman (15→10). BBC dropped Repton 2, Zalaga, Hopper, Stryker's Run, Castle Quest (15→10). Atari 2600 dropped Defender, Donkey Kong, Frogger, Kaboom!, Seaquest, Enduro, Berzerk, Q*Bert (18→10). Corresponding `roms/`/`discs/` files and `games.json` entries removed.
 - Added `PROMPT` entry (item 11) to BBC GAMES menu — links to `../emulators/jsbeeb/dist/` with no `disc1`/`autoboot`, drops the user at the bare BASIC `>` prompt. Other home computers will get the same option as they're self-hosted.

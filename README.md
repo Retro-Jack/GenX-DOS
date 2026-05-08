@@ -22,6 +22,7 @@ emulators/
   jsbeeb/                 BBC Micro      — Vite-built dist + 10 .ssd discs
   jsnes/                  NES            — pure-JS bundle + 10 .nes ROMs
   genesis/                Sega Genesis   — Emscripten bundle + 10 .bin ROMs
+  javatari/               Atari 2600     — pure-JS bundle + 10 .a26 ROMs
 ```
 
 ## Self-hosted emulators
