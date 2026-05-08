@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Game</title>
+    <style>
+      html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
+      body { display: flex; align-items: center; justify-content: center; }
+      #javatari-screen { box-shadow: 2px 2px 10px rgba(0, 0, 0, .7); }
+      .err { padding: 20px; }
+    </style>
+  </head>
+  <body>
+    <div id="javatari-screen"></div>
+    <script>
+      (async function () {
+        const params = new URLSearchParams(location.search);
+        const key = params.get("game");
+        if (!key) {
+          document.body.innerHTML = '<div class="err">Missing ?game=&lt;key&gt; parameter.</div>';
+          return;
+        }
+        let games;
+        try {
+          games = await (await fetch("games.json")).json();
+        } catch (e) {
+          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + "</div>";
+          return;
+        }
+        const game = games[key];
+        if (!game) {
+          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + "</div>";
+          return;
+        }
+        document.title = game.title || key;
+        // Javatari reads URL params at load time, so push the ROM URL onto our own
+        // location before injecting the script tag.
+        const u = new URL(location.href);
+        u.searchParams.set("ROM", game.rom);
+        history.replaceState(null, "", u);
+        const s = document.createElement("script");
+        s.src = "javatari.js";
+        document.body.appendChild(s);
+      })();
+    </script>
+  </body>
+</html>
