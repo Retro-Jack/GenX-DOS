@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Added
+- Self-hosted JSBeeb emulator at `emulators/jsbeeb/` (v1.12.0); built `dist/` produced via `npm run build`
+- `prompt/javascript/fs.js`: Repointed all 15 BBC Micro game links from `https://bbc.xania.org/?...` to `../emulators/jsbeeb/dist/?...`; URL params (`disc1=sth:...&autoboot`) preserved so STH archive boot path is unchanged
+
+### Removed
+- `emulators/jsbeeb/index.html`: Stripped upstream Google Analytics (`gtag` snippet for `G-Z9ZN3S7XRE`) and tightened CSP to drop `*.google-analytics.com` / `*.google.com` allowances; rebuilt `dist/`
+- `emulators/jsbeeb/node_modules/` and `emulators/jsbeeb/.git/` excluded from the repo (regenerable; the inner `.git` was the upstream's separate history)
+- Added top-level `.gitignore` for `emulators/*/node_modules/`
+
 ### Changed
 - `prompt/javascript/fs.js`: Removed all directories and menu entries where no emulator is available
 
@@ -27,3 +36,14 @@
 - Removed entire ORIC block (Oric-1, Atmos, Oric-16 — no emulators available)
 - HOMECOMP top-level menu renumbered: ACORN (6), MSX (7), NEC (10), FUJITSU (12), THOMSON (13), ORIC (14) removed; TANDY is now 6, TI is 7, SHARP is 8
 - Removed intermediate [LAUNCH] step from all 7 console systems with GAMES submenus (2600, 5200, 7800, NES, INTV, CVISION, ODYSSEY2): selecting a system now navigates directly to its GAMES menu; system-level nav files (menu.bat, launch.exe, 0/1/2.bat) removed from each system's files array; parent .bat files updated to `cd SYSTEM\ncd games\nmenu\n`; GAMES/0.bat updated to go back two levels; menu labels updated from [LAUNCH] to [GAMES]
+- Removed all `[LAUNCH]` entries (archive.org library launchers with no individual game emulators) across all platforms
+- CONSOLE: removed ATARI LYNX, SEGA (SMS, GENESIS, 32X, GG), NEC (TurboGrafx-16), BANDAI (WonderSwan, WonderSwan Color); removed entire SEGA, NEC, and BANDAI blocks; ATARI CONSOLES now shows 2600, 5200, 7800 only; CONSOLE SYSTEMS renumbered to 5 entries (ATARI, NINTENDO, MATTEL, COLECO, MAGNAVOX)
+- HOMECOMP: removed entire block (COMMODORE, ATARI HOME, SINCLAIR, AMSTRAD, APPLE, TANDY, TI, SHARP — all `[LAUNCH]`-only)
+- EMULATOR LAUNCHER menu: removed HOMECOMP (3) entry; now shows DOS and CONSOLE only
+- All 36 `menu.bat` files audited and standardised against the DOS/FPS gold standard: single-digit item rows now use 3 spaces before the number (was 2 in console parent menus, home computer menus, shareware library, and emulator launcher menus); all menus verified at 45-char inner width, with correct Back placement, footer, and `echo on` terminator
+- Added new HOMECOMP section: `HOMECOMP → ACORN → BBC → GAMES` with 15 BBC Micro titles via JSBeeb (bbc.xania.org STH archive); individual game link files for Elite, Chuckie Egg, Repton, Repton 2, Zalaga, Snapper, Hopper, Manic Miner, Jet Set Willy, Citadel, Stryker's Run, Exile, Thrust, Castle Quest, Uridium; all menu item widths verified at 45 chars
+- EMULATOR LAUNCHER menu: added `HOMECOMP    Home Computers` as entry 3; added `3.bat` (`cd homecomp\nmenu`); now shows DOS, CONSOLE, and HOMECOMP
+- Expanded HOMECOMP with 4 additional manufacturers: COMMODORE (C64, 15 games via c64online.com), ATARI (800XL, 15 games via archive.org a8b collection), SINCLAIR (ZX Spectrum, 15 games via archive.org zx collection), TANDY (CoCo, 15 cartridge games via colorcomputerarchive.com XRoar); HOME COMPUTERS menu updated to 5 entries; all menu widths verified at 45 chars
+- Added Atari ST as second system under ATARI manufacturer: 15 games (Dungeon Master, Monkey Island, North & South, Defender of the Crown, Bubble Bobble, Maniac Mansion, Zak McKracken, California Games, Out Run, Double Dragon, Altered Beast, Ghosts 'n Goblins, Star Wars: Jedi, Ultima IV, Pac-Mania) via archive.org; ATARI COMPUTERS menu updated to 2 entries
+- Added Sinclair ZX81 as second system under SINCLAIR manufacturer: 15 games (3D Monster Maze, Mazogs, Space Invaders, Chess, Asteroids, Frogger, Night Gunner, Galaxians, Invaders, Centipede, Black Crystal, 3D Grand Prix, Scramble, Maze Death Race, City of Xon) via zx81stuff.org.uk; SINCLAIR COMPUTERS menu updated to 2 entries
+- Note: Acorn Archimedes omitted — no browser emulator available; TRS-80 Model I/III omitted — no per-game URL support

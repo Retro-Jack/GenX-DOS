@@ -1,0 +1,112 @@
+{
+  "author": {
+    "name": "Matt Godbolt",
+    "email": "matt@godbolt.org",
+    "url": "https://xania.org"
+  },
+  "name": "jsbeeb",
+  "description": "Emulate a BBC Micro",
+  "repository": "git@github.com:mattgodbolt/jsbeeb.git",
+  "version": "1.12.0",
+  "//": "If you change the version of Node, it must also be updated at the top of the Dockerfile.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "type": "module",
+  "main": "./src/app/app.js",
+  "exports": {
+    ".": "./src/app/app.js",
+    "./machine-session": "./src/machine-session.js",
+    "./src/*": "./src/*",
+    "./tests/test-machine.js": "./tests/test-machine.js"
+  },
+  "files": [
+    "src/",
+    "tests/test-machine.js",
+    "public/roms/"
+  ],
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "argparse": "^2.0.1",
+    "bootstrap": "^5.3.8",
+    "bootswatch": "^5.3.8",
+    "sharp": "^0.34.5",
+    "smoothie": "^1.36.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^10.2.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.5.0",
+    "husky": "^9.1.7",
+    "jsdom": "^29.0.2",
+    "lint-staged": "^16.4.0",
+    "npm-run-all2": "^8.0.4",
+    "pixelmatch": "^7.1.0",
+    "prettier": "^3.8.2",
+    "vite": "^8.0.8",
+    "vitest": "^4.0.10"
+  },
+  "optionalDependencies": {
+    "electron": "^41.2.0",
+    "electron-builder": "^26.8.1",
+    "electron-store": "^11.0.2"
+  },
+  "license": "GPL-3.0-or-later",
+  "build": {
+    "appId": "org.godbolt.bbc",
+    "directories": {
+      "output": "out/dist"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm"
+      ],
+      "category": "Game",
+      "icon": "public/jsbeeb-icon.png"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "public/jsbeeb-icon.png"
+    },
+    "files": [
+      "!tests"
+    ],
+    "publish": {
+      "provider": "github",
+      "releaseType": "release"
+    }
+  },
+  "scripts": {
+    "prepare": "husky",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "ci-checks": "eslint .",
+    "lint": "eslint . --fix",
+    "format": "prettier --write .",
+    "pre-commit": "lint-staged",
+    "test": "npm-run-all test:*",
+    "test:unit": "vitest run --silent=true tests/unit",
+    "test:integration": "vitest run --silent=true tests/integration",
+    "test:cpu": "node tests/test-suite.js",
+    "coverage:unit": "vitest run tests/unit --coverage",
+    "coverage:all-tests": "vitest run --coverage",
+    "benchmark": "node src/app-bench.js",
+    "electron": "npm run build && ELECTRON_DISABLE_SANDBOX=1 electron .",
+    "electron:build": "electron-builder"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vitest related --run --exclude tests/integration --no-file-parallelism",
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.{md,json,yml,yaml,css,html}": "prettier --write"
+  }
+}
