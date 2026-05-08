@@ -1,6 +1,6 @@
-# www.lazygamereviews.com
+# DOS-Site
 
-A static recreation of the early LGR (Lazy Game Reviews) website with a DOS prompt aesthetic, plus a self-hosted emulator suite that boots playable games from numbered DOS-style menus.
+A static site with a DOS prompt aesthetic and a self-hosted emulator suite that boots playable games from numbered DOS-style menus.
 
 ## Quick start
 
@@ -68,7 +68,7 @@ jsbeeb's `?disc1=` parameter accepts several schemas:
 
 ## License
 
-Site code is the LGR recreation by Retro-Jack. Each vendored emulator retains its upstream license:
+Site code by Retro-Jack. Each vendored emulator retains its upstream license:
 
 - jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb)
 - JSNES: Apache-2.0 (bfirsh/jsnes)
