@@ -5,6 +5,12 @@
 ### Changed
 - Trimmed each platform's GAMES menu to top-10 most popular titles. NES dropped Mega Man 1, Excitebike, Pac-Man, Bomberman, 1942, Battle City, Ninja Gaiden, Double Dragon (18→10). Genesis dropped Streets of Rage 1, Altered Beast, Shinobi III, ToeJam & Earl, Vectorman (15→10). BBC dropped Repton 2, Zalaga, Hopper, Stryker's Run, Castle Quest (15→10). Corresponding `roms/`/`discs/` files and `games.json` entries removed.
 - Added `PROMPT` entry (item 11) to BBC GAMES menu — links to `../emulators/jsbeeb/dist/` with no `disc1`/`autoboot`, drops the user at the bare BASIC `>` prompt. Other home computers will get the same option as they're self-hosted.
+- Optimised `emulators/jsbeeb/`: 71 MB → 27 MB. Removed upstream dev infrastructure not used at runtime: `src/` (12 MB), `public/` (27 MB; already copied into `dist/`), `tests/` (2 MB), `tools/`, `docs/`, `docker/`, `Dockerfile`, `Makefile`, `run-container.sh`, `.husky/`, `.idea/`, `.vscode/`, `.github/`, `eslint.config.js`, `vite.config.js`, `release-please-config.json`, `.release-please-manifest.json`, `tsconfig.json`, `jsconfig.json`, `package-lock.json`, `bench.js`, upstream's `CLAUDE.md`/`CHANGELOG.md`/`index.html`, and various dotfiles. `dist/` is fully self-contained.
+- Pruned 18 upstream sample/test discs from `emulators/jsbeeb/dist/discs/` root (`Welcome.ssd`, `elite.ssd`, `frogman.ssd`, `bcdtest.ssd`, etc.) — not referenced by our menus.
+- Removed `emulators/genesis/Genesis.htm.upstream-reference` (lrusso demo HTML kept for development reference; no longer needed).
+
+### Documentation
+- Added top-level `README.md` describing the site layout, emulator integration recipe, menu structure, and jsbeeb disc URL semantics.
 
 ### Added
 - Self-hosted lrusso/Genesis emulator (Emscripten port of PicoDrive, pure-JS) at `emulators/genesis/` — `Genesis.min.js` (~2.1 MB) plus `play.html` wrapper that reads `?game=<key>`, looks up `{title, rom}` in `games.json`, fetches the ROM via XHR, and boots via `embedGenesis(...)`
