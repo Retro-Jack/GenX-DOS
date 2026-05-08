@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Game</title>
+    <style>
+      html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
+      body { display: flex; align-items: center; justify-content: center; }
+      #nes { width: 512px; height: 480px; }
+      .err { padding: 20px; }
+      .hint { position: fixed; bottom: 8px; left: 8px; font-size: 11px; color: #888; }
+    </style>
+    <script src="dist/jsnes.min.js"></script>
+  </head>
+  <body>
+    <div id="nes"></div>
+    <div class="hint">DPad: arrows &nbsp; A: X &nbsp; B: Z &nbsp; Start: Enter &nbsp; Select: Right Ctrl &nbsp; (click to enable audio)</div>
+    <script>
+      window.addEventListener("load", async function () {
+        const params = new URLSearchParams(location.search);
+        const key = params.get("game");
+        if (!key) {
+          document.body.innerHTML = '<div class="err">Missing ?game=&lt;key&gt; parameter.</div>';
+          return;
+        }
+        let games;
+        try {
+          games = await (await fetch("games.json")).json();
+        } catch (e) {
+          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + "</div>";
+          return;
+        }
+        const game = games[key];
+        if (!game) {
+          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + "</div>";
+          return;
+        }
+        document.title = game.title || key;
+        const browser = new jsnes.Browser({
+          container: document.getElementById("nes"),
+          onError: function (e) { console.error("[jsnes]", e); },
+        });
+        jsnes.Browser.loadROMFromURL(game.rom, function (err, data) {
+          if (err) {
+            document.body.innerHTML = '<div class="err">ROM load failed: ' + err + "</div>";
+            return;
+          }
+          browser.loadROM(data);
+        });
+      });
+    </script>
+  </body>
+</html>
