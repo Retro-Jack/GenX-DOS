@@ -1,0 +1,12 @@
+{
+  "doom":     { "title": "Doom",                  "bundle": "bundles/doom.jsdos"    },
+  "duke1":    { "title": "Duke Nukem",            "bundle": "bundles/duke1.jsdos"   },
+  "zork":     { "title": "Zork I",                "bundle": "bundles/zork.jsdos"    },
+  "keen1":    { "title": "Commander Keen 1",      "bundle": "bundles/keen1.jsdos"   },
+  "ootw":     { "title": "Out of This World",     "bundle": "bundles/ootw.jsdos"    },
+  "epicpin":  { "title": "Epic Pinball",          "bundle": "bundles/epicpin.jsdos" },
+  "tyrian":   { "title": "Tyrian",                "bundle": "bundles/tyrian.jsdos"  },
+  "simcity":  { "title": "SimCity",               "bundle": "bundles/simcity.jsdos" },
+  "wolf3d":   { "title": "Wolfenstein 3D",        "bundle": "bundles/wolf3d.jsdos"  },
+  "pop":      { "title": "Prince of Persia",      "bundle": "bundles/pop.jsdos"     }
+}
