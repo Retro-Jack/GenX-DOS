@@ -4,16 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Game</title>
-    <link rel="stylesheet" href="js-dos.css" />
     <style>
       html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; color: #fff; font-family: monospace; }
-      .jsdos-rso { width: 100vw; height: 100vh; }
+      body { display: flex; align-items: center; justify-content: center; }
+      #canvas { display: block; max-width: 100vw; max-height: 100vh; }
       .err { padding: 20px; }
     </style>
   </head>
   <body>
-    <div class="jsdos-rso" id="dos"></div>
-    <script src="js-dos.js"></script>
+    <canvas id="canvas" width="640" height="400"></canvas>
+    <script src="es6-promise.js"></script>
+    <script src="browserfs.min.js"></script>
+    <script src="loader.js"></script>
     <script>
       (async function () {
         const params = new URLSearchParams(location.search);
@@ -35,7 +37,26 @@
           return;
         }
         document.title = game.title || key;
-        Dos(document.getElementById("dos"), { url: game.bundle });
+
+        function locateAdditionalFiles(filename) {
+          if (filename === "dosbox.html.mem") {
+            return "emulators/em-dosbox/dosbox-sync.mem";
+          }
+          return "emulators/em-dosbox/" + filename;
+        }
+
+        const emu = new Emulator(
+          document.getElementById("canvas"),
+          null,
+          new DosBoxLoader(
+            DosBoxLoader.emulatorJS("emulators/em-dosbox/dosbox-sync.js"),
+            DosBoxLoader.locateAdditionalEmulatorJS(locateAdditionalFiles),
+            DosBoxLoader.nativeResolution(640, 400),
+            DosBoxLoader.mountZip("c", DosBoxLoader.fetchFile(game.title, game.zip)),
+            DosBoxLoader.startExe(game.exe)
+          )
+        );
+        emu.start({ waitAfterDownloading: true });
       })();
     </script>
   </body>

@@ -1,0 +1,12 @@
+{
+  "doom":     { "title": "Doom",                  "zip": "bundles/doom.zip",    "exe": "DOOM/DOOM.EXE" },
+  "duke1":    { "title": "Duke Nukem",            "zip": "bundles/duke1.zip",   "exe": "pc/dn1.exe" },
+  "zork":     { "title": "Zork I",                "zip": "bundles/zork.zip",    "exe": "runme.bat" },
+  "keen1":    { "title": "Commander Keen 1",      "zip": "bundles/keen1.zip",   "exe": "CKeen1/KEEN1.EXE" },
+  "ootw":     { "title": "Out of This World",     "zip": "bundles/ootw.zip",    "exe": "OutofThi/World.exe" },
+  "epicpin":  { "title": "Epic Pinball",          "zip": "bundles/epicpin.zip", "exe": "EpicPC95/EP1.EXE" },
+  "tyrian":   { "title": "Tyrian",                "zip": "bundles/tyrian.zip",  "exe": "TYRIAN.EXE" },
+  "simcity":  { "title": "SimCity",               "zip": "bundles/simcity.zip", "exe": "SimCity/SIMCITY.EXE" },
+  "wolf3d":   { "title": "Wolfenstein 3D",        "zip": "bundles/wolf3d.zip",  "exe": "Wolf3D/WOLF3D/WOLF3D/WOLF3D.EXE" },
+  "pop":      { "title": "Prince of Persia",      "zip": "bundles/pop.zip",     "exe": "Ppersia/PRINCE.EXE" }
+}
