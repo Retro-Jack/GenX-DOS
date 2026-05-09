@@ -71,7 +71,7 @@ function animateMemTest(digits, target, onComplete) {
         }
         if (current >= target) { if (onComplete) onComplete(); return; }
         current = Math.min(current + step, target);
-        setTimeout(tick, 8);
+        setTimeout(tick, 16);
     }
     tick();
 }
@@ -138,7 +138,7 @@ function renderAmiBios(p) {
 //   1. Render AMIBIOS POST  — Tseng ET4000 video BIOS line, AMIBIOS
 //                             header, CPU, coprocessor, memory test
 //                             (animated count 0000 → 8064 KB at 64 KB
-//                             per 8 ms), then six device detection
+//                             per 16 ms), then six device detection
 //                             lines stream in at 500 ms intervals,
 //                             then the footer (Hit <DEL>, BIOS ID).
 //   2. Pause 5 s            — full POST visible.
