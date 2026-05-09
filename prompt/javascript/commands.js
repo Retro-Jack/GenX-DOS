@@ -67,3 +67,47 @@ registerCmd('setcol', function(cmd) {
         else echo('invalid command');
     }
 });
+
+// ============================================================
+// FULL HELP (F1) — text imported from the wiki Commands page
+// (github.com/Retro-Jack/DOS-Site/wiki/Commands).
+// ============================================================
+var HELP_TEXT = [
+    'GENX-DOS COMMAND REFERENCE',
+    '(case-insensitive; chain commands with " && ")',
+    '',
+    'NAVIGATION',
+    '  dir              List the current directory',
+    '  dir /w           Wide view',
+    '  dir /o           Alphabetical order',
+    '  dir /w /o        Wide + sorted',
+    '  cd <dir>         Change directory',
+    '  cd ..            Go up one level',
+    '  cd \\            Jump to drive root',
+    '  cls              Clear the screen',
+    '',
+    'FILES',
+    '  <filename>       Execute (link opens URL, .bat runs as batch)',
+    '  type <file>      Print the file\'s data',
+    '',
+    'DISPLAY',
+    '  echo <text>      Print text',
+    '  echo off / on    Suppress / restore C:\\> prompt re-render',
+    '  setcol <BF>      Set background + foreground hex colour',
+    '',
+    'STUB COMMANDS (one-liner responses)',
+    '  exit, del, rmdir, format, chkdsk, edlin, edit, debug,',
+    '  attrib, quit, help',
+    '',
+    'KEYBOARD',
+    '  Enter            Submit',
+    '  Backspace        Delete last character',
+    '  Up / Down        Step through command history',
+    '  F1               Show this help'
+];
+
+function showFullHelp() {
+    echo('');
+    for (var i = 0; i < HELP_TEXT.length; i++) echo(HELP_TEXT[i]);
+    prompt();
+}

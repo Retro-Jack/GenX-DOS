@@ -148,7 +148,9 @@ function renderAmiBios(p) {
 //   2. Pause 5 s            — full POST visible.
 //   3. Clear screen         — cls equivalent (wipe #prompt).
 //   4. Render AMIBIOS table.
-//   5. Run autoexec         — no cls; menu echoes append below the table.
+//   5. "Starting GenX-DOS . . ." after two blank lines, 1 s pause,
+//      blank, "Press F1 for help", blank.
+//   6. Run autoexec         — no cls; menu echoes append below.
 // ============================================================
 function init() {
     goFontGo();
@@ -157,7 +159,15 @@ function init() {
         setTimeout(function () {
             p.innerHTML = '';
             renderAmiBios(p);
-            initTerminal();
+            bootNewline(p);
+            bootNewline(p);
+            bootLine(p, [bootG('Starting GenX-DOS . . .')]);
+            setTimeout(function () {
+                bootNewline(p);
+                bootLine(p, [bootG('Press F1 for help')]);
+                bootNewline(p);
+                initTerminal();
+            }, 1000);
         }, 5000);
     });
 }
