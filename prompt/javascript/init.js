@@ -46,7 +46,7 @@ function bootLine(container, segments) {
 function bootG(t) { return { text: t }; }
 function bootW(t) { return { text: t, img: BOOT_WHITE }; }
 
-function renderAwardPost(p) {
+function renderAmiBiosPost(p) {
     var logo = document.createElement('img');
     logo.src = 'img/ami-logo.png';
     logo.alt = 'American Megatrends';
@@ -54,20 +54,21 @@ function renderAwardPost(p) {
     logo.style.margin = '0 0 12px 0';
     p.appendChild(logo);
 
-    bootLine(p, [bootG('Award Modular BIOS v4.51PG, An Energy Star Ally')]);
-    bootLine(p, [bootG('Copyright (C) 1984-91, Award Software, Inc.')]);
+    bootLine(p, [bootG('AMIBIOS (C) 1985-1991 American Megatrends Inc.,')]);
     bootNewline(p);
-    bootLine(p, [bootG('(SSXWUQ@E) Intel i430VX PCIset (TM)')]);
+    bootLine(p, [bootG('Main Processor      : 80486SX')]);
+    bootLine(p, [bootG('Numeric Coprocessor : Not Installed')]);
+    bootLine(p, [bootG('Memory Test         : 8064 KB OK')]);
     bootNewline(p);
-    bootLine(p, [bootG('80486SX CPU at 25MHz')]);
-    bootLine(p, [bootG('Memory Test : 8064K OK')]);
+    bootLine(p, [bootG('Detecting Floppy Drive A : ... Not Installed')]);
+    bootLine(p, [bootG('Detecting Floppy Drive B : ... Not Installed')]);
+    bootLine(p, [bootG('Detecting Hard Disk C    : ... Not Installed')]);
+    bootLine(p, [bootG('Detecting Hard Disk D    : ... Not Installed')]);
     bootNewline(p);
-    bootLine(p, [bootG('Award Plug and Play BIOS Extension v1.0A')]);
-    bootLine(p, [bootG('Copyright (C) 1991, Award Software, Inc.')]);
-    bootLine(p, [bootG('  Detecting IDE Primary Master ... (Press '), bootW('F4'), bootG(' to skip)')]);
-    for (var i = 0; i < 7; i++) bootNewline(p);
-    bootLine(p, [bootG('Press '), bootW('DEL'), bootG(' to enter SETUP')]);
-    bootLine(p, [bootG('12/12/91-i430VX,UMC86669-2A59GH2BC-00')]);
+    bootLine(p, [bootG('Hit '), bootW('<DEL>'), bootG(' if you want to run SETUP')]);
+    for (var i = 0; i < 4; i++) bootNewline(p);
+    bootLine(p, [bootG('(C) American Megatrends Inc.,')]);
+    bootLine(p, [bootG('40-0102-001102-00101111-121291-i486-K8')]);
 }
 
 function renderAmiBios(p) {
@@ -81,7 +82,7 @@ function renderAmiBios(p) {
 // Boot animation runs inside #prompt so the AMIBIOS table stays
 // on-screen while the menu draws below it (no cls between them):
 //
-//   1. Render Award POST   → user reads it (logo + POST text)
+//   1. Render AMIBIOS POST → user reads it (logo + POST text)
 //   2. Pause 4 s
 //   3. Clear screen         (via cls equivalent — wipe #prompt)
 //   4. Render AMIBIOS table
@@ -90,7 +91,7 @@ function renderAmiBios(p) {
 function init() {
     goFontGo();
     var p = document.getElementById('prompt');
-    renderAwardPost(p);
+    renderAmiBiosPost(p);
 
     setTimeout(function () {
         p.innerHTML = '';
