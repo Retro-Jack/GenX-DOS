@@ -7,8 +7,8 @@ var AMIBIOS_TABLE = [
     'ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶',
     'º Main Processor    : 80486SX          ³ Base Memory Size  : 640 KB            º',
     'º Numeric Processor : None             ³ Ext. Memory Size  : 7424 KB           º',
-    'º Floppy Drive A:   : None             ³ Hard Disk C: Type : None              º',
-    'º Floppy Drive B:   : None             ³ Hard Disk D: Type : None              º',
+    'º Floppy Drive A:   : 1.44mb (3.5")    ³ Hard Disk C: Type : Type 47           º',
+    'º Floppy Drive B:   : 360kb (5.25")    ³ Hard Disk D: Type : Custom            º',
     'º Display Type      : VGA/PGA/EGA      ³ Serial Port(s)    : None              º',
     'º AMIBIOS Date      : 12/12/91         ³ Parallel Port(s)  : None              º',
     'ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼'
@@ -60,10 +60,10 @@ function renderAmiBiosPost(p) {
     bootLine(p, [bootG('Numeric Coprocessor : Not Installed')]);
     bootLine(p, [bootG('Memory Test         : 8064 KB OK')]);
     bootNewline(p);
-    bootLine(p, [bootG('Detecting Floppy Drive A : ... Not Installed')]);
-    bootLine(p, [bootG('Detecting Floppy Drive B : ... Not Installed')]);
-    bootLine(p, [bootG('Detecting Hard Disk C    : ... Not Installed')]);
-    bootLine(p, [bootG('Detecting Hard Disk D    : ... Not Installed')]);
+    bootLine(p, [bootG('Detecting Floppy Drive A : ... 1.44mb (3.5")')]);
+    bootLine(p, [bootG('Detecting Floppy Drive B : ... 360kb (5.25")')]);
+    bootLine(p, [bootG('Detecting Hard Disk C    : ... Type 47')]);
+    bootLine(p, [bootG('Detecting Hard Disk D    : ... Custom')]);
     bootNewline(p);
     bootLine(p, [bootG('Hit '), bootW('<DEL>'), bootG(' if you want to run SETUP')]);
     for (var i = 0; i < 4; i++) bootNewline(p);
