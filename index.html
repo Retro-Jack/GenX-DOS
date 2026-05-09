@@ -6,7 +6,6 @@
      ============================================================ -->
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="4; URL=prompt/index.html">
     <title>DOS Emulator Launcher</title>
 
     <!-- Favicons -->
@@ -81,10 +80,20 @@
     function g(t) { return { text: t }; }           // grey (default)
     function w(t) { return { text: t, img: WHITE }; } // white (bright)
 
-    function init() {
-        goFontGo();
-        var s = document.getElementById('screen');
+    var AMIBIOS_TABLE = [
+        'ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»',
+        'º AMIBIOS System Configuration (C) 1985-1991, American Megatrends Inc.,        º',
+        'ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶',
+        'º Main Processor    : 80486SX          ³ Base Memory Size  : 640 KB            º',
+        'º Numeric Processor : None             ³ Ext. Memory Size  : 7424 KB           º',
+        'º Floppy Drive A:   : None             ³ Hard Disk C: Type : None              º',
+        'º Floppy Drive B:   : None             ³ Hard Disk D: Type : None              º',
+        'º Display Type      : VGA/PGA/EGA      ³ Serial Port(s)    : None              º',
+        'º AMIBIOS Date      : 12/12/91         ³ Parallel Port(s)  : None              º',
+        'ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼'
+    ];
 
+    function renderAwardPost(s) {
         renderLine(s, [g('Award Modular BIOS v4.51PG, An Energy Star Ally')]);
         renderLine(s, [g('Copyright (C) 1984-97, Award Software, Inc.')]);
         appendNewline(s);
@@ -96,15 +105,30 @@
         renderLine(s, [g('Award Plug and Play BIOS Extension v1.0A')]);
         renderLine(s, [g('Copyright (C) 1997, Award Software, Inc.')]);
         renderLine(s, [g('  Detecting IDE Primary Master ... (Press '), w('F4'), g(' to skip)')]);
-        appendNewline(s);
-        appendNewline(s);
-        appendNewline(s);
-        appendNewline(s);
-        appendNewline(s);
-        appendNewline(s);
-        appendNewline(s);
+        for (var i = 0; i < 7; i++) appendNewline(s);
         renderLine(s, [g('Press '), w('DEL'), g(' to enter SETUP')]);
         renderLine(s, [g('12/10/97-i430VX,UMC86669-2A59GH2BC-00')]);
+    }
+
+    function renderAmiBios(s) {
+        for (var i = 0; i < AMIBIOS_TABLE.length; i++) {
+            renderLine(s, [g(AMIBIOS_TABLE[i])]);
+        }
+    }
+
+    function init() {
+        goFontGo();
+        var s = document.getElementById('screen');
+        renderAwardPost(s);
+
+        setTimeout(function () {
+            s.innerHTML = '';
+            renderAmiBios(s);
+
+            setTimeout(function () {
+                location.href = 'prompt/index.html';
+            }, 4000);
+        }, 4000);
     }
 
     </script>
