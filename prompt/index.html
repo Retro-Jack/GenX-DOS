@@ -15,8 +15,6 @@
 
     <!-- Styles -->
     <style>
-        body { margin: 0; }
-        #screen { padding: 14px 18px; }
         .prompt {
             width: 960px;
             height: 720px;
@@ -60,16 +58,10 @@
         </div>
     </noscript>
 
-    <!-- Boot phase: full-bleed Award POST + AMIBIOS animation -->
-    <div id="screen"></div>
+    <br><br><br>
 
-    <!-- Terminal phase: centered 960x720 prompt (revealed after boot) -->
-    <div id="prompt-wrap" style="display:none;">
-        <br><br><br>
-        <div id="prompt" class="prompt" style="text-align:center; margin-left:auto; margin-right:auto;">
-            <div id="cursor" class="font f-95 f-cursor"></div>
-        </div>
-    </div>
+    <!-- Terminal prompt area — also hosts the boot animation (Award POST + AMIBIOS table) -->
+    <div id="prompt" class="prompt" style="text-align:center; margin-left:auto; margin-right:auto;"></div>
 
     <!-- Hidden container where per-color font images are loaded -->
     <div id="fonts" style="display:none;"></div>

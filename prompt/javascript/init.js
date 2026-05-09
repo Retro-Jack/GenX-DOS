@@ -16,8 +16,8 @@ var AMIBIOS_TABLE = [
 
 // ============================================================
 // BOOT-PHASE TEXT HELPERS
-// Render text into #screen using the bitmap font sprite sheet.
-// Used only during the pre-terminal boot animation.
+// Render text into #prompt directly using the bitmap font sprite
+// sheet. Used only during the pre-terminal boot animation.
 // ============================================================
 var BOOT_WHITE = 'img/f12.15.png';
 
@@ -46,51 +46,49 @@ function bootLine(container, segments) {
 function bootG(t) { return { text: t }; }
 function bootW(t) { return { text: t, img: BOOT_WHITE }; }
 
-function renderAwardPost(s) {
-    bootLine(s, [bootG('Award Modular BIOS v4.51PG, An Energy Star Ally')]);
-    bootLine(s, [bootG('Copyright (C) 1984-97, Award Software, Inc.')]);
-    bootNewline(s);
-    bootLine(s, [bootG('(SSXWUQ@E) Intel i430VX PCIset (TM)')]);
-    bootNewline(s);
-    bootLine(s, [bootG('PENTIUM-S CPU at 75MHz')]);
-    bootLine(s, [bootG('Memory Test : 32768K OK')]);
-    bootNewline(s);
-    bootLine(s, [bootG('Award Plug and Play BIOS Extension v1.0A')]);
-    bootLine(s, [bootG('Copyright (C) 1997, Award Software, Inc.')]);
-    bootLine(s, [bootG('  Detecting IDE Primary Master ... (Press '), bootW('F4'), bootG(' to skip)')]);
-    for (var i = 0; i < 7; i++) bootNewline(s);
-    bootLine(s, [bootG('Press '), bootW('DEL'), bootG(' to enter SETUP')]);
-    bootLine(s, [bootG('12/10/97-i430VX,UMC86669-2A59GH2BC-00')]);
+function renderAwardPost(p) {
+    bootLine(p, [bootG('Award Modular BIOS v4.51PG, An Energy Star Ally')]);
+    bootLine(p, [bootG('Copyright (C) 1984-97, Award Software, Inc.')]);
+    bootNewline(p);
+    bootLine(p, [bootG('(SSXWUQ@E) Intel i430VX PCIset (TM)')]);
+    bootNewline(p);
+    bootLine(p, [bootG('PENTIUM-S CPU at 75MHz')]);
+    bootLine(p, [bootG('Memory Test : 32768K OK')]);
+    bootNewline(p);
+    bootLine(p, [bootG('Award Plug and Play BIOS Extension v1.0A')]);
+    bootLine(p, [bootG('Copyright (C) 1997, Award Software, Inc.')]);
+    bootLine(p, [bootG('  Detecting IDE Primary Master ... (Press '), bootW('F4'), bootG(' to skip)')]);
+    for (var i = 0; i < 7; i++) bootNewline(p);
+    bootLine(p, [bootG('Press '), bootW('DEL'), bootG(' to enter SETUP')]);
+    bootLine(p, [bootG('12/10/97-i430VX,UMC86669-2A59GH2BC-00')]);
 }
 
-function renderAmiBios(s) {
+function renderAmiBios(p) {
     for (var i = 0; i < AMIBIOS_TABLE.length; i++) {
-        bootLine(s, [bootG(AMIBIOS_TABLE[i])]);
+        bootLine(p, [bootG(AMIBIOS_TABLE[i])]);
     }
 }
 
 // ============================================================
 // INITIALIZATION
-// Boot phase (Award POST → AMIBIOS) feeds straight into the
-// terminal phase on the same page. Hiding #screen and revealing
-// #prompt-wrap happens in the same JS tick as autoexec running,
-// so the menu appears with no flash or navigation.
+// Boot animation runs inside #prompt so the AMIBIOS table stays
+// on-screen while the menu draws below it (no cls between them):
+//
+//   1. Render Award POST   → user reads it
+//   2. Pause 4 s
+//   3. Clear screen        (via cls equivalent — wipe #prompt)
+//   4. Render AMIBIOS table
+//   5. Run autoexec        (no cls — menu echoes append below)
 // ============================================================
 function init() {
     goFontGo();
-
-    var s = document.getElementById('screen');
-    renderAwardPost(s);
+    var p = document.getElementById('prompt');
+    renderAwardPost(p);
 
     setTimeout(function () {
-        s.innerHTML = '';
-        renderAmiBios(s);
-
-        setTimeout(function () {
-            s.style.display = 'none';
-            document.getElementById('prompt-wrap').style.display = '';
-            initTerminal();
-        }, 4000);
+        p.innerHTML = '';
+        renderAmiBios(p);
+        initTerminal();
     }, 4000);
 }
 
@@ -98,15 +96,20 @@ function initTerminal() {
     document.onkeydown = doKeyDown;
     document.onkeyup   = doKeyUp;
 
-    cursorEl = document.getElementById('cursor');
     promptEl = document.getElementById('prompt');
+
+    // Add the cursor at the end of #prompt (after the AMIBIOS table)
+    cursorEl = document.createElement('div');
+    cursorEl.id = 'cursor';
+    cursorEl.className = 'font f-95 f-cursor';
+    promptEl.appendChild(cursorEl);
 
     curItvl = setInterval(function() {
         cursorEl.style.opacity = (cursorEl.style.opacity != 1) ? 1 : 0;
     }, 150);
 
-    prompt();
-
+    // Run AUTOEXEC.BAT with echo suppressed so no `C:\>` lines pollute
+    // the AMIBIOS-then-menu look. executeBatch() restores echo at the end.
     var autoexec = false;
     for (var i = 0; i < fs[0].files.length; i++) {
         if (fs[0].files[i].name.toLowerCase() == 'autoexec.bat' && typeof fs[0].files[i].data !== 'undefined') {
@@ -114,5 +117,10 @@ function initTerminal() {
             break;
         }
     }
-    if (autoexec != false) executeBatch(autoexec);
+    if (autoexec != false) {
+        bEchoOff = true;
+        executeBatch(autoexec);
+    } else {
+        prompt();
+    }
 }
