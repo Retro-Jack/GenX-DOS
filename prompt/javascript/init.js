@@ -84,20 +84,23 @@ function renderAmiBiosPost(p, onComplete) {
     logo.style.margin = '0 0 12px 0';
     p.appendChild(logo);
 
-    // Video BIOS POST — runs first on real PCs, before the system BIOS
-    bootLine(p, [bootG('Tseng ET4000 VGA BIOS Version 3.00')]);
-    bootLine(p, [bootG('(C) 1990 Tseng Laboratories, Inc.')]);
-    bootNewline(p);
+    // Beat of black after the logo before the video BIOS speaks up,
+    // so it feels like a real cold-boot transition.
+    setTimeout(function () {
+        // Video BIOS POST — runs first on real PCs, before the system BIOS
+        bootLine(p, [bootG('Tseng ET4000 VGA BIOS Version 3.00')]);
+        bootLine(p, [bootG('(C) 1990 Tseng Laboratories, Inc.')]);
+        bootNewline(p);
 
-    // System BIOS POST
-    bootLine(p, [bootG('AMIBIOS (C) 1985-1991 American Megatrends Inc.,')]);
-    bootNewline(p);
-    bootLine(p, [bootG('Main Processor      : 80486SX')]);
-    bootLine(p, [bootG('Numeric Coprocessor : Absent')]);
+        // System BIOS POST
+        bootLine(p, [bootG('AMIBIOS (C) 1985-1991 American Megatrends Inc.,')]);
+        bootNewline(p);
+        bootLine(p, [bootG('Main Processor      : 80486SX')]);
+        bootLine(p, [bootG('Numeric Coprocessor : Absent')]);
 
-    var memDigits = bootMemTestLine(p);
+        var memDigits = bootMemTestLine(p);
 
-    animateMemTest(memDigits, 8064, function () {
+        animateMemTest(memDigits, 8064, function () {
         bootNewline(p);
         var detectionLines = [
             'Floppy Drive A    : 1.44mb (3.5")',
@@ -121,7 +124,8 @@ function renderAmiBiosPost(p, onComplete) {
             setTimeout(function () { renderNext(idx + 1); }, 500);
         }
         renderNext(0);
-    });
+        });
+    }, 300);
 }
 
 function renderAmiBios(p) {
