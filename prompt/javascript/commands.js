@@ -5,7 +5,7 @@ registerCmd('exit',    function()    { echo("I'm sorry, Dave, I'm afraid I can't
 registerCmd('del',     function()    { echo("File(s) too important for me to allow you to jeopardize."); });
 registerCmd('rmdir',   function()    { echo("Bad command or go away."); });
 registerCmd('chkdsk',  function()    { echo("*Checking...*  Yep, that's a disk."); });
-registerCmd('help',    function()    { echo("Surely you can figure this out! But if not, just start typing topics/commands of interest. Works best in Chrome, otherwise backspace may not work."); });
+registerCmd('help',    function()    { showFullHelp(); });
 registerCmd('format',  function()    { echo("Specified drive does not exist. Anarchist."); });
 registerCmd('edlin',   function()    { echo("Whoa now, this is not MS-DOS!"); });
 registerCmd('edit',    function()    { echo("Illegal command: edit."); });
@@ -97,17 +97,15 @@ var HELP_TEXT = [
     '',
     'STUB COMMANDS (one-liner responses)',
     '  exit, del, rmdir, format, chkdsk, edlin, edit, debug,',
-    '  attrib, quit, help',
+    '  attrib, quit',
     '',
     'KEYBOARD',
     '  Enter            Submit',
     '  Backspace        Delete last character',
-    '  Up / Down        Step through command history',
-    '  F1               Show this help'
+    '  Up / Down        Step through command history'
 ];
 
 function showFullHelp() {
     echo('');
     for (var i = 0; i < HELP_TEXT.length; i++) echo(HELP_TEXT[i]);
-    prompt();
 }

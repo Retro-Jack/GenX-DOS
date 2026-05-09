@@ -87,13 +87,6 @@ function doKeyDown(e) {
         return false;
     }
 
-    // F1 — show full command help (browser would otherwise open its own help)
-    if (k == 112) {
-        e.stopPropagation(); e.preventDefault();
-        if (typeof showFullHelp === 'function') showFullHelp();
-        return false;
-    }
-
     var up = 38, down = 40;
 
     // Up arrow — step backward through command history

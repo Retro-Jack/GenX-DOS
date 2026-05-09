@@ -164,7 +164,7 @@ function init() {
             bootLine(p, [bootG('Starting GenX-DOS . . .')]);
             setTimeout(function () {
                 bootNewline(p);
-                bootLine(p, [bootG('Press F1 for help')]);
+                bootLine(p, [bootG('Type "help" <enter> for assistance.')]);
                 bootNewline(p);
                 initTerminal();
             }, 1000);
