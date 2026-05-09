@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Game</title>
+    <link rel="stylesheet" href="js-dos.css" />
+    <style>
+      html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; }
+      #jsdos { width: 100vw; height: 100vh; }
+      .err { color: #c0c0c0; font-family: monospace; padding: 20px; }
+    </style>
+    <script src="js-dos.js"></script>
+  </head>
+  <body>
+    <noscript>
+      <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+        <div>
+          <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+          <div>This site is a client-side DOS terminal and emulator suite.</div>
+          <div>It needs JavaScript to run.</div>
+          <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+        </div>
+      </div>
+    </noscript>
+    <div id="jsdos"></div>
+    <script>
+      (async function () {
+        const params = new URLSearchParams(location.search);
+        const key = params.get("game");
+        if (!key) {
+          document.body.innerHTML = '<div class="err">Missing ?game=&lt;key&gt; parameter.</div>';
+          return;
+        }
+        let games;
+        try {
+          games = await (await fetch("games.json")).json();
+        } catch (e) {
+          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + '</div>';
+          return;
+        }
+        const game = games[key];
+        if (!game) {
+          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
+          return;
+        }
+        document.title = game.title || key;
+        emulators.pathPrefix = location.pathname.replace(/[^/]*$/, "");
+        Dos(document.getElementById("jsdos")).run(game.bundle);
+      })();
+    </script>
+  </body>
+</html>
