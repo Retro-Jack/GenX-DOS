@@ -18,7 +18,7 @@
 
 ### Documentation
 - Added top-level `README.md` describing the site layout, emulator integration recipe, menu structure, and jsbeeb disc URL semantics.
-- Added an extended-ASCII boot configuration table above the root `DOS  EMULATOR  LAUNCHER` menu — 80-col double-rule outer border (matching the rest of the site's menu style), single-rule column divider, two-column hardware fields styled after a 486-era POST screen.
+- Added an extended-ASCII AMIBIOS-style boot configuration table to the root `index.html` boot sequence — 80-col double-rule outer border, single-rule column divider, two-column hardware fields styled after a 486-era POST screen. Renders on a cleared screen 4 s after the Award POST screen finishes, then auto-redirects to `prompt/index.html` after another 4 s. Replaces the prior `<meta http-equiv="refresh">` redirect with a JS `setTimeout` chain. (Previous iteration had this table inside `prompt/javascript/fs.js`'s `menu.bat` — moved out so it's part of the boot animation, not displayed every time the user lands at `c:\`.)
 
 ### Added
 - Self-hosted MS-DOS emulator (caiiiycuk/js-dos v7.0.0, GPL-2.0) at `emulators/jsdos/` — `js-dos.js` (~342 KB) + `js-dos.css` (~15 KB) + `wdosbox.js` (~106 KB) + `wdosbox.wasm` (~1.4 MB) + `emulators-ui-loader.gif` (~57 KB). `play.html` reads `?game=<key>`, looks up `{title, bundle}` in `games.json`, sets `emulators.pathPrefix` to its own directory, and calls `Dos(div).run(bundleUrl)`. v7.0.0 specifically chosen over later v7 minors (7.1+) and v8 because its `js-dos.js` contains zero references to `personal`, `token-add`, `latency-info`, `subscribe`, `donate`, or `jsdos.com` — later v7 builds and v8 introduced cloud features and a premium-tier nag screen.
