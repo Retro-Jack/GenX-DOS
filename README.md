@@ -1,4 +1,4 @@
-# DOS-Site
+# GenX-DOS
 
 A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs.
 
@@ -40,7 +40,7 @@ ROMs are bundled locally — nothing is fetched at runtime.
 
 ## Documentation
 
-See the [wiki](https://github.com/Retro-Jack/DOS-Site/wiki):
+See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 
 - **Project Overview** — what the site does and how it's structured
 - **Virtual Filesystem** — the simulated `C:` drive and menu layout
