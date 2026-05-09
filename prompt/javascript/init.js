@@ -47,6 +47,13 @@ function bootG(t) { return { text: t }; }
 function bootW(t) { return { text: t, img: BOOT_WHITE }; }
 
 function renderAwardPost(p) {
+    var logo = document.createElement('img');
+    logo.src = 'img/ami-logo.png';
+    logo.alt = 'American Megatrends';
+    logo.style.display = 'block';
+    logo.style.margin = '0 auto 12px';
+    p.appendChild(logo);
+
     bootLine(p, [bootG('Award Modular BIOS v4.51PG, An Energy Star Ally')]);
     bootLine(p, [bootG('Copyright (C) 1984-97, Award Software, Inc.')]);
     bootNewline(p);

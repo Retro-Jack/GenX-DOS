@@ -18,6 +18,7 @@
 
 ### Documentation
 - Added top-level `README.md` describing the site layout, emulator integration recipe, menu structure, and jsbeeb disc URL semantics.
+- American Megatrends pyramid logo (`prompt/img/ami-logo.png`, 409×136 PNG) shown centered at the top of the boot animation, above the Award BIOS POST text.
 - Added a single-page boot animation rendered directly inside `#prompt`: Award BIOS POST → 4 s pause → screen cleared → extended-ASCII AMIBIOS System Configuration table (80-col double-rule outer border, single-rule column divider, two-column hardware fields styled after a 486-era POST screen) → DOS EMULATOR LAUNCHER menu drawn below AMIBIOS (no `cls`, so the table stays on-screen alongside the menu, like a real DOS boot). Boot helpers live in `prompt/javascript/init.js`. Site root `index.html` is a thin instant redirect to `prompt/`. `c:\autoexec.bat` simplified to `menu` (the `c:` and `cls` were both unnecessary). Root `c:\menu.bat` no longer calls `cls` — `echo off` then echoes the menu lines so they append directly under the AMIBIOS table. `initTerminal` runs autoexec with `bEchoOff = true` so no `C:\>` prompt lines pollute the boot output before the menu appears.
 
 ### Added
