@@ -83,7 +83,7 @@ var HELP_TEXT = [
     '  dir /w /o        Wide + sorted',
     '  cd <dir>         Change directory',
     '  cd ..            Go up one level',
-    '  cd \\            Jump to drive root',
+    '  cd \\             Jump to drive root',
     '  cls              Clear the screen',
     '',
     'FILES',
