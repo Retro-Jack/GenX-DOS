@@ -101,7 +101,7 @@ function renderAmiBios(p) {
 //                             then six "Detecting" lines stream in at
 //                             500 ms intervals, then the footer
 //                             (Hit <DEL>, BIOS ID).
-//   2. Pause 2 s            — full POST visible.
+//   2. Pause 3 s            — full POST visible.
 //   3. Clear screen         — cls equivalent (wipe #prompt).
 //   4. Render AMIBIOS table.
 //   5. Run autoexec         — no cls; menu echoes append below the table.
@@ -114,7 +114,7 @@ function init() {
             p.innerHTML = '';
             renderAmiBios(p);
             initTerminal();
-        }, 2000);
+        }, 3000);
     });
 }
 
