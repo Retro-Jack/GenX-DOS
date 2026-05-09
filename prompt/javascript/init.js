@@ -20,7 +20,6 @@ var AMIBIOS_TABLE = [
 // sheet. Used only during the pre-terminal boot animation.
 // ============================================================
 var BOOT_WHITE = 'img/f12.15.png';
-var BOOT_RED   = 'img/f12.4.png';
 
 function bootChars(container, str, imgOverride) {
     for (var i = 0; i < str.length; i++) {
@@ -46,35 +45,29 @@ function bootLine(container, segments) {
 
 function bootG(t) { return { text: t }; }
 function bootW(t) { return { text: t, img: BOOT_WHITE }; }
-function bootR(t) { return { text: t, img: BOOT_RED }; }
 
-function renderAmiBiosPost(p) {
+function renderAwardPost(p) {
     var logo = document.createElement('img');
     logo.src = 'img/ami-logo.png';
     logo.alt = 'American Megatrends';
     logo.style.display = 'block';
-    logo.style.margin = '0 0 4px 0';
+    logo.style.margin = '0 0 12px 0';
     p.appendChild(logo);
 
-    bootLine(p, [bootR('www.ami.com')]);
+    bootLine(p, [bootG('Award Modular BIOS v4.51PG, An Energy Star Ally')]);
+    bootLine(p, [bootG('Copyright (C) 1984-91, Award Software, Inc.')]);
     bootNewline(p);
-    bootLine(p, [bootW('AMIBIOS(C) 2006 American Megatrends, Inc.')]);
-    bootLine(p, [bootW('G31D-M7 (G31GMB25 BF) BIOS Date: 11/25/08')]);
-    bootLine(p, [bootW('CPU : Pentium(R) Dual-Core CPU         E5200 @ 2.50GHz')]);
-    bootLine(p, [bootW('CPU Frequency 2.50 GHz')]);
-    bootLine(p, [bootW('Memory Frequency For DDR2 667')]);
-    bootLine(p, [bootW('Press DEL to run Setup')]);
-    bootLine(p, [bootW('Press F9 for BBS POPUP')]);
-    bootLine(p, [bootW('Press F12 for BIOS POST Flash')]);
-    bootLine(p, [bootW('Initializing USB Controllers .. Done.')]);
-    bootLine(p, [bootW('2040MB OK + 8MB Share Memory')]);
-    bootLine(p, [bootW('USB Device(s): 1 Keyboard, 1 Mouse')]);
-    bootLine(p, [bootW('Auto-Detecting           SATA1 DEVICE..IDE Hard Disk:ST3500641AS  3.AGM')]);
-    bootLine(p, [bootW('Auto-detecting USB Mass Storage Devices ..')]);
-    bootLine(p, [bootW('00 USB mass storage devices found and configured.')]);
+    bootLine(p, [bootG('(SSXWUQ@E) Intel i430VX PCIset (TM)')]);
     bootNewline(p);
-    bootLine(p, [bootW('   Pri Master Hard Disk:S.M.A.R.T. Status BAD, Backup and Replace')]);
-    bootLine(p, [bootW("   Press 'DEL' to Resume")]);
+    bootLine(p, [bootG('80486SX CPU at 25MHz')]);
+    bootLine(p, [bootG('Memory Test : 8064K OK')]);
+    bootNewline(p);
+    bootLine(p, [bootG('Award Plug and Play BIOS Extension v1.0A')]);
+    bootLine(p, [bootG('Copyright (C) 1991, Award Software, Inc.')]);
+    bootLine(p, [bootG('  Detecting IDE Primary Master ... (Press '), bootW('F4'), bootG(' to skip)')]);
+    for (var i = 0; i < 7; i++) bootNewline(p);
+    bootLine(p, [bootG('Press '), bootW('DEL'), bootG(' to enter SETUP')]);
+    bootLine(p, [bootG('12/12/91-i430VX,UMC86669-2A59GH2BC-00')]);
 }
 
 function renderAmiBios(p) {
@@ -88,7 +81,7 @@ function renderAmiBios(p) {
 // Boot animation runs inside #prompt so the AMIBIOS table stays
 // on-screen while the menu draws below it (no cls between them):
 //
-//   1. Render AMIBIOS POST  → user reads it (logo + POST text)
+//   1. Render Award POST   → user reads it (logo + POST text)
 //   2. Pause 4 s
 //   3. Clear screen         (via cls equivalent — wipe #prompt)
 //   4. Render AMIBIOS table
@@ -97,7 +90,7 @@ function renderAmiBios(p) {
 function init() {
     goFontGo();
     var p = document.getElementById('prompt');
-    renderAmiBiosPost(p);
+    renderAwardPost(p);
 
     setTimeout(function () {
         p.innerHTML = '';
