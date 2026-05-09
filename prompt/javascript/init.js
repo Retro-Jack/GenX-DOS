@@ -51,7 +51,7 @@ function renderAwardPost(p) {
     logo.src = 'img/ami-logo.png';
     logo.alt = 'American Megatrends';
     logo.style.display = 'block';
-    logo.style.margin = '0 auto 12px';
+    logo.style.margin = '0 0 12px 0';
     p.appendChild(logo);
 
     bootLine(p, [bootG('Award Modular BIOS v4.51PG, An Energy Star Ally')]);
