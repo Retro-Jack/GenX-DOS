@@ -46,7 +46,7 @@ function bootLine(container, segments) {
 function bootG(t) { return { text: t }; }
 function bootW(t) { return { text: t, img: BOOT_WHITE }; }
 
-function renderAmiBiosPost(p) {
+function renderAmiBiosPost(p, onComplete) {
     var logo = document.createElement('img');
     logo.src = 'img/ami-logo.png';
     logo.alt = 'American Megatrends';
@@ -60,17 +60,30 @@ function renderAmiBiosPost(p) {
     bootLine(p, [bootG('Numeric Coprocessor : Not Installed')]);
     bootLine(p, [bootG('Memory Test         : 8064 KB OK')]);
     bootNewline(p);
-    bootLine(p, [bootG('Detecting Floppy Drive A   : ... 1.44mb (3.5")')]);
-    bootLine(p, [bootG('Detecting Floppy Drive B   : ... 360kb (5.25")')]);
-    bootLine(p, [bootG('Detecting Hard Disk C      : ... Type 47')]);
-    bootLine(p, [bootG('Detecting Hard Disk D      : ... Custom')]);
-    bootLine(p, [bootG('Detecting Serial Port(s)   : ... COM1')]);
-    bootLine(p, [bootG('Detecting Parallel Port(s) : ... LPT1')]);
-    bootNewline(p);
-    bootLine(p, [bootG('Hit '), bootW('<DEL>'), bootG(' if you want to run SETUP')]);
-    for (var i = 0; i < 4; i++) bootNewline(p);
-    bootLine(p, [bootG('(C) American Megatrends Inc.,')]);
-    bootLine(p, [bootG('40-0102-001102-00101111-121291-i486-K8')]);
+
+    var detectionLines = [
+        'Detecting Floppy Drive A   : ... 1.44mb (3.5")',
+        'Detecting Floppy Drive B   : ... 360kb (5.25")',
+        'Detecting Hard Disk C      : ... Type 47',
+        'Detecting Hard Disk D      : ... Custom',
+        'Detecting Serial Port(s)   : ... COM1',
+        'Detecting Parallel Port(s) : ... LPT1'
+    ];
+
+    function renderNext(idx) {
+        if (idx >= detectionLines.length) {
+            bootNewline(p);
+            bootLine(p, [bootG('Hit '), bootW('<DEL>'), bootG(' if you want to run SETUP')]);
+            for (var i = 0; i < 4; i++) bootNewline(p);
+            bootLine(p, [bootG('(C) American Megatrends Inc.,')]);
+            bootLine(p, [bootG('40-0102-001102-00101111-121291-i486-K8')]);
+            if (onComplete) onComplete();
+            return;
+        }
+        bootLine(p, [bootG(detectionLines[idx])]);
+        setTimeout(function () { renderNext(idx + 1); }, 500);
+    }
+    renderNext(0);
 }
 
 function renderAmiBios(p) {
@@ -84,22 +97,25 @@ function renderAmiBios(p) {
 // Boot animation runs inside #prompt so the AMIBIOS table stays
 // on-screen while the menu draws below it (no cls between them):
 //
-//   1. Render AMIBIOS POST → user reads it (logo + POST text)
-//   2. Pause 4 s
-//   3. Clear screen         (via cls equivalent — wipe #prompt)
-//   4. Render AMIBIOS table
-//   5. Run autoexec         (no cls — menu echoes append below)
+//   1. Render AMIBIOS POST  — header + CPU + memory render instantly,
+//                             then six "Detecting" lines stream in at
+//                             500 ms intervals, then the footer
+//                             (Hit <DEL>, BIOS ID).
+//   2. Pause 2 s            — full POST visible.
+//   3. Clear screen         — cls equivalent (wipe #prompt).
+//   4. Render AMIBIOS table.
+//   5. Run autoexec         — no cls; menu echoes append below the table.
 // ============================================================
 function init() {
     goFontGo();
     var p = document.getElementById('prompt');
-    renderAmiBiosPost(p);
-
-    setTimeout(function () {
-        p.innerHTML = '';
-        renderAmiBios(p);
-        initTerminal();
-    }, 4000);
+    renderAmiBiosPost(p, function () {
+        setTimeout(function () {
+            p.innerHTML = '';
+            renderAmiBios(p);
+            initTerminal();
+        }, 2000);
+    });
 }
 
 function initTerminal() {
