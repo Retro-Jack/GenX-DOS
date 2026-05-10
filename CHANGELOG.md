@@ -3,6 +3,14 @@
 ## [Unreleased]
 
 ### Changed
+- Skipped redundant root-level menu. `c:\menu.bat` (the single-option `1. EMULATORS` box) and `c:\1.bat` (its dispatcher) collapsed: `1.bat` is gone, the new `menu.bat` directly does `cd emulators\nmenu`. `autoexec.bat` already calls `menu`, so the boot drops straight into the EMULATOR LAUNCHER without the redundant intermediate prompt.
+- Replaced every `echo on` line in fs.js batches (53 occurrences) with `echo.` (DOS shorthand for "print blank line"). Each menu now ends with a blank line + the C:\> prompt instead of an invisible toggle. New `commands.js` registration: `registerCmd('echo.', function() { bEchoOff = false; echo(''); })` — restores echo state (so the dispatcher's post-handler `prompt()` actually renders) AND prints the blank line. The `echo on` branch in the regular `echo` handler is now dead code and removed; HELP_TEXT updated to document `echo.` instead of `echo off / on`.
+- Renamed virtual dirs `COMMODORE` → `COMMODRE` and `ARCHIMEDES` → `ARCHIMDS` so the displayed alphabetic shortcut matches the typeable command. Both 8 chars, fitting the parent-menu code field cleanly. Affects only the virtual filesystem (`prompt/javascript/fs.js`); on-disk emulator dir names (`emulators/archimedes-live/`) unchanged. Catches: HOMECOMP's `2.bat` and ACORN's `2.bat` updated to `cd commodre` / `cd archimds` accordingly.
+
+### Removed
+- Stale `c:\changes.bat` ("1. Dedicated online emulators for all console systems / 2. Game submenus with 15-18 titles per console / 3. Full 16-colour font palette / 4. Award BIOS splash screen") — never referenced from any menu or doc, content was outdated (we now ship 10 titles per system, not 15-18; AMIBIOS not Award), redundant with CHANGELOG.md.
+
+### Changed
 - Split the flat `MSX` menu into `MSX/MSX1` + `MSX/MSX2` sub-systems, mirroring the established Atari (800XL/ST) and Sinclair (Spectrum/ZX81) hierarchical pattern. Parent menu now shows `1. MSX1 (1983) [GAMES]` / `2. MSX2 (1986) [GAMES]`. **MSX1** menu (10 titles, all Konami carts, `?ROM=…&M=MSX1` for authentic MSX1 colour palette and 8KB BIOS): Antarctic Adventure, Athletic Land, Pippols, Road Fighter, King's Valley, Yie Ar Kung-Fu, Eggerland Mystery, Knightmare, Nemesis, The Goonies. **MSX2** menu (10 titles, default MSX2+): Vampire Killer, Castle Excellent, King Kong 2, Metal Gear, The Treasure of Usas, F-1 Spirit, Aleste, Parodius Da!, Space Manbow, SD Snatcher. SD Snatcher uses `?ANY=…` instead of `?ROM=…` because its zip contains 4 .DSK images (3 game disks + USERDISK) rather than a cart ROM — `ANY` triggers WebMSX's autodetect path which puts all disks in the Drive Stack for in-game disk swapping. ROMs reorganised into `emulators/webmsx/games/msx1/` and `emulators/webmsx/games/msx2/` subdirs (~1.9 MB total, up from 430 KB).
 
 ### Added
