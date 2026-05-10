@@ -24,6 +24,7 @@ emulators/
   genesis/                Sega Genesis   — Emscripten bundle + 10 .bin ROMs
   javatari/               Atari 2600     — pure-JS bundle + 10 .a26 ROMs
   jsdos/                  MS-DOS         — js-dos v7 + 10 .jsdos game bundles
+  archimedes-live/        Acorn Archimedes — Arculator WASM + 10 RISC OS titles
 ```
 
 ## Self-hosted emulators
@@ -35,6 +36,7 @@ emulators/
 | Genesis   | lrusso/Genesis (PicoDrive port) | `play.html?game=<key>`                   |
 | 2600      | ppeccin/javatari.js v5.0.4      | `play.html?game=<key>`                   |
 | MS-DOS    | caiiiycuk/js-dos v7.0.0         | `play.html?game=<key>`                   |
+| Archimedes| pdjstone/archimedes-live        | `#disc=<catalogue-id>&autoboot`          |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
@@ -57,3 +59,4 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - Genesis (lrusso): GPL-2.0 (notaz/PicoDrive port)
 - Javatari: AGPL-3.0 (ppeccin/javatari.js)
 - js-dos: GPL-2.0 (caiiiycuk/js-dos v7.0.0)
+- Archimedes Live: MIT (pdjstone/archimedes-live, WASM port of Sarah Walker's Arculator)
