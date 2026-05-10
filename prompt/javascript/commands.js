@@ -35,10 +35,10 @@ registerCmd('dopefish', function() {
 
 registerCmd('echo', function(cmd) {
     if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
-    if (cmd == 'off') { bEchoOff = true;  return; }
-    if (cmd == 'on')  { bEchoOff = false; return; }
+    if (cmd == 'off') { bEchoOff = true; return; }
     echo(cmd);
 });
+registerCmd('echo.', function() { bEchoOff = false; echo(''); });
 registerCmd('type', function(cmd) {
     if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
     type(cmd);
@@ -92,7 +92,8 @@ var HELP_TEXT = [
     '',
     'DISPLAY',
     '  echo <text>      Print text',
-    '  echo off / on    Suppress / restore C:\\> prompt re-render',
+    '  echo off         Suppress C:\\> prompt re-render until end of batch',
+    '  echo.            Print a blank line and re-enable prompt re-render',
     '  setcol <BF>      Set background + foreground hex colour',
     '',
     'STUB COMMANDS (one-liner responses)',
