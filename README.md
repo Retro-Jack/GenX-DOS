@@ -25,7 +25,7 @@ emulators/
   javatari/               Atari 2600     — pure-JS bundle + 10 .a26 ROMs
   jsdos/                  MS-DOS         — js-dos v7 + 10 .jsdos game bundles
   archimedes-live/        Acorn Archimedes — Arculator WASM + 10 RISC OS titles
-  webmsx/                 MSX/MSX2/MSX2+ — WebMSX single-file bundle + 10 cartridges
+  webmsx/                 MSX/MSX2/MSX2+ — WebMSX single-file bundle + 10 MSX1 + 10 MSX2 titles
 ```
 
 ## Self-hosted emulators
