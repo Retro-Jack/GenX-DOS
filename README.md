@@ -25,6 +25,7 @@ emulators/
   javatari/               Atari 2600     — pure-JS bundle + 10 .a26 ROMs
   jsdos/                  MS-DOS         — js-dos v7 + 10 .jsdos game bundles
   archimedes-live/        Acorn Archimedes — Arculator WASM + 10 RISC OS titles
+  webmsx/                 MSX/MSX2/MSX2+ — WebMSX single-file bundle + 10 cartridges
 ```
 
 ## Self-hosted emulators
@@ -37,6 +38,7 @@ emulators/
 | 2600      | ppeccin/javatari.js v5.0.4      | `play.html?game=<key>`                   |
 | MS-DOS    | caiiiycuk/js-dos v7.0.0         | `play.html?game=<key>`                   |
 | Archimedes| pdjstone/archimedes-live        | `#disc=<catalogue-id>&autoboot`          |
+| MSX       | ppeccin/WebMSX                  | `?ROM=games/<name>.zip`                  |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
@@ -60,3 +62,4 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - Javatari: AGPL-3.0 (ppeccin/javatari.js)
 - js-dos: GPL-2.0 (caiiiycuk/js-dos v7.0.0)
 - Archimedes Live: MIT (pdjstone/archimedes-live, WASM port of Sarah Walker's Arculator)
+- WebMSX: MIT (ppeccin/WebMSX) — same author as Javatari
