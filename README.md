@@ -26,7 +26,6 @@ emulators/
   jsdos/                  MS-DOS         — js-dos v7 + 10 .jsdos game bundles
   archimedes-live/        Acorn Archimedes — Arculator WASM + 10 RISC OS titles
   webmsx/                 MSX/MSX2/MSX2+ — WebMSX single-file bundle + 10 MSX1 + 10 MSX2 titles
-  microvision/            Milton Bradley Microvision — Berrry app + 5 P. Robson homebrew titles
   jsvecx/                 GCE/Smith Engineering Vectrex — JSVecX + ~100 commercial/homebrew ROMs
 ```
 
@@ -41,7 +40,6 @@ emulators/
 | MS-DOS    | caiiiycuk/js-dos v7.0.0         | `play.html?game=<key>`                   |
 | Archimedes| pdjstone/archimedes-live        | `#disc=<catalogue-id>&autoboot`          |
 | MSX       | ppeccin/WebMSX                  | `?ROM=games/<name>.zip`                  |
-| Microvision | berrry.app + Robson homebrew  | `?game=<name>` (auto-loads `roms/<name>.bin`) |
 | Vectrex   | DrSnuggles/jsvecx (raz0red)     | `?rom=<dir>/<title>` (use index.html, NOT seamless.html — that one is iframe-only) |
 
 ROMs are bundled locally — nothing is fetched at runtime.
@@ -67,5 +65,4 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - js-dos: GPL-2.0 (caiiiycuk/js-dos v7.0.0)
 - Archimedes Live: MIT (pdjstone/archimedes-live, WASM port of Sarah Walker's Arculator)
 - WebMSX: MIT (ppeccin/WebMSX) — same author as Javatari
-- Microvision emulator: MIT (Berrry app, fan-made educational emulator) + Paul Robson's freely-released homebrew ROMs
 - JSVecX: GPL-3.0 (raz0red, fork by DrSnuggles — JS port of Valavan Manohararajah's VecX C source)
