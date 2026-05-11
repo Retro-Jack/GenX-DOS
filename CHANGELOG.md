@@ -3,6 +3,31 @@
 ## [Unreleased]
 
 ### Added
+- `serve.sh` — one-shot local-server launcher. Picks port 8765 by default (overridable: `./serve.sh 9000`), checks the port is free, starts `python3 -m http.server`, opens `http://127.0.0.1:8765/prompt/` in the default browser via `xdg-open`/`open`, traps SIGINT/SIGTERM so the server is killed cleanly on Ctrl+C.
+
+### Removed
+- Upstream-only files from copied emulator bundles (no runtime impact, ~1.85 MB reclaimed):
+  - `emulators/jsbeeb/.claude/` (upstream dev-tooling skill)
+  - `emulators/jsbeeb/.gitignore` + `emulators/jsbeeb/dist/tapes/.gitignore` (both silently excluded deploy artefacts — long-standing project gotcha; removing the tapes/.gitignore exposes `Welcome.uef` + `Zalaga.tape` which the jsbeeb dist actually references and which are now tracked)
+  - `emulators/jsbeeb/README.md`, `emulators/jsbeeb/dist/robots.txt` (upstream docs, not loaded at runtime)
+  - `emulators/jsbeeb/dist/assets/*.js.map` × 3 (1.77 MB of Vite source maps; never fetched outside dev tools)
+  - `emulators/genesis/README.md` (upstream docs)
+  - `emulators/jsspeccy/jsspeccy/jsspeccy.js.LICENSE.txt` (terser header comment extracted)
+- LICENSE / COPYING files are kept where present, for legal compliance with GPL/MIT terms.
+
+### Changed
+- README.md rewritten to reflect all 13 self-hosted emulators (was last updated when only 8 were bundled).
+- Wiki refreshed end-to-end against current state:
+  - **Home** — "13 self-hosted emulator suites" framing.
+  - **Project Overview** — AMIBIOS POST (was Award), 5 s pause, "Type 'help' <enter>" hint (was stale "F1"), 13 emulators (was 8).
+  - **File Structure** — repo tree + per-emulator layout table updated for all 13 emulators + `serve.sh`.
+  - **Emulators** — main table covers all 13; gotchas section adds JS7800 (`bupboop.wasm` hidden dep), XRoar (`ui_*` callbacks + absolute-path ROMs), JtyOne (`.p.hex` format + `statusLabel` undef-ref), JSSpeccy (play-button overlay is autoplay-policy, not bug); recipe step 1 now says "delete upstream `README.md` / `.claude/` / `.map` files".
+  - **Virtual Filesystem** — top-level layout updated (5200 removed; 7800 readded; ST/SPECTRUM/ZX81/COCO marked self-hosted); status table now shows 13 self-hosted + 5 placeholders explicitly.
+  - **Commands** — `help` description corrected: it prints the full reference, not a one-line hint.
+- `prompt/index.html` — POST comment "Award POST + AMIBIOS table" → "AMIBIOS POST + Configuration table".
+- `prompt/javascript/init.js` — boot-flow docstring now says `Type "help" <enter>` (was the stale "Press F1 for help" — was changed in code months ago when F1 was dropped in favour of typed `help`, but the comment didn't follow).
+
+### Added
 - Self-hosted Atari ST emulator (Kai Eckert / Darren Coles' EstyJS 2.0, GPL-2.0+) at `emulators/estyjs/`. Mirrored from `kaiec.github.io/EstyJS/`: 14 JS modules in `estyjs/` (~456 KB total — pure JS, no WASM), `esty2-gui.js` (4.5 KB UI shim), 3 PNG icons, CSS. EmuTOS bundled (`etos256us.img`, 256 KB — open-source TOS reimplementation, no Atari TOS copyright issue). 100% pure-JS with `EstyJs(canvasId)` constructor — clean API. Custom `play.html?game=<key>` wrapper inlines all 14 script tags in upstream order, then calls `estyjs.openFloppyFile('A', urlString)` after a 1.5s delay so EmuTOS finishes booting before the disk insert. EstyJS's `fileManager.loadFile()` accepts either a `File` object or a string URL — the URL path routes through XHR, no patching needed. With no `?game=`, boots EmuTOS to the desktop.
 - ATARI\ST submenu under `EMULATORS\HOMECOMP\ATARI\ST`, replacing the empty placeholder. 10 first-in-series ST classics with confirmed `.st` disk images on archive.org: Dungeon Master (1987, FTL), Bubble Bobble (1987, Firebird), Carrier Command (1988, Rainbird), Xenon (1988, Melbourne House — original Bitmap Brothers, not II), Speedball (1988, Image Works — not II), Defender of the Crown (1987, Cinemaware), Populous (1989, Bullfrog), Lemmings (1990, Psygnosis), The Secret of Monkey Island (1990, LucasFilm), Maniac Mansion (1988, LucasFilm). ~6.5 MB of disk images. Most are cracker-group versions (Replicants, Image Works, etc.) with brief intro screens before booting the game — unavoidable on archive.org's ST collection. Same 503 retry pattern as before — Maniac Mansion + Defender of the Crown 503'd via `download/` and required `archive.org/cors/` fallback. Two titles from the research-recommended list (Gauntlet, Captain Blood) were dropped: their archive.org items only have non-ST formats (Gauntlet 1986 US Gold = C64 .d64; Captain Blood 1988 Exxos = Amstrad .dsk and ZX Spectrum); replaced with the user-style classics the original menu had (Monkey Island, Maniac Mansion).
 - Self-hosted Sinclair ZX81 emulator (Simon Holdsworth's JtyOne, port of Mike Wynne's EightyOne, GPL-2.0) at `emulators/jtyone/`. Mirrored from `hammingweight/zx81-javascript-emulator`: `zx81_emu.js` (141 KB, pure JS Z80 core — no WASM), `roms/zx81.rom` (8 KB system ROM, freely distributable). Custom `play.html?game=<key>` wrapper reads URL param, fetches `games.json`, then `history.replaceState` rewrites the URL to `?tzx=tapes/<file>.p` (JtyOne's generic load-from-URL param) before injecting `zx81_emu.js`. JtyOne's `?id=NAME` shortcut is hardcoded to assume `.tzx` extension, so `?tzx=` is the right param for `.p` files. With no `?game=`, boots a bare ZX81 to the inverse-`K` cursor BASIC prompt. **Three real gotchas:** (1) JtyOne loads tapes via custom `.hex` format — raw bytes encoded as a continuous ASCII hex string; build with `xxd -p file.p | tr -d '\n' > file.p.hex`. The original .p/.tzx files aren't fetched at runtime, only the .hex companions. (2) `FileToLoad` opens system-ROM URLs with a hardcoded leading slash (`"/" + this.fileName` → fetches `/roms/zx81.rom` from web root, not from `emulators/jtyone/roms/`). Patched line 2787 of `zx81_emu.js` to drop the leading slash so paths resolve relative to the emulator dir — same shape as the XRoar `Module.locateFile` shim, but applied via in-place sed since this is plain XHR not emscripten. (3) The error path references `statusLabel` which is never declared anywhere; it's an undefined-reference in the upstream that only surfaces when the loader times out — masked all the actual loading errors until the absolute-path bug was fixed.

@@ -149,7 +149,7 @@ function renderAmiBios(p) {
 //   3. Clear screen         — cls equivalent (wipe #prompt).
 //   4. Render AMIBIOS table.
 //   5. "Starting GenX-DOS . . ." after two blank lines, 1 s pause,
-//      blank, "Press F1 for help", blank.
+//      blank, "Type \"help\" <enter> for assistance.", blank.
 //   6. Run autoexec         — no cls; menu echoes append below.
 // ============================================================
 function init() {
