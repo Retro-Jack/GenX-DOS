@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atari 7800</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
+    body { display: flex; align-items: center; justify-content: center; }
+    /* Hide upstream demo UI; we drive the emulator via ?cart= URL param. */
+    .header, .controls, .drop__div { display: none !important; }
+    /* Hide js7800's toast/leaderboard messages — no high-score server in self-host. */
+    #snackbar, #errormsg, .message { display: none !important; }
+    /* Hide js7800's commands toolbar (fullscreen/reset buttons under canvas). */
+    #js7800__controls { display: none !important; }
+    #content { display: flex; align-items: center; justify-content: center; }
+    #js7800__target canvas { box-shadow: 2px 2px 10px rgba(0, 0, 0, .7); image-rendering: pixelated; }
+    .err { padding: 20px; }
+  </style>
+</head>
+<body>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+      <div>
+        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+      </div>
+    </div>
+  </noscript>
+  <div id="content">
+    <div class="drop__div"></div>
+    <div id="js7800__target"></div>
+    <div class="controls">
+      <div class="cartselect"><select id="cartselect__select"></select></div>
+      <div id="select-local-file"></div>
+      <div id="select-remote-file"></div>
+    </div>
+  </div>
+  <script>
+    (async function () {
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+      if (key) {
+        let games;
+        try {
+          games = await (await fetch('games.json')).json();
+        } catch (e) {
+          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + '</div>';
+          return;
+        }
+        const game = games[key];
+        if (!game) {
+          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
+          return;
+        }
+        document.title = game.title || key;
+        // js7800 reads ?cart= at script-load time, so push the ROM URL onto our
+        // own location before injecting the runtime scripts.
+        const u = new URL(location.href);
+        u.searchParams.set('cart', game.rom);
+        history.replaceState(null, '', u);
+      }
+      function inject(src) {
+        return new Promise((resolve, reject) => {
+          const s = document.createElement('script');
+          s.src = src; s.async = false;
+          s.onload = resolve; s.onerror = reject;
+          document.body.appendChild(s);
+        });
+      }
+      await inject('js/js7800.min.js');
+      await inject('js/site.min.js');
+      await inject('js/bupboop.js');
+      // site.init wires up the ?cart= URL param handler.
+      if (window.site && window.js7800) site.init(js7800);
+    })();
+  </script>
+</body>
+</html>

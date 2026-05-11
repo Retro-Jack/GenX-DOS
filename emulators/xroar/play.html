@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tandy Color Computer</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
+    body { display: flex; align-items: center; justify-content: center; }
+    #canvas { box-shadow: 2px 2px 10px rgba(0, 0, 0, .7); image-rendering: pixelated; outline: none; }
+    .err { padding: 20px; }
+  </style>
+</head>
+<body>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+      <div>
+        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+      </div>
+    </div>
+  </noscript>
+  <canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas>
+  <script>
+    var Module = {
+      canvas: document.getElementById('canvas'),
+      arguments: ['-no-vo-colour-killer', '-no-disk-auto-os9', '-ao-fragments', '3', '-machine', 'coco'],
+      // XRoar requests system ROMs via absolute paths like '/d64_1.rom'; strip
+      // the leading slash so they resolve relative to this directory.
+      locateFile: function(path) { return path.replace(/^\/+/, ''); }
+    };
+    var pendingGame = null;
+
+    // Stub callbacks XRoar's WASM invokes for UI updates we don't render.
+    function ui_done_initialising() {}
+    function ui_menu_clear() {}
+    function ui_menu_add() {}
+    function ui_menu_add_str() {}
+    function ui_menu_select() {}
+    function ui_menu_select_str() {}
+    function ui_set_checkbox() {}
+    function ui_set_fullscreen() {}
+    function ui_set_html() {}
+    function ui_set_value() {}
+    function ui_update_ccr() {}
+    function ui_update_disk_info() {}
+    function ui_update_hd_filename() {}
+    function ui_update_tape_input_filename() {}
+    function ui_update_tape_playing() {}
+
+    Module.onRuntimeInitialized = function() {
+      const wasm_load_file = Module.cwrap('wasm_load_file', null, ['string', 'number', 'number']);
+      const game = pendingGame || { machine: 'coco' };
+      Module.ccall('wasm_set_machine_cart', null, ['string','string','string','string'],
+                   [game.machine || 'coco', game.cart || null, game.cart_rom || null, game.cart_rom2 || null]);
+      if (game.autorun) {
+        const ext = game.autorun.split('.').pop().toLowerCase();
+        const delay = (ext === 'bin') ? 0 : 2000;
+        setTimeout(() => wasm_load_file(game.autorun, 1 /* run */, 0), delay);
+      }
+    };
+
+    function resumeAudio() {
+      if (typeof Module === 'undefined' || typeof Module.SDL2 === 'undefined' || typeof Module.SDL2.audioContext === 'undefined') return;
+      if (Module.SDL2.audioContext.state === 'suspended') Module.SDL2.audioContext.resume();
+    }
+    document.getElementById('canvas').addEventListener('click', resumeAudio);
+    document.addEventListener('keydown', resumeAudio);
+
+    (async function () {
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+      if (key) {
+        let games;
+        try {
+          games = await (await fetch('games.json')).json();
+        } catch (e) {
+          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + '</div>';
+          return;
+        }
+        const game = games[key];
+        if (!game) {
+          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
+          return;
+        }
+        document.title = game.title || key;
+        pendingGame = game;
+      } else {
+        document.title = 'Tandy Color Computer';
+      }
+      const s = document.createElement('script');
+      s.src = 'xroar.js';
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>

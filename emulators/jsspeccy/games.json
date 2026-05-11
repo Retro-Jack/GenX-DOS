@@ -1,0 +1,12 @@
+{
+  "manicmn":  { "title": "Manic Miner",      "rom": "games/manicmn.z80"  },
+  "jetwilly": { "title": "Jet Set Willy",    "rom": "games/jetwilly.z80" },
+  "chuckegg": { "title": "Chuckie Egg",      "rom": "games/chuckegg.z80" },
+  "sabrwulf": { "title": "Sabre Wulf",       "rom": "games/sabrwulf.z80" },
+  "kngtlore": { "title": "Knight Lore",      "rom": "games/kngtlore.z80" },
+  "atatac":   { "title": "Atic Atac",        "rom": "games/atatac.z80"   },
+  "pssst":    { "title": "Pssst",            "rom": "games/pssst.z80"    },
+  "uwurlde":  { "title": "Underwurlde",      "rom": "games/uwurlde.z80"  },
+  "dizzy":    { "title": "Dizzy",            "rom": "games/dizzy.z80"    },
+  "skooldzd": { "title": "Skool Daze",       "rom": "games/skooldzd.z80" }
+}

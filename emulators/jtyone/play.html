@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sinclair ZX81</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
+    body { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    #emulator_canvas { box-shadow: 2px 2px 10px rgba(0, 0, 0, .7); image-rendering: pixelated; background: #000; }
+    #emulator_status { margin-top: 6px; font-size: 11px; color: #888; }
+    .err { padding: 20px; }
+  </style>
+</head>
+<body>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+      <div>
+        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+      </div>
+    </div>
+  </noscript>
+  <canvas id="emulator_canvas"></canvas>
+  <span id="emulator_status">&nbsp;</span>
+  <script>
+    (async function () {
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+      if (key) {
+        let games;
+        try {
+          games = await (await fetch('games.json')).json();
+        } catch (e) {
+          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + '</div>';
+          return;
+        }
+        const game = games[key];
+        if (!game) {
+          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
+          return;
+        }
+        document.title = game.title || key;
+        // JtyOne reads window.location.search at script-load time. Use the
+        // `tzx` param as a generic URL passthrough; the loader sees the .p
+        // extension and calls tape.setP() on the bytes parsed from the
+        // .hex file (loader appends .hex automatically when fetching).
+        const u = new URL(location.href);
+        u.searchParams.delete('game');
+        u.searchParams.set('tzx', game.tape);
+        history.replaceState(null, '', u);
+      } else {
+        document.title = 'Sinclair ZX81';
+      }
+      const s = document.createElement('script');
+      s.src = 'zx81_emu.js';
+      s.onload = function () {
+        window.emulatorUI = new ZX81EmulatorUI('emulator_canvas', 'emulator_status');
+      };
+      document.body.appendChild(s);
+    })();
+    window.addEventListener('unload', function () {
+      if (window.emulatorUI && emulatorUI.stop) emulatorUI.stop();
+    });
+  </script>
+</body>
+</html>

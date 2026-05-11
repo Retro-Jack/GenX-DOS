@@ -1,0 +1,12 @@
+{
+  "dungmstr": { "title": "Dungeon Master",        "disk": "disks/dungmstr.st" },
+  "bblbob":   { "title": "Bubble Bobble",         "disk": "disks/bblbob.st"   },
+  "carrcmd":  { "title": "Carrier Command",       "disk": "disks/carrcmd.st"  },
+  "xenon":    { "title": "Xenon",                 "disk": "disks/xenon.st"    },
+  "spdball":  { "title": "Speedball",             "disk": "disks/spdball.st"  },
+  "defcrwn":  { "title": "Defender of the Crown", "disk": "disks/defcrwn.st"  },
+  "populous": { "title": "Populous",              "disk": "disks/populous.st" },
+  "lemmings": { "title": "Lemmings",              "disk": "disks/lemmings.st" },
+  "monkey":   { "title": "The Secret of Monkey Island", "disk": "disks/monkey.st" },
+  "mncmsn":   { "title": "Maniac Mansion",        "disk": "disks/mncmsn.st"   }
+}

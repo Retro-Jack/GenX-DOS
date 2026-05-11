@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atari ST</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
+    body { display: flex; align-items: center; justify-content: center; }
+    #EstyJsOutput { box-shadow: 2px 2px 10px rgba(0, 0, 0, .7); image-rendering: pixelated; background: #000; }
+    .err { padding: 20px; }
+  </style>
+  <script src="estyjs/estyjs.js"></script>
+  <script src="estyjs/processor.js"></script>
+  <script src="estyjs/keyboard.js"></script>
+  <script src="estyjs/mfp.js"></script>
+  <script src="estyjs/fdc.js"></script>
+  <script src="estyjs/io.js"></script>
+  <script src="estyjs/bug.js"></script>
+  <script src="estyjs/display.js"></script>
+  <script src="estyjs/memory.js"></script>
+  <script src="estyjs/snapshot.js"></script>
+  <script src="estyjs/sound.js"></script>
+  <script src="estyjs/files.js"></script>
+  <script src="estyjs/js-unzip.js"></script>
+  <script src="estyjs/rawinflate.js"></script>
+</head>
+<body>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+      <div>
+        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+      </div>
+    </div>
+  </noscript>
+  <canvas id="EstyJsOutput" width="640" height="400"></canvas>
+  <script>
+    (async function () {
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+      let diskUrl = null;
+      if (key) {
+        let games;
+        try {
+          games = await (await fetch('games.json')).json();
+        } catch (e) {
+          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + '</div>';
+          return;
+        }
+        const game = games[key];
+        if (!game) {
+          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
+          return;
+        }
+        document.title = game.title || key;
+        diskUrl = game.disk;
+      } else {
+        document.title = 'Atari ST';
+      }
+      const estyjs = EstyJs('EstyJsOutput');
+      estyjs.setRowSkip(false);
+      estyjs.setMonoMonitor(false);
+      window.estyjs = estyjs;
+      // estyjs.openFloppyFile accepts either a File object or a URL string.
+      // The internal fileManager.loadFile() routes URL strings through XHR.
+      if (diskUrl) {
+        // Slight delay so EmuTOS finishes booting before we insert the disk.
+        setTimeout(() => estyjs.openFloppyFile('A', diskUrl), 1500);
+      }
+    })();
+  </script>
+</body>
+</html>

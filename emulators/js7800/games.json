@@ -1,0 +1,12 @@
+{
+  "asteroids":  { "title": "Asteroids",       "rom": "roms/asteroids.a78"  },
+  "centipede":  { "title": "Centipede",       "rom": "roms/centipede.a78"  },
+  "joust":      { "title": "Joust",           "rom": "roms/joust.a78"      },
+  "mspacman":   { "title": "Ms. Pac-Man",     "rom": "roms/mspacman.a78"   },
+  "galaga":     { "title": "Galaga",          "rom": "roms/galaga.a78"     },
+  "polepos2":   { "title": "Pole Position II","rom": "roms/polepos2.a78"   },
+  "digdug":     { "title": "Dig Dug",         "rom": "roms/digdug.a78"     },
+  "xevious":    { "title": "Xevious",         "rom": "roms/xevious.a78"    },
+  "foodfight":  { "title": "Food Fight",      "rom": "roms/foodfight.a78"  },
+  "robotron":   { "title": "Robotron: 2084",  "rom": "roms/robotron.a78"   }
+}
