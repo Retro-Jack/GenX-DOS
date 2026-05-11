@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+- Menu column order flipped: every entry row in every menu now reads `   N.  Title text                      CODE     º` instead of `   N.  CODE     Title text                      º`. Affects all 37 menus (228 entry rows) across EMULATOR LAUNCHER, CONSOLE/HOMECOMP parents, every per-system GAMES menu, every sub-system menu (DUKE, KEEN, MSX1/MSX2, etc.), and the placeholder parent rows. Per-menu code-column width preserved from the original; widened by 1 char where the longest code filled the col exactly (NES — MEGAMAN2/DUCKHUNT/PUNCHOUT/FINALFNT had 0 trailing pad and would have touched the closing `º` after the flip). Placeholder `(No locally-hosted titles yet)` rows untouched (no code/title pair). One-off cleanup: SEGA CONSOLES row's title used to end at `[GAMES]` with no trailing space — added 1 separator space so `[GAMES]` doesn't run into `GENESIS`.
+- Wiki **Customising the Filesystem** updated: menu-box example now shows title-first, code-last. Entry-row layout table reordered. New explicit note that the code column always has ≥1 trailing space and that all-caps title prefixes (`MS-DOS`, `BBC`) are fine.
+
 ### Added
 - `serve.sh` — one-shot local-server launcher. Picks port 8765 by default (overridable: `./serve.sh 9000`), checks the port is free, starts `python3 -m http.server`, opens `http://127.0.0.1:8765/prompt/` in the default browser via `xdg-open`/`open`, traps SIGINT/SIGTERM so the server is killed cleanly on Ctrl+C.
 
