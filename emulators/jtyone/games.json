@@ -1,0 +1,12 @@
+{
+  "monstmze": { "title": "3D Monster Maze", "tape": "tapes/monstmze.p" },
+  "mazogs":   { "title": "Mazogs",          "tape": "tapes/mazogs.p"   },
+  "nightgun": { "title": "Night Gunner",    "tape": "tapes/nightgun.p" },
+  "galaxian": { "title": "Galaxians",       "tape": "tapes/galaxian.p" },
+  "chess":    { "title": "Chess",           "tape": "tapes/chess.p"    },
+  "frogger":  { "title": "Frogger",         "tape": "tapes/frogger.p"  },
+  "cityxon":  { "title": "City of Xon",     "tape": "tapes/cityxon.p"  },
+  "blkcryst": { "title": "Black Crystal",   "tape": "tapes/blkcryst.p" },
+  "gp3d":     { "title": "3D Grand Prix",   "tape": "tapes/gp3d.p"     },
+  "mazerace": { "title": "Maze Death Race", "tape": "tapes/mazerace.p" }
+}

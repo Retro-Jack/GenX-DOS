@@ -1,0 +1,12 @@
+{
+  "daggor":   { "title": "Dungeons of Daggorath", "machine": "coco", "autorun": "roms/daggorath.ccc"     },
+  "downland": { "title": "Downland",              "machine": "coco", "autorun": "roms/downland.ccc"      },
+  "canyon":   { "title": "Canyon Climber",        "machine": "coco", "autorun": "roms/canyonclimber.ccc" },
+  "demon":    { "title": "Demon Attack",          "machine": "coco", "autorun": "roms/demonattack.ccc"   },
+  "polaris":  { "title": "Polaris",               "machine": "coco", "autorun": "roms/polaris.ccc"       },
+  "galactic": { "title": "Galactic Attack",       "machine": "coco", "autorun": "roms/galactic.ccc"      },
+  "popcorn":  { "title": "Popcorn",               "machine": "coco", "autorun": "roms/popcorn.ccc"       },
+  "megabug":  { "title": "Mega-Bug",              "machine": "coco", "autorun": "roms/megabug.ccc"       },
+  "poltrgst": { "title": "Poltergeist",           "machine": "coco", "autorun": "roms/poltergeist.ccc"   },
+  "monstrmz": { "title": "Monster Maze",          "machine": "coco", "autorun": "roms/monstermaze.ccc"   }
+}
