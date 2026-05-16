@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vectrex Controls — GenX-DOS</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { background: #0a0a0a; color: #d4d4c8; font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; line-height: 1.6; padding: 48px 24px; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    .head { border-bottom: 1px solid #2a2a2a; padding-bottom: 18px; margin-bottom: 28px; }
+    .system { color: #888; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 4px; }
+    h1 { color: #ffb000; margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+    h2 { color: #ffb000; font-size: 12px; font-weight: 600; margin: 28px 0 10px; letter-spacing: 0.18em; text-transform: uppercase; }
+    p { margin: 10px 0; color: #b8b8a8; }
+    p.intro { color: #d4d4c8; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; }
+    th, td { text-align: left; padding: 5px 16px 5px 0; vertical-align: top; border-bottom: 1px solid #1a1a1a; }
+    th { color: #666; font-weight: 400; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding-bottom: 6px; }
+    td:first-child { color: #d4d4c8; width: 38%; white-space: nowrap; }
+    td:last-child { color: #b8b8a8; }
+    kbd { background: #1a1a1a; border: 1px solid #2e2e2e; color: #d4d4c8; padding: 1px 6px; border-radius: 3px; font-family: inherit; font-size: 0.88em; }
+    .note { color: #888; font-style: italic; margin-top: 20px; padding-top: 14px; border-top: 1px dashed #1a1a1a; font-size: 13px; }
+    .footer { color: #666; font-size: 11px; margin-top: 40px; padding-top: 14px; border-top: 1px solid #2a2a2a; text-align: center; }
+    .footer a { color: #ffb000; text-decoration: none; }
+    .footer a:hover { color: #ff8800; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">GCE · Vectrex (1982)</div>
+      <h1>Vectrex — Controls</h1>
+    </div>
+
+    <p class="intro">The Vectrex shipped with one analogue joystick that had four action buttons in a row. PC keyboard maps the joystick directions and the four buttons.</p>
+
+    <h2>Joystick</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction (analogue motion is faked digitally)</td></tr>
+    </table>
+
+    <h2>Action buttons (1 / 2 / 3 / 4)</h2>
+    <p>The Vectrex controller's four buttons sat in a horizontal row labelled 1, 2, 3, 4. JSVecX maps them to the home-row + space:</p>
+    <table>
+      <tr><th>Key</th><th>Vectrex button</th></tr>
+      <tr><td><kbd>A</kbd></td><td>Button 1 (typically fire / accelerate)</td></tr>
+      <tr><td><kbd>S</kbd></td><td>Button 2</td></tr>
+      <tr><td><kbd>D</kbd></td><td>Button 3</td></tr>
+      <tr><td><kbd>F</kbd></td><td>Button 4</td></tr>
+    </table>
+
+    <h2>Game-specific button use</h2>
+    <table>
+      <tr><th>Game</th><th>Common button mapping</th></tr>
+      <tr><td>Mine Storm, Star Castle</td><td>1 = Fire / Hyperspace, 2 = Thrust, 3 = Smart bomb, 4 = (varies)</td></tr>
+      <tr><td>Berzerk, Scramble, Pole Position</td><td>1 = Fire, 4 = Bomb / Smart bomb</td></tr>
+      <tr><td>Spike</td><td>1 = Jump, 2 = Speak, 3 = Punch, 4 = Pause</td></tr>
+    </table>
+
+    <h2>Emulator UI</h2>
+    <p>JSVecX's bottom toolbar exposes:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Pause</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Reset</td><td>Reboot the Vectrex</td></tr>
+      <tr><td>Sound</td><td>Mute / unmute</td></tr>
+      <tr><td>Overlay</td><td>Toggle the period-correct plastic overlay (per-game)</td></tr>
+      <tr><td>ROM dropdown</td><td>Switch to a different cartridge</td></tr>
+    </table>
+
+    <h2>Notes</h2>
+    <p>The Vectrex's BIOS plays the "Vectrex" intro tune at every boot — wait it out (about 4 seconds) before pressing buttons.</p>
+    <p>Most cartridges have no in-game pause; use the toolbar Pause button.</p>
+
+    <p class="note">Mapping follows JSVecX (GPL-3.0, DrSnuggles fork of raz0red's port of Valavan Manohararajah's VecX). The on-screen "controls" image inside the bundle's <code>img/controls.png</code> shows the same mapping with a controller diagram.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
