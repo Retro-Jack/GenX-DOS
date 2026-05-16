@@ -8,5 +8,15 @@
   "brucelee": { "title": "Bruce Lee (1984)",              "rom": "roms/brucelee.atr" },
   "miner2k":  { "title": "Miner 2049er (1982)",           "rom": "roms/miner2k.atr" },
   "polepos":  { "title": "Pole Position (1984)",          "rom": "roms/polepos.atr" },
-  "eastfrnt": { "title": "Eastern Front 1941 (1981)",     "rom": "roms/eastfrnt.atr" }
+  "eastfrnt": { "title": "Eastern Front 1941 (1981)",     "rom": "roms/eastfrnt.atr" },
+
+  "missile":  { "title": "Missile Command (1981)",        "rom": "roms/missile.atr" },
+  "asteroid": { "title": "Asteroids (1981)",              "rom": "roms/asteroid.rom", "cartType": 1 },
+  "defender": { "title": "Defender (1981)",               "rom": "roms/defender.rom", "cartType": 2 },
+  "invaders": { "title": "Space Invaders (1980)",         "rom": "roms/invaders.atr" },
+  "pacman":   { "title": "Pac-Man (1982)",                "rom": "roms/pacman.atr" },
+  "centiped": { "title": "Centipede (1982)",              "rom": "roms/centiped.atr" },
+  "dkong":    { "title": "Donkey Kong (1983)",            "rom": "roms/dkong.rom",    "cartType": 2 },
+  "joust":    { "title": "Joust (1983)",                  "rom": "roms/joust.atr" },
+  "digdug":   { "title": "Dig Dug (1983)",                "rom": "roms/digdug.rom",   "cartType": 2 }
 }
