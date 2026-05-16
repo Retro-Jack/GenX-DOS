@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore 64 Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Commodore · 64</div>
+      <h1>Commodore 64 — Controls</h1>
+    </div>
+
+    <p class="intro">A Commodore 64. Most C64 games use the joystick on port 2, which is mapped to the keyboard. ROMs are loaded via vc64web's own settings page (drag-and-drop, persists in your browser).</p>
+
+    <h2>Joystick (port 2 — Player 1)</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction</td></tr>
+      <tr><td><kbd>L Ctrl</kbd> or <kbd>Space</kbd></td><td>Fire button</td></tr>
+    </table>
+    <p>If a game ignores Player 1 input, it's looking at port 1 instead — vc64web's bottom toolbar has a port-swap button, or the per-game config in this site flags <code>port1: true</code> where known.</p>
+
+    <h2>C64 keyboard</h2>
+    <p>The C64 keyboard maps directly for letters, numbers and most symbols. C64-specific keys:</p>
+    <table>
+      <tr><th>Key</th><th>C64 key</th></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>RESTORE (used as RUN/STOP + RESTORE for warm reset)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>RUN/STOP</td></tr>
+      <tr><td><kbd>F1</kbd> – <kbd>F8</kbd></td><td>C64 function keys (Shift+F1 = F2, etc.)</td></tr>
+      <tr><td><kbd>L Alt</kbd></td><td>Commodore key (the C= key — toggles upper/lower case with SHIFT)</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>SHIFT + INST/DEL (insert)</td></tr>
+    </table>
+
+    <h2>Loading from BASIC</h2>
+    <p>If a disk drops to the <code>READY.</code> prompt, type one of:</p>
+    <table>
+      <tr><th>Command</th><th>Effect</th></tr>
+      <tr><td><code>LOAD"$",8</code></td><td>List the directory of disk drive 8</td></tr>
+      <tr><td><code>LOAD"*",8,1</code></td><td>Load + run the first program on the disk</td></tr>
+      <tr><td><code>LOAD"FILENAME",8,1</code></td><td>Load a specific PRG and place it where the file expects</td></tr>
+      <tr><td><code>RUN</code></td><td>Run the loaded program</td></tr>
+    </table>
+
+    <h2>vc64web UI</h2>
+    <p>vc64web has a bottom toolbar (hover the bottom edge): pause / reset / fullscreen / port swap / virtual joystick / virtual keyboard / settings. Right-click the canvas for additional menu options.</p>
+
+    <h2>First-time ROM setup</h2>
+    <p>vc64web needs four ROM files (KERNAL, BASIC, CHARGEN, 1541 disk drive) to run. On first visit it opens its ROMs settings page — drag your four ROM dumps onto the matching drop targets. The browser remembers them in localStorage, so this is a one-time step per browser.</p>
+
+    <h2>Notes</h2>
+    <p>Most bundled titles are <code>.d64</code> disk images. With the disk drive ROM loaded, vc64web auto-runs them (the embed config sets <code>auto load</code> and <code>auto run</code>).</p>
+
+    <p class="note">Mapping follows vc64web (GPL-3.0, vc64web/virtualc64web — emscripten port of Dirk Hoffmann's VirtualC64).</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>

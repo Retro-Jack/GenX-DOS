@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore 64</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
+    .err { padding: 20px; }
+    .loading { padding: 40px; color: #888; text-align: center; }
+  </style>
+</head>
+<body>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+      <div>
+        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+      </div>
+    </div>
+  </noscript>
+  <div class="loading">Booting Commodore 64…</div>
+  <script>
+    (async function () {
+      const fail = (msg) => { document.body.innerHTML = '<div class="err">' + msg + '</div>'; };
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+
+      // Base config — hide vc64web's own navbar (we have our own corner controls
+      // link), wide layout, joystick on port 2 (most C64 games — port 2 is the
+      // canonical "Player 1" port). ROMs are loaded by vc64web's own machinery
+      // (drag-and-drop into the ROMs settings page; persists in localStorage).
+      const config = { navbar: false, wide: true, port2: true, border: 0.3 };
+
+      if (key) {
+        let games;
+        try { games = await (await fetch('games.json')).json(); }
+        catch (e) { fail('Failed to load games.json: ' + e.message); return; }
+        const game = games[key];
+        if (!game) { fail('Unknown game key: ' + key); return; }
+        document.title = game.title || key;
+        config.url = game.rom;
+        // Per-game overrides (e.g. some games want port 1 instead of port 2).
+        if (game.port1) { config.port1 = true; delete config.port2; }
+      } else {
+        document.title = 'Commodore 64';
+      }
+
+      // vc64web's index.html parses location.hash as a JSON config block.
+      // Redirect there with our config — keeps the entry HTML thin.
+      location.replace('index.html#' + encodeURIComponent(JSON.stringify(config)));
+    })();
+  </script>
+</body>
+</html>
