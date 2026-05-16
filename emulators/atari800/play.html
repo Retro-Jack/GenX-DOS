@@ -64,6 +64,13 @@
         }
       }
 
+      // Machine selection. URL param ?machine= takes precedence over
+      // games.json's machine field. Maps user-friendly names to atari800
+      // flags: 400/800 -> -atari (OS-B), xl/800xl -> -xl, xe/130xe -> -xe.
+      const machineFlags = { '400': '-atari', '800': '-atari', 'xl': '-xl', '800xl': '-xl', 'xe': '-xe', '130xe': '-xe', 'xegs': '-xegs' };
+      const machine = (params.get('machine') || (game && game.machine) || '').toLowerCase();
+      if (machine && machineFlags[machine]) args.unshift(machineFlags[machine]);
+
       window.Module = {
         canvas: document.getElementById('canvas'),
         arguments: args,
