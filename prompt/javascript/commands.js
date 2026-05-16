@@ -34,34 +34,22 @@ registerCmd('dopefish', function() {
 });
 
 registerCmd('echo', function(cmd) {
-    if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
     if (cmd == 'off') { bEchoOff = true; return; }
     echo(cmd);
 });
 registerCmd('echo.', function() { bEchoOff = false; echo(''); });
-registerCmd('type', function(cmd) {
-    if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
-    type(cmd);
-});
+registerCmd('type', function(cmd) { type(cmd); });
 registerCmd('cls', function() {
     promptEl.innerHTML = '<div id="cursor" class="font f-95 f-cursor"></div>';
     cursorEl = document.getElementById('cursor');
 });
-registerCmd('dir', function(cmd) {
-    if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
-    dir(cmd);
-});
+registerCmd('dir', function(cmd) { dir(cmd); });
 registerCmd('cd', function(cmd) {
-    if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
     if (!cd(cmd.toLowerCase().replace('cd', '')))
         echo('The system cannot find the path specified.');
 });
-registerCmd('find', function(cmd) {
-    if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
-    find(cmd);
-});
+registerCmd('find', function(cmd) { find(cmd); });
 registerCmd('setcol', function(cmd) {
-    if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
     if (cmd.length != 2) {
         echo('invalid command');
     } else {
