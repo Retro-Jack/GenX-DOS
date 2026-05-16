@@ -28,12 +28,9 @@
       const params = new URLSearchParams(location.search);
       const key = params.get('game');
 
-      // Base config — hide vc64web's own navbar (we have our own corner controls
-      // link), wide layout, joystick on port 2 (most C64 games — port 2 is the
-      // canonical "Player 1" port). ROMs are loaded by vc64web's own machinery
-      // (drag-and-drop into the ROMs settings page; persists in localStorage).
-      const config = { navbar: false, wide: true, port2: true, border: 0.3 };
-
+      // chips C64 (floooh/chips-test) auto-detects format from the file extension
+      // and boots the C64 with the file mounted. URL pattern: c64.html?file=URL
+      let target = 'c64.html';
       if (key) {
         let games;
         try { games = await (await fetch('games.json')).json(); }
@@ -41,16 +38,11 @@
         const game = games[key];
         if (!game) { fail('Unknown game key: ' + key); return; }
         document.title = game.title || key;
-        config.url = game.rom;
-        // Per-game overrides (e.g. some games want port 1 instead of port 2).
-        if (game.port1) { config.port1 = true; delete config.port2; }
+        target += '?file=' + encodeURIComponent(game.rom);
       } else {
         document.title = 'Commodore 64';
       }
-
-      // vc64web's index.html parses location.hash as a JSON config block.
-      // Redirect there with our config — keeps the entry HTML thin.
-      location.replace('index.html#' + encodeURIComponent(JSON.stringify(config)));
+      location.replace(target);
     })();
   </script>
 </body>
