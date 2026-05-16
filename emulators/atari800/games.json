@@ -1,0 +1,12 @@
+{
+  "starraid": { "title": "Star Raiders (1979)",           "rom": "roms/starraid.rom", "cartType": 1 },
+  "mule":     { "title": "M.U.L.E. (1983)",               "rom": "roms/mule.atr" },
+  "boulder":  { "title": "Boulder Dash (1984)",           "rom": "roms/boulder.atr" },
+  "archon":   { "title": "Archon (1983)",                 "rom": "roms/archon.atr" },
+  "ballblzr": { "title": "Ballblazer (1985)",             "rom": "roms/ballblzr.atr" },
+  "fractlus": { "title": "Rescue on Fractalus! (1985)",   "rom": "roms/fractlus.atr" },
+  "brucelee": { "title": "Bruce Lee (1984)",              "rom": "roms/brucelee.atr" },
+  "miner2k":  { "title": "Miner 2049er (1982)",           "rom": "roms/miner2k.atr" },
+  "polepos":  { "title": "Pole Position (1984)",          "rom": "roms/polepos.atr" },
+  "eastfrnt": { "title": "Eastern Front 1941 (1981)",     "rom": "roms/eastfrnt.atr" }
+}

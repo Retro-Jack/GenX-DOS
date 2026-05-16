@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atari 800XL</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
+    body { display: flex; align-items: center; justify-content: center; }
+    #canvas { box-shadow: 2px 2px 10px rgba(0,0,0,.7); image-rendering: pixelated; background: #000; outline: none; }
+    .err { padding: 20px; }
+  </style>
+</head>
+<body>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+      <div>
+        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+      </div>
+    </div>
+  </noscript>
+  <canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
+  <script>
+    (async function () {
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+      let romUrl = null, vfsName = null, game = null;
+
+      if (key) {
+        let games;
+        try {
+          games = await (await fetch('games.json')).json();
+        } catch (e) {
+          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + '</div>';
+          return;
+        }
+        game = games[key];
+        if (!game) {
+          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
+          return;
+        }
+        document.title = game.title || key;
+        romUrl = game.rom;
+        // atari800 sniffs the format from the extension; preserve it.
+        const m = romUrl.match(/\.[A-Za-z0-9]+$/);
+        vfsName = 'game' + (m ? m[0].toLowerCase() : '.atr');
+      } else {
+        document.title = 'Atari 800XL';
+      }
+
+      // Build atari800 args. Raw .rom/.bin cart files need explicit -cart
+      // (and optionally -cart-type N for headerless dumps).
+      let args = [];
+      if (vfsName) {
+        const ext = vfsName.split('.').pop();
+        if (ext === 'rom' || ext === 'bin') {
+          args = ['-cart', '/' + vfsName];
+          if (game && game.cartType) {
+            args.unshift('-cart-type', String(game.cartType));
+          }
+        } else {
+          args = ['/' + vfsName];
+        }
+      }
+
+      window.Module = {
+        canvas: document.getElementById('canvas'),
+        arguments: args,
+        preRun: [function () {
+          if (!romUrl || !vfsName) return;
+          Module.FS.createPreloadedFile('/', vfsName, romUrl, true, false);
+        }],
+        print: function (t) { console.log(t); },
+        printErr: function (t) { console.warn(t); }
+      };
+
+      const s = document.createElement('script');
+      s.src = 'atari800.js';
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>
