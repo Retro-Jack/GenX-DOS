@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MS-DOS Controls — GenX-DOS</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { background: #0a0a0a; color: #d4d4c8; font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; line-height: 1.6; padding: 48px 24px; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    .head { border-bottom: 1px solid #2a2a2a; padding-bottom: 18px; margin-bottom: 28px; }
+    .system { color: #888; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 4px; }
+    h1 { color: #ffb000; margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+    h2 { color: #ffb000; font-size: 12px; font-weight: 600; margin: 28px 0 10px; letter-spacing: 0.18em; text-transform: uppercase; }
+    p { margin: 10px 0; color: #b8b8a8; }
+    p.intro { color: #d4d4c8; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; }
+    th, td { text-align: left; padding: 5px 16px 5px 0; vertical-align: top; border-bottom: 1px solid #1a1a1a; }
+    th { color: #666; font-weight: 400; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding-bottom: 6px; }
+    td:first-child { color: #d4d4c8; width: 38%; white-space: nowrap; }
+    td:last-child { color: #b8b8a8; }
+    kbd { background: #1a1a1a; border: 1px solid #2e2e2e; color: #d4d4c8; padding: 1px 6px; border-radius: 3px; font-family: inherit; font-size: 0.88em; }
+    .note { color: #888; font-style: italic; margin-top: 20px; padding-top: 14px; border-top: 1px dashed #1a1a1a; font-size: 13px; }
+    .footer { color: #666; font-size: 11px; margin-top: 40px; padding-top: 14px; border-top: 1px solid #2a2a2a; text-align: center; }
+    .footer a { color: #ffb000; text-decoration: none; }
+    .footer a:hover { color: #ff8800; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">MS-DOS · DOSBox (js-dos)</div>
+      <h1>MS-DOS — Controls</h1>
+    </div>
+
+    <p class="intro">js-dos runs DOSBox in WebAssembly. Each game has its own keys — there's no global mapping. The notes below cover the per-game conventions for the bundled titles plus the js-dos host shortcuts.</p>
+
+    <h2>js-dos host shortcuts</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Ctrl</kbd> + <kbd>F11</kbd></td><td>Slow CPU cycles down</td></tr>
+      <tr><td><kbd>Ctrl</kbd> + <kbd>F12</kbd></td><td>Speed CPU cycles up</td></tr>
+      <tr><td><kbd>Alt</kbd> + <kbd>Pause</kbd></td><td>Pause / unpause emulation</td></tr>
+      <tr><td><kbd>Ctrl</kbd> + <kbd>F1</kbd></td><td>DOSBox keymapper (rebind keys per game)</td></tr>
+      <tr><td><kbd>Ctrl</kbd> + <kbd>F4</kbd></td><td>Force-update mounted-image cache</td></tr>
+      <tr><td>Click canvas</td><td>Capture mouse / keyboard focus (most games need this)</td></tr>
+    </table>
+
+    <h2>Common DOS-game conventions</h2>
+    <table>
+      <tr><th>Game family</th><th>Typical keys</th></tr>
+      <tr><td>Wolfenstein 3D, Doom</td><td>Arrows = move, <kbd>Ctrl</kbd> = fire, <kbd>Space</kbd> = open / use, <kbd>1</kbd>–<kbd>7</kbd> = weapon, <kbd>Esc</kbd> = menu</td></tr>
+      <tr><td>Duke Nukem 1 / 2</td><td>Arrows = move, <kbd>Ctrl</kbd> = jump, <kbd>Alt</kbd> = fire, <kbd>Esc</kbd> = menu</td></tr>
+      <tr><td>Duke Nukem 3D</td><td>Arrows = move, <kbd>A</kbd> / <kbd>Z</kbd> = look, <kbd>Ctrl</kbd> = fire, <kbd>Space</kbd> = open, <kbd>Tab</kbd> = map</td></tr>
+      <tr><td>Commander Keen 1–6</td><td>Arrows = move, <kbd>Ctrl</kbd> = jump, <kbd>Alt</kbd> = fire pogo / shoot, <kbd>Esc</kbd> = menu</td></tr>
+      <tr><td>Prince of Persia</td><td>Arrows = move, <kbd>Shift</kbd> = grab / draw sword, <kbd>Up</kbd>+<kbd>Shift</kbd> = stand still, <kbd>Esc</kbd> = menu, <kbd>Ctrl</kbd>+<kbd>A</kbd> = restart level</td></tr>
+      <tr><td>SimCity</td><td>Mouse-driven (click + drag); <kbd>F1</kbd>–<kbd>F12</kbd> for tool select</td></tr>
+      <tr><td>Tyrian, Epic Pinball</td><td>Arrows + <kbd>Space</kbd>/<kbd>Ctrl</kbd>; in-game options menu rebinds</td></tr>
+      <tr><td>Out of This World, Zork</td><td>Mostly keyboard text + arrows; check the in-game help (<kbd>F1</kbd> in most adventures)</td></tr>
+    </table>
+
+    <h2>Need to send a special key?</h2>
+    <table>
+      <tr><th>You want to send</th><th>Press in browser</th></tr>
+      <tr><td>Ctrl + Alt + Del</td><td>Use the js-dos menu's "Send Ctrl+Alt+Del" option (browsers reserve this combo)</td></tr>
+      <tr><td>Alt + Tab inside the game</td><td>Use the js-dos menu's "Send Alt+Tab"</td></tr>
+      <tr><td>SysRq / Print Screen</td><td>js-dos menu — most DOS games don't use it anyway</td></tr>
+    </table>
+
+    <h2>Notes</h2>
+    <p>Audio doesn't start until you click the canvas — Web Audio autoplay policy. Most DOSBox configs auto-mount C: with the bundled game files; if a game needs <kbd>Y</kbd>/<kbd>N</kbd> at the install prompt, the bundle has it pre-installed.</p>
+    <p>Shareware episodes (Duke 1, Wolf3D, Doom, Keen, Tyrian) start at the first level / episode without nag screens. Purchase prompts in the bundled shareware versions can be bypassed with <kbd>Esc</kbd>.</p>
+
+    <p class="note">Host emulator: js-dos v7.0.0 (GPL-2.0, caiiiycuk/js-dos), wrapping a DOSBox build (GPL-2.0). Per-game key mappings are defined inside each <code>.jsdos</code> bundle's DOSBox config.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>

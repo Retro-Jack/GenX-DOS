@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atari 8-bit Controls — GenX-DOS</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { background: #0a0a0a; color: #d4d4c8; font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; line-height: 1.6; padding: 48px 24px; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    .head { border-bottom: 1px solid #2a2a2a; padding-bottom: 18px; margin-bottom: 28px; }
+    .system { color: #888; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 4px; }
+    h1 { color: #ffb000; margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+    h2 { color: #ffb000; font-size: 12px; font-weight: 600; margin: 28px 0 10px; letter-spacing: 0.18em; text-transform: uppercase; }
+    p { margin: 10px 0; color: #b8b8a8; }
+    p.intro { color: #d4d4c8; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; }
+    th, td { text-align: left; padding: 5px 16px 5px 0; vertical-align: top; border-bottom: 1px solid #1a1a1a; }
+    th { color: #666; font-weight: 400; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding-bottom: 6px; }
+    td:first-child { color: #d4d4c8; width: 38%; white-space: nowrap; }
+    td:last-child { color: #b8b8a8; }
+    kbd { background: #1a1a1a; border: 1px solid #2e2e2e; color: #d4d4c8; padding: 1px 6px; border-radius: 3px; font-family: inherit; font-size: 0.88em; }
+    .note { color: #888; font-style: italic; margin-top: 20px; padding-top: 14px; border-top: 1px dashed #1a1a1a; font-size: 13px; }
+    .footer { color: #666; font-size: 11px; margin-top: 40px; padding-top: 14px; border-top: 1px solid #2a2a2a; text-align: center; }
+    .footer a { color: #ffb000; text-decoration: none; }
+    .footer a:hover { color: #ff8800; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Atari · 8-bit (400 / 800XL)</div>
+      <h1>Atari 8-bit — Controls</h1>
+    </div>
+
+    <p class="intro">Atari's 1979–1985 8-bit family. Both 400 (cart-era) and 800XL (disk-era) menus use this same emulator and the same input mapping — only the boot OS differs.</p>
+
+    <h2>Joystick (Player 1, port 1)</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>Fire button</td></tr>
+    </table>
+    <p>Some games look at port 2 (the right-hand port) — if a game ignores Player 1 input, swap to: <kbd>Numpad 8</kbd> <kbd>2</kbd> <kbd>4</kbd> <kbd>6</kbd> + <kbd>Numpad 5</kbd> for fire.</p>
+
+    <h2>Console keys</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>F1</kbd></td><td>atari800 menu (system + disk + config)</td></tr>
+      <tr><td><kbd>F2</kbd></td><td>OPTION console key</td></tr>
+      <tr><td><kbd>F3</kbd></td><td>SELECT console key</td></tr>
+      <tr><td><kbd>F4</kbd></td><td>START console key (begins most games)</td></tr>
+      <tr><td><kbd>F5</kbd></td><td>RESET (warm reset)</td></tr>
+      <tr><td><kbd>Shift</kbd> + <kbd>F5</kbd></td><td>Cold reset</td></tr>
+      <tr><td><kbd>F8</kbd></td><td>BREAK key (Ctrl+Break)</td></tr>
+      <tr><td><kbd>F9</kbd></td><td>Exit emulator (no-op in browser)</td></tr>
+    </table>
+
+    <h2>Keyboard</h2>
+    <p>The Atari 8-bit keyboard maps directly to your PC keyboard for most letter / number / symbol keys. Atari-specific keys:</p>
+    <table>
+      <tr><th>Key</th><th>Atari key</th></tr>
+      <tr><td><kbd>Tab</kbd></td><td>TAB</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>ESC</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>DELETE / BACK S</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>INVERSE (Atari logo) — toggle inverse video</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>CLEAR</td></tr>
+      <tr><td><kbd>L Alt</kbd> / <kbd>R Alt</kbd></td><td>OPTION / SELECT (alternate console mappings)</td></tr>
+    </table>
+
+    <h2>UI</h2>
+    <p>Press <kbd>F1</kbd> to open the atari800 SDL menu. From there you can swap disks (D1: through D8:), toggle BASIC, save/load state, and change machine settings.</p>
+
+    <h2>Notes</h2>
+    <p>Some 1980s games auto-launch BASIC programs; if a disk drops you to the <code>READY</code> prompt, type <code>RUN "D:&lt;FILENAME&gt;"</code> to start the program. Filenames are visible via <code>DOS</code> at the BASIC prompt.</p>
+    <p>The 400 menu boots with OS-B (1979 ROM equivalent via AltirraOS-800). The 800XL menu boots with OS-XL (1983 ROM equivalent via AltirraOS-XL). Same keyboard for both.</p>
+
+    <p class="note">Mapping follows atari800 v5.2.0 (GPL-2.0+, atari800/atari800). Built to WASM via emscripten with AltirraOS baked in. The full key reference (including international keyboards) lives in the upstream <code>DOC/USAGE</code>.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>

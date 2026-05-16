@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MSX Controls — GenX-DOS</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { background: #0a0a0a; color: #d4d4c8; font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; line-height: 1.6; padding: 48px 24px; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    .head { border-bottom: 1px solid #2a2a2a; padding-bottom: 18px; margin-bottom: 28px; }
+    .system { color: #888; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 4px; }
+    h1 { color: #ffb000; margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+    h2 { color: #ffb000; font-size: 12px; font-weight: 600; margin: 28px 0 10px; letter-spacing: 0.18em; text-transform: uppercase; }
+    p { margin: 10px 0; color: #b8b8a8; }
+    p.intro { color: #d4d4c8; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; }
+    th, td { text-align: left; padding: 5px 16px 5px 0; vertical-align: top; border-bottom: 1px solid #1a1a1a; }
+    th { color: #666; font-weight: 400; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding-bottom: 6px; }
+    td:first-child { color: #d4d4c8; width: 38%; white-space: nowrap; }
+    td:last-child { color: #b8b8a8; }
+    kbd { background: #1a1a1a; border: 1px solid #2e2e2e; color: #d4d4c8; padding: 1px 6px; border-radius: 3px; font-family: inherit; font-size: 0.88em; }
+    .note { color: #888; font-style: italic; margin-top: 20px; padding-top: 14px; border-top: 1px dashed #1a1a1a; font-size: 13px; }
+    .footer { color: #666; font-size: 11px; margin-top: 40px; padding-top: 14px; border-top: 1px solid #2a2a2a; text-align: center; }
+    .footer a { color: #ffb000; text-decoration: none; }
+    .footer a:hover { color: #ff8800; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">MSX · MSX1 / MSX2 / MSX2+</div>
+      <h1>MSX — Controls</h1>
+    </div>
+
+    <p class="intro">A standard MSX with cart slot, keyboard and a joystick port. WebMSX maps everything to your PC keyboard out of the box; an on-screen menu (the bottom bar) handles disk swap and machine config.</p>
+
+    <h2>Joystick (Player 1)</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Trigger A (fire)</td></tr>
+      <tr><td><kbd>L Alt</kbd></td><td>Trigger B (secondary fire)</td></tr>
+    </table>
+
+    <h2>MSX keyboard</h2>
+    <p>Letters / numbers map directly. MSX-specific keys map to PC keys as follows:</p>
+    <table>
+      <tr><th>Key</th><th>MSX key</th></tr>
+      <tr><td><kbd>F1</kbd> – <kbd>F5</kbd></td><td>MSX F1–F5</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>ESC</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>TAB</td></tr>
+      <tr><td><kbd>Caps Lock</kbd></td><td>CAPS</td></tr>
+      <tr><td><kbd>L Shift</kbd></td><td>SHIFT</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>R Alt</kbd></td><td>GRAPH</td></tr>
+      <tr><td><kbd>R Ctrl</kbd></td><td>CODE / KANA</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>BS</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>INS</td></tr>
+      <tr><td><kbd>Delete</kbd></td><td>DEL</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>HOME / CLS</td></tr>
+      <tr><td><kbd>End</kbd></td><td>SELECT</td></tr>
+      <tr><td><kbd>Page Up</kbd></td><td>STOP (also pause / breaks programs)</td></tr>
+    </table>
+
+    <h2>WebMSX UI</h2>
+    <p>The bottom HUD bar appears when you move the mouse. It exposes:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Cartridge slot 1 / 2</td><td>Insert / eject / power-on cart</td></tr>
+      <tr><td>Cassette deck</td><td>Insert tape, play / rewind</td></tr>
+      <tr><td>Disk drive A / B</td><td>Insert floppy, eject (multi-disk games swap here)</td></tr>
+      <tr><td>Power button (top-right)</td><td>Cold reset</td></tr>
+      <tr><td>Reset button</td><td>Warm reset</td></tr>
+      <tr><td>Pause</td><td>Pause / unpause</td></tr>
+      <tr><td>Settings (gear)</td><td>Machine type, region, speed, scaling, audio</td></tr>
+    </table>
+
+    <h2>Notes</h2>
+    <p>MSX cartridge games auto-boot. Disk games need to be inserted before the BASIC <code>Ok</code> prompt and reset; multi-disk titles like SD Snatcher use <code>?ANY=</code> in the URL so you can swap mid-game.</p>
+    <p>Press <kbd>Page Up</kbd> (STOP) twice quickly to break out of a hung BASIC program.</p>
+
+    <p class="note">Mapping follows WebMSX (MIT, ppeccin/WebMSX). Hover the bottom HUD for tooltips on every button — the upstream UI has its own help.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
