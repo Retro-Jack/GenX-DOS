@@ -183,6 +183,180 @@ function type(file) {
 }
 
 // ============================================================
+// FILESYSTEM COMMANDS — find
+// Search the virtual FS for games (.bat launchers) and emulator
+// menus (sub-directories), matching the query against the human
+// title parsed from each directory's menu.bat plus the short code.
+// ============================================================
+function find(query) {
+    var raw = (query || '').replace(/^\s+|\s+$/g, '');
+    if (!raw) {
+        echo('Usage:  find <word>');
+        echo('        find "<two or more words>"');
+        echo('Searches games and emulator menus by name or short code.');
+        return;
+    }
+    // Multi-word queries must be wrapped in double quotes.
+    if (raw.charAt(0) === '"') {
+        if (raw.charAt(raw.length - 1) !== '"' || raw.length < 2) {
+            echo('Unmatched quote.  Use: find "<text>"');
+            return;
+        }
+        raw = raw.substr(1, raw.length - 2);
+    } else if (/\s/.test(raw)) {
+        echo('Multi-word searches must be quoted.  Use: find "' + raw + '"');
+        return;
+    }
+    query = raw.toLowerCase().replace(/^\s+|\s+$/g, '');
+    if (!query) {
+        echo('Usage:  find <word>');
+        echo('        find "<two or more words>"');
+        return;
+    }
+
+    // Parse a directory's menu.bat into:
+    //   byCode: { displayedCode -> title }     (matches dir names directly)
+    //   byNum:  { rowNumber    -> title }      (used to bridge numbered .bat redirects)
+    // Menu rows look like:  echo º   N.  Title text         CODE     º
+    // Title and code are separated by 2+ spaces; either column may
+    // contain single-space-separated internals (e.g. "Duke Nukem",
+    // "MARIO 3"). A "[GAMES]" marker may sit between them.
+    function parseMenuTitles(node) {
+        var byCode = {}, byNum = {};
+        for (var i = 0; i < node.files.length; i++) {
+            if (node.files[i].name.toLowerCase() !== 'menu.bat') continue;
+            if (typeof node.files[i].data === 'undefined') continue;
+            var lines = node.files[i].data.split('\n');
+            for (var j = 0; j < lines.length; j++) {
+                var m = lines[j].match(/^echo º\s+(\d+)\.\s+(.+?)\s*º\s*$/);
+                if (!m || m[1] === '0') continue;
+                var parts = m[2].split(/\s{2,}/);
+                if (parts.length < 2) continue; // no code column => not an entry row
+                var title = parts[0].replace(/\s+$/, '');
+                var code = parts[parts.length - 1].replace(/^\[GAMES\]\s*/i, '').replace(/\s+$/, '');
+                if (!code) continue;
+                byCode[code.toLowerCase()] = title;
+                byNum[m[1]] = title;
+            }
+            break;
+        }
+        return { byCode: byCode, byNum: byNum };
+    }
+
+    // Map numbered .bat shortcuts to their launcher target.
+    //   1.bat  data = "smb\n"   -> { "1": "smb" }
+    //   2.bat  data = "smb3\n"  -> { "2": "smb3" }
+    // Skips folder-navigator scripts (cd ... / menu / 0.bat back-button).
+    function parseLauncherShortcuts(node) {
+        var byNum = {};
+        for (var i = 0; i < node.files.length; i++) {
+            var f = node.files[i];
+            if (typeof f.data === 'undefined') continue;
+            var fbase = f.name.toLowerCase().split('.')[0];
+            if (!/^\d+$/.test(fbase) || fbase === '0') continue;
+            var lines = f.data.split('\n');
+            for (var l = 0; l < lines.length; l++) {
+                var line = lines[l].replace(/^\s+|\s+$/g, '');
+                if (!line) continue;
+                var tok = line.split(/\s+/)[0].toLowerCase();
+                if (tok === 'echo' || tok === 'echo.' || tok === 'cls' || tok === 'cd' || tok === 'menu') continue;
+                byNum[fbase] = tok;
+                break;
+            }
+        }
+        return byNum;
+    }
+
+    // Match query at a word boundary inside haystack (case-insensitive).
+    // "nes" matches "NES" and "Nintendo Ent. System" but NOT "Genesis",
+    // sparing users a flood of mid-word substring noise on short codes.
+    function matches(haystack, needle) {
+        var hay = haystack.toLowerCase();
+        var idx = hay.indexOf(needle);
+        while (idx !== -1) {
+            if (idx === 0 || /[^a-z0-9]/.test(hay.charAt(idx - 1))) return true;
+            idx = hay.indexOf(needle, idx + 1);
+        }
+        return false;
+    }
+
+    var games = [];
+    var menus = [];
+
+    function walk(node, currentPath) {
+        var titles = parseMenuTitles(node);
+        var shortcuts = parseLauncherShortcuts(node); // num -> launcher tok
+
+        // Game launchers: .bat files that open an emulator URL.
+        for (var i = 0; i < node.files.length; i++) {
+            var f = node.files[i];
+            if (typeof f.link === 'undefined') continue;
+            var fname = f.name.toLowerCase();
+            if (fname.indexOf('.bat') === -1) continue;
+            var code = fname.split('.')[0];
+            if (/^\d+$/.test(code)) continue; // skip numeric menu shortcuts
+
+            // Title resolution priority:
+            //   1. menu row whose code matches this launcher (the common case)
+            //   2. menu row whose numbered .bat redirects to this launcher
+            //      (covers cases like NES displaying MARIO but launcher = SMB)
+            //   3. fall back to the uppercase launcher code itself
+            var title = titles.byCode[code];
+            if (!title) {
+                for (var n in shortcuts) {
+                    if (shortcuts[n] === code && titles.byNum[n]) { title = titles.byNum[n]; break; }
+                }
+            }
+            if (!title) title = code.toUpperCase();
+
+            if (matches(title, query) || matches(code, query)) {
+                games.push({ code: code.toUpperCase(), title: title, path: currentPath });
+            }
+        }
+
+        // Sub-menus: every child directory.
+        for (var i = 0; i < node.directories.length; i++) {
+            var d = node.directories[i];
+            var dcode = d.name.toLowerCase();
+            var dtitle = titles.byCode[dcode] || d.name;
+            if (matches(dtitle, query) || matches(dcode, query)) {
+                menus.push({ code: d.name, title: dtitle, path: currentPath });
+            }
+            walk(d, currentPath + '\\' + d.name);
+        }
+    }
+
+    walk(fs[0], 'C:');
+
+    var total = games.length + menus.length;
+    echo('');
+    echo('Searching for "' + query + '"...');
+    if (total === 0) { echo('No matches found.'); echo(''); return; }
+    echo(total + ' match' + (total === 1 ? '' : 'es') + ' found.');
+    echo('');
+
+    if (games.length > 0) {
+        echo('GAMES (' + games.length + ')');
+        for (var i = 0; i < games.length; i++) {
+            var g = games[i];
+            echo('  ' + pad(g.code, 11, true) + g.title);
+            echo('             ' + g.path);
+        }
+        echo('');
+    }
+
+    if (menus.length > 0) {
+        echo('MENUS (' + menus.length + ')');
+        for (var i = 0; i < menus.length; i++) {
+            var mn = menus[i];
+            echo('  ' + pad(mn.code, 11, true) + mn.title);
+            echo('             ' + mn.path);
+        }
+        echo('');
+    }
+}
+
+// ============================================================
 // COMMAND REGISTRY
 // Commands are registered by name and dispatched via handleCmd.
 // ============================================================

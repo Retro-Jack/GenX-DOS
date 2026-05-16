@@ -56,6 +56,10 @@ registerCmd('cd', function(cmd) {
     if (!cd(cmd.toLowerCase().replace('cd', '')))
         echo('The system cannot find the path specified.');
 });
+registerCmd('find', function(cmd) {
+    if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
+    find(cmd);
+});
 registerCmd('setcol', function(cmd) {
     if (cmd.charAt(0) == ' ') cmd = cmd.substr(1);
     if (cmd.length != 2) {
@@ -89,6 +93,8 @@ var HELP_TEXT = [
     'FILES',
     '  <filename>       Execute (link opens URL, .bat runs as batch)',
     '  type <file>      Print the file\'s data',
+    '  find <word>      Search games + emulator menus by name or code',
+    '  find "<phrase>"  Quote multi-word queries',
     '',
     'DISPLAY',
     '  echo <text>      Print text',
