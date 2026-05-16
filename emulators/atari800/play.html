@@ -25,6 +25,7 @@
   <canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
   <script>
     (async function () {
+      const fail = (msg) => { document.body.innerHTML = '<div class="err">' + msg + '</div>'; };
       const params = new URLSearchParams(location.search);
       const key = params.get('game');
       let romUrl = null, vfsName = null, game = null;
@@ -34,14 +35,11 @@
         try {
           games = await (await fetch('games.json')).json();
         } catch (e) {
-          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + '</div>';
+          fail('Failed to load games.json: ' + e.message);
           return;
         }
         game = games[key];
-        if (!game) {
-          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
-          return;
-        }
+        if (!game) { fail('Unknown game key: ' + key); return; }
         document.title = game.title || key;
         romUrl = game.rom;
         // atari800 sniffs the format from the extension; preserve it.

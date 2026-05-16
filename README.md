@@ -39,6 +39,7 @@ emulators/
   jsspeccy/               Sinclair Spectrum — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81    — JtyOne + 10 .p tapes (hex format)
   xroar/                  Tandy CoCo       — XRoar WASM + 10 .ccc carts
+  atari800/               Atari 800XL      — atari800 v5.2.0 built to WASM + AltirraOS + 10 disk/cart titles
 ```
 
 ## Self-hosted emulators
@@ -58,6 +59,7 @@ emulators/
 | Spectrum  | gasman/JSSpeccy 3 v3.2               | `play.html?game=<key>`                   |
 | ZX81      | hammingweight/JtyOne                 | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar v1.10           | `play.html?game=<key>`                   |
+| Atari 800XL| atari800/atari800 v5.2.0 (own WASM build) | `play.html?game=<key>`              |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
@@ -88,3 +90,4 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - JSSpeccy 3: GPL-3.0 (Matt Westcott / gasman)
 - JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
+- atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL 3.41 bundled (Avery Lee, freely redistributable open-source OS replacement)
