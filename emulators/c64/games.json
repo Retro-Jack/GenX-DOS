@@ -1,12 +1,12 @@
 {
-  "lastninja": { "title": "The Last Ninja (1987)",      "archive_item": "Last_Ninja_The_1987_System_3_Side_A" },
-  "impmiss":   { "title": "Impossible Mission (1984)",  "archive_item": "impossible_mission_202309" },
-  "wizball":   { "title": "Wizball (1987)",             "archive_item": "d64_Wizball_1987_Ocean" },
-  "elite":     { "title": "Elite (1985)",               "archive_item": "Elite_1985_Firebird" },
-  "intlkrte":  { "title": "International Karate (1986)","archive_item": "International_Karate_1986_System_3" },
-  "beachhd":   { "title": "Beach Head (1983)",          "archive_item": "Beach_Head_1983_Access_Software" },
-  "bardstle":  { "title": "The Bard's Tale (1985)",     "archive_item": "Bards_Tale_1_1985_Electronic_Arts" },
-  "forbfrst":  { "title": "Forbidden Forest (1983)",    "archive_item": "Forbidden_Forest_1983_Cosmi" },
-  "ghosts":    { "title": "Ghosts 'n Goblins (1986)",   "archive_item": "Ghosts_n_Goblins_1986_Elite" },
-  "hunchbck":  { "title": "Hunchback (1983)",           "archive_item": "Hunchback_1983_Ocean_h_Kotzbrocken" }
+  "lastninja": { "title": "The Last Ninja (1987)",      "rom": "games/lastninja.d64" },
+  "impmiss":   { "title": "Impossible Mission (1984)",  "rom": "games/impmiss.d64" },
+  "wizball":   { "title": "Wizball (1987)",             "rom": "games/wizball.d64" },
+  "elite":     { "title": "Elite (1985)",               "rom": "games/elite.d64" },
+  "intlkrte":  { "title": "International Karate (1986)","rom": "games/intlkrte.d64" },
+  "beachhd":   { "title": "Beach Head (1983)",          "rom": "games/beachhd.d64" },
+  "bardstle":  { "title": "The Bard's Tale (1985)",     "rom": "games/bardstle.d64" },
+  "forbfrst":  { "title": "Forbidden Forest (1983)",    "rom": "games/forbfrst.d64" },
+  "ghosts":    { "title": "Ghosts 'n Goblins (1986)",   "rom": "games/ghosts.d64" },
+  "hunchbck":  { "title": "Hunchback (1983)",           "rom": "games/hunchbck.d64" }
 }
