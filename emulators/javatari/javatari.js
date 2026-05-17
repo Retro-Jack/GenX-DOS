@@ -49,7 +49,7 @@ Javatari = {
     IMAGES_PATH:                    window.JAVATARI_IMAGES_PATH || "images/",
     PAGE_BACK_CSS:                  "",                         // CSS to modify page background color. Applied to the body element
 
-    SERVER_ADDRESS:                 "webmsx.azurewebsites.net/",
+    SERVER_ADDRESS:                 "",                         // Cleared to keep GenX-DOS self-contained — was upstream's webmsx.azurewebsites.net/ NetPlay relay. With this empty, both jt.NetClient.initKeepAlive's && short-circuit and the wss:// WebSocket URL in jt.NetClient.joinSession / jt.NetServer.startSession resolve to falsy/invalid, so no external network attempt regardless of UI state.
     SERVER_KEEPALIVE:               0,
 
     RESET:                          0,                          // if value = 1 clear all saved data on the client
