@@ -195,20 +195,12 @@ class EmulatorJS {
         })
     }
     checkForUpdates() {
-        if (this.ejs_version.endsWith("-beta")) {
-            console.warn("Using EmulatorJS beta. Not checking for updates. This instance may be out of date. Using stable is highly recommended unless you build and ship your own cores.");
-            return;
-        }
-        fetch("https://cdn.emulatorjs.org/stable/data/version.json").then(response => {
-            if (response.ok) {
-                response.text().then(body => {
-                    let version = JSON.parse(body);
-                    if (this.versionAsInt(this.ejs_version) < this.versionAsInt(version.version)) {
-                        console.log(`Using EmulatorJS version ${this.ejs_version} but the newest version is ${version.current_version}\nopen https://github.com/EmulatorJS/EmulatorJS to update`);
-                    }
-                })
-            }
-        })
+        // Disabled to keep GenX-DOS completely self-contained — no
+        // network calls at runtime. The upstream version-check fetched
+        // https://cdn.emulatorjs.org/stable/data/version.json and just
+        // logged a "newer version exists" message. Updates here happen
+        // by re-mirroring the framework deliberately, not at runtime.
+        return;
     }
     versionAsInt(ver) {
         if (ver.endsWith("-beta")) {
