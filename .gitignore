@@ -1,1 +1,14 @@
 emulators/*/node_modules/
+
+# macOS filesystem junk — sometimes ships inside upstream emulator
+# bundles we mirror; never wanted in this repo.
+.DS_Store
+._*
+__MACOSX/
+.AppleDouble/
+.LSOverride
+.Spotlight-V100
+.Trashes
+.fseventsd
+Icon?
+
