@@ -13,7 +13,7 @@
       <h1>Commodore 64 — Controls</h1>
     </div>
 
-    <p class="intro">Each C64 game opens in an iframe hosted by the Internet Archive — they serve their own emulator (VICE x64 under emularity) with the disc image already mounted. Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">Self-hosted VICE x64 (the gold-standard Commodore 64 emulator) running in your browser via EmulatorJS. The bundled disk image autoboots when the page loads. Click the canvas first so the emulator receives keyboard input.</p>
 
     <h2>Joystick (port 2 — Player 1)</h2>
     <table>
@@ -21,7 +21,7 @@
       <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction</td></tr>
       <tr><td><kbd>L Ctrl</kbd></td><td>Fire button</td></tr>
     </table>
-    <p>Most C64 games use port 2 by default. If a game ignores Player 1 input, look in archive.org's emulator toolbar (bottom of the iframe) for a controller-swap option.</p>
+    <p>Most C64 games use port 2 by default. If a game ignores Player 1 input, open EmulatorJS's settings menu (gear icon, bottom of the canvas) and swap the joystick port.</p>
 
     <h2>C64 keyboard</h2>
     <p>VICE maps the C64 keyboard "positionally" to your PC keyboard — letters / numbers / punctuation type as themselves. C64-specific keys:</p>
@@ -38,14 +38,16 @@
       <tr><td><kbd>Tab</kbd></td><td>Pound symbol (£)</td></tr>
     </table>
 
-    <h2>archive.org emulator toolbar</h2>
-    <p>Hover the bottom of the iframe to reveal archive.org's controls strip:</p>
+    <h2>EmulatorJS toolbar</h2>
+    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
     <table>
       <tr><th>Button</th><th>Action</th></tr>
-      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
-      <tr><td>Pause / Resume</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
       <tr><td>Restart</td><td>Cold-reset the C64 (game restarts)</td></tr>
+      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
+      <tr><td>Settings (gear)</td><td>Core options — joystick port, video filter, sample rate, key remap, etc.</td></tr>
       <tr><td>Mute</td><td>Toggle SID audio</td></tr>
+      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
     </table>
 
     <h2>Loading from BASIC</h2>
@@ -57,7 +59,7 @@
       <tr><td><code>RUN</code></td><td>Run the loaded program</td></tr>
     </table>
 
-    <p class="note">Hosted by the Internet Archive. The iframe loads <code>https://archive.org/embed/&lt;item&gt;</code> — emulator is VICE x64 (GPL-2.0) under the <a href="https://github.com/db48x/emularity" target="_blank" rel="noopener">emularity</a> loader (GPL-3.0). GenX-DOS only ships the iframe wrapper; no C64 emulator or game data is hosted on this site.</p>
+    <p class="note">Emulator: VICE x64 (GPL-2.0, libretro core) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
 
     <div class="footer">
       <a href="javascript:window.close()">close tab</a> ·
