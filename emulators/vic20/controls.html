@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore VIC-20 Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Commodore · VIC-20</div>
+      <h1>Commodore VIC-20 — Controls</h1>
+    </div>
+
+    <p class="intro">Self-hosted VICE xvic (the VIC-20 build of the gold-standard Commodore emulator) running in your browser via EmulatorJS. Most VIC-20 software is cartridge-based and boots instantly; the few disk-based titles autoboot when the page loads. Click the canvas first so the emulator receives keyboard input.</p>
+
+    <p class="note">The bundled VIC-20 is configured with full memory expansion (35K — all RAM banks at $2000-$7FFF + $A000-$BFFF). Cartridge games override this with their own memory map; disk and tape games written for any of the standard +3K / +8K / +16K / +24K configurations all run cleanly under +all.</p>
+
+    <p class="note">When a disk game is loading, the initial read takes around 20 seconds — that's not a freeze, it's the real-time 1540 drive emulation reading the disk over the IEC bus at period-authentic speed. You'll hear the drive chunk and stepper-click the whole way through; the game starts when it falls silent.</p>
+
+    <h2>Joystick (port 1 — Player 1)</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>Fire button</td></tr>
+    </table>
+    <p>The VIC-20 only has a single joystick port — Player 1 is always port 1, no swap needed.</p>
+
+    <h2>VIC-20 keyboard</h2>
+    <p>VICE maps the VIC-20 keyboard "positionally" to your PC keyboard — letters / numbers / punctuation type as themselves. VIC-20-specific keys:</p>
+    <table>
+      <tr><th>Key</th><th>VIC-20 key</th></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>L Alt</kbd></td><td>Commodore key (C= key — toggles upper/lower case with SHIFT)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>RUN/STOP</td></tr>
+      <tr><td><kbd>Page Up</kbd></td><td>RESTORE (combine with RUN/STOP for warm reset)</td></tr>
+      <tr><td><kbd>F1</kbd> / <kbd>F3</kbd> / <kbd>F5</kbd> / <kbd>F7</kbd></td><td>VIC-20 function keys (only 4 — F2/F4/F6/F8 are SHIFT-modified on hardware)</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>SHIFT + INST/DEL (insert)</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>Pound symbol (£)</td></tr>
+    </table>
+
+    <h2>EmulatorJS toolbar</h2>
+    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Restart</td><td>Cold-reset the VIC-20 (game restarts)</td></tr>
+      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
+      <tr><td>Settings (gear)</td><td>Core options — memory expansion, video filter, sample rate, key remap, etc.</td></tr>
+      <tr><td>Mute</td><td>Toggle VIC audio</td></tr>
+      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
+    </table>
+
+    <h2>Loading from BASIC</h2>
+    <p>VICE auto-LOADs cartridges and the first program on most disks, but if a game drops you to the <code>READY.</code> prompt, type one of:</p>
+    <table>
+      <tr><th>Command</th><th>Effect</th></tr>
+      <tr><td><code>LOAD"$",8</code></td><td>List the directory of disk drive 8</td></tr>
+      <tr><td><code>LOAD"*",8,1</code></td><td>Load + run the first program on the disk</td></tr>
+      <tr><td><code>RUN</code></td><td>Run the loaded program</td></tr>
+    </table>
+
+    <p class="note">Emulator: VICE xvic (GPL-2.0, libretro core) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
