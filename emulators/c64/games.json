@@ -8,5 +8,6 @@
   "bardstle":  { "title": "The Bard's Tale (1985)",     "rom": "games/bardstle.d64" },
   "forbfrst":  { "title": "Forbidden Forest (1983)",    "rom": "games/forbfrst.d64" },
   "ghosts":    { "title": "Ghosts 'n Goblins (1986)",   "rom": "games/ghosts.d64" },
-  "hunchbck":  { "title": "Hunchback (1983)",           "rom": "games/hunchbck.d64" }
+  "hunchbck":  { "title": "Hunchback (1983)",           "rom": "games/hunchbck.d64" },
+  "basic":     { "title": "Commodore 64 BASIC",         "rom": "games/empty.prg" }
 }
