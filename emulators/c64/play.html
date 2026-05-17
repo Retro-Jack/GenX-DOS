@@ -6,8 +6,12 @@
   <title>Commodore 64</title>
   <style>
     html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
-    iframe { width: 100%; height: 100%; border: 0; display: block; background: #000; }
+    body { display: flex; align-items: center; justify-content: center; }
+    /* C64 displayed at 4:3 — fits the larger of viewport-bound width/height
+       without distorting the native 384x272 framebuffer. */
+    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
     .err { padding: 20px; color: #fff; font-family: monospace; }
+    .loading { padding: 40px; color: #888; text-align: center; font-family: monospace; }
   </style>
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
 </head>
@@ -22,19 +26,15 @@
       </div>
     </div>
   </noscript>
-  <iframe id="emu" allowfullscreen allow="autoplay; fullscreen; gamepad"></iframe>
+  <div id="game"><div class="loading">Booting Commodore 64…</div></div>
   <a href="controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
   <script>
     (async function () {
-      const fail = (msg) => { document.body.innerHTML = '<div class="err">' + msg + '</div>'; };
+      const fail = (msg) => { document.getElementById('game').innerHTML = '<div class="err">' + msg + '</div>'; };
       const params = new URLSearchParams(location.search);
       const key = params.get('game');
 
-      // Each game's frame loads Internet Archive's /embed/<archive_item> page,
-      // which serves their hosted C64 emulator (VICE under the emularity loader)
-      // with the disk image already mounted. We just iframe — no emulator or
-      // ROM data is hosted on our side.
-      let url = 'about:blank';
+      let gameUrl = null;
       if (key) {
         let games;
         try { games = await (await fetch('games.json')).json(); }
@@ -42,13 +42,25 @@
         const game = games[key];
         if (!game) { fail('Unknown game key: ' + key); return; }
         document.title = game.title || key;
-        url = 'https://archive.org/embed/' + encodeURIComponent(game.archive_item);
+        gameUrl = game.rom;
       } else {
         document.title = 'Commodore 64';
-        // No game specified — just show archive.org's C64 collection landing
-        url = 'https://archive.org/details/softwarelibrary_c64_games';
       }
-      document.getElementById('emu').src = url;
+
+      // EmulatorJS expects its config as globals set BEFORE loader.js runs.
+      window.EJS_player    = '#game';
+      // loader.js prepends "../" to any non-absolute EJS_pathtodata, so we
+      // build an absolute pathname from the current document URL — works
+      // both at the repo root locally and under /GenX-DOS/ on Pages.
+      window.EJS_pathtodata = location.pathname.replace(/[^/]*$/, '') + 'ejs/data/';
+      window.EJS_core      = 'vice_x64';
+      window.EJS_startOnLoaded = true;
+      window.EJS_DEBUG_XX  = false;
+      if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
+
+      const s = document.createElement('script');
+      s.src = 'ejs/data/loader.js';
+      document.body.appendChild(s);
     })();
   </script>
 </body>
