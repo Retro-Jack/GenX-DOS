@@ -8,7 +8,7 @@ registerCmd('chkdsk',  function()    { echo("*Checking...*  Yep, that's a disk."
 registerCmd('help',    function()    { showFullHelp(); });
 registerCmd('format',  function()    { echo("Specified drive does not exist. Anarchist."); });
 registerCmd('edlin',   function()    { echo("Whoa now, this is not MS-DOS!"); });
-registerCmd('edit',    function()    { echo("Illegal command: edit."); });
+registerCmd('edit',    function()    { echo("Error: Correction fluid mismatch."); });
 registerCmd('debug',   function()    { echo("Program terminated normally (0000)"); });
 registerCmd('attrib',  function()    { echo("A ttrib is a terrible thing to waste."); });
 registerCmd('zerocool',function()    { txtPal.fg = 11; txtPal.bg = 1; echo("HACK THE PLANET!"); });
