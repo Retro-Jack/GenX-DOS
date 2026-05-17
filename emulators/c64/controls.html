@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore 64 Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Commodore · 64</div>
+      <h1>Commodore 64 — Controls</h1>
+    </div>
+
+    <p class="intro">Each C64 game opens in an iframe hosted by the Internet Archive — they serve their own emulator (VICE x64 under emularity) with the disc image already mounted. Click the canvas first so the emulator receives keyboard input.</p>
+
+    <h2>Joystick (port 2 — Player 1)</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>Fire button</td></tr>
+    </table>
+    <p>Most C64 games use port 2 by default. If a game ignores Player 1 input, look in archive.org's emulator toolbar (bottom of the iframe) for a controller-swap option.</p>
+
+    <h2>C64 keyboard</h2>
+    <p>VICE maps the C64 keyboard "positionally" to your PC keyboard — letters / numbers / punctuation type as themselves. C64-specific keys:</p>
+    <table>
+      <tr><th>Key</th><th>C64 key</th></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>L Alt</kbd></td><td>Commodore key (C= key — toggles upper/lower case with SHIFT)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>RUN/STOP</td></tr>
+      <tr><td><kbd>Page Up</kbd></td><td>RESTORE (combine with RUN/STOP for warm reset)</td></tr>
+      <tr><td><kbd>F1</kbd> – <kbd>F8</kbd></td><td>C64 function keys</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>SHIFT + INST/DEL (insert)</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>Pound symbol (£)</td></tr>
+    </table>
+
+    <h2>archive.org emulator toolbar</h2>
+    <p>Hover the bottom of the iframe to reveal archive.org's controls strip:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
+      <tr><td>Pause / Resume</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Restart</td><td>Cold-reset the C64 (game restarts)</td></tr>
+      <tr><td>Mute</td><td>Toggle SID audio</td></tr>
+    </table>
+
+    <h2>Loading from BASIC</h2>
+    <p>VICE auto-LOADs the first program on most disks, but if a game drops you to the <code>READY.</code> prompt, type one of:</p>
+    <table>
+      <tr><th>Command</th><th>Effect</th></tr>
+      <tr><td><code>LOAD"$",8</code></td><td>List the directory of disk drive 8</td></tr>
+      <tr><td><code>LOAD"*",8,1</code></td><td>Load + run the first program on the disk</td></tr>
+      <tr><td><code>RUN</code></td><td>Run the loaded program</td></tr>
+    </table>
+
+    <p class="note">Hosted by the Internet Archive. The iframe loads <code>https://archive.org/embed/&lt;item&gt;</code> — emulator is VICE x64 (GPL-2.0) under the <a href="https://github.com/db48x/emularity" target="_blank" rel="noopener">emularity</a> loader (GPL-3.0). GenX-DOS only ships the iframe wrapper; no C64 emulator or game data is hosted on this site.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
