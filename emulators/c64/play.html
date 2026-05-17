@@ -55,12 +55,14 @@
       window.EJS_pathtodata = location.pathname.replace(/[^/]*$/, '') + 'ejs/data/';
       window.EJS_core      = 'vice_x64';
       window.EJS_startOnLoaded = true;
-      // VICE true-drive-emulation defaults to ON: accurate IEC bus = ~400 bytes/s
-      // (loading a 174 KB .d64 = minutes). Warp through autoload, then resume
-      // real-time. Most compatible speedup; doesn't break copy-protection checks.
+      // Disable VICE's true-drive-emulation so disk reads bypass the
+      // ~400 byte/s IEC bus and load instantly via VICE's built-in
+      // fast-loader. May break a small number of copy-protected or
+      // disk-state-dependent titles, but loads (boot AND in-game) are
+      // near-instant. Warp during autostart still on for the initial boot.
       window.EJS_defaultOptions = {
+        'vice_drive_true_emulation': 'disabled',
         'vice_autostart_warp': 'enabled',
-        'vice_drive_true_emulation': 'enabled',
         'vice_drive_sound_emulation': 'disabled'
       };
       // True forces loader.js to use src/emulator.js (proper ES module
