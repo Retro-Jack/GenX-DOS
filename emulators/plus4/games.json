@@ -1,0 +1,13 @@
+{
+  "blagger":  { "title": "Blagger (1984)",                 "rom": "games/blagger.prg" },
+  "popeye":   { "title": "Popeye (1984)",                  "rom": "games/popeye.prg" },
+  "citadel":  { "title": "Citadel (1985)",                 "rom": "games/citadel.prg" },
+  "kikstart": { "title": "Kikstart (1985)",                "rom": "games/kikstart.prg" },
+  "punchy":   { "title": "Punchy (1985)",                  "rom": "games/punchy.prg" },
+  "rockman":  { "title": "Rockman (1985)",                 "rom": "games/rockman.prg" },
+  "saboteur": { "title": "Saboteur (1985)",                "rom": "games/saboteur.prg" },
+  "squirm":   { "title": "Squirm (1985)",                  "rom": "games/squirm.prg" },
+  "mercnary": { "title": "Mercenary (1986)",               "rom": "games/mercnary.prg" },
+  "trailblz": { "title": "Trailblazer (1986)",             "rom": "games/trailblz.prg" },
+  "basic":    { "title": "Commodore Plus/4 BASIC 3.5",     "rom": "games/empty.prg" }
+}
