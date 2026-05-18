@@ -66,11 +66,20 @@
       // 64K) and drops the built-in 3-PLUS-1 office cartridge, matching
       // the C16's real spec. Drive-sound recipe is identical to the rest
       // of the VICE family: real 1541, 10× boost, no warp on autoload.
+      //
+      // keyboardInput/altKeyboardInput: see PET play.html for the full
+      // rationale — without these, EJS routes typed keys to RetroPad
+      // gamepad buttons instead of forwarding to the VICE keyboard
+      // callback. C16 inherits the issue from sharing the xplus4 core
+      // with Plus/4, and the bundled games (Berks, Big Mac, Tom Thumb,
+      // etc.) all expect real keyboard input.
       window.EJS_defaultOptions = {
         'vice_plus4_model': 'c16pal',
         'vice_drive_true_emulation': 'enabled',
         'vice_drive_sound_emulation': '1000%',
-        'vice_autoloadwarp': 'disabled'
+        'vice_autoloadwarp': 'disabled',
+        'keyboardInput': 'enabled',
+        'altKeyboardInput': 'enabled'
       };
       // True forces loader.js to use src/emulator.js (proper ES module
       // with `export default`); the cdn.emulatorjs.org `emulator.min.js`

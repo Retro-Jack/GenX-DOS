@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 ### Fixed
+- C16 keyboard input — same fix as PET / Plus/4 below (`keyboardInput: 'enabled'` + `altKeyboardInput: 'enabled'` in `EJS_defaultOptions`). C16 inherits the bug from sharing the `vice_xplus4` core with Plus/4, and the bundled games (Berks, Big Mac, Tom Thumb, etc.) all expect real keyboard input.
+
 - PET and Plus/4 keyboard input now actually types. EJS's default "Direct Keyboard Input" setting is `disabled`, which routes typed keys through the gamepad-mapping path (mapping to RetroPad direction + fire buttons) instead of forwarding to the libretro keyboard callback. Symptom: pressing letters/numbers produced "random effects" — joystick motion / fire / nothing — instead of typing. Fatal on the keyboard-only PET (PETSCII Robots demo unplayable, can't even type at the BASIC `READY.` prompt) and bad on the Plus/4 (Citadel, Saboteur, Tom Thumb all need keyboard to start). Fix: add `'keyboardInput': 'enabled'` + `'altKeyboardInput': 'enabled'` to `EJS_defaultOptions` in `emulators/pet/play.html` and `emulators/plus4/play.html`. EJS's init loop at `emulator.js:5695` picks up the option and triggers `setKeyboardEnabled(1)` on the wasm side, flipping the VICE core into direct-keyboard mode. The altKeyboardInput flag forwards Left Alt to the core (the Commodore "C=" key in VICE's positional mapping) so it isn't eaten by the browser's Alt-as-menu-shortcut behaviour. **NOT applied to C64 / VIC-20 / MAX** — those bundles are joystick-primary and the gamepad-keyboard fallback is what makes WASD/Ctrl work as joystick directions; flipping it there would regress joystick input.
 
 ### Added
