@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore MAX Machine Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Commodore · MAX Machine</div>
+      <h1>Commodore MAX Machine — Controls</h1>
+    </div>
+
+    <p class="intro">Self-hosted VICE x64 (gold-standard Commodore emulator) running in your browser via EmulatorJS, switched into Ultimax mode — that's the MAX Machine: a Japan-only 1982 home console using the same VIC-II + SID + 6510 chipset as the C64, but with only 2 KB of RAM and no built-in BASIC. Every program is a cartridge. Click the canvas first so the emulator receives keyboard input.</p>
+
+    <p class="note">The MAX library is small — about 27 commercial cartridges were ever produced, all in Japan in 1982-83. Eight of the most iconic carts are bundled here, plus the MAX BASIC cartridge (which is how you'd boot the MAX into a usable BASIC environment, since the machine ships without BASIC in ROM).</p>
+
+    <h2>Joystick (port 1 — Player 1)</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>Fire button</td></tr>
+    </table>
+    <p>The MAX has two joystick ports (same DE-9 connector as the C64). Player 1 is on port 1 by default — opposite of the C64 convention. Use the gear icon's joystick port swap if a game ignores Player 1 input.</p>
+
+    <h2>MAX keyboard</h2>
+    <p>The MAX keyboard is a membrane-style key matrix sharing the C64's layout. VICE maps positionally — letters / numbers / punctuation type as themselves. C64-family-specific keys:</p>
+    <table>
+      <tr><th>Key</th><th>MAX key</th></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>L Alt</kbd></td><td>Commodore key (C= key)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>RUN/STOP</td></tr>
+      <tr><td><kbd>F1</kbd> – <kbd>F8</kbd></td><td>Function keys (most carts use F1/F3 for player select)</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
+    </table>
+
+    <h2>EmulatorJS toolbar</h2>
+    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Restart</td><td>Cold-reset the MAX (cart restarts)</td></tr>
+      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
+      <tr><td>Settings (gear)</td><td>Core options — joystick port swap, video filter, sample rate, key remap, etc.</td></tr>
+      <tr><td>Mute</td><td>Toggle SID audio</td></tr>
+      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
+    </table>
+
+    <h2>Why so few games?</h2>
+    <p>The MAX was Commodore's attempt at an entry-level games console for the Japanese market, launched June 1982 — six months before the C64 reached US shelves. With only 2 KB of usable RAM (less than the VIC-20!) and no BASIC ROM, it was crippled out of the gate; the parallel C64 launch made it instantly redundant. Production stopped within months and Commodore Japan moved on. Only ~27 official cartridges ever shipped — the entire library is smaller than a single year of Commodore 64 releases. The MAX is the rarest mainstream Commodore product.</p>
+
+    <p class="note">Cart format: Ultimax-mode 8K cartridges mapped to $E000 (and 16K split $8000 + $E000). VICE accepts these as standard <code>.crt</code> files with hardware type 0, EXROM=1, GAME=0. Emulator: VICE x64 (GPL-2.0, libretro core) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
