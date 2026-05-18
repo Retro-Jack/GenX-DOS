@@ -120,6 +120,8 @@
 - README rewritten to reflect all self-hosted emulators. Wiki refreshed end-to-end: Home, Project Overview, File Structure, Emulators, Virtual Filesystem, Commands.
 
 ### Fixed
+- VICE `vice_drive_sound_emulation` value updated from `1000%` → `100%` across C64 / VIC-20 / Plus/4 / C16 play.html. The May 16 2026 VICE 3.9 build (currently shipped via `cdn.emulatorjs.org/stable`) capped the option's enum at `100%` — the older recipe value `1000%` was rejected as `invalid core value` and the core silently fell back to the 20% default, making drive sound effectively inaudible. Cross-checked the current accepted enum against the libretro-vice master source (`libretro/libretro-core.c` line 3688: `disabled` + `5%`/`10%`/`15%`/`20%`/.../`100%` in 5% steps). 100% is the loudest valid value.
+
 - C64 + VIC-20 BASIC entries (item 11 in their respective GAMES menus) now actually boot to the `READY.` prompt. The previous wiring pointed at `play.html` with no `?game=` param, expecting EmulatorJS to launch the bare emulator. Turns out that's a broken code path: EJS's `download(undefined, ...)` resolves to `undefined`, then `startGameFromDownload(undefined)` throws inside an async IIFE — silent failure, page sticks on "Download Game Core" forever. Fix: ship a 4-byte placeholder `games/empty.prg` (load address `\$0801` + end-of-BASIC marker) in each bundle, register it as `"basic"` in `games.json`, and point the BASIC `.bat` launchers at `?game=basic`. VICE's autostart RUNs the empty program and immediately drops to the BASIC prompt. C64 BASIC item had carried this bug since the C64 self-host landed but was never tested in a clean session; the VIC-20 addition surfaced it.
 
 ### Removed
