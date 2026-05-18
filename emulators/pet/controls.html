@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore PET Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Commodore · PET 4032</div>
+      <h1>Commodore PET — Controls</h1>
+    </div>
+
+    <p class="intro">Self-hosted VICE xpet (gold-standard Commodore PET emulator) running in your browser via EmulatorJS, configured for the PET 4032 — 32 KB RAM, BASIC 4.0, 40-column green-on-black monochrome CRT. The PET 2001 was Commodore's first computer (Jan 1977) and effectively founded the home-computer market; the 4032 (1980) added BASIC 4 and a proper keyboard. Click the canvas first so the emulator receives keyboard input.</p>
+
+    <p class="note">Most bundled games are single-file BASIC <code>.prg</code>s that load instantly via VICE autostart. The PETSCII Robots shareware is a <code>.d64</code> disk image — that one takes ~30 seconds to boot through real-time IEC drive emulation (you'll hear the drive chunk the whole way), then drops into the title screen.</p>
+
+    <h2>Keyboard-only input</h2>
+    <p>The PET has no joystick port. All games are keyboard-controlled. PETSCII Robots uses:</p>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td>Move (up / left / down / right)</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Action / fire / pick up</td></tr>
+      <tr><td><kbd>I</kbd></td><td>Inventory</td></tr>
+      <tr><td><kbd>P</kbd></td><td>Pause</td></tr>
+    </table>
+    <p>Most older PET games map directional input to keys near the right-hand side of the keyboard (<kbd>;</kbd> <kbd>'</kbd> for left/right is common), or use number keys. Read the on-screen instructions when each game boots.</p>
+
+    <h2>PET keyboard</h2>
+    <p>VICE maps the PET keyboard "positionally" to your PC keyboard — letters / numbers type as themselves. PET-specific keys:</p>
+    <table>
+      <tr><th>Key</th><th>PET key</th></tr>
+      <tr><td><kbd>Esc</kbd></td><td>RUN/STOP (breaks out of BASIC programs)</td></tr>
+      <tr><td><kbd>L Alt</kbd></td><td>Commodore-style graphic / inverse toggle</td></tr>
+      <tr><td><kbd>Page Up</kbd></td><td>RVS ON (reverse video)</td></tr>
+      <tr><td><kbd>Page Down</kbd></td><td>RVS OFF</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>F1</kbd> – <kbd>F10</kbd></td><td>Function keys (model-dependent — most 4032 software ignores)</td></tr>
+    </table>
+
+    <h2>EmulatorJS toolbar</h2>
+    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Restart</td><td>Cold-reset the PET (cart/disk reloads)</td></tr>
+      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
+      <tr><td>Settings (gear)</td><td>Core options — PET model swap, video filter, sample rate, key remap, etc.</td></tr>
+      <tr><td>Mute</td><td>Toggle audio (PET 4032 has CB2 sound on pin 5 of the user port — most games use it for beeps via POKE)</td></tr>
+      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
+    </table>
+
+    <h2>Loading from BASIC 4</h2>
+    <p>VICE auto-LOADs <code>.prg</code> files and the first program on most disks. If you drop to the <code>READY.</code> prompt, type one of:</p>
+    <table>
+      <tr><th>Command</th><th>Effect</th></tr>
+      <tr><td><code>DIRECTORY</code></td><td>List the disk directory (BASIC 4 shortcut — equivalent to <code>LOAD"$",8</code>)</td></tr>
+      <tr><td><code>DLOAD"name"</code></td><td>Load a program from disk (BASIC 4 shortcut)</td></tr>
+      <tr><td><code>RUN</code></td><td>Run the loaded program</td></tr>
+    </table>
+
+    <h2>About PETSCII Robots</h2>
+    <p>PETSCII Robots is a modern (2022) survival/strategy title by David Murray ("The 8-Bit Guy") — proof that the 32K PET still has commercial-grade games being written for it 45 years after launch. This is the official shareware build (free demo); the full game is sold by Murray directly. The shareware includes the first three of the full game's 30+ levels.</p>
+
+    <p class="note">Emulator: VICE xpet (GPL-2.0, libretro core) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
