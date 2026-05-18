@@ -73,7 +73,18 @@
       window.EJS_defaultOptions = {
         'vice_pet_model': model,
         'vice_drive_true_emulation': 'disabled',
-        'vice_autoloadwarp': 'enabled'
+        'vice_autoloadwarp': 'enabled',
+        // Without this, EJS's default keyboard mode routes typed keys to
+        // RetroPad gamepad buttons (joystick direction + fire) instead of
+        // forwarding them to the VICE keyboard callback. The result is
+        // "mashing produces random movement / no text input" — fatal for
+        // a keyboard-only machine like the PET. EJS reads this key in
+        // preGetSetting() and triggers setKeyboardEnabled(1) at startup
+        // (changeSettingOption at init line 5695). Forward Alt too so the
+        // Commodore key (Left Alt by VICE convention) reaches the core
+        // instead of being eaten by the browser's Alt-as-menu-shortcut.
+        'keyboardInput': 'enabled',
+        'altKeyboardInput': 'enabled'
       };
       // True forces loader.js to use src/emulator.js (proper ES module
       // with `export default`); the cdn.emulatorjs.org `emulator.min.js`
