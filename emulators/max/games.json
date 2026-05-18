@@ -1,0 +1,11 @@
+{
+  "clowns":   { "title": "Clowns (1982)",                       "rom": "games/clowns.crt" },
+  "omegrace": { "title": "Omega Race (1982)",                   "rom": "games/omegrace.crt" },
+  "rrr":      { "title": "Radar Rat Race (1982)",               "rom": "games/rrr.crt" },
+  "jupiter":  { "title": "Jupiter Lander (1982)",               "rom": "games/jupiter.crt" },
+  "speedmth": { "title": "Speed/Bingo Math (1982)",             "rom": "games/speedmth.crt" },
+  "slalom":   { "title": "Slalom (1982)",                       "rom": "games/slalom.crt" },
+  "billiard": { "title": "Billiards (1983)",                    "rom": "games/billiard.crt" },
+  "pinball":  { "title": "Pinball Spectacular (1983)",          "rom": "games/pinball.crt" },
+  "basic":    { "title": "MAX BASIC (1982)",                    "rom": "games/maxbasic.crt" }
+}
