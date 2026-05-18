@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore Plus/4 Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Commodore · Plus/4</div>
+      <h1>Commodore Plus/4 — Controls</h1>
+    </div>
+
+    <p class="intro">Self-hosted VICE xplus4 (the Plus/4 / C16 / C116 build of the gold-standard Commodore emulator) running in your browser via EmulatorJS. The Plus/4 has 64 KB of RAM and the TED chip (combined video + sound) with a 121-colour palette. Click the canvas first so the emulator receives keyboard input.</p>
+
+    <p class="note">When a disk game is loading, the initial read takes around 20-30 seconds — that's not a freeze, it's the real-time 1541 drive emulation reading the disk over the IEC bus at period-authentic speed. You'll hear the drive chunk and stepper-click the whole way through; the game starts when it falls silent. Most of the bundled games are single-file <code>.prg</code>s that load instantly without disk activity.</p>
+
+    <h2>Joystick (port 1 — Player 1)</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>Fire button</td></tr>
+    </table>
+    <p>The Plus/4 has two joystick ports but uses a non-standard 8-pin DIN connector (incompatible with Atari-style sticks). VICE maps Player 1 to port 1; some games look for port 2 instead — use the gear icon's joystick port swap if a game ignores Player 1 input.</p>
+
+    <h2>Plus/4 keyboard</h2>
+    <p>VICE maps the Plus/4 keyboard "positionally" to your PC keyboard — letters / numbers / punctuation type as themselves. Plus/4-specific keys:</p>
+    <table>
+      <tr><th>Key</th><th>Plus/4 key</th></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>L Alt</kbd></td><td>Commodore key (C= key — toggles upper/lower case with SHIFT)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>RUN/STOP</td></tr>
+      <tr><td><kbd>F1</kbd> – <kbd>F4</kbd></td><td>Plus/4 function keys (the four physical F-keys; SHIFTed gives F5/F6/F7 + HELP)</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>SHIFT + INST/DEL (insert)</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>Pound symbol (£)</td></tr>
+      <tr><td><kbd>End</kbd></td><td>ESC (Plus/4's actual ESC key — separate from RUN/STOP)</td></tr>
+    </table>
+
+    <h2>EmulatorJS toolbar</h2>
+    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Restart</td><td>Cold-reset the Plus/4 (game restarts)</td></tr>
+      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
+      <tr><td>Settings (gear)</td><td>Core options — joystick port swap, video filter, sample rate, key remap, etc.</td></tr>
+      <tr><td>Mute</td><td>Toggle TED audio</td></tr>
+      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
+    </table>
+
+    <h2>Loading from BASIC 3.5</h2>
+    <p>The Plus/4 ships with BASIC 3.5 (a big upgrade over C64's BASIC 2 — full sound/graphics commands). VICE auto-LOADs <code>.prg</code> files and the first program on most disks, but if a game drops you to the <code>READY.</code> prompt, type one of:</p>
+    <table>
+      <tr><th>Command</th><th>Effect</th></tr>
+      <tr><td><code>DIRECTORY</code></td><td>List the disk directory (Plus/4 BASIC 3.5 shortcut — equivalent to <code>LOAD"$",8</code> on C64)</td></tr>
+      <tr><td><code>DLOAD"name"</code></td><td>Load a program from disk (BASIC 3.5 shortcut)</td></tr>
+      <tr><td><code>RUN</code></td><td>Run the loaded program</td></tr>
+    </table>
+
+    <p class="note">Emulator: VICE xplus4 (GPL-2.0, libretro core) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
