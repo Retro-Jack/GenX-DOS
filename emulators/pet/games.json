@@ -1,0 +1,13 @@
+{
+  "andnim":   { "title": "Android NIM (1979)",                  "rom": "games/android_nim.prg" },
+  "lunar":    { "title": "Lunar Lander (1979)",                 "rom": "games/lunar.prg" },
+  "advland":  { "title": "Adventureland (1979)",                "rom": "games/advland.prg" },
+  "hangman":  { "title": "Hangman (1980)",                      "rom": "games/hangman.prg" },
+  "invader":  { "title": "Space Invaders (1980)",               "rom": "games/invader.prg" },
+  "crzballn": { "title": "Crazy Balloon (1981)",                "rom": "games/crazy_balloon.prg" },
+  "cs2001":   { "title": "ComputerSpace 2001 (1981)",           "rom": "games/computerspace2001.prg" },
+  "frogger":  { "title": "Frogger (1981)",                      "rom": "games/frogger.prg" },
+  "pacman":   { "title": "Pac-Man (1982)",                      "rom": "games/pacman.prg" },
+  "petrobot": { "title": "PETSCII Robots Shareware (2022)",     "rom": "games/petrobot.d64",  "model": "4032" },
+  "basic":    { "title": "Commodore PET BASIC 2",               "rom": "games/empty.prg" }
+}
