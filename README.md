@@ -26,6 +26,7 @@ prompt/                   the DOS terminal (HTML + JS, no build)
   javascript/             terminal logic + virtual filesystem (fs.js)
   img/                    bitmap font sprite sheets + AMIBIOS logo
 emulators/
+  _shared/                shared CSS for controls.html + corner-link styles + NumLock warning JS
   jsbeeb/                 BBC Micro        — Vite-built dist + 10 .ssd discs
   archimedes-live/        Acorn Archimedes — Arculator WASM + 10 RISC OS titles
   jsnes/                  NES              — pure-JS bundle + 10 .nes ROMs
@@ -39,7 +40,13 @@ emulators/
   jsspeccy/               Sinclair Spectrum — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81    — JtyOne + 10 .p tapes (hex format)
   xroar/                  Tandy CoCo       — XRoar WASM + 10 .ccc carts
-  atari800/               Atari 800XL      — atari800 v5.2.0 built to WASM + AltirraOS + 10 disk/cart titles
+  atari800/               Atari 400 + 800XL — atari800 v5.2.0 built to WASM + AltirraOS + 10 disk/cart titles per sub-system
+  pet/                    Commodore PET    — EmulatorJS + VICE xpet + 9 .prg classics + PETSCII Robots .d64
+  vic20/                  Commodore VIC-20 — EmulatorJS + VICE xvic + 10 cart .prg
+  max/                    Commodore MAX    — EmulatorJS + VICE x64 Ultimax mode + 8 .crt carts + MAX BASIC
+  c64/                    Commodore 64     — EmulatorJS + VICE x64 + 10 .d64 disk images
+  c16/                    Commodore 16     — EmulatorJS + VICE xplus4 C16 mode + 10 .prg C16-16K titles
+  plus4/                  Commodore Plus/4 — EmulatorJS + VICE xplus4 + 10 .prg titles
 ```
 
 ## Self-hosted emulators
@@ -59,9 +66,12 @@ emulators/
 | Spectrum  | gasman/JSSpeccy 3 v3.2               | `play.html?game=<key>`                   |
 | ZX81      | hammingweight/JtyOne                 | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar v1.10           | `play.html?game=<key>`                   |
-| Atari 800XL| atari800/atari800 v5.2.0 (own WASM build) | `play.html?game=<key>`              |
+| Atari 400 / 800XL | atari800/atari800 v5.2.0 (own WASM build) | `play.html?game=<key>[&machine=…]` |
+| PET / VIC-20 / MAX / C64 / C16 / Plus/4 | EmulatorJS + VICE libretro (xpet / xvic / x64 / xplus4) | `play.html?game=<key>` |
 
 ROMs are bundled locally — nothing is fetched at runtime.
+
+The six VICE-family bundles ship a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad for the five with a joystick port) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. The PET has no joystick — keyboard-only.
 
 ## Documentation
 
@@ -91,3 +101,6 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL 3.41 bundled (Avery Lee, freely redistributable open-source OS replacement)
+- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across the six VICE-family bundles
+- VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `xvic`, `xplus4`, `xpet`) mirrored from `cdn.emulatorjs.org/stable/`
+- PETSCII Robots Shareware: David Murray / The 8-Bit Guy (2022, free demo build distributed via the8bitguy.com)
