@@ -19,6 +19,7 @@
        it. EJS picks the "-legacy-" variant by default when no per-core
        report JSON is present (we don't ship one), so that's what we hint. -->
   <link rel="preload" href="ejs/data/cores/vice_x64-legacy-wasm.data" as="fetch" crossorigin>
+  <script defer src="../_shared/genx-numlock-warn.js"></script>
 </head>
 <body>
   <noscript>
@@ -40,11 +41,12 @@
       const key = params.get('game');
 
       let gameUrl = null;
+      let game = null;
       if (key) {
         let games;
         try { games = await (await fetch('games.json')).json(); }
         catch (e) { fail('Failed to load games.json: ' + e.message); return; }
-        const game = games[key];
+        game = games[key];
         if (!game) { fail('Unknown game key: ' + key); return; }
         document.title = game.title || key;
         gameUrl = game.rom;
@@ -66,10 +68,17 @@
       // home console using the same VIC-II + SID + 6510 chipset as the
       // C64, but only ~27 commercial cartridges were ever produced.
       // Drive emulation options are irrelevant for an all-cart system.
+      // Unified keyboard + numpad-joystick mode: see C64 play.html for
+      // the full rationale. MAX-specific: Speed/Bingo Math needs F1 for
+      // Speed Math mode AND joystick fire for Bingo Math mode; this
+      // combination handles both, plus the MAX BASIC entry.
       window.EJS_defaultOptions = {
         'vice_c64_model': 'ultimax',
         'vice_drive_true_emulation': 'disabled',
-        'vice_autoloadwarp': 'disabled'
+        'vice_autoloadwarp': 'disabled',
+        'keyboardInput': 'enabled',
+        'altKeyboardInput': 'enabled',
+        'vice_joyport_type': '1'
       };
       // True forces loader.js to use src/emulator.js (proper ES module
       // with `export default`); the cdn.emulatorjs.org `emulator.min.js`

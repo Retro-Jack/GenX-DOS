@@ -19,6 +19,7 @@
        it. EJS picks the "-legacy-" variant by default when no per-core
        report JSON is present (we don't ship one), so that's what we hint. -->
   <link rel="preload" href="ejs/data/cores/vice_x64-legacy-wasm.data" as="fetch" crossorigin>
+  <script defer src="../_shared/genx-numlock-warn.js"></script>
 </head>
 <body>
   <noscript>
@@ -40,11 +41,12 @@
       const key = params.get('game');
 
       let gameUrl = null;
+      let game = null;
       if (key) {
         let games;
         try { games = await (await fetch('games.json')).json(); }
         catch (e) { fail('Failed to load games.json: ' + e.message); return; }
-        const game = games[key];
+        game = games[key];
         if (!game) { fail('Unknown game key: ' + key); return; }
         document.title = game.title || key;
         gameUrl = game.rom;
@@ -74,10 +76,27 @@
       // runtime log; the option name pattern is misleading and
       // `'enabled'` is silently rejected with an `invalid core value`
       // warning.)
+      //
+      // Unified keyboard + numpad-joystick mode: keyboardInput enabled
+      // sends typed keys (letters, F-keys, RUN/STOP) to the VICE
+      // keyboard callback. vice_joyport_type=1 (Numpad) wires VICE's own
+      // joystick port to the keypad — numpad 8/4/6/2 for directions,
+      // 0 / 5 for fire. Both layers coexist because they listen on
+      // disjoint key sets, so games like Last Ninja (joystick + F-keys
+      // for items) and Elite (joystick flight + letters for trading)
+      // work end-to-end. Per-game documentation reviewed (lemon64 +
+      // c64-wiki): Last Ninja needs F3/F5/Space/F7/Run-Stop, Elite
+      // needs ~20 essential letters, Bard's Tale is keyboard-only,
+      // Impossible Mission / Wizball / Karate / Beach Head / Ghosts /
+      // Hunchback / Forbidden Forest are pure-joystick. The unified
+      // option set covers all of them.
       window.EJS_defaultOptions = {
         'vice_drive_true_emulation': 'enabled',
         'vice_drive_sound_emulation': '1000%',
-        'vice_autoloadwarp': 'disabled'
+        'vice_autoloadwarp': 'disabled',
+        'keyboardInput': 'enabled',
+        'altKeyboardInput': 'enabled',
+        'vice_joyport_type': '1'
       };
       // True forces loader.js to use src/emulator.js (proper ES module
       // with `export default`); the cdn.emulatorjs.org `emulator.min.js`
