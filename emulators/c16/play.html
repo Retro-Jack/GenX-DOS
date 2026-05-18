@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore 16</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    /* C16 displayed at 4:3 — same TED chip as the Plus/4 so the framebuffer
+       and overscan geometry are identical (320x200 active, PAL overscan
+       brings displayed area to standard 4:3). */
+    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
+    .err { padding: 20px; color: #fff; font-family: monospace; }
+    .loading { padding: 40px; color: #888; text-align: center; font-family: monospace; }
+  </style>
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <!-- Preload the VICE core data so the browser starts fetching it in
+       parallel with EJS bootstrap instead of waiting until init reaches
+       it. EJS picks the "-legacy-" variant by default when no per-core
+       report JSON is present (we don't ship one), so that's what we hint. -->
+  <link rel="preload" href="ejs/data/cores/vice_xplus4-legacy-wasm.data" as="fetch" crossorigin>
+</head>
+<body>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+      <div>
+        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+      </div>
+    </div>
+  </noscript>
+  <div id="game"><div class="loading">Booting Commodore 16…</div></div>
+  <a href="controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
+  <script>
+    (async function () {
+      const fail = (msg) => { document.getElementById('game').innerHTML = '<div class="err">' + msg + '</div>'; };
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+
+      let gameUrl = null;
+      if (key) {
+        let games;
+        try { games = await (await fetch('games.json')).json(); }
+        catch (e) { fail('Failed to load games.json: ' + e.message); return; }
+        const game = games[key];
+        if (!game) { fail('Unknown game key: ' + key); return; }
+        document.title = game.title || key;
+        gameUrl = game.rom;
+      } else {
+        document.title = 'Commodore 16';
+      }
+
+      // EmulatorJS expects its config as globals set BEFORE loader.js runs.
+      window.EJS_player    = '#game';
+      // loader.js prepends "../" to any non-absolute EJS_pathtodata, so we
+      // build an absolute pathname from the current document URL — works
+      // both at the repo root locally and under /GenX-DOS/ on Pages.
+      window.EJS_pathtodata = location.pathname.replace(/[^/]*$/, '') + 'ejs/data/';
+      window.EJS_core      = 'vice_xplus4';
+      window.EJS_startOnLoaded = true;
+      // Same VICE xplus4 core as the Plus/4 bundle, switched into C16 mode
+      // via vice_plus4_model = 'c16pal' — that gives 16K RAM (vs. Plus/4's
+      // 64K) and drops the built-in 3-PLUS-1 office cartridge, matching
+      // the C16's real spec. Drive-sound recipe is identical to the rest
+      // of the VICE family: real 1541, 10× boost, no warp on autoload.
+      window.EJS_defaultOptions = {
+        'vice_plus4_model': 'c16pal',
+        'vice_drive_true_emulation': 'enabled',
+        'vice_drive_sound_emulation': '1000%',
+        'vice_autoloadwarp': 'disabled'
+      };
+      // True forces loader.js to use src/emulator.js (proper ES module
+      // with `export default`); the cdn.emulatorjs.org `emulator.min.js`
+      // we mirrored isn't an ES module, so `await import(...).default`
+      // returns undefined and the loader bails silently.
+      window.EJS_DEBUG_XX  = true;
+      if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
+
+      const s = document.createElement('script');
+      s.src = 'ejs/data/loader.js';
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>

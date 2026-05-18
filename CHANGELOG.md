@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- Commodore 16 self-hosted at `emulators/c16/` via EmulatorJS + VICE — fourth VICE-family sub-system, slotted between C64 and Plus/4 in the COMMODRE submenu (which now lists VIC-20 / C64 / C16 / Plus/4, four entries). Uses the same `vice_xplus4-legacy-wasm.data` core as the Plus/4 bundle but switched into C16 mode via `EJS_defaultOptions['vice_plus4_model'] = 'c16pal'` — that gives 16K RAM (vs. Plus/4's 64K) and drops the built-in 3-PLUS-1 office cartridge, period-correct for the C16's real spec. 10 first-in-series C16 16K-compatible classics from plus4world.com (powweb mirror — the canonical `plus4world.com` SSL cert is currently expired, so curl needed the `.powweb.com` variant): Fire Ant (1984 CBM), Skramble (1984 Anirog), Tower of Evil (1984 Creative Sparks), Xargon Wars (1984 Gremlin), Berks (1985 CRL), Big Mac (1985 Mastertronic), Hustler (1985 Bubble Bus), Tom Thumb (1985 Anirog), Tutti Frutti (1985 Mastertronic), Mr. Puniverse (1986 Mastertronic). All single-file `.prg`s loading at `$1001` (BASIC 3.5 land address — same as Plus/4, 4-byte `empty.prg` blob reused unchanged). Bundle structure cloned wholesale from `emulators/plus4/` so all the prior self-containment patches (`checkForUpdates()` no-op, `EJS_DEBUG_XX` flag, local legacy-variant core preload, no CDN failsafes) carry over with zero per-bundle work. controls.html documents the C16's 12,277-byte BASIC free memory (vs. Plus/4's ~60K) — the explanation for why C16-era games are so tightly packed. Total bundle ~5.5 MB.
+
 ### Changed
 - The virtual DOS prompt's `edit` command now refuses with "Error: Correction fluid mismatch." instead of "Illegal command: edit." (the Tippex era predates the IDE era).
 - Site is now fully self-contained at runtime. Audit found three external network references that have been eliminated:

@@ -1,0 +1,13 @@
+{
+  "fireant":  { "title": "Fire Ant (1984)",                "rom": "games/fire_ant.prg" },
+  "skramble": { "title": "Skramble (1984)",                "rom": "games/skramble.prg" },
+  "towrevil": { "title": "Tower of Evil (1984)",           "rom": "games/tower_of_evil.prg" },
+  "xargon":   { "title": "Xargon Wars (1984)",             "rom": "games/xargon_wars.prg" },
+  "berks":    { "title": "Berks (1985)",                   "rom": "games/berks.prg" },
+  "bigmac":   { "title": "Big Mac (1985)",                 "rom": "games/big_mac.prg" },
+  "hustler":  { "title": "Hustler (1985)",                 "rom": "games/hustler.prg" },
+  "tomthumb": { "title": "Tom Thumb (1985)",               "rom": "games/tom_thumb.prg" },
+  "tuttifrt": { "title": "Tutti Frutti (1985)",            "rom": "games/tutti_frutti.prg" },
+  "punivrse": { "title": "Mr. Puniverse (1986)",           "rom": "games/mr_puniverse.prg" },
+  "basic":    { "title": "Commodore 16 BASIC 3.5",         "rom": "games/empty.prg" }
+}
