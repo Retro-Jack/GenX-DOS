@@ -26,7 +26,8 @@ prompt/                   the DOS terminal (HTML + JS, no build)
   javascript/             terminal logic + virtual filesystem (fs.js)
   img/                    bitmap font sprite sheets + AMIBIOS logo
 emulators/
-  _shared/                shared CSS for controls.html + corner-link styles + NumLock warning JS
+  _shared/                shared CSS for controls.html + corner-link styles + NumLock warning JS + RUN/STOP softkey
+  _shared-ejs/            shared EmulatorJS framework + all 5 VICE libretro cores (saves ~13 MB vs per-bundle copies)
   jsbeeb/                 BBC Micro        — Vite-built dist + 10 .ssd discs
   archimedes-live/        Acorn Archimedes — Arculator WASM + 10 RISC OS titles
   jsnes/                  NES              — pure-JS bundle + 10 .nes ROMs
@@ -102,6 +103,6 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL 3.41 bundled (Avery Lee, freely redistributable open-source OS replacement)
-- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across the six VICE-family bundles
+- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across all seven VICE-family bundles via `emulators/_shared-ejs/`
 - VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `xvic`, `xplus4`, `xpet`) mirrored from `cdn.emulatorjs.org/stable/`
 - PETSCII Robots Shareware: David Murray / The 8-Bit Guy (2022, free demo build distributed via the8bitguy.com)
