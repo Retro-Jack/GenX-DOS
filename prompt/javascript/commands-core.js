@@ -212,6 +212,13 @@ function find(query) {
     var q = raw.trim().toLowerCase();
     if (!q) { echo('Empty search.'); return; }
 
+    // Special case: any query starting with "odyssey" matches the
+    // Odyssey² entry, regardless of what comes after. The menu title
+    // is stored as "Odysseyý" (custom-font trick: char ý at sprite
+    // index 253 renders the CP437 superscript-2 glyph), so a literal
+    // `find "odyssey 2"` would otherwise miss it.
+    if (q.indexOf('odyssey') === 0) q = 'odyssey';
+
     // One pass over node.files collecting:
     //   byCode: { displayedCode -> title }     menu rows keyed by their code column
     //   byNum:  { rowNumber    -> title }      menu rows keyed by their N.
