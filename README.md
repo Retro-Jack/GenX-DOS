@@ -47,6 +47,7 @@ emulators/
   c64/                    Commodore 64     — EmulatorJS + VICE x64 + 10 .d64 disk images
   c16/                    Commodore 16     — EmulatorJS + VICE xplus4 C16 mode + 10 .prg C16-16K titles
   plus4/                  Commodore Plus/4 — EmulatorJS + VICE xplus4 + 10 .prg titles
+  c128/                   Commodore 128    — EmulatorJS + VICE x128 native mode + 10 mixed commercial/homebrew titles (VICII 40-col + VDC 80-col)
 ```
 
 ## Self-hosted emulators
@@ -67,11 +68,11 @@ emulators/
 | ZX81      | hammingweight/JtyOne                 | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar v1.10           | `play.html?game=<key>`                   |
 | Atari 400 / 800XL | atari800/atari800 v5.2.0 (own WASM build) | `play.html?game=<key>[&machine=…]` |
-| PET / VIC-20 / MAX / C64 / C16 / Plus/4 | EmulatorJS + VICE libretro (xpet / xvic / x64 / xplus4) | `play.html?game=<key>` |
+| PET / VIC-20 / MAX / C64 / C16 / Plus/4 / C128 | EmulatorJS + VICE libretro (xpet / xvic / x64 / xplus4 / x128) | `play.html?game=<key>` |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
-The six VICE-family bundles ship a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad for the five with a joystick port) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. The PET has no joystick — keyboard-only.
+The seven VICE-family bundles ship a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad for the six with a joystick port) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. The PET has no joystick — keyboard-only. Esc is browser-captured (exits pointer-lock/fullscreen) so the bundles remap RUN/STOP to **Scroll Lock** + **Pause/Break** + a top-left clickable button via `emulators/_shared/genx-vice-softkeys.js`.
 
 ## Documentation
 

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore 128</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    /* C128 displayed at 4:3 — same as the C64 sibling. Both VIC-IIe
+       (40-col 384x272) and VDC (80-col 640x200) display at 4:3 on real
+       hardware once you account for the non-square pixel aspect. The
+       VDC framebuffer is natively 3.2:1 so we have to override the
+       canvas size EJS sets from the framebuffer geometry — the `!important`
+       on the canvas rule forces it to fill the 4:3 container regardless
+       of which video chip is reporting. */
+    /* VICE x128 reports a 856×288 framebuffer (aspect 2.78:1) regardless
+       of which video chip is selected — it always allocates room for
+       both VIC-IIe + VDC. RetroArch preserves that aspect inside the
+       canvas drawing buffer, so even in a 4:3 container the visible
+       content is letterboxed top + bottom (only ~48% of canvas height).
+       To fill the 4:3 frame the way a real C128 monitor would (it
+       stretched VDC's narrow framebuffer vertically via non-square
+       pixels) we scaleY the canvas by 2.78/1.33 ≈ 2.088 and let
+       `overflow: hidden` on #game clip the now-overflowing empty
+       letterbox bars. */
+    #game {
+      aspect-ratio: 4 / 3;
+      width: min(100vw, calc(100vh * 4 / 3));
+      height: min(100vh, calc(100vw * 3 / 4));
+      overflow: hidden;
+    }
+    #game canvas {
+      transform-origin: 50% 50%;
+      transform: scaleY(calc(2.784 / 1.333));
+    }
+    .err { padding: 20px; color: #fff; font-family: monospace; }
+    .loading { padding: 40px; color: #888; text-align: center; font-family: monospace; }
+  </style>
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <!-- Preload the VICE core data so the browser starts fetching it in
+       parallel with EJS bootstrap instead of waiting until init reaches
+       it. EJS picks the "-legacy-" variant by default when no per-core
+       report JSON is present (we don't ship one), so that's what we hint. -->
+  <link rel="preload" href="ejs/data/cores/vice_x128-legacy-wasm.data" as="fetch" crossorigin>
+  <script defer src="../_shared/genx-numlock-warn.js"></script>
+  <script defer src="../_shared/genx-vice-softkeys.js"></script>
+</head>
+<body>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+      <div>
+        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+      </div>
+    </div>
+  </noscript>
+  <div id="game"><div class="loading">Booting Commodore 128…</div></div>
+  <a href="controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
+  <script>
+    (async function () {
+      const fail = (msg) => { document.getElementById('game').innerHTML = '<div class="err">' + msg + '</div>'; };
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+
+      let gameUrl = null;
+      let game = null;
+      if (key) {
+        let games;
+        try { games = await (await fetch('games.json')).json(); }
+        catch (e) { fail('Failed to load games.json: ' + e.message); return; }
+        game = games[key];
+        if (!game) { fail('Unknown game key: ' + key); return; }
+        document.title = game.title || key;
+        gameUrl = game.rom;
+      } else {
+        document.title = 'Commodore 128';
+      }
+
+      // EmulatorJS expects its config as globals set BEFORE loader.js runs.
+      window.EJS_player    = '#game';
+      // loader.js prepends "../" to any non-absolute EJS_pathtodata, so we
+      // build an absolute pathname from the current document URL — works
+      // both at the repo root locally and under /GenX-DOS/ on Pages.
+      window.EJS_pathtodata = location.pathname.replace(/[^/]*$/, '') + 'ejs/data/';
+      window.EJS_core      = 'vice_x128';
+      window.EJS_startOnLoaded = true;
+      // C128 in NATIVE mode (not C64-compat). vice_c128_go64='disabled'
+      // makes the machine boot to the BASIC 7.0 prompt — that's the
+      // distinguishing feature of this bundle vs. the c64 one next door.
+      //
+      // Per-game video output: the C128 has two simultaneous video
+      // chips, VIC-IIe (40-column, same as C64) and VDC (80-column).
+      // 40-col commercial titles like Last V8 / Rocky Horror Show use
+      // VIC-II; the Infocom 80-col text adventures (Trinity, Beyond
+      // Zork, Bureaucracy, A Mind Forever Voyaging) and Star Fleet I
+      // use VDC. games.json carries an optional `video` field that
+      // play.html reads and feeds to vice_c128_video_output. Default
+      // VICII for the BASIC entry — type GRAPHIC 5 / GRAPHIC 0 or
+      // press F7 to toggle to VDC at runtime.
+      //
+      // Drive options, keyboard+numpad-joystick: same recipe as the
+      // C64 bundle. See c64/play.html for the full rationale.
+      const video = (game && game.video) || 'VICII';
+      window.EJS_defaultOptions = {
+        'vice_c128_go64': 'disabled',
+        'vice_c128_video_output': video,
+        // VICE x128 reports a 856×288 framebuffer (aspect 2.78:1) — it
+        // packs VIC-IIe + VDC overscan into one wide buffer regardless
+        // of which chip is the active output. `vice_crop: 'enabled'`
+        // strips the dead borders so the active display dominates and
+        // EJS renders it at a sensible aspect inside our 4:3 container.
+        'vice_aspect_ratio': 'pal',
+        'vice_crop': 'enabled',
+        'vice_crop_mode': 'both',
+        'vice_drive_true_emulation': 'enabled',
+        'vice_drive_sound_emulation': '100%',
+        'vice_autoloadwarp': 'disabled',
+        'keyboardInput': 'enabled',
+        'altKeyboardInput': 'enabled',
+        'vice_joyport_type': '1'
+      };
+      // True forces loader.js to use src/emulator.js (proper ES module
+      // with `export default`); the cdn.emulatorjs.org `emulator.min.js`
+      // we mirrored isn't an ES module, so `await import(...).default`
+      // returns undefined and the loader bails silently.
+      window.EJS_DEBUG_XX  = true;
+      if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
+
+      const s = document.createElement('script');
+      s.src = 'ejs/data/loader.js';
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>

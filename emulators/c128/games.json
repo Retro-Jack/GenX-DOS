@@ -1,0 +1,13 @@
+{
+  "lastv8":   { "title": "The Last V8 (1985)",                 "rom": "games/lastv8.d64",   "video": "VICII" },
+  "rockyh":   { "title": "Rocky Horror Show (1985)",           "rom": "games/rockyh.d64",   "video": "VICII" },
+  "crush":    { "title": "128 Crush (homebrew, 40-col)",       "rom": "games/crush.prg",    "video": "VICII" },
+  "worldwar": { "title": "World at War (BASIC 7.0)",           "rom": "games/worldwar.prg", "video": "VICII" },
+  "kquest":   { "title": "Knight's Quest (homebrew, 80-col)",  "rom": "games/kquest.d64",   "video": "VDC" },
+  "wumpus":   { "title": "Wumpus 2.0 (homebrew, 80-col)",      "rom": "games/wumpus.d64",   "video": "VDC" },
+  "starflt1": { "title": "Star Fleet I (1987, 80-col)",        "rom": "games/starflt1.d64", "video": "VDC" },
+  "rockfall": { "title": "Rockfall 128 (homebrew, 80-col)",    "rom": "games/rockfall.prg", "video": "VDC" },
+  "phazer":   { "title": "Phazer (homebrew, 80-col)",          "rom": "games/phazer.prg",   "video": "VDC" },
+  "tetris":   { "title": "Tetris 128 (homebrew, 80-col)",      "rom": "games/tetris.d64",   "video": "VDC" },
+  "basic":    { "title": "Commodore 128 BASIC 7.0",            "rom": "games/empty.prg",    "video": "VICII" }
+}

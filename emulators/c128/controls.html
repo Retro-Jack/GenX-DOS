@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore 128 Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Commodore · 128</div>
+      <h1>Commodore 128 — Controls</h1>
+    </div>
+
+    <p class="intro">Self-hosted VICE x128 (the gold-standard Commodore 128 emulator) running in your browser via EmulatorJS, configured for the C128 in <strong>native mode</strong> (BASIC 7.0, 128 KB RAM, dual VIC-IIe + VDC video chips, 8502 + Z80 CPUs). The 128 famously had three personalities: this bundle skips C64 compatibility mode (we have <a href="../c64/play.html">a dedicated C64 bundle</a> for that) and skips CP/M mode, focusing on the 128's distinctive native features. Click the canvas first so the emulator receives keyboard input.</p>
+
+    <p class="note">Each game's <code>games.json</code> entry sets the right video chip up-front — VIC-IIe (40 columns, same as the C64) for action games and VDC (80 columns) for the Infocom text adventures and Star Fleet I that need the wider display. You can manually swap chips at any time by pressing <kbd>F7</kbd> (the C128's "40/80 DISPLAY" toggle key).</p>
+
+    <p class="note"><strong>On first load, click the canvas once</strong> — the C128 KERNAL takes ~2 seconds to boot (RAM test, dual-video init, BASIC 7.0 setup) and the browser's audio context can't start without a user gesture, so the boot stays frozen on whatever frame it reached until you click. After that single click, boot proceeds normally and finishes at the <code>READY.</code> prompt.</p>
+
+    <p class="note">Every bundled game is a single-disk title — no mid-session disk swaps required. (Trinity and Beyond Zork were on the shortlist but their C128 80-column releases ship as dual-sided 1571 D71 images that prompt for disk B mid-game, so they were swapped for the single-disk Knight's Quest and Wumpus 2.0 instead.)</p>
+
+    <h2>Joystick (port 1 — Player 1)</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Numpad ↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> (8/2/4/6)</td><td>Stick direction</td></tr>
+      <tr><td><kbd>Numpad 0</kbd> or <kbd>5</kbd></td><td>Fire button</td></tr>
+    </table>
+    <p>Joystick is mapped to the numeric keypad via VICE's <code>vice_joyport_type='1'</code> setting so it doesn't conflict with the keyboard. NumLock needs to be on for the numpad to fire — a banner reminds you if it isn't.</p>
+
+    <h2>C128 keyboard</h2>
+    <p>VICE maps the C128 keyboard "positionally" to your PC keyboard. C128-specific keys:</p>
+    <table>
+      <tr><th>Key</th><th>C128 key</th></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>L Alt</kbd></td><td>Commodore key (C= key)</td></tr>
+      <tr><td><kbd>Scroll Lock</kbd></td><td>RUN/STOP (remapped from Esc — see note below)</td></tr>
+      <tr><td><kbd>End</kbd></td><td>ESC (the C128's actual ESC key — distinct from RUN/STOP)</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>NO SCRL (no-scroll lock)</td></tr>
+      <tr><td><kbd>F7</kbd></td><td><strong>40/80 DISPLAY</strong> — toggles VIC-IIe ↔ VDC</td></tr>
+      <tr><td><kbd>F1</kbd> – <kbd>F8</kbd></td><td>Function keys</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
+      <tr><td><kbd>Page Up</kbd></td><td>RESTORE (combine with RUN/STOP for warm reset)</td></tr>
+    </table>
+
+    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>emulators/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
+
+    <h2>EmulatorJS toolbar</h2>
+    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Restart</td><td>Cold-reset the C128 (boots back into native BASIC 7.0)</td></tr>
+      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
+      <tr><td>Settings (gear)</td><td>Core options — toggle <code>vice_c128_go64</code> to enter C64 mode at boot, swap <code>vice_c128_video_output</code> manually, etc.</td></tr>
+      <tr><td>Mute</td><td>Toggle SID audio</td></tr>
+      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
+    </table>
+
+    <h2>BASIC 7.0 cheat sheet</h2>
+    <p>The 128's BASIC 7.0 is a major upgrade over the C64's BASIC v2 — full graphics + sound + sprite commands plus disk-direct convenience.</p>
+    <table>
+      <tr><th>Command</th><th>Effect</th></tr>
+      <tr><td><code>GRAPHIC 5</code></td><td>Switch to 80-column VDC text screen</td></tr>
+      <tr><td><code>GRAPHIC 0</code></td><td>Back to 40-column VIC-IIe text screen</td></tr>
+      <tr><td><code>DIRECTORY</code></td><td>List the disk directory (no need for <code>LOAD"$",8</code>)</td></tr>
+      <tr><td><code>DLOAD"name"</code></td><td>Load a program from disk</td></tr>
+      <tr><td><code>RUN</code></td><td>Run the loaded program</td></tr>
+      <tr><td><code>GO64</code></td><td>Reboot in C64 compatibility mode</td></tr>
+      <tr><td><code>BOOT</code></td><td>Auto-load BOOT sector from disk</td></tr>
+    </table>
+
+    <h2>Why the C128 library is small</h2>
+    <p>The C128 sold ~5 million units but its native mode (BASIC 7.0, 80-column VDC, 2 MHz fast mode) was used by only ~100-200 commercial titles total — most developers targeted the C64 install base and shipped C64-compatible code that ran on the 128 via GO64. The native-mode library is dominated by productivity software (Paperback Writer 128, GEOS 128, Big Blue Reader) and the Infocom 80-column text adventures bundled here. Of the action games, only a handful (The Last V8, Rocky Horror Show, Thai Boxing, Kikstart 2) used the 128's native mode meaningfully.</p>
+
+    <p class="note">Emulator: VICE x128 (GPL-2.0, libretro core) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
