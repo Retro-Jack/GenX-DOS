@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ColecoVision</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
+    .err { padding: 20px; color: #fff; font-family: monospace; }
+    .loading { padding: 40px; color: #888; text-align: center; font-family: monospace; }
+  </style>
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <link rel="preload" href="../_shared-ejs/ejs/data/cores/gearcoleco-legacy-wasm.data" as="fetch" crossorigin>
+  <script defer src="../_shared/genx-numlock-warn.js"></script>
+</head>
+<body>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+      <div>
+        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+      </div>
+    </div>
+  </noscript>
+  <div id="game"><div class="loading">Booting ColecoVision…</div></div>
+  <a href="controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
+  <script>
+    (async function () {
+      const fail = (msg) => { document.getElementById('game').innerHTML = '<div class="err">' + msg + '</div>'; };
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+
+      let gameUrl = null;
+      let game = null;
+      if (key) {
+        let games;
+        try { games = await (await fetch('games.json')).json(); }
+        catch (e) { fail('Failed to load games.json: ' + e.message); return; }
+        game = games[key];
+        if (!game) { fail('Unknown game key: ' + key); return; }
+        document.title = game.title || key;
+        gameUrl = game.rom;
+      } else {
+        document.title = 'ColecoVision';
+      }
+
+      window.EJS_player    = '#game';
+      window.EJS_pathtodata = (location.pathname.match(/^.*\/emulators\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
+      window.EJS_core      = 'coleco';
+      window.EJS_biosUrl   = new URL('colecovision.rom', location.href).href;
+      window.EJS_startOnLoaded = true;
+      window.EJS_DEBUG_XX  = true;
+      // gearcoleco puts the 12-key controller keypad on RetroPad
+      // Y/X/L/R/L2/R2/L3/R3/START/SELECT (1-8, *, #) and on the left
+      // analog stick (9, 0). Drive the whole keypad off the PC's numpad
+      // — period-correct shape (a numpad IS a 12-key keypad) and it leaves
+      // the number row free for typing. Arrows still drive the D-pad,
+      // X / Z still fire (yellow / red). Requires NumLock ON — banner at
+      // `_shared/genx-numlock-warn.js` fires if it's off.
+      window.EJS_defaultControls = {
+        0: {
+          1:  { value: 'numpad 1' },   // Y      → keypad 1
+          9:  { value: 'numpad 2' },   // X      → keypad 2
+          10: { value: 'numpad 3' },   // L      → keypad 3
+          11: { value: 'numpad 4' },   // R      → keypad 4
+          12: { value: 'numpad 5' },   // L2     → keypad 5
+          13: { value: 'numpad 6' },   // R2     → keypad 6
+          14: { value: 'numpad 7' },   // L3     → keypad 7
+          15: { value: 'numpad 8' },   // R3     → keypad 8
+          3:  { value: 'multiply' },   // START  → keypad * (numpad *)
+          2:  { value: 'subtract' },   // SELECT → keypad # (numpad -)
+          16: { value: 'numpad 9' },   // LStickX+ → keypad 9 (best-guess axis)
+          17: { value: 'numpad 0' }    // LStickX- → keypad 0
+        }
+      };
+      if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
+
+      const s = document.createElement('script');
+      s.src = '../_shared-ejs/ejs/data/loader.js';
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>

@@ -27,7 +27,7 @@ prompt/                   the DOS terminal (HTML + JS, no build)
   img/                    bitmap font sprite sheets + AMIBIOS logo
 emulators/
   _shared/                shared CSS for controls.html + corner-link styles + NumLock warning JS + RUN/STOP softkey
-  _shared-ejs/            shared EmulatorJS framework + all 5 VICE libretro cores (saves ~13 MB vs per-bundle copies)
+  _shared-ejs/            shared EmulatorJS framework + 5 VICE cores + gearcoleco core (saves ~13 MB vs per-bundle copies)
   jsbeeb/                 BBC Micro        — Vite-built dist + 10 .ssd discs
   archimedes-live/        Acorn Archimedes — Arculator WASM + 10 RISC OS titles
   jsnes/                  NES              — pure-JS bundle + 10 .nes ROMs
@@ -49,6 +49,7 @@ emulators/
   c16/                    Commodore 16     — EmulatorJS + VICE xplus4 C16 mode + 10 .prg C16-16K titles
   plus4/                  Commodore Plus/4 — EmulatorJS + VICE xplus4 + 10 .prg titles
   c128/                   Commodore 128    — EmulatorJS + VICE x128 native mode + 10 mixed commercial/homebrew titles (VICII 40-col + VDC 80-col)
+  coleco/                 ColecoVision     — EmulatorJS + gearcoleco core + 10 launch-era .col carts
 ```
 
 ## Self-hosted emulators
@@ -70,6 +71,7 @@ emulators/
 | Tandy CoCo| Ciaran Anscomb/XRoar v1.10           | `play.html?game=<key>`                   |
 | Atari 400 / 800XL | atari800/atari800 v5.2.0 (own WASM build) | `play.html?game=<key>[&machine=…]` |
 | PET / VIC-20 / MAX / C64 / C16 / Plus/4 / C128 | EmulatorJS + VICE libretro (xpet / xvic / x64 / xplus4 / x128) | `play.html?game=<key>` |
+| ColecoVision | EmulatorJS + gearcoleco (Drhelius) libretro | `play.html?game=<key>` |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
@@ -103,6 +105,8 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL 3.41 bundled (Avery Lee, freely redistributable open-source OS replacement)
-- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across all seven VICE-family bundles via `emulators/_shared-ejs/`
-- VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `xvic`, `xplus4`, `xpet`) mirrored from `cdn.emulatorjs.org/stable/`
+- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across the seven VICE-family bundles and ColecoVision via `emulators/_shared-ejs/`
+- VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `x128`, `xvic`, `xplus4`, `xpet`) mirrored from `cdn.emulatorjs.org/stable/`
+- gearcoleco: GPL-3.0 (Drhelius) — libretro ColecoVision core mirrored from `cdn.emulatorjs.org/stable/`
+- ColecoVision BIOS: ©1982 Coleco, bundled for emulator-only use
 - PETSCII Robots Shareware: David Murray / The 8-Bit Guy (2022, free demo build distributed via the8bitguy.com)
