@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ColecoVision Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Coleco · ColecoVision</div>
+      <h1>ColecoVision — Controls</h1>
+    </div>
+
+    <p class="intro">Self-hosted gearcoleco (libretro Z80 + TMS9918A core) running in your browser via EmulatorJS. ColecoVision launched in August 1982 with <em>Donkey Kong</em> as the pack-in title and out-sold the Atari 2600 in its first year — the first console with near-arcade-quality graphics at home. The system shipped with a numeric-keypad controller and bundled arcade-overlay cards for each game. Click the canvas first so the emulator receives keyboard input.</p>
+
+    <h2>Controller — directional + fire</h2>
+    <table>
+      <tr><th>Key</th><th>ColecoVision controller</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>D-pad (joystick)</td></tr>
+      <tr><td><kbd>Space</kbd> or <kbd>X</kbd></td><td>Left fire button (primary)</td></tr>
+      <tr><td><kbd>Z</kbd></td><td>Right fire button (secondary)</td></tr>
+    </table>
+
+    <h2>Numeric keypad — overlay buttons</h2>
+    <p>The ColecoVision controller had a 12-key telephone-style keypad (<kbd>1</kbd>–<kbd>9</kbd>, <kbd>*</kbd>, <kbd>0</kbd>, <kbd>#</kbd>) — a numpad in everything but name. The site drives the whole keypad off your PC's <strong>numeric keypad</strong>. <strong>NumLock must be ON</strong> or the keys read as arrows/home/etc. — a banner fires if it's off.</p>
+    <table>
+      <tr><th>Key</th><th>Keypad button</th></tr>
+      <tr><td><kbd>Numpad 1</kbd> – <kbd>Numpad 8</kbd></td><td>Keypad <kbd>1</kbd>–<kbd>8</kbd></td></tr>
+      <tr><td><kbd>Numpad 9</kbd> / <kbd>Numpad 0</kbd></td><td>Keypad <kbd>9</kbd> / <kbd>0</kbd> (mapped via the left analog-stick X-axis — gearcoleco routes the stick to those two digits)</td></tr>
+      <tr><td><kbd>Numpad *</kbd></td><td>Keypad <kbd>*</kbd> (mapped to RetroPad START)</td></tr>
+      <tr><td><kbd>Numpad -</kbd></td><td>Keypad <kbd>#</kbd> (mapped to RetroPad SELECT — no `#` on a numpad so we use the adjacent key)</td></tr>
+    </table>
+    <p class="note">Most games show a "PRESS &lt;number&gt; FOR SKILL LEVEL" screen at boot — that's the keypad in action. Press <kbd>Numpad 1</kbd> for the easiest skill (or whatever number the overlay tells you). All bindings can be remapped via the gear icon in the EmulatorJS toolbar.</p>
+
+    <h2>EmulatorJS toolbar</h2>
+    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Restart</td><td>Cold-reset the ColecoVision (cart reloads, skill-select screen comes back)</td></tr>
+      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
+      <tr><td>Settings (gear)</td><td>Core options — video filter, sample rate, key remap, etc.</td></tr>
+      <tr><td>Mute</td><td>Toggle audio (TI SN76489 — three square-wave channels + one noise)</td></tr>
+      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
+    </table>
+
+    <h2>Notes</h2>
+    <p>The ColecoVision BIOS (<code>colecovision.rom</code>, ©1982 Coleco) is bundled with this site — the system can't boot without it. The boot screen ("COLECOVISION®") is part of the BIOS and plays every cold reset; this is authentic to the hardware.</p>
+
+    <p class="note">Emulator: gearcoleco (GPL-3.0, by Drhelius) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>

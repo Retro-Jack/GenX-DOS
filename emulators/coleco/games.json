@@ -1,0 +1,12 @@
+{
+  "dkong":    { "title": "Donkey Kong",                       "rom": "games/donkeykong.col" },
+  "cosmic":   { "title": "Cosmic Avenger",                    "rom": "games/cosmic.col" },
+  "ladybug":  { "title": "Lady Bug",                          "rom": "games/ladybug.col" },
+  "mousetrp": { "title": "Mouse Trap",                        "rom": "games/mousetrap.col" },
+  "carnival": { "title": "Carnival",                          "rom": "games/carnival.col" },
+  "venture":  { "title": "Venture",                           "rom": "games/venture.col" },
+  "smurf":    { "title": "Smurf: Rescue in Gargamel's Castle","rom": "games/smurf.col" },
+  "zaxxon":   { "title": "Zaxxon",                            "rom": "games/zaxxon.col" },
+  "mrdo":     { "title": "Mr. Do!",                           "rom": "games/mrdo.col" },
+  "qbert":    { "title": "Q*bert",                            "rom": "games/qbert.col" }
+}
