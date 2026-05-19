@@ -81,11 +81,8 @@
         'altKeyboardInput': 'enabled',
         'vice_joyport_type': '1'
       };
-      // True forces loader.js to use src/emulator.js (proper ES module
-      // with `export default`); the cdn.emulatorjs.org `emulator.min.js`
-      // we mirrored isn't an ES module, so `await import(...).default`
-      // returns undefined and the loader bails silently.
       window.EJS_DEBUG_XX  = true;
+      // MAX BASIC uses a real .crt cart, not the empty-PRG trick — leave gameUrl set.
       if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
 
       const s = document.createElement('script');
