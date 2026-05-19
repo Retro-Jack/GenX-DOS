@@ -26,3 +26,9 @@ LALT            PD0L_A_R
 RSHIFT          PD0R_A_T
 RCTRL           PD0R_A_R
 RALT            PD0R_A_L
+
+; Disc (P1) - arrow keys, diagonals synthesized
+UP              PD0L_D_N
+DOWN            PD0L_D_S
+LEFT            PD0L_D_W
+RIGHT           PD0L_D_E
