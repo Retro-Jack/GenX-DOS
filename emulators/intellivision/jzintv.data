@@ -1,0 +1,49 @@
+; GenX-DOS Intellivision keyboard mapping
+; Maps PC keyboard → Intellivision disc + keypad + action buttons
+
+MAP 0
+
+; Disc (P1) — arrow keys for cardinals, combos for diagonals
+UP              PD0L_D_N
+DOWN            PD0L_D_S
+LEFT            PD0L_D_W
+RIGHT           PD0L_D_E
+
+; P1 action buttons (left hand on top, fire on bottom)
+LSHIFT          PD0L_A_T
+LCTRL           PD0L_A_L
+LALT            PD0L_A_R
+SPACE           PD0L_A_T
+
+; Keypad (number row → Controller 1)
+1               PD0L_KP1
+2               PD0L_KP2
+3               PD0L_KP3
+4               PD0L_KP4
+5               PD0L_KP5
+6               PD0L_KP6
+7               PD0L_KP7
+8               PD0L_KP8
+9               PD0L_KP9
+0               PD0L_KP0
+-               PD0L_KPC
+=               PD0L_KPE
+
+; Numpad as alt keypad (more period-correct shape)
+KP1             PD0L_KP1
+KP2             PD0L_KP2
+KP3             PD0L_KP3
+KP4             PD0L_KP4
+KP5             PD0L_KP5
+KP6             PD0L_KP6
+KP7             PD0L_KP7
+KP8             PD0L_KP8
+KP9             PD0L_KP9
+KP0             PD0L_KP0
+KP_PERIOD       PD0L_KPC
+KP_ENTER        PD0L_KPE
+
+; P2 action buttons (right hand)
+RSHIFT          PD0R_A_T
+RCTRL           PD0R_A_R
+RALT            PD0R_A_L

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Intellivision Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Mattel · Intellivision</div>
+      <h1>Intellivision — Controls</h1>
+    </div>
+
+    <p class="intro">Self-hosted jzIntv (Joe Zbiciak's gold-standard Intellivision emulator) compiled to WebAssembly, mirrored from <a href="https://github.com/mholzinger/intellivision-overlay-editor" target="_blank" rel="noopener">mholzinger/intellivision-overlay-editor</a>. Launched 1979 by Mattel Electronics — the first 16-bit home console (CP1610 CPU), the first console with a controller that had a 16-direction disc, a 12-key keypad, and 4 action buttons. Games shipped with cardboard keypad overlays. Click the canvas first so the emulator receives keyboard input.</p>
+
+    <h2>Disc — directional input</h2>
+    <p>The Intellivision controller's flat disc was the first home-console pad with 16-way input (real PC-keyboard arrow keys only cover 8 — jzIntv synthesizes the in-between angles when you hold two arrows). Used for movement, aiming, steering, and disc-throwing in TRON.</p>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Disc — N / S / W / E (combos for 8 cardinals)</td></tr>
+    </table>
+
+    <h2>Action buttons — top, bottom-left, bottom-right</h2>
+    <p>Three positions, four buttons total — the two bottom buttons are wired identically so most games treat them as one "fire" button. Each game's overlay tells you what each does.</p>
+    <table>
+      <tr><th>Key</th><th>Button</th></tr>
+      <tr><td><kbd>L Shift</kbd> or <kbd>Space</kbd></td><td>Top action button</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>Bottom-left action button</td></tr>
+      <tr><td><kbd>L Alt</kbd></td><td>Bottom-right action button</td></tr>
+    </table>
+
+    <h2>Keypad — overlay buttons</h2>
+    <p>12 numeric keys (1-9, CLR, 0, ENT). Period-correct shape is the PC numpad — same 3×4 grid as the original cardboard overlay.</p>
+    <table>
+      <tr><th>Key</th><th>Keypad button</th></tr>
+      <tr><td><kbd>Numpad 1</kbd> – <kbd>Numpad 9</kbd> (or number row)</td><td>Keypad <kbd>1</kbd>–<kbd>9</kbd></td></tr>
+      <tr><td><kbd>Numpad 0</kbd> (or <kbd>0</kbd>)</td><td>Keypad <kbd>0</kbd></td></tr>
+      <tr><td><kbd>Numpad .</kbd> (or <kbd>-</kbd>)</td><td>Keypad <kbd>CLR</kbd> (clear)</td></tr>
+      <tr><td><kbd>Numpad Enter</kbd> (or <kbd>=</kbd>)</td><td>Keypad <kbd>ENT</kbd> (enter)</td></tr>
+    </table>
+
+    <h2>Player 2 controller</h2>
+    <p>Right-hand modifier keys map to Controller 2's action buttons. The keypad isn't dual-mapped here — most 2-player Intellivision games use the disc + action buttons for both players (Sea Battle, Auto Racing, Hockey, etc.).</p>
+    <table>
+      <tr><th>Key</th><th>P2 button</th></tr>
+      <tr><td><kbd>R Shift</kbd></td><td>P2 top action</td></tr>
+      <tr><td><kbd>R Ctrl</kbd></td><td>P2 bottom-right action</td></tr>
+      <tr><td><kbd>R Alt</kbd></td><td>P2 bottom-left action</td></tr>
+    </table>
+
+    <h2>Notes</h2>
+    <p>The Intellivision BIOS files (<code>exec.bin</code> + <code>grom.bin</code>, ©1979 Mattel Electronics) are bundled with this site — the system can't boot without them. The boot screen briefly shows "Mattel Electronics Presents" before the title launches.</p>
+
+    <p class="note">Emulator: jzIntv (Joe Zbiciak) compiled to WebAssembly. WASM bundle mirrored from <a href="https://github.com/mholzinger/intellivision-overlay-editor" target="_blank" rel="noopener">mholzinger/intellivision-overlay-editor</a>. Source jzIntv lives at <a href="http://spatula-city.org/~im14u2c/intv/" target="_blank" rel="noopener">spatula-city.org/~im14u2c/intv</a>.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>

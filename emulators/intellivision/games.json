@@ -1,0 +1,12 @@
+{
+  "astro":      { "title": "Astrosmash (1981 Mattel)",                    "rom": "games/astrosmash.int" },
+  "burger":     { "title": "BurgerTime (1982 Mattel)",                    "rom": "games/burgertime.int" },
+  "tron":       { "title": "TRON: Deadly Discs (1981 Mattel)",            "rom": "games/tron.int" },
+  "snafu":      { "title": "Snafu (1981 Mattel)",                         "rom": "games/snafu.int" },
+  "b17":        { "title": "B-17 Bomber (1981 Mattel)",                   "rom": "games/b17.int" },
+  "nightstk":   { "title": "Night Stalker (1982 Mattel)",                 "rom": "games/nightstk.int" },
+  "advent":     { "title": "Adventure (AD&D): Cloudy Mountain (1982 Mattel)", "rom": "games/adventur.int" },
+  "atlantis":   { "title": "Atlantis (1981 Imagic)",                      "rom": "games/atlantis.int" },
+  "lockchase":  { "title": "Lock 'N' Chase (1982 Mattel)",                "rom": "games/lockchase.int" },
+  "starstrk":   { "title": "Star Strike (1981 Mattel)",                   "rom": "games/starstrk.int" }
+}

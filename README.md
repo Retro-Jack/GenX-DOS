@@ -50,6 +50,7 @@ emulators/
   plus4/                  Commodore Plus/4 — EmulatorJS + VICE xplus4 + 10 .prg titles
   c128/                   Commodore 128    — EmulatorJS + VICE x128 native mode + 10 mixed commercial/homebrew titles (VICII 40-col + VDC 80-col)
   coleco/                 ColecoVision     — EmulatorJS + gearcoleco core + 10 launch-era .col carts
+  intellivision/          Mattel Intellivision — jzIntv WASM (custom loader, not EJS) + 10 first-in-series classics
 ```
 
 ## Self-hosted emulators
@@ -72,6 +73,7 @@ emulators/
 | Atari 400 / 800XL | atari800/atari800 v5.2.0 (own WASM build) | `play.html?game=<key>[&machine=…]` |
 | PET / VIC-20 / MAX / C64 / C16 / Plus/4 / C128 | EmulatorJS + VICE libretro (xpet / xvic / x64 / xplus4 / x128) | `play.html?game=<key>` |
 | ColecoVision | EmulatorJS + gearcoleco (Drhelius) libretro | `play.html?game=<key>` |
+| Intellivision | jzIntv (Joe Zbiciak) WASM, custom emscripten loader | `play.html?game=<key>` |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
@@ -109,4 +111,6 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `x128`, `xvic`, `xplus4`, `xpet`) mirrored from `cdn.emulatorjs.org/stable/`
 - gearcoleco: GPL-3.0 (Drhelius) — libretro ColecoVision core mirrored from `cdn.emulatorjs.org/stable/`
 - ColecoVision BIOS: ©1982 Coleco, bundled for emulator-only use
+- jzIntv: Joe Zbiciak (free-for-personal-use terms) — WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor)
+- Intellivision EXEC + GROM BIOS: ©1979 Mattel Electronics, bundled for emulator-only use
 - PETSCII Robots Shareware: David Murray / The 8-Bit Guy (2022, free demo build distributed via the8bitguy.com)
