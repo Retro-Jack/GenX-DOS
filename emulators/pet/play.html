@@ -18,7 +18,7 @@
        parallel with EJS bootstrap instead of waiting until init reaches
        it. EJS picks the "-legacy-" variant by default when no per-core
        report JSON is present (we don't ship one), so that's what we hint. -->
-  <link rel="preload" href="ejs/data/cores/vice_xpet-legacy-wasm.data" as="fetch" crossorigin>
+  <link rel="preload" href="../_shared-ejs/ejs/data/cores/vice_xpet-legacy-wasm.data" as="fetch" crossorigin>
   <script defer src="../_shared/genx-vice-softkeys.js"></script>
 </head>
 <body>
@@ -59,7 +59,7 @@
       // loader.js prepends "../" to any non-absolute EJS_pathtodata, so we
       // build an absolute pathname from the current document URL — works
       // both at the repo root locally and under /GenX-DOS/ on Pages.
-      window.EJS_pathtodata = location.pathname.replace(/[^/]*$/, '') + 'ejs/data/';
+      window.EJS_pathtodata = (location.pathname.match(/^.*\/emulators\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
       window.EJS_core      = 'vice_xpet';
       window.EJS_startOnLoaded = true;
       // VICE xpet — most of the bundled games are 1979-1981 PET 2001/3032
@@ -95,7 +95,7 @@
       if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
 
       const s = document.createElement('script');
-      s.src = 'ejs/data/loader.js';
+      s.src = '../_shared-ejs/ejs/data/loader.js';
       document.body.appendChild(s);
     })();
   </script>

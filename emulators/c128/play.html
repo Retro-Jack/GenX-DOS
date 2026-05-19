@@ -7,13 +7,6 @@
   <style>
     html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
     body { display: flex; align-items: center; justify-content: center; }
-    /* C128 displayed at 4:3 — same as the C64 sibling. Both VIC-IIe
-       (40-col 384x272) and VDC (80-col 640x200) display at 4:3 on real
-       hardware once you account for the non-square pixel aspect. The
-       VDC framebuffer is natively 3.2:1 so we have to override the
-       canvas size EJS sets from the framebuffer geometry — the `!important`
-       on the canvas rule forces it to fill the 4:3 container regardless
-       of which video chip is reporting. */
     /* VICE x128 reports a 856×288 framebuffer (aspect 2.78:1) regardless
        of which video chip is selected — it always allocates room for
        both VIC-IIe + VDC. RetroArch preserves that aspect inside the
@@ -42,7 +35,7 @@
        parallel with EJS bootstrap instead of waiting until init reaches
        it. EJS picks the "-legacy-" variant by default when no per-core
        report JSON is present (we don't ship one), so that's what we hint. -->
-  <link rel="preload" href="ejs/data/cores/vice_x128-legacy-wasm.data" as="fetch" crossorigin>
+  <link rel="preload" href="../_shared-ejs/ejs/data/cores/vice_x128-legacy-wasm.data" as="fetch" crossorigin>
   <script defer src="../_shared/genx-numlock-warn.js"></script>
   <script defer src="../_shared/genx-vice-softkeys.js"></script>
 </head>
@@ -84,7 +77,7 @@
       // loader.js prepends "../" to any non-absolute EJS_pathtodata, so we
       // build an absolute pathname from the current document URL — works
       // both at the repo root locally and under /GenX-DOS/ on Pages.
-      window.EJS_pathtodata = location.pathname.replace(/[^/]*$/, '') + 'ejs/data/';
+      window.EJS_pathtodata = (location.pathname.match(/^.*\/emulators\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
       window.EJS_core      = 'vice_x128';
       window.EJS_startOnLoaded = true;
       // C128 in NATIVE mode (not C64-compat). vice_c128_go64='disabled'
@@ -107,14 +100,11 @@
       window.EJS_defaultOptions = {
         'vice_c128_go64': 'disabled',
         'vice_c128_video_output': video,
-        // VICE x128 reports a 856×288 framebuffer (aspect 2.78:1) — it
-        // packs VIC-IIe + VDC overscan into one wide buffer regardless
-        // of which chip is the active output. `vice_crop: 'enabled'`
-        // strips the dead borders so the active display dominates and
-        // EJS renders it at a sensible aspect inside our 4:3 container.
+        // vice_aspect_ratio doesn't shrink the 856×288 framebuffer
+        // (x128 always packs both chips' overscan into one wide buffer)
+        // — the CSS scaleY hack on the canvas above is what actually
+        // makes the content fill the 4:3 container.
         'vice_aspect_ratio': 'pal',
-        'vice_crop': 'enabled',
-        'vice_crop_mode': 'both',
         'vice_drive_true_emulation': 'enabled',
         'vice_drive_sound_emulation': '100%',
         'vice_autoloadwarp': 'disabled',
@@ -130,7 +120,7 @@
       if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
 
       const s = document.createElement('script');
-      s.src = 'ejs/data/loader.js';
+      s.src = '../_shared-ejs/ejs/data/loader.js';
       document.body.appendChild(s);
     })();
   </script>
