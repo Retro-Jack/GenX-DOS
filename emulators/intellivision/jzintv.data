@@ -1,23 +1,9 @@
-; GenX-DOS Intellivision keyboard mapping
-; Maps PC keyboard → Intellivision disc + keypad + action buttons.
-; Names must match jzintv's SDL key tokens; numpad names removed
-; because jzintv rejects KP1/KP_ENTER syntax — only the number row
-; drives the keypad in this build.
+; Space Intruders - jzIntv Keyboard Mapping
+; Maps keyboard to both controllers
 
 MAP 0
 
-; Disc (P1) — arrow keys for cardinals, jzintv synthesizes diagonals
-UP              PD0L_D_N
-DOWN            PD0L_D_S
-LEFT            PD0L_D_W
-RIGHT           PD0L_D_E
-
-; P1 action buttons
-LSHIFT          PD0L_A_T
-LCTRL           PD0L_A_L
-LALT            PD0L_A_R
-
-; Keypad (number row → Controller 1)
+; Keypad (number row -> Controller 1)
 1               PD0L_KP1
 2               PD0L_KP2
 3               PD0L_KP3
@@ -31,7 +17,12 @@ LALT            PD0L_A_R
 -               PD0L_KPC
 =               PD0L_KPE
 
-; P2 action buttons (right modifiers)
+; P1 action buttons (left hand)
+LSHIFT          PD0L_A_T
+LCTRL           PD0L_A_L
+LALT            PD0L_A_R
+
+; P2 action buttons (right hand)
 RSHIFT          PD0R_A_T
 RCTRL           PD0R_A_R
 RALT            PD0R_A_L
