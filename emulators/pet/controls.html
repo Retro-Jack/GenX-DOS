@@ -32,7 +32,7 @@
     <p>VICE maps the PET keyboard "positionally" to your PC keyboard — letters / numbers type as themselves. PET-specific keys:</p>
     <table>
       <tr><th>Key</th><th>PET key</th></tr>
-      <tr><td><kbd>Esc</kbd></td><td>RUN/STOP (breaks out of BASIC programs)</td></tr>
+      <tr><td><kbd>Scroll Lock</kbd></td><td>RUN/STOP — breaks out of BASIC programs (remapped from Esc — see note below)</td></tr>
       <tr><td><kbd>L Alt</kbd></td><td>Commodore-style graphic / inverse toggle</td></tr>
       <tr><td><kbd>Page Up</kbd></td><td>RVS ON (reverse video)</td></tr>
       <tr><td><kbd>Page Down</kbd></td><td>RVS OFF</td></tr>
@@ -40,6 +40,8 @@
       <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
       <tr><td><kbd>F1</kbd> – <kbd>F10</kbd></td><td>Function keys (model-dependent — most 4032 software ignores)</td></tr>
     </table>
+
+    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>emulators/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
     <h2>EmulatorJS toolbar</h2>
     <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>

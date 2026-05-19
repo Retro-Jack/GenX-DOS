@@ -31,7 +31,7 @@
       <tr><th>Key</th><th>Plus/4 key</th></tr>
       <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
       <tr><td><kbd>L Alt</kbd></td><td>Commodore key (C= key — toggles upper/lower case with SHIFT)</td></tr>
-      <tr><td><kbd>Esc</kbd></td><td>RUN/STOP</td></tr>
+      <tr><td><kbd>Scroll Lock</kbd></td><td>RUN/STOP (remapped from Esc — see note below)</td></tr>
       <tr><td><kbd>F1</kbd> – <kbd>F4</kbd></td><td>Plus/4 function keys (the four physical F-keys; SHIFTed gives F5/F6/F7 + HELP)</td></tr>
       <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
       <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
@@ -39,6 +39,8 @@
       <tr><td><kbd>Tab</kbd></td><td>Pound symbol (£)</td></tr>
       <tr><td><kbd>End</kbd></td><td>ESC (Plus/4's actual ESC key — separate from RUN/STOP)</td></tr>
     </table>
+
+    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>emulators/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
     <h2>EmulatorJS toolbar</h2>
     <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
