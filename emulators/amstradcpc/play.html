@@ -51,26 +51,39 @@
     document.addEventListener('keyup',   fireKeyRemap, { capture: true });
 
     (async function () {
-      const _gx = await window.genxLoadGame('#loading');
-      if (!_gx) return;
-      const { key, game, fail } = _gx;
-      // floooh's tiny8bit CPC reads its config from window.location.search
-      // via sokol_args (sargs). Recognised keys (see chips-test cpc.c):
-      //   file=<url>      — load this disk/snapshot/tape on boot
-      //   type=cpc464     — pick a different model (default CPC 6128)
-      //   input=<keys>    — type these keys after load
-      //   joystick=...    — enable joystick
-      // We rewrite location.search to ?file=<rom> so the WASM picks it
-      // up at sargs_setup() time (before any C code runs).
-      const newParams = new URLSearchParams();
-      // Relative path — floooh's own tiny8bit demos use relative
-      // filenames (?file=arkanoid.sna) and emscripten's fetch resolves
-      // them against the document URL.
-      newParams.set('file', game.rom);
-      if (game.input) newParams.set('input', game.input);
-      if (game.type)  newParams.set('type',  game.type);
-      history.replaceState(null, '', '?' + newParams.toString());
-      console.log('[GenX-DOS] CPC params:', '?' + newParams.toString());
+      // No ?game= → boot to plain Locomotive BASIC (the CPC's ROM-BASIC
+      // prompt on a real machine with no disk inserted). Skip games.json
+      // and let cpc.js initialise with empty sokol_args.
+      const hasGame = new URLSearchParams(location.search).has('game');
+      let game = null;
+      const fail = (msg) => { document.getElementById('loading').innerHTML = '<div class="err">' + msg + '</div>'; };
+
+      if (hasGame) {
+        const _gx = await window.genxLoadGame('#loading');
+        if (!_gx) return;
+        game = _gx.game;
+        // floooh's tiny8bit CPC reads its config from window.location.search
+        // via sokol_args (sargs). Recognised keys (see chips-test cpc.c):
+        //   file=<url>      — load this disk/snapshot/tape on boot
+        //   type=cpc464     — pick a different model (default CPC 6128)
+        //   input=<keys>    — type these keys after load
+        //   joystick=...    — enable joystick
+        // We rewrite location.search to ?file=<rom> so the WASM picks it
+        // up at sargs_setup() time (before any C code runs).
+        const newParams = new URLSearchParams();
+        // Relative path — floooh's own tiny8bit demos use relative
+        // filenames (?file=arkanoid.sna) and emscripten's fetch resolves
+        // them against the document URL.
+        newParams.set('file', game.rom);
+        if (game.input) newParams.set('input', game.input);
+        if (game.type)  newParams.set('type',  game.type);
+        history.replaceState(null, '', '?' + newParams.toString());
+        console.log('[GenX-DOS] CPC params:', '?' + newParams.toString());
+      } else {
+        document.title = 'Amstrad CPC';
+        // Clear any stray search to keep sokol_args clean.
+        history.replaceState(null, '', location.pathname);
+      }
 
       // Minimal Module config — floooh's official harness style.
       window.Module = {
