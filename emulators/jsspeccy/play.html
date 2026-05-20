@@ -14,16 +14,12 @@
   <script src="jsspeccy/jsspeccy.js"></script>
 </head>
 <body>
-  <noscript>
-    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
-      <div>
-        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
-        <div>This site is a client-side DOS terminal and emulator suite.</div>
-        <div>It needs JavaScript to run.</div>
-        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
-      </div>
-    </div>
-  </noscript>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
   <div id="jsspeccy"></div>
   <script>
     (async function () {
@@ -53,7 +49,9 @@
       window.emu = JSSpeccy(document.getElementById('jsspeccy'), opts);
     })();
   </script>
-<link rel="stylesheet" href="../_shared/genx-controls-link.css">
-<a href="controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
+<link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <script defer src="../_shared/genx-controls-link.js"></script>
+
 </body>
 </html>
