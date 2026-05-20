@@ -16,12 +16,9 @@
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
-  <!-- Preload the VICE core data so the browser starts fetching it in
-       parallel with EJS bootstrap instead of waiting until init reaches
-       it. EJS picks the "-legacy-" variant by default when no per-core
-       report JSON is present (we don't ship one), so that's what we hint. -->
   <link rel="preload" href="../_shared-ejs/ejs/data/cores/vice_xpet-legacy-wasm.data" as="fetch" crossorigin>
   <script defer src="../_shared/genx-vice-softkeys.js"></script>
+  <script src="../_shared-ejs/genx-ejs-boot.js"></script>
 </head>
 <body>
   <noscript><div class="gx-noscript">
@@ -31,67 +28,25 @@
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
   <div id="game"><div class="loading">Booting Commodore PET…</div></div>
-  
   <script>
-    (async function () {
-      const fail = (msg) => { document.getElementById('game').innerHTML = '<div class="err">' + msg + '</div>'; };
-      const params = new URLSearchParams(location.search);
-      const key = params.get('game');
-
-      let gameUrl = null;
-      let game = null;
-      if (key) {
-        let games;
-        try { games = await (await fetch('games.json')).json(); }
-        catch (e) { fail('Failed to load games.json: ' + e.message); return; }
-        game = games[key];
-        if (!game) { fail('Unknown game key: ' + key); return; }
-        document.title = game.title || key;
-        gameUrl = game.rom;
-      } else {
-        document.title = 'Commodore PET';
-      }
-
-      // EmulatorJS expects its config as globals set BEFORE loader.js runs.
-      window.EJS_player    = '#game';
-      // loader.js prepends "../" to any non-absolute EJS_pathtodata, so we
-      // build an absolute pathname from the current document URL — works
-      // both at the repo root locally and under /GenX-DOS/ on Pages.
-      window.EJS_pathtodata = (location.pathname.match(/^.*\/emulators\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
-      window.EJS_core      = 'vice_xpet';
-      window.EJS_startOnLoaded = true;
-      // VICE xpet — most of the bundled games are 1979-1981 PET 2001/3032
-      // era (BASIC 2 + original "graphics" chargen). Their PETSCII pokes
-      // and screen-map addressing only render correctly on a 3032; the
-      // 4032's BASIC-4 chargen has subtly different shape codes that turn
-      // 1979-era PETSCII art into garbage. PETSCII Robots (2022) is the
-      // exception — it needs BASIC 4 + 32K + supplies its own TILESET.PET,
-      // so for that game we override to 4032 via the per-game `model`
-      // field in games.json. Default model = 3032 (everyone else).
-      const model = (game && game.model) || '3032';
-      window.EJS_defaultOptions = {
-        'vice_pet_model': model,
+    // PET — VICE xpet. Default model = 3032 (BASIC 2 chargen); games.json
+    // can override with `"model": "4032"` per game (used by PETSCII Robots).
+    // No joyport — PET has no joystick. keyboardInput=enabled forwards
+    // typed keys to the VICE keyboard callback instead of routing them
+    // through EJS's RetroPad gamepad mapper.
+    genxBootEJS({
+      title: 'Commodore PET',
+      coreName: 'vice_xpet',
+      defaultOptions: {
         'vice_drive_true_emulation': 'disabled',
         'vice_autoloadwarp': 'enabled',
-        // Without this, EJS's default keyboard mode routes typed keys to
-        // RetroPad gamepad buttons (joystick direction + fire) instead of
-        // forwarding them to the VICE keyboard callback. The result is
-        // "mashing produces random movement / no text input" — fatal for
-        // a keyboard-only machine like the PET. EJS reads this key in
-        // preGetSetting() and triggers setKeyboardEnabled(1) at startup
-        // (changeSettingOption at init line 5695). Forward Alt too so the
-        // Commodore key (Left Alt by VICE convention) reaches the core
-        // instead of being eaten by the browser's Alt-as-menu-shortcut.
         'keyboardInput': 'enabled',
         'altKeyboardInput': 'enabled'
-      };
-      window.EJS_DEBUG_XX  = true;
-      if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
-
-      const s = document.createElement('script');
-      s.src = '../_shared-ejs/ejs/data/loader.js';
-      document.body.appendChild(s);
-    })();
+      },
+      perGame: (game, opts) => {
+        opts['vice_pet_model'] = (game && game.model) || '3032';
+      }
+    });
   </script>
 </body>
 </html>

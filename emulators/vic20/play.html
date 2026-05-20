@@ -7,9 +7,7 @@
   <style>
     html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
     body { display: flex; align-items: center; justify-content: center; }
-    /* VIC-20 displayed at 4:3 — the VIC chip's native 22x23 char (176x184
-       pixel content) frame is squarer than VIC-II, but PAL/NTSC overscan
-       and the 4:3 monitor aspect put it in the same display envelope. */
+    /* VIC-20 at 4:3 — VIC chip native is 176x184, PAL overscan to 4:3. */
     #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
     .err { padding: 20px; color: #fff; font-family: monospace; }
     .loading { padding: 40px; color: #888; text-align: center; font-family: monospace; }
@@ -17,13 +15,10 @@
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
-  <!-- Preload the VICE core data so the browser starts fetching it in
-       parallel with EJS bootstrap instead of waiting until init reaches
-       it. EJS picks the "-legacy-" variant by default when no per-core
-       report JSON is present (we don't ship one), so that's what we hint. -->
   <link rel="preload" href="../_shared-ejs/ejs/data/cores/vice_xvic-legacy-wasm.data" as="fetch" crossorigin>
   <script defer src="../_shared/genx-numlock-warn.js"></script>
   <script defer src="../_shared/genx-vice-softkeys.js"></script>
+  <script src="../_shared-ejs/genx-ejs-boot.js"></script>
 </head>
 <body>
   <noscript><div class="gx-noscript">
@@ -32,53 +27,15 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <div id="game"><div class="loading">Booting Commodore 64…</div></div>
-  
+  <div id="game"><div class="loading">Booting Commodore VIC-20…</div></div>
   <script>
-    (async function () {
-      const fail = (msg) => { document.getElementById('game').innerHTML = '<div class="err">' + msg + '</div>'; };
-      const params = new URLSearchParams(location.search);
-      const key = params.get('game');
-
-      let gameUrl = null;
-      let game = null;
-      if (key) {
-        let games;
-        try { games = await (await fetch('games.json')).json(); }
-        catch (e) { fail('Failed to load games.json: ' + e.message); return; }
-        game = games[key];
-        if (!game) { fail('Unknown game key: ' + key); return; }
-        document.title = game.title || key;
-        gameUrl = game.rom;
-      } else {
-        document.title = 'Commodore VIC-20';
-      }
-
-      // EmulatorJS expects its config as globals set BEFORE loader.js runs.
-      window.EJS_player    = '#game';
-      // loader.js prepends "../" to any non-absolute EJS_pathtodata, so we
-      // build an absolute pathname from the current document URL — works
-      // both at the repo root locally and under /GenX-DOS/ on Pages.
-      window.EJS_pathtodata = (location.pathname.match(/^.*\/emulators\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
-      window.EJS_core      = 'vice_xvic';
-      window.EJS_startOnLoaded = true;
-      // Same drive-sound recipe as C64 (1541-compatible 1540 drive on the
-      // VIC-20). Most VIC-20 software is cartridge though — for `.crt`
-      // games there's no disk activity so the drive-sound + no-warp
-      // configuration is silent and instant; for any `.d64` we add it
-      // falls back to authentic chunky real-time loading.
-      //
-      // `vice_vic20_memory_expansions: 'all'` gives the VIC-20 its
-      // maximum 35K RAM expansion ($2000-$7FFF + $A000-$BFFF). Carts
-      // override this with their own memory map, but disk/tape games
-      // assuming +8K / +16K / +24K all work cleanly under +all.
-      // Unified keyboard + numpad-joystick mode: see C64 play.html for
-      // the full rationale. `keyboardInput` routes letters/F-keys to the
-      // VICE keyboard callback; `vice_joyport_type='1'` (Numpad) wires
-      // the joystick port to the keypad (8/4/6/2 + 0/5). Both work
-      // together so BASIC can be typed and arcade carts still get
-      // joystick input.
-      window.EJS_defaultOptions = {
+    // VIC-20 — vice_xvic with `vice_vic20_memory_expansions='all'` giving
+    // the full 35K RAM expansion so any disk/tape game written for +3K /
+    // +8K / +16K / +24K configurations runs cleanly.
+    genxBootEJS({
+      title: 'Commodore VIC-20',
+      coreName: 'vice_xvic',
+      defaultOptions: {
         'vice_drive_true_emulation': 'enabled',
         'vice_drive_sound_emulation': '100%',
         'vice_autoloadwarp': 'disabled',
@@ -86,14 +43,8 @@
         'keyboardInput': 'enabled',
         'altKeyboardInput': 'enabled',
         'vice_joyport_type': '1'
-      };
-      window.EJS_DEBUG_XX  = true;
-      if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
-
-      const s = document.createElement('script');
-      s.src = '../_shared-ejs/ejs/data/loader.js';
-      document.body.appendChild(s);
-    })();
+      }
+    });
   </script>
 </body>
 </html>
