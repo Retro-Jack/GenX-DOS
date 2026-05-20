@@ -30,7 +30,7 @@ emulators/
   _shared-ejs/            shared EmulatorJS framework + 5 VICE cores + gearcoleco core (saves ~13 MB vs per-bundle copies)
   jsbeeb/                 BBC Micro        — Vite-built dist + 10 .ssd discs
   archimedes-live/        Acorn Archimedes — Arculator WASM + 10 RISC OS titles
-  jsnes/                  NES              — pure-JS bundle + 10 .nes ROMs
+  jsnes/                  NES              — EmulatorJS + FCEUmm libretro core + 10 .nes ROMs
   genesis/                Sega Genesis     — Emscripten bundle + 10 .bin ROMs
   javatari/               Atari 2600       — pure-JS bundle + 10 .a26 ROMs
   js7800/                 Atari 7800       — pure-JS bundle + 10 .a78 carts
@@ -59,7 +59,7 @@ emulators/
 |-----------|--------------------------------------|------------------------------------------|
 | BBC Micro | mattgodbolt/jsbeeb v1.12.0           | `?disc1=<path>.ssd&autoboot`             |
 | Archimedes| pdjstone/archimedes-live             | `#disc=<catalogue-id>&autoboot`          |
-| NES       | bfirsh/jsnes v2.1.0                  | `play.html?game=<key>`                   |
+| NES       | EmulatorJS + FCEUmm libretro core    | `play.html?game=<key>`                   |
 | Genesis   | lrusso/Genesis (PicoDrive port)      | `play.html?game=<key>`                   |
 | 2600      | ppeccin/javatari.js v5.0.4           | `play.html?game=<key>`                   |
 | 7800      | raz0red/JS7800 v0.0.9                | `play.html?game=<key>`                   |
@@ -95,7 +95,7 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - Site code by Retro-Jack
 - jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb)
 - archimedes-live: MIT (pdjstone/archimedes-live, WASM port of Sarah Walker's Arculator)
-- JSNES: Apache-2.0 (bfirsh/jsnes)
+- FCEUmm: GPL-2.0 (libretro NES core) — mirrored from `cdn.emulatorjs.org/stable/`
 - Genesis (lrusso): GPL-2.0 (notaz/PicoDrive port)
 - Javatari: AGPL-3.0 (ppeccin/javatari.js)
 - JS7800: GPL-2.0 (raz0red)
