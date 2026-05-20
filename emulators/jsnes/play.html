@@ -1,66 +1,75 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Game</title>
-    <style>
-      html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
-      body { display: flex; align-items: center; justify-content: center; }
-      #nes { width: 512px; height: 480px; }
-      .err { padding: 20px; }
-      .hint { position: fixed; bottom: 8px; left: 8px; font-size: 11px; color: #888; }
-    </style>
-    <script src="dist/jsnes.min.js"></script>
-  </head>
-  <body>
-    <noscript>
-      <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
-        <div>
-          <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
-          <div>This site is a client-side DOS terminal and emulator suite.</div>
-          <div>It needs JavaScript to run.</div>
-          <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
-        </div>
-      </div>
-    </noscript>
-    <div id="nes"></div>
-    <div class="hint">DPad: arrows &nbsp; A: X &nbsp; B: Z &nbsp; Start: Enter &nbsp; Select: Right Ctrl &nbsp; (click to enable audio)</div>
-    <script>
-      window.addEventListener("load", async function () {
-        const params = new URLSearchParams(location.search);
-        const key = params.get("game");
-        if (!key) {
-          document.body.innerHTML = '<div class="err">Missing ?game=&lt;key&gt; parameter.</div>';
-          return;
-        }
-        let games;
-        try {
-          games = await (await fetch("games.json")).json();
-        } catch (e) {
-          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + "</div>";
-          return;
-        }
-        const game = games[key];
-        if (!game) {
-          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + "</div>";
-          return;
-        }
-        document.title = game.title || key;
-        const browser = new jsnes.Browser({
-          container: document.getElementById("nes"),
-          onError: function (e) { console.error("[jsnes]", e); },
-        });
-        jsnes.Browser.loadROMFromURL(game.rom, function (err, data) {
-          if (err) {
-            document.body.innerHTML = '<div class="err">ROM load failed: ' + err + "</div>";
-            return;
-          }
-          browser.loadROM(data);
-        });
-      });
-    </script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NES</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    /* NES native is 256x240 (8:7 PAR); displayed at 4:3 by convention. */
+    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
+    .err { padding: 20px; color: #fff; font-family: monospace; }
+    .loading { padding: 40px; color: #888; text-align: center; font-family: monospace; }
+  </style>
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
-<a href="controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
+  <link rel="preload" href="../_shared-ejs/ejs/data/cores/fceumm-legacy-wasm.data" as="fetch" crossorigin>
+</head>
+<body>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
+      <div>
+        <div style="color:#fff;font-size:18px;margin-bottom:14px;">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div style="margin-top:14px;color:#888;">Enable JavaScript and reload.</div>
+      </div>
+    </div>
+  </noscript>
+  <div id="game"><div class="loading">Booting NES…</div></div>
+  <a href="controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
+  <script>
+    (async function () {
+      const fail = (msg) => { document.getElementById('game').innerHTML = '<div class="err">' + msg + '</div>'; };
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+
+      let gameUrl = null;
+      let game = null;
+      if (key) {
+        let games;
+        try { games = await (await fetch('games.json')).json(); }
+        catch (e) { fail('Failed to load games.json: ' + e.message); return; }
+        game = games[key];
+        if (!game) { fail('Unknown game key: ' + key); return; }
+        document.title = game.title || key;
+        gameUrl = game.rom;
+      } else {
+        document.title = 'NES';
+      }
+
+      window.EJS_player    = '#game';
+      window.EJS_pathtodata = (location.pathname.match(/^.*\/emulators\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
+      window.EJS_core      = 'nes';
+      window.EJS_startOnLoaded = true;
+      window.EJS_DEBUG_XX  = true;
+      // Preserve the previous bfirsh/jsnes muscle memory: X = A, Z = B.
+      // EJS's RetroPad default has B (button 0) on `x` and A (button 8) on
+      // `z` — period-correct to the physical NES (A on right, B on left)
+      // but inverse to how the previous build mapped these keys. Swap
+      // them so users who knew the old setup don't have to relearn.
+      window.EJS_defaultControls = {
+        0: {
+          0: { value: 'z' },  // B
+          8: { value: 'x' }   // A
+        }
+      };
+      if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
+
+      const s = document.createElement('script');
+      s.src = '../_shared-ejs/ejs/data/loader.js';
+      document.body.appendChild(s);
+    })();
+  </script>
 </body>
 </html>

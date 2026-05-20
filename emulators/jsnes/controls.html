@@ -13,24 +13,35 @@
       <h1>NES — Controls</h1>
     </div>
 
-    <p class="intro">Click the canvas first to enable audio. The Player 1 controller is mapped to your keyboard.</p>
+    <p class="intro">FCEUmm (libretro NES core) running in your browser via EmulatorJS. Released 1983 in Japan as the Famicom; the global cartridge library is ~700 titles, of which a dozen or so genre-definers sit in the bundled menu. Click the canvas first so the emulator receives keyboard input.</p>
 
     <h2>Player 1 controller</h2>
     <table>
       <tr><th>Key</th><th>Action</th></tr>
       <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>D-Pad</td></tr>
-      <tr><td><kbd>X</kbd></td><td>A button</td></tr>
-      <tr><td><kbd>Z</kbd></td><td>B button</td></tr>
+      <tr><td><kbd>X</kbd></td><td>A button (primary action — jump / fire in most games)</td></tr>
+      <tr><td><kbd>Z</kbd></td><td>B button (secondary — run / shoot / sub-weapon)</td></tr>
       <tr><td><kbd>Enter</kbd></td><td>Start</td></tr>
-      <tr><td><kbd>Right Ctrl</kbd></td><td>Select</td></tr>
+      <tr><td><kbd>V</kbd></td><td>Select</td></tr>
+    </table>
+
+    <h2>EmulatorJS toolbar</h2>
+    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Restart</td><td>Soft-reset the NES (title screen returns)</td></tr>
+      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
+      <tr><td>Settings (gear)</td><td>Core options — video filter, region (NTSC/PAL), sample rate, key remap, etc.</td></tr>
+      <tr><td>Mute</td><td>Toggle audio (2A03 APU — 2 pulse + 1 triangle + 1 noise + 1 DMC sample channel)</td></tr>
+      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
     </table>
 
     <h2>Notes</h2>
-    <p>Player 2 isn't mapped in this build — JSNES focuses on a single keyboard controller.</p>
-    <p>The Zapper light gun (Duck Hunt etc.) isn't supported by JSNES; those games will run but can't register hits.</p>
-    <p>The browser may suspend audio until you click the canvas — this is the standard Web Audio autoplay policy, not a bug.</p>
+    <p>The Zapper light gun (Duck Hunt etc.) isn't wired up here. The games still run but can't register hits.</p>
+    <p>The browser may briefly mute audio until you click the canvas — that's the standard Web Audio autoplay policy, not a bug.</p>
 
-    <p class="note">Mapping follows JSNES v2.1.0 (Apache-2.0, bfirsh/jsnes). Verify in upstream README if a control feels off.</p>
+    <p class="note">Emulator: FCEUmm (GPL-2.0, libretro) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
 
     <div class="footer">
       <a href="javascript:window.close()">close tab</a> ·
