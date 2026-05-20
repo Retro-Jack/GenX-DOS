@@ -5,16 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mattel Intellivision</title>
   <style>
-    html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
-    body { display: flex; align-items: center; justify-content: center; }
     /* Intellivision STIC framebuffer is 159x96 visible (~5:3 raw), the
        1980s NTSC console drove a 4:3 set with non-square pixels —
        letterbox-fit a 4:3 stage inside the viewport. */
     #stage { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); position: relative; }
     #canvas { width: 100%; height: 100%; display: block; image-rendering: pixelated; image-rendering: crisp-edges; background: #000; }
-    .err { padding: 20px; color: #fff; font-family: monospace; }
     .loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #888; font-family: monospace; pointer-events: none; }
   </style>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>

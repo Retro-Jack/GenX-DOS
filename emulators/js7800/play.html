@@ -6,7 +6,6 @@
   <title>Atari 7800</title>
   <style>
     html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
-    body { display: flex; align-items: center; justify-content: center; }
     /* Hide upstream demo UI; we drive the emulator via ?cart= URL param. */
     .header, .controls, .drop__div { display: none !important; }
     /* Hide js7800's toast/leaderboard messages — no high-score server in self-host. */
@@ -73,6 +72,7 @@
       if (window.site && window.js7800) site.init(js7800);
     })();
   </script>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
 <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
