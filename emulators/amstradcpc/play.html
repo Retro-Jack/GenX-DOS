@@ -33,6 +33,24 @@
   </div>
   <a href="controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
   <script>
+    // PageUp / PageDown → Fire button. floooh's chips library only wires
+    // one fire button (BTN0 == BTN1, mapped to Space). We translate both
+    // PageUp and PageDown events into synthetic Space events so either
+    // key fires. Listener runs at capture phase before sokol's handler
+    // sees the original PageUp/PageDown.
+    function fireKeyRemap(e) {
+      if (e.key === 'PageUp' || e.key === 'PageDown') {
+        e.preventDefault();
+        e.stopPropagation();
+        document.dispatchEvent(new KeyboardEvent(e.type, {
+          key: ' ', code: 'Space', keyCode: 32, which: 32,
+          bubbles: true, cancelable: true
+        }));
+      }
+    }
+    document.addEventListener('keydown', fireKeyRemap, { capture: true });
+    document.addEventListener('keyup',   fireKeyRemap, { capture: true });
+
     (async function () {
       const fail = (msg) => { document.getElementById('loading').innerHTML = '<div class="err">' + msg + '</div>'; };
       const params = new URLSearchParams(location.search);
