@@ -39,7 +39,7 @@ export const cores = {
     "dos": ["dosbox_pure"],
     "intv": ["freeintv"],
     "3ds": ["azahar"],
-    "amstrad": ["cap32"]
+    "amstrad": ["crocods", "cap32"]
 };
 
 export const requiresThreads = ["ppsspp", "dosbox_pure", "azahar"];
