@@ -3,10 +3,10 @@
   "knight":   { "title": "Knight Lore (1984 Ultimate)",            "rom": "games/knight.dsk",     "input": "run\"knight\n" },
   "bruce":    { "title": "Bruce Lee (1984 US Gold)",               "rom": "games/bruce.dsk",      "input": "run\"bruce\n" },
   "sorcery":  { "title": "Sorcery (1985 Virgin Games)",            "rom": "games/sorcery.dsk",    "input": "run\"sorcery\n" },
-  "bombjack": { "title": "Bomb Jack (1986 Elite Systems)",         "rom": "games/bombjack.sna" },
+  "bombjack": { "title": "Bomb Jack (1986 Elite Systems)",         "rom": "games/bombjack.dsk",   "input": "run\"bomb\n" },
   "dexter":   { "title": "Get Dexter (1986 ERE Informatique)",     "rom": "games/dexter.dsk",     "input": "run\"disc\n" },
-  "headover": { "title": "Head over Heels (1987 Ocean)",           "rom": "games/headover.sna" },
-  "rick":     { "title": "Rick Dangerous (1989 Firebird)",         "rom": "games/rick.sna" },
-  "chasehq":  { "title": "Chase H.Q. (1989 Ocean)",                "rom": "games/chasehq.sna" },
+  "headover": { "title": "Head over Heels (1987 Ocean)",           "rom": "games/headover.dsk",   "input": "run\"head\n" },
+  "rick":     { "title": "Rick Dangerous (1989 Firebird)",         "rom": "games/rick.dsk",       "input": "run\"rick\n" },
+  "chasehq":  { "title": "Chase H.Q. (1989 Ocean)",                "rom": "games/chasehq.dsk",    "input": "run\"chasehq\n" },
   "pop":      { "title": "Prince of Persia (1990 Broderbund)",     "rom": "games/pop.dsk",        "input": "run\"disc\n" }
 }
