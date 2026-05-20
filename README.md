@@ -53,7 +53,7 @@ emulators/
   intellivision/          Mattel Intellivision — jzIntv WASM (custom loader, not EJS) + 10 first-in-series classics
 ```
 
-## Self-hosted emulators
+## Emulators
 
 | System    | Copied from                          | URL pattern                              |
 |-----------|--------------------------------------|------------------------------------------|

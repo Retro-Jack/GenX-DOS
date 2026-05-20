@@ -32,3 +32,17 @@ UP              PD0L_D_N
 DOWN            PD0L_D_S
 LEFT            PD0L_D_W
 RIGHT           PD0L_D_E
+
+; Keypad (numpad -> Controller 1)
+KP1             PD0L_KP1
+KP2             PD0L_KP2
+KP3             PD0L_KP3
+KP4             PD0L_KP4
+KP5             PD0L_KP5
+KP6             PD0L_KP6
+KP7             PD0L_KP7
+KP8             PD0L_KP8
+KP9             PD0L_KP9
+KP0             PD0L_KP0
+KP_PERIOD       PD0L_KPC
+KP_ENTER        PD0L_KPE

@@ -142,7 +142,7 @@
                                 ]
                             },
 
-                            // COMMODORE (PET + VIC-20 + MAX + C64 + C16 + Plus/4 + C128 all self-hosted via EmulatorJS + VICE)
+                            // COMMODORE (PET + VIC-20 + MAX + C64 + C16 + Plus/4 + C128 all via EmulatorJS + VICE)
                             {
                                 name: 'COMMODRE',
                                 directories: [
