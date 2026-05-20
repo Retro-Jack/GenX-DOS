@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <title>Amstrad CPC</title>
   <style>
     html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
     body { display: flex; align-items: center; justify-content: center; }
-    /* CPC native is 384x272 (4:3); cap32 emits 800x600 with overscan. Fit 4:3. */
-    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
+    /* tiny8bit's CPC emits its native 384x272 framebuffer; scale up at 4:3 */
+    #stage { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); position: relative; }
+    #canvas { width: 100%; height: 100%; display: block; image-rendering: pixelated; image-rendering: crisp-edges; background: #000; }
     .err { padding: 20px; color: #fff; font-family: monospace; }
-    .loading { padding: 40px; color: #888; text-align: center; font-family: monospace; }
+    .loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #888; font-family: monospace; pointer-events: none; }
   </style>
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
-  <link rel="preload" href="../_shared-ejs/ejs/data/cores/crocods-legacy-wasm.data" as="fetch" crossorigin>
+  <link rel="preload" href="cpc.wasm" as="fetch" crossorigin>
 </head>
 <body>
   <noscript>
@@ -26,37 +27,60 @@
       </div>
     </div>
   </noscript>
-  <div id="game"><div class="loading">Booting Amstrad CPC 6128…</div></div>
+  <div id="stage">
+    <canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas>
+    <div id="loading" class="loading">Booting Amstrad CPC…</div>
+  </div>
   <a href="controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
   <script>
     (async function () {
-      const fail = (msg) => { document.getElementById('game').innerHTML = '<div class="err">' + msg + '</div>'; };
+      const fail = (msg) => { document.getElementById('loading').innerHTML = '<div class="err">' + msg + '</div>'; };
       const params = new URLSearchParams(location.search);
       const key = params.get('game');
+      if (!key) { fail('No game specified.'); return; }
 
-      let gameUrl = null;
-      let game = null;
-      if (key) {
-        let games;
-        try { games = await (await fetch('games.json')).json(); }
-        catch (e) { fail('Failed to load games.json: ' + e.message); return; }
-        game = games[key];
-        if (!game) { fail('Unknown game key: ' + key); return; }
-        document.title = game.title || key;
-        gameUrl = game.rom;
-      } else {
-        document.title = 'Amstrad CPC';
-      }
+      let games;
+      try { games = await (await fetch('games.json')).json(); }
+      catch (e) { fail('Failed to load games.json: ' + e.message); return; }
+      const game = games[key];
+      if (!game) { fail('Unknown game key: ' + key); return; }
+      document.title = game.title || key;
 
-      window.EJS_player    = '#game';
-      window.EJS_pathtodata = (location.pathname.match(/^.*\/emulators\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
-      window.EJS_core      = 'crocods';
-      window.EJS_startOnLoaded = true;
-      window.EJS_DEBUG_XX  = true;
-      if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
+      let romBuf;
+      try { romBuf = await (await fetch(game.rom)).arrayBuffer(); }
+      catch (e) { fail('Failed to fetch ROM: ' + e.message); return; }
+
+      // floooh/chips-test (tiny8bit) emscripten Module.
+      // The runtime exposes `emsc_load_data(name, bytes, size)` which sniffs
+      // the file (DSK / SNA / CDT) and routes to the right loader. Disks
+      // get auto-typed `run"disc"` on the CPC keyboard buffer.
+      window.Module = {
+        canvas: document.getElementById('canvas'),
+        print: (...a) => console.log(a.join(' ')),
+        printErr: (...a) => console.warn(a.join(' ')),
+        setStatus: () => {},
+        monitorRunDependencies: () => {},
+        onRuntimeInitialized: function () {
+          try {
+            const name = (game.rom || '').split('/').pop() || 'game.dsk';
+            const bytes = new Uint8Array(romBuf);
+            const res = Module.ccall('emsc_load_data',
+              'int',
+              ['string', 'array', 'number'],
+              [name, bytes, bytes.length]);
+            if (res === 0) { fail('emsc_load_data() returned 0 — load rejected.'); return; }
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('canvas').focus();
+          } catch (e) {
+            fail('emsc_load_data threw: ' + e.message);
+          }
+        }
+      };
 
       const s = document.createElement('script');
-      s.src = '../_shared-ejs/ejs/data/loader.js';
+      s.src = 'cpc.js';
+      s.async = true;
+      s.onerror = () => fail('Failed to load cpc.js');
       document.body.appendChild(s);
     })();
   </script>
