@@ -55,9 +55,10 @@
       // We rewrite location.search to ?file=<rom> so the WASM picks it
       // up at sargs_setup() time (before any C code runs).
       const newParams = new URLSearchParams();
-      // Absolute URL so emscripten's fetch resolves correctly regardless
-      // of how it interprets relative paths.
-      newParams.set('file', new URL(game.rom, location.href).href);
+      // Relative path — floooh's own tiny8bit demos use relative
+      // filenames (?file=arkanoid.sna) and emscripten's fetch resolves
+      // them against the document URL.
+      newParams.set('file', game.rom);
       if (game.input) newParams.set('input', game.input);
       if (game.type)  newParams.set('type',  game.type);
       history.replaceState(null, '', '?' + newParams.toString());
