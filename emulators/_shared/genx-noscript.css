@@ -1,0 +1,24 @@
+/* Banner shown when JS is disabled. Each bundle's entry HTML has:
+       <noscript><div class="gx-noscript">...text...</div></noscript>
+   `<noscript>` itself can't be JS-injected (it only renders when JS is
+   off, by definition), so the markup stays inline; only the styles are
+   consolidated here. */
+.gx-noscript {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  color: #c0c0c0;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  flex-direction: column;
+  gap: 6px;
+}
+.gx-noscript-title { color: #fff; font-size: 18px; margin-bottom: 8px; }
+.gx-noscript-hint  { color: #888; margin-top: 8px; }
