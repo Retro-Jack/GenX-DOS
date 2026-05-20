@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- **BASIC prompt menu entries** for Sinclair Spectrum (ZX BASIC), Sinclair ZX81 (ZX81 BASIC), and Amstrad CPC (Locomotive BASIC). All three platforms boot straight to their ROM BASIC on real hardware with no software inserted, so the menu's `BASIC` entry simply launches the emulator with no `?game=` query string. jsspeccy and jtyone already handled the no-game case (set title, skip openUrl/autoStart). amstradcpc/play.html needed a short branch: when no `game=` param is present, skip `genxLoadGame()` (which fails on missing key by design) and let cpc.js initialise with empty sokol_args — floooh's WASM defaults to CPC 6128 + Locomotive BASIC under those conditions. Brings the BASIC-prompt-coverage to 11 platforms (was 8); remaining gaps are intentional (Archimedes → RISC OS desktop, Atari ST → EmuTOS desktop, MAX Machine → MAX BASIC cartridge as game #9).
+
 ### Fixed
 - **C64 Elite stuck on purple-screen load loop** — the bundled `elite.d64` was an uncracked 1985 Firebird release containing both the `ELITE` payload and Firebird's `LOADER` (which gates the Lenslok copy-protection check); without the physical plastic lens overlay the protection loops indefinitely on the purple loader screen. Swapped for the **GMA86 crack + Moxon flicker-free patch** from `github.com/markmoxon/c64-elite-flicker-free` (`flicker-free-disks/c64-elite-flicker-free-pal.d64`). Disk label "NO-FLICKER ELITE", chains `FIREBIRD` intro → `BYEBYEJULIE` → `GMA1`-`GMA6` segments. Bonus: removes the well-known C64 Elite line-flicker rendering bug. Same 174848-byte D64 footprint, no games.json or play.html changes needed. (First swap attempt — Forces of Evil 1991-04-06 release from archive.org — turned out to be an FoE *scene* release named "Elite", not the game; reverted.)
 
