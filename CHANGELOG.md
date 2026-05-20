@@ -3,7 +3,7 @@
 ## [Unreleased]
 
 ### Fixed
-- **C64 Elite stuck on purple-screen load loop** — the bundled `elite.d64` was an uncracked 1985 Firebird release that hits the Lenslok copy-protection prompt and loops indefinitely without the physical plastic lens overlay. Swapped for the 1991-04-06 Forces of Evil crack (sourced from `archive.org/details/Elite_1991-04-06_Forces_of_Evil`) — single `ELITE /FOE` PRG on disk, autoboots cleanly with no protection check. Same 174848-byte D64 footprint, no games.json or play.html changes needed.
+- **C64 Elite stuck on purple-screen load loop** — the bundled `elite.d64` was an uncracked 1985 Firebird release containing both the `ELITE` payload and Firebird's `LOADER` (which gates the Lenslok copy-protection check); without the physical plastic lens overlay the protection loops indefinitely on the purple loader screen. Swapped for the **GMA86 crack + Moxon flicker-free patch** from `github.com/markmoxon/c64-elite-flicker-free` (`flicker-free-disks/c64-elite-flicker-free-pal.d64`). Disk label "NO-FLICKER ELITE", chains `FIREBIRD` intro → `BYEBYEJULIE` → `GMA1`-`GMA6` segments. Bonus: removes the well-known C64 Elite line-flicker rendering bug. Same 174848-byte D64 footprint, no games.json or play.html changes needed. (First swap attempt — Forces of Evil 1991-04-06 release from archive.org — turned out to be an FoE *scene* release named "Elite", not the game; reverted.)
 
 ### Changed
 - Drive-change commands (`A:`, `D:`, etc.) now reply "Drive not ready." — period-correct DOS message for an unattached drive. Only `C:` is the virtual FS; previously any drive-change was a silent no-op. `C:` itself stays silent (already on it).
