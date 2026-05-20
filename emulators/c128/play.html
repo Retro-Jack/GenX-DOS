@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Commodore 128</title>
   <style>
-    html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
-    body { display: flex; align-items: center; justify-content: center; }
     /* C128 — VICE x128 allocates a fat 856×288 (2.78:1) framebuffer
        regardless of vice_c128_video_output. The scaleY hack on the
        canvas + overflow:hidden on #game stretches the rendered content
@@ -23,9 +21,8 @@
       transform-origin: 50% 50%;
       transform: scaleY(calc(2.784 / 1.333));
     }
-    .err { padding: 20px; color: #fff; font-family: monospace; }
-    .loading { padding: 40px; color: #888; text-align: center; font-family: monospace; }
   </style>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>

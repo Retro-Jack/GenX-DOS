@@ -1,0 +1,9 @@
+/* Universal frame styles shared by every emulator play.html.
+   Page reset (black, no scrollbars, fully-centred stage) + the two
+   loading/error overlays. Per-bundle CSS handles platform-specific
+   aspect ratios and any quirks (C128 scaleY hack, CPC #stage layout,
+   etc.) inline in play.html. */
+html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+body { display: flex; align-items: center; justify-content: center; }
+.err { padding: 20px; color: #fff; font-family: monospace; }
+.loading { padding: 40px; color: #888; text-align: center; font-family: monospace; }

@@ -6,7 +6,6 @@
     <title>Game</title>
     <style>
       html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
-      body { display: flex; align-items: center; justify-content: center; }
       #game { width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
       #game canvas { width: 100% !important; height: 100% !important; image-rendering: pixelated; }
       .err { padding: 20px; }
@@ -79,6 +78,7 @@
         xhr.send(null);
       })();
     </script>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>

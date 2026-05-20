@@ -51,7 +51,7 @@ emulators/
   c128/                   Commodore 128    — EmulatorJS + VICE x128 native mode + 10 mixed commercial/homebrew titles (VICII 40-col + VDC 80-col)
   coleco/                 ColecoVision     — EmulatorJS + gearcoleco core + 10 launch-era .col carts
   intellivision/          Mattel Intellivision — jzIntv WASM (custom loader, not EJS) + 10 first-in-series classics
-  amstradcpc/             Amstrad CPC      — EmulatorJS + Caprice32 (cap32) core + 10 first-in-series .dsk titles
+  amstradcpc/             Amstrad CPC      — floooh/chips-test tiny8bit CPC WASM + 10 first-in-series .dsk titles
 ```
 
 ## Emulators
@@ -75,7 +75,7 @@ emulators/
 | PET / VIC-20 / MAX / C64 / C16 / Plus/4 / C128 | EmulatorJS + VICE libretro (xpet / xvic / x64 / xplus4 / x128) | `play.html?game=<key>` |
 | ColecoVision | EmulatorJS + gearcoleco (Drhelius) libretro | `play.html?game=<key>` |
 | Intellivision | jzIntv (Joe Zbiciak) WASM, custom emscripten loader | `play.html?game=<key>` |
-| Amstrad CPC   | EmulatorJS + Caprice32 (cap32) libretro core | `play.html?game=<key>` |
+| Amstrad CPC   | floooh/chips-test tiny8bit CPC WASM (Andre Weissflog) | `play.html?game=<key>` (rewrites to `?file=&input=` for sokol_args) |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
@@ -115,5 +115,5 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - ColecoVision BIOS: ©1982 Coleco, bundled for emulator-only use
 - jzIntv: Joe Zbiciak (free-for-personal-use terms) — WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor)
 - Intellivision EXEC + GROM BIOS: ©1979 Mattel Electronics, bundled for emulator-only use
-- Caprice32 (cap32): GPL-2.0 (libretro Amstrad CPC core) — mirrored from `cdn.emulatorjs.org/stable/`
+- floooh/chips-test tiny8bit CPC WASM: MIT (Andre Weissflog) — mirrored from `floooh.github.io/tiny8bit/`
 - PETSCII Robots Shareware: David Murray / The 8-Bit Guy (2022, free demo build distributed via the8bitguy.com)
