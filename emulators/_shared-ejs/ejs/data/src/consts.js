@@ -38,7 +38,8 @@ export const cores = {
     "vic20": ["vice_xvic"],
     "dos": ["dosbox_pure"],
     "intv": ["freeintv"],
-    "3ds": ["azahar"]
+    "3ds": ["azahar"],
+    "amstrad": ["cap32"]
 };
 
 export const requiresThreads = ["ppsspp", "dosbox_pure", "azahar"];
