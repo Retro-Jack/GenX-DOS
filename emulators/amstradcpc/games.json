@@ -1,0 +1,12 @@
+{
+  "roland":   { "title": "Roland on the Run (1984 Amsoft)",        "rom": "games/roland.dsk" },
+  "knight":   { "title": "Knight Lore (1984 Ultimate)",             "rom": "games/knight.dsk" },
+  "bruce":    { "title": "Bruce Lee (1984 US Gold)",                "rom": "games/bruce.dsk" },
+  "sorcery":  { "title": "Sorcery (1985 Virgin Games)",             "rom": "games/sorcery.dsk" },
+  "bombjack": { "title": "Bomb Jack (1986 Elite Systems)",          "rom": "games/bombjack.dsk" },
+  "dexter":   { "title": "Get Dexter (1986 ERE Informatique)",      "rom": "games/dexter.dsk" },
+  "headover": { "title": "Head over Heels (1987 Ocean)",            "rom": "games/headover.dsk" },
+  "rick":     { "title": "Rick Dangerous (1989 Firebird)",          "rom": "games/rick.dsk" },
+  "chasehq":  { "title": "Chase H.Q. (1989 Ocean)",                 "rom": "games/chasehq.dsk" },
+  "pop":      { "title": "Prince of Persia (1990 Broderbund)",      "rom": "games/pop.dsk" }
+}

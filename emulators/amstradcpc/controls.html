@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amstrad CPC Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Amstrad · CPC 6128</div>
+      <h1>Amstrad CPC — Controls</h1>
+    </div>
+
+    <p class="intro">Caprice32 (cap32 libretro) running in your browser via EmulatorJS, configured as the CPC 6128 (128 KB RAM, BASIC 1.1, 3-inch floppy drive). Released 1984 by Amstrad as the rival to the C64 and Spectrum in the UK / Europe / France — the CPC range sold ~3 million units and built one of the strongest 8-bit game libraries outside Japan. Click the canvas first so the emulator receives keyboard input.</p>
+
+    <h2>Joystick (mapped to keyboard)</h2>
+    <p>Most CPC games support joystick input on the dedicated 9-pin port. Caprice32 maps this to the keyboard automatically:</p>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Joystick directions</td></tr>
+      <tr><td><kbd>X</kbd></td><td>Fire 1</td></tr>
+      <tr><td><kbd>Z</kbd></td><td>Fire 2</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Often "start" or "pause"; varies by game</td></tr>
+    </table>
+
+    <h2>CPC keyboard (for games that need typing)</h2>
+    <p>The CPC keyboard is mapped positionally: letters / digits type as themselves. CPC-specific keys:</p>
+    <table>
+      <tr><th>Key</th><th>CPC key</th></tr>
+      <tr><td><kbd>Enter</kbd></td><td>RETURN</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>ESC (often "pause" or "quit" in-game)</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>DEL</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>TAB</td></tr>
+    </table>
+
+    <h2>Loading from disk</h2>
+    <p>cap32 auto-mounts the bundled `.dsk` to drive A:. Some games autoboot via the menu, others land at the BASIC `Ready` prompt. To start manually:</p>
+    <table>
+      <tr><th>Command</th><th>Effect</th></tr>
+      <tr><td><code>cat</code></td><td>List the disk's directory</td></tr>
+      <tr><td><code>run"disc"</code></td><td>Run the first game on most disks (CPC menu disc convention)</td></tr>
+      <tr><td><code>run"<i>name</i>"</code></td><td>Run a specific program by filename (use what `cat` shows)</td></tr>
+    </table>
+
+    <h2>EmulatorJS toolbar</h2>
+    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
+    <table>
+      <tr><th>Button</th><th>Action</th></tr>
+      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
+      <tr><td>Restart</td><td>Cold-reset the CPC (disk re-mounts)</td></tr>
+      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
+      <tr><td>Settings (gear)</td><td>Core options — model (CPC 464 / 6128 / 6128+), region, key remap, etc.</td></tr>
+      <tr><td>Mute</td><td>Toggle audio (AY-3-8912 — 3 square-wave channels)</td></tr>
+      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
+    </table>
+
+    <p class="note">Emulator: Caprice32 (GPL-2.0, libretro fork) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
