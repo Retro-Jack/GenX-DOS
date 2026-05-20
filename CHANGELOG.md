@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **C64 Elite stuck on purple-screen load loop** — the bundled `elite.d64` was an uncracked 1985 Firebird release that hits the Lenslok copy-protection prompt and loops indefinitely without the physical plastic lens overlay. Swapped for the 1991-04-06 Forces of Evil crack (sourced from `archive.org/details/Elite_1991-04-06_Forces_of_Evil`) — single `ELITE /FOE` PRG on disk, autoboots cleanly with no protection check. Same 174848-byte D64 footprint, no games.json or play.html changes needed.
+
 ### Changed
 - Drive-change commands (`A:`, `D:`, etc.) now reply "Drive not ready." — period-correct DOS message for an unattached drive. Only `C:` is the virtual FS; previously any drive-change was a silent no-op. `C:` itself stays silent (already on it).
 - **NES emulator swapped: `bfirsh/jsnes` v2.1.0 → EmulatorJS + FCEUmm.** Audio quality of jsnes was poor (deprecated `ScriptProcessorNode` path, glitchy on modern Chrome/Firefox). FCEUmm via EmulatorJS uses proper Web Audio and the libretro pipeline — clean playback. The bundle directory is still `emulators/jsnes/` (renaming would force every `fs.js` link to change) but the runtime is now `_shared-ejs/ejs/data/cores/fceumm-legacy-wasm.data` (~1.05 MB) plus the shared EmulatorJS framework. `play.html` rewritten to match the shared-EJS pattern with `EJS_core='nes'`. `EJS_defaultControls` swaps B/A on `x`/`z` to preserve the previous jsnes muscle memory (X = A, Z = B — opposite of the EJS RetroPad default). Old `dist/`, `LICENSE`, `package.json` removed. Bonus: save states, settings UI, and consistent toolbar with other EmulatorJS bundles.
