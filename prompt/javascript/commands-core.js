@@ -371,7 +371,11 @@ function handleCmd(cmd) {
 
     if (cmd == '' && !bEchoOff) echo('');
     if (cmd.charAt(1) == ':' && cmd.replace(' ', '').length == 2) {
-        // Drive change (e.g. A:) — stub, not implemented
+        // Drive change (e.g. A:, D:). Only C: exists in this virtual FS;
+        // anything else gets the canonical DOS "Drive not ready." reply.
+        var drive = cmd.charAt(0).toUpperCase();
+        if (drive !== 'C') echo('Drive not ready.');
+        return;
     }
 
     // Dispatch to registered command handler.
