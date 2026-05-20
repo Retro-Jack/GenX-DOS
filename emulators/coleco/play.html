@@ -16,6 +16,7 @@
   <script defer src="../_shared/genx-controls-link.js"></script>
   <link rel="preload" href="../_shared-ejs/ejs/data/cores/gearcoleco-legacy-wasm.data" as="fetch" crossorigin>
   <script defer src="../_shared/genx-numlock-warn.js"></script>
+  <script src="../_shared-ejs/genx-ejs-boot.js"></script>
 </head>
 <body>
   <noscript><div class="gx-noscript">
@@ -25,41 +26,17 @@
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
   <div id="game"><div class="loading">Booting ColecoVision…</div></div>
-  
   <script>
-    (async function () {
-      const fail = (msg) => { document.getElementById('game').innerHTML = '<div class="err">' + msg + '</div>'; };
-      const params = new URLSearchParams(location.search);
-      const key = params.get('game');
-
-      let gameUrl = null;
-      let game = null;
-      if (key) {
-        let games;
-        try { games = await (await fetch('games.json')).json(); }
-        catch (e) { fail('Failed to load games.json: ' + e.message); return; }
-        game = games[key];
-        if (!game) { fail('Unknown game key: ' + key); return; }
-        document.title = game.title || key;
-        gameUrl = game.rom;
-      } else {
-        document.title = 'ColecoVision';
-      }
-
-      window.EJS_player    = '#game';
-      window.EJS_pathtodata = (location.pathname.match(/^.*\/emulators\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
-      window.EJS_core      = 'coleco';
-      window.EJS_biosUrl   = new URL('colecovision.rom', location.href).href;
-      window.EJS_startOnLoaded = true;
-      window.EJS_DEBUG_XX  = true;
-      // gearcoleco puts the 12-key controller keypad on RetroPad
-      // Y/X/L/R/L2/R2/L3/R3/START/SELECT (1-8, *, #) and on the left
-      // analog stick (9, 0). Drive the whole keypad off the PC's numpad
-      // — period-correct shape (a numpad IS a 12-key keypad) and it leaves
-      // the number row free for typing. Arrows still drive the D-pad,
-      // X / Z still fire (yellow / red). Requires NumLock ON — banner at
-      // `_shared/genx-numlock-warn.js` fires if it's off.
-      window.EJS_defaultControls = {
+    // ColecoVision — gearcoleco core. BIOS bundle-local. Numpad-as-keypad
+    // remap via EJS_defaultControls (gearcoleco puts the 12-key keypad on
+    // RetroPad Y/X/L/R/L2/R2/L3/R3 + START/SELECT + analog-stick for 9/0;
+    // we override to drive the whole keypad off the PC numpad — period-
+    // correct shape).
+    genxBootEJS({
+      title: 'ColecoVision',
+      coreName: 'coleco',
+      biosUrl: 'colecovision.rom',
+      defaultControls: {
         0: {
           1:  { value: 'numpad 1' },   // Y      → keypad 1
           9:  { value: 'numpad 2' },   // X      → keypad 2
@@ -71,16 +48,11 @@
           15: { value: 'numpad 8' },   // R3     → keypad 8
           3:  { value: 'multiply' },   // START  → keypad * (numpad *)
           2:  { value: 'subtract' },   // SELECT → keypad # (numpad -)
-          16: { value: 'numpad 9' },   // LStickX+ → keypad 9 (best-guess axis)
+          16: { value: 'numpad 9' },   // LStickX+ → keypad 9
           17: { value: 'numpad 0' }    // LStickX- → keypad 0
         }
-      };
-      if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
-
-      const s = document.createElement('script');
-      s.src = '../_shared-ejs/ejs/data/loader.js';
-      document.body.appendChild(s);
-    })();
+      }
+    });
   </script>
 </body>
 </html>
