@@ -1,0 +1,159 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="description" content="Javascript based Acorn Electron Emulator">
+        <meta name="keywords" content="JavaScript, Acorn, Electron, Emulator, ElkJs, Elk">
+        <meta name="author" content="Darren Coles">
+		<title>ElkJs - Browser based Acorn Electron Emulator</title>
+		<link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/elkjs.css" />
+		<link href="css/jquery-ui-1.10.3.custom.min.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="jquery/jquery-ui-1.10.3.custom.min.js"></script>
+
+		<script type="text/javascript" src="elkjs.js"></script>
+		<script type="text/javascript" src="processor.js"></script>
+		<script type="text/javascript" src="display.js"></script>
+		<script type="text/javascript" src="tape.js"></script>
+		<script type="text/javascript" src="keyboard.js"></script>
+		<script type="text/javascript" src="sheila.js"></script>
+		<script type="text/javascript" src="memory.js"></script>
+		<script type="text/javascript" src="sound.js"></script>
+		<script type="text/javascript" src="rawinflate.js"></script>
+		<script type="text/javascript" src="js-unzip.js"></script>
+		<script type="text/javascript" src="uef_file.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+		
+		<script type="text/javascript">
+			$(function() {
+				$("button").button();
+				$("#tapeDialog").load("tapedialog.html");	
+				$("#gamesDialog").load("gamesdialog.html");	
+
+				document.getElementById('selectedFile').addEventListener('change', fileSelected, false);
+				document.getElementById('loadSpeed').addEventListener('change', changeLoadSpeed, false);
+				$( "#accordion" ).accordion();
+				elkjs = ElkJs("ElkJsOutput");
+
+			});
+		</script>
+	</head>
+	<body>
+		<header>ElkJS - The Javascript Acorn Electron Emulator</header>
+
+        <table id="webring" >
+          <tr >
+            <td>
+              <div style="color: white">The 8 Bit Acorn Webring</div>
+            </td>
+          </tr>
+          <tr >
+            
+            <td>
+              <a style="color: black" href="http://8bs.com/cgi-bin/webring/webring.cgi?11&amp;prev" target="_top">&lt;Previous</a> 
+              <a style="color: black" href="http://8bs.com/cgi-bin/webring/webring.cgi?11&amp;next" target="_top">Next&gt;</a> 
+              <a style="color: black" href="http://8bs.com/cgi-bin/webring/webring.cgi?11&amp;random" target="_top">Random</a> 
+              <a style="color: black" href="http://8bs.com/cgi-bin/webring/hub.cgi" target="_top">Hub</a>
+              <a a style="color: black" href="http://8bs.com/cgi-bin/webring/join.cgi" target="_blank">Join</a></font>
+            </td>
+          </tr>
+        </table>
+
+		<div id="accordion">
+			<h3>Acorn Electron</h3>
+			<div>
+			<img src="320px-Acorn_Electron_4x3.jpg"/>
+			Released in 1983, the Acorn Electron was Acorn's most popular home computer and for a while was the 3rd best selling home computer in the UK.
+			<br/><br/>The Electron was an 8 bit microcomputer based around the 6502 processor with 32k of RAM and used BBC Basic as its programming language.
+			</div>
+			<h3>ElkJs</h3>
+			<div>ElkJS is a javascript based emulator for the Acorn Electron. I was inspired to write this after contributing some work to the JSSpeccy project by Matt Westcott. The Sinclair Spectrum and Acorn Electron were two memorable machines from my younger years so I decided to write a Javascript Electron emulator as one did not already exist.<br/><br/>
+			<img src="acorn-electron-det2.jpg"/><br/><br/>
+			ElkJS aims to emulate the electron accurately enough to be able to play many of the classic games made for this machine.
+			<br/><br />
+			The sourcecode for this emulator is available in my <a href="https://github.com/dmcoles/elkjs" >github</a> repository
+			
+			<br/><br/>
+            Please visit my forum to leave feedback, report bugs, talk about these (and other) JavaScript emulators <a href="http://emulatejs.englishboard.net/" >EmulateJS</a>
+
+			</div>
+			<h3>Usage</h3>
+			<div>
+			For the most part it should be pretty self explanatory. There are a few keyboard mappings you might need to be aware of:
+			
+			<ul>
+			<li>FUNC = ALT</li>
+			<li>COPY = HOME</li>
+			<li>BREAK = F12</li>
+			</ul>
+			
+			The emulation is fairly accurate and most games should work. Firetrack isnt 100% and does display some slight graphical corruption.
+			Exile appears to freeze after the game is loaded. All other games i have tried work fine.<br/><br/>
+			
+			The browse button allows you to open UEF files containing snapshots or tape images. You can also select ZIP files and the first
+			uef file found in the zip will be opened. <br/><br/>
+			
+			Most if not all games are easily obtainable in UEF format on the internet. <br/><br/>
+			
+			Some of my favourites are
+			<ul>
+			<li>Citadel</li>
+			<li>Repton series</li>
+			<li>Dunjunz</li>
+			</ul>
+			<br/><br/>
+			
+			</div>
+			<h3>Credits</h3>
+			<div>
+			<u>ElkJS</u><br/><br/>
+			6502 emulation core - Tom Walker (taken from <a href="http://elkulator.acornelectron.co.uk/">Elkulator</a> - ported to Javascript by Darren Coles)<br/><br/>
+			Inflate and Zipping routines - <a href="https://github.com/augustl">August Lilleaas</a> and M. Izumo <br/><br />
+			Acorn Electron image from wikipedia by <a href="http://en.wikipedia.org/wiki/File:Acorn_Electron_4x3.jpg"> Bilby </a> <br/><br/>
+			Acorn Electron internals image from <a href="http://www.computerasylum.co.uk/computers/acorn-electron/index.html" >computer asylum</a>  <br/><br/>
+			Everything else - (c) Darren Coles 2013.<br/><br/>
+			Other Electron emulators of note:<br/><br/>
+			<a href="http://elkulator.acornelectron.co.uk" >Elkulator</a>
+			<a href="http://www.acornelectron.co.uk/emulation/electrem/top_lvl.html" >ElectrEm</a>		
+			<br/><br>
+			Other useful Acorn Electron sites:<br/>
+			<a href="http://www.acornelectron.co.uk" >Acorn Electron World</a>
+			<a href="http://www.stairwaytohell.com/" >Stairway to hell</a>
+			<a href="http://en.wikipedia.org/wiki/Acorn_Electron" >Wikipedia Acorn Electron Article</a>
+			</div>
+		</div>
+		<div id="elkjs">
+			<canvas id = "ElkJsOutput" width="640" height="512" >
+			</canvas>
+			<div id = "buttonpanel">
+            <small><button id="btnFullscreen" onclick="fullScreen();">Expand</button></small>
+            <small><button onclick="reset()" id="btnReset">Reset</button>
+			<button onclick="pauseResume()" id="btnPause">Pause</button>
+			<button onclick="soundToggle()" id="btnSound">Turn sound on</button>
+			<button onclick="document.getElementById('selectedFile').click();" id="btnBrowse">Browse</button>
+			<input type="file" id="selectedFile" style="display: none;" />
+			<button id="btnTape" disabled="disabled" onclick="toggleTapeDialog()" >Tape</button>
+			<button onclick="toggleGamesDialog()" >Games</button>
+            <button onclick="saveSnapshot()" >Save</button>
+			<br/>
+			</small>
+			</div>
+			<div class="ui-widget">
+			<small>
+			Loading speed:
+			<select id="loadSpeed">
+				<option value="1">Normal</option>
+				<option selected="selected" value="2">Turbo</option>
+			</select> 
+			<input type="checkbox" id="autoLoad" checked="checked" onclick="changeAutoLoad()" >Auto load tapes<br>			
+            </small>
+			</div>
+		</div>
+		<div id="tapeDialog" >
+		</div>
+		<div id="gamesDialog">
+		</div>
+	</body>
+</html>
+	
