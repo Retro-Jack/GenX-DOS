@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Macintosh</title>
+  <style>
+    /* Basilisk II / Quadra 700 renders at 800x600 native (4:3). */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; position: relative; }
+    #canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; background: #000; }
+    #loading {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 14px;
+      color: #c0c0c0; font-family: monospace; pointer-events: none; z-index: 10;
+    }
+    #loading .label { font-size: 14px; }
+    #loading .bar { width: 320px; height: 6px; background: #222; border: 1px solid #444; }
+    #loading #progress { height: 100%; width: 2%; background: #c0c0c0; transition: width 0.2s; }
+    .err { padding: 20px; color: #fff; font-family: monospace; }
+    #boot-overlay {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 16px;
+      background: #000; cursor: pointer; z-index: 20;
+    }
+    .boot-icon { font-size: 64px; color: #c0c0c0; }
+    .boot-label { font-size: 14px; color: #888; font-family: monospace; }
+  </style>
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <script defer src="../_shared/genx-controls-link.js"></script>
+  <!-- coi-serviceworker MUST load before any module that needs SharedArrayBuffer.
+       On first visit it installs the SW and reloads the page to take effect. -->
+  <script src="coi-serviceworker.js"></script>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+  <canvas id="canvas" tabindex="0"></canvas>
+  <div id="boot-overlay">
+    <div class="boot-icon">&#xF8FF;</div>
+    <div class="boot-label">Click to boot Macintosh</div>
+  </div>
+  <div id="loading" style="display:none">
+    <div class="label">Loading Macintosh…</div>
+    <div class="bar"><div id="progress"></div></div>
+    <div style="font-size:11px;color:#666">First visit: page may reload once to enable SharedArrayBuffer.</div>
+  </div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

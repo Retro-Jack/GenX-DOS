@@ -1,0 +1,37 @@
+{
+  "shufflepuck": {
+    "title": "Shufflepuck Cafe",
+    "year": 1989,
+    "disk": "disk-shufflepuck"
+  },
+  "spaceward": {
+    "title": "Spaceward Ho!",
+    "year": 1990,
+    "disk": "disk-spaceward"
+  },
+  "dungeon": {
+    "title": "Dungeon of Doom",
+    "year": 1993,
+    "disk": "disk-dungeon"
+  },
+  "lemmings": {
+    "title": "Lemmings",
+    "year": 1992,
+    "disk": "disk-lemmings"
+  },
+  "prince": {
+    "title": "Prince of Persia",
+    "year": 1992,
+    "disk": "disk-prince"
+  },
+  "pararena": {
+    "title": "Pararena",
+    "year": 1987,
+    "disk": "disk-pararena"
+  },
+  "colony": {
+    "title": "The Colony",
+    "year": 1988,
+    "disk": "disk-colony"
+  }
+}
