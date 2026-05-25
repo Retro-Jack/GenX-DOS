@@ -1,0 +1,12 @@
+{
+  "emerald":    { "title": "Emerald Mine (1987)",          "rom": "emerald.adf" },
+  "wizball":    { "title": "Wizball (1988)",                "rom": "wizball.adf" },
+  "commando":   { "title": "Commando (1989)",               "rom": "commando.adf" },
+  "dbldragon":  { "title": "Double Dragon (1989)",           "rom": "dbldragon.adf" },
+  "rtype":      { "title": "R-Type (1989)",                  "rom": "rtype.adf" },
+  "stuntcar":   { "title": "Stunt Car Racer (1989)",         "rom": "stuntcar.adf" },
+  "turrican":   { "title": "Turrican (1990)",                "rom": "turrican.adf" },
+  "speedball2": { "title": "Speedball 2 (1990)",             "rom": "speedball2.adf" },
+  "batman":     { "title": "Batman: The Movie (1990)",       "rom": "batman.adf" },
+  "lemmings":   { "title": "Lemmings (1991)",                "rom": "lemmings.adf" }
+}

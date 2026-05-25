@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple ][ Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · ][+ (48K, Applesoft BASIC, Disk II)</div>
+      <h1>Apple ][ — Controls</h1>
+    </div>
+
+    <p class="intro">Apple ][js (Will Scullin, MIT) running in your browser as plain JavaScript — no WASM, no Emscripten. The bundled machine is an Apple ][+ with 48&nbsp;KB RAM, Applesoft BASIC in ROM, and a Disk II controller in slot 6. Each menu entry boots the chosen 5.25" disk image directly; the "Applesoft BASIC" entry boots with no disk inserted, which is what a real ][+ does — it drops to the <code>]</code> prompt. Click the screen first so the emulator receives keyboard input.</p>
+
+    <h2>Keyboard</h2>
+    <p>The Apple ][+ keyboard had no lowercase, no arrow keys other than ← →, and a tiny set of modifiers. apple2js maps:</p>
+    <table>
+      <tr><th>Modern key</th><th>Apple ][+ key</th></tr>
+      <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>Cursor left/right (the only two arrows on a real ][+)</td></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Synthesised — used for cursor in apps that read them</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>ESC (BASIC line edit, app menus)</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>TAB</td></tr>
+      <tr><td><kbd>Ctrl</kbd></td><td>CTRL — needed for <code>Ctrl-C</code> (break BASIC), <code>Ctrl-G</code> (bell), <code>Ctrl-Reset</code></td></tr>
+      <tr><td><kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Delete</kbd></td><td>Power-on reset (cold boot)</td></tr>
+      <tr><td><kbd>F1</kbd></td><td>OPEN APPLE (left ⌘) — fire button 0 in games</td></tr>
+      <tr><td><kbd>F2</kbd></td><td>CLOSED APPLE (right ⌘) — fire button 1 in games</td></tr>
+    </table>
+
+    <h2>Per-game starting hints</h2>
+    <table>
+      <tr><th>Game</th><th>How to start</th></tr>
+      <tr><td>Lemonade Stand</td><td>Boots straight in. Type <kbd>Y</kbd> for instructions or <kbd>N</kbd> to skip; then number of players and number of days.</td></tr>
+      <tr><td>Castle Wolfenstein</td><td>4am crack autoboots. Press <kbd>Space</kbd> through the title. Keys: <kbd>I J K M</kbd> to move, <kbd>SPC</kbd> to fire, <kbd>R</kbd> to reload, <kbd>S</kbd> to search bodies.</td></tr>
+      <tr><td>Choplifter</td><td>Joystick game — use <kbd>F1</kbd>/<kbd>F2</kbd> as the OPEN/CLOSED APPLE buttons or arrows for direction. <kbd>SPC</kbd> = fire.</td></tr>
+      <tr><td>Aztec</td><td>Keys: <kbd>I J K L</kbd> compass directions, <kbd>Q</kbd> to crouch, <kbd>U</kbd> use item, <kbd>F</kbd> fire.</td></tr>
+      <tr><td>Lode Runner</td><td>Keys: <kbd>I J K M</kbd> = up/left/right/down, <kbd>U</kbd>/<kbd>O</kbd> dig left/right.</td></tr>
+      <tr><td>Sammy Lightfoot</td><td>Joystick (<kbd>F1</kbd>/<kbd>F2</kbd> jump). Press <kbd>1</kbd> for one-player at the title.</td></tr>
+      <tr><td>Hard Hat Mack</td><td>Keys: <kbd>I J K M</kbd> move, <kbd>SPC</kbd> jump.</td></tr>
+      <tr><td>Karateka</td><td>Press <kbd>Esc</kbd> to start; <kbd>D</kbd> assumes fighting stance. Punches/kicks: <kbd>J</kbd> high, <kbd>K</kbd> mid, <kbd>L</kbd> low (combined with arrows). <kbd>SPC</kbd> backs out of stance.</td></tr>
+      <tr><td>The Oregon Trail</td><td>Type <kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd> through the title prompts. Game is keyboard menu-driven throughout.</td></tr>
+      <tr><td>Applesoft BASIC</td><td>No disk inserted. The boot ROM hangs at the disk-not-found screen for ~3 seconds then drops to the <code>]</code> Applesoft prompt. Try <code>10 PRINT "HELLO": GOTO 10</code>, then <code>RUN</code>.</td></tr>
+    </table>
+
+    <h2>Useful BASIC commands</h2>
+    <table>
+      <tr><th>Command</th><th>Effect</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the current program</td></tr>
+      <tr><td><code>RUN</code></td><td>Run the current program</td></tr>
+      <tr><td><code>NEW</code></td><td>Clear the program from memory</td></tr>
+      <tr><td><code>HOME</code></td><td>Clear the screen</td></tr>
+      <tr><td><code>CATALOG</code></td><td>List files on the disk (DOS 3.3)</td></tr>
+      <tr><td><code>PR#6</code></td><td>Boot from drive 1 (Disk II in slot 6)</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>Break out of a running program</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Reset</kbd></td><td>Soft reset (most games trap this)</td></tr>
+    </table>
+
+    <p class="note">Emulator: <a href="https://github.com/whscullin/apple2js" target="_blank" rel="noopener">apple2js</a> by Will Scullin (MIT). All game disks are <a href="https://archive.org/details/apple_ii_library_4am" target="_blank" rel="noopener">4am preservation cracks</a> from the Internet Archive, except Karateka which is a TOSEC dump. Apple ][+ ROM is bundled in the apple2js distribution.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>

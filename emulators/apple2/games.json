@@ -1,0 +1,11 @@
+{
+  "lemonade": { "title": "Lemonade Stand" },
+  "wolf":     { "title": "Castle Wolfenstein" },
+  "choplift": { "title": "Choplifter" },
+  "aztec":    { "title": "Aztec" },
+  "loderun":  { "title": "Lode Runner" },
+  "sammy":    { "title": "Sammy Lightfoot" },
+  "hardhat":  { "title": "Hard Hat Mack" },
+  "karateka": { "title": "Karateka" },
+  "oregon":   { "title": "The Oregon Trail" }
+}
