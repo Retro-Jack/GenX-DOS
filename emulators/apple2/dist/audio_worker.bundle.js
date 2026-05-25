@@ -1,0 +1,2 @@
+(()=>{"use strict";class s extends AudioWorkletProcessor{constructor(){super(),this.samples=[],console.info("AppleAudioProcessor constructor"),this.port.onmessage=s=>{this.samples.push(s.data),this.samples.length>256&&this.samples.shift()}}static get parameterDescriptors(){return[]}process(s,e,t){const r=this.samples.shift(),o=e[0];if(r)for(let s=0;s<r.length;s++)o[0][s]=r[s];return!0}}registerProcessor("audio_worker",s)})();
+//# sourceMappingURL=audio_worker.bundle.js.map
