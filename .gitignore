@@ -1,4 +1,6 @@
 emulators/*/node_modules/
+emulators/macplus/disk-fat
+emulators/macplus/build-disk.py
 
 # macOS filesystem junk — sometimes ships inside upstream emulator
 # bundles we mirror; never wanted in this repo.
