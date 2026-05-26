@@ -32,9 +32,10 @@
   html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
   body { display: flex; align-items: center; justify-content: center; }
   h1, h2, .inset, .modal, #keyboard { display: none !important; }
-  #display td > div[style] { display: none !important; }
-  .overscan { width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); padding: 0; margin: 0; border: 0; }
-  #text { width: 100%; height: 100%; }
+  body > div[style] { display: contents !important; }
+  #display, #display tbody, #display tr, #display td { display: contents; }
+  .overscan { width: min(100vw, calc(100dvh * 4 / 3)); height: min(100dvh, calc(100vw * 3 / 4)); padding: 0; margin: 0; border: 0; }
+  #text { position: static; width: 100%; height: 100%; }
 </style>
 
 <meta property="og:title" content="Apple 1js" />
@@ -51,14 +52,12 @@ var tapes = {};
 <script type="text/javascript" src="tapes/applesoft.js"></script>
 <script type="text/javascript" src="tapes/basic.js"></script>
 <script type="text/javascript" src="tapes/blackjack.js"></script>
-<script type="text/javascript" src="tapes/cell.js"></script>
 <script type="text/javascript" src="tapes/checkers.js"></script>
 <script type="text/javascript" src="tapes/codebreaker.js"></script>
 <script type="text/javascript" src="tapes/hamurabi.js"></script>
 <script type="text/javascript" src="tapes/life.js"></script>
 <script type="text/javascript" src="tapes/little_tower.js"></script>
 <script type="text/javascript" src="tapes/lunar_lander.js"></script>
-<script type="text/javascript" src="tapes/matrix.js"></script>
 <script type="text/javascript" src="tapes/monitor.js"></script>
 <script type="text/javascript" src="tapes/microchess.js"></script>
 <script type="text/javascript" src="tapes/puzz15.js"></script>
@@ -156,7 +155,7 @@ var tapes = {};
           <h3>I/O</h3>
           <ul>
             <li>
-                <input type="checkbox" id="turbo_tape"
+                <input type="checkbox" id="turbo_tape" checked="checked"
                     onclick="Apple1.setTurboTape(this.checked)" />
                 <label for="turbo_tape">
                 Turbo Tape Loading
@@ -224,6 +223,35 @@ var tapes = {};
     </div>
   </div>
   <script type="text/javascript" src="apple1.js"></script>
-  <script>document.getElementById('text').focus();</script>
+  <script>
+  document.getElementById('text').focus();
+  (function() {
+    var t = new URLSearchParams(location.search).get('tape');
+    if (!t) return;
+    var map = {
+      startrek: 'Star Trek',
+      blackjack: 'Blackjack',
+      chess: 'Microchess',
+      hamurabi: 'Hamurabi',
+      lunar: 'Lunar Lander',
+      wumpus: 'Wumpus',
+      checkers: 'Checkers',
+      codebrkr: 'Codebreaker',
+      puzzle15: '15 Puzzle',
+      life: 'Life',
+      tower: 'Little Tower',
+      shutbox: 'Shut the Box',
+      slots: 'Slots',
+      startrek2k3: 'Star Trek 2003',
+      apple30: 'Apple 30th'
+    };
+    var name = map[t] || t;
+    setTimeout(function() {
+      var sel = document.querySelector('#tape_select');
+      sel.value = name;
+      sel.dispatchEvent(new Event('change'));
+    }, 500);
+  })();
+  </script>
 </body>
 </html>

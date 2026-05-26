@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+### Added
+- **Apple I — 6 new games/programs** added to the menu: Star Trek 2003, Little Tower, Shut the Box, Slots, Game of Life (Conway's), and Apple 30th Anniversary demo. All tapes already existed in the apple1js bundle but were not wired into the GenX-DOS menu. URL-param map in `play.html` and `fs.js` menu/bat entries updated. Menu now has 15 items + Woz Monitor prompt (was 9 + prompt).
+
+### Fixed
+- **Apple I tapes failed to load** — apple1js's `DOMContentLoaded` handler schedules a CPU reset 300ms after init. With turbo tape on, the auto-loaded program would start instantly then get killed by the delayed reset. Moved the tape auto-load from a pre-`apple1.js` hash-set to a post-load `setTimeout(500ms)` so it fires after the reset completes.
+- **Apple I bottom text line clipped** — upstream `apple1.css` positions the canvas at `top: 16px` (to match the overscan's 16px padding), but our GenX-DOS overlay zeroed the padding without resetting the canvas position. Added `position: static` to the canvas to remove the 16px offset. Also collapsed the wrapper div and table layout via `display: contents` to eliminate extra spacing.
+- **Apple I turbo tape enabled by default** — the turbo tape checkbox was unchecked in upstream HTML and the control panel is hidden by our CSS overlay, so users couldn't enable it. Set `checked="checked"` on the turbo tape input so tapes load instantly.
+
+### Changed
+- **Apple I — removed unused tape scripts** from `play.html`: `cell.js` (Cellular Automaton, redundant with Life), `matrix.js` (visual demo, skipped), `wumpus.js` (clobbered by `wumpus2.js` which registers the same `tapes['Wumpus']` key). Files remain on disk but are no longer loaded.
+
 ### Removed
 - **Macintosh** (`emulators/macplus/`), **Acorn Archimedes** (`emulators/archimedes-live/`), **Atari ST** (`emulators/estyjs/`), and **Commodore Amiga 500** (`emulators/amiga/`) — all 16-bit GUI-era platforms removed; not retro enough for the site's 8-bit focus. ACORN flattened to BBC-only, APPLE flattened to APPLEII-only, ATARI reduced to 400+800XL, Amiga dropped from COMMODRE.
 
