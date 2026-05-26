@@ -3,7 +3,7 @@
 ## [Unreleased]
 
 ### Added
-- **Apple I — 6 new games/programs** added to the menu: Star Trek 2003, Little Tower, Shut the Box, Slots, Game of Life (Conway's), and Apple 30th Anniversary demo. All tapes already existed in the apple1js bundle but were not wired into the GenX-DOS menu. URL-param map in `play.html` and `fs.js` menu/bat entries updated. Menu now has 15 items + Woz Monitor prompt (was 9 + prompt).
+- **Apple I — 2 new games/programs** added to the menu: Game of Life (Conway's) and Apple 30th Anniversary demo. Both tapes already existed in the apple1js bundle but were not wired into the GenX-DOS menu. Codebreaker dropped to make room. Menu now has 10 items + Woz Monitor prompt (standard recipe).
 
 ### Fixed
 - **Apple I tapes failed to load** — apple1js's `DOMContentLoaded` handler schedules a CPU reset 300ms after init. With turbo tape on, the auto-loaded program would start instantly then get killed by the delayed reset. Moved the tape auto-load from a pre-`apple1.js` hash-set to a post-load `setTimeout(500ms)` so it fires after the reset completes.
@@ -11,7 +11,7 @@
 - **Apple I turbo tape enabled by default** — the turbo tape checkbox was unchecked in upstream HTML and the control panel is hidden by our CSS overlay, so users couldn't enable it. Set `checked="checked"` on the turbo tape input so tapes load instantly.
 
 ### Changed
-- **Apple I — removed unused tape scripts** from `play.html`: `cell.js` (Cellular Automaton, redundant with Life), `matrix.js` (visual demo, skipped), `wumpus.js` (clobbered by `wumpus2.js` which registers the same `tapes['Wumpus']` key). Files remain on disk but are no longer loaded.
+- **Apple I — removed unused tape scripts** from `play.html`: `cell.js` (Cellular Automaton, redundant with Life), `matrix.js` (visual demo), `codebreaker.js`, `little_tower.js`, `shut.js`, `slots.js`, `startrek2003.js` (trimmed to 10-game standard), `wumpus.js` (clobbered by `wumpus2.js`). Files remain on disk but are no longer loaded.
 
 ### Removed
 - **Macintosh** (`emulators/macplus/`), **Acorn Archimedes** (`emulators/archimedes-live/`), **Atari ST** (`emulators/estyjs/`), and **Commodore Amiga 500** (`emulators/amiga/`) — all 16-bit GUI-era platforms removed; not retro enough for the site's 8-bit focus. ACORN flattened to BBC-only, APPLE flattened to APPLEII-only, ATARI reduced to 400+800XL, Amiga dropped from COMMODRE.
