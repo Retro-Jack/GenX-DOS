@@ -56,14 +56,14 @@
 
                         ],
                         files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              CONSOLE  SYSTEMS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  1977 - Atari                 ATARI    º\necho º   2.  1978 - Odysseyý             ODYSSEY2  º\necho º   3.  1979 - Intellivision         INTV     º\necho º   4.  1982 - ColecoVision          CVISION  º\necho º   5.  1982 - Vectrex               VECTREX  º\necho º   6.  1983 - NES                   NES      º\necho º   7.  1988 - Genesis               GENESIS  º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º              CONSOLE  SYSTEMS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  Atari                        ATARI    º\necho º   2.  NES                          NES      º\necho º   3.  Genesis                      GENESIS  º\necho º   4.  Intellivision                INTV     º\necho º   5.  ColecoVision                 CVISION  º\necho º   6.  Odysseyý                    ODYSSEY2  º\necho º   7.  Vectrex                      VECTREX  º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
                     { name: '1.bat', data: 'cd atari\nmenu\n' },
-                    { name: '2.bat', data: 'cd odyssey2\nmenu\n' },
-                    { name: '3.bat', data: 'cd intv\nmenu\n' },
-                    { name: '4.bat', data: 'cd cvision\nmenu\n' },
-                    { name: '5.bat', data: 'cd vectrex\nmenu\n' },
-                    { name: '6.bat', data: 'cd nes\nmenu\n' },
-                    { name: '7.bat', data: 'cd genesis\nmenu\n' },
+                    { name: '2.bat', data: 'cd nes\nmenu\n' },
+                    { name: '3.bat', data: 'cd genesis\nmenu\n' },
+                    { name: '4.bat', data: 'cd intv\nmenu\n' },
+                    { name: '5.bat', data: 'cd cvision\nmenu\n' },
+                    { name: '6.bat', data: 'cd odyssey2\nmenu\n' },
+                    { name: '7.bat', data: 'cd vectrex\nmenu\n' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
                     },
@@ -145,16 +145,16 @@
 
                         ],
                         files: [
-                            { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               HOME  COMPUTERS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  1977 - Apple ][              APPLEII  º\necho º   2.  1977 - Commodore             COMMODRE º\necho º   3.  1979 - Atari                 ATARI    º\necho º   4.  1980 - Color Computer        COCO     º\necho º   5.  1981 - BBC Micro             BBC      º\necho º   6.  1981 - Sinclair              SINCLAIR º\necho º   7.  1983 - Acorn Electron        ELECTRON º\necho º   8.  1983 - MSX                   MSX      º\necho º   9.  1984 - Amstrad CPC           CPC      º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
-                            { name: '1.bat', data: 'cd appleii\ncd games\nmenu\n' },
-                            { name: '2.bat', data: 'cd commodre\nmenu\n' },
-                            { name: '3.bat', data: 'cd atari\nmenu\n' },
-                            { name: '4.bat', data: 'cd coco\nmenu\n' },
-                            { name: '5.bat', data: 'cd bbc\ncd games\nmenu\n' },
+                            { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º               HOME  COMPUTERS               º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  BBC Micro                    BBC      º\necho º   2.  Acorn Electron               ELECTRON º\necho º   3.  Apple ][                     APPLEII  º\necho º   4.  Commodore                    COMMODRE º\necho º   5.  Atari                        ATARI    º\necho º   6.  Sinclair                     SINCLAIR º\necho º   7.  Amstrad CPC                  CPC      º\necho º   8.  Color Computer               COCO     º\necho º   9.  MSX                          MSX      º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
+                            { name: '1.bat', data: 'cd bbc\ncd games\nmenu\n' },
+                            { name: '2.bat', data: 'cd electron\ncd games\nmenu\n' },
+                            { name: '3.bat', data: 'cd appleii\ncd games\nmenu\n' },
+                            { name: '4.bat', data: 'cd commodre\nmenu\n' },
+                            { name: '5.bat', data: 'cd atari\nmenu\n' },
                             { name: '6.bat', data: 'cd sinclair\nmenu\n' },
-                            { name: '7.bat', data: 'cd electron\ncd games\nmenu\n' },
-                            { name: '8.bat', data: 'cd msx\nmenu\n' },
-                            { name: '9.bat', data: 'cd cpc\nmenu\n' },
+                            { name: '7.bat', data: 'cd cpc\nmenu\n' },
+                            { name: '8.bat', data: 'cd coco\nmenu\n' },
+                            { name: '9.bat', data: 'cd msx\nmenu\n' },
                             { name: '0.bat', data: 'cd ..\nmenu\n' }
                         ]
                     },

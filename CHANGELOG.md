@@ -7,7 +7,7 @@
 
 ### Changed
 - **Electron display — CRT raster effect removed.** Upstream ElkJS drew each emulated row to one canvas line and skipped the next (leaving it black), creating visible horizontal scanlines. Changed to duplicate each drawn row to the line below, filling the full 640x512 canvas with solid pixels.
-- **HOMECOMP and CONSOLE menus sorted by platform release year** — each entry now shows `YYYY - Platform Name`. HOMECOMP: Apple ][ (1977) through Amstrad CPC (1984). CONSOLE: Atari (1977) through Genesis (1988). Main launcher reordered: Home Computers first, DOS last.
+- **Main launcher reordered** — Home Computers first, DOS last. Acorn Electron added at HOMECOMP position 2 (after BBC Micro). "Atari Consoles" / "Atari Home Computers" shortened to just "Atari".
 
 ### Removed
 - **Apple I** (`emulators/apple1/`) — removed; did not meet quality bar. Menu entry and all tape files deleted.
