@@ -3,11 +3,15 @@
 ## [Unreleased]
 
 ### Added
-- **Acorn Electron at `emulators/electron/`** via ElkJS (Darren Coles) — JavaScript Acorn Electron emulator with 6502 core ported from Elkulator (Tom Walker). 10 UEF snapshot games: Snapper, Citadel, Starship Command, Repton 2, Boxer, Cybertron Mission, Elite, Chuckie Egg, Frak!, Hopper. Slotted under HOMECOMP after BBC Micro (sibling Acorn machines). Controls page added. Upstream UI cruft removed (index.html, main.js, gamesdialog.html, tapedialog.html, jQuery UI theme CSS + images, old jQuery 1.7.2).
+- **Acorn Electron at `emulators/electron/`** via ElkJS (Darren Coles) — JavaScript Acorn Electron emulator with 6502 core ported from Elkulator (Tom Walker). 10 UEF snapshot games + Electron BASIC prompt. Controls page added. Upstream UI cruft removed (index.html, main.js, gamesdialog.html, tapedialog.html, jQuery UI theme CSS + images, old jQuery 1.7.2). CRT raster scanline effect removed from display.js (row doubling).
+- **BBC Master 128** added under ACORN menu — same jsbeeb emulator with `?model=Master` URL param. 10 Master-enhanced titles: Elite (flicker-free build from bbcelite.com, DSD double-sided disc), Last Ninja 2, Repton 3, Repton Infinity, Firetrack, Crazee Rider, Stryker's Run, By Fair Means or Foul, Holed Out, Ballistix. All SSDs sourced from Stairway to Hell archive. BBC BASIC prompt entry.
 
 ### Changed
-- **Electron display — CRT raster effect removed.** Upstream ElkJS drew each emulated row to one canvas line and skipped the next (leaving it black), creating visible horizontal scanlines. Changed to duplicate each drawn row to the line below, filling the full 640x512 canvas with solid pixels.
-- **Main launcher reordered** — Home Computers first, DOS last. Acorn Electron added at HOMECOMP position 2 (after BBC Micro). "Atari Consoles" / "Atari Home Computers" shortened to just "Atari".
+- **ACORN parent menu** created — BBC Micro, Acorn Electron, and BBC Master grouped under a single ACORN entry in HOMECOMP (same pattern as SINCLAIR, COMMODORE, etc.).
+- **HOMECOMP grouped by manufacturer, sorted by release date** — Apple ][ (1977), Commodore (1977), Atari (1979), Tandy (1980), Acorn (1981), Sinclair (1981), MSX (1983), Amstrad (1984). "Atari Consoles" / "Atari Home Computers" shortened to just "Atari". Main launcher reordered: Home Computers first, DOS last.
+- **CONSOLE sorted by release date** — Atari (1977) through Genesis (1988).
+- **Vectrex Mine Storm moved to built-in slot** (#11) — Mine Storm is the Vectrex's built-in ROM (plays with no cart inserted), so it belongs in the prompt/BASIC slot. Scramble (1982) added as game #10 to fill the freed slot.
+- **7 off-centre menu mastheads fixed** — Commander Keen, Master-Enhanced Titles, Commodore PET, Commodore 128, Atari 400, MSX1, MSX2.
 
 ### Removed
 - **Apple I** (`emulators/apple1/`) — removed; did not meet quality bar. Menu entry and all tape files deleted.

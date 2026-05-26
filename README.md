@@ -28,7 +28,7 @@ prompt/                   the DOS terminal (HTML + JS, no build)
 emulators/
   _shared/                shared CSS for controls.html + corner-link styles + NumLock warning JS + RUN/STOP softkey
   _shared-ejs/            shared EmulatorJS framework + 5 VICE cores + gearcoleco core (saves ~13 MB vs per-bundle copies)
-  jsbeeb/                 BBC Micro        — Vite-built dist + 10 .ssd discs
+  jsbeeb/                 BBC Micro + Master — Vite-built dist + 10 BBC .ssd + 10 Master-enhanced .ssd/.dsd
   electron/               Acorn Electron   — ElkJS + 10 UEF snapshot games
   apple2/                 Apple ][+        — apple2js (webpack dist) + 9 .dsk disk images
   jsnes/                  NES              — EmulatorJS + FCEUmm libretro core + 10 .nes ROMs
@@ -59,6 +59,7 @@ emulators/
 | System    | Copied from                          | URL pattern                              |
 |-----------|--------------------------------------|------------------------------------------|
 | BBC Micro | mattgodbolt/jsbeeb v1.12.0           | `?disc1=<path>.ssd&autoboot`             |
+| BBC Master | mattgodbolt/jsbeeb v1.12.0 (same build) | `?model=Master&disc1=<path>.ssd&autoboot` |
 | Acorn Electron | dmcoles/elkjs                   | `play.html?game=<key>`                   |
 | Apple ][+ | whscullin/apple2js                   | `play.html?game=<key>`                   |
 | NES       | EmulatorJS + FCEUmm libretro core    | `play.html?game=<key>`                   |
