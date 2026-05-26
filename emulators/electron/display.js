@@ -767,9 +767,9 @@ ElkJs.Display = function (opts) {
             if (self.beamRow % 10 > 7) {
                 self.beamRow++;
                 if (buf8 != null) {
-                    pixelIndex += 640;
+                    pixelIndex += 1280;
                 } else {
-                    pixelIndex += 2560;
+                    pixelIndex += 5120;
                 }
                 return;
             }
@@ -777,10 +777,12 @@ ElkJs.Display = function (opts) {
 
         if (buf8 != null) {
             optimisedScreenDraw();
+            data.copyWithin(pixelIndex, pixelIndex - 640, pixelIndex);
             pixelIndex += 640;
         }
         else {
             standardScreenDraw();
+            data.copyWithin(pixelIndex, pixelIndex - 2560, pixelIndex);
             pixelIndex += 2560;
         }
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Acorn Electron — ElkJS</title>
+<link rel="stylesheet" href="../_shared/genx-noscript.css">
+<link rel="stylesheet" href="../_shared/genx-controls-link.css">
+<script defer src="../_shared/genx-controls-link.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+  body { display: flex; align-items: center; justify-content: center; }
+  canvas { width: min(100vw, calc(100dvh * 4 / 3)); height: min(100dvh, calc(100vw * 3 / 4)); image-rendering: pixelated; }
+</style>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script src="jquery/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="elkjs.js"></script>
+<script src="processor.js"></script>
+<script src="display.js"></script>
+<script src="tape.js"></script>
+<script src="keyboard.js"></script>
+<script src="sheila.js"></script>
+<script src="memory.js"></script>
+<script src="sound.js"></script>
+<script src="rawinflate.js"></script>
+<script src="js-unzip.js"></script>
+<script src="uef_file.js"></script>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+  <canvas id="ElkJsOutput" width="640" height="512"></canvas>
+  <script>
+  var elkjs = ElkJs("ElkJsOutput");
+  var games = {
+    snapper:   'snapper_snap.uef',
+    citadel:   'citadel_snap.uef',
+    starship:  'StarshipCommand_snap.uef',
+    repton2:   'repton2_snap.uef',
+    boxer:     'boxer_snap.uef',
+    cybertron: 'cybertronmission_snap.uef',
+    elite:     'Elite_snap.uef',
+    chuckie:   'chuckie_snap.uef',
+    frak:      'frak_snap.uef',
+    hopper:    'hopper_snap.uef'
+  };
+  var key = new URLSearchParams(location.search).get('game');
+  if (key && games[key]) {
+    setTimeout(function() { elkjs.openFile(games[key]); }, 3000);
+  }
+  document.addEventListener('keydown', function initSound() {
+    elkjs.soundToggle();
+    document.removeEventListener('keydown', initSound);
+  }, { once: true });
+  </script>
+</body>
+</html>

@@ -29,7 +29,8 @@ emulators/
   _shared/                shared CSS for controls.html + corner-link styles + NumLock warning JS + RUN/STOP softkey
   _shared-ejs/            shared EmulatorJS framework + 5 VICE cores + gearcoleco core (saves ~13 MB vs per-bundle copies)
   jsbeeb/                 BBC Micro        — Vite-built dist + 10 .ssd discs
-  archimedes-live/        Acorn Archimedes — Arculator WASM + 10 RISC OS titles
+  electron/               Acorn Electron   — ElkJS + 10 UEF snapshot games
+  apple2/                 Apple ][+        — apple2js (webpack dist) + 9 .dsk disk images
   jsnes/                  NES              — EmulatorJS + FCEUmm libretro core + 10 .nes ROMs
   genesis/                Sega Genesis     — Emscripten bundle + 10 .bin ROMs
   javatari/               Atari 2600       — pure-JS bundle + 10 .a26 ROMs
@@ -37,7 +38,6 @@ emulators/
   jsdos/                  MS-DOS           — js-dos v7 + 20 .jsdos game bundles
   webmsx/                 MSX / MSX2 / MSX2+ — WebMSX single-file bundle + 10 MSX1 + 10 MSX2 titles
   jsvecx/                 GCE Vectrex      — JSVecX + ~100 commercial/homebrew ROMs
-  estyjs/                 Atari ST         — EstyJS + EmuTOS + 10 .st disks
   jsspeccy/               Sinclair Spectrum — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81    — JtyOne + 10 .p tapes (hex format)
   xroar/                  Tandy CoCo       — XRoar WASM + 10 .ccc carts
@@ -59,7 +59,8 @@ emulators/
 | System    | Copied from                          | URL pattern                              |
 |-----------|--------------------------------------|------------------------------------------|
 | BBC Micro | mattgodbolt/jsbeeb v1.12.0           | `?disc1=<path>.ssd&autoboot`             |
-| Archimedes| pdjstone/archimedes-live             | `#disc=<catalogue-id>&autoboot`          |
+| Acorn Electron | dmcoles/elkjs                   | `play.html?game=<key>`                   |
+| Apple ][+ | whscullin/apple2js                   | `play.html?game=<key>`                   |
 | NES       | EmulatorJS + FCEUmm libretro core    | `play.html?game=<key>`                   |
 | Genesis   | lrusso/Genesis (PicoDrive port)      | `play.html?game=<key>`                   |
 | 2600      | ppeccin/javatari.js v5.0.4           | `play.html?game=<key>`                   |
@@ -67,7 +68,6 @@ emulators/
 | MS-DOS    | caiiiycuk/js-dos v7.0.0              | `play.html?game=<key>`                   |
 | MSX       | ppeccin/WebMSX                       | `?ROM=games/<sub>/<name>.zip[&M=MSX1]`   |
 | Vectrex   | DrSnuggles/jsvecx (raz0red)          | `index.html?rom=<dir>/<title>` (never `seamless.html`) |
-| Atari ST  | kaiec/EstyJS 2.0 + EmuTOS            | `play.html?game=<key>`                   |
 | Spectrum  | gasman/JSSpeccy 3 v3.2               | `play.html?game=<key>`                   |
 | ZX81      | hammingweight/JtyOne                 | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar v1.10           | `play.html?game=<key>`                   |
@@ -96,7 +96,8 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 
 - Site code by Retro-Jack
 - jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb)
-- archimedes-live: MIT (pdjstone/archimedes-live, WASM port of Sarah Walker's Arculator)
+- ElkJS: (c) Darren Coles 2013 (dmcoles/elkjs) — 6502 core ported from Elkulator by Tom Walker
+- apple2js: MIT (whscullin/apple2js) — Apple ][+ emulator in JavaScript
 - FCEUmm: GPL-2.0 (libretro NES core) — mirrored from `cdn.emulatorjs.org/stable/`
 - Genesis (lrusso): GPL-2.0 (notaz/PicoDrive port)
 - Javatari: AGPL-3.0 (ppeccin/javatari.js)
@@ -104,7 +105,6 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - js-dos: GPL-2.0 (caiiiycuk/js-dos v7.0.0)
 - WebMSX: MIT (ppeccin/WebMSX) — same author as Javatari
 - JSVecX: GPL-3.0 (raz0red, fork by DrSnuggles — JS port of Valavan Manohararajah's VecX C source)
-- EstyJS: GPL-2.0+ (Kai Eckert / Darren Coles); EmuTOS: GPL-2.0+ (open-source TOS reimplementation)
 - JSSpeccy 3: GPL-3.0 (Matt Westcott / gasman)
 - JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
