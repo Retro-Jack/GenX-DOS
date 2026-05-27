@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lode Runner — Apple ][ — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple ][</div>
+      <h1>Lode Runner</h1>
+      <p class="sub">Broderbund, 1983 — Doug Smith — 150 levels of platform-puzzle action</p>
+    </div>
+
+    <p class="intro">Collect every piece of gold on each level while avoiding guards. You can't jump, but you can dig holes in the brick floor to trap guards or create paths. When all gold is collected, an escape ladder appears at the top. 150 levels plus a built-in level editor.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game boots from disk and starts on level 1.</li>
+      <li>Collect all gold pieces. The escape ladder appears at the top of the screen.</li>
+      <li>Climb to the top to advance to the next level.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>I</kbd></td><td>Climb up</td></tr>
+      <tr><td><kbd>K</kbd></td><td>Climb down</td></tr>
+      <tr><td><kbd>J</kbd></td><td>Move left</td></tr>
+      <tr><td><kbd>L</kbd></td><td>Move right</td></tr>
+      <tr><td><kbd>U</kbd></td><td>Dig hole to the left</td></tr>
+      <tr><td><kbd>O</kbd></td><td>Dig hole to the right</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Stop moving</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Pause</td></tr>
+      <tr><td><kbd>-</kbd> / <kbd>=</kbd></td><td>Decrease / increase game speed</td></tr>
+    </table>
+
+    <h2>How it works</h2>
+    <table>
+      <tr><th>Element</th><th>Behaviour</th></tr>
+      <tr><td>Brick</td><td>Can be dug. Holes refill after a few seconds.</td></tr>
+      <tr><td>Solid block</td><td>Cannot be dug or destroyed.</td></tr>
+      <tr><td>Ladders</td><td>Climb up and down. The escape ladder only appears after all gold is collected.</td></tr>
+      <tr><td>Bars</td><td>Traverse gaps hand-over-hand. You hang automatically.</td></tr>
+      <tr><td>Gold</td><td>Collect all pieces to reveal the escape ladder.</td></tr>
+    </table>
+
+    <h2>Guards</h2>
+    <ul>
+      <li>Guards chase you using pathfinding, but their AI is unpredictable — they don't always take the shortest path.</li>
+      <li>A guard who falls into a dug hole is <strong>trapped</strong> until the hole refills.</li>
+      <li>If the hole refills on top of a guard, they die and <strong>respawn at the top</strong> of the screen.</li>
+      <li>Guards can carry gold — trap them to make them <strong>drop it</strong>.</li>
+      <li>You can <strong>walk on top of</strong> a trapped guard to reach higher platforms.</li>
+    </ul>
+
+    <h2>Digging rules</h2>
+    <ul>
+      <li>You can only dig to your <strong>left or right</strong>, never directly below.</li>
+      <li>You can only dig through <strong>normal brick</strong> — solid blocks, ladders, and bars are indestructible.</li>
+      <li>Holes refill on a timer. Plan your route so you don't get trapped.</li>
+      <li>To dig through multiple layers, make the gap at least as wide as the number of layers deep.</li>
+    </ul>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Think before you dig.</strong> Holes refill — a badly timed dig can trap you instead of the guard.</li>
+      <li><strong>Use guards as stepping stones.</strong> Walk on trapped guards to reach otherwise inaccessible platforms.</li>
+      <li><strong>Bait the guards.</strong> Lure them away from gold you need to collect.</li>
+      <li><strong>Order matters.</strong> Many levels require collecting gold in a specific sequence to avoid getting stuck.</li>
+      <li><strong>Adjust speed.</strong> Press <kbd>-</kbd> to slow the game down on tricky levels.</li>
+    </ul>
+  </div>
+</body>
+</html>
