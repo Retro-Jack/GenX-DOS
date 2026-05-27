@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Microchess — Apple I — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple I</div>
+      <h1>Microchess</h1>
+      <p class="sub">Peter Jennings, 1976 — Apple I port by Larry Nelson — the first commercial microcomputer game</p>
+    </div>
+
+    <p class="intro">Play chess against the Apple I. The board is displayed as text with a two-digit coordinate system. You play Black (bottom of the board); the computer plays White (top). Originally written for the KIM-1 in 1976, this is believed to be the first commercially sold microcomputer game.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game loads via turbo tape.</li>
+      <li>Press <kbd>0</kbd> for Normal difficulty (or <kbd>1</kbd> Blitz, <kbd>2</kbd> Super Blitz).</li>
+      <li>Choose an opening (<kbd>0</kbd>–<kbd>9</kbd>) or press <kbd>Return</kbd> for random play.</li>
+      <li>Press <kbd>G</kbd> to begin. The board is displayed. You move first as Black.</li>
+    </ol>
+
+    <h2>Commands</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>G</kbd></td><td>Start new game</td></tr>
+      <tr><td><kbd>R</kbd></td><td>Reverse board (rotate 180°)</td></tr>
+      <tr><td><kbd>P</kbd></td><td>Redraw the board</td></tr>
+      <tr><td><kbd>L</kbd></td><td>Return to opening menu</td></tr>
+      <tr><td><kbd>Q</kbd></td><td>Quit to Woz Monitor</td></tr>
+    </table>
+
+    <h2>Making a move</h2>
+    <p>Type your move as four digits followed by <kbd>M</kbd>, then press <kbd>Return</kbd>:</p>
+    <pre>  yxyxM</pre>
+    <p>First two digits = <strong>from</strong> square, second two = <strong>to</strong> square. Each square is identified by row (0–7, top to bottom) then column (0–7, left to right).</p>
+    <p>Example: <code>6747M</code> moves the piece at row 6, column 7 to row 4, column 7 (Black's rightmost pawn forward two squares).</p>
+
+    <h2>Board coordinates</h2>
+    <table>
+      <tr><th></th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th></tr>
+      <tr><td><strong>0</strong></td><td>WR</td><td>WN</td><td>WB</td><td>WQ</td><td>WK</td><td>WB</td><td>WN</td><td>WR</td></tr>
+      <tr><td><strong>1</strong></td><td>WP</td><td>WP</td><td>WP</td><td>WP</td><td>WP</td><td>WP</td><td>WP</td><td>WP</td></tr>
+      <tr><td><strong>6</strong></td><td>BP</td><td>BP</td><td>BP</td><td>BP</td><td>BP</td><td>BP</td><td>BP</td><td>BP</td></tr>
+      <tr><td><strong>7</strong></td><td>BR</td><td>BN</td><td>BB</td><td>BQ</td><td>BK</td><td>BB</td><td>BN</td><td>BR</td></tr>
+    </table>
+    <p>Rows 2–5 are empty at the start. To move Black's king pawn (at 64) forward two squares, type <code>6444M</code>.</p>
+
+    <h2>Piece codes</h2>
+    <table>
+      <tr><th>Code</th><th>Piece</th></tr>
+      <tr><td>WK / BK</td><td>King</td></tr>
+      <tr><td>WQ / BQ</td><td>Queen</td></tr>
+      <tr><td>WR / BR</td><td>Rook</td></tr>
+      <tr><td>WB / BB</td><td>Bishop</td></tr>
+      <tr><td>WN / BN</td><td>Knight</td></tr>
+      <tr><td>WP / BP</td><td>Pawn</td></tr>
+    </table>
+
+    <h2>Difficulty levels</h2>
+    <table>
+      <tr><th>Input</th><th>Level</th><th>Notes</th></tr>
+      <tr><td><kbd>0</kbd></td><td>Normal</td><td>Slowest but strongest play</td></tr>
+      <tr><td><kbd>1</kbd></td><td>Blitz</td><td>Faster, weaker play</td></tr>
+      <tr><td><kbd>2</kbd></td><td>Super Blitz</td><td>Fastest, weakest play</td></tr>
+    </table>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Start on Normal (0).</strong> Blitz and Super Blitz reduce the computer's thinking time and weaken its play significantly.</li>
+      <li><strong>The computer plays at a beginner level.</strong> Control the centre, develop your pieces, and castle early.</li>
+      <li><strong>Press <kbd>P</kbd> to redraw.</strong> If you lose track of positions, redraw the board at any time.</li>
+      <li><strong>Illegal moves are rejected.</strong> If you enter an invalid move, the game will reject it — re-enter the correct coordinates.</li>
+    </ul>
+
+    <h2>Apple I keyboard</h2>
+    <p>All input is uppercase. Type commands and press <kbd>Return</kbd>.</p>
+  </div>
+</body>
+</html>
