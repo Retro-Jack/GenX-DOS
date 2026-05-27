@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Archon — Apple ][ — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple ][</div>
+      <h1>Archon</h1>
+      <p class="sub">Electronic Arts, 1984 — Jon Freeman, Anne Westfall, Paul Reiche III — chess meets combat</p>
+    </div>
+
+    <p class="intro">A strategy/action hybrid that plays like chess on a 9×9 board — but when pieces clash, you fight for the square in a real-time combat arena. Light and Dark sides command 18 fantasy units each, from knights and goblins to wizards and dragons. One or two players.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game boots from disk. Choose one or two players and which side to play (Light or Dark).</li>
+      <li>Move pieces on the board like chess. When you move onto an occupied square, combat begins.</li>
+      <li>Win by occupying all five power points, eliminating all enemy pieces, or trapping the last one.</li>
+    </ol>
+
+    <h2>Controls (joystick)</h2>
+    <p>In apple2js, <strong>move your mouse over the canvas</strong> to control direction. If a USB gamepad is connected, it takes over automatically.</p>
+    <table>
+      <tr><th>Input</th><th>Board phase</th><th>Combat phase</th></tr>
+      <tr><td>Mouse / stick</td><td>Move cursor to select and place pieces</td><td>Move your fighter around the arena</td></tr>
+      <tr><td><kbd>F1</kbd> (or gamepad <kbd>A</kbd>)</td><td>Select piece / confirm move</td><td>Attack (locks movement, fires in stick direction)</td></tr>
+    </table>
+
+    <h2>The board</h2>
+    <ul>
+      <li><strong>9×9 grid</strong> with light, dark, and oscillating squares.</li>
+      <li><strong>Luminosity cycle</strong> — one-third of the squares shift between light and dark over time. Pieces fight better on their own colour.</li>
+      <li><strong>Five power points</strong> — centre of each edge plus the board centre. Occupying them heals your piece and grants spell immunity.</li>
+    </ul>
+
+    <h2>Pieces</h2>
+    <table>
+      <tr><th>Light side</th><th>Dark side</th><th>Role</th></tr>
+      <tr><td>Wizard</td><td>Sorceress</td><td>Leader — casts spells, moderate fighter</td></tr>
+      <tr><td>Djinni</td><td>Dragon</td><td>Strongest fighter — ranged attack, fast</td></tr>
+      <tr><td>Phoenix</td><td>Shapeshifter</td><td>Area attack (Phoenix) / copies opponent (Shapeshifter)</td></tr>
+      <tr><td>Unicorn</td><td>Basilisk</td><td>Strong ranged attacker</td></tr>
+      <tr><td>Golem</td><td>Troll</td><td>Tough melee fighter — slow but durable</td></tr>
+      <tr><td>Valkyrie</td><td>Banshee</td><td>Mid-range — Banshee has area attack</td></tr>
+      <tr><td>Archer</td><td>Manticore</td><td>Ranged missile attacker</td></tr>
+      <tr><td>Knight (×2)</td><td>Goblin (×2)</td><td>Melee foot soldiers — weakest but expendable</td></tr>
+    </table>
+
+    <h2>Combat</h2>
+    <ul>
+      <li>When pieces meet, both enter a <strong>full-screen arena</strong> for real-time combat.</li>
+      <li>Move your fighter and press the button to attack in the direction you're moving.</li>
+      <li><strong>Square colour matters</strong> — the fighter matching the square's current colour gets a health advantage.</li>
+      <li>Stronger pieces usually win, but a weaker piece can prevail with good play.</li>
+      <li>The survivor (possibly wounded) keeps the square.</li>
+    </ul>
+
+    <h2>Spells</h2>
+    <p>The Wizard (Light) and Sorceress (Dark) can each cast these spells once per game instead of moving:</p>
+    <table>
+      <tr><th>Spell</th><th>Effect</th></tr>
+      <tr><td>Teleport</td><td>Move any friendly piece to any empty square</td></tr>
+      <tr><td>Heal</td><td>Restore a wounded piece to full health</td></tr>
+      <tr><td>Shift Time</td><td>Reverse the luminosity cycle</td></tr>
+      <tr><td>Exchange</td><td>Swap positions of any two pieces (yours or theirs)</td></tr>
+      <tr><td>Summon Elemental</td><td>Call a temporary ally into combat</td></tr>
+      <tr><td>Revive</td><td>Bring back an eliminated piece</td></tr>
+      <tr><td>Imprison</td><td>Freeze an enemy piece for several turns</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Control the power points.</strong> They heal your pieces and block enemy spells — holding all five wins the game.</li>
+      <li><strong>Fight on your colour.</strong> Time your attacks so combat happens on squares matching your side.</li>
+      <li><strong>Save spells.</strong> Each can only be cast once. Revive and Heal are most valuable late-game.</li>
+      <li><strong>Sacrifice weak pieces wisely.</strong> A knight/goblin that wounds a strong enemy before dying is a good trade.</li>
+    </ul>
+  </div>
+</body>
+</html>

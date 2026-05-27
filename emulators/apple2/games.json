@@ -7,5 +7,6 @@
   "sammy":    { "title": "Sammy Lightfoot" },
   "hardhat":  { "title": "Hard Hat Mack" },
   "karateka": { "title": "Karateka" },
-  "oregon":   { "title": "The Oregon Trail" }
+  "oregon":   { "title": "The Oregon Trail" },
+  "archon":   { "title": "Archon" }
 }

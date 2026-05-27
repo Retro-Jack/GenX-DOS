@@ -12,4 +12,5 @@ disk_index = [
     { filename: 'json/disks/hardhat.json',  name: 'Hard Hat Mack',      category: 'Electronic Arts' },
     { filename: 'json/disks/karateka.json', name: 'Karateka',           category: 'Broderbund' },
     { filename: 'json/disks/oregon.json',   name: 'The Oregon Trail',   category: 'MECC' },
+    { filename: 'json/disks/archon.json',  name: 'Archon',             category: 'Electronic Arts' },
 ];
