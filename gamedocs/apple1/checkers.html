@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkers — Apple I — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple I</div>
+      <h1>Checkers</h1>
+      <p class="sub">Apple I Integer BASIC — classic draughts against the computer</p>
+    </div>
+
+    <p class="intro">Play checkers (draughts) against the Apple I. The 32 playable squares are numbered 1–32 using standard checkers notation. Enter moves as from and to square numbers. The computer plays one colour; you play the other.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game loads via turbo tape and displays the board.</li>
+      <li>Pieces are shown as text characters on the numbered squares.</li>
+      <li>Enter your moves when prompted and press <kbd>Return</kbd>.</li>
+    </ol>
+
+    <h2>The board</h2>
+    <p>Only the 32 dark squares are used, numbered 1–32 in rows from top to bottom, left to right:</p>
+    <pre>     1   2   3   4
+   5   6   7   8
+     9  10  11  12
+  13  14  15  16
+    17  18  19  20
+  21  22  23  24
+    25  26  27  28
+  29  30  31  32</pre>
+
+    <h2>Making a move</h2>
+    <p>Enter the <strong>from</strong> square and the <strong>to</strong> square when prompted. Follow the on-screen prompts for the exact input format.</p>
+
+    <h2>Rules</h2>
+    <table>
+      <tr><th>Rule</th><th>Detail</th></tr>
+      <tr><td>Move</td><td>Slide one square diagonally forward to an empty square.</td></tr>
+      <tr><td>Jump</td><td>Leap diagonally over an adjacent opponent's piece into the empty square beyond. The jumped piece is captured.</td></tr>
+      <tr><td>Multiple jumps</td><td>If another jump is available after capturing, you must continue jumping.</td></tr>
+      <tr><td>Kinging</td><td>Reach the opponent's back row and your piece becomes a king — it can move and jump both forward and backward.</td></tr>
+      <tr><td>Winning</td><td>Capture all opponent's pieces or block them so they cannot move.</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Control the centre.</strong> Pieces in the middle have more movement options than those on the edges.</li>
+      <li><strong>Advance together.</strong> Move pieces in pairs so they protect each other from being jumped.</li>
+      <li><strong>King early.</strong> Getting a king gives a big advantage — aim for the back row while defending your own.</li>
+      <li><strong>Guard the back row.</strong> Keep pieces there as long as possible to prevent the opponent from kinging.</li>
+    </ul>
+
+    <h2>Apple I keyboard</h2>
+    <p>All input is uppercase. Type numbers and press <kbd>Return</kbd>.</p>
+  </div>
+</body>
+</html>
