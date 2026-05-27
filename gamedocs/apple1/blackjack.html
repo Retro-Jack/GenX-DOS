@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blackjack — Apple I — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple I</div>
+      <h1>Blackjack</h1>
+      <p class="sub">Apple Computer, 1976 — cassette tape A1T004X — one of the first commercial Apple I programs</p>
+    </div>
+
+    <p class="intro">Play 21 against the dealer. Get as close to 21 as you can without going over. Beat the dealer's hand to win your bet. One of the original cassette tapes sold by Apple Computer for the Apple I at $5.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game loads via turbo tape and asks <code>YOUR NAME?</code> — type your name and press <kbd>Return</kbd>.</li>
+      <li>Place a bet by entering a number and pressing <kbd>Return</kbd>.</li>
+      <li>The dealer shows one card face-up. You receive two cards.</li>
+    </ol>
+
+    <h2>How to play</h2>
+    <p>Cards are displayed as value + suit, e.g. <code>5S</code> (5 of Spades), <code>3H</code> (3 of Hearts), <code>KD</code> (King of Diamonds).</p>
+    <p>When the game asks <code>HIT?</code>:</p>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>Y</kbd></td><td>Hit — take another card</td></tr>
+      <tr><td><kbd>N</kbd></td><td>Stand — keep your current hand</td></tr>
+    </table>
+
+    <h2>Card values</h2>
+    <table>
+      <tr><th>Card</th><th>Value</th></tr>
+      <tr><td>2–10</td><td>Face value</td></tr>
+      <tr><td>Jack, Queen, King</td><td>10</td></tr>
+      <tr><td>Ace</td><td>1 or 11 (whichever benefits your hand)</td></tr>
+    </table>
+
+    <h2>Rules</h2>
+    <ul>
+      <li><strong>Blackjack</strong> — an Ace plus a 10-value card on the first two cards. Beats everything except another Blackjack.</li>
+      <li><strong>Bust</strong> — if your total exceeds 21, you lose immediately regardless of the dealer's hand.</li>
+      <li><strong>Dealer rules</strong> — the dealer must hit on 16 or below and stand on 17 or above.</li>
+      <li><strong>Winning</strong> — if you don't bust and your total is higher than the dealer's, you win your bet. If the dealer busts, you win.</li>
+      <li><strong>Push</strong> — if both hands are equal, the bet is returned.</li>
+    </ul>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Stand on 17 or higher.</strong> The risk of busting above 17 outweighs the chance of improving.</li>
+      <li><strong>Hit on 11 or below.</strong> You can't bust — any card improves your hand.</li>
+      <li><strong>Watch the dealer's card.</strong> If the dealer shows a 6 or lower, they're likely to bust — stand on lower totals and let them take the risk.</li>
+      <li><strong>Soft hands.</strong> If your Ace is counting as 11, you can hit more aggressively — busting just converts the Ace to 1.</li>
+    </ul>
+
+    <h2>Apple I keyboard</h2>
+    <p>All input is uppercase. Type your response and press <kbd>Return</kbd>.</p>
+  </div>
+</body>
+</html>
