@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lunar Lander — Apple I — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple I</div>
+      <h1>Lunar Lander</h1>
+      <p class="sub">Mark Garetz, 1976 — 6502 assembly lunar landing simulation</p>
+    </div>
+
+    <p class="intro">Land a spacecraft on the Moon by controlling your thruster burn rate each turn. Too fast and you crash; too little fuel and you plummet. Each turn you see your altitude, velocity, and fuel, then enter a burn rate. Touch down softly to win.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game loads via turbo tape and displays your starting altitude, velocity, and fuel.</li>
+      <li>Each turn, enter a burn rate (0–30) and press <kbd>Return</kbd>.</li>
+      <li>The game updates your status after each burn.</li>
+    </ol>
+
+    <h2>Display</h2>
+    <p>Each turn shows:</p>
+    <table>
+      <tr><th>Reading</th><th>Meaning</th></tr>
+      <tr><td>Time</td><td>Elapsed seconds since descent began</td></tr>
+      <tr><td>Height</td><td>Altitude above the lunar surface (feet)</td></tr>
+      <tr><td>Velocity</td><td>Speed of descent (feet per second) — negative = falling</td></tr>
+      <tr><td>Fuel</td><td>Remaining fuel units</td></tr>
+    </table>
+
+    <h2>Burn rates</h2>
+    <table>
+      <tr><th>Rate</th><th>Effect</th></tr>
+      <tr><td><kbd>0</kbd></td><td>No thrust — free-fall under lunar gravity</td></tr>
+      <tr><td><kbd>5</kbd></td><td>Cancels gravity exactly — maintains current velocity</td></tr>
+      <tr><td><kbd>6</kbd>–<kbd>29</kbd></td><td>Slows descent (or rises if velocity is already low)</td></tr>
+      <tr><td><kbd>30</kbd></td><td>Maximum burn — decelerates hard but uses fuel fast</td></tr>
+    </table>
+
+    <h2>Landing outcomes</h2>
+    <table>
+      <tr><th>Result</th><th>What happened</th></tr>
+      <tr><td>Perfect landing</td><td>Touchdown at very low velocity</td></tr>
+      <tr><td>Survived</td><td>Alive but the craft took damage</td></tr>
+      <tr><td>Crash</td><td>Too fast on impact — "you just creamed a 29 megabuck lander"</td></tr>
+      <tr><td>Out of fuel</td><td>Fuel exhausted mid-descent — at gravity's mercy</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Coast first, brake late.</strong> Save fuel for the final approach. Burn at 0 while altitude is high, then increase thrust near the surface.</li>
+      <li><strong>Watch velocity, not altitude.</strong> High velocity at low altitude means a crash — start braking early enough.</li>
+      <li><strong>Burn rate 5 holds you steady.</strong> Useful for pausing mid-descent to assess your situation.</li>
+      <li><strong>Don't burn at 30 the whole way down.</strong> You'll run out of fuel long before landing.</li>
+    </ul>
+
+    <h2>Apple I keyboard</h2>
+    <p>All input is uppercase. Type a number (0–30) and press <kbd>Return</kbd>.</p>
+  </div>
+</body>
+</html>
