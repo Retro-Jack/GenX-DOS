@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conway's Game of Life — Apple I — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple I</div>
+      <h1>Conway's Game of Life</h1>
+      <p class="sub">John Conway, 1970 — Apple I 6502 machine code by Larry Nelson</p>
+    </div>
+
+    <p class="intro">Conway's Game of Life — a cellular automaton where simple rules produce complex, evolving patterns. This Apple I version asks for your name, uses it as a seed to generate a random starting pattern, then runs the simulation automatically. Watch cells live, die, and reproduce generation by generation.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game loads via turbo tape and displays "CONWAY'S GAME OF LIFE".</li>
+      <li>Type your full name and press <kbd>Return</kbd>. The name is used as a seed — different names produce different starting patterns.</li>
+      <li>The simulation begins automatically. Live cells appear as <code>*</code> on the grid.</li>
+    </ol>
+
+    <h2>The rules</h2>
+    <p>Each cell on the grid is either <strong>alive</strong> or <strong>dead</strong>. Every generation, all cells update simultaneously based on their eight neighbours:</p>
+    <table>
+      <tr><th>Condition</th><th>Result</th></tr>
+      <tr><td>Live cell with fewer than 2 neighbours</td><td>Dies (underpopulation)</td></tr>
+      <tr><td>Live cell with 2 or 3 neighbours</td><td>Survives</td></tr>
+      <tr><td>Live cell with more than 3 neighbours</td><td>Dies (overpopulation)</td></tr>
+      <tr><td>Dead cell with exactly 3 neighbours</td><td>Becomes alive (reproduction)</td></tr>
+    </table>
+
+    <h2>What to watch for</h2>
+    <table>
+      <tr><th>Pattern type</th><th>Behaviour</th></tr>
+      <tr><td>Still lifes</td><td>Stable shapes that never change (blocks, beehives)</td></tr>
+      <tr><td>Oscillators</td><td>Shapes that cycle between states (blinkers, toads)</td></tr>
+      <tr><td>Spaceships</td><td>Shapes that move across the grid (gliders)</td></tr>
+      <tr><td>Methuselahs</td><td>Small patterns that take many generations to stabilise</td></tr>
+    </table>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Try different names.</strong> Each name seeds a different random pattern — some produce more interesting evolution than others.</li>
+      <li><strong>Short names</strong> tend to produce sparser patterns; longer names fill more of the grid.</li>
+      <li><strong>Most patterns stabilise</strong> into a mix of still lifes and oscillators after enough generations.</li>
+      <li><strong>Edge effects.</strong> On the Apple I's finite grid, cells at the border behave differently than on an infinite plane.</li>
+    </ul>
+
+    <h2>Apple I keyboard</h2>
+    <p>Type your name and press <kbd>Return</kbd>. The simulation then runs unattended.</p>
+  </div>
+</body>
+</html>
