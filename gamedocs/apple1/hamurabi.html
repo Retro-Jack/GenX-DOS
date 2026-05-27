@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hamurabi — Apple I — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple I</div>
+      <h1>Hamurabi</h1>
+      <p class="sub">David Ahl, 1971 — Apple I BASIC port — one of the earliest strategy games</p>
+    </div>
+
+    <p class="intro">Rule ancient Sumeria for ten years as Hammurabi. Each year you decide how much land to buy or sell, how much grain to feed your people, and how many acres to plant. Survive plagues, rats, and famine — and don't get impeached. You start with 100 people, 1,000 acres, and 3,000 bushels of grain.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game loads via turbo tape and displays your kingdom's status.</li>
+      <li>Each round represents one year. You make three decisions per year.</li>
+      <li>Enter a number at each prompt and press <kbd>Return</kbd>.</li>
+    </ol>
+
+    <h2>Yearly decisions</h2>
+    <table>
+      <tr><th>Prompt</th><th>What to enter</th></tr>
+      <tr><td>How many acres to buy/sell?</td><td>Positive to buy, negative to sell, 0 for neither. Price varies each year (17–26 bushels per acre).</td></tr>
+      <tr><td>How many bushels to feed?</td><td>Each person needs about <strong>20 bushels</strong> per year. Under-feed and people starve.</td></tr>
+      <tr><td>How many acres to plant?</td><td>Costs <strong>1 bushel per acre</strong> to plant. Each person can farm up to <strong>10 acres</strong>. You need enough grain and enough people.</td></tr>
+    </table>
+
+    <h2>What happens each year</h2>
+    <ul>
+      <li><strong>Feeding</strong> — anyone not fed dies of starvation.</li>
+      <li><strong>Harvest</strong> — each planted acre yields 1–5 bushels (random). Good years produce surplus; bad years mean tough choices.</li>
+      <li><strong>Rats</strong> — some years, rats eat a portion of your stored grain.</li>
+      <li><strong>Plague</strong> — some years, plague kills half your population.</li>
+      <li><strong>Immigration</strong> — new people arrive based on available land and grain surplus.</li>
+    </ul>
+
+    <h2>Winning and losing</h2>
+    <ul>
+      <li><strong>Impeachment</strong> — if too many people starve in a single year, you are removed from power immediately.</li>
+      <li><strong>Survive all 10 years</strong> — your rule is rated based on average starvation rate and acres per person. Ratings range from catastrophic to fantastic.</li>
+      <li><strong>Best rating</strong> — under 3% average starvation with 10+ acres per person.</li>
+    </ul>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Feed your people first.</strong> Starvation triggers impeachment. Always allocate enough grain before buying land or planting.</li>
+      <li><strong>Keep a grain reserve.</strong> Don't plant everything — bad harvests and rats can leave you short next year.</li>
+      <li><strong>Buy land when it's cheap.</strong> Prices vary 17–26 bushels/acre. Buy at 17–19, sell in emergencies.</li>
+      <li><strong>Aim for 10 acres per person.</strong> That's the maximum each person can farm, and the target for a good rating.</li>
+      <li><strong>Plague is random and devastating.</strong> Build up population buffers to absorb the shock — you can't prevent it.</li>
+    </ul>
+
+    <h2>Apple I keyboard</h2>
+    <p>All input is uppercase. Type numbers and press <kbd>Return</kbd>.</p>
+  </div>
+</body>
+</html>
