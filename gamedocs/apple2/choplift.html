@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Choplifter — Apple ][ — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple ][</div>
+      <h1>Choplifter</h1>
+      <p class="sub">Broderbund, 1982 — Dan Gorlin — one of the first rescue-mission games</p>
+    </div>
+
+    <p class="intro">Fly a helicopter behind enemy lines to rescue 64 hostages held in four barracks (16 per building). Shoot the barracks open, land to collect survivors, and ferry them back to your base. Enemy tanks, jets, and an alien spacecraft stand in your way.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game boots from disk. Your helicopter sits at the base on the left.</li>
+      <li>Fly right towards the enemy barracks.</li>
+      <li>Shoot a barracks to release the hostages inside, then land nearby to pick them up.</li>
+      <li>Fly back to base and land to drop them off. Repeat for all four barracks.</li>
+    </ol>
+
+    <h2>Controls (joystick)</h2>
+    <p>Choplifter is a joystick game. In apple2js, <strong>move your mouse over the canvas</strong> to control the joystick axes:</p>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td>Mouse position</td><td>Fly up / down / left / right</td></tr>
+      <tr><td><kbd>F1</kbd> (Open Apple)</td><td>Fire weapons</td></tr>
+      <tr><td><kbd>F2</kbd> (Closed Apple)</td><td>Change facing direction</td></tr>
+    </table>
+
+    <h2>Helicopter facing</h2>
+    <p>The helicopter has three orientations — it can fly in any direction regardless of which way it faces:</p>
+    <table>
+      <tr><th>Facing</th><th>Weapon effect</th></tr>
+      <tr><td>Left or right</td><td>Machine gun fires horizontally — good for jets and barracks</td></tr>
+      <tr><td>Forward (towards you)</td><td>Bombs drop straight down — good for tanks on the ground</td></tr>
+    </table>
+    <p>Press <kbd>F2</kbd> to cycle through facings.</p>
+
+    <h2>Enemies</h2>
+    <table>
+      <tr><th>Enemy</th><th>Threat</th></tr>
+      <tr><td>Tanks</td><td>Drive along the ground and fire upward. Face forward and bomb them from above.</td></tr>
+      <tr><td>Jets</td><td>Fly across the screen firing air-to-air missiles. Hard to hit — dodge or shoot quickly.</td></tr>
+      <tr><td>Alien spacecraft</td><td>Appears in later stages. Aggressive and difficult to destroy.</td></tr>
+    </table>
+
+    <h2>Hostage rules</h2>
+    <ul>
+      <li>You carry up to <strong>16 hostages</strong> per trip. Four barracks × 16 = 64 total.</li>
+      <li><strong>Land level.</strong> If the helicopter is tilted when you land, hostages are crushed trying to board.</li>
+      <li><strong>Don't land on hostages.</strong> Setting down directly on them kills them.</li>
+      <li><strong>Friendly fire kills.</strong> Your own shots can hit hostages running in the open.</li>
+      <li><strong>Clear enemies first.</strong> Hostages can be killed by enemy fire while exposed.</li>
+    </ul>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Land carefully and level.</strong> A tilted landing kills the people you're trying to save.</li>
+      <li><strong>Destroy tanks before landing.</strong> They fire at hostages on the ground.</li>
+      <li><strong>Use forward-facing for ground targets.</strong> Press <kbd>F2</kbd> to face the screen, then <kbd>F1</kbd> to bomb.</li>
+      <li><strong>Fly back often.</strong> Don't risk a full load — deliver 16 safely rather than lose them all.</li>
+    </ul>
+  </div>
+</body>
+</html>
