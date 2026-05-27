@@ -5,6 +5,7 @@
 ### Added
 - **Acorn Electron at `emulators/electron/`** via ElkJS (Darren Coles) — JavaScript Acorn Electron emulator with 6502 core ported from Elkulator (Tom Walker). 10 UEF snapshot games + Electron BASIC prompt. Controls page added. Upstream UI cruft removed (index.html, main.js, gamesdialog.html, tapedialog.html, jQuery UI theme CSS + images, old jQuery 1.7.2). CRT raster scanline effect removed from display.js (row doubling).
 - **BBC Master 128** added under ACORN menu — same jsbeeb emulator with `?model=Master` URL param. 10 Master-enhanced titles: Elite (flicker-free build from bbcelite.com, DSD double-sided disc), Last Ninja 2, Repton 3, Repton Infinity, Firetrack, Crazee Rider, Stryker's Run, By Fair Means or Foul, Holed Out, Ballistix. All SSDs sourced from Stairway to Hell archive. BBC BASIC prompt entry.
+- **Apple I restored** under APPLE parent menu (Apple I + Apple ][+). Hint text overlay hidden via CSS.
 - **Per-game instruction pages** at `gamedocs/<platform>/<key>.html` — researched gameplay instructions linked from each emulator's controls button. `genx-controls-link.js` reads `?game=`, `?tape=`, or `?rom=` from the URL and links to the matching gamedocs page, falling back to `controls.html` for prompt entries. Shared CSS updated with `.sub` class and shrink-to-fit column widths. Completed: Apple I (Star Trek, Blackjack, Microchess, Hamurabi, Lunar Lander, Hunt the Wumpus, Checkers, 15 Puzzle).
 
 ### Changed
@@ -15,7 +16,6 @@
 - **7 off-centre menu mastheads fixed** — Commander Keen, Master-Enhanced Titles, Commodore PET, Commodore 128, Atari 400, MSX1, MSX2.
 
 ### Removed
-- **Apple I** (`emulators/apple1/`) — removed; did not meet quality bar. Menu entry and all tape files deleted.
 - **Acorn Atom** (jsbeeb Atom mode + tape files) — removed; did not meet quality bar. Reverted jsbeeb JS patch and deleted Atom UEF tapes.
 - **Macintosh** (`emulators/macplus/`), **Acorn Archimedes** (`emulators/archimedes-live/`), **Atari ST** (`emulators/estyjs/`), and **Commodore Amiga 500** (`emulators/amiga/`) — all 16-bit GUI-era platforms removed; not retro enough for the site's 8-bit focus.
 
