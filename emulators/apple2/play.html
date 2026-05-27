@@ -20,7 +20,6 @@
 <link rel="stylesheet" href="../_shared/genx-frame.css">
 <link rel="stylesheet" href="../_shared/genx-noscript.css">
 <link rel="stylesheet" href="../_shared/genx-controls-link.css">
-<script defer src="../_shared/genx-controls-link.js"></script>
 <script src="../_shared/genx-game-loader.js"></script>
 <style>
   /* Hide apple2js's built-in chrome — header bar, exit-fullscreen button,
@@ -345,6 +344,7 @@
     (function () {
       const params = new URLSearchParams(location.search);
       const key = params.get('game');
+      var _a=document.createElement('a');_a.href=key?'../../gamedocs/apple2/'+key+'.html':'controls.html';_a.target='_blank';_a.rel='noopener';_a.className='gx-controls-link';_a.innerHTML='controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg>';document.body.appendChild(_a);
       if (!key) {
         document.title = 'Apple ][';
         history.replaceState(null, '', location.pathname);
