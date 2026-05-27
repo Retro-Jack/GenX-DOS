@@ -12,8 +12,10 @@ p.intro { color: #d4d4c8; }
 table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; }
 th, td { text-align: left; padding: 5px 16px 5px 0; vertical-align: top; border-bottom: 1px solid #1a1a1a; }
 th { color: #666; font-weight: 400; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding-bottom: 6px; }
-td:first-child { color: #d4d4c8; width: 38%; white-space: nowrap; }
-td:last-child { color: #b8b8a8; }
+td { white-space: nowrap; width: 1%; }
+td:first-child { color: #d4d4c8; }
+td:last-child { color: #b8b8a8; white-space: normal; width: auto; }
+.sub { color: #888; font-size: 13px; margin: 4px 0 0; }
 kbd { background: #1a1a1a; border: 1px solid #2e2e2e; color: #d4d4c8; padding: 1px 6px; border-radius: 3px; font-family: inherit; font-size: 0.88em; }
 .note { color: #888; font-style: italic; margin-top: 20px; padding-top: 14px; border-top: 1px dashed #1a1a1a; font-size: 13px; }
 .footer { color: #666; font-size: 11px; margin-top: 40px; padding-top: 14px; border-top: 1px solid #2a2a2a; text-align: center; }

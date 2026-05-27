@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Star Trek — Apple I — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple I</div>
+      <h1>Star Trek</h1>
+      <p class="sub">Robert J. Bishop, 1977 — published in Interface Age vol. 2 no. 6</p>
+    </div>
+
+    <p class="intro">Command the starship Enterprise on a mission to destroy seven Klingon warships hiding in the galaxy. You have 15 stardates, 500 energy units, and 3 photon torpedoes. Dock at starbases to resupply. An 8K Integer BASIC adaptation of the classic 1971 mainframe Star Trek.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game loads via turbo tape and starts automatically.</li>
+      <li>The galaxy is an 8×8 grid of quadrants. Each quadrant contains an 8×8 grid of sectors.</li>
+      <li>Enter a command number (0–5) at the prompt and press <kbd>Return</kbd>.</li>
+    </ol>
+
+    <h2>Commands</h2>
+    <table>
+      <tr><th>Command</th><th>Action</th></tr>
+      <tr><td><kbd>0</kbd></td><td><strong>Move</strong> — prompts <code>VECTOR ?</code>. Enter horizontal and vertical sectors to move, e.g. <code>-21,35</code> moves 21 sectors left and 35 up. Uses energy proportional to distance.</td></tr>
+      <tr><td><kbd>1</kbd></td><td><strong>Short range scan</strong> — displays your current quadrant. <code>&lt;*&gt;</code> = Enterprise, <code>+++</code> = Klingon, <code>&gt;!&lt;</code> = starbase, <code>*</code> = star.</td></tr>
+      <tr><td><kbd>2</kbd></td><td><strong>Long range scan</strong> — shows a 3×3 grid of neighbouring quadrants. Each cell reads <code>KBS</code>: K = Klingons, B = starbases, S = stars.</td></tr>
+      <tr><td><kbd>3</kbd></td><td><strong>Fire phasers</strong> — shows your remaining energy, then asks how much to fire. Damage decreases with distance to the target.</td></tr>
+      <tr><td><kbd>4</kbd></td><td><strong>Fire photon torpedo</strong> — auto-aimed by the computer. Destroys a Klingon in one hit but you only carry 3. The computer avoids hitting stars and starbases.</td></tr>
+      <tr><td><kbd>5</kbd></td><td><strong>Library computer</strong> — displays cumulative galactic records or a status report of remaining supplies.</td></tr>
+    </table>
+
+    <h2>Map symbols</h2>
+    <table>
+      <tr><th>Symbol</th><th>Meaning</th></tr>
+      <tr><td><code>&lt;*&gt;</code></td><td>USS Enterprise (you)</td></tr>
+      <tr><td><code>+++</code></td><td>Klingon warship</td></tr>
+      <tr><td><code>&gt;!&lt;</code></td><td>Starbase — dock here to resupply</td></tr>
+      <tr><td><code>*</code></td><td>Star — blocks torpedoes, impassable</td></tr>
+    </table>
+
+    <h2>Resources</h2>
+    <table>
+      <tr><th>Resource</th><th>Starting</th><th>Notes</th></tr>
+      <tr><td>Energy</td><td>500 units</td><td>Used by movement, phasers, and shields. Shields drain automatically when Klingons fire at you.</td></tr>
+      <tr><td>Photon torpedoes</td><td>3</td><td>One-hit kill, auto-aimed, but very limited supply.</td></tr>
+      <tr><td>Stardates</td><td>15</td><td>Each move costs one stardate. Run out and the mission fails.</td></tr>
+      <tr><td>Starbases</td><td>2 in the galaxy</td><td>Move to a starbase's sector to dock and fully resupply energy and torpedoes.</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Scan before you move.</strong> Use long range scan (command 2) to locate Klingons and plan an efficient route.</li>
+      <li><strong>Save torpedoes for lone Klingons.</strong> They're a guaranteed kill but you only have 3. Use phasers when multiple enemies are nearby — phaser fire hits all Klingons in the quadrant.</li>
+      <li><strong>Phaser power vs. distance.</strong> Phaser damage drops off with range. Get close before firing, or commit more energy to compensate.</li>
+      <li><strong>Don't over-commit energy to phasers.</strong> You need reserves for shields and movement. A phaser shot that uses all your energy leaves you defenceless.</li>
+      <li><strong>Know where your starbases are.</strong> Dock to restore energy and torpedoes. Losing both starbases is usually fatal.</li>
+      <li><strong>Watch the clock.</strong> 15 stardates for 7 Klingons — you can't afford to wander. Use the library computer (command 5) to review your galactic records.</li>
+    </ul>
+
+    <h2>Apple I keyboard</h2>
+    <p>The Apple I has a standard typewriter keyboard. All input is uppercase. Type command numbers or coordinates and press <kbd>Return</kbd>.</p>
+  </div>
+</body>
+</html>
