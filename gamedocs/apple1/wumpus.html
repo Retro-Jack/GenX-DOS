@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hunt the Wumpus — Apple I — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple I</div>
+      <h1>Hunt the Wumpus</h1>
+      <p class="sub">Gregory Yob, 1973 — from Creative Computing / 101 BASIC Computer Games</p>
+    </div>
+
+    <p class="intro">Track and kill the Wumpus — a fearsome beast lurking in a network of 20 caves arranged as a dodecahedron. Each cave connects to exactly three others. Listen for clues, avoid hazards, and shoot your crooked arrows before the Wumpus gets you.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game loads via turbo tape and places you in a random cave.</li>
+      <li>You are told which three caves connect to yours.</li>
+      <li>Nearby hazards are announced with warning messages.</li>
+      <li>Each turn, choose to <strong>move</strong> or <strong>shoot</strong>.</li>
+    </ol>
+
+    <h2>Commands</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>M</kbd></td><td>Move to an adjacent cave (enter the cave number)</td></tr>
+      <tr><td><kbd>S</kbd></td><td>Shoot a crooked arrow through a sequence of caves</td></tr>
+    </table>
+
+    <h2>Warnings</h2>
+    <p>When you are one cave away from a hazard:</p>
+    <table>
+      <tr><th>Message</th><th>Meaning</th></tr>
+      <tr><td><code>I SMELL A WUMPUS</code></td><td>The Wumpus is in an adjacent cave</td></tr>
+      <tr><td><code>I FEEL A DRAFT</code></td><td>A bottomless pit is next door</td></tr>
+      <tr><td><code>BATS NEARBY</code></td><td>Super bats are in an adjacent cave</td></tr>
+    </table>
+
+    <h2>Hazards</h2>
+    <table>
+      <tr><th>Hazard</th><th>Effect</th></tr>
+      <tr><td>Wumpus</td><td>Enter its cave and it may eat you — or it may sleep through your visit and move to another cave.</td></tr>
+      <tr><td>Bottomless pits (×2)</td><td>Fall in and die. No escape.</td></tr>
+      <tr><td>Super bats (×2)</td><td>Grab you and drop you in a random cave. Not fatal, but you lose your bearings.</td></tr>
+    </table>
+
+    <h2>Arrows</h2>
+    <ul>
+      <li>You carry <strong>5 crooked arrows</strong>.</li>
+      <li>When you shoot, specify a path of 1–5 caves for the arrow to travel through.</li>
+      <li>If the arrow enters the Wumpus's cave — <strong>you win</strong>.</li>
+      <li>If the arrow circles back and hits you — <strong>you die</strong>.</li>
+      <li>If you specify an impossible path (non-adjacent cave), the arrow picks a random valid direction.</li>
+      <li>If you miss, the Wumpus may wake up and move to an adjacent cave.</li>
+      <li>Run out of arrows without killing the Wumpus and you lose.</li>
+    </ul>
+
+    <h2>The caves</h2>
+    <p>The 20 caves are connected like the vertices of a dodecahedron — each cave links to exactly 3 others. The layout is the same every game; only the starting positions of you, the Wumpus, pits, and bats are randomised.</p>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Map as you go.</strong> Note which caves connect where. The dodecahedron layout is fixed.</li>
+      <li><strong>Triangulate the Wumpus.</strong> Move around smelling it from multiple directions to narrow down its cave before shooting.</li>
+      <li><strong>Don't walk into a smell.</strong> If you smell the Wumpus, shoot into an adjacent cave rather than entering it.</li>
+      <li><strong>Avoid bats.</strong> They randomise your position and waste turns re-orientating.</li>
+      <li><strong>Count your arrows.</strong> Five shots is not many — make each one count.</li>
+    </ul>
+
+    <h2>Apple I keyboard</h2>
+    <p>All input is uppercase. Type commands and cave numbers, then press <kbd>Return</kbd>.</p>
+  </div>
+</body>
+</html>
