@@ -25,9 +25,11 @@ prompt/                   the DOS terminal (HTML + JS, no build)
   index.html
   javascript/             terminal logic + virtual filesystem (fs.js)
   img/                    bitmap font sprite sheets + AMIBIOS logo
+gamedocs/                 per-game instruction pages (gamedocs/<platform>/<key>.html)
 emulators/
   _shared/                shared CSS for controls.html + corner-link styles + NumLock warning JS + RUN/STOP softkey
   _shared-ejs/            shared EmulatorJS framework + 5 VICE cores + gearcoleco core (saves ~13 MB vs per-bundle copies)
+  apple1/                 Apple I          — apple1js + 10 cassette tapes (Integer BASIC + 6502 assembly)
   jsbeeb/                 BBC Micro + Master — Vite-built dist + 10 BBC .ssd + 10 Master-enhanced .ssd/.dsd
   electron/               Acorn Electron   — ElkJS + 10 UEF snapshot games
   apple2/                 Apple ][+        — apple2js (webpack dist) + 9 .dsk disk images
@@ -58,6 +60,7 @@ emulators/
 
 | System    | Copied from                          | URL pattern                              |
 |-----------|--------------------------------------|------------------------------------------|
+| Apple I   | scullin/apple1js                     | `play.html?tape=<key>`                   |
 | BBC Micro | mattgodbolt/jsbeeb v1.12.0           | `?disc1=<path>.ssd&autoboot`             |
 | BBC Master | mattgodbolt/jsbeeb v1.12.0 (same build) | `?model=Master&disc1=<path>.ssd&autoboot` |
 | Acorn Electron | dmcoles/elkjs                   | `play.html?game=<key>`                   |
