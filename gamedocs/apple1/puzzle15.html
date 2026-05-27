@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>15 Puzzle — Apple I — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · Apple I</div>
+      <h1>15 Puzzle</h1>
+      <p class="sub">Jeff Jetton, 2020 — 6502 assembly sliding puzzle for the Apple I</p>
+    </div>
+
+    <p class="intro">Arrange 15 letter tiles (A–O) in alphabetical order on a 4×4 grid by sliding them into the empty space. Choose a difficulty level that determines how thoroughly the board is shuffled, then solve it in as few moves as possible.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The game loads via turbo tape and asks for a difficulty level (1–5).</li>
+      <li>Level 1 shuffles lightly (3 moves); level 5 shuffles heavily (255 moves).</li>
+      <li>The scrambled board is displayed. Start sliding tiles.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>A</kbd>–<kbd>O</kbd></td><td>Slide that letter tile towards the empty space. The tile must be on the same row or column as the empty space. Any tiles between it and the space slide too.</td></tr>
+      <tr><td><kbd>Q</kbd></td><td>Quit the game</td></tr>
+    </table>
+
+    <h2>Goal</h2>
+    <p>Arrange the tiles so the board reads:</p>
+    <pre>  A B C D
+  E F G H
+  I J K L
+  M N O _</pre>
+    <p>The game tracks your move count and shows a celebratory message when you solve it.</p>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Work top-down.</strong> Get the top row correct (A B C D) first, then the second row (E F G H), then solve the bottom two rows together.</li>
+      <li><strong>Lock rows in place.</strong> Once a row is correct, avoid disturbing it while working on lower rows.</li>
+      <li><strong>Corner technique.</strong> To place the last two tiles of a row, position them as a column first, then slide them into place together.</li>
+      <li><strong>Start on level 2 or 3.</strong> Level 1 is trivially easy; level 5 can be very challenging.</li>
+    </ul>
+
+    <h2>Apple I keyboard</h2>
+    <p>Single letter keypresses — no <kbd>Return</kbd> needed.</p>
+  </div>
+</body>
+</html>
