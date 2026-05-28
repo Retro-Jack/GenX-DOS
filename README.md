@@ -32,7 +32,7 @@ emulators/
   apple1/                 Apple I          — apple1js + 10 cassette tapes (Integer BASIC + 6502 assembly)
   jsbeeb/                 BBC Micro + Master — Vite-built dist + 10 BBC .ssd + 10 Master-enhanced .ssd/.dsd
   electron/               Acorn Electron   — ElkJS + 10 UEF snapshot games
-  apple2/                 Apple ][+        — apple2js (webpack dist) + 9 .dsk disk images
+  apple2/                 Apple ][+        — apple2js (webpack dist) + 10 .dsk disk images
   jsnes/                  NES              — EmulatorJS + FCEUmm libretro core + 10 .nes ROMs
   genesis/                Sega Genesis     — Emscripten bundle + 10 .bin ROMs
   javatari/               Atari 2600       — pure-JS bundle + 10 .a26 ROMs
