@@ -10,6 +10,8 @@
 
 ### Changed
 - **Apple I games menu reformatted** to 4-column layout (# Title (Year) CODE) sorted by year ascending. Bat file numbering updated to match new sort order.
+- **Apple ][ games menu reformatted** to the same 4-column layout — year column separated from title, sorted ascending (Lemonade Stand 1979 → Oregon Trail 1985, BASIC entry below the games block).
+- **Platform parent menus normalised to 4-column `(YYYY) CODE` format** — `[GAMES]` markers removed from APPLE, COMMODORE (PET/VIC-20/MAX/C64/C16/Plus/4/C128), ATARI (400/800XL), ATARI CONSOLES (2600/7800), SINCLAIR, ACORN (BBC/Electron/Master), and MSX parent menus. Each entry now shows the platform's release year in its own column ahead of the system code. Sinclair reordered so ZX81 (1981) precedes Spectrum (1982); the 1.bat / 2.bat launchers were swapped to match. CONSOLE SYSTEMS and HOME COMPUTERS top-level menus keep their year-less format (they group multi-system manufacturers rather than individual systems).
 - **ACORN parent menu** created — BBC Micro, Acorn Electron, and BBC Master grouped under a single ACORN entry in HOMECOMP (same pattern as SINCLAIR, COMMODORE, etc.).
 - **HOMECOMP grouped by manufacturer, sorted by release date** — Apple ][ (1977), Commodore (1977), Atari (1979), Tandy (1980), Acorn (1981), Sinclair (1981), MSX (1983), Amstrad (1984). "Atari Consoles" / "Atari Home Computers" shortened to just "Atari". Main launcher reordered: Home Computers first, DOS last.
 - **CONSOLE sorted by release date** — Atari (1977) through Genesis (1988).
