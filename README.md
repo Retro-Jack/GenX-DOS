@@ -34,7 +34,6 @@ emulators/
   electron/               Acorn Electron   — ElkJS + 10 UEF snapshot games
   apple2/                 Apple ][+        — apple2js (webpack dist) + 10 .dsk disk images
   jsnes/                  NES              — EmulatorJS + FCEUmm libretro core + 10 .nes ROMs
-  genesis/                Sega Genesis     — Emscripten bundle + 10 .bin ROMs
   javatari/               Atari 2600       — pure-JS bundle + 10 .a26 ROMs
   js7800/                 Atari 7800       — pure-JS bundle + 10 .a78 carts
   jsdos/                  MS-DOS           — js-dos v7 + 20 .jsdos game bundles
@@ -53,7 +52,7 @@ emulators/
   c128/                   Commodore 128    — EmulatorJS + VICE x128 native mode + 10 mixed commercial/homebrew titles (VICII 40-col + VDC 80-col)
   coleco/                 ColecoVision     — EmulatorJS + gearcoleco core + 10 launch-era .col carts
   intellivision/          Mattel Intellivision — jzIntv WASM (custom loader, not EJS) + 10 first-in-series classics
-  amstradcpc/             Amstrad CPC      — floooh/chips-test tiny8bit CPC WASM + 10 first-in-series .dsk titles
+  amstradcpc/             Amstrad CPC      — floooh/chips-test tiny8bit CPC WASM + 10 first-in-series .dsk titles + 3D Construction Kit (1991 Freescape)
 ```
 
 ## Emulators
@@ -66,7 +65,6 @@ emulators/
 | Acorn Electron | dmcoles/elkjs                   | `play.html?game=<key>`                   |
 | Apple ][+ | whscullin/apple2js                   | `play.html?game=<key>`                   |
 | NES       | EmulatorJS + FCEUmm libretro core    | `play.html?game=<key>`                   |
-| Genesis   | lrusso/Genesis (PicoDrive port)      | `play.html?game=<key>`                   |
 | 2600      | ppeccin/javatari.js v5.0.4           | `play.html?game=<key>`                   |
 | 7800      | raz0red/JS7800 v0.0.9                | `play.html?game=<key>`                   |
 | MS-DOS    | caiiiycuk/js-dos v7.0.0              | `play.html?game=<key>`                   |
@@ -103,7 +101,6 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - ElkJS: (c) Darren Coles 2013 (dmcoles/elkjs) — 6502 core ported from Elkulator by Tom Walker
 - apple2js: MIT (whscullin/apple2js) — Apple ][+ emulator in JavaScript
 - FCEUmm: GPL-2.0 (libretro NES core) — mirrored from `cdn.emulatorjs.org/stable/`
-- Genesis (lrusso): GPL-2.0 (notaz/PicoDrive port)
 - Javatari: AGPL-3.0 (ppeccin/javatari.js)
 - JS7800: GPL-2.0 (raz0red)
 - js-dos: GPL-2.0 (caiiiycuk/js-dos v7.0.0)
