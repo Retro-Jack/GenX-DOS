@@ -3,7 +3,7 @@
 ## [Unreleased]
 
 ### Changed
-- **Scope rule formalised: 8-bit platforms only.** All previously-removed 16-bit systems (Genesis, Atari ST, Macintosh, Archimedes, Amiga, Atari 5200) and the rejected ones (NES → SNES, PC-Engine, Saturn/N64/PSX/Neo Geo) are now grouped under this rule. DOS is the explicit carve-out (it's the prompt host). Intellivision (CP1610) stays as an edge case — marketed as 16-bit but universally grouped with 8-bit-era consoles.
+- **Scope rule formalised: 8-bit era only.** The cutoff is era, not strict CPU bit-width — what counts is whether the system belongs to the 8-bit microcomputing/console era (~1975-1990). All previously-removed 16-bit transition systems (Genesis, Atari ST, Macintosh, Archimedes, Amiga, Atari 5200) and the never-shipped rejects (SNES, PC-Engine, Saturn/N64/PSX/Neo Geo) sit under this rule. Intellivision (CP1610 16-bit ALU) is solidly in — it's an 8-bit-era console.
 
 ### Added
 - **Acorn Electron at `emulators/electron/`** via ElkJS (Darren Coles) — JavaScript Acorn Electron emulator with 6502 core ported from Elkulator (Tom Walker). 10 UEF snapshot games + Electron BASIC prompt. Controls page added. Upstream UI cruft removed (index.html, main.js, gamesdialog.html, tapedialog.html, jQuery UI theme CSS + images, old jQuery 1.7.2). CRT raster scanline effect removed from display.js (row doubling).

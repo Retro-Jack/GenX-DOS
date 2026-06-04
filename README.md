@@ -2,7 +2,7 @@
 
 A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs.
 
-**Scope:** 8-bit platforms only — see the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected. DOS itself is the prompt host (carve-out).
+**Scope:** 8-bit era only — anything from the 8-bit microcomputing/console era (~1975-1990). The cutoff is *era*, not strict CPU width. See the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected.
 
 ## Quick start
 
