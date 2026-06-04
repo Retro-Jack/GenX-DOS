@@ -182,10 +182,12 @@
 
                 ],
                 files: [
-                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             EMULATOR  LAUNCHER              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  Home Computers            HOMECOMP    º\necho º   2.  Games Consoles            CONSOLE     º\necho º   3.  MS-DOS Software           DOS         º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
+                    { name: 'menu.bat', data: 'echo off\ncls\necho ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho º             EMULATOR  LAUNCHER              º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º                                             º\necho º   1.  Home Computers            HOMECOMP    º\necho º   2.  Games Consoles            CONSOLE     º\necho º   3.  MS-DOS Software           DOS         º\necho º                                             º\necho º   4.  GenX-DOS Wiki             WIKI        º\necho º                                             º\necho º   0.  Back                                  º\necho º                                             º\necho ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho º        Type a number and press ENTER        º\necho ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
                     { name: '1.bat', data: 'cd homecomp\nmenu\n' },
                     { name: '2.bat', data: 'cd console\nmenu\n' },
                     { name: '3.bat', data: 'cd dos\nmenu\n' },
+                    { name: '4.bat', data: 'wiki\n' },
+                    { name: 'wiki.bat', link: 'https://github.com/Retro-Jack/GenX-DOS/wiki' },
                     { name: '0.bat', data: 'cd ..\nmenu\n' }
                 ]
             }
