@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- **Scope rule formalised: 8-bit platforms only.** All previously-removed 16-bit systems (Genesis, Atari ST, Macintosh, Archimedes, Amiga, Atari 5200) and the rejected ones (NES → SNES, PC-Engine, Saturn/N64/PSX/Neo Geo) are now grouped under this rule. DOS is the explicit carve-out (it's the prompt host). Intellivision (CP1610) stays as an edge case — marketed as 16-bit but universally grouped with 8-bit-era consoles.
+
 ### Added
 - **Acorn Electron at `emulators/electron/`** via ElkJS (Darren Coles) — JavaScript Acorn Electron emulator with 6502 core ported from Elkulator (Tom Walker). 10 UEF snapshot games + Electron BASIC prompt. Controls page added. Upstream UI cruft removed (index.html, main.js, gamesdialog.html, tapedialog.html, jQuery UI theme CSS + images, old jQuery 1.7.2). CRT raster scanline effect removed from display.js (row doubling).
 - **BBC Master 128** added under ACORN menu — same jsbeeb emulator with `?model=Master` URL param. 10 Master-enhanced titles: Elite (flicker-free build from bbcelite.com, DSD double-sided disc), Last Ninja 2, Repton 3, Repton Infinity, Firetrack, Crazee Rider, Stryker's Run, By Fair Means or Foul, Holed Out, Ballistix. All SSDs sourced from Stairway to Hell archive. BBC BASIC prompt entry.

@@ -2,6 +2,8 @@
 
 A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs.
 
+**Scope:** 8-bit platforms only — see the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected. DOS itself is the prompt host (carve-out).
+
 ## Quick start
 
 ```sh
