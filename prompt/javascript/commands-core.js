@@ -269,7 +269,7 @@ function find(query) {
     }
 
     // Match `needle` (already lowercased) at a word boundary inside `hayLower`.
-    // "nes" matches "NES" and "Nintendo Ent. System" but NOT "Genesis".
+    // "nes" matches "NES" and "Nintendo Ent. System" but NOT "Cybernes".
     function matches(hayLower, needle) {
         var idx = hayLower.indexOf(needle);
         while (idx !== -1) {

@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Changed
+- **`commands-core.js` `find()` comment** updated — example string referenced the removed Genesis bundle. Swapped to "Cybernes" (a real Vectrex homebrew that does contain "nes" but isn't an NES title).
 - **Scope rule formalised: 8-bit era only.** The cutoff is era, not strict CPU bit-width — what counts is whether the system belongs to the 8-bit microcomputing/console era (~1975-1990). All previously-removed 16-bit transition systems (Genesis, Atari ST, Macintosh, Archimedes, Amiga, Atari 5200) and the never-shipped rejects (SNES, PC-Engine, Saturn/N64/PSX/Neo Geo) sit under this rule. Intellivision (CP1610 16-bit ALU) is solidly in — it's an 8-bit-era console.
 
 ### Added
