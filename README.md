@@ -55,6 +55,7 @@ emulators/
   coleco/                 ColecoVision     — EmulatorJS + gearcoleco core + 10 launch-era .col carts
   intellivision/          Mattel Intellivision — jzIntv WASM (custom loader, not EJS) + 10 first-in-series classics
   amstradcpc/             Amstrad CPC      — floooh/chips-test tiny8bit CPC WASM + 10 first-in-series .dsk titles + 3D Construction Kit (1991 Freescape)
+  odyssey2/               Magnavox Odyssey² — libretro-o2em compiled to WASM with a custom SDL2/emscripten frontend (build.sh + frontend.c) + 10 first-party + Imagic titles
 ```
 
 ## Emulators
@@ -80,6 +81,7 @@ emulators/
 | ColecoVision | EmulatorJS + gearcoleco (Drhelius) libretro | `play.html?game=<key>` |
 | Intellivision | jzIntv (Joe Zbiciak) WASM, custom emscripten loader | `play.html?game=<key>` |
 | Amstrad CPC   | floooh/chips-test tiny8bit CPC WASM (Andre Weissflog) | `play.html?game=<key>` (rewrites to `?file=&input=` for sokol_args) |
+| Magnavox Odyssey² | libretro/libretro-o2em compiled to WASM + custom SDL2/emscripten frontend | `play.html?game=<key>`                   |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
@@ -120,3 +122,5 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - Intellivision EXEC + GROM BIOS: ©1979 Mattel Electronics, bundled for emulator-only use
 - floooh/chips-test tiny8bit CPC WASM: MIT (Andre Weissflog) — mirrored from `floooh.github.io/tiny8bit/`
 - PETSCII Robots Shareware: David Murray / The 8-Bit Guy (2022, free demo build distributed via the8bitguy.com)
+- libretro-o2em: GPL-2.0+ (libretro/libretro-o2em, original o2em by Daniel Boris / Andre de la Rocha) — bundled core compiled from upstream source via `emulators/odyssey2/build.sh`
+- Magnavox Odyssey² BIOS (`o2rom.bin`): ©1978 Magnavox/Philips, bundled for emulator-only use

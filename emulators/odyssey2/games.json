@@ -1,0 +1,12 @@
+{
+  "cosmic":    { "title": "Cosmic Conflict! (1979 Magnavox)",   "rom": "games/cosmic.bin" },
+  "alienplus": { "title": "Alien Invaders - Plus! (1980 Magnavox)", "rom": "games/alienplus.bin" },
+  "kcmunch":   { "title": "K.C. Munchkin! (1981 Magnavox)",     "rom": "games/kcmunch.bin" },
+  "qrings":    { "title": "Quest for the Rings! (1981 Magnavox)", "rom": "games/qrings.bin" },
+  "ufo":       { "title": "UFO! (1981 Magnavox)",               "rom": "games/ufo.bin" },
+  "atlantis":  { "title": "Atlantis (1982 Imagic)",             "rom": "games/atlantis.bin" },
+  "demon":     { "title": "Demon Attack (1982 Imagic)",         "rom": "games/demon.bin" },
+  "pickaxe":   { "title": "Pick Axe Pete! (1982 Magnavox)",     "rom": "games/pickaxe.bin" },
+  "smither":   { "title": "Smithereens! (1982 Magnavox)",       "rom": "games/smither.bin" },
+  "killbees":  { "title": "Killer Bees! (1983 Magnavox)",       "rom": "games/killbees.bin" }
+}

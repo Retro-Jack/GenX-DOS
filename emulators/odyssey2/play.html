@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Odyssey²</title>
+  <style>
+    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
+    #canvas { width: 100%; height: 100%; display: block; image-rendering: pixelated; background: #000; }
+  </style>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <script defer src="../_shared/genx-controls-link.js"></script>
+  <link rel="preload" href="o2em.wasm" as="fetch" crossorigin>
+  <link rel="preload" href="o2rom.bin" as="fetch" crossorigin>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+  <div id="game">
+    <canvas id="canvas" tabindex="0"></canvas>
+    <div class="loading" id="loading">Booting Odyssey²…</div>
+  </div>
+  <script>
+    // Magnavox Odyssey² — libretro o2em core, statically-linked into a
+    // small emscripten/SDL2 frontend (see emulators/odyssey2/frontend.c).
+    // BIOS and game ROM are written into MEMFS via preRun before main()
+    // runs; the frontend opens them as /o2rom.bin and /game.bin.
+    (async () => {
+      const fail = (msg) => {
+        const l = document.getElementById('loading');
+        if (l) l.outerHTML = '<div class="err">' + msg + '</div>';
+      };
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+      let games;
+      try { games = await (await fetch('games.json')).json(); }
+      catch (e) { fail('Failed to load games.json: ' + e.message); return; }
+
+      const game = key ? games[key] : null;
+      if (key && !game) { fail('Unknown game key: ' + key); return; }
+      document.title = game ? (game.title || key) : 'Odyssey²';
+
+      let romBytes;
+      try {
+        if (game) {
+          const r = await fetch(game.rom);
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          romBytes = new Uint8Array(await r.arrayBuffer());
+        }
+      } catch (e) { fail('Failed to load ROM ' + game.rom + ': ' + e.message); return; }
+
+      let biosBytes;
+      try {
+        const r = await fetch('o2rom.bin');
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        biosBytes = new Uint8Array(await r.arrayBuffer());
+      } catch (e) { fail('Failed to load BIOS: ' + e.message); return; }
+
+      const canvas = document.getElementById('canvas');
+      const Module = {
+        canvas,
+        print:    (s) => console.log('[o2em]', s),
+        printErr: (s) => console.error('[o2em]', s),
+        preRun: [function (mod) {
+          const fs = (mod && mod.FS) || (this && this.FS);
+          if (!fs) throw new Error('FS not exported from Module');
+          fs.writeFile('/o2rom.bin', biosBytes);
+          if (romBytes) fs.writeFile('/game.bin', romBytes);
+        }],
+        onAbort: (e) => fail('Emulator aborted: ' + e),
+      };
+
+      const s = document.createElement('script');
+      s.src = 'o2em.js';
+      s.onload = () => {
+        document.getElementById('loading')?.remove();
+        canvas.focus();
+        createO2EM(Module);
+      };
+      s.onerror = () => fail('Failed to load o2em.js');
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>
