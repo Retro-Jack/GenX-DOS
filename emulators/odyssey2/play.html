@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Odyssey²</title>
   <style>
-    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
+    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); position: relative; }
     #canvas { width: 100%; height: 100%; display: block; image-rendering: pixelated; background: #000; }
+    .loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #888; font-family: monospace; pointer-events: none; }
   </style>
   <link rel="stylesheet" href="../_shared/genx-frame.css">
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
+  <script src="../_shared/genx-game-loader.js"></script>
   <link rel="preload" href="o2em.wasm" as="fetch" crossorigin>
   <link rel="preload" href="o2rom.bin" as="fetch" crossorigin>
 </head>
@@ -24,54 +26,36 @@
   </div></noscript>
   <div id="game">
     <canvas id="canvas" tabindex="0"></canvas>
-    <div class="loading" id="loading">Booting Odyssey²…</div>
+    <div id="loading" class="loading">Booting Odyssey²…</div>
   </div>
   <script>
-    // Magnavox Odyssey² — libretro o2em core, statically-linked into a
+    // Magnavox Odyssey² — libretro o2em core statically linked into a
     // small emscripten/SDL2 frontend (see emulators/odyssey2/frontend.c).
-    // BIOS and game ROM are written into MEMFS via preRun before main()
-    // runs; the frontend opens them as /o2rom.bin and /game.bin.
+    // BIOS and game ROM are written into MEMFS via Module.preRun before
+    // main() runs; the frontend opens them as /o2rom.bin and /game.bin.
     (async () => {
-      const fail = (msg) => {
-        const l = document.getElementById('loading');
-        if (l) l.outerHTML = '<div class="err">' + msg + '</div>';
-      };
-      const params = new URLSearchParams(location.search);
-      const key = params.get('game');
-      let games;
-      try { games = await (await fetch('games.json')).json(); }
-      catch (e) { fail('Failed to load games.json: ' + e.message); return; }
+      const _gx = await window.genxLoadGame('#loading');
+      if (!_gx) return;
+      const { game, fail } = _gx;
 
-      const game = key ? games[key] : null;
-      if (key && !game) { fail('Unknown game key: ' + key); return; }
-      document.title = game ? (game.title || key) : 'Odyssey²';
-
-      let romBytes;
+      let biosBytes, romBytes;
       try {
-        if (game) {
-          const r = await fetch(game.rom);
-          if (!r.ok) throw new Error('HTTP ' + r.status);
-          romBytes = new Uint8Array(await r.arrayBuffer());
-        }
-      } catch (e) { fail('Failed to load ROM ' + game.rom + ': ' + e.message); return; }
-
-      let biosBytes;
-      try {
-        const r = await fetch('o2rom.bin');
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        biosBytes = new Uint8Array(await r.arrayBuffer());
-      } catch (e) { fail('Failed to load BIOS: ' + e.message); return; }
+        [biosBytes, romBytes] = (await Promise.all([
+          fetch('o2rom.bin').then(r => r.arrayBuffer()),
+          fetch(game.rom).then(r => r.arrayBuffer()),
+        ])).map(b => new Uint8Array(b));
+      } catch (e) { fail('Failed to fetch BIOS/ROM: ' + e.message); return; }
 
       const canvas = document.getElementById('canvas');
+      // MODULARIZE'd build hands the Module instance to each preRun
+      // callback as the first argument; `this` is unreliable in this mode.
       const Module = {
         canvas,
         print:    (s) => console.log('[o2em]', s),
         printErr: (s) => console.error('[o2em]', s),
         preRun: [function (mod) {
-          const fs = (mod && mod.FS) || (this && this.FS);
-          if (!fs) throw new Error('FS not exported from Module');
-          fs.writeFile('/o2rom.bin', biosBytes);
-          if (romBytes) fs.writeFile('/game.bin', romBytes);
+          mod.FS.writeFile('/o2rom.bin', biosBytes);
+          mod.FS.writeFile('/game.bin', romBytes);
         }],
         onAbort: (e) => fail('Emulator aborted: ' + e),
       };
