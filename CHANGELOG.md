@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- **Atari 800XL gamedocs pages** at `gamedocs/atari800/` — 10 per-game instruction pages (Star Raiders, Eastern Front 1941, Miner 2049er, Archon, M.U.L.E., Pole Position, Boulder Dash, Bruce Lee, Ballblazer, Rescue on Fractalus!). Same template as the other 8 platforms. atari800 footer documents the joystick + console-key keymap (arrows = stick, L Ctrl = fire, F2/F3/F4 = OPTION/SELECT/START, F5 = Reset). atari800/play.html keeps `?game=` in URL alongside any added flags, so the standard controls-link resolver works without extra wiring. First home-computer platform completed in the gamedocs sweep.
+
 ### Changed
 - **NES bundle — Duck Hunt swapped for Super Mario Bros. 2 (USA Rev 1, 1988).** Duck Hunt requires the Zapper light gun, which needs a CRT for the original cartridge; FCEUmm can substitute a mouse click but only with `EJS_defaultControls` setting `device: zapper` on port 2 — our `play.html` doesn't wire that, so Duck Hunt was unplayable in the bundle. SMB2 picks up the empty slot at NA 1988 (between Contra and Mega Man 2); menu re-sorted, bat-file order remapped, `controls.html` Zapper note removed.
 - **`commands-core.js` `find()` comment** updated — example string referenced the removed Genesis bundle. Swapped to "Cybernes" (a real Vectrex homebrew that does contain "nes" but isn't an NES title).
