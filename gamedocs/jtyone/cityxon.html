@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>City of Xon — Sinclair ZX81 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Sinclair ZX81</div>
+      <h1>City of Xon</h1>
+      <p class="sub">Macronics, 1982. Text-graphic adventure: explore an abandoned city, solve puzzles, and find your way out. One of the earlier ZX81 adventures to combine room graphics with verb-noun parser.</p>
+    </div>
+
+    <p class="intro">You wake in the deserted city of Xon with no memory. Every room shows a small graphic plus text description. Pick up objects, examine them, and use them to unlock doors, defeat creatures, and find the path to the city's gate.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Tape auto-loads. Press <kbd>Enter</kbd> at the title to start.</li>
+      <li>You wake in a single starting room. Read the description and the screen graphic.</li>
+      <li>Type two-word commands: <code>LOOK</code>, <code>GO NORTH</code>, <code>GET KEY</code>, <code>USE KEY</code>.</li>
+      <li>Carry useful items; the city's puzzles are inventory-based.</li>
+    </ol>
+
+    <h2>Common commands</h2>
+    <table>
+      <tr><th>Command</th><th>Use</th></tr>
+      <tr><td>GO &lt;dir&gt;</td><td>Move (N/S/E/W/UP/DOWN)</td></tr>
+      <tr><td>LOOK</td><td>Re-describe the room</td></tr>
+      <tr><td>EXAMINE &lt;item&gt;</td><td>Inspect for clues</td></tr>
+      <tr><td>GET / DROP &lt;item&gt;</td><td>Inventory</td></tr>
+      <tr><td>USE &lt;item&gt;</td><td>Apply to current situation</td></tr>
+      <tr><td>OPEN &lt;door&gt;</td><td>If you have the right key</td></tr>
+      <tr><td>HELP</td><td>Brief verb list</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Read every screen graphic.</strong> Some clues are only visible in the picture, not the text.</li>
+      <li><strong>Examine everything.</strong> Hidden compartments and clue-objects only describe themselves when EXAMINE'd, not on default room entry.</li>
+      <li><strong>Limited carry.</strong> The ZX81's 16K is tight — the parser caps inventory at a small number of items.</li>
+      <li><strong>Map carefully.</strong> No automap; the city's layout is large and not strictly grid-shaped.</li>
+    </ul>
+  </div>
+</body>
+</html>

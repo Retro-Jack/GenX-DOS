@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chess (Psion) — Sinclair ZX81 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Sinclair ZX81</div>
+      <h1>Chess (Psion)</h1>
+      <p class="sub">Psion, 1981 — David Potter's chess engine, fitted into 1K of ZX81 RAM. Psion's very first commercial release; later 16K versions added levels and book openings.</p>
+    </div>
+
+    <p class="intro">A full chess engine running in a kilobyte. The interface is text-coordinate (you type "E2 E4" to move pawn from e2 to e4); the board is rendered as a small grid using ZX81 block graphics. Eight strength levels in the 16K edition; the 1K original played only one mode.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>Enter</kbd> at the title to start a new game.</li>
+      <li>Choose strength level 1–8 (16K version) or just press Enter for the default.</li>
+      <li>You play White by default. Enter moves in coordinate notation: source square then destination, e.g. <kbd>E</kbd><kbd>2</kbd> <kbd>Space</kbd> <kbd>E</kbd><kbd>4</kbd> <kbd>Enter</kbd>.</li>
+      <li>The computer responds; the board redraws with the new position.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>A</kbd>–<kbd>H</kbd></td><td>Files</td></tr>
+      <tr><td><kbd>1</kbd>–<kbd>8</kbd></td><td>Ranks</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>Confirm move</td></tr>
+      <tr><td><kbd>Q</kbd></td><td>Quit current game</td></tr>
+      <tr><td><kbd>R</kbd></td><td>Resign</td></tr>
+      <tr><td><kbd>N</kbd></td><td>New game</td></tr>
+    </table>
+
+    <h2>Move notation</h2>
+    <ul>
+      <li><strong>Pawn move:</strong> source square + destination, e.g. <code>E2 E4</code></li>
+      <li><strong>Capture:</strong> same syntax — the engine knows from the board state, e.g. <code>D5 E4</code></li>
+      <li><strong>Castling:</strong> move the king two squares — e.g. <code>E1 G1</code> for kingside castle</li>
+      <li><strong>Promotion:</strong> append the piece letter, e.g. <code>E7 E8 Q</code> for promote to queen</li>
+    </ul>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>This is a chess engine, not a teacher.</strong> No move suggestions, no undo on most versions, no hint feature.</li>
+      <li><strong>Strength level 1 plays openings book moves</strong> and basic tactics; level 8 thinks for noticeable seconds per move on the original 3.5 MHz Z80.</li>
+      <li><strong>Move clock is real on the higher levels.</strong> The screen shows "THINKING" while the engine searches; can take 30+ seconds at level 6+.</li>
+      <li><strong>Save with <kbd>S</kbd></strong> on the 16K edition writes the position to tape; the 1K edition has no save.</li>
+    </ul>
+  </div>
+</body>
+</html>

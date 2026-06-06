@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mazogs — Sinclair ZX81 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Sinclair ZX81</div>
+      <h1>Mazogs</h1>
+      <p class="sub">Bug-Byte, 1981 — Don Priestley. Real-time top-down maze with treasure to grab, exits to find, and the maze-dwelling Mazogs to fight or flee.</p>
+    </div>
+
+    <p class="intro">You're dropped into a procedurally-generated maze with hidden treasure and patrolling Mazogs (monsters). Find the treasure, fight off any Mazogs you can't avoid, and reach the exit. The maze is randomised every game — no two playthroughs the same.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>0</kbd> at the title to start.</li>
+      <li>You appear at one corner of the maze; the exit is at the opposite corner.</li>
+      <li>Move with the cursor keys; treasure pickup is automatic on contact.</li>
+      <li>Bump into a Mazog and you enter combat — keep hitting fire while pinning the monster.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>5</kbd></td><td>Left</td></tr>
+      <tr><td><kbd>6</kbd></td><td>Down</td></tr>
+      <tr><td><kbd>7</kbd></td><td>Up</td></tr>
+      <tr><td><kbd>8</kbd></td><td>Right</td></tr>
+      <tr><td><kbd>0</kbd></td><td>Strike (in combat)</td></tr>
+    </table>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Action</th><th>Points</th></tr>
+      <tr><td>Treasure picked up</td><td>100</td></tr>
+      <tr><td>Mazog defeated</td><td>50</td></tr>
+      <tr><td>Maze exit reached</td><td>500 + time bonus</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Right-hand rule.</strong> Stick to one wall and you'll traverse most random mazes without dead-ending.</li>
+      <li><strong>Mazogs are slower than you.</strong> Outrun rather than fight unless you're cornered.</li>
+      <li><strong>Treasure-vs-exit tradeoff.</strong> Pure exit run scores low; clearing treasure deepens the playthrough but exposes you to more Mazog encounters.</li>
+      <li><strong>Random seed</strong> means strategy is general — no memorisable maze layout.</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D Monster Maze — Sinclair ZX81 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Sinclair ZX81</div>
+      <h1>3D Monster Maze</h1>
+      <p class="sub">J. K. Greye Software, 1981 — Malcolm Evans. The first 3D first-person game on a home computer; an animated wireframe-style perspective maze rendered in chunky ZX81 graphics — astonishing for a 1K-base machine (16K RAM pack required).</p>
+    </div>
+
+    <p class="intro">You're dropped into a 16×18 maze with a single tyrannosaurus rex. Find the exit before Rex finds you. The screen shows what's ahead in low-res 3D perspective; status messages narrate Rex's approach ("HE IS BEHIND YOU", "REX LIES IN WAIT", "STEP IN HIS JAWS"). No sound chip on the ZX81 — the entire scare is text + the rendered shape of Rex closing in.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Tape auto-loads. Press <kbd>0</kbd> at the title to start.</li>
+      <li>You appear in the maze facing one direction. The screen shows the corridor in 3D perspective.</li>
+      <li>Watch the status line at the bottom — it warns when Rex is near.</li>
+      <li>Reach the exit (a door shape on the corridor wall) to win the level.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>5</kbd></td><td>Step forward</td></tr>
+      <tr><td><kbd>6</kbd></td><td>Turn right</td></tr>
+      <tr><td><kbd>7</kbd></td><td>Turn left</td></tr>
+      <tr><td><kbd>8</kbd></td><td>Step back</td></tr>
+      <tr><td><kbd>0</kbd></td><td>Start / restart</td></tr>
+    </table>
+
+    <h2>Status messages</h2>
+    <table>
+      <tr><th>Message</th><th>Meaning</th></tr>
+      <tr><td>"FOOTSTEPS APPROACHING"</td><td>Rex has caught your scent, somewhere on the map</td></tr>
+      <tr><td>"REX LIES IN WAIT"</td><td>He's stopped to ambush — corridor ahead is dangerous</td></tr>
+      <tr><td>"HE IS HUNTING FOR YOU"</td><td>Active pursuit</td></tr>
+      <tr><td>"RUN! HE IS BEHIND YOU"</td><td>Rex is in the same corridor; turn corner immediately</td></tr>
+      <tr><td>"STEP IN HIS JAWS"</td><td>You lost</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Corner often.</strong> Rex can only see in straight lines. Every turn breaks his line-of-sight.</li>
+      <li><strong>The maze layout is fixed per session</strong> but regenerates on each load — there's no level memorisation.</li>
+      <li><strong>Sprint between turns.</strong> Movement is per-tile; chains of <kbd>5</kbd> presses move faster than the rendering catches up.</li>
+      <li><strong>Sound is dead.</strong> The ZX81 has no audio. The atmosphere is all visual + text — read the bottom line constantly.</li>
+    </ul>
+  </div>
+</body>
+</html>

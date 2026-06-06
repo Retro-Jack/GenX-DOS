@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Black Crystal — Sinclair ZX81 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Sinclair ZX81</div>
+      <h1>Black Crystal</h1>
+      <p class="sub">Carnell Software, 1982. Five-part graphic-text adventure with character-class selection; one of the earliest fantasy adventures with on-screen graphics on the ZX81.</p>
+    </div>
+
+    <p class="intro">You're a hero on a quest to find the Black Crystal of Beroth and save the realm. The adventure spans five chapters, each loaded from tape in sequence. The interface is text-input ("GO NORTH", "GET SWORD"), but every location has a small graphic showing where you are. Combat is dice-roll vs monster stats.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Tape loads Chapter 1 automatically.</li>
+      <li>Choose your class: Fighter, Wizard, or Ranger. Each starts with different stats and inventory.</li>
+      <li>Type commands at the prompt — two-word verb-noun (e.g. "GO NORTH", "GET LAMP", "FIGHT ORC").</li>
+      <li>Complete the chapter's objectives, then save the character state to load Chapter 2.</li>
+    </ol>
+
+    <h2>Common commands</h2>
+    <table>
+      <tr><th>Verb</th><th>Use</th></tr>
+      <tr><td>GO &lt;direction&gt;</td><td>Move (N / S / E / W / UP / DOWN)</td></tr>
+      <tr><td>GET &lt;object&gt;</td><td>Pick up</td></tr>
+      <tr><td>DROP &lt;object&gt;</td><td>Discard</td></tr>
+      <tr><td>USE &lt;object&gt;</td><td>Activate / consume</td></tr>
+      <tr><td>FIGHT &lt;creature&gt;</td><td>Engage combat</td></tr>
+      <tr><td>CAST &lt;spell&gt;</td><td>Wizard only — name the spell</td></tr>
+      <tr><td>LOOK</td><td>Re-describe current location</td></tr>
+      <tr><td>INV / I</td><td>Inventory</td></tr>
+      <tr><td>SAVE</td><td>Write character state to tape (for next chapter)</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Map every room.</strong> Pen-and-paper; the chapter structure means you can't backtrack across tape loads.</li>
+      <li><strong>Fighter is easiest.</strong> Wizard's spells run out fast; Ranger's tracking edge needs careful inventory management.</li>
+      <li><strong>SAVE before risky combat.</strong> Death sends you back to the chapter restart.</li>
+      <li><strong>Two-word parser.</strong> Multi-word objects are abbreviated (e.g. SWORD not "RUSTY BROKEN SWORD") — try the shortest noun first.</li>
+    </ul>
+  </div>
+</body>
+</html>

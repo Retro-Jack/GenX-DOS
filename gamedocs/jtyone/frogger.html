@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frogger — Sinclair ZX81 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Sinclair ZX81</div>
+      <h1>Frogger</h1>
+      <p class="sub">1982. Unofficial Frogger conversion for the ZX81 in chunky block graphics — one of several near-identical ports from different small publishers.</p>
+    </div>
+
+    <p class="intro">Hop your frog across a four-lane road, then across a river of logs and turtles, into one of five lily-pad slots. Fill all five slots to clear the level. Each level adds traffic speed and shorter log gaps. The ZX81 version uses character-cell block graphics and runs at the platform's flicker-prone refresh rate.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press any key at the title to start.</li>
+      <li>Hop forward into the first lane between cars.</li>
+      <li>On the river, ride logs and turtle backs to the far bank. Fall in the water = lose a frog.</li>
+      <li>Land in an empty lily-pad slot. Fill all five to complete the row.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>5</kbd></td><td>Left</td></tr>
+      <tr><td><kbd>6</kbd></td><td>Down</td></tr>
+      <tr><td><kbd>7</kbd></td><td>Up (hop forward)</td></tr>
+      <tr><td><kbd>8</kbd></td><td>Right</td></tr>
+      <tr><td><kbd>0</kbd></td><td>Pause / start</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Hop in rhythm.</strong> Each hop is a fixed grid step — predict where the lane gap will be one beat ahead.</li>
+      <li><strong>Turtles sink.</strong> Don't ride them long.</li>
+      <li><strong>Outer slots first.</strong> Easier to reach without diagonal-style detours.</li>
+      <li><strong>ZX81 flicker</strong> means the rendering can hide an oncoming car for one frame — assume the worst at lane boundaries.</li>
+    </ul>
+  </div>
+</body>
+</html>
