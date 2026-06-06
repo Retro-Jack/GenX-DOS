@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tetris — NES — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Console · Nintendo Entertainment System</div>
+      <h1>Tetris</h1>
+      <p class="sub">Nintendo, 1989 (NA) — Alexey Pajitnov's puzzle, licensed from Elorg via Henk Rogers. The "Nintendo" version (not the Tengen one). Rotation system is NRS (the original — no wall-kicks).</p>
+    </div>
+
+    <p class="intro">Stack tetrominoes (I, O, T, L, J, S, Z) into solid horizontal rows; cleared rows disappear and you score. Pieces fall faster each level. Game ends when the stack reaches the top of the playfield. Two modes: A-Type (endless, level → speed) and B-Type (clear 25 lines with a pre-set garbage stack).</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Title → press START. Pick A-TYPE (endless) or B-TYPE (target).</li>
+      <li>Choose starting level (0-9 on A; 0-9 on B) and, for B-Type, starting height (0-5 garbage rows).</li>
+      <li>Rotate and slide each piece into place before it locks.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td>LEFT / RIGHT</td><td>Move piece sideways</td></tr>
+      <tr><td>DOWN</td><td>Soft drop (faster fall; 1 point/cell)</td></tr>
+      <tr><td>A</td><td>Rotate clockwise</td></tr>
+      <tr><td>B</td><td>Rotate counter-clockwise</td></tr>
+      <tr><td>START</td><td>Pause</td></tr>
+      <tr><td>SELECT</td><td>(unused in-game)</td></tr>
+    </table>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Lines cleared</th><th>Score at level n</th></tr>
+      <tr><td>1 (Single)</td><td>40 × (n+1)</td></tr>
+      <tr><td>2 (Double)</td><td>100 × (n+1)</td></tr>
+      <tr><td>3 (Triple)</td><td>300 × (n+1)</td></tr>
+      <tr><td>4 (Tetris)</td><td>1200 × (n+1)</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Tetrises only.</strong> Single-line clears are score-suicide. Keep a clean column-1 well and wait for I-pieces to score 1200×(n+1).</li>
+      <li><strong>Flat top.</strong> Avoid overhangs — NRS Tetris has no T-spins or wall-kicks; a piece that doesn't fit is lost.</li>
+      <li><strong>Soft drop banks score.</strong> 1 point per cell dropped. At high levels this is meaningless; at low levels it adds up.</li>
+      <li><strong>Level cap.</strong> Speed maxes around level 19 (NTSC ~1 cell every 4 frames). Heart-rate spike is the actual game.</li>
+      <li><strong>B-Type rocket.</strong> Clearing all 25 lines at height 5 starting at level 9 unlocks the rocket cutscene with all 7 game characters.</li>
+    </ul>
+
+    <h2>NES controls</h2>
+    <p>Default keyboard mapping for this bundle: arrows = D-Pad, Z = A, X = B, ENTER = START, SHIFT = SELECT.</p>
+  </div>
+</body>
+</html>
