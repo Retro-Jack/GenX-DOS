@@ -27,9 +27,9 @@
     "title": "Tetris",
     "rom": "roms/tetris.nes"
   },
-  "duckhunt": {
-    "title": "Duck Hunt",
-    "rom": "roms/duckhunt.nes"
+  "smb2": {
+    "title": "Super Mario Bros. 2",
+    "rom": "roms/smb2.nes"
   },
   "punchout": {
     "title": "Mike Tyson's Punch-Out!!",
