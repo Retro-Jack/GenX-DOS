@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+### Removed
+- **Half-done JtyOne ZX80 wiring** — reverted the `?zx80` flag passthrough in `emulators/jtyone/play.html`, the `.o`-extension dispatcher and `roms/zx80.rom` path patches in `zx81_emu.js`, the `zx80_breakout` entry in `games.json`, plus `emulators/jtyone/roms/zx80.rom` and `emulators/jtyone/tapes/zx80_breakout.o.hex`. ZX80 platform parked: ROM sourcing is fine (Paul Farrow's fruitcake.plus.com archive + the EightyOne `zx80.rom`), but JtyOne's ZX80 mode has a display-sync bug — the `d` state machine that drives port FD/FE writes is gated on `0 != zx81opts.machine`, so machine==0 (ZX80) never updates `d`, the keyboard scan never fires, and only space + enter register. zame-dev's `js-zx8x` runs ZX80 correctly but ships with only `/* Copyright 2010, Slava Tretyak */` and no SPDX header, so it can't be bundled. Door stays open if either situation changes.
 
 ### Added
 - **ZX81 gamedocs pages** at `gamedocs/jtyone/` — 10 per-game instruction pages (3D Monster Maze, Chess (Psion), Mazogs, Black Crystal, City of Xon, Frogger, Galaxians, 3D Grand Prix, Maze Death Race, Night Gunner). Same template as the other 15 platforms. Filenames match the `?game=<key>` URL keys (monstmze.html, blkcryst.html, cityxon.html, galaxian.html, gp3d.html, mazerace.html, nightgun.html). 3D Monster Maze page notes the ZX81's no-sound design (Rex's menace is entirely text + visual); Chess (Psion) covers the coordinate-notation parser; Black Crystal documents the 5-chapter tape-loaded structure. JtyOne preserves `?game=` in URL, so the corner controls-link resolves directly with no wiring needed. **Sinclair family now complete in the gamedocs sweep.**
