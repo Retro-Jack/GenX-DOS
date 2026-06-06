@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repton — BBC Micro — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · BBC Micro</div>
+      <h1>Repton</h1>
+      <p class="sub">Superior Software, 1985 — Tim Tyler. Boulder-Dash-inspired puzzle that became Superior's flagship; 12 screens, distinctive musical jingle on every diamond.</p>
+    </div>
+
+    <p class="intro">Repton burrows through dirt collecting diamonds and avoiding falling rocks, hostile creatures, and his own claustrophobic geometry. Each of the 12 screens has a fixed layout: dig the right tunnels in the right order to reach every diamond without trapping yourself or letting a boulder hit you.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>Space</kbd> at the title to begin.</li>
+      <li>Choose a starting screen with <kbd>A</kbd>–<kbd>L</kbd> (12 screens; you can pick any but score totals only for full runs).</li>
+      <li>Eat all the diamonds on a screen to open the exit. Time bonus depends on how fast you do it.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>Z</kbd></td><td>Left</td></tr>
+      <tr><td><kbd>X</kbd></td><td>Right</td></tr>
+      <tr><td><kbd>:</kbd></td><td>Up</td></tr>
+      <tr><td><kbd>/</kbd></td><td>Down</td></tr>
+      <tr><td><kbd>Return</kbd></td><td>Pause / restart sub-menu</td></tr>
+      <tr><td><kbd>S</kbd></td><td>Sound on / off</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Restart screen</td></tr>
+    </table>
+
+    <h2>Hazards</h2>
+    <table>
+      <tr><th>Object</th><th>Behaviour</th></tr>
+      <tr><td>Boulder</td><td>Falls when unsupported. Drops on Repton's head = death.</td></tr>
+      <tr><td>Earth</td><td>Dig through freely. Boulders sitting on earth stay put.</td></tr>
+      <tr><td>Diamond</td><td>Eat all of them to clear the screen.</td></tr>
+      <tr><td>Egg</td><td>Falls like a boulder. When it hits something it hatches into a monster.</td></tr>
+      <tr><td>Monster</td><td>Hunts Repton; can be crushed by dropping a boulder on it.</td></tr>
+      <tr><td>Cage / Crown</td><td>Pickups for bonus score.</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Plan the diamond order, not the route.</strong> The path you dig becomes permanent geometry — get a diamond order wrong and you can seal off the rest of the screen.</li>
+      <li><strong>Push boulders sideways only when grounded.</strong> Repton can push a single boulder horizontally if the square behind it is empty. Two stacked boulders pin you.</li>
+      <li><strong>Eggs are timed.</strong> Crack them on purpose by dropping a boulder before they hatch.</li>
+      <li><strong>Diagonal moves don't exist.</strong> Every step is one square — long diagonals across a screen mean a lot of dirt.</li>
+    </ul>
+  </div>
+</body>
+</html>
