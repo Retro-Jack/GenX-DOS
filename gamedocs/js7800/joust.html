@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Joust — Atari 7800 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Console · Atari 7800 ProSystem</div>
+      <h1>Joust</h1>
+      <p class="sub">Atari, 1986 (port of the 1982 Williams arcade by John Newcomer). The first two-player co-op arcade game and the inventor of the "flap to fly" mechanic.</p>
+    </div>
+
+    <p class="intro">You're a knight riding an ostrich (P1) or stork (P2). Flap your wings to stay aloft. Hit enemy buzzard-riders with your lance — if you're higher than they are on collision, you win the joust; equal height = bounce; lower = you die. Killed riders become eggs that hatch new (faster) enemies if not collected.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>F4</kbd> Reset to start.</li>
+      <li>Tap <kbd>Z</kbd> to flap (each tap = one wing-beat = lift).</li>
+      <li>Steer with <kbd>←</kbd>/<kbd>→</kbd>. Charge enemies high; collect their eggs fast.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Steer the ostrich (left/right)</td></tr>
+      <tr><td><kbd>Z</kbd></td><td>Flap — tap to fly, hold for sustained climb (limited)</td></tr>
+      <tr><td><kbd>F4</kbd></td><td>Reset — start game</td></tr>
+      <tr><td><kbd>F2</kbd></td><td>Select — 1P / 2P mode</td></tr>
+    </table>
+
+    <h2>Enemies</h2>
+    <table>
+      <tr><th>Buzzard rider</th><th>Behaviour</th></tr>
+      <tr><td>Bounder (red)</td><td>Slow, swerves up. 750 pts.</td></tr>
+      <tr><td>Hunter (grey)</td><td>Hunts you; deliberate dives. 1500 pts.</td></tr>
+      <tr><td>Shadow Lord (blue)</td><td>Last few enemies of a wave — fastest, smartest. 3000 pts.</td></tr>
+      <tr><td>Pterodactyl</td><td>Spawns if you stall. Only killed by lance tip head-on; instant death otherwise. 1000 pts.</td></tr>
+      <tr><td>Lava troll</td><td>Reaches up from the lava pit to drag you down. Flap to escape.</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Flap rhythm.</strong> Don't hold <kbd>Z</kbd>. Tap-tap-tap for steady altitude; one strong burst to gain height.</li>
+      <li><strong>Bottom platform = death.</strong> The lava pit's troll grabs anything stalled near the bottom. Stay airborne over lava.</li>
+      <li><strong>Egg sweep.</strong> When you kill a rider, they leave a stationary egg. Eggs hatch into FASTER enemies after a few seconds. Race to collect.</li>
+      <li><strong>Pterodactyl head-on.</strong> The big bird is invincible from sides/back. Only a direct lance-on-beak collision kills it. Wait for it to approach, charge dead-on.</li>
+      <li><strong>Survival wave.</strong> Wave 5, 10, 15... include "Survival" rounds — clear all enemies for a 3000 bonus.</li>
+    </ul>
+
+    <h2>Atari 7800 controls</h2>
+    <p>One-button. <kbd>Z</kbd> is the flap; <kbd>X</kbd> is unused. Two-player simultaneous co-op uses P1 ProLine + P2 ProLine (the keyboard maps WASD + Q to P2). Press <kbd>F4</kbd> Reset at the title to start.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robotron: 2084 — Atari 7800 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Console · Atari 7800 ProSystem</div>
+      <h1>Robotron: 2084</h1>
+      <p class="sub">Atari, 1987 (port of the 1982 Williams arcade by Eugene Jarvis &amp; Larry DeMar). The twin-stick shooter blueprint: one stick moves, the other aims/fires.</p>
+    </div>
+
+    <p class="intro">The last human family. Robots have killed everyone else. You're trapped in a square arena with waves of robots, hulks, brains, electrodes, and grunts. Save the Mommy/Daddy/Mikey humans for bonus points; shoot everything else. Save the family from the brains (who mutate them into deadly prog enemies) while staying alive.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>F4</kbd> Reset to start.</li>
+      <li>Move with the arrows; fire direction is controlled separately.</li>
+      <li><strong>7800 port note:</strong> JS7800 maps fire-direction to <kbd>Z</kbd> + <kbd>X</kbd> as 4-direction (no diagonals). True twin-stick requires the second ProLine on WASD/QE for keyboard player 2.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td>Arrows</td><td>Move (8-way)</td></tr>
+      <tr><td><kbd>Z</kbd></td><td>Hold direction + Z fires in that direction</td></tr>
+      <tr><td><kbd>X</kbd></td><td>Alternative fire (some 7800 wires this to a second-stick approximation)</td></tr>
+      <tr><td><kbd>F4</kbd></td><td>Reset — start game</td></tr>
+      <tr><td><kbd>F2</kbd></td><td>Select — variant</td></tr>
+    </table>
+
+    <h2>Enemies</h2>
+    <table>
+      <tr><th>Enemy</th><th>Behaviour</th></tr>
+      <tr><td>Grunt (red)</td><td>Slow, walks toward you. Easy kill.</td></tr>
+      <tr><td>Hulk (green)</td><td>Indestructible! Can only be pushed by shots. Avoid; they kill humans.</td></tr>
+      <tr><td>Brain (purple)</td><td>Shoots aimed mines; mutates humans into Progs.</td></tr>
+      <tr><td>Prog (mutated human)</td><td>Fast-shooting; only spawns once a Brain reaches a human.</td></tr>
+      <tr><td>Sphereoid</td><td>Spawns Enforcers — kill it before they emerge.</td></tr>
+      <tr><td>Quark</td><td>Spawns Tanks (shoot bouncing bombs). Tank bombs kill anything.</td></tr>
+      <tr><td>Electrode</td><td>Stationary; touching = death.</td></tr>
+    </table>
+
+    <h2>Humans</h2>
+    <p>Mikey (boy), Mommy, Daddy. Touch them to rescue → 1000, 2000, 3000, 4000, 5000 pts (increases per rescue in the same wave). Hulks and Brains will kill them if you don't reach them first.</p>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Save humans first.</strong> Each saved family member multiplies your score. Race the Hulks to humans on every wave.</li>
+      <li><strong>Ignore Hulks.</strong> They cannot be killed. Just keep distance and shoot AROUND them to push them back.</li>
+      <li><strong>Prioritise Brains.</strong> The longer a Brain lives, the more humans it converts. Kill them fast even before clearing Grunts.</li>
+      <li><strong>Electrode camping.</strong> Electrodes spawn in random spots each wave. Memorise the dangerous corners.</li>
+      <li><strong>Constantly move.</strong> Standing still = death from any direction. The game's pace is so high that the moment your thumb relaxes, you die.</li>
+    </ul>
+
+    <h2>Atari 7800 controls</h2>
+    <p>Robotron is fundamentally a twin-stick game; on a single-stick joystick (which is what the 7800 ProLine offers), the JS7800 port approximates by using <kbd>Z</kbd> as "fire-in-direction-of-current-stick-input." This is a compromise — for the authentic experience, plug in two ProLine sticks (one for movement, one for firing). The keyboard's WASD second-player binding gives you that twin-stick setup on a single keyboard.</p>
+  </div>
+</body>
+</html>

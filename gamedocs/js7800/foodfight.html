@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Food Fight — Atari 7800 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Console · Atari 7800 ProSystem</div>
+      <h1>Food Fight</h1>
+      <p class="sub">Atari, 1987 (port of the 1983 arcade by Dennis Koble). Charley Chuck runs through a kitchen-floor playfield trying to reach a melting ice-cream cone before it puddles. Four chefs (Angelo, Zorba, Jacques, Oscar) throw food at him; Charley can throw food back.</p>
+    </div>
+
+    <p class="intro">Each level is a square arena dotted with piles of food. Pick up food (by walking onto a pile) and throw it (any direction) at the chefs. Reach the ice-cream cone at the far side before it fully melts (timer). Survive long enough on lower levels for tougher chef behaviour and pickier food piles.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>F4</kbd> Reset to start.</li>
+      <li>Walk Charley to a food pile to pick up; press <kbd>Z</kbd> + a direction to throw.</li>
+      <li>Reach the cone before the timer melts it.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td>Arrows</td><td>Walk (8-way)</td></tr>
+      <tr><td><kbd>Z</kbd> + direction</td><td>Throw food in the held direction</td></tr>
+      <tr><td><kbd>F4</kbd></td><td>Reset — start game</td></tr>
+      <tr><td><kbd>F2</kbd></td><td>Select — variant</td></tr>
+    </table>
+
+    <h2>Chefs</h2>
+    <table>
+      <tr><th>Chef</th><th>Behaviour</th></tr>
+      <tr><td>Angelo (orange)</td><td>Slow, predictable</td></tr>
+      <tr><td>Zorba (purple)</td><td>Chases Charley directly</td></tr>
+      <tr><td>Jacques (green)</td><td>Throws bunches</td></tr>
+      <tr><td>Oscar (cyan)</td><td>Fast and erratic</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Hit chefs for score.</strong> Killing a chef = 200 pts × (chefs alive). All four chefs on one level alive at the start; chain-kill them for the multiplier.</li>
+      <li><strong>The hole trick.</strong> Walking into a hole spawns a fresh chef as you fall in. Use it to dump unwanted positions, but you lose a life.</li>
+      <li><strong>Food rains.</strong> When chefs run out of nearby food to throw, food bombs rain from above. Eight Up arrows = an X-bomb pile that can clear half the screen.</li>
+      <li><strong>Ice-cream timer.</strong> Even if you've killed all chefs, the cone keeps melting. Don't sit there throwing food forever — finish the level.</li>
+      <li><strong>Score-chase.</strong> Letting chefs kill each other (with thrown food) is the actual high-score path — they're worth nothing if you let them die natural, but 200 × your chain otherwise.</li>
+    </ul>
+
+    <h2>Atari 7800 controls</h2>
+    <p>The 7800 port preserves the arcade's "hold a direction while pressing fire to throw that way" — it's an 8-way directional throw. <kbd>X</kbd> is unused. Press <kbd>F4</kbd> Reset to start.</p>
+  </div>
+</body>
+</html>
