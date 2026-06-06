@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elite (Master) — BBC Master — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · BBC Master 128</div>
+      <h1>Elite (Master version)</h1>
+      <p class="sub">Acornsoft / Imagineer, 1986 — David Braben &amp; Ian Bell. Master-enhanced Elite: more colours in the cockpit, smoother wireframe rendering, the full mission chain on a double-sided disc.</p>
+    </div>
+
+    <p class="intro">The Master release of Elite is the most polished 8-bit version. Same universe — 2 048 systems across 8 galaxies, same Cobra Mk III, same trading/combat loop — but the Master 128's extra RAM and 65C12 speed let the cockpit show more colour and the wireframes draw faster. This build (the flicker-free reconstruction from bbcelite.com) ships as a double-sided disc image (`.dsd`); `*DRIVE 2` in the !BOOT loads side 1 of the disc.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>At the title press <kbd>Space</kbd>, then <kbd>2</kbd> to start a new commander.</li>
+      <li>Launch from Lave station — match the rotation, fly out, <kbd>J</kbd> to in-system jump to the planet.</li>
+      <li>Buy Food (cheap on Lave), <kbd>F7</kbd> market, <kbd>F4</kbd>/<kbd>F5</kbd> charts, <kbd>F1</kbd> set target, <kbd>H</kbd> hyperspace.</li>
+    </ol>
+
+    <h2>Flight controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>?</kbd> / <kbd>/</kbd></td><td>Pitch up / down</td></tr>
+      <tr><td><kbd>&lt;</kbd> / <kbd>&gt;</kbd></td><td>Roll left / right</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Accelerate</td></tr>
+      <tr><td><kbd>/</kbd></td><td>Decelerate</td></tr>
+      <tr><td><kbd>A</kbd></td><td>Fire laser</td></tr>
+      <tr><td><kbd>T</kbd></td><td>Target missile</td></tr>
+      <tr><td><kbd>M</kbd></td><td>Fire missile</td></tr>
+      <tr><td><kbd>U</kbd></td><td>Unarm missile</td></tr>
+      <tr><td><kbd>E</kbd></td><td>ECM</td></tr>
+      <tr><td><kbd>J</kbd></td><td>In-system jump</td></tr>
+      <tr><td><kbd>H</kbd></td><td>Hyperspace</td></tr>
+      <tr><td><kbd>C</kbd></td><td>Docking computer (if fitted)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Launch escape pod</td></tr>
+    </table>
+
+    <h2>Views &amp; menus</h2>
+    <table>
+      <tr><th>Input</th><th>Screen</th></tr>
+      <tr><td><kbd>F0</kbd></td><td>Front view</td></tr>
+      <tr><td><kbd>F1</kbd>–<kbd>F3</kbd></td><td>Rear / Left / Right</td></tr>
+      <tr><td><kbd>F4</kbd> / <kbd>F5</kbd></td><td>Short / long-range chart</td></tr>
+      <tr><td><kbd>F6</kbd></td><td>System data</td></tr>
+      <tr><td><kbd>F7</kbd></td><td>Market</td></tr>
+      <tr><td><kbd>F8</kbd></td><td>Status</td></tr>
+      <tr><td><kbd>F9</kbd></td><td>Inventory</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>Energy bomb</td></tr>
+    </table>
+
+    <h2>Master version differences</h2>
+    <ul>
+      <li><strong>Flicker-free wireframes.</strong> The 65C12's extra speed lets the renderer double-buffer cleanly — no scanline tearing in dense combat.</li>
+      <li><strong>Extra cockpit colours.</strong> The 128K RAM allows palette switching mid-frame; the dashboard and chart screens use more hues than the BBC original.</li>
+      <li><strong>Disc-driven mission chain.</strong> Constrictor, Cougar, Thargoid mothership missions are all on the disc — no separate "Mission Disc" sale.</li>
+      <li><strong>Save/Load to disc.</strong> Faster than the tape commander files; survives between sessions cleanly.</li>
+    </ul>
+
+    <h2>Strategy basics</h2>
+    <ul>
+      <li><strong>Agricultural → Industrial → back.</strong> Standard trade route.</li>
+      <li><strong>Don't go illegal early.</strong> Narcotics/Slaves get you fined; profitable only with police-evading kit.</li>
+      <li><strong>Fuel scoops</strong> for free star-skim fuel.</li>
+      <li><strong>Run from Thargoids</strong> until you're at "Dangerous" or better.</li>
+    </ul>
+  </div>
+</body>
+</html>
