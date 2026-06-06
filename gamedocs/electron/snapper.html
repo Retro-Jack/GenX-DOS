@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Snapper — Acorn Electron — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Acorn Electron</div>
+      <h1>Snapper</h1>
+      <p class="sub">Acornsoft, 1983 — Christopher Beale. Acornsoft's Pac-Man — Electron port runs in Mode 5 with the same maze layout as the BBC version, slightly slower scroll due to ULA contention.</p>
+    </div>
+
+    <p class="intro">Guide the Snapper around a maze, eating dots while the four "Sour Faces" chase you. Eat the corner power-pills to turn them edible for a brief window. Clear every dot to move on; each cleared maze speeds up and shortens the power-pill window.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Tape auto-loads. Press <kbd>Space</kbd> at the title to start.</li>
+      <li>Steer toward dots. The first maze is forgiving; later mazes have Sour Faces leaving the pen sooner.</li>
+      <li>Save power-pills for when cornered — gain more by eating multiple ghosts on one pill.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>Z</kbd></td><td>Left</td></tr>
+      <tr><td><kbd>X</kbd></td><td>Right</td></tr>
+      <tr><td><kbd>:</kbd></td><td>Up</td></tr>
+      <tr><td><kbd>/</kbd></td><td>Down</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Start</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Abandon</td></tr>
+    </table>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Item</th><th>Points</th></tr>
+      <tr><td>Dot</td><td>10</td></tr>
+      <tr><td>Power-pill</td><td>50</td></tr>
+      <tr><td>1st / 2nd / 3rd / 4th Sour Face on one pill</td><td>200 / 400 / 800 / 1600</td></tr>
+      <tr><td>Bonus fruit</td><td>100–5000</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Chain the ghosts.</strong> Herd all four near one power-pill before triggering; 3000 bonus on a clean four-chain.</li>
+      <li><strong>Tunnels are escape valves.</strong> The wrap-around exits slow ghosts more than they slow you — use under pressure.</li>
+      <li><strong>Don't backtrack for stray dots.</strong> Plan a single loop around the maze; leftover dots eat the maze-clear bonus.</li>
+    </ul>
+  </div>
+</body>
+</html>

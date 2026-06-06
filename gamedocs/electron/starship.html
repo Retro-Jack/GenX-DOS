@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Starship Command — Acorn Electron — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Acorn Electron</div>
+      <h1>Starship Command</h1>
+      <p class="sub">Acornsoft, 1983 — Peter Irvin's first commercial release (later co-author of <em>Exile</em>). Rotating-starfield space combat with active power-budget management; a quiet design landmark.</p>
+    </div>
+
+    <p class="intro">You command a single starship defending a sector against escalating waves of alien fighters. The starfield rotates around you (not the ship around the field) — you point a fixed-position cross-hair and the universe spins underneath. Your power budget is a single bar split between Engines, Lasers, Shields, and Scanners; balancing it is the whole game.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>Space</kbd> at the title to start.</li>
+      <li>You're in the middle of the screen; aliens jump in from the edges. Rotate the universe with <kbd>Z</kbd>/<kbd>X</kbd> until your nose lines up.</li>
+      <li>Hold <kbd>Return</kbd> to fire lasers. Lasers drain Power; running it dry leaves you defenceless for several seconds.</li>
+      <li>Press <kbd>S</kbd> to bring up the shields, but shields also drain Power — only raise them under fire.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>Z</kbd></td><td>Rotate left</td></tr>
+      <tr><td><kbd>X</kbd></td><td>Rotate right</td></tr>
+      <tr><td><kbd>:</kbd></td><td>Thrust (move ship — depletes Power)</td></tr>
+      <tr><td><kbd>/</kbd></td><td>Reverse thrust</td></tr>
+      <tr><td><kbd>Return</kbd></td><td>Fire lasers</td></tr>
+      <tr><td><kbd>S</kbd></td><td>Toggle shields</td></tr>
+      <tr><td><kbd>H</kbd></td><td>Hyperjump (escape; costs Power, ends the round)</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Pause</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Abandon</td></tr>
+    </table>
+
+    <h2>The power budget</h2>
+    <ul>
+      <li><strong>Engines</strong> — thrust + rotation responsiveness. Bleeds while moving.</li>
+      <li><strong>Lasers</strong> — every shot is a drain.</li>
+      <li><strong>Shields</strong> — absorb hits but drain continuously while raised.</li>
+      <li><strong>Scanners</strong> — passive long-range tracker so you can pre-aim where the next wave appears.</li>
+      <li>Power regenerates between waves but not during. Sustained combat empties the bar fast.</li>
+    </ul>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Lasers off when not firing.</strong> Hold <kbd>Return</kbd> only when an alien is in your sights — don't spray.</li>
+      <li><strong>Shields up at impact only.</strong> Raise the instant a laser bolt is incoming, drop the moment it's clear.</li>
+      <li><strong>Hyperjump = retreat with honour.</strong> Survives a no-win round but costs the sector. Use sparingly.</li>
+      <li><strong>Predict the rotation.</strong> The cross-hair never moves; you're flying the cosmos around it. Lead your rotation slightly past the target to compensate for delay.</li>
+    </ul>
+  </div>
+</body>
+</html>

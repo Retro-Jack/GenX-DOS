@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boxer — Acorn Electron — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Acorn Electron</div>
+      <h1>Boxer</h1>
+      <p class="sub">Acornsoft, 1984. Two-fighter side-view boxing — sprite-flicker low, animation crisp, more cerebral than the era's arcade slug-fests.</p>
+    </div>
+
+    <p class="intro">A single boxing round on a single screen. You and the opponent face off; punch high or low, dodge, and time blocks. Three knock-downs (or running down the round clock with a points lead) wins the match.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>Space</kbd> at the title to start.</li>
+      <li>Choose 1-player or 2-player at the next prompt.</li>
+      <li>Round 1 begins; the AI starts cautious and gets more aggressive as you advance.</li>
+    </ol>
+
+    <h2>Controls (Player 1 — left)</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>Z</kbd></td><td>Step left (away from opponent)</td></tr>
+      <tr><td><kbd>X</kbd></td><td>Step right (in close)</td></tr>
+      <tr><td><kbd>:</kbd></td><td>High punch / block high</td></tr>
+      <tr><td><kbd>/</kbd></td><td>Low punch / block low</td></tr>
+      <tr><td><kbd>Return</kbd></td><td>Duck</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Pause</td></tr>
+    </table>
+
+    <h2>Scoring</h2>
+    <ul>
+      <li>Clean punch through guard: 5 points</li>
+      <li>Knock-down: 50 + 10-count interval</li>
+      <li>KO (3 knock-downs or stay-down): match ends, full round bonus</li>
+      <li>Points decision: highest score at bell wins, no bonus</li>
+    </ul>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Block-then-counter.</strong> The AI throws a 1-2 combo most exchanges. Block both, then punch the recovery window.</li>
+      <li><strong>Don't trade.</strong> Punching while taking a hit costs more health than the swap of damage suggests.</li>
+      <li><strong>Step into a missed swing.</strong> An opponent who misses recovers slow — close the gap and land a free combo.</li>
+      <li><strong>Manage stamina.</strong> Holding punch keys uses energy; pacing matters across a long round.</li>
+    </ul>
+  </div>
+</body>
+</html>
