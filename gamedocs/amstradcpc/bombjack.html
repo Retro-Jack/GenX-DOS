@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bomb Jack — Amstrad CPC — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Amstrad CPC</div>
+      <h1>Bomb Jack</h1>
+      <p class="sub">Elite Systems, 1986 — conversion of the 1984 Tehkan arcade. Jack bounces around five landmarks defusing 24 bombs per round while enemies turn into floating menaces.</p>
+    </div>
+
+    <p class="intro">Five scrolling backdrops — Sphinx, Greek temple, castle, neon city, prison. Each holds 24 bombs. Light bombs (with a red flame) in sequence for a 5× combo bonus. Collect "P" power-pills to freeze enemies briefly.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots — bundle pre-types <code>run"bomb</code>.</li>
+      <li>Click the canvas first to give it keyboard focus.</li>
+      <li>Press a key at the title to start.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>Move</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Jump / glide (hold to extend hang-time)</td></tr>
+    </table>
+
+    <h2>Bonus letters &amp; pickups</h2>
+    <table>
+      <tr><th>Letter</th><th>Effect</th></tr>
+      <tr><td>B</td><td>Bonus round / extra points</td></tr>
+      <tr><td>E</td><td>Extra life</td></tr>
+      <tr><td>P</td><td>Power-pill — enemies become bonus coins for a few seconds</td></tr>
+      <tr><td>S</td><td>Special — full screen of bonus coins</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Chain the lit bombs.</strong> The next-in-sequence always lights when you defuse one — every 24-bomb perfect chain scores a massive bonus.</li>
+      <li><strong>Glide, don't jump.</strong> Holding Space gives Jack a parachute fall — much safer than committing to a tall arc.</li>
+      <li><strong>Bird-enemy paths are deterministic.</strong> Each round has fixed safe routes — die a few times, learn them, then run the loop.</li>
+      <li><strong>Score-loop is the long game.</strong> The game wraps at round 6 with harder enemy density; play for points, not progress.</li>
+    </ul>
+  </div>
+</body>
+</html>

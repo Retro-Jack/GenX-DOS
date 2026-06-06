@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chase H.Q. — Amstrad CPC — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Amstrad CPC</div>
+      <h1>Chase H.Q.</h1>
+      <p class="sub">Ocean, 1989 — conversion of the 1988 Taito arcade. Drive a black Porsche, chase a wanted criminal's car, ram them into surrender before the time runs out.</p>
+    </div>
+
+    <p class="intro">Five missions. Each opens with Nancy on the radio describing the suspect — then a timer starts and you race forward chasing the marked car. Catch up, ram repeatedly, run the damage meter out, mission cleared. Five missions, five suspects.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots — bundle pre-types <code>run"chasehq</code>.</li>
+      <li>Click the canvas first to give it keyboard focus.</li>
+      <li>Press a key past the briefing to start the chase timer.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>Steer left / right</td></tr>
+      <tr><td><kbd>↑</kbd></td><td>Accelerate</td></tr>
+      <tr><td><kbd>↓</kbd></td><td>Brake</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Turbo (3 per mission)</td></tr>
+      <tr><td><kbd>Shift</kbd></td><td>Gear up (some versions; tap once after revving)</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Turbo on long straights.</strong> The timer is generous if you close the gap fast; save turbos for visible suspect-cars, not catching up to traffic.</li>
+      <li><strong>Ramming geometry.</strong> Hit the back-corner of the target car; centre hits bounce off. Crash the suspect into oncoming traffic for free damage.</li>
+      <li><strong>Don't crash.</strong> A wreck costs ~3 seconds of recovery time which the timer rarely forgives at higher missions.</li>
+      <li><strong>Five missions = a single sitting.</strong> No save state in the original; budget around 20 minutes of clean driving for the whole game.</li>
+    </ul>
+  </div>
+</body>
+</html>
