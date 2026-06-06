@@ -104,7 +104,8 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 
 Summary below; see [ATTRIBUTION.md](ATTRIBUTION.md) for the canonical record including source URLs, authors, BIOS/ROM provenance, bezel artwork licences, and BY-SA share-alike obligations.
 
-- Site code by Retro-Jack
+- DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system by Mike @ **LGR — Lazy Game Reviews** (<https://www.lazygamereviews.com>)
+- AMIBIOS POST animation, emulator integration wrappers, menu tree, and bundled-emulator-specific code by Retro-Jack
 - jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb)
 - ElkJS: (c) Darren Coles 2013 (dmcoles/elkjs) — 6502 core ported from Elkulator by Tom Walker
 - apple2js: MIT (whscullin/apple2js) — Apple ][+ emulator in JavaScript

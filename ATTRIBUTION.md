@@ -15,10 +15,16 @@ the authoritative version.
 
 ## Site code
 
-- **GenX-DOS** — © Retro-Jack. The terminal, virtual filesystem, font sprite
-  system, AMIBIOS POST animation, and integration wrappers around bundled
-  emulators are original site code. No licence file in repo; treated as
-  source-available for personal/educational use.
+- **DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system**
+  — Mike @ **LGR — Lazy Game Reviews** (<https://www.lazygamereviews.com>).
+  The interactive prompt under `prompt/`, the `fs.js` virtual `C:` drive
+  layout, the command dispatcher, and the CP437 sprite font and renderer
+  originate from LGR's DOS-prompt project. GenX-DOS extends that base.
+- **AMIBIOS POST animation, emulator integration wrappers, menu tree,
+  and all bundled-emulator-specific code** — © Retro-Jack. Original work
+  added on top of the LGR terminal base.
+- No licence file in repo; treated as source-available for
+  personal/educational use. Credit the LGR base in any derivative work.
 
 ---
 
