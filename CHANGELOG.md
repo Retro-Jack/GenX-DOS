@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- **Bezel staging replaced with curated OBS asset library.** `emulators/_shared/bezels/` previously held 8 downloaded stock images with auto-generated filenames (`footage-dated-tv-set…`, `vintage-television-1488203.png`, `autres-consoles-amstrad-cpc-6128.png`, `Screenshot_20260521_014123.png`, etc.). Replaced with the 9 cleanly-named PNGs from `/mnt/multimedia/Assets/OBS/Bezels/`: `70s.png`, `80s.png`, `Acorn.png`, `Amstrad.png`, `Apple.png`, `Commodore.png`, `PC.png`, `Sinclair.png`, `Vectrex.png`. No code references the bezels yet (still pre-integration staging), so this is a pure asset swap. Bundle size 8.4 MB → 7.8 MB.
+
 ### Added
 - **Atari 800XL gamedocs pages** at `gamedocs/atari800/` — 10 per-game instruction pages (Star Raiders, Eastern Front 1941, Miner 2049er, Archon, M.U.L.E., Pole Position, Boulder Dash, Bruce Lee, Ballblazer, Rescue on Fractalus!). Same template as the other 8 platforms. atari800 footer documents the joystick + console-key keymap (arrows = stick, L Ctrl = fire, F2/F3/F4 = OPTION/SELECT/START, F5 = Reset). atari800/play.html keeps `?game=` in URL alongside any added flags, so the standard controls-link resolver works without extra wiring. First home-computer platform completed in the gamedocs sweep.
 
