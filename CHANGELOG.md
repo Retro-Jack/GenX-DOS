@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- **Atari 400 gamedocs pages** at `gamedocs/atari800/` — 9 new per-game pages (Space Invaders, Asteroids, Defender, Missile Command, Centipede, Pac-Man, Dig Dug, Donkey Kong, Joust). Star Raiders already covered from the 800XL pass — the atari800/ gamedocs folder is shared between both Atari 8-bit menus since the controls-link resolver derives the platform from the URL path (and both menus point at `emulators/atari800/play.html`). Pages document the cart-era arcade-port input mapping (joystick + L Ctrl fire + F2/F3/F4 console keys). Atari 8-bit family now complete in the gamedocs sweep.
+
 ### Changed
 - **ATTRIBUTION.md bezel section expanded with investigation results.** The 8 OBS bezels (70s/80s/Acorn/Apple/Commodore/PC/Sinclair/Vectrex) were all sourced via Reddit / retro forums, which strips EXIF and breaks the attribution chain. For each, the hardware is identified by visible markings (high confidence — Microvitec CUB, IBM 5153 CGA, Commodore 1084S, Apple Monitor ///, etc.) but the proximate Reddit/forum source means original photographers aren't reachable. Vectrex is a CGI render per user. The expanded table includes hardware ID, integration risk, and explicit replacement candidates from Wikimedia Commons where available — Commodore 1084 (Gestumblindi CC-BY-SA 4.0), Apple 3 (Schaelss CC-BY-SA 3.0). Integration pass should not ship without each row resolved (replace or accept-risk-with-credit).
 

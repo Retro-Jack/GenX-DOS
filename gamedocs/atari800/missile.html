@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Missile Command — Atari 400 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Atari 400 / 800XL</div>
+      <h1>Missile Command</h1>
+      <p class="sub">Atari, 1981 — home port of Dave Theurer's 1980 arcade. Authored during the Cold War; Theurer is on record about the nuclear-war anxiety dreams the development induced. The Atari 8-bit version replaces the arcade's trackball with a digital joystick crosshair.</p>
+    </div>
+
+    <p class="intro">Defend six cities and three missile bases against waves of incoming nuclear warheads. Fire counter-missiles to detonate them mid-air. Each city saved at wave-end pays bonus points; lose all six and the planet is destroyed.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>F4</kbd> Start.</li>
+      <li>Move the targeting cross-hair with the joystick.</li>
+      <li>Fire counter-missiles with <kbd>L Ctrl</kbd> — they detonate at the cursor.</li>
+      <li>Defend cities and reload bases.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> / <kbd>↓</kbd> / <kbd>←</kbd> / <kbd>→</kbd></td><td>Move targeting cross-hair</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>Fire counter-missile to cursor position (centre base)</td></tr>
+      <tr><td><kbd>F4</kbd></td><td>START — begin / restart</td></tr>
+      <tr><td><kbd>F3</kbd></td><td>SELECT — game variant (1- / 2-player)</td></tr>
+      <tr><td><kbd>F2</kbd></td><td>OPTION — difficulty</td></tr>
+      <tr><td><kbd>P</kbd></td><td>Pause</td></tr>
+      <tr><td><kbd>F5</kbd></td><td>Reset</td></tr>
+    </table>
+
+    <h2>Threats</h2>
+    <table>
+      <tr><th>Threat</th><th>Behaviour</th></tr>
+      <tr><td>ICBM</td><td>Straight-line trajectory from the top — easy to predict, easy to intercept</td></tr>
+      <tr><td>MIRV</td><td>Splits into multiple warheads partway down — kill before split</td></tr>
+      <tr><td>Smart bomb</td><td>Dodges your detonations; needs a direct hit</td></tr>
+      <tr><td>Bomber</td><td>Drops MIRVs from cruise altitude</td></tr>
+      <tr><td>Killer satellite</td><td>Launches ICBMs from low orbit</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Lead the missile.</strong> Counter-missiles take ~0.5 sec to reach the cursor — fire at the path the incoming warhead will follow, not where it is.</li>
+      <li><strong>Big detonations chain.</strong> One well-placed explosion can engulf multiple incoming missiles at once.</li>
+      <li><strong>Kill MIRVs before split.</strong> Each MIRV becomes 3 separate ICBMs after splitting.</li>
+      <li><strong>Sacrifice cities strategically.</strong> If two cities are dead and the third is the bonus pivot, prioritise it.</li>
+      <li><strong>Manage three bases.</strong> Each base has 10 missiles; if a base is destroyed you lose its ammo. Fire from the closest base to spread depletion.</li>
+      <li><strong>Bonus city at 10,000.</strong> Each multiple of 10,000 points awards a replacement city.</li>
+    </ul>
+
+    <h2>Atari 400 controls</h2>
+    <p>Joystick + fire (the original arcade used a trackball; the digital crosshair is slower but still playable). Some Atari 8-bit ports support analogue paddle for cursor control via port 4 — the cart in our bundle uses standard joystick.</p>
+  </div>
+</body>
+</html>

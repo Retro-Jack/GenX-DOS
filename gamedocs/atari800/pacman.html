@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pac-Man — Atari 400 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Atari 400 / 800XL</div>
+      <h1>Pac-Man</h1>
+      <p class="sub">Atari, 1982 — home port of Toru Iwatani's 1980 Namco arcade. The Atari 8-bit version retained the four-ghost maze and authentic intermission cutscenes (unlike the infamous 2600 version released the same year).</p>
+    </div>
+
+    <p class="intro">Navigate the maze, eat all 240 dots and 4 power pills to clear the level. Avoid the four ghosts unless you've grabbed a power pill — then chase and eat them for big points. Fruit appears at the centre periodically for bonus.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>F4</kbd> Start.</li>
+      <li>Move Pac-Man with the joystick (he keeps moving in the last direction until you turn).</li>
+      <li>Eat all dots and pills to advance.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> / <kbd>↓</kbd> / <kbd>←</kbd> / <kbd>→</kbd></td><td>Steer Pac-Man</td></tr>
+      <tr><td><kbd>F4</kbd></td><td>START</td></tr>
+      <tr><td><kbd>F3</kbd></td><td>SELECT — game variant</td></tr>
+      <tr><td><kbd>P</kbd></td><td>Pause</td></tr>
+      <tr><td><kbd>F5</kbd></td><td>Reset</td></tr>
+    </table>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Target</th><th>Points</th></tr>
+      <tr><td>Dot</td><td>10</td></tr>
+      <tr><td>Power pill</td><td>50</td></tr>
+      <tr><td>Ghost (1st after power pill)</td><td>200</td></tr>
+      <tr><td>Ghost (2nd / 3rd / 4th in sequence)</td><td>400 / 800 / 1600</td></tr>
+      <tr><td>Cherry (level 1)</td><td>100</td></tr>
+      <tr><td>Strawberry (level 2)</td><td>300</td></tr>
+      <tr><td>Peach (level 3–4)</td><td>500</td></tr>
+      <tr><td>Apple (level 5–6)</td><td>700</td></tr>
+      <tr><td>Grape (level 7–8)</td><td>1000</td></tr>
+      <tr><td>Galaxian boss (9–10)</td><td>2000</td></tr>
+      <tr><td>Bell (11–12)</td><td>3000</td></tr>
+      <tr><td>Key (13+)</td><td>5000</td></tr>
+    </table>
+
+    <h2>The four ghosts</h2>
+    <table>
+      <tr><th>Ghost</th><th>Behaviour</th></tr>
+      <tr><td>Blinky (red)</td><td>Direct pursuit — always chases Pac-Man's position</td></tr>
+      <tr><td>Pinky (pink)</td><td>Ambusher — targets the tile 4 ahead of Pac-Man's facing</td></tr>
+      <tr><td>Inky (cyan)</td><td>Flanker — uses Blinky's position to triangulate</td></tr>
+      <tr><td>Clyde (orange)</td><td>Random / shy — switches between chase and scatter</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Eat power pills with three ghosts nearby.</strong> The four-in-a-row chain pays 200+400+800+1600 = 3000 points.</li>
+      <li><strong>Hug Pinky on corners.</strong> She's predictable — turning sharp at the corner just before Pinky's ambush spot wastes her trajectory.</li>
+      <li><strong>Side tunnels.</strong> Ghosts slow down in the wrap-around tunnels; you don't. Use them as escape routes when cornered.</li>
+      <li><strong>Fruit windows.</strong> Cherries appear after ~70 dots and ~170 dots — and only stay ~10 seconds. Grab if safe; skip if it puts you in a ghost's path.</li>
+      <li><strong>Eyes-only ghosts are harmless.</strong> A "eaten" ghost returns to the ghost-house as floating eyes — you can pass through them.</li>
+    </ul>
+
+    <h2>Atari 400 controls</h2>
+    <p>Joystick — no fire button. Note the Atari 8-bit version maintained the ghost AI integrity (Inky's flanker math works correctly), unlike many home ports of the era.</p>
+  </div>
+</body>
+</html>
