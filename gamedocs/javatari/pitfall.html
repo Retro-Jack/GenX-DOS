@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pitfall! — Atari 2600 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Console · Atari 2600</div>
+      <h1>Pitfall!</h1>
+      <p class="sub">Activision, 1982 — designed by David Crane. The bestselling 2600 game after Pac-Man; the founding side-scrolling jungle platformer.</p>
+    </div>
+
+    <p class="intro">Pitfall Harry has 20 minutes to recover 32 treasures from a procedurally-generated jungle. 255 screens connected left and right, plus underground tunnel shortcuts. Avoid alligators, scorpions, snakes, rolling logs, tar pits, sand pits, quicksand. Vines swing across pits. Time bleeds with every screen.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>F4</kbd> Select for variant.</li>
+      <li>Press <kbd>F5</kbd> Reset to start.</li>
+      <li>Run right with the joystick; jump with <kbd>Space</kbd>.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Run left / right</td></tr>
+      <tr><td><kbd>↓</kbd></td><td>Drop into underground tunnel (when on a ladder)</td></tr>
+      <tr><td><kbd>↑</kbd></td><td>Climb out of underground</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Jump (over hazards, onto vines)</td></tr>
+      <tr><td><kbd>F5</kbd></td><td>Reset — start game</td></tr>
+    </table>
+
+    <h2>Hazards</h2>
+    <table>
+      <tr><th>Hazard</th><th>Avoidance</th></tr>
+      <tr><td>Bottomless pit</td><td>Vine-swing across; -1 life if you fall</td></tr>
+      <tr><td>Quicksand / tar pit</td><td>Pattern: closed → opening → open. Wait or jump-time the closed window</td></tr>
+      <tr><td>Crocodile (3 in a row)</td><td>Wait for their mouth to close; step on their heads</td></tr>
+      <tr><td>Rolling log</td><td>Jump it (small log) or run between gaps (large)</td></tr>
+      <tr><td>Scorpion (underground)</td><td>Jump over from a still position; running scorpions are tricky</td></tr>
+      <tr><td>Snake</td><td>Jump over — they don't move</td></tr>
+      <tr><td>Fire</td><td>Jump only — no walking through</td></tr>
+    </table>
+
+    <h2>Treasures</h2>
+    <table>
+      <tr><th>Item</th><th>Points</th></tr>
+      <tr><td>Money bag</td><td>2000</td></tr>
+      <tr><td>Silver bar</td><td>3000</td></tr>
+      <tr><td>Gold bar</td><td>4000</td></tr>
+      <tr><td>Diamond ring</td><td>5000</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Vine-swing timing.</strong> Tap <kbd>Space</kbd> as the vine comes overhead, hold to swing further. Release at peak of arc to drop on the far edge.</li>
+      <li><strong>Underground shortcut.</strong> Going underground covers 3 above-ground screens in one tunnel-screen. Use it to outpace the timer — but watch for scorpions and brick walls (which dead-end you).</li>
+      <li><strong>Don't lose time.</strong> Falling into a pit/quicksand/tar costs you a life AND restarts on the same screen — wasted time. Treasure totals don't beat the timer alone.</li>
+      <li><strong>Crocodile heads.</strong> Step gingerly on a closed croc snout — running can carry you into the next-open mouth. Stop-step-jump.</li>
+      <li><strong>32 treasure perfect run.</strong> 114,000 points clears the game. Pick a deterministic route — Pitfall's "random" jungle is actually a fixed seed.</li>
+    </ul>
+
+    <h2>Atari 2600 controls</h2>
+    <p>Single-stick + button. <kbd>F5</kbd> Reset starts the run. The game ends when the timer hits 0 or you lose all three lives — whichever comes first.</p>
+  </div>
+</body>
+</html>
