@@ -13,28 +13,21 @@
       <h1>Amstrad CPC — Controls</h1>
     </div>
 
-    <p class="intro">CrocoDS (crocods libretro core, by Miguel Vanhove) running in your browser via EmulatorJS. The CPC 6128 (128 KB RAM, BASIC 1.1, 3-inch floppy drive) was released 1984 by Amstrad as the rival to the C64 and Spectrum in the UK / Europe / France — the CPC range sold ~3 million units and built one of the strongest 8-bit game libraries outside Japan. Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">floooh's tiny8bit CPC emulator (Andre Weissflog) running as a standalone WASM build. The CPC 6128 (128 KB RAM, BASIC 1.1, 3-inch floppy drive) was released 1984 by Amstrad as the UK / European rival to the C64 and Spectrum — the CPC range sold ~3 million units and built one of the strongest 8-bit game libraries outside Japan. Click the canvas first so the emulator receives keyboard input.</p>
 
-    <h2>First step — pick the boot file</h2>
-    <p>CrocoDS mounts the disk and pops up a "Select file to run" catalog listing every file on the disk. Use <kbd>↑</kbd> <kbd>↓</kbd> to highlight, <kbd>Enter</kbd> to run. Most games have an obvious entrypoint (e.g. <code>DISC</code>, the game's short name, or the largest <code>.BAS</code>). Examples per bundled disk:</p>
-    <table>
-      <tr><th>Game</th><th>Pick</th></tr>
-      <tr><td>Roland on the Run</td><td><code>ONTHERUN.BAS</code></td></tr>
-      <tr><td>Knight Lore</td><td><code>DISC</code> (or first listed)</td></tr>
-      <tr><td>Bruce Lee</td><td><code>BRUCE</code> or first <code>.BAS</code></td></tr>
-      <tr><td>Most others</td><td>First file in the catalog</td></tr>
-    </table>
-    <p class="note">CrocoDS's source has an <code>ID_AUTORUN</code> code path with a literal "TODO" comment — autorun isn't implemented upstream, so the catalog menu is the behaviour. It's also period-correct: real CPC users typed <code>cat</code> to list disk contents before <code>run"&lt;file&gt;"</code>. Same workflow, fewer keystrokes.</p>
+    <h2>Game launch</h2>
+    <p>Pick a game from the menu and it autoboots — no catalog screen, no <code>run"…</code> typing. Each game's <code>games.json</code> entry carries the boot command (e.g. <code>run"ontherun</code> for Roland), which tiny8bit's <code>sokol_args</code> reads as URL params and types into the emulator immediately after the disk mounts.</p>
+    <p>The <code>BASIC</code> menu entry skips the autoboot — you land at the bare Locomotive BASIC 1.1 <code>Ready</code> prompt as if no disk were inserted.</p>
 
     <h2>Joystick (mapped to keyboard)</h2>
-    <p>Most CPC games support joystick input on the dedicated 9-pin port. Caprice32 maps this to the keyboard automatically:</p>
+    <p>Most CPC games support joystick input on the dedicated 9-pin port. tiny8bit maps this to the cursor keys with Space as fire:</p>
     <table>
       <tr><th>Key</th><th>Action</th></tr>
       <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Joystick directions</td></tr>
-      <tr><td><kbd>X</kbd></td><td>Fire 1</td></tr>
-      <tr><td><kbd>Z</kbd></td><td>Fire 2</td></tr>
-      <tr><td><kbd>Space</kbd></td><td>Often "start" or "pause"; varies by game</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Fire</td></tr>
+      <tr><td><kbd>PgUp</kbd> / <kbd>PgDn</kbd></td><td>Fire (alternate — also wired to Space for hands that prefer them)</td></tr>
     </table>
+    <p class="note">tiny8bit's chips library only wires one fire button; <kbd>Space</kbd> is the canonical key. Our <code>play.html</code> adds a capture-phase listener that remaps <kbd>PgUp</kbd> / <kbd>PgDn</kbd> to dispatch as Space, so either side of a numeric keypad can fire.</p>
 
     <h2>CPC keyboard (for games that need typing)</h2>
     <p>The CPC keyboard is mapped positionally: letters / digits type as themselves. CPC-specific keys:</p>
@@ -46,28 +39,20 @@
       <tr><td><kbd>Tab</kbd></td><td>TAB</td></tr>
     </table>
 
-    <h2>Loading from disk</h2>
-    <p>cap32 auto-mounts the bundled `.dsk` to drive A:. Some games autoboot via the menu, others land at the BASIC `Ready` prompt. To start manually:</p>
+    <h2>BASIC prompt — common commands</h2>
+    <p>From the <code>BASIC</code> menu entry (or if a game drops you back to <code>Ready</code>), these are the period-correct disc commands:</p>
     <table>
       <tr><th>Command</th><th>Effect</th></tr>
       <tr><td><code>cat</code></td><td>List the disk's directory</td></tr>
-      <tr><td><code>run"disc"</code></td><td>Run the first game on most disks (CPC menu disc convention)</td></tr>
-      <tr><td><code>run"<i>name</i>"</code></td><td>Run a specific program by filename (use what `cat` shows)</td></tr>
+      <tr><td><code>run"&lt;name&gt;</code></td><td>Run a specific program by filename (use what <code>cat</code> shows)</td></tr>
+      <tr><td><code>load"&lt;name&gt;</code></td><td>Load a BASIC program without running it</td></tr>
     </table>
+    <p class="note">CPC convention: the closing quote on <code>run"name</code> is optional — Locomotive BASIC closes it for you at the line end.</p>
 
-    <h2>EmulatorJS toolbar</h2>
-    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
-    <table>
-      <tr><th>Button</th><th>Action</th></tr>
-      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
-      <tr><td>Restart</td><td>Cold-reset the CPC (disk re-mounts)</td></tr>
-      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
-      <tr><td>Settings (gear)</td><td>Core options — model (CPC 464 / 6128 / 6128+), region, key remap, etc.</td></tr>
-      <tr><td>Mute</td><td>Toggle audio (AY-3-8912 — 3 square-wave channels)</td></tr>
-      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
-    </table>
+    <h2>Reset</h2>
+    <p>tiny8bit has no toolbar — to cold-reset the emulator, reload the page in your browser (F5 / Ctrl+R). The bundled disk re-mounts and the game re-autoboots.</p>
 
-    <p class="note">Emulator: CrocoDS (GPL-2.0, by Miguel Vanhove, libretro fork) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Caprice32 was the original choice but the EJS build aborts during disk attach (`getControllerPortInfo` missing from WASM exports); CrocoDS proved more compatible. Both shipped locally from this site; no network calls at runtime.</p>
+    <p class="note">Emulator: tiny8bit CPC (MIT, by Andre Weissflog — <a href="https://github.com/floooh/chips-test" target="_blank" rel="noopener">floooh/chips-test</a>). Three prior cores were tried and dropped: EmulatorJS + Caprice32 (cap32) aborts during disk attach with a missing <code>getControllerPortInfo</code> export; CrocoDS boots but stops at a catalog menu with no API to skip; cpcbox is minified beyond editing and rejects our <code>.dsk</code> images. tiny8bit was the fourth attempt — clean URL-param config, no EJS dependency, drop-in autoboot via the <code>input</code> field. Shipped locally; no network calls at runtime.</p>
 
     <div class="footer">
       <a href="javascript:window.close()">close tab</a> ·

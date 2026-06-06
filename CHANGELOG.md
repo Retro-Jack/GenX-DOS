@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **`emulators/amstradcpc/controls.html` was stale** — described the page as running CrocoDS under EmulatorJS with a catalog-pick boot step and an EJS toolbar. None of that was true: the actual bundle is floooh's tiny8bit CPC WASM (standalone, no EJS), games autoboot via `sokol_args` URL params, and there's no toolbar. Rewritten to match reality — including the PgUp/PgDn→Space fire remap in `play.html`, the `BASIC` entry's no-autoboot behaviour, and the page-reload reset workflow (no in-canvas reset button in tiny8bit). Noticed during the Amstrad CPC gamedocs pass.
+
 ### Added
 - **Amstrad CPC gamedocs pages** at `gamedocs/amstradcpc/` — 10 per-game instruction pages (Roland on the Run, Knight Lore, Bruce Lee, Elite, Bomb Jack, Get Dexter, Head over Heels, Rick Dangerous, Chase H.Q., 3D Construction Kit). Same template as the other 16 platforms. Filenames match the `?game=<key>` URL keys in `games.json` (roland.html, knight.html, bruce.html, elite.html, bombjack.html, dexter.html, headover.html, rick.html, chasehq.html, 3dkit.html). Each page documents the autoboot behaviour (tiny8bit's sokol_args `input=run"…` pre-types the command before WASM init), the default keymap, and per-title strategy. tiny8bit rewrites `?game=` to `?file=&input=` at boot, but the `_genxGameKey` stash in `play.html` is not yet wired — corner controls-link still resolves to the right gamedocs page because the original `?game=` is read before the rewrite (deferred wiring caveat same as jtyone/jsbeeb).
 
