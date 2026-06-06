@@ -23,6 +23,8 @@ Open <http://127.0.0.1:8765/prompt/>.
 ```
 index.html                fake BIOS POST screen, redirects to prompt/
 serve.sh                  starts the local server
+CHANGELOG.md              release notes
+ATTRIBUTION.md            canonical record of every bundled third-party asset
 prompt/                   the DOS terminal (HTML + JS, no build)
   index.html
   javascript/             terminal logic + virtual filesystem (fs.js)
@@ -99,6 +101,8 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki):
 - **Customising the Filesystem** — adding entries, batches, menus
 
 ## License
+
+Summary below; see [ATTRIBUTION.md](ATTRIBUTION.md) for the canonical record including source URLs, authors, BIOS/ROM provenance, bezel artwork licences, and BY-SA share-alike obligations.
 
 - Site code by Retro-Jack
 - jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb)
