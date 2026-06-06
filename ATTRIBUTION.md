@@ -121,22 +121,36 @@ the upcoming bezel-overlay integration. **Currently staging-only — not
 yet wired into emulator pages.** Each bezel's source and licence must
 display credit lines when the bezel goes live in `play.html`.
 
-| File | Source | Author | Licence | Notes |
-| --- | --- | --- | --- | --- |
-| `Amstrad.png` | [File:Amstrad_CPC464.jpg](https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg) (Wikimedia Commons) | Bill Bertram (Wikimedia username Pixel8) — 7 May 2005 | CC-BY-SA 2.5 | Background alpha'd in GIMP from the original white-background product photo. Modifications inherit share-alike. |
-| `70s.png` | OBS asset library `/mnt/multimedia/Assets/OBS/Bezels/` | TBD | TBD | Source pending verification before going live |
-| `80s.png` | OBS asset library | TBD | TBD | Source pending verification |
-| `Acorn.png` | OBS asset library | TBD | TBD | Source pending verification |
-| `Apple.png` | OBS asset library | TBD | TBD | Source pending verification |
-| `Commodore.png` | OBS asset library | TBD | TBD | Source pending verification |
-| `PC.png` | OBS asset library | TBD | TBD | Source pending verification |
-| `Sinclair.png` | OBS asset library | TBD | TBD | Source pending verification |
-| `Vectrex.png` | OBS asset library | TBD | TBD | Source pending verification |
+| File | Hardware identified | Verified source | Author | Licence | Integration risk |
+| --- | --- | --- | --- | --- | --- |
+| `Amstrad.png` | Amstrad CTM640 monitor + CPC464 keyboard | [File:Amstrad_CPC464.jpg](https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg) (Wikimedia Commons) | Bill Bertram (Wikimedia username Pixel8) — 7 May 2005 | CC-BY-SA 2.5 | ✅ Cleared. Modifications inherit share-alike. Background alpha'd in GIMP from the original white-background product photo. |
+| `70s.png` | HMV-branded wood-cabinet console TV (probable Albany / M1-A5 family) | Unverified — reposted via Reddit / retro forums; original photographer unknown | Unknown | Unverified | ⚠️ Stock-photo or collector-site original; medium risk if commercial product photography |
+| `80s.png` | Generic solid-state portable TV (dial + channel buttons) | Unverified — Reddit / retro forums | Unknown | Unverified | ⚠️ Lower risk (generic anonymous hardware) but still unattributed |
+| `Acorn.png` | Microvitec CUB monitor (brown bezel, "Microvitec CUB" colour logo, red LED) | Unverified — Reddit / retro forums. Microvitec CUBs are extensively documented at [stardot.org.uk](https://stardot.org.uk) and [retrorepairsandrefurbs.com](https://retrorepairsandrefurbs.com); no Wikimedia Commons match found | Unknown | Unverified | ⚠️ Likely a collector / restoration site photo; medium risk |
+| `Apple.png` | Apple Monitor /// ("monitor ///" badge) | Unverified — Reddit / retro forums. Wikimedia Commons has [Apple3.jpg](https://commons.wikimedia.org/wiki/File:Apple3.jpg) (CC-BY-SA 3.0 / GFDL, Alexander Schaelss 2004) but it's lower-res and a different composition | Unknown | Unverified | ⚠️ Replaceable with the Schaelss Commons photo if needed |
+| `Commodore.png` | Commodore 1084S (specifically — "1084S" badge, not "1084") | Unverified — Reddit / retro forums. Wikimedia Commons has [Commodore1084_first_version_front.jpg](https://commons.wikimedia.org/wiki/File:Commodore1084_first_version_front.jpg) (CC-BY-SA 4.0, Gestumblindi 2021) for the 1084 first-version, but not this 1084S variant | Unknown | Unverified | ⚠️ Replaceable with the Gestumblindi 1084 if the model swap is acceptable |
+| `PC.png` | IBM 5153 CGA colour monitor (3 knobs, IBM badge top-right, green power LED) — originally staged as `IBM 5153 CGA.png` | Unverified — Reddit / retro forums. Wikimedia Commons has only the 5151 monochrome ([File:5151_monochrome_monitor.jpg](https://commons.wikimedia.org/wiki/File:5151_monochrome_monitor.jpg), CC-BY-SA 2.0 steverenouk), not the 5153 colour variant we have | Unknown | Unverified | ⚠️ The 5153 colour is the period-correct match for our DOS bundle but no verified Commons source found |
+| `Sinclair.png` | Generic 80s portable colour TV with side-speaker panel — historically accurate (Spectrum/ZX81 era used household TVs, no Sinclair-branded monitor existed) | Unverified — Reddit / retro forums | Unknown | Unverified | ⚠️ Lower risk (generic anonymous hardware) |
+| `Vectrex.png` | GCE Vectrex console front view, dark cabinet on wooden surface | Unverified — Reddit / retro forums. **Per user, this is a CGI render**, not a photograph — likely a community 3D model rendered for emulation/overlay purposes | Unknown CGI artist | Unverified | ⚠️ CGI bezels in the retro-overlay community usually carry permissive informal terms but no explicit licence; replaceable with a Wikipedia photo if needed |
 
-The TBD rows above predate the introduction of this file and need their
-provenance confirmed before the bezel integration pass — that pass cannot
-ship with unattributed CC-BY-SA / CC-BY material. Resolving each TBD is a
-prerequisite for wiring the bezel into the corresponding emulator page.
+### Provenance trail and integration plan
+
+Per [[user notes 06/06/2026]], all eight unverified bezels above were sourced from **Reddit posts and retro-computing forums** between approximately 2024 and 2026. Reddit / forum reposts strip EXIF and break the attribution chain — the original photographer or rights holder for each is no longer reachable from the current artefact. GIMP processing (alpha-keying, cleanup) was applied locally and is recorded in PNG `Comment: Created with GIMP` metadata for most of them.
+
+**Two paths to clear the integration blocker before wiring bezels into emulator pages:**
+
+1. **Replace with verified Commons sources** where one exists. Best candidates today:
+   - `Commodore.png` → Gestumblindi's 1084 (CC-BY-SA 4.0) — accept the 1084 vs 1084S variant swap
+   - `Apple.png` → Schaelss's Apple3.jpg (CC-BY-SA 3.0) — accept the lower resolution
+   - `PC.png` → would need IBM 5153 (CGA colour) Commons source — none currently identified; would either swap to the 5151 monochrome or keep the unverified 5153
+   - `Acorn.png` → no Commons CUB found; would need a new source hunt
+   - `Amstrad.png` → already done (CC-BY-SA 2.5)
+
+2. **Keep as-is, accept the risk**, and add a generic "bezel artwork sourced from public web archives, original photographers unknown — please open an issue if you recognise your work" credit line on the integration footer. Lower friction but DMCA-exposed if a rights holder objects.
+
+Recommended for the branded monitors (Acorn/Apple/Commodore/PC): option 1. Recommended for the generic TVs (70s/80s/Sinclair/Vectrex): option 2 is defensible since these are anonymous hardware shots with no obvious commercial-photography fingerprint.
+
+The integration pass should not ship without one of these resolutions for each row.
 
 ---
 

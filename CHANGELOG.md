@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- **ATTRIBUTION.md bezel section expanded with investigation results.** The 8 OBS bezels (70s/80s/Acorn/Apple/Commodore/PC/Sinclair/Vectrex) were all sourced via Reddit / retro forums, which strips EXIF and breaks the attribution chain. For each, the hardware is identified by visible markings (high confidence — Microvitec CUB, IBM 5153 CGA, Commodore 1084S, Apple Monitor ///, etc.) but the proximate Reddit/forum source means original photographers aren't reachable. Vectrex is a CGI render per user. The expanded table includes hardware ID, integration risk, and explicit replacement candidates from Wikimedia Commons where available — Commodore 1084 (Gestumblindi CC-BY-SA 4.0), Apple 3 (Schaelss CC-BY-SA 3.0). Integration pass should not ship without each row resolved (replace or accept-risk-with-credit).
+
 ### Added
 - **`ATTRIBUTION.md` at the repo root** — canonical record of every third-party emulator, BIOS, game ROM, bezel, font, and vendored JS dependency, with source URL + author + licence. README's existing `## License` section stays as a quick-reference; ATTRIBUTION.md is the authoritative version and includes additional context the README doesn't (build recipes, BY-SA share-alike inheritance, source-pending TBD rows for the existing OBS bezels, "how to add an entry" workflow at the end). Created after introducing the Wikimedia Commons CC-BY-SA 2.5 Amstrad bezel — bezel artwork needs the same provenance trail emulators already had.
 
