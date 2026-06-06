@@ -3,6 +3,9 @@
 ## [Unreleased]
 
 ### Changed
+- **Amstrad bezel replaced — desk-shot swapped for tight CTM640 monitor cutout.** Previous `Amstrad.png` was a wide 1920×1080 desk photo (monitor + CPC + tape deck + cassettes on a desk) where the screen cutout was a small fraction of the bezel — would have forced the emulator canvas to a postage stamp. New `Amstrad.png` (1502×992) is built from the Wikimedia Commons CPC464 product photo (CC-BY-SA 2.5, plain white background, AMSTRAD-branded CTM640 + CPC464 keyboard), alpha'd in GIMP. Screen cutout now dominates the frame, matching the readability ratio of Commodore/PC/Acorn/Apple. **Attribution note:** when the bezel goes live on emulator pages, the CC-BY-SA 2.5 source needs a credit line (and any local modifications inherit share-alike).
+
+### Changed
 - **Bezel staging replaced with curated OBS asset library.** `emulators/_shared/bezels/` previously held 8 downloaded stock images with auto-generated filenames (`footage-dated-tv-set…`, `vintage-television-1488203.png`, `autres-consoles-amstrad-cpc-6128.png`, `Screenshot_20260521_014123.png`, etc.). Replaced with the 9 cleanly-named PNGs from `/mnt/multimedia/Assets/OBS/Bezels/`: `70s.png`, `80s.png`, `Acorn.png`, `Amstrad.png`, `Apple.png`, `Commodore.png`, `PC.png`, `Sinclair.png`, `Vectrex.png`. No code references the bezels yet (still pre-integration staging), so this is a pure asset swap. Bundle size 8.4 MB → 7.8 MB.
 
 ### Added
