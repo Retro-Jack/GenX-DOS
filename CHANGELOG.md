@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- **`ATTRIBUTION.md` at the repo root** — canonical record of every third-party emulator, BIOS, game ROM, bezel, font, and vendored JS dependency, with source URL + author + licence. README's existing `## License` section stays as a quick-reference; ATTRIBUTION.md is the authoritative version and includes additional context the README doesn't (build recipes, BY-SA share-alike inheritance, source-pending TBD rows for the existing OBS bezels, "how to add an entry" workflow at the end). Created after introducing the Wikimedia Commons CC-BY-SA 2.5 Amstrad bezel — bezel artwork needs the same provenance trail emulators already had.
+
 ### Changed
 - **Amstrad bezel replaced — desk-shot swapped for tight CTM640 monitor cutout.** Previous `Amstrad.png` was a wide 1920×1080 desk photo (monitor + CPC + tape deck + cassettes on a desk) where the screen cutout was a small fraction of the bezel — would have forced the emulator canvas to a postage stamp. New `Amstrad.png` (1502×992) is built from the Wikimedia Commons CPC464 product photo (CC-BY-SA 2.5, plain white background, AMSTRAD-branded CTM640 + CPC464 keyboard), alpha'd in GIMP. Screen cutout now dominates the frame, matching the readability ratio of Commodore/PC/Acorn/Apple. **Attribution note:** when the bezel goes live on emulator pages, the CC-BY-SA 2.5 source needs a credit line (and any local modifications inherit share-alike).
 
