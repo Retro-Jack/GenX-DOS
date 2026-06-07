@@ -3,6 +3,8 @@
   "omegrace": { "title": "Omega Race (1982)",                   "rom": "games/omegrace.crt" },
   "rrr":      { "title": "Radar Rat Race (1982)",               "rom": "games/rrr.crt" },
   "jupiter":  { "title": "Jupiter Lander (1982)",               "rom": "games/jupiter.crt" },
+  "molatak":  { "title": "Mole Attack (1982)",                  "rom": "games/molatak.crt" },
+  "monywars": { "title": "Money Wars (1982)",                   "rom": "games/monywars.crt" },
   "speedmth": { "title": "Speed/Bingo Math (1982)",             "rom": "games/speedmth.crt" },
   "slalom":   { "title": "Slalom (1982)",                       "rom": "games/slalom.crt" },
   "billiard": { "title": "Billiards (1983)",                    "rom": "games/billiard.crt" },

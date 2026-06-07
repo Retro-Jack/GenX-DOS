@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mole Attack — Commodore MAX — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Console · Commodore MAX Machine</div>
+      <h1>Mole Attack</h1>
+      <p class="sub">Commodore, 1982 — whack-a-mole arcade adaptation. Moles pop out of nine holes in a fixed grid; clobber them before they retreat. Two-player alternating mode for competitive whacking.</p>
+    </div>
+
+    <p class="intro">3×3 grid of mole-holes. Each round, moles emerge at increasing frequency from random holes; aim a hammer cursor over the active hole and strike. Hits score; missed swings or letting a mole disappear lose time. Score thresholds advance to faster rounds. Two players alternate turns under separate scores.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Cart autoboots; click the canvas first.</li>
+      <li>Press a key past the title to begin.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Numpad 8</kbd> <kbd>2</kbd> <kbd>4</kbd> <kbd>6</kbd></td><td>Move hammer cursor between holes</td></tr>
+      <tr><td><kbd>Numpad 0</kbd> / <kbd>5</kbd></td><td>Whack</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Move first, swing last.</strong> Cursor travel time is the bottleneck — don't pre-swing while in transit.</li>
+      <li><strong>Centre rest position.</strong> Park the cursor on the centre hole between waves; minimum travel to all 8 outer holes.</li>
+      <li><strong>Don't multi-tap.</strong> Each hit registers once; spamming fire while a mole's down wastes the buffer.</li>
+      <li><strong>Late-round chains.</strong> Top difficulty has two moles up simultaneously — pick the one closer to your cursor first, the further one re-spawns predictably.</li>
+    </ul>
+  </div>
+</body>
+</html>
