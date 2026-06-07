@@ -18,5 +18,6 @@
   "centiped": { "title": "Centipede (1982)",              "rom": "roms/centiped.atr" },
   "dkong":    { "title": "Donkey Kong (1983)",            "rom": "roms/dkong.rom",    "cartType": 2 },
   "joust":    { "title": "Joust (1983)",                  "rom": "roms/joust.atr" },
-  "digdug":   { "title": "Dig Dug (1983)",                "rom": "roms/digdug.rom",   "cartType": 2 }
+  "digdug":   { "title": "Dig Dug (1983)",                "rom": "roms/digdug.rom",   "cartType": 2 },
+  "chopliftr":{ "title": "Choplifter! (1982)",            "rom": "roms/chopliftr.rom","cartType": 2 }
 }
