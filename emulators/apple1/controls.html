@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple I Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple · I (1976, MOS 6502, 4 KB RAM, Woz Monitor in ROM)</div>
+      <h1>Apple I — Controls</h1>
+    </div>
+
+    <p class="intro">apple1js (Will Scullin, MIT) running as plain JavaScript — no WASM. Steve Wozniak's first commercial machine: a 6502 at ~1 MHz, 4 KB of RAM, the Woz Monitor in ROM, and a 40&times;24 character display refreshed at glacial pace (one character per frame). No BASIC built in — any language ships as a cassette tape. Click the screen first so the emulator receives keyboard input.</p>
+
+    <h2>Keyboard</h2>
+    <p>The real Apple I had an ASCII keyboard that produced uppercase letters and a tiny set of control codes. apple1js maps:</p>
+    <table>
+      <tr><th>Modern key</th><th>Apple I key</th></tr>
+      <tr><td>Letters / digits / punctuation</td><td>Type as uppercase (real Apple I had no lowercase)</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>RETURN / carriage return (CR)</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>Rubout — Woz Monitor and Integer BASIC treat backspace as a line-edit delete</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>ESC — used as an escape/break in some tape programs</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>L</kbd></td><td>Clear screen (CLEAR SCREEN key on the original)</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>TAB (not standard on the real machine, mapped for convenience)</td></tr>
+      <tr><td>RESET button (in the UI)</td><td>CPU reset — jumps to <code>$FF00</code> (Woz Monitor entry)</td></tr>
+    </table>
+
+    <h2>Loading a tape</h2>
+    <p>From the prompt entry (Woz Monitor), the corner gear in apple1js exposes the bundled cassette library. Each menu game already auto-selects its tape via the <code>?tape=&lt;key&gt;</code> URL — but you can also load tapes by hand:</p>
+    <ol>
+      <li>Open the apple1js menu (top-right of the canvas).</li>
+      <li>Pick "Tapes" / "Input Tape", choose a program from the dropdown.</li>
+      <li>In Woz Monitor, type the entry-point address followed by <kbd>R</kbd> (e.g. <code>E000R</code> for Integer BASIC) once the tape finishes loading.</li>
+    </ol>
+    <p>The bundled tape library includes 10 games (auto-launched by the menu) plus four system tapes: <strong>Integer BASIC</strong> (Wozniak's original, entry <code>E000R</code>), <strong>Applesoft Lite</strong> (a stripped Applesoft port that fits Apple I memory), <strong>Woz Monitor source</strong> (the ROM listing as a tape), and <strong>VolksForth</strong> (a Forth implementation).</p>
+
+    <h2>Woz Monitor commands</h2>
+    <p>The default prompt is a single <code>\</code> (backslash). Woz Monitor's entire command set:</p>
+    <table>
+      <tr><th>Syntax</th><th>Effect</th></tr>
+      <tr><td><code>XXXX</code></td><td>Display the byte at hex address <code>XXXX</code></td></tr>
+      <tr><td><code>XXXX.YYYY</code></td><td>Display the range <code>XXXX</code> to <code>YYYY</code> in 8-byte rows</td></tr>
+      <tr><td><code>.YYYY</code></td><td>Continue the previous range up to <code>YYYY</code></td></tr>
+      <tr><td><code>XXXX: DD DD DD …</code></td><td>Write byte values starting at <code>XXXX</code></td></tr>
+      <tr><td><code>: DD DD DD …</code></td><td>Continue writing after the last stored byte</td></tr>
+      <tr><td><code>XXXXR</code></td><td>Run (jump to) hex address <code>XXXX</code> — e.g. <code>E000R</code> to enter Integer BASIC after loading the tape</td></tr>
+    </table>
+    <p>That's the whole language. Six characters of source for the entire OS, in 256 bytes of ROM.</p>
+
+    <h2>Integer BASIC commands</h2>
+    <p>Once Integer BASIC is loaded (<code>E000R</code>), the prompt changes to <code>&gt;</code>. Integer-only — no floating point.</p>
+    <table>
+      <tr><th>Command</th><th>Effect</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the current program</td></tr>
+      <tr><td><code>RUN</code></td><td>Run the current program</td></tr>
+      <tr><td><code>NEW</code></td><td>Clear the program from memory</td></tr>
+      <tr><td><code>SCRN</code></td><td>Clear the screen</td></tr>
+      <tr><td><code>PRINT "HELLO"</code></td><td>Print a string</td></tr>
+      <tr><td><code>GOTO &lt;line&gt;</code></td><td>Jump to a line number</td></tr>
+      <tr><td><code>GR</code></td><td>Switch to low-resolution graphics (40&times;40 colour grid)</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>Break out of a running program</td></tr>
+    </table>
+
+    <p class="note">Emulator: <a href="https://github.com/whscullin/apple1js" target="_blank" rel="noopener">apple1js</a> by Will Scullin (MIT). All cassette tapes are public-domain Integer BASIC / 6502 assembly programs plus Apple's own 30th-anniversary demo by Brian Wiser, sourced from the <a href="https://www.applefritter.com/apple1" target="_blank" rel="noopener">Apple I Project</a> archive.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
