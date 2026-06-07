@@ -72,7 +72,7 @@ emulators/
 | 2600      | ppeccin/javatari.js v5.0.4           | `play.html?game=<key>`                   |
 | 7800      | raz0red/JS7800 v0.0.9                | `play.html?game=<key>`                   |
 | MSX       | ppeccin/WebMSX                       | `?ROM=games/<sub>/<name>.zip[&M=MSX1]`   |
-| Vectrex   | DrSnuggles/jsvecx (raz0red)          | `index.html?rom=<dir>/<title>` (only `index.html` is shipped; upstream's other entry points were pruned) |
+| Vectrex   | DrSnuggles/jsvecx (raz0red)          | `index.html?rom=<dir>/<title>&game=<key>` (only `index.html` is shipped; upstream's other entry points were pruned. The `&game=` half is purely for the corner controls-link to resolve the right gamedocs page) |
 | Spectrum  | gasman/JSSpeccy 3 v3.2               | `play.html?game=<key>`                   |
 | ZX81      | hammingweight/JtyOne                 | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar v1.10           | `play.html?game=<key>`                   |

@@ -168,9 +168,9 @@ The integration pass should not ship without one of these resolutions for each r
 
 ## CSS / JS dependencies bundled per-emulator
 
-- `emulators/electron/javascript/jquery-1.7.2.min.js` — jQuery 1.7.2,
-  MIT — required by ElkJS upstream. Kept as-is to avoid divergence
-  from the ElkJS source.
+- `emulators/electron/jquery/jquery-1.9.1.js` + `jquery-ui-1.10.3.custom.min.js` —
+  jQuery 1.9.1 and jQuery UI 1.10.3 custom build, MIT — required by ElkJS
+  upstream. Kept as-is to avoid divergence from the ElkJS source.
 
 Other emulator bundles use vendored copies of their upstream dependencies
 without modification; the upstream `LICENSE` / `COPYING` files in each
