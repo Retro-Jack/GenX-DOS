@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crazy Balloon — Commodore PET — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore PET</div>
+      <h1>Crazy Balloon</h1>
+      <p class="sub">1981 — PET port of Taito's 1980 maze arcade. Guide a balloon through a maze of pins without popping. Reach the flag for the bonus and next level.</p>
+    </div>
+
+    <p class="intro">A maze of pins, spikes, and moving needles. You're a balloon — touch anything sharp and you pop. Steer toward the exit flag. Each level adds more hazards; some levels move the maze elements while you're navigating.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots; click the canvas first.</li>
+      <li>Press a key past the title to spawn the balloon at the start.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td>Move (up / left / down / right)</td></tr>
+      <tr><td>or <kbd>I</kbd> <kbd>J</kbd> <kbd>K</kbd> <kbd>L</kbd></td><td>Same on the right hand</td></tr>
+    </table>
+    <p class="note">PET ports of Crazy Balloon use one of the two standard PETSCII keyboard layouts; the title screen shows the build's specific keymap.</p>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Slow movement only.</strong> A balloon drifts — corrections take time. Plan two tiles ahead, not one.</li>
+      <li><strong>Hug the safe-side wall.</strong> Maze-runner rule: pick a wall, follow it, you'll always reach the exit eventually (in static mazes).</li>
+      <li><strong>Don't backtrack through moving needles.</strong> The needle returns on the same pattern; once you've crossed, the safe window has closed.</li>
+      <li><strong>Bonus flag matters.</strong> Speed bonuses scale; sit-and-think levels score lower even with no deaths.</li>
+    </ul>
+  </div>
+</body>
+</html>

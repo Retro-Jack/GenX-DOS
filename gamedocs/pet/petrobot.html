@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PETSCII Robots — Commodore PET — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore PET</div>
+      <h1>PETSCII Robots (Shareware)</h1>
+      <p class="sub">David Murray ("The 8-Bit Guy"), 2022 — a modern, commercial-grade strategy/survival game written for the 1979 PET 4032, proving the platform still has games being written for it 45 years post-launch.</p>
+    </div>
+
+    <p class="intro">The bundle loads the PET in <strong>4032 mode</strong> (BASIC 4, the per-game override in <code>games.json</code>) because the game needs the 4032's character ROM for its custom tileset. Three shareware levels — find weapons, recover the keycard, escape the level before the robot patrols catch you. Items combine; doors lock and unlock; movement is grid-based.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots — VICE attaches the <code>.d64</code> and runs the BASIC loader. Expect ~30 seconds of authentic 1541 drive chunking; it's not frozen.</li>
+      <li>Click the canvas first to give it keyboard focus.</li>
+      <li>Press a key past the title to start at Level A.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td>Move (up / left / down / right) — one tile per press</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Action — pick up item under cursor, open door, attack adjacent robot</td></tr>
+      <tr><td><kbd>I</kbd></td><td>Inventory — cycle to next weapon / tool</td></tr>
+      <tr><td><kbd>F</kbd></td><td>Fire selected weapon (line-of-sight in cardinal direction you're facing)</td></tr>
+      <tr><td><kbd>M</kbd></td><td>Map (overhead view)</td></tr>
+      <tr><td><kbd>P</kbd></td><td>Pause</td></tr>
+      <tr><td><kbd>Q</kbd></td><td>Quit to title</td></tr>
+    </table>
+
+    <h2>Items &amp; weapons</h2>
+    <table>
+      <tr><th>Item</th><th>What it does</th></tr>
+      <tr><td>Pistol</td><td>One-shot weapon, ranged; limited ammo</td></tr>
+      <tr><td>Plasma gun</td><td>Higher damage, slower fire rate, rare</td></tr>
+      <tr><td>EMP grenade</td><td>Disables robots in a radius for several turns</td></tr>
+      <tr><td>Pipe wrench</td><td>Melee — always available, no ammo</td></tr>
+      <tr><td>Magnet</td><td>Pulls metal robots one tile toward you (useful for funnelling)</td></tr>
+      <tr><td>Keycard</td><td>Opens the exit door</td></tr>
+      <tr><td>Health pickup</td><td>Restores hit points</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Scout before you fight.</strong> The map (<kbd>M</kbd>) shows the level — plan a route that minimises adjacent robot encounters.</li>
+      <li><strong>Robots are dumb but durable.</strong> They patrol fixed routes and follow on line-of-sight; break LOS with corners.</li>
+      <li><strong>Save ammo for the patrolling robots.</strong> Stationary defence robots can be magneted-funneled or avoided.</li>
+      <li><strong>The keycard is on a specific robot (or in a specific cabinet).</strong> Each level's location is fixed — first playthrough is exploration, replays are speedruns.</li>
+      <li><strong>Three levels in the shareware</strong> — the commercial release adds 30+ more, sold direct from the8bitguy.com.</li>
+    </ul>
+  </div>
+</body>
+</html>

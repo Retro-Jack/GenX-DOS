@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lunar Lander — Commodore PET — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore PET</div>
+      <h1>Lunar Lander</h1>
+      <p class="sub">1979 — the text/PETSCII version of the iconic 1969 Jim Storer FOCAL game. You burn fuel to slow a descent and try to touch down at safe velocity.</p>
+    </div>
+
+    <p class="intro">No graphics, no joystick — every second of the descent you type a fuel-burn rate (pounds of fuel per second), the PET integrates the physics, and reports altitude, velocity, and remaining fuel. Land at &lt; 1 m/s for a safe touchdown.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots; click the canvas first for keyboard focus.</li>
+      <li>Press a key past the title to begin the descent.</li>
+      <li>At each second, type a burn rate (lb/s) and press <kbd>Return</kbd>.</li>
+    </ol>
+
+    <h2>Numbers that matter</h2>
+    <table>
+      <tr><th>Quantity</th><th>Typical</th></tr>
+      <tr><td>Starting altitude</td><td>120 miles (or 12 000 ft depending on build)</td></tr>
+      <tr><td>Starting velocity</td><td>1 mile / hr downward</td></tr>
+      <tr><td>Starting fuel</td><td>16 000 lb</td></tr>
+      <tr><td>Lunar gravity</td><td>~1.62 m/s² (5.32 ft/s²)</td></tr>
+      <tr><td>Safe touchdown</td><td>&lt; 1 m/s (~3 ft/s)</td></tr>
+      <tr><td>Engine thrust</td><td>Each lb/s burn produces a fixed thrust over its second</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Burn nothing early.</strong> Free-fall while you're high — gravity is weak; burning fuel at altitude is wasted.</li>
+      <li><strong>Big slow burn near the end.</strong> The famous "suicide burn" — full thrust just before contact, killing all velocity in the last few seconds.</li>
+      <li><strong>Don't redline.</strong> If you ask for more fuel/sec than the tank holds, the simulation runs out mid-step and you crash.</li>
+      <li><strong>Replay value is the physics.</strong> The game is short; the appeal is dialling in the precise burn profile.</li>
+    </ul>
+  </div>
+</body>
+</html>

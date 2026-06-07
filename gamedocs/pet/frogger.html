@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frogger — Commodore PET — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore PET</div>
+      <h1>Frogger</h1>
+      <p class="sub">1981 — PETSCII port of Konami's 1981 arcade. Cross a five-lane highway and a five-lane river to reach the home pad. Repeat five times for the screen bonus.</p>
+    </div>
+
+    <p class="intro">Five home pads at the top. Each frog must navigate north through traffic, then north through logs and turtles on the river, into an empty pad. Trucks kill on contact, water kills on contact (frogs only ride logs/turtles), and the timer counts down while you stall. Fill all five pads to clear.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots; click the canvas first.</li>
+      <li>Press a key past the title.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>W</kbd> / <kbd>I</kbd></td><td>Hop north</td></tr>
+      <tr><td><kbd>S</kbd> / <kbd>K</kbd></td><td>Hop south</td></tr>
+      <tr><td><kbd>A</kbd> / <kbd>J</kbd></td><td>Hop west</td></tr>
+      <tr><td><kbd>D</kbd> / <kbd>L</kbd></td><td>Hop east</td></tr>
+    </table>
+    <p class="note">Each hop is a one-tile discrete movement; you can't cancel mid-hop.</p>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Event</th><th>Points</th></tr>
+      <tr><td>Each row gained</td><td>10</td></tr>
+      <tr><td>Home pad reached</td><td>50</td></tr>
+      <tr><td>All 5 pads filled</td><td>1000 + level cleared</td></tr>
+      <tr><td>Lady-frog rescued (rides on log)</td><td>200</td></tr>
+      <tr><td>Insect on home pad (eat as you enter)</td><td>200</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Highway is the pattern.</strong> Lane speeds are constant per level — wait at the verge, count, hop on the gap.</li>
+      <li><strong>Turtle dive timing.</strong> Diving turtles submerge on a fixed beat. Don't ride one all the way across; hop off mid-stream.</li>
+      <li><strong>Fill the edge pads first.</strong> Centre pads are easier; finishing with the difficult outer pads under time pressure is asking for a death.</li>
+      <li><strong>Wrap-around pads.</strong> Crocodiles occupy random pads — looks like a safe goal until the snout snaps. Eyes open before committing the final hop.</li>
+    </ul>
+  </div>
+</body>
+</html>

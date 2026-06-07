@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adventureland — Commodore PET — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore PET</div>
+      <h1>Adventureland</h1>
+      <p class="sub">Scott Adams, 1979 — the first commercial home-computer text adventure. Originally written on a TRS-80, ported almost immediately to every machine that could run BASIC, including this PET build.</p>
+    </div>
+
+    <p class="intro">You wake in a forest. There are 13 treasures hidden across the world; bring each one back to the magic mirror at the start. Two-word commands (verb + noun). The whole game runs in 16 KB.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots — VICE autostarts the <code>.prg</code> straight into the title.</li>
+      <li>Click the canvas first so the emulator receives keyboard input.</li>
+      <li>Type <code>NORTH</code>, <code>LOOK</code>, or any of the two-word commands below.</li>
+    </ol>
+
+    <h2>Command basics</h2>
+    <table>
+      <tr><th>Verb</th><th>What it does</th></tr>
+      <tr><td><code>LOOK</code></td><td>Re-print the room description and exits</td></tr>
+      <tr><td><code>N</code> <code>S</code> <code>E</code> <code>W</code> <code>U</code> <code>D</code></td><td>Move (cardinal + up/down)</td></tr>
+      <tr><td><code>GET &lt;noun&gt;</code></td><td>Pick up an object</td></tr>
+      <tr><td><code>DROP &lt;noun&gt;</code></td><td>Drop an object</td></tr>
+      <tr><td><code>INVENTORY</code> (or <code>I</code>)</td><td>List what you're carrying</td></tr>
+      <tr><td><code>SCORE</code></td><td>Treasures returned so far</td></tr>
+      <tr><td><code>SAVE GAME</code></td><td>Save state (works in-emulator via VICE state slots)</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Map as you go.</strong> 30+ rooms with non-Euclidean exits in places — paper maps were the period-correct tool.</li>
+      <li><strong>Every object is in play.</strong> If something is mentioned in the room text, you can probably interact with it.</li>
+      <li><strong>The bees.</strong> The bear in the forest blocks a critical path; the bees are the answer, but only with the right vessel.</li>
+      <li><strong>Treasures don't all want to be carried.</strong> Some need a specific environment to "unlock" their treasure status.</li>
+    </ul>
+  </div>
+</body>
+</html>

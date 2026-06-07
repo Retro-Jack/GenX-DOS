@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pac-Man — Commodore PET — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore PET</div>
+      <h1>Pac-Man</h1>
+      <p class="sub">1982 — PETSCII clone of Namco's 1980 arcade. Eat the dots, dodge the ghosts, eat the power pellets, chase the ghosts.</p>
+    </div>
+
+    <p class="intro">Standard Pac-Man maze rules but with PETSCII glyphs and monochrome rendering. Four ghosts patrol; four power pellets flip them blue for a few seconds. Clear all dots to advance.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots; click the canvas first.</li>
+      <li>Press a key past the title to start.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td>Move (up / left / down / right)</td></tr>
+      <tr><td>or <kbd>I</kbd> <kbd>J</kbd> <kbd>K</kbd> <kbd>L</kbd></td><td>Same on the right hand</td></tr>
+    </table>
+
+    <h2>Ghost behaviour (true to arcade)</h2>
+    <table>
+      <tr><th>Ghost</th><th>AI tendency</th></tr>
+      <tr><td>Blinky (red)</td><td>Direct chase — always targets your current tile</td></tr>
+      <tr><td>Pinky (pink)</td><td>Ambush — targets four tiles ahead of you</td></tr>
+      <tr><td>Inky (cyan)</td><td>Flanking — geometry-based pincer with Blinky</td></tr>
+      <tr><td>Clyde (orange)</td><td>Random when close, retreats when too near you</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Power pellets aren't free.</strong> Trigger them only when at least two ghosts are within chase distance — chasing for one is bad ROI on the timer.</li>
+      <li><strong>Corners are slow.</strong> Pac turns at junctions in zero time but the ghosts do too — pre-buffer the input one tile early on tight chases.</li>
+      <li><strong>The fruit bonus appears twice per level.</strong> Worth the side-quest in the early levels, not worth dying for after wave 5.</li>
+      <li><strong>Cruise elroy.</strong> When dots are scarce, Blinky speeds up to your speed — corners become your only escape.</li>
+    </ul>
+  </div>
+</body>
+</html>
