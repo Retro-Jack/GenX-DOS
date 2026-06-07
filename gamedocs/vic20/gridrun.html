@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gridrunner — Commodore VIC-20 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore VIC-20</div>
+      <h1>Gridrunner</h1>
+      <p class="sub">Jeff Minter / Llamasoft, 1982 — the game that launched Llamasoft and built Minter's reputation. Centipede crossed with paranoia. The grid is the battlefield.</p>
+    </div>
+
+    <p class="intro">A grid fills the playfield. A centipede-like "snake" segments down it. Droids drop bombs at random intervals. A vertical and a horizontal "X-Y" zapper sweep the edges. You shoot up while moving along the bottom row. Survive a level, the next one ramps the snake speed and adds segments.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots; click the canvas first.</li>
+      <li>Press a key past the title to spawn.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Numpad 4</kbd> / <kbd>6</kbd></td><td>Move left / right along the bottom row</td></tr>
+      <tr><td><kbd>Numpad 0</kbd> / <kbd>5</kbd></td><td>Fire (auto-aims up)</td></tr>
+    </table>
+
+    <h2>Threats</h2>
+    <table>
+      <tr><th>Threat</th><th>Behaviour</th></tr>
+      <tr><td>Snake / centipede</td><td>Slithers down the grid; each segment is a separate hit; tail-segment dies, head replaces it</td></tr>
+      <tr><td>Droid bombs</td><td>Fall in straight lines from the top — predictable, but constant</td></tr>
+      <tr><td>X zapper</td><td>Horizontal laser sweeps the bottom row — your row</td></tr>
+      <tr><td>Y zapper</td><td>Vertical laser sweeps a column at random intervals</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Pacing the X zapper.</strong> It crosses on a fixed clock — learn the cycle, never get caught at full stop.</li>
+      <li><strong>Snake from the tail.</strong> Shoot the rear segment; head segments respawn but tail kills are the only progress.</li>
+      <li><strong>Y zapper telegraphs.</strong> A flash precedes the strike — react on the flash, not the laser.</li>
+      <li><strong>Minter style.</strong> Score-loop game; difficulty plateaus at ~level 20 in a way that rewards grind. The wave-30+ run is the speedrun community's metric.</li>
+    </ul>
+  </div>
+</body>
+</html>

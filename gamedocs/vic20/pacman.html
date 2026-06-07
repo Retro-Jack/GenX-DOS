@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pac-Man — Commodore VIC-20 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore VIC-20</div>
+      <h1>Pac-Man</h1>
+      <p class="sub">Atarisoft / Commodore licensee, 1983 — the officially-licensed VIC-20 port of Namco's 1980 arcade. Squashed to the VIC-20's 22-column screen but the AI is intact.</p>
+    </div>
+
+    <p class="intro">Eat the dots, dodge the ghosts, eat the power pellets, eat the ghosts. Standard Pac-Man — the VIC-20's screen is narrower than the original so the maze is reshaped slightly, but Blinky/Pinky/Inky/Clyde all behave per arcade.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots; click the canvas first.</li>
+      <li>Press a key past the title.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Numpad 8</kbd> <kbd>2</kbd> <kbd>4</kbd> <kbd>6</kbd></td><td>Move up / down / left / right</td></tr>
+    </table>
+
+    <h2>Ghost AI</h2>
+    <table>
+      <tr><th>Ghost</th><th>Behaviour</th></tr>
+      <tr><td>Blinky (red)</td><td>Direct chase</td></tr>
+      <tr><td>Pinky (pink)</td><td>Targets 4 tiles ahead of you</td></tr>
+      <tr><td>Inky (cyan)</td><td>Geometry pincer with Blinky</td></tr>
+      <tr><td>Clyde (orange)</td><td>Chases when far, retreats when close</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Power pellets aren't free.</strong> Trigger when multiple ghosts are close — chasing for one is bad ROI.</li>
+      <li><strong>Pre-buffer corners.</strong> Pac turns at junctions zero-cost; press the next direction one tile early.</li>
+      <li><strong>Cruise Elroy.</strong> When dots are scarce, Blinky matches your speed — corners become the only escape.</li>
+      <li><strong>VIC-20 sprite limit.</strong> Visually busier than expected — you'll see slight flicker at peak ghost density. Pure cosmetic.</li>
+    </ul>
+  </div>
+</body>
+</html>

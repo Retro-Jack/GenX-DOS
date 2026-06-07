@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frogger — Commodore VIC-20 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore VIC-20</div>
+      <h1>Frogger</h1>
+      <p class="sub">Parker Bros. / Sierra On-Line, 1983 — officially licensed VIC-20 port of Konami's 1981 arcade. Five lanes of traffic, five lanes of river, five home pads.</p>
+    </div>
+
+    <p class="intro">Cross the highway, ride the river, fill all five home pads. Cars and trucks kill on touch; water kills unless you ride a log or turtle; the timer drains while you stall. Standard Frogger rules with the colour palette VIC-20 was famous for — vivid blues and greens despite the 22-column screen.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Game autoboots; click the canvas first.</li>
+      <li>Press a key past the title to spawn at the bottom.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Numpad 8</kbd></td><td>Hop forward (north)</td></tr>
+      <tr><td><kbd>Numpad 2</kbd></td><td>Hop back (south)</td></tr>
+      <tr><td><kbd>Numpad 4</kbd></td><td>Hop left</td></tr>
+      <tr><td><kbd>Numpad 6</kbd></td><td>Hop right</td></tr>
+    </table>
+    <p class="note">Each hop is a discrete one-tile move. The frog snaps to the grid on logs and turtles.</p>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Event</th><th>Points</th></tr>
+      <tr><td>Each row forward</td><td>10</td></tr>
+      <tr><td>Home pad reached</td><td>50 + time bonus</td></tr>
+      <tr><td>Lady frog rescued (rides a log)</td><td>200</td></tr>
+      <tr><td>Insect on home pad</td><td>200</td></tr>
+      <tr><td>All 5 pads filled</td><td>1000 + level cleared</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Diving turtles.</strong> Submerge on a fixed beat. Watch one cycle from the verge before committing to a turtle ride.</li>
+      <li><strong>Outer pads first.</strong> Centre pads are easy; tackling the outer two under time pressure is the usual death.</li>
+      <li><strong>Crocodile pads.</strong> Two of the five pads occasionally turn into crocodiles — eyes open before the final hop.</li>
+      <li><strong>The VIC-20's wider sprites</strong> change collision feel vs. arcade — cars are slightly more forgiving on the hop window.</li>
+    </ul>
+  </div>
+</body>
+</html>
