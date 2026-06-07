@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Removed
+- **jsvecx upstream alternate entry points** at `emulators/jsvecx/` — 5 HTML files + 7 supporting JS/CSS that GenX-DOS never reached. The `index.html` we use is upstream-DrSnuggles' menu-driven build; the deleted files were *other* entry points from earlier upstream variants (raz0red's original + DrSnuggles' touch/RTM variants). Dependency tracing confirmed `index.html` only dynamically loads `js/rtm.js` (Show Chips toggle) and the static `_shared/genx-*` GenX-DOS scripts; nothing else in `js/` or `css/` is referenced by live code. Deleted: `rtm.html`, `seamless.html`, `vectrex.html`, `overlay_rtm.html`, `overlay_touch.html`, `js/jsvecx.js`, `js/seamless.js`, `js/audioWorkletProcessor.js`, `js/audioWorkletWrapper.js`, `css/seamless.css`, `css/touch.css`, `css/vectrex.css` (~127 KB total). Kept: `js/rtm.js` + `css/rtm.css` (live via Show Chips), `bios/*` (uncertain dynamic load path; ~28 KB), full `img/` (overlays loaded dynamically), full `roms/` (upstream's own dropdown can pick any of the ~500 ROMs). HTTP 200 confirmed for `index.html`, all menu game URLs, `js/rtm.js`, `css/rtm.css`, favicon, and a sample overlay PNG after the deletion.
+
 ### Fixed
 - **Doc-sync audit (07/06/2026)** — surfaced stale claims across README/ATTRIBUTION/wiki after the last few months of bundle changes. Fixes applied:
   - `README.md` `_shared-ejs/` line was missing FCEUmm in the core list (NES bundle migrated from bfirsh/jsnes to EmulatorJS + FCEUmm a while back, but the README still listed only the 5 VICE cores + gearcoleco). Number of bundles sharing the framework updated from implicit-8 to 9 (7 VICE + coleco + jsnes); rough savings revised upward to ~25 MB.

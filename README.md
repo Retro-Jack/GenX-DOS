@@ -74,7 +74,7 @@ emulators/
 | 7800      | raz0red/JS7800 v0.0.9                | `play.html?game=<key>`                   |
 | MS-DOS    | caiiiycuk/js-dos v7.0.0              | `play.html?game=<key>`                   |
 | MSX       | ppeccin/WebMSX                       | `?ROM=games/<sub>/<name>.zip[&M=MSX1]`   |
-| Vectrex   | DrSnuggles/jsvecx (raz0red)          | `index.html?rom=<dir>/<title>` (never `seamless.html`) |
+| Vectrex   | DrSnuggles/jsvecx (raz0red)          | `index.html?rom=<dir>/<title>` (only `index.html` is shipped; upstream's other entry points were pruned) |
 | Spectrum  | gasman/JSSpeccy 3 v3.2               | `play.html?game=<key>`                   |
 | ZX81      | hammingweight/JtyOne                 | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar v1.10           | `play.html?game=<key>`                   |
