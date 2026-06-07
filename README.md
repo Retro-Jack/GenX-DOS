@@ -40,7 +40,6 @@ emulators/
   jsnes/                  NES              — EmulatorJS + FCEUmm libretro core + 10 .nes ROMs
   javatari/               Atari 2600       — pure-JS bundle + 10 .a26 ROMs
   js7800/                 Atari 7800       — pure-JS bundle + 10 .a78 carts
-  jsdos/                  MS-DOS           — js-dos v7 + 20 .jsdos game bundles
   webmsx/                 MSX / MSX2 / MSX2+ — WebMSX single-file bundle + 10 MSX1 + 10 MSX2 titles
   jsvecx/                 GCE Vectrex      — JSVecX + ~500 ROM archive (24 commercial in `roms/Commercial/` + homebrew/demo subdirs; menu exposes 11 curated)
   jsspeccy/               Sinclair Spectrum — JSSpeccy 3.2 + 10 .z80 snapshots
@@ -72,7 +71,6 @@ emulators/
 | NES       | EmulatorJS + FCEUmm libretro core    | `play.html?game=<key>`                   |
 | 2600      | ppeccin/javatari.js v5.0.4           | `play.html?game=<key>`                   |
 | 7800      | raz0red/JS7800 v0.0.9                | `play.html?game=<key>`                   |
-| MS-DOS    | caiiiycuk/js-dos v7.0.0              | `play.html?game=<key>`                   |
 | MSX       | ppeccin/WebMSX                       | `?ROM=games/<sub>/<name>.zip[&M=MSX1]`   |
 | Vectrex   | DrSnuggles/jsvecx (raz0red)          | `index.html?rom=<dir>/<title>` (only `index.html` is shipped; upstream's other entry points were pruned) |
 | Spectrum  | gasman/JSSpeccy 3 v3.2               | `play.html?game=<key>`                   |
@@ -112,7 +110,6 @@ Summary below; see [ATTRIBUTION.md](ATTRIBUTION.md) for the canonical record inc
 - FCEUmm: GPL-2.0 (libretro NES core) — mirrored from `cdn.emulatorjs.org/stable/`
 - Javatari: AGPL-3.0 (ppeccin/javatari.js)
 - JS7800: GPL-2.0 (raz0red)
-- js-dos: GPL-2.0 (caiiiycuk/js-dos v7.0.0)
 - WebMSX: MIT (ppeccin/WebMSX) — same author as Javatari
 - JSVecX: GPL-3.0 (raz0red, fork by DrSnuggles — JS port of Valavan Manohararajah's VecX C source)
 - JSSpeccy 3: GPL-3.0 (Matt Westcott / gasman)

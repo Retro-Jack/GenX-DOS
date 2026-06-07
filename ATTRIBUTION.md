@@ -45,7 +45,6 @@ the corresponding emulator folder.
 | `emulators/javatari/` | Javatari.js | Paulo Peccin | AGPL-3.0 |
 | `emulators/js7800/` | JS7800 | raz0red | GPL-2.0 |
 | `emulators/jsvecx/` | JSVecX (fork of raz0red's port of Valavan Manohararajah's VecX) | DrSnuggles | GPL-3.0 |
-| `emulators/jsdos/` | js-dos v7.0.0 | caiiiycuk | GPL-2.0 |
 | `emulators/webmsx/` | WebMSX | Paulo Peccin | MIT |
 | `emulators/jsspeccy/` | JSSpeccy 3.2 | Matt Westcott (gasman) | GPL-3.0 |
 | `emulators/jtyone/` | JtyOne (port of Mike Wynne's EightyOne) | Simon Holdsworth | GPL-2.0 |
