@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radar Rat Race — Commodore MAX — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Console · Commodore MAX Machine</div>
+      <h1>Radar Rat Race</h1>
+      <p class="sub">Commodore, 1982 — MAX cart edition of the VIC-20 launch title. A mouse navigating a single-screen maze collecting cheese while cats and a radar-tracking rat hunt it.</p>
+    </div>
+
+    <p class="intro">Top-down maze; the screen is the level (no scrolling). Collect every wedge of cheese to clear; cats patrol fixed routes; the rat homes on your radar position. Any contact loses a life. Cleared mazes ramp the patrol speed.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Cart autoboots; click the canvas first.</li>
+      <li>Press a key past the title to spawn.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Numpad 8</kbd> <kbd>2</kbd> <kbd>4</kbd> <kbd>6</kbd></td><td>Move up / down / left / right</td></tr>
+      <tr><td><kbd>Numpad 0</kbd></td><td>Drop cheese (decoy)</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Plan the sweep before moving.</strong> Cats are deterministic — pick a route that never crosses their fixed patrol paths.</li>
+      <li><strong>Lead the rat into cats.</strong> The rat tracks you; cats ignore the rat. Set up the geometry to make them collide.</li>
+      <li><strong>Decoys are scarce.</strong> Save them for the final wedge when a cat blocks the path.</li>
+      <li><strong>Wrap-around tunnels.</strong> Left and right edges connect — last-resort escape when both pursuers close from the same side.</li>
+    </ul>
+  </div>
+</body>
+</html>

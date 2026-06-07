@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jupiter Lander — Commodore MAX — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Console · Commodore MAX Machine</div>
+      <h1>Jupiter Lander</h1>
+      <p class="sub">HAL, 1982 — Atari-style Lunar Lander port with Jupiter's gravity. Steer a thruster-equipped lander to one of three pads of escalating point value.</p>
+    </div>
+
+    <p class="intro">A side-view rocky terrain rolls past as you steer the lander left/right, thrust up against gravity, and descend toward landing pads at the bottom. Pads are valued 1× (large flat zone), 2× (medium platform), and 3× (narrow notch). Land at &lt; safe-velocity and the lander credits you a fuel bonus + the multiplier; touch too hard or off-pad and you explode.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Cart autoboots; click the canvas first.</li>
+      <li>Press a key past the title to release the lander from orbit.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Numpad 4</kbd> / <kbd>6</kbd></td><td>Sideways thrust left / right</td></tr>
+      <tr><td><kbd>Numpad 8</kbd></td><td>Main vertical thrust</td></tr>
+      <tr><td><kbd>Numpad 0</kbd> / <kbd>5</kbd></td><td>Some builds: fire boost</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Fuel is finite.</strong> Every thrust costs fuel from the gauge; you cannot refuel mid-descent. Plan minimum-burn approaches.</li>
+      <li><strong>Suicide burn at the end.</strong> Free-fall as long as you can; full vertical burn just before touchdown to null vertical velocity.</li>
+      <li><strong>3× pad demands precision.</strong> Lateral velocity must be near zero — a 3× landing on the narrow pad scores triple but a glancing approach explodes.</li>
+      <li><strong>Restart on success.</strong> The game loops at higher difficulty — score-chase is the long game.</li>
+    </ul>
+  </div>
+</body>
+</html>

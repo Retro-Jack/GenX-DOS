@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clowns — Commodore MAX — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Console · Commodore MAX Machine</div>
+      <h1>Clowns</h1>
+      <p class="sub">Commodore / Midway, 1982 — the launch cart for the Japan-only MAX Machine. Port of Midway's 1978 arcade. Bounce clowns off a see-saw to pop balloons floating above.</p>
+    </div>
+
+    <p class="intro">Two clowns on a see-saw at the bottom of the screen. You control the platform sliding left/right; the clown in flight lands on the empty seat, catapulting the other one upward to pop balloons. Three rows of balloons, three colours, three point values. Miss the see-saw and you lose a clown.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Cart autoboots — VICE in Ultimax mode loads <code>clowns.crt</code> straight into gameplay.</li>
+      <li>Click the canvas first to give it keyboard focus.</li>
+    </ol>
+
+    <h2>Controls (joystick on numpad)</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Numpad 4</kbd> / <kbd>6</kbd></td><td>Slide see-saw left / right</td></tr>
+      <tr><td><kbd>Numpad 0</kbd> / <kbd>5</kbd></td><td>Fire (some builds use it for speed boost)</td></tr>
+    </table>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Balloon row</th><th>Points</th></tr>
+      <tr><td>Top (red)</td><td>30</td></tr>
+      <tr><td>Middle (yellow)</td><td>20</td></tr>
+      <tr><td>Bottom (green)</td><td>10</td></tr>
+      <tr><td>Clear all balloons</td><td>Bonus round + escalating speed</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Predict the arc.</strong> The flying clown follows a fixed parabola — slide the see-saw to the landing point a beat early.</li>
+      <li><strong>Top row first.</strong> Higher points and the clown bounces longer per pop — clearing rows top-down is fastest.</li>
+      <li><strong>Don't chase pops.</strong> The clown auto-pops every balloon it touches on the way up; aim for clusters, not individuals.</li>
+      <li><strong>Speed escalation.</strong> Each cleared screen ramps the see-saw response speed. The "feel" of the controls changes every round.</li>
+    </ul>
+  </div>
+</body>
+</html>
