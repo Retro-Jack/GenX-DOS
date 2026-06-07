@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Fixed
+- **`emulators/pet/controls.html` was stale** — described the PET as configured for the 4032 (BASIC 4), but the actual default is the 3032 (BASIC 2 / "graphics" chargen) per the play.html `vice_pet_model` fallback; the 4032 is a per-game override used only by PETSCII Robots. The "Loading from BASIC 4" section also taught the `DIRECTORY` / `DLOAD"name"` shortcuts which don't exist in BASIC 2. Rewritten to lead with BASIC 2's full `LOAD"name",8` / `RUN` sequence and call out the PETSCII Robots BASIC 4 override.
 - **`emulators/amstradcpc/controls.html` was stale** — described the page as running CrocoDS under EmulatorJS with a catalog-pick boot step and an EJS toolbar. None of that was true: the actual bundle is floooh's tiny8bit CPC WASM (standalone, no EJS), games autoboot via `sokol_args` URL params, and there's no toolbar. Rewritten to match reality — including the PgUp/PgDn→Space fire remap in `play.html`, the `BASIC` entry's no-autoboot behaviour, and the page-reload reset workflow (no in-canvas reset button in tiny8bit). Noticed during the Amstrad CPC gamedocs pass.
 
 ### Added

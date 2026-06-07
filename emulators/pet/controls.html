@@ -9,11 +9,11 @@
 <body>
   <div class="wrap">
     <div class="head">
-      <div class="system">Commodore · PET 4032</div>
+      <div class="system">Commodore · PET 3032</div>
       <h1>Commodore PET — Controls</h1>
     </div>
 
-    <p class="intro">VICE xpet (gold-standard Commodore PET emulator) running in your browser via EmulatorJS, configured for the PET 4032 — 32 KB RAM, BASIC 4.0, 40-column green-on-black monochrome CRT. The PET 2001 was Commodore's first computer (Jan 1977) and effectively founded the home-computer market; the 4032 (1980) added BASIC 4 and a proper keyboard. Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">VICE xpet (gold-standard Commodore PET emulator) running in your browser via EmulatorJS, configured for the PET 3032 by default — 32 KB RAM, BASIC 2 (Upgrade ROM), 40-column green-on-black monochrome CRT, original "graphics" character ROM. The PET 2001 was Commodore's first computer (Jan 1977) and effectively founded the home-computer market; the 3032 (1979) added the same 32&nbsp;KB but kept BASIC 2, which is what 1979–1981-era PETSCII games were authored against — switching to BASIC 4 made most of them render garbled. PETSCII Robots (2022) is the exception and overrides per-game to a 4032 (BASIC 4). Click the canvas first so the emulator receives keyboard input.</p>
 
     <p class="note">Most bundled games are single-file BASIC <code>.prg</code>s that load instantly via VICE autostart. The PETSCII Robots shareware is a <code>.d64</code> disk image — that one takes ~30 seconds to boot through real-time IEC drive emulation (you'll hear the drive chunk the whole way), then drops into the title screen.</p>
 
@@ -38,7 +38,7 @@
       <tr><td><kbd>Page Down</kbd></td><td>RVS OFF</td></tr>
       <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
       <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
-      <tr><td><kbd>F1</kbd> – <kbd>F10</kbd></td><td>Function keys (model-dependent — most 4032 software ignores)</td></tr>
+      <tr><td><kbd>F1</kbd> – <kbd>F10</kbd></td><td>Function keys (model-dependent — most 3032/4032 software ignores)</td></tr>
     </table>
 
     <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>emulators/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
@@ -51,18 +51,19 @@
       <tr><td>Restart</td><td>Cold-reset the PET (cart/disk reloads)</td></tr>
       <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
       <tr><td>Settings (gear)</td><td>Core options — PET model swap, video filter, sample rate, key remap, etc.</td></tr>
-      <tr><td>Mute</td><td>Toggle audio (PET 4032 has CB2 sound on pin 5 of the user port — most games use it for beeps via POKE)</td></tr>
+      <tr><td>Mute</td><td>Toggle audio (the PET has CB2 sound on pin 5 of the user port — most games use it for beeps via POKE)</td></tr>
       <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
     </table>
 
-    <h2>Loading from BASIC 4</h2>
-    <p>VICE auto-LOADs <code>.prg</code> files and the first program on most disks. If you drop to the <code>READY.</code> prompt, type one of:</p>
+    <h2>Loading from BASIC 2</h2>
+    <p>VICE auto-LOADs <code>.prg</code> files and the first program on most disks. If you drop to the <code>READY.</code> prompt, BASIC 2 needs the full <code>LOAD</code> / <code>RUN</code> sequence (no <code>DIRECTORY</code> or <code>DLOAD</code> shortcuts — those came with BASIC 4):</p>
     <table>
       <tr><th>Command</th><th>Effect</th></tr>
-      <tr><td><code>DIRECTORY</code></td><td>List the disk directory (BASIC 4 shortcut — equivalent to <code>LOAD"$",8</code>)</td></tr>
-      <tr><td><code>DLOAD"name"</code></td><td>Load a program from disk (BASIC 4 shortcut)</td></tr>
+      <tr><td><code>LOAD"$",8</code></td><td>Load the disk directory into BASIC, then <code>LIST</code> to view</td></tr>
+      <tr><td><code>LOAD"name",8</code></td><td>Load a program by name from disk drive 8</td></tr>
       <tr><td><code>RUN</code></td><td>Run the loaded program</td></tr>
     </table>
+    <p class="note">PETSCII Robots (BASIC 4 override) gains the <code>DIRECTORY</code> / <code>DLOAD"name"</code> shortcuts, but you won't see the <code>READY.</code> prompt during its boot — it autoboots straight into the title.</p>
 
     <h2>About PETSCII Robots</h2>
     <p>PETSCII Robots is a modern (2022) survival/strategy title by David Murray ("The 8-Bit Guy") — proof that the 32K PET still has commercial-grade games being written for it 45 years after launch. This is the official shareware build (free demo); the full game is sold by Murray directly. The shareware includes the first three of the full game's 30+ levels.</p>
