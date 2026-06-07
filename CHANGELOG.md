@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- **Commodore Plus/4 gamedocs (10 pages)** at `gamedocs/plus4/` — per-game instruction pages for Blagger, Popeye, Citadel, Kikstart, Punchy, Rockman, Saboteur, Squirm, Mercenary, and Trailblazer. Auto-linked from each game's "controls" badge on the Plus/4 play page (via `_shared/genx-controls-link.js`, which rewrites `controls.html` → `../../gamedocs/plus4/<key>.html` whenever a `?game=` parameter is present). Same template as the C16/C64/MAX sweep: system header, intro, "Getting started", Controls table mapping the host keyboard to Plus/4 input, and a Strategy section with 3-4 tactical pointers. The BASIC 3.5 prompt entry is intentionally not gamedoc'd (matches C16/C64/MAX convention).
+
 ### Removed
 - **jsvecx upstream alternate entry points** at `emulators/jsvecx/` — 5 HTML files + 7 supporting JS/CSS that GenX-DOS never reached. The `index.html` we use is upstream-DrSnuggles' menu-driven build; the deleted files were *other* entry points from earlier upstream variants (raz0red's original + DrSnuggles' touch/RTM variants). Dependency tracing confirmed `index.html` only dynamically loads `js/rtm.js` (Show Chips toggle) and the static `_shared/genx-*` GenX-DOS scripts; nothing else in `js/` or `css/` is referenced by live code. Deleted: `rtm.html`, `seamless.html`, `vectrex.html`, `overlay_rtm.html`, `overlay_touch.html`, `js/jsvecx.js`, `js/seamless.js`, `js/audioWorkletProcessor.js`, `js/audioWorkletWrapper.js`, `css/seamless.css`, `css/touch.css`, `css/vectrex.css` (~127 KB total). Kept: `js/rtm.js` + `css/rtm.css` (live via Show Chips), `bios/*` (uncertain dynamic load path; ~28 KB), full `img/` (overlays loaded dynamically), full `roms/` (upstream's own dropdown can pick any of the ~500 ROMs). HTTP 200 confirmed for `index.html`, all menu game URLs, `js/rtm.js`, `css/rtm.css`, favicon, and a sample overlay PNG after the deletion.
 

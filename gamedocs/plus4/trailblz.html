@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trailblazer — Commodore Plus/4 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore Plus/4</div>
+      <h1>Trailblazer</h1>
+      <p class="sub">Gremlin Graphics, 1986 — Mr. Chip Software's into-the-screen ball-roller. Bounce a football down a tile-strip suspended in space, hitting speed-up/slow-down tiles and dodging the gaps. Time-trial mode against the clock; head-to-head split-screen against a friend.</p>
+    </div>
+
+    <p class="intro">Forward-scrolling 3D-perspective course made of multi-coloured chequer tiles. Each tile colour does something — red = gap (don't fall in), green = slow, yellow = boost, white = jump. Steer left/right to pick lanes; press jump to hop hazards. Time-trial: beat the level's par. Two-player: first across the finish wins. The Plus/4 TED chip's smooth horizontal-scroll is the conversion's highlight.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The <code>.prg</code> auto-loads; click the canvas first.</li>
+      <li>Select 1P TIME TRIAL or 2P at the title (joystick down + fire).</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Steer ball lane</td></tr>
+      <tr><td><kbd>↑</kbd></td><td>Jump (clears a single gap tile)</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>Boost on jump (extends arc)</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Read three tiles ahead.</strong> The perspective means immediate tiles are already committed; your steering only affects what's coming, not what's under you.</li>
+      <li><strong>Yellow tiles are a trap when stacked.</strong> Two consecutive boost tiles fling you off the steerable speed range — pair them with green to bleed off velocity.</li>
+      <li><strong>Jump-and-boost clears double gaps.</strong> Hold fire as you press up to extend the jump arc over two consecutive red tiles.</li>
+      <li><strong>The course wraps around par + 5%.</strong> Time-trial failure resets you, not the level; learning a course only costs the failed clock, not the whole run.</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kikstart — Commodore Plus/4 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore Plus/4</div>
+      <h1>Kikstart</h1>
+      <p class="sub">Mastertronic, 1985 — Shaun Southern's side-on motorcycle obstacle course (the Plus/4 conversion of his Kwik Snax / Lotus Esprit pipeline before they hit the big time). Eight stages of jumping logs, popping wheelies over oil slicks, and beating the clock.</p>
+    </div>
+
+    <p class="intro">Side-scrolling moto-trials. The course scrolls right at a fixed pace; your job is to ride over a steady stream of obstacles — barrels, ramps, rolling tires, water — without crashing. Three lives; complete the stage to advance. Mastertronic's £1.99 budget price meant tight code but very little hand-holding.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The <code>.prg</code> auto-loads; click the canvas first.</li>
+      <li>Press <kbd>L Ctrl</kbd> at the title to start.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd></td><td>Jump</td></tr>
+      <tr><td><kbd>↓</kbd></td><td>Wheelie (front wheel up — clears low obstacles)</td></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Slow down / speed up</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>Pause / unpause</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Wheelie over short stuff, jump over tall stuff.</strong> Wheelies are faster to recover from than jumps — but won't clear a ramp or a log pile. Read each obstacle's height before committing.</li>
+      <li><strong>Slow down before water.</strong> Hitting water at full speed almost always wipes out; tap left to drop a gear before the splash.</li>
+      <li><strong>The course is deterministic.</strong> Each stage has a fixed obstacle layout; once you memorise the sequence, it becomes a rhythm game.</li>
+      <li><strong>Don't bother trying to brake mid-jump.</strong> Bike physics commit on take-off; correct on the previous obstacle, not the current one.</li>
+    </ul>
+  </div>
+</body>
+</html>
