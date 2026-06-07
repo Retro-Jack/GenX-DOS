@@ -45,10 +45,10 @@ emulators/
   jsspeccy/               Sinclair Spectrum — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81    — JtyOne + 10 .p tapes (hex format)
   xroar/                  Tandy CoCo       — XRoar WASM + 10 .ccc carts
-  atari800/               Atari 400 + 800XL — atari800 v5.2.0 built to WASM + AltirraOS + 10 disk/cart titles per sub-system
+  atari800/               Atari 400 + 800XL — atari800 v5.2.0 built to WASM (AltirraOS-XL/800/BASIC baked into the .wasm via `--enable-altirra_bios`) + 11 titles per sub-system (400 has 10 unique + Star Raiders shared with 800XL)
   pet/                    Commodore PET    — EmulatorJS + VICE xpet + 9 .prg classics + PETSCII Robots .d64
   vic20/                  Commodore VIC-20 — EmulatorJS + VICE xvic + 10 cart .prg
-  max/                    Commodore MAX    — EmulatorJS + VICE x64 Ultimax mode + 8 .crt carts + MAX BASIC
+  max/                    Commodore MAX    — EmulatorJS + VICE x64 Ultimax mode + 10 .crt carts + MAX BASIC
   c64/                    Commodore 64     — EmulatorJS + VICE x64 + 10 .d64 disk images
   c16/                    Commodore 16     — EmulatorJS + VICE xplus4 C16 mode + 10 .prg C16-16K titles
   plus4/                  Commodore Plus/4 — EmulatorJS + VICE xplus4 + 10 .prg titles
@@ -115,8 +115,8 @@ Summary below; see [ATTRIBUTION.md](ATTRIBUTION.md) for the canonical record inc
 - JSSpeccy 3: GPL-3.0 (Matt Westcott / gasman)
 - JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
-- atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL 3.41 bundled (Avery Lee, freely redistributable open-source OS replacement)
-- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across the seven VICE-family bundles and ColecoVision via `emulators/_shared-ejs/`
+- atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL/800/BASIC (Avery Lee, freely redistributable open-source OS replacement) embedded inside `atari800.wasm` at build time via `--enable-altirra_bios` — no separate ROM file ships
+- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across the seven VICE-family bundles, ColecoVision, and NES (FCEUmm) via `emulators/_shared-ejs/`
 - VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `x128`, `xvic`, `xplus4`, `xpet`) mirrored from `cdn.emulatorjs.org/stable/`
 - gearcoleco: GPL-3.0 (Drhelius) — libretro ColecoVision core mirrored from `cdn.emulatorjs.org/stable/`
 - ColecoVision BIOS: ©1982 Coleco, bundled for emulator-only use

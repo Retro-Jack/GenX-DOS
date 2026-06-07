@@ -50,7 +50,7 @@ the corresponding emulator folder.
 | `emulators/jtyone/` | JtyOne (port of Mike Wynne's EightyOne) | Simon Holdsworth | GPL-2.0 |
 | `emulators/xroar/` | XRoar (WASM) | Ciaran Anscomb | GPL-3.0-or-later |
 | `emulators/atari800/` | atari800 v5.2.0, built from source to WASM | atari800 project | GPL-2.0+ |
-| `emulators/atari800/` | AltirraOS-XL 3.41 (replacement BIOS bundled in `roms/`) | Avery Lee | Freely-redistributable open-source OS replacement (see upstream `Altirra-AdditionalLicense.txt`) |
+| `emulators/atari800/atari800.wasm` (embedded) | AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC | Avery Lee | Freely-redistributable open-source OS replacement, compiled into the WASM via `--enable-altirra_bios` (no separate ROM file ships) |
 | `emulators/intellivision/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
 | `emulators/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | GPL-2.0+ (libretro-o2em); frontend bundled under repo terms |
 | `emulators/amstradcpc/` | floooh's tiny8bit CPC WASM | Andre Weissflog | MIT |
@@ -88,8 +88,6 @@ copyright holders.
 | `emulators/coleco/colecovision.rom` | ColecoVision | © 1982 Coleco Industries |
 | `emulators/intellivision/roms/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
 | `emulators/odyssey2/roms/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. Sourced from the BizHawk firmware archive. |
-| `emulators/atari800/roms/altirraos_xl.rom` | AltirraOS-XL (Atari XL OS replacement) | Avery Lee — freely redistributable open-source OS replacement, NOT the original Atari ROM |
-| `emulators/atari800/roms/altirraos_800.rom` | AltirraOS-800 (Atari 400/800 OS replacement) | Avery Lee — freely redistributable open-source OS replacement |
 
 ---
 
