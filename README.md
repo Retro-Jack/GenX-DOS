@@ -32,7 +32,7 @@ prompt/                   the DOS terminal (HTML + JS, no build)
 gamedocs/                 per-game instruction pages (gamedocs/<platform>/<key>.html)
 emulators/
   _shared/                shared CSS for controls.html + corner-link styles + NumLock warning JS + RUN/STOP softkey
-  _shared-ejs/            shared EmulatorJS framework + 5 VICE cores + gearcoleco core (saves ~13 MB vs per-bundle copies)
+  _shared-ejs/            shared EmulatorJS framework + 5 VICE cores + gearcoleco + FCEUmm cores (saves ~25 MB vs per-bundle copies — 9 bundles share one ~3 MB framework)
   apple1/                 Apple I          — apple1js + 10 cassette tapes (Integer BASIC + 6502 assembly)
   jsbeeb/                 BBC Micro + Master — Vite-built dist + 10 BBC .ssd + 10 Master-enhanced .ssd/.dsd
   electron/               Acorn Electron   — ElkJS + 10 UEF snapshot games
@@ -42,7 +42,7 @@ emulators/
   js7800/                 Atari 7800       — pure-JS bundle + 10 .a78 carts
   jsdos/                  MS-DOS           — js-dos v7 + 20 .jsdos game bundles
   webmsx/                 MSX / MSX2 / MSX2+ — WebMSX single-file bundle + 10 MSX1 + 10 MSX2 titles
-  jsvecx/                 GCE Vectrex      — JSVecX + ~100 commercial/homebrew ROMs
+  jsvecx/                 GCE Vectrex      — JSVecX + ~500 ROM archive (24 commercial in `roms/Commercial/` + homebrew/demo subdirs; menu exposes 11 curated)
   jsspeccy/               Sinclair Spectrum — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81    — JtyOne + 10 .p tapes (hex format)
   xroar/                  Tandy CoCo       — XRoar WASM + 10 .ccc carts

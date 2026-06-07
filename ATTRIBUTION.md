@@ -56,8 +56,9 @@ the corresponding emulator folder.
 | `emulators/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | GPL-2.0+ (libretro-o2em); frontend bundled under repo terms |
 | `emulators/amstradcpc/` | floooh's tiny8bit CPC WASM | Andre Weissflog | MIT |
 | `emulators/_shared-ejs/` | EmulatorJS framework | EmulatorJS team | GPL-3.0 |
-| `emulators/_shared-ejs/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`, `xpet`) | vice-emu.sourceforge.net | GPL-2.0 |
-| `emulators/_shared-ejs/cores/` | gearcoleco libretro core (ColecoVision) | Drhelius | GPL-3.0 |
+| `emulators/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`, `xpet`) | vice-emu.sourceforge.net | GPL-2.0 |
+| `emulators/_shared-ejs/ejs/data/cores/` | gearcoleco libretro core (ColecoVision) | Drhelius | GPL-3.0 |
+| `emulators/_shared-ejs/ejs/data/cores/` | FCEUmm libretro core (NES) | libretro/libretro-fceumm | GPL-2.0 |
 
 ### How the cores are mirrored
 
@@ -85,7 +86,7 @@ copyright holders.
 
 | File | System | Copyright |
 | --- | --- | --- |
-| `emulators/_shared-ejs/cores/coleco.bios` | ColecoVision | © 1982 Coleco Industries |
+| `emulators/coleco/colecovision.rom` | ColecoVision | © 1982 Coleco Industries |
 | `emulators/intellivision/roms/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
 | `emulators/odyssey2/roms/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. Sourced from the BizHawk firmware archive. |
 | `emulators/atari800/roms/altirraos_xl.rom` | AltirraOS-XL (Atari XL OS replacement) | Avery Lee — freely redistributable open-source OS replacement, NOT the original Atari ROM |
