@@ -3,6 +3,12 @@
 ## [Unreleased]
 
 ### Added
+- **MSX2 gamedocs (10 pages)** at `gamedocs/webmsx/` (shared folder with MSX1 — keys don't collide) — per-game instruction pages for Castle Excellent, King Kong 2, Vampire Killer (all 1986), F-1 Spirit, Metal Gear, The Treasure of Usas (all 1987), Aleste, Parodius (both 1988), Space Manbow (1989) and SD Snatcher (1990). The set covers the MSX2's commercial peak: ASCII Corp's puzzle-platformer, Konami's mid-life Castlevania sibling and Hideo Kojima's directorial debut, Compile's Aleste, and Konami's late-period Space Manbow / SD Snatcher swansong. Auto-linked via the shared `genx-controls-link.js`. Each MSX2 `.bat` launcher in `prompt/javascript/fs.js` now appends `&game=<key>` for the same reason as MSX1 — WebMSX's own `?ROM=` (or `?ANY=` for SD Snatcher's disk set) is uppercase, and `URLSearchParams.get('rom')` would not match. With this pass, gamedocs cover **26 of 27** sub-systems shipped on the site (251 + 10 = 261 pages); only Tandy CoCo remains for gamedoc coverage.
+
+### Changed
+- **`prompt/javascript/fs.js`** — appended `&game=<key>` to each of the 10 MSX2 `.bat` launcher URLs (including SD Snatcher's `?ANY=…` disk-set variant). WebMSX-side behaviour is unchanged; the parameter is documentation glue.
+
+### Added
 - **MSX1 gamedocs (10 pages)** at `gamedocs/webmsx/` — per-game instruction pages for Antarctic Adventure (1983), Athletic Land (1984), Eggerland Mystery, King's Valley, Pippols, Road Fighter, Yie Ar Kung-Fu (all 1985), Knightmare, Nemesis, and The Goonies (all 1986). All ten are Konami MSX cartridges; the bundle covers the formative two years of MSX1 software. Auto-linked via the shared `genx-controls-link.js`. To make the link resolve, each MSX1 `.bat` launcher in `prompt/javascript/fs.js` now appends `&game=<key>` to the existing `?ROM=...&M=MSX1` query string — WebMSX ignores unknown query parameters, so it boots as before, but the controls-link script can now read the lowercase `game=` and route to `gamedocs/webmsx/<key>.html`. (WebMSX's own `?ROM=` is uppercase, which `URLSearchParams.get('rom')` would not have matched — hence the explicit lowercase hook.) MSX BASIC prompt entry is intentionally not gamedoc'd (matches every other prompt-only entry on the site).
 
 ### Changed
