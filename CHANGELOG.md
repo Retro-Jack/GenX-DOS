@@ -3,6 +3,9 @@
 ## [Unreleased]
 
 ### Added
+- **Tandy CoCo gamedocs (10 pages)** at `gamedocs/xroar/` — per-game instruction pages for Mega-Bug, Poltergeist, Popcorn (all 1981), Canyon Climber, Demon Attack, Dungeons of Daggorath, Monster Maze (all 1982), Downland, Galactic Attack, and Polaris (all 1983). Mix of CoCo-original (Daggorath, Downland) and cross-platform ports (Demon Attack, Polaris). Daggorath gets a dedicated typed-command reference table since the game's interface is the famously-unusual real-time-typed CRPG control scheme. XRoar already preserves `?game=<key>` in its URL with no rewrite, so no `fs.js` patching was needed — the corner controls link picks up the param directly via the shared `genx-controls-link.js`. **Gamedocs sweep complete: 27 / 27 sub-systems shipped on the site, 271 pages total.**
+
+### Added
 - **MSX2 gamedocs (10 pages)** at `gamedocs/webmsx/` (shared folder with MSX1 — keys don't collide) — per-game instruction pages for Castle Excellent, King Kong 2, Vampire Killer (all 1986), F-1 Spirit, Metal Gear, The Treasure of Usas (all 1987), Aleste, Parodius (both 1988), Space Manbow (1989) and SD Snatcher (1990). The set covers the MSX2's commercial peak: ASCII Corp's puzzle-platformer, Konami's mid-life Castlevania sibling and Hideo Kojima's directorial debut, Compile's Aleste, and Konami's late-period Space Manbow / SD Snatcher swansong. Auto-linked via the shared `genx-controls-link.js`. Each MSX2 `.bat` launcher in `prompt/javascript/fs.js` now appends `&game=<key>` for the same reason as MSX1 — WebMSX's own `?ROM=` (or `?ANY=` for SD Snatcher's disk set) is uppercase, and `URLSearchParams.get('rom')` would not match. With this pass, gamedocs cover **26 of 27** sub-systems shipped on the site (251 + 10 = 261 pages); only Tandy CoCo remains for gamedoc coverage.
 
 ### Changed
