@@ -22,3 +22,20 @@
 }
 .gx-noscript-title { color: #fff; font-size: 18px; margin-bottom: 8px; }
 .gx-noscript-hint  { color: #888; margin-top: 8px; }
+
+/* Mobile-device block. The DOS prompt + every bundled emulator expects a
+   physical keyboard, so steer touch-only devices away before they get a
+   broken experience. Pure CSS — no markup needed; pages that load this
+   stylesheet inherit the trap automatically. `pointer: coarse + hover: none`
+   matches phones and tablets without a mouse; desktops are unaffected. */
+@media (pointer: coarse) and (hover: none) {
+  body::before {
+    content: "Desktop Only\00000a\00000aGenX-DOS is a keyboard-driven DOS terminal\00000aand 8-bit emulator suite.\00000a\00000aPlease visit on a desktop with a keyboard.";
+    white-space: pre-line;
+    position: fixed; inset: 0; z-index: 999999;
+    background: #000; color: #c0c0c0;
+    font-family: monospace; font-size: 14px; line-height: 1.6;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 20px;
+  }
+}
