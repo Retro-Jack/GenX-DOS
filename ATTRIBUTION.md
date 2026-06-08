@@ -37,7 +37,7 @@ the corresponding emulator folder.
 
 | Bundle directory | Upstream project | Author(s) | Licence |
 | --- | --- | --- | --- |
-| `emulators/apple1/` | Apple I emulator | Will Scullin (`whscullin`) | MIT |
+| `emulators/apple1/` | apple1js | whscullin | MIT |
 | `emulators/apple2/` | apple2js | whscullin | MIT |
 | `emulators/jsbeeb/` | jsbeeb | Matt Godbolt | GPL-3.0-or-later |
 | `emulators/electron/` | ElkJS | Darren Coles (6502 core ported from Tom Walker's Elkulator) | © Darren Coles 2013 (no SPDX header in source) |

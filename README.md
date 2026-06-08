@@ -33,7 +33,7 @@ gamedocs/                 per-game instruction pages (gamedocs/<platform>/<key>.
 emulators/
   _shared/                shared CSS for controls.html + corner-link styles + NumLock warning JS + RUN/STOP softkey
   _shared-ejs/            shared EmulatorJS framework + 5 VICE cores + gearcoleco + FCEUmm cores (saves ~25 MB vs per-bundle copies — 9 bundles share one ~3 MB framework)
-  apple1/                 Apple I          — Will Scullin's Apple I emulator + 10 cassette tapes (Integer BASIC + 6502 assembly)
+  apple1/                 Apple I          — apple1js + 10 cassette tapes (Integer BASIC + 6502 assembly)
   jsbeeb/                 BBC Micro + Master — Vite-built dist + 10 BBC .ssd + 10 Master-enhanced .ssd/.dsd
   electron/               Acorn Electron   — ElkJS + 10 UEF snapshot games
   apple2/                 Apple ][+        — apple2js (webpack dist) + 10 .dsk disk images
@@ -63,7 +63,7 @@ emulators/
 
 | System    | Copied from                          | URL pattern                              |
 |-----------|--------------------------------------|------------------------------------------|
-| Apple I   | Will Scullin (`whscullin`)           | `play.html?tape=<key>`                   |
+| Apple I   | scullin/apple1js                     | `play.html?tape=<key>`                   |
 | BBC Micro | mattgodbolt/jsbeeb v1.12.0           | `?disc1=<path>.ssd&autoboot`             |
 | BBC Master | mattgodbolt/jsbeeb v1.12.0 (same build) | `?model=Master&disc1=<path>.ssd&autoboot` |
 | Acorn Electron | dmcoles/elkjs                   | `play.html?game=<key>`                   |
