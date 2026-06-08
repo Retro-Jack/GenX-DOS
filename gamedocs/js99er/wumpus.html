@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hunt the Wumpus — TI-99/4A — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Texas Instruments TI-99/4A</div>
+      <h1>Hunt the Wumpus</h1>
+      <p class="sub">Texas Instruments (Gregory Yob, ported by TI), 1980 — Solid State Software cart. The graphical TI-99/4A re-interpretation of Yob's 1973 mainframe BASIC cave-deduction classic. The cave map is drawn on-screen so you don't have to keep one on paper.</p>
+    </div>
+
+    <p class="intro">Twenty caves arranged as a dodecahedron, each connected to three others. Somewhere is the Wumpus. Adjacent rooms may have superbats (random teleport) or bottomless pits (instant death). Sensory hints — "I smell a Wumpus", "I feel a draft", "I hear bats" — tell you something's adjacent but never which tunnel. Deduce the Wumpus's location and shoot your crooked arrow.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Cart auto-boots to the TI title screen; press <kbd>2</kbd> for "FOR HUNT THE WUMPUS PRESS 2".</li>
+      <li>Choose Wumpus 1 (easier — small cave) or Wumpus 2 (full cave).</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td>Number keys</td><td>Type the room number to move into</td></tr>
+      <tr><td><kbd>S</kbd> + room numbers</td><td>Shoot — followed by 1-5 connected tunnels for the crooked arrow's path</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>Confirm</td></tr>
+      <tr><td><kbd>Y</kbd> / <kbd>N</kbd></td><td>"Play again?" at end of round</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Map by tunnel triplets.</strong> Each room shows three connecting room numbers. Pencil them as you visit; you can pre-compute danger zones from sensed warnings.</li>
+      <li><strong>Triangulate the Wumpus.</strong> Two rooms both reporting "I smell a Wumpus" share exactly one neighbour — that's the Wumpus's chamber.</li>
+      <li><strong>Bats reverse luck.</strong> A superbat encounter teleports you to a random room (often into a worse one); survivable but no info gained.</li>
+      <li><strong>Pits are forever.</strong> "I feel a draft" + a single unknown neighbour = don't go there.</li>
+      <li><strong>One arrow.</strong> A missed shot wakes the Wumpus, who relocates to an adjacent room and may move into yours on his next move — game over.</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TI-99/4A — GenX-DOS</title>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <script defer src="../_shared/genx-controls-link.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+      height: 100%;
+      font-family: monospace;
+      color: #ddd;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #canvas {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      width: min(100vw, calc(100vh * 4 / 3));
+      height: min(100vh, calc(100vw * 3 / 4));
+      background: #000;
+    }
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+
+  <script src="util.js"></script>
+  <script src="log.js"></script>
+  <script src="lib/jquery-1.11.0.min.js"></script>
+  <script src="lib/zip/zip.js"></script>
+  <script src="lib/zip/zip-ext.js"></script>
+  <script>zip.workerScriptsPath = "lib/zip/";</script>
+  <script src="software/system.js"></script>
+  <script src="software.js"></script>
+  <!-- TI-99/4A components -->
+  <script src="emu/tape.js"></script>
+  <script src="emu/disk.js"></script>
+  <script src="emu/decoder.js"></script>
+  <script src="emu/tms9900.js"></script>
+  <script src="emu/tms9918a.js"></script>
+  <script src="emu/f18a.js"></script>
+  <script src="emu/f18agpu.js"></script>
+  <script src="emu/f18aflash.js"></script>
+  <script src="emu/sn76489.js"></script>
+  <script src="emu/tms9919.js"></script>
+  <script src="emu/tms5220.js"></script>
+  <script src="emu/memory.js"></script>
+  <script src="emu/cru.js"></script>
+  <script src="emu/keyboard.js"></script>
+  <script src="emu/joystick.js"></script>
+  <script src="emu/ti994a.js"></script>
+  <!-- Main -->
+  <script src="sound.js"></script>
+  <script src="settings.js"></script>
+  <script src="database.js"></script>
+</head>
+<body id="body">
+  <canvas id="canvas" width="304" height="240"></canvas>
+  <div id="loading">Loading…</div>
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var gameKey = params.get('game') || '';
+
+      var settings = new Settings(false);
+      settings.setF18AEnabled(false);
+      settings.setSoundEnabled(true);
+
+      var canvas = document.getElementById('canvas');
+      var ti994a = new TI994A(canvas, {FLOPPY1: new DiskImage("FLOPPY1")}, settings);
+      var sound = new Sound(settings.isSoundEnabled(), ti994a.tms9919, ti994a.tms5220);
+
+      var loadingEl = document.getElementById('loading');
+      function hideLoading() { if (loadingEl) loadingEl.style.display = 'none'; }
+
+      function startBoot() {
+        hideLoading();
+        ti994a.start();
+        // grab keyboard focus
+        canvas.tabIndex = 0;
+        canvas.focus();
+      }
+
+      if (!gameKey) {
+        // No cart — boot straight to the TI title / BASIC selection screen
+        startBoot();
+        return;
+      }
+
+      // Cart by key — first try .rpk, fall back to .bin
+      var software = new Software();
+      var rpkUrl = 'carts/' + gameKey + '.rpk';
+      var binUrl = 'carts/' + gameKey + '.bin';
+
+      function loadBin() {
+        software.loadBinModuleFromURL(binUrl, function (cart) {
+          if (cart) ti994a.loadSoftware(cart);
+          startBoot();
+        }, function () {
+          // Neither format found — boot to BASIC
+          startBoot();
+        });
+      }
+
+      software.loadRPKModuleFromURL(rpkUrl, function (cart) {
+        if (cart) {
+          ti994a.loadSoftware(cart);
+          startBoot();
+        } else {
+          loadBin();
+        }
+      }, function () {
+        loadBin();
+      });
+
+      // Click anywhere on the page to re-focus the canvas (keyboard input)
+      document.addEventListener('click', function () { canvas.focus(); });
+    })();
+  </script>
+</body>
+</html>

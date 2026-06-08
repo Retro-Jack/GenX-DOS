@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TI-99/4A controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Texas Instruments TI-99/4A</div>
+      <h1>TI-99/4A controls</h1>
+      <p class="sub">js99er (Rasmus Moustgaard, GPL v2) running TI BASIC and Solid State Software carts. The 4A's keyboard has shifted control keys via Function (FCTN) and Alpha-Lock; the emulator maps PC modifiers to keep typing natural.</p>
+    </div>
+
+    <p class="intro">When you boot with no cart you land on the TI title screen — press <kbd>1</kbd> or <kbd>Enter</kbd> for TI BASIC, then the <code>&gt;</code> prompt accepts BASIC commands. With a cart inserted the title screen offers the cart name as option 2; press <kbd>2</kbd> (or the screen-listed key) to start.</p>
+
+    <h2>Keyboard mapping</h2>
+    <p>PC keyboard → TI-99/4A. The emulator maps the modifier keys to the closest TI equivalents.</p>
+    <table>
+      <tr><th>PC key</th><th>TI-99/4A key</th></tr>
+      <tr><td><kbd>Alt</kbd> + key</td><td>FCTN + key (function shift — quotes, equals, etc.)</td></tr>
+      <tr><td><kbd>Ctrl</kbd> + key</td><td>CTRL + key (control codes)</td></tr>
+      <tr><td><kbd>Caps Lock</kbd></td><td>ALPHA LOCK (matters for cart games expecting upper-case input)</td></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>FCTN+E / FCTN+X / FCTN+S / FCTN+D (the TI's "arrow keys")</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>FCTN+S (delete)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>FCTN+9 (QUIT — usually returns to title)</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>Enter</td></tr>
+    </table>
+
+    <h2>Joystick (joypad emulation)</h2>
+    <p>Most cart games use the TI joystick. The emulator maps the keyboard arrow cluster to joystick 1 fire input — if a game uses joystick 2, watch its on-screen prompts.</p>
+    <table>
+      <tr><th>PC key</th><th>Joystick 1 action</th></tr>
+      <tr><td><kbd>↑</kbd> / <kbd>↓</kbd> / <kbd>←</kbd> / <kbd>→</kbd></td><td>Up / Down / Left / Right</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Fire</td></tr>
+      <tr><td><kbd>1</kbd> on title screens</td><td>TI BASIC (or first listed option)</td></tr>
+      <tr><td><kbd>2</kbd> on title screens</td><td>Cart program (when a cart is loaded)</td></tr>
+    </table>
+
+    <h2>TI BASIC tips</h2>
+    <ul>
+      <li><strong>Lines start with line numbers.</strong> Type <code>10 PRINT "HI"</code>, hit Enter, then <code>RUN</code>.</li>
+      <li><strong>SAVE / OLD</strong> need a device prefix on real hardware; in the emulator without disk drive, your code lives in RAM only.</li>
+      <li><strong>FCTN+= (Alt+=)</strong> issues a QUIT/RESET back to the title screen.</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -3,6 +3,13 @@
 ## [Unreleased]
 
 ### Added
+- **Texas Instruments TI-99/4A platform** — new emulator bundle at `emulators/js99er/` (Rasmus Moustgaard's Js99'er, vanilla-JS build, GPL-2.0) + 10 cartridge ROMs at `emulators/js99er/carts/` + new HOMECOMP entry **TEXAS / TI99 (1979)** between Tandy and the existing closing block. Carts shipped: Hunt the Wumpus (1980), Car Wars, TI Invaders, Tombstone City (all 1981), Alpiner, Microsurgeon (Imagic), Munch Man, Parsec, Tunnels of Doom (all 1982) and Buck Rogers: Planet of Zoom (Sega, 1983). Mirrored from the js99er.net public cart archive (~141 KB total in `.rpk` format). play.html accepts `?game=<key>` and falls back to the TI title screen (which lets you pick TI BASIC) when no cart is specified. Corner controls-link routes to `gamedocs/js99er/<key>.html` or `controls.html`. Bundle size ≈ 1.5 MB excluding carts.
+- **TI-99/4A gamedocs (10 pages)** at `gamedocs/js99er/` — per-game instruction pages mirroring the Solid State Software cart catalogue. Parsec gets a dedicated note on the laser-overheat voice mechanic; Tunnels of Doom gets a separate combat-key table because its first-person combat sub-mode uses different inputs than the dungeon-exploration view; Microsurgeon gets a tool-select reference. **Gamedocs sweep stays complete: 28 / 28 sub-systems, 281 pages.**
+
+### Changed
+- **HOMECOMP parent menu** in `prompt/javascript/fs.js` — added row 9 "Texas (1979) TI99" between Tandy (8) and the back-row sentinel, with matching `9.bat` (cd ti99\\ncd games\\nmenu) handler. Column widths preserved at 45 chars inner.
+
+### Added
 - **Tandy CoCo gamedocs (10 pages)** at `gamedocs/xroar/` — per-game instruction pages for Mega-Bug, Poltergeist, Popcorn (all 1981), Canyon Climber, Demon Attack, Dungeons of Daggorath, Monster Maze (all 1982), Downland, Galactic Attack, and Polaris (all 1983). Mix of CoCo-original (Daggorath, Downland) and cross-platform ports (Demon Attack, Polaris). Daggorath gets a dedicated typed-command reference table since the game's interface is the famously-unusual real-time-typed CRPG control scheme. XRoar already preserves `?game=<key>` in its URL with no rewrite, so no `fs.js` patching was needed — the corner controls link picks up the param directly via the shared `genx-controls-link.js`. **Gamedocs sweep complete: 27 / 27 sub-systems shipped on the site, 271 pages total.**
 
 ### Added
