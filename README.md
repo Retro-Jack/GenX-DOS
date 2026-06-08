@@ -40,11 +40,12 @@ emulators/
   jsnes/                  NES              — EmulatorJS + FCEUmm libretro core + 10 .nes ROMs
   javatari/               Atari 2600       — pure-JS bundle + 10 .a26 ROMs
   js7800/                 Atari 7800       — pure-JS bundle + 10 .a78 carts
-  webmsx/                 MSX / MSX2 / MSX2+ — WebMSX single-file bundle + 10 MSX1 + 10 MSX2 titles
+  webmsx/                 MSX1 + MSX2 (engine also supports MSX2+, not exposed) — WebMSX single-file bundle + 10 MSX1 + 10 MSX2 titles
   jsvecx/                 GCE Vectrex      — JSVecX + ~500 ROM archive (24 commercial in `roms/Commercial/` + homebrew/demo subdirs; menu exposes 11 curated)
   jsspeccy/               Sinclair Spectrum — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81    — JtyOne + 10 .p tapes (hex format)
   xroar/                  Tandy CoCo       — XRoar WASM + 10 .ccc carts
+  js99er/                 Texas Instruments TI-99/4A — Js99'er (Rasmus Moustgaard) vanilla-JS build + 10 .rpk carts (1980-1983)
   atari800/               Atari 400 + 800XL — atari800 v5.2.0 built to WASM (AltirraOS-XL/800/BASIC baked into the .wasm via `--enable-altirra_bios`) + 11 titles per sub-system (400 has 10 unique + Star Raiders shared with 800XL)
   pet/                    Commodore PET    — EmulatorJS + VICE xpet + 9 .prg classics + PETSCII Robots .d64
   vic20/                  Commodore VIC-20 — EmulatorJS + VICE xvic + 10 cart .prg
@@ -76,6 +77,7 @@ emulators/
 | Spectrum  | gasman/JSSpeccy 3 v3.2               | `play.html?game=<key>`                   |
 | ZX81      | hammingweight/JtyOne                 | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar v1.10           | `play.html?game=<key>`                   |
+| TI-99/4A  | Rasmus-M/js99er (vanilla-JS build)   | `play.html?game=<key>`                   |
 | Atari 400 / 800XL | atari800/atari800 v5.2.0 (own WASM build) | `play.html?game=<key>[&machine=…]` |
 | PET / VIC-20 / MAX / C64 / C16 / Plus/4 / C128 | EmulatorJS + VICE libretro (xpet / xvic / x64 / xplus4 / x128) | `play.html?game=<key>` |
 | ColecoVision | EmulatorJS + gearcoleco (Drhelius) libretro | `play.html?game=<key>` |
@@ -115,6 +117,7 @@ Summary below; see [ATTRIBUTION.md](ATTRIBUTION.md) for the canonical record inc
 - JSSpeccy 3: GPL-3.0 (Matt Westcott / gasman)
 - JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
+- Js99'er: GPL-2.0 (Rasmus Moustgaard) — vanilla-JS build; TI-99/4A cart ROMs mirrored from the js99er.net public archive
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL/800/BASIC (Avery Lee, freely redistributable open-source OS replacement) embedded inside `atari800.wasm` at build time via `--enable-altirra_bios` — no separate ROM file ships
 - EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across the seven VICE-family bundles, ColecoVision, and NES (FCEUmm) via `emulators/_shared-ejs/`
 - VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `x128`, `xvic`, `xplus4`, `xpet`) mirrored from `cdn.emulatorjs.org/stable/`

@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Removed
+- **js99er upstream-UI orphans (11 files, ~200 KB)** at `emulators/js99er/` — files copied from upstream `src/` that the full UI loads but our minimal `play.html` does not. None referenced at runtime; deletion verified by HTTP-200 on `play.html?game=parsec` afterward. Deleted: `emu/ams.js` (AMS memory expansion — disabled at boot), `emu/googledrive.js` (Google Drive — disabled at boot), `lib/audioBufferToWav.js` (audio recorder), `lib/bootstrap.min.js`, `lib/bootstrap-multilevel-dropdown.js`, `lib/bootstrap-select.min.js`, `lib/bootstrap-switch.min.js` (upstream UI chrome), `lib/fileSaver.js` (disk-image save), `lib/imageMapResizer.js` (on-screen-keyboard image map), `lib/zip/mime-types.js`, `lib/zip/zip-fs.js` (unused zip features — we only inflate `.rpk` carts via the worker scripts that remain). Kept: `lib/zip/{zip,zip-ext,inflate,deflate}.js` since `inflate.js` is loaded as a web worker by `zip.js` for the `.rpk` cart pipeline.
+
+### Fixed
+- **Fourth doc-sync audit (08/06/2026)** — surfaced two stale claims post-TI-99/4A addition.
+  - `README.md` Layout block said `MSX / MSX2 / MSX2+` for the webmsx bundle — engine supports MSX2+ but we don't expose it (already fixed in the wiki by the third audit; README was still stale). Updated to `MSX1 + MSX2 (engine also supports MSX2+, not exposed)`. Also added a Layout row + Emulators-table row + License-block line for `js99er/`.
+  - Wiki: `Virtual-Filesystem.md` line 23 said "27 bundled sub-systems" — bumped to 28. `Roadmap.md` "Still to go" → "Plausible" list still listed `TI-99/4A (Js99er)` — removed since it's now shipped.
+  No runtime behaviour changed — pure doc-sync pass + the js99er-bundle orphan prune above.
+
 ### Added
 - **Texas Instruments TI-99/4A platform** — new emulator bundle at `emulators/js99er/` (Rasmus Moustgaard's Js99'er, vanilla-JS build, GPL-2.0) + 10 cartridge ROMs at `emulators/js99er/carts/` + new HOMECOMP entry **TEXAS / TI99 (1979)** between Tandy and the existing closing block. Carts shipped: Hunt the Wumpus (1980), Car Wars, TI Invaders, Tombstone City (all 1981), Alpiner, Microsurgeon (Imagic), Munch Man, Parsec, Tunnels of Doom (all 1982) and Buck Rogers: Planet of Zoom (Sega, 1983). Mirrored from the js99er.net public cart archive (~141 KB total in `.rpk` format). play.html accepts `?game=<key>` and falls back to the TI title screen (which lets you pick TI BASIC) when no cart is specified. Corner controls-link routes to `gamedocs/js99er/<key>.html` or `controls.html`. Bundle size ≈ 1.5 MB excluding carts.
 - **TI-99/4A gamedocs (10 pages)** at `gamedocs/js99er/` — per-game instruction pages mirroring the Solid State Software cart catalogue. Parsec gets a dedicated note on the laser-overheat voice mechanic; Tunnels of Doom gets a separate combat-key table because its first-person combat sub-mode uses different inputs than the dungeon-exploration view; Microsurgeon gets a tool-select reference. **Gamedocs sweep stays complete: 28 / 28 sub-systems, 281 pages.**
