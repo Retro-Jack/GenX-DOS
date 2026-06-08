@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tetris 128 — Commodore 128 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore 128 (VDC 80-col)</div>
+      <h1>Tetris 128</h1>
+      <p class="sub">Homebrew, early 1990s — a Tetris implementation written for the C128's VDC 80-column screen. The wide canvas leaves room for the well, the next-piece preview, score, level, and lines all on screen at once without the 40-col scrunch.</p>
+    </div>
+
+    <p class="intro">Standard Tetris rules: tetrominoes fall, fill rows to clear them, level speed climbs every 10 lines. The 80-col VDC display means the well is rendered at a more pleasant aspect ratio than the C64 ports, and the side panels actually fit.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The <code>.d64</code> autoboots into VDC 80-col; click the canvas first.</li>
+      <li>Pick a starting level (0-9) with <kbd>←</kbd> / <kbd>→</kbd>, hit <kbd>L Ctrl</kbd> (fire) to start.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Shift piece left / right (Numpad 4/6 also work)</td></tr>
+      <tr><td><kbd>↑</kbd></td><td>Rotate piece clockwise</td></tr>
+      <tr><td><kbd>↓</kbd></td><td>Soft drop (1 row per press, points per row)</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Hard drop (instant slam — bigger points)</td></tr>
+      <tr><td><kbd>P</kbd></td><td>Pause</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Keep the right column open.</strong> Old-school Tetris doctrine: leave the rightmost column clear so a vertical I-piece can clear four lines at once (tetris bonus).</li>
+      <li><strong>Don't stack flat.</strong> Build a slight slope so misplaced pieces have somewhere to drift; flat stacks force exact placements.</li>
+      <li><strong>Soft-drop vs hard-drop.</strong> Soft drop earns one point per row; hard drop two per row. On level 0-3, soft-drop everything for grinding score.</li>
+      <li><strong>Speed jumps at level 10.</strong> Around level 10 the fall rate becomes faster than most reaction times — the score grind is in 0-9.</li>
+    </ul>
+  </div>
+</body>
+</html>

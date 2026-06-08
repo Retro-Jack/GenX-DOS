@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- **Commodore 128 gamedocs (10 pages)** at `gamedocs/c128/` — per-game instruction pages for 128 Crush, Rocky Horror Show, The Last V8, Star Fleet I, Knight's Quest, Tetris 128, World at War, Phazer, Rockfall 128, and Wumpus 2.0. Mix of mid-1980s commercial titles (Rocky Horror, Last V8) and homebrew across the C128's full active lifespan (1985 through 2023). Each page indicates whether the title runs on the VICII 40-column or VDC 80-column display (matches the `video` field in `games.json`). Auto-linked via the shared `genx-controls-link.js`. BASIC 7.0 prompt entry is intentionally not gamedoc'd.
 - **Commodore Plus/4 gamedocs (10 pages)** at `gamedocs/plus4/` — per-game instruction pages for Blagger, Popeye, Citadel, Kikstart, Punchy, Rockman, Saboteur, Squirm, Mercenary, and Trailblazer. Auto-linked from each game's "controls" badge on the Plus/4 play page (via `_shared/genx-controls-link.js`, which rewrites `controls.html` → `../../gamedocs/plus4/<key>.html` whenever a `?game=` parameter is present). Same template as the C16/C64/MAX sweep: system header, intro, "Getting started", Controls table mapping the host keyboard to Plus/4 input, and a Strategy section with 3-4 tactical pointers. The BASIC 3.5 prompt entry is intentionally not gamedoc'd (matches C16/C64/MAX convention).
 
 ### Removed

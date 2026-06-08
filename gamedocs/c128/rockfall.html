@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rockfall 128 — Commodore 128 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore 128 (VDC 80-col)</div>
+      <h1>Rockfall 128</h1>
+      <p class="sub">Homebrew, 2023 — a Boulder Dash-inspired puzzle game written for C128 native mode with the VDC 80-column screen. Modern C128 scene production, runs entirely on real hardware too.</p>
+    </div>
+
+    <p class="intro">Top-down cave digger in the Boulder Dash mould. You push through dirt; boulders and diamonds rest on dirt and fall when unsupported. Stand under a falling rock = death. Collect the per-level diamond quota; the exit opens, race for it. The 80-col VDC gives a much wider playfield than the C64 Boulder Dash — more cave per screen, fewer flick-screen panic moments.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The <code>.prg</code> auto-loads via VICE autostart; click the canvas first.</li>
+      <li>Pick a level from the menu, press <kbd>L Ctrl</kbd> (fire) to start.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Dig / move (Numpad 8/2/4/6 also work)</td></tr>
+      <tr><td><kbd>L Ctrl</kbd> + dir</td><td>Push boulder without stepping onto its square</td></tr>
+      <tr><td><kbd>Scroll Lock</kbd></td><td>RUN/STOP — abort level</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Plan vertical descents.</strong> Digging straight down means anything above can fall. Tunnel sideways first to clear escape routes, then commit downward.</li>
+      <li><strong>Boulders block monsters.</strong> Pushed boulders make excellent walls — corner a wandering enemy with one, harvest its diamonds.</li>
+      <li><strong>Diamonds in a stack fall together.</strong> Knock the bottom one out and the whole column collapses; great for clearing tight clusters in one move.</li>
+      <li><strong>Map the exit before the quota.</strong> The exit opens the moment quota hits; you don't want to be on the wrong side of the cave when it does.</li>
+    </ul>
+  </div>
+</body>
+</html>

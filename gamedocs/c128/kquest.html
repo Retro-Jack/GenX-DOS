@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knight's Quest — Commodore 128 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore 128 (VDC 80-col)</div>
+      <h1>Knight's Quest</h1>
+      <p class="sub">Homebrew, early 1990s — a text adventure / strategy hybrid written natively for the C128's 80-column VDC mode. The wider screen lets the parser show map snippets alongside its room descriptions, which the 40-col C64 versions couldn't.</p>
+    </div>
+
+    <p class="intro">Boots into VDC 80-column mode. Pure text-and-typed-command adventure: explore the kingdom, gather party members, equip weapons and armour, and storm the dark tower at the end. Read every room description carefully — the 80-col layout means the verb-noun parser sometimes hides hints in the right-hand column.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The <code>.d64</code> autoboots into VDC 80-col; click the canvas first.</li>
+      <li>Press <kbd>Enter</kbd> at the title; type your character's name.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <p>Standard verb-noun text-adventure parser. Useful commands:</p>
+    <table>
+      <tr><th>Typed command</th><th>Effect</th></tr>
+      <tr><td><code>LOOK</code></td><td>Re-describe the current room</td></tr>
+      <tr><td><code>N</code> <code>S</code> <code>E</code> <code>W</code> <code>U</code> <code>D</code></td><td>Move (single-letter shortcuts)</td></tr>
+      <tr><td><code>GET &lt;item&gt;</code> / <code>DROP &lt;item&gt;</code></td><td>Inventory management</td></tr>
+      <tr><td><code>INV</code> or <code>I</code></td><td>List what you're carrying</td></tr>
+      <tr><td><code>USE &lt;item&gt;</code></td><td>Activate an item (potion, key, scroll)</td></tr>
+      <tr><td><code>ATTACK &lt;creature&gt;</code></td><td>Initiate combat</td></tr>
+      <tr><td><code>SAVE</code> / <code>LOAD</code></td><td>Disk save/load (uses EmulatorJS state in the browser)</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Map as you go.</strong> 80-col text adventures still use grid rooms; pen-and-paper or a side text file pays off fast.</li>
+      <li><strong>Read item descriptions.</strong> Each pick-up often has a one-line property the parser only mentions on the <code>EXAMINE</code> verb — vital for puzzle-key items.</li>
+      <li><strong>Save before combat.</strong> Combat is dice-rolled and unforgiving; EmulatorJS save-state before any first encounter with a new creature type.</li>
+      <li><strong>Visit shops first.</strong> Early gold buys better starting gear; the tower run is impossible without leather + a real sword.</li>
+    </ul>
+  </div>
+</body>
+</html>
