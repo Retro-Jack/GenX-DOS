@@ -63,6 +63,12 @@ emulators/
   odyssey2/               Magnavox Odyssey²   — libretro-o2em + custom SDL2 frontend + 10 carts
 ```
 
+## Where the readable source is
+
+The hand-written GenX-DOS code lives in `prompt/javascript/`, `emulators/_shared/`, `emulators/_shared-ejs/`, and each emulator's `play.html` wrapper — all formatted for reading.
+
+Everything else under `emulators/<name>/` is upstream: emscripten WASM glue (`xroar.js`, `atari800.js`, `o2em.js`, `jzintv.js`), webpack production bundles (`apple1.js`, `apple2/dist/*.bundle.js`, `jsspeccy.js`), single-file inlined deploys (`webmsx/index.html`, `jsvecx/index.html`), or hand-written JS from the upstream project (ElkJS, javatari.js, js99er's `emu/`). For the readable source of those, follow the upstream link in [ATTRIBUTION.md](ATTRIBUTION.md) or the per-engine integration story on the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators).
+
 ## The emulator lineup
 
 Each engine has its own story page on the wiki — the gotchas we hit, the workarounds we shipped, the dead ends we ruled out. The table below is the quick-reference; click through to [Emulators](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators) for the index.
