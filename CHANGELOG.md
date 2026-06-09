@@ -16,6 +16,7 @@
 - **Tseng ET4000 video BIOS POST lines** from the boot sequence — `init.js` now goes straight from the AMI logo to the AMIBIOS system POST.
 
 ### Fixed
+- **Controls-link readability over wallpaper** — `genx-controls-link.css` dropped the element-level `opacity: 0.5` + translucent `rgba(0, 0, 0, 0.55)` background combo (which let the 70s pattern bleed through). Now solid `#000` background with a thin amber border, muted `rgba(255, 176, 0, 0.75)` text. Hover brightens to full `#ff8800` on both text and border. Affects every emulator entry HTML site-wide.
 - **Double prompt after closing an emulator tab** — `commands-core.js` close-handler now just re-runs `menu` in place instead of `cd ..; menu`. The old sequence trampolined through the parent's menu.bat (which itself `cd`s into the games dir and re-runs `menu`), and the trailing `echo.` on each layer toggled `bEchoOff` plus triggered an extra `prompt()` at the end of `handleCmd`, producing two prompt lines on return.
 - **Audit sync (09/06/2026)** — `ATTRIBUTION.md` bezel section updated to reflect PC.png landing on the DOS prompt. Stale `init.js` POST-flow comment that still referenced the (removed) Tseng line trimmed. No code-path changes.
 
