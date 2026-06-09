@@ -3,7 +3,9 @@
 ## [Unreleased]
 
 ### Added
-- **70s tile wallpaper** — `emulators/_shared/textures/70s-bg.webp` (900×900) tiled at 220px as the body background. Applied via `genx-controls.css` so all 305 docs / gamedocs / controls pages inherit, plus the DOS prompt page. Surrounds the centred IBM PC bezel on the prompt view; sits behind the centred `.wrap` on docs pages.
+- **70s tile wallpaper** — `emulators/_shared/textures/70s-bg.png` (1016×960, seamless 70s arrow-arch pattern) tiled at 220px as the body background. Applied via `genx-controls.css` so the DOS prompt page + all gamedocs inherit. Surrounds the centred IBM PC bezel on the prompt view; sits behind the centred `.wrap` on gamedoc pages.
+- **`body.controls-page` override** in `genx-controls.css` — suppresses the wallpaper on the 24 per-platform `controls.html` pages so the keyboard tables stay on a flat `#0a0a0a` background. The class is set on each `<body>` directly.
+- **Centred menu boxes** — all 38 menu screens in `prompt/javascript/fs.js` now centre their box-drawing artwork in the 80-column grid (per-box indent computed from the box's max width). The `C:\>` prompt line itself stays left-aligned.
 - **IBM PC bezel for the DOS prompt** — `prompt/index.html` now embeds the shared `PC.png` bezel and scales the 80×25 grid into the screen cutout. Non-uniform `transform: scale(sx, sy)` stretches the 960×300 prompt to fill the cutout in both axes — period-accurate for VGA text mode which used non-square pixels. Auto-scroll via MutationObserver keeps the cursor row visible as new lines render. Resizes cleanly with the browser window.
 - **Three explicit layers behind the bezel** — `.screen-bg` (back, 90% of the bezel-wrap, solid black) → `.prompt-fit` (canvas, sized to the cutout, the prompt grid lives here) → `.bezel-img` (front, PC.png on top). The black backdrop blocks the wallpaper from bleeding through the PNG's anti-aliased cutout boundary.
 - **AMI Megatrends logo proportions match the stretched grid** — sized to 205×51 (½ width, ⅜ height of the source 409×136) so it doesn't appear elongated when the rest of the screen is non-uniformly scaled.
