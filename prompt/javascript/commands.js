@@ -2,7 +2,7 @@
 // BUILT-IN COMMANDS
 // ============================================================
 registerCmd('exit',    function()    { echo("I'm sorry, Dave. I'm afraid I can't do that."); echo(''); });
-registerCmd('del',     function()    { echo("File(s) too important for me to allow you to jeopardize."); echo(''); });
+registerCmd('del',     function()    { echo("Sorry, file(s) last seen running away."); echo(''); });
 registerCmd('rmdir',   function()    { echo("Bad command or go away."); echo(''); });
 registerCmd('chkdsk',  function()    { echo("*Checking...*  Yep, that's a disk."); echo(''); });
 registerCmd('help',    function()    { showFullHelp(); });
