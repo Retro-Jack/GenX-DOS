@@ -95,7 +95,6 @@ function attemptExec(file) {
                     var poll = setInterval(function() {
                         if (win.closed) {
                             clearInterval(poll);
-                            enterCmd('cd ..\n');
                             enterCmd('menu\n');
                         }
                     }, 500);

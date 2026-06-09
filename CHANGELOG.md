@@ -15,6 +15,7 @@
 - **Tseng ET4000 video BIOS POST lines** from the boot sequence — `init.js` now goes straight from the AMI logo to the AMIBIOS system POST.
 
 ### Fixed
+- **Double prompt after closing an emulator tab** — `commands-core.js` close-handler now just re-runs `menu` in place instead of `cd ..; menu`. The old sequence trampolined through the parent's menu.bat (which itself `cd`s into the games dir and re-runs `menu`), and the trailing `echo.` on each layer toggled `bEchoOff` plus triggered an extra `prompt()` at the end of `handleCmd`, producing two prompt lines on return.
 - **Audit sync (09/06/2026)** — `ATTRIBUTION.md` bezel section updated to reflect PC.png landing on the DOS prompt. Stale `init.js` POST-flow comment that still referenced the (removed) Tseng line trimmed. No code-path changes.
 
 ### Changed
