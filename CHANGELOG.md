@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **JS7800 F-key reference** — platform `controls.html` + 10 gamedoc pages had F3 and F4 swapped. F3 is the Reset switch (= start the game on most carts); F4 is Pause. Corrected throughout.
+
 ### Changed
 - **README rewritten in casual journey-style voice** to match the wiki. No content removed; same lineup table, URL patterns, and licence list, just framed as a project narrative.
 - **CHANGELOG de-cluttered** — trimmed verbose entries to release-note form. Deep recipes live in the wiki now.
