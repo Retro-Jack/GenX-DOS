@@ -20,13 +20,17 @@ var fontSrc = [];
 // ============================================================
 // KEYBOARD STATE & COLOR
 // ============================================================
-var txtPal = { bg: 0, fg: 7 }; // current foreground/background palette indices
+var txtPal = {
+    bg: 0,
+    fg: 7
+}; // current foreground/background palette indices
 
 // ============================================================
 // KEYBOARD HANDLER — keyup
 // Resets arrow-key held state.
 // ============================================================
-var kUp = false, kDown = false;
+var kUp = false,
+    kDown = false;
 
 // ============================================================
 // INITIALIZATION
@@ -54,7 +58,7 @@ var commands = {};
 // ============================================================
 // RUNTIME STATE
 // ============================================================
-var cmdStack    = [];   // history of entered commands
-var cmdStackIdx = -1;   // current position in history (for up/down navigation)
-var ctxStack    = [];   // active program context stack (for context-aware input)
-var curItvl;            // cursor blink interval handle
+var cmdStack = []; // history of entered commands
+var cmdStackIdx = -1; // current position in history (for up/down navigation)
+var ctxStack = []; // active program context stack (for context-aware input)
+var curItvl; // cursor blink interval handle

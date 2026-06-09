@@ -2,9 +2,17 @@
 function enterCmd(d) {
     for (var i = 0; i < d.length; i++) {
         if (d.charAt(i) == '\n')
-            document.onkeypress({ keyCode: 13, stopPropagation: function() {}, preventDefault: function() {} });
+            document.onkeypress({
+                keyCode: 13,
+                stopPropagation: function() {},
+                preventDefault: function() {}
+            });
         else
-            document.onkeypress({ keyCode: d.charCodeAt(i), stopPropagation: function() {}, preventDefault: function() {} });
+            document.onkeypress({
+                keyCode: d.charCodeAt(i),
+                stopPropagation: function() {},
+                preventDefault: function() {}
+            });
     }
 }
 
@@ -39,7 +47,11 @@ function prompt(txt) {
     }
     promptMode = true;
     for (var i = 0; i < strPrompt.length; i++) {
-        document.onkeypress({ keyCode: strPrompt.charCodeAt(i), stopPropagation: function() {}, preventDefault: function() {} });
+        document.onkeypress({
+            keyCode: strPrompt.charCodeAt(i),
+            stopPropagation: function() {},
+            preventDefault: function() {}
+        });
     }
     promptMode = false;
 }
@@ -50,15 +62,31 @@ function echo(str) {
     var offset = 0;
     for (var i = 0; i < str.length; i++) {
         if ((i - offset) % 80 == 0 && i != 0)
-            document.onkeypress({ keyCode: 13, stopPropagation: function() {}, preventDefault: function() {} });
+            document.onkeypress({
+                keyCode: 13,
+                stopPropagation: function() {},
+                preventDefault: function() {}
+            });
         if (str.charAt(i) == '\n') {
-            document.onkeypress({ keyCode: 13, stopPropagation: function() {}, preventDefault: function() {} });
+            document.onkeypress({
+                keyCode: 13,
+                stopPropagation: function() {},
+                preventDefault: function() {}
+            });
             offset = i % 80;
         } else {
-            document.onkeypress({ keyCode: str.charCodeAt(i), stopPropagation: function() {}, preventDefault: function() {} });
+            document.onkeypress({
+                keyCode: str.charCodeAt(i),
+                stopPropagation: function() {},
+                preventDefault: function() {}
+            });
         }
     }
-    document.onkeypress({ keyCode: 13, stopPropagation: function() {}, preventDefault: function() {} });
+    document.onkeypress({
+        keyCode: 13,
+        stopPropagation: function() {},
+        preventDefault: function() {}
+    });
     promptMode = false;
 }
 

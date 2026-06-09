@@ -1,5 +1,7 @@
 function goFontGo() {
-    var strStyle = "", fontMapCharWidth = 12, fontMapCharHeight = 12;
+    var strStyle = "",
+        fontMapCharWidth = 12,
+        fontMapCharHeight = 12;
     for (var i = 0; i < (16 * 16); i++) {
         var x = i % 16;
         var y = (i - x) / 16;

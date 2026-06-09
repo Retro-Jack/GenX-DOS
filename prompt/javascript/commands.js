@@ -1,22 +1,59 @@
 // ============================================================
 // BUILT-IN COMMANDS
 // ============================================================
-registerCmd('exit',    function()    { echo("I'm sorry, Dave. I'm afraid I can't do that."); echo(''); });
-registerCmd('del',     function()    { echo("Sorry, file(s) last seen running away."); echo(''); });
-registerCmd('rmdir',   function()    { echo("Bad command or go away."); echo(''); });
-registerCmd('chkdsk',  function()    { echo("*Checking...*  Yep, that's a disk."); echo(''); });
-registerCmd('help',    function()    { showFullHelp(); });
-registerCmd('format',  function()    { echo("Specified drive does not exist. Anarchist."); echo(''); });
-registerCmd('edlin',   function()    { echo("Whoa now, this is not MS-DOS!"); echo(''); });
-registerCmd('edit',    function()    { echo("Error: Correction fluid mismatch."); echo(''); });
-registerCmd('debug',   function()    { echo("Program terminated normally (0000)"); echo(''); });
-registerCmd('attrib',  function()    { echo("A ttrib is a terrible thing to waste."); echo(''); });
-registerCmd('zerocool',function()    { txtPal.fg = 11; txtPal.bg = 1; echo("HACK THE PLANET!"); echo(''); });
-registerCmd('quit',    function()    { echo("You're just gonna quit, huh? Good luck with that."); echo(''); });
+registerCmd('exit', function() {
+    echo("I'm sorry, Dave. I'm afraid I can't do that.");
+    echo('');
+});
+registerCmd('del', function() {
+    echo("Sorry, file(s) last seen running away.");
+    echo('');
+});
+registerCmd('rmdir', function() {
+    echo("Bad command or go away.");
+    echo('');
+});
+registerCmd('chkdsk', function() {
+    echo("*Checking...*  Yep, that's a disk.");
+    echo('');
+});
+registerCmd('help', function() {
+    showFullHelp();
+});
+registerCmd('format', function() {
+    echo("Specified drive does not exist. Anarchist.");
+    echo('');
+});
+registerCmd('edlin', function() {
+    echo("Whoa now, this is not MS-DOS!");
+    echo('');
+});
+registerCmd('edit', function() {
+    echo("Error: Correction fluid mismatch.");
+    echo('');
+});
+registerCmd('debug', function() {
+    echo("Program terminated normally (0000)");
+    echo('');
+});
+registerCmd('attrib', function() {
+    echo("A ttrib is a terrible thing to waste.");
+    echo('');
+});
+registerCmd('zerocool', function() {
+    txtPal.fg = 11;
+    txtPal.bg = 1;
+    echo("HACK THE PLANET!");
+    echo('');
+});
+registerCmd('quit', function() {
+    echo("You're just gonna quit, huh? Good luck with that.");
+    echo('');
+});
 
 registerCmd('dopefish', function() {
     echo("Lives!");
-    var dope = [1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,0,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,2,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,2,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,0,0,9,1,9,1,9,1,9,1,9,1,9,1,9,0,2,2,2,2,0,1,9,1,9,1,9,1,9,1,9,1,2,2,2,2,2,2,0,1,9,1,9,1,9,1,9,1,2,2,2,2,2,2,2,2,9,1,9,1,9,1,9,1,9,2,0,15,15,8,2,2,2,2,9,1,9,1,9,1,9,0,2,15,15,15,15,2,2,2,2,1,9,1,9,1,9,1,2,2,15,15,15,15,2,15,2,2,0,1,9,1,9,1,9,2,0,15,15,0,15,15,15,15,2,2,9,2,0,1,9,1,2,15,15,0,0,0,15,15,15,2,2,1,2,2,9,1,9,2,15,15,0,0,0,0,15,15,2,2,2,2,2,0,9,1,2,15,15,0,0,0,0,0,15,2,2,2,2,2,2,0,9,2,15,15,0,0,0,0,15,15,2,0,8,2,2,2,2,0,2,15,15,15,0,0,15,15,2,2,2,0,2,2,2,2,2,2,0,15,15,15,2,2,2,2,0,2,2,1,2,2,2,2,2,2,7,15,8,2,2,2,0,4,0,2,9,1,2,2,0,2,2,2,2,2,0,15,15,0,4,0,2,2,9,8,2,1,2,2,2,15,15,15,15,15,0,0,0,2,2,1,9,0,9,2,2,2,15,15,15,15,15,0,0,0,2,2,9,1,0,2,2,2,2,15,15,15,15,15,0,4,0,2,2,1,9,1,2,8,2,2,15,15,15,15,15,0,0,2,2,1,9,1,9,2,9,2,2,15,15,15,15,15,0,2,2,8,9,1,9,1,9,1,2,2,0,0,0,0,0,0,2,2,0,1,9,1,9,1,9,2,0,2,2,0,2,2,2,2,0,1,9,1,9,1,9,1,0,2,2,2,0,8,2,2,0,0,9,1,9,1,9,1,9,1,2,0,2,2,0,0,0,0,9,1,9,1,9,1,9,1,9,0,2,0,0,0,0,8,9,1,9,1,9,1,9,1,9,1,9,0,2,2,2,2,0,1,9,1,9,1,9,1,9,1,9,1,9,0,0,0,9,1,9,1,9,1,9];
+    var dope = [1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 0, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 2, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 2, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 0, 0, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 0, 2, 2, 2, 2, 0, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 2, 2, 2, 2, 2, 2, 0, 1, 9, 1, 9, 1, 9, 1, 9, 1, 2, 2, 2, 2, 2, 2, 2, 2, 9, 1, 9, 1, 9, 1, 9, 1, 9, 2, 0, 15, 15, 8, 2, 2, 2, 2, 9, 1, 9, 1, 9, 1, 9, 0, 2, 15, 15, 15, 15, 2, 2, 2, 2, 1, 9, 1, 9, 1, 9, 1, 2, 2, 15, 15, 15, 15, 2, 15, 2, 2, 0, 1, 9, 1, 9, 1, 9, 2, 0, 15, 15, 0, 15, 15, 15, 15, 2, 2, 9, 2, 0, 1, 9, 1, 2, 15, 15, 0, 0, 0, 15, 15, 15, 2, 2, 1, 2, 2, 9, 1, 9, 2, 15, 15, 0, 0, 0, 0, 15, 15, 2, 2, 2, 2, 2, 0, 9, 1, 2, 15, 15, 0, 0, 0, 0, 0, 15, 2, 2, 2, 2, 2, 2, 0, 9, 2, 15, 15, 0, 0, 0, 0, 15, 15, 2, 0, 8, 2, 2, 2, 2, 0, 2, 15, 15, 15, 0, 0, 15, 15, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 0, 15, 15, 15, 2, 2, 2, 2, 0, 2, 2, 1, 2, 2, 2, 2, 2, 2, 7, 15, 8, 2, 2, 2, 0, 4, 0, 2, 9, 1, 2, 2, 0, 2, 2, 2, 2, 2, 0, 15, 15, 0, 4, 0, 2, 2, 9, 8, 2, 1, 2, 2, 2, 15, 15, 15, 15, 15, 0, 0, 0, 2, 2, 1, 9, 0, 9, 2, 2, 2, 15, 15, 15, 15, 15, 0, 0, 0, 2, 2, 9, 1, 0, 2, 2, 2, 2, 15, 15, 15, 15, 15, 0, 4, 0, 2, 2, 1, 9, 1, 2, 8, 2, 2, 15, 15, 15, 15, 15, 0, 0, 2, 2, 1, 9, 1, 9, 2, 9, 2, 2, 15, 15, 15, 15, 15, 0, 2, 2, 8, 9, 1, 9, 1, 9, 1, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 1, 9, 1, 9, 1, 9, 2, 0, 2, 2, 0, 2, 2, 2, 2, 0, 1, 9, 1, 9, 1, 9, 1, 0, 2, 2, 2, 0, 8, 2, 2, 0, 0, 9, 1, 9, 1, 9, 1, 9, 1, 2, 0, 2, 2, 0, 0, 0, 0, 9, 1, 9, 1, 9, 1, 9, 1, 9, 0, 2, 0, 0, 0, 0, 8, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 0, 2, 2, 2, 2, 0, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 0, 0, 0, 9, 1, 9, 1, 9, 1, 9];
     for (var y = 0; y < 32; y += 2) {
         for (var x = 0; x < 17; x++) {
             var c = document.createElement('div');
@@ -35,29 +72,43 @@ registerCmd('dopefish', function() {
 });
 
 registerCmd('echo', function(cmd) {
-    if (cmd == 'off') { bEchoOff = true; return; }
+    if (cmd == 'off') {
+        bEchoOff = true;
+        return;
+    }
     echo(cmd);
 });
-registerCmd('echo.', function() { bEchoOff = false; echo(''); });
-registerCmd('type', function(cmd) { type(cmd); });
+registerCmd('echo.', function() {
+    bEchoOff = false;
+    echo('');
+});
+registerCmd('type', function(cmd) {
+    type(cmd);
+});
 registerCmd('cls', function() {
     promptEl.innerHTML = '<div id="cursor" class="font f-95 f-cursor"></div>';
     cursorEl = document.getElementById('cursor');
 });
-registerCmd('dir', function(cmd) { dir(cmd); });
+registerCmd('dir', function(cmd) {
+    dir(cmd);
+});
 registerCmd('cd', function(cmd) {
     if (!cd(cmd.toLowerCase().replace('cd', '')))
         echo('The system cannot find the path specified.');
 });
-registerCmd('find', function(cmd) { find(cmd); });
+registerCmd('find', function(cmd) {
+    find(cmd);
+});
 registerCmd('setcol', function(cmd) {
     if (cmd.length != 2) {
         echo('invalid command');
     } else {
         var b = Number('0x' + cmd.charAt(0), 16);
         var f = Number('0x' + cmd.charAt(1), 16);
-        if (b + '' != 'NaN' && f + '' != 'NaN') { txtPal.bg = b; txtPal.fg = f; }
-        else echo('invalid command');
+        if (b + '' != 'NaN' && f + '' != 'NaN') {
+            txtPal.bg = b;
+            txtPal.fg = f;
+        } else echo('invalid command');
     }
 });
 

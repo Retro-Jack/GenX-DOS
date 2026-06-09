@@ -10,7 +10,7 @@ document.onkeypress = function(e) {
     addClass(c, 'font');
     var k = e.keyCode || e.charCode;
 
-    if (k == 38 && kUp == true)   return;
+    if (k == 38 && kUp == true) return;
     if (k == 40 && kDown == true) return;
 
     // Enter key — submit command
@@ -41,8 +41,8 @@ document.onkeypress = function(e) {
     c.setAttribute('v', String.fromCharCode(k));
     if (k == 13) c.setAttribute('v', '\n');
 
-    c.style.backgroundColor  = pal[txtPal.bg];
-    c.style.backgroundImage  = 'url(' + fontSrc[txtPal.fg] + ')';
+    c.style.backgroundColor = pal[txtPal.bg];
+    c.style.backgroundImage = 'url(' + fontSrc[txtPal.fg] + ')';
 
     promptEl.insertBefore(c, cursorEl);
 
@@ -62,8 +62,9 @@ document.onkeypress = function(e) {
     }
 
     if (typeof e.stopPropagation === 'undefined') e.stopPropagation = function() {};
-    if (typeof e.preventDefault  === 'undefined') e.preventDefault  = function() {};
-    e.stopPropagation(); e.preventDefault();
+    if (typeof e.preventDefault === 'undefined') e.preventDefault = function() {};
+    e.stopPropagation();
+    e.preventDefault();
     return false;
 };
 
@@ -75,23 +76,28 @@ document.onkeypress = function(e) {
 function doKeyDown(e) {
     if (typeof e === 'undefined') e = event;
     if (typeof e.stopPropagation === 'undefined') e.stopPropagation = function() {};
-    if (typeof e.preventDefault  === 'undefined') e.preventDefault  = function() {};
+    if (typeof e.preventDefault === 'undefined') e.preventDefault = function() {};
 
     var k = e.keyCode || e.charCode;
 
     // Backspace — Firefox doesn't fire keypress for backspace
     if (k == 8) {
-        e.stopPropagation(); e.preventDefault();
+        e.stopPropagation();
+        e.preventDefault();
         if (window.navigator.userAgent.toLowerCase().indexOf("firefox") == -1)
-            document.onkeypress({ keyCode: 8 });
+            document.onkeypress({
+                keyCode: 8
+            });
         return false;
     }
 
-    var up = 38, down = 40;
+    var up = 38,
+        down = 40;
 
     // Up arrow — step backward through command history
     if (k == up && cmdStackIdx > -1) {
-        var el = cursorEl, hold;
+        var el = cursorEl,
+            hold;
         while (!gotClass(el, 'p')) {
             hold = el;
             el = el.previousSibling;
@@ -104,7 +110,8 @@ function doKeyDown(e) {
 
     // Down arrow — step forward through command history
     if (k == down && cmdStackIdx < cmdStack.length) {
-        var el = cursorEl, hold;
+        var el = cursorEl,
+            hold;
         while (!gotClass(el, 'p')) {
             hold = el;
             el = el.previousSibling;
@@ -116,9 +123,10 @@ function doKeyDown(e) {
     }
 
     if (k == down) kDown = true;
-    if (k == up)   kUp   = true;
+    if (k == up) kUp = true;
     if (k == down || k == up) {
-        e.stopPropagation(); e.preventDefault();
+        e.stopPropagation();
+        e.preventDefault();
         return false;
     }
 }
@@ -130,11 +138,13 @@ function doKeyDown(e) {
 function doKeyUp(e) {
     if (typeof e === 'undefined') e = event;
     if (typeof e.stopPropagation === 'undefined') e.stopPropagation = function() {};
-    if (typeof e.preventDefault  === 'undefined') e.preventDefault  = function() {};
+    if (typeof e.preventDefault === 'undefined') e.preventDefault = function() {};
 
     var k = e.keyCode || e.charCode;
     if (k == 40) kDown = false;
-    if (k == 38) kUp   = false;
+    if (k == 38) kUp = false;
 
-    e.stopPropagation(); e.preventDefault(); return false;
+    e.stopPropagation();
+    e.preventDefault();
+    return false;
 }

@@ -15,14 +15,18 @@ function dir(sw) {
         fsc = fsc.directories[path[i]];
     }
 
-    var listD = [], listF = [];
+    var listD = [],
+        listF = [];
     for (var i = 0; i < fsc.directories.length; i++) listD[listD.length] = fsc.directories[i].name;
-    for (var i = 0; i < fsc.files.length; i++)      listF[listF.length] = fsc.files[i].name;
+    for (var i = 0; i < fsc.files.length; i++) listF[listF.length] = fsc.files[i].name;
 
     var swW = sw.indexOf('/w') != -1,
         swO = sw.indexOf('/o') != -1;
 
-    if (swO) { listD.sort(); listF.sort(); }
+    if (swO) {
+        listD.sort();
+        listF.sort();
+    }
 
     // Add . and .. navigation entries when not in root
     if (path.length > 1) {
@@ -64,7 +68,7 @@ function dir(sw) {
     }
 
     if (swW) echo(listD.join('') + listF.join(''));
-    else     echo(listD.join('\n') + '\n' + listF.join('\n'));
+    else echo(listD.join('\n') + '\n' + listF.join('\n'));
 
     echo(pad(pad((fsc.files.length) + '', 5, false) + ' File(s)', 16, true) + pad(Math.ceil(totalSize) + ' ', 16, false) + 'Bytes.');
     echo(pad(pad((fsc.directories.length + 2) + '', 5, false) + ' Dir(s)', 16, true) + pad('111,744 ', 16, false) + 'Bytes free.');
@@ -121,7 +125,10 @@ function cd(dir) {
     while (dir.charAt(0) == ' ' && dir.length > 0) dir = dir.substr(1);
 
     // cd \ — go to drive root
-    if (dir.charAt(0) == '\\' && dir.length == 1) { path = [0]; return true; }
+    if (dir.charAt(0) == '\\' && dir.length == 1) {
+        path = [0];
+        return true;
+    }
 
     // Absolute path from root
     if (dir.charAt(0) == '\\') {
@@ -145,9 +152,17 @@ function cd(dir) {
     }
 
     // Relative path
-    if (dir == '..' && path.length > 1) { path.pop(); return true; }
-    if (dir == '.') { return true; }
-    if (dir.substr(0, 3) == '..\\'  && path.length > 1) { dir = dir.substr(3); path.pop(); }
+    if (dir == '..' && path.length > 1) {
+        path.pop();
+        return true;
+    }
+    if (dir == '.') {
+        return true;
+    }
+    if (dir.substr(0, 3) == '..\\' && path.length > 1) {
+        dir = dir.substr(3);
+        path.pop();
+    }
 
     var fsc = fs[path[0]];
     for (var i = 1; i < path.length; i++) fsc = fsc.directories[path[i]];
@@ -174,8 +189,14 @@ function type(file) {
     for (var i = 0; i < fsc.files.length; i++) {
         var fname = fsc.files[i].name.toLowerCase();
         if (fname == file || fname.split('.')[0] == file) {
-            if (typeof fsc.files[i].data  !== 'undefined') { echo(fsc.files[i].data);  return true; }
-            if (typeof fsc.files[i].link  !== 'undefined') { echo(fsc.files[i].link);  return true; }
+            if (typeof fsc.files[i].data !== 'undefined') {
+                echo(fsc.files[i].data);
+                return true;
+            }
+            if (typeof fsc.files[i].link !== 'undefined') {
+                echo(fsc.files[i].link);
+                return true;
+            }
         }
     }
     echo('The syntax of the command is incorrect.');
@@ -188,8 +209,8 @@ function type(file) {
 // menus (sub-directories), matching the query against the human
 // title parsed from each directory's menu.bat plus the short code.
 // ============================================================
-var FIND_CODE_COL = 11;             // width of the leading code column
-var FIND_INDENT = '             ';  // 2 + FIND_CODE_COL spaces, for the path line
+var FIND_CODE_COL = 11; // width of the leading code column
+var FIND_INDENT = '             '; // 2 + FIND_CODE_COL spaces, for the path line
 
 function find(query) {
     var raw = (query || '').trim();
@@ -210,7 +231,10 @@ function find(query) {
         return;
     }
     var q = raw.trim().toLowerCase();
-    if (!q) { echo('Empty search.'); return; }
+    if (!q) {
+        echo('Empty search.');
+        return;
+    }
 
     // Special case: any query starting with "odyssey" matches the
     // Odyssey² entry, regardless of what comes after. The menu title
@@ -228,7 +252,9 @@ function find(query) {
     // spaces (e.g. "Duke Nukem", "MARIO 3"). "[GAMES]" marker stripped.
     // Numbered .bat data like "smb\n" maps row N -> launcher "smb".
     function parseDir(node) {
-        var byCode = {}, byNum = {}, numToLauncher = {};
+        var byCode = {},
+            byNum = {},
+            numToLauncher = {};
         for (var i = 0; i < node.files.length; i++) {
             var f = node.files[i];
             if (typeof f.data === 'undefined') continue;
@@ -265,7 +291,10 @@ function find(query) {
         for (var n in numToLauncher) {
             if (byNum[n]) launcherTitle[numToLauncher[n]] = byNum[n];
         }
-        return { byCode: byCode, launcherTitle: launcherTitle };
+        return {
+            byCode: byCode,
+            launcherTitle: launcherTitle
+        };
     }
 
     // Match `needle` (already lowercased) at a word boundary inside `hayLower`.
@@ -294,7 +323,11 @@ function find(query) {
             if (/^\d+$/.test(code)) continue;
             var title = meta.byCode[code] || meta.launcherTitle[code] || code.toUpperCase();
             if (matches(title.toLowerCase(), q) || matches(code, q)) {
-                games.push({ code: code.toUpperCase(), title: title, path: currentPath });
+                games.push({
+                    code: code.toUpperCase(),
+                    title: title,
+                    path: currentPath
+                });
             }
         }
 
@@ -303,7 +336,11 @@ function find(query) {
             var dcode = d.name.toLowerCase();
             var dtitle = meta.byCode[dcode] || d.name;
             if (matches(dtitle.toLowerCase(), q) || matches(dcode, q)) {
-                menus.push({ code: d.name, title: dtitle, path: currentPath });
+                menus.push({
+                    code: d.name,
+                    title: dtitle,
+                    path: currentPath
+                });
             }
             walk(d, currentPath + '\\' + d.name);
         }
@@ -324,7 +361,11 @@ function find(query) {
     var total = games.length + menus.length;
     echo('');
     echo('Searching for "' + q + '"...');
-    if (total === 0) { echo('No matches found.'); echo(''); return; }
+    if (total === 0) {
+        echo('No matches found.');
+        echo('');
+        return;
+    }
     echo(total + ' match' + (total === 1 ? '' : 'es') + ' found.');
     echo('');
     printSection('GAMES', games);
@@ -339,7 +380,10 @@ function registerCmd(name, method, replace) {
     if (typeof commands[name] !== 'undefined' && replace !== true) {
         console.log('command ' + name + ' already exists.');
     }
-    commands[name] = { name: name, method: method };
+    commands[name] = {
+        name: name,
+        method: method
+    };
 }
 
 function handleCmd(cmd) {
@@ -356,13 +400,20 @@ function handleCmd(cmd) {
         return;
     }
 
-    if (ctxStack.length > 0) { ctxStack[ctxStack.length - 1].handleCmd(cmd); return; }
+    if (ctxStack.length > 0) {
+        ctxStack[ctxStack.length - 1].handleCmd(cmd);
+        return;
+    }
 
     cmd = cmd.replace(' \& ', ' & ');
 
     if (!bEchoOff) {
         promptMode = true;
-        document.onkeypress({ keyCode: 13, stopPropagation: function() {}, preventDefault: function() {} });
+        document.onkeypress({
+            keyCode: 13,
+            stopPropagation: function() {},
+            preventDefault: function() {}
+        });
         promptMode = false;
     }
 
@@ -375,7 +426,10 @@ function handleCmd(cmd) {
         // anything else gets the canonical DOS "Drive not ready." reply
         // followed by a blank line and a fresh prompt.
         var drive = cmd.charAt(0).toUpperCase();
-        if (drive !== 'C') { echo('Drive not ready.'); echo(''); }
+        if (drive !== 'C') {
+            echo('Drive not ready.');
+            echo('');
+        }
         prompt();
         return;
     }
@@ -396,7 +450,7 @@ function handleCmd(cmd) {
     // Try running a file, or print error
     if (cmd.replace(' ', '') != '') {
         var r = attemptExec(c);
-        if (!r)    echo('Bad command or file name');
+        if (!r) echo('Bad command or file name');
         else if (r == 2) return;
     }
     prompt();

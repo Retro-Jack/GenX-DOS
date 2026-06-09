@@ -43,8 +43,18 @@ function bootLine(container, segments) {
     bootNewline(container);
 }
 
-function bootG(t) { return { text: t }; }
-function bootW(t) { return { text: t, img: BOOT_WHITE }; }
+function bootG(t) {
+    return {
+        text: t
+    };
+}
+
+function bootW(t) {
+    return {
+        text: t,
+        img: BOOT_WHITE
+    };
+}
 
 function bootMemTestLine(p) {
     // "Memory Test         : " static prefix, 4 mutable digit slots, " KB OK" suffix
@@ -64,12 +74,16 @@ function bootMemTestLine(p) {
 function animateMemTest(digits, target, onComplete) {
     var current = 0;
     var step = 64;
+
     function tick() {
         var s = ('000' + current).slice(-4);
         for (var i = 0; i < 4; i++) {
             digits[i].className = 'font f-' + s.charCodeAt(i);
         }
-        if (current >= target) { if (onComplete) onComplete(); return; }
+        if (current >= target) {
+            if (onComplete) onComplete();
+            return;
+        }
         current = Math.min(current + step, target);
         setTimeout(tick, 32);
     }
@@ -86,7 +100,7 @@ function renderAmiBiosPost(p, onComplete) {
 
     // Beat of black after the logo before the video BIOS speaks up,
     // so it feels like a real cold-boot transition.
-    setTimeout(function () {
+    setTimeout(function() {
         // Video BIOS POST — runs first on real PCs, before the system BIOS
         bootLine(p, [bootG('Tseng ET4000 VGA BIOS Version 3.00')]);
         bootLine(p, [bootG('(C) 1990 Tseng Laboratories, Inc.')]);
@@ -100,30 +114,33 @@ function renderAmiBiosPost(p, onComplete) {
 
         var memDigits = bootMemTestLine(p);
 
-        animateMemTest(memDigits, 8064, function () {
-        bootNewline(p);
-        var detectionLines = [
-            'Floppy Drive A    : 1.44mb (3.5")',
-            'Floppy Drive B    : 360kb (5.25")',
-            'Hard Disk C       : Type 47',
-            'Hard Disk D       : Custom',
-            'Serial Port(s)    : COM1',
-            'Parallel Port(s)  : LPT1'
-        ];
-        function renderNext(idx) {
-            if (idx >= detectionLines.length) {
-                bootNewline(p);
-                bootLine(p, [bootG('Hit '), bootW('<DEL>'), bootG(' if you want to run SETUP')]);
-                for (var i = 0; i < 4; i++) bootNewline(p);
-                bootLine(p, [bootG('(C) American Megatrends Inc.,')]);
-                bootLine(p, [bootG('40-0102-001102-00101111-121291-i486-K8')]);
-                if (onComplete) onComplete();
-                return;
+        animateMemTest(memDigits, 8064, function() {
+            bootNewline(p);
+            var detectionLines = [
+                'Floppy Drive A    : 1.44mb (3.5")',
+                'Floppy Drive B    : 360kb (5.25")',
+                'Hard Disk C       : Type 47',
+                'Hard Disk D       : Custom',
+                'Serial Port(s)    : COM1',
+                'Parallel Port(s)  : LPT1'
+            ];
+
+            function renderNext(idx) {
+                if (idx >= detectionLines.length) {
+                    bootNewline(p);
+                    bootLine(p, [bootG('Hit '), bootW('<DEL>'), bootG(' if you want to run SETUP')]);
+                    for (var i = 0; i < 4; i++) bootNewline(p);
+                    bootLine(p, [bootG('(C) American Megatrends Inc.,')]);
+                    bootLine(p, [bootG('40-0102-001102-00101111-121291-i486-K8')]);
+                    if (onComplete) onComplete();
+                    return;
+                }
+                bootLine(p, [bootG(detectionLines[idx])]);
+                setTimeout(function() {
+                    renderNext(idx + 1);
+                }, 500);
             }
-            bootLine(p, [bootG(detectionLines[idx])]);
-            setTimeout(function () { renderNext(idx + 1); }, 500);
-        }
-        renderNext(0);
+            renderNext(0);
         });
     }, 300);
 }
@@ -155,14 +172,14 @@ function renderAmiBios(p) {
 function init() {
     goFontGo();
     var p = document.getElementById('prompt');
-    renderAmiBiosPost(p, function () {
-        setTimeout(function () {
+    renderAmiBiosPost(p, function() {
+        setTimeout(function() {
             p.innerHTML = '';
             renderAmiBios(p);
             bootNewline(p);
             bootNewline(p);
             bootLine(p, [bootG('Starting GenX-DOS . . .')]);
-            setTimeout(function () {
+            setTimeout(function() {
                 bootNewline(p);
                 bootLine(p, [bootG('Type "help" <enter> for assistance.')]);
                 bootNewline(p);
@@ -174,7 +191,7 @@ function init() {
 
 function initTerminal() {
     document.onkeydown = doKeyDown;
-    document.onkeyup   = doKeyUp;
+    document.onkeyup = doKeyUp;
 
     promptEl = document.getElementById('prompt');
 
