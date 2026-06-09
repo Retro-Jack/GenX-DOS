@@ -123,9 +123,11 @@ title removed, open an issue at
 ## Bezel artwork
 
 `emulators/_shared/bezels/` contains transparent PNG monitor frames for
-the upcoming bezel-overlay integration. **Currently staging-only — not
-yet wired into emulator pages.** Each bezel's source and licence must
-display credit lines when the bezel goes live in `play.html`.
+the bezel-overlay integration. **`PC.png` is wired into the DOS prompt
+page (`prompt/index.html`) as of 09/06/2026; the other eight bezels are
+still staging for the per-emulator integration pass.** Each bezel's
+source and licence must display credit lines when the bezel goes live
+in the rest of `play.html`.
 
 | File | Hardware identified | Verified source | Author | Licence | Integration risk |
 | --- | --- | --- | --- | --- | --- |
@@ -156,7 +158,15 @@ Per [[user notes 06/06/2026]], all eight unverified bezels above were sourced fr
 
 Recommended for the branded monitors (Acorn/Apple/Commodore/PC): option 1. Recommended for the generic TVs (70s/80s/Sinclair/Vectrex): option 2 is defensible since these are anonymous hardware shots with no obvious commercial-photography fingerprint.
 
-The integration pass should not ship without one of these resolutions for each row.
+The remaining per-emulator integration pass should not ship without one of these resolutions for each row.
+
+---
+
+## Site decoration
+
+| File | Purpose | Source | Licence |
+| --- | --- | --- | --- |
+| `emulators/_shared/textures/70s-bg.png` | Seamless 70s arrow-arch wallpaper tiled at 220 px on body; surrounds the centred IBM PC bezel on the DOS prompt and sits behind the centred `.wrap` on gamedocs / `dir`-style pages | Adobe Stock asset **171682484** ("Vector seamless trendy texture in retro 70s wallpaper style") — watermark removed locally | ⚠️ Unverified for redistribution. Stock-asset PNG; the watermark-removed variant ships in this repo. If a rights holder objects, replace with a Wikimedia Commons or CC0 70s wallpaper pattern. |
 
 ---
 

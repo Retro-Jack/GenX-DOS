@@ -153,8 +153,8 @@ function renderAmiBios(p) {
 // Boot animation runs inside #prompt so the AMIBIOS table stays
 // on-screen while the menu draws below it (no cls between them):
 //
-//   1. Render AMIBIOS POST  — Tseng ET4000 video BIOS line, AMIBIOS
-//                             header, CPU, coprocessor, memory test
+//   1. Render AMIBIOS POST  — AMI logo image, then AMIBIOS header,
+//                             CPU, coprocessor, memory test
 //                             (animated count 0000 → 8064 KB at 64 KB
 //                             per 32 ms), then six device detection
 //                             lines stream in at 500 ms intervals,

@@ -13,6 +13,9 @@
 ### Removed
 - **Tseng ET4000 video BIOS POST lines** from the boot sequence — `init.js` now goes straight from the AMI logo to the AMIBIOS system POST.
 
+### Fixed
+- **Audit sync (09/06/2026)** — `ATTRIBUTION.md` bezel section updated to reflect PC.png landing on the DOS prompt + new `Site decoration` row for `70s-bg.png`. Stale `init.js` POST-flow comment that still referenced the (removed) Tseng line trimmed. No code-path changes.
+
 ### Changed
 - **Site JS beautified** — `prompt/javascript/*.js`, `emulators/_shared/*.js`, `emulators/_shared-ejs/genx-ejs-boot.js`, and the inline controls-link injector in `apple2/play.html`. Run through `js-beautify` (4-space indent). No behaviour changes; same modules, same exports.
 
