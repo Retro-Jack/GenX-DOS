@@ -96,16 +96,13 @@ function renderAmiBiosPost(p, onComplete) {
     logo.alt = 'American Megatrends';
     logo.style.display = 'block';
     logo.style.margin = '0 0 12px 0';
+    logo.width = 205;
+    logo.height = 51;
     p.appendChild(logo);
 
     // Beat of black after the logo before the video BIOS speaks up,
     // so it feels like a real cold-boot transition.
     setTimeout(function() {
-        // Video BIOS POST — runs first on real PCs, before the system BIOS
-        bootLine(p, [bootG('Tseng ET4000 VGA BIOS Version 3.00')]);
-        bootLine(p, [bootG('(C) 1990 Tseng Laboratories, Inc.')]);
-        bootNewline(p);
-
         // System BIOS POST
         bootLine(p, [bootG('AMIBIOS (C) 1985-1991 American Megatrends Inc.,')]);
         bootNewline(p);

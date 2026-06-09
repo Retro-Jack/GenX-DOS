@@ -15,11 +15,51 @@
 
     <!-- Styles -->
     <style>
+        html, body {
+            margin: 0;
+            background: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Bezel + cutout layout.
+           PC.png is 1815x1300 (aspect 1.396). The screen cutout sits at
+           left 13.5%, top 15.7%, width 63.25%, height 64.5% of the bezel. */
+        .bezel-wrap {
+            position: relative;
+            width: min(100vw, calc(100vh * 1815 / 1300));
+            aspect-ratio: 1815 / 1300;
+            background: url('../emulators/_shared/bezels/PC.png') center/contain no-repeat;
+        }
+        .prompt-fit {
+            position: absolute;
+            left: 13.5%;
+            top: 15.7%;
+            width: 63.25%;
+            height: 64.5%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* The prompt is a fixed 80×25 character grid (960×300 at native 12px).
+           CSS transform: scale fits it to the cutout via JS on load+resize. */
         .prompt {
             width: 960px;
-            height: 720px;
+            height: 300px;
             background-color: #000;
+            overflow: hidden;
+            transform-origin: center center;
+            flex-shrink: 0;
         }
+
         .font {
             background: url(img/f12.7.png) no-repeat 0px 0px;
             width: 12px;
@@ -27,16 +67,25 @@
             float: left;
             overflow: hidden;
         }
+
         /* Mobile-device block — see emulators/_shared/genx-noscript.css for the canonical copy. */
         @media (pointer: coarse), (hover: none) {
             body::before {
                 content: "Desktop Only\00000a\00000aGenX-DOS is a keyboard-driven DOS terminal\00000aand 8-bit emulator suite.\00000a\00000aPlease visit on a desktop with a keyboard.";
                 white-space: pre-line;
-                position: fixed; inset: 0; z-index: 999999;
-                background: #000; color: #c0c0c0;
-                font-family: monospace; font-size: 14px; line-height: 1.6;
-                display: flex; align-items: center; justify-content: center;
-                text-align: center; padding: 20px;
+                position: fixed;
+                inset: 0;
+                z-index: 999999;
+                background: #000;
+                color: #c0c0c0;
+                font-family: monospace;
+                font-size: 14px;
+                line-height: 1.6;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 20px;
             }
         }
     </style>
@@ -52,12 +101,55 @@
     <script src="javascript/commands.js"      charset="utf-8"></script>
     <script src="javascript/init.js"          charset="utf-8"></script>
 
+    <script>
+        // Fit the 960×300 prompt grid into the bezel's screen cutout via
+        // CSS transform. Non-uniform scale stretches the grid to fill the
+        // cutout in both axes — period-accurate, since real VGA text mode
+        // used non-square pixels (720×400 in 9×16 cells, aspect ~1.8).
+        function fitPrompt() {
+            var wrap = document.querySelector('.prompt-fit');
+            var prompt = document.getElementById('prompt');
+            if (!wrap || !prompt) return;
+            var sx = wrap.clientWidth / 960;
+            var sy = wrap.clientHeight / 300;
+            prompt.style.transform = 'scale(' + sx + ',' + sy + ')';
+        }
+
+        // Auto-scroll the prompt to its bottom so newly-rendered rows are
+        // always in view. Mimics VGA's roll-up behaviour: the buffer keeps
+        // growing in the DOM, but only the last 25 rows are visible.
+        function scrollPromptToBottom() {
+            var prompt = document.getElementById('prompt');
+            if (!prompt) return;
+            prompt.scrollTop = prompt.scrollHeight;
+        }
+
+        // Hook every DOM change on #prompt and roll to the bottom on the
+        // next animation frame so the cursor stays in view as rows append.
+        function installAutoScroll() {
+            var prompt = document.getElementById('prompt');
+            if (!prompt || !window.MutationObserver) return;
+            var queued = false;
+            var observer = new MutationObserver(function () {
+                if (queued) return;
+                queued = true;
+                requestAnimationFrame(function () {
+                    scrollPromptToBottom();
+                    queued = false;
+                });
+            });
+            observer.observe(prompt, { childList: true });
+        }
+
+        window.addEventListener('resize', fitPrompt);
+    </script>
+
 </head>
 
 <!-- ============================================================
      BODY
      ============================================================ -->
-<body bgcolor="black" onload="init()">
+<body onload="installAutoScroll(); init(); fitPrompt();">
 
     <noscript>
         <div style="position:fixed;inset:0;z-index:9999;background:#000;color:#c0c0c0;font-family:monospace;font-size:14px;line-height:1.6;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
@@ -70,13 +162,15 @@
         </div>
     </noscript>
 
-    <br><br><br>
-
-    <!-- Terminal prompt area — also hosts the boot animation (AMIBIOS POST + Configuration table) -->
-    <div id="prompt" class="prompt" style="text-align:center; margin-left:auto; margin-right:auto;"></div>
+    <div class="bezel-wrap">
+        <div class="prompt-fit">
+            <div id="prompt" class="prompt"></div>
+        </div>
+    </div>
 
     <!-- Hidden container where per-color font images are loaded -->
     <div id="fonts" style="display:none;"></div>
 
 </body>
+
 </html>

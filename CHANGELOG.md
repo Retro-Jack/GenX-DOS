@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+### Added
+- **IBM PC bezel for the DOS prompt** — `prompt/index.html` now embeds the shared `PC.png` bezel and scales the 80×25 grid into the screen cutout. Non-uniform `transform: scale(sx, sy)` stretches the 960×300 prompt to fill the cutout in both axes — period-accurate for VGA text mode which used non-square pixels. Auto-scroll via MutationObserver keeps the cursor row visible as new lines render. Resizes cleanly with the browser window.
+- **AMI Megatrends logo proportions match the stretched grid** — sized to 205×51 (½ width, ⅜ height of the source 409×136) so it doesn't appear elongated when the rest of the screen is non-uniformly scaled.
+
+### Removed
+- **Tseng ET4000 video BIOS POST lines** from the boot sequence — `init.js` now goes straight from the AMI logo to the AMIBIOS system POST.
+
 ### Changed
 - **Site JS beautified** — `prompt/javascript/*.js`, `emulators/_shared/*.js`, `emulators/_shared-ejs/genx-ejs-boot.js`, and the inline controls-link injector in `apple2/play.html`. Run through `js-beautify` (4-space indent). No behaviour changes; same modules, same exports.
 
