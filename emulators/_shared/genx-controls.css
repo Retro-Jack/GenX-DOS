@@ -1,7 +1,7 @@
 /* Shared style for emulators/<name>/controls.html — dark amber DOS-flavoured docs */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-body { background: #0a0a0a; color: #d4d4c8; font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; line-height: 1.6; padding: 48px 24px; }
+body { background: #0a0a0a url(textures/70s-bg.webp) repeat; background-size: 220px; color: #d4d4c8; font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; line-height: 1.6; padding: 48px 24px; }
 .wrap { max-width: 720px; margin: 0 auto; }
 .head { border-bottom: 1px solid #2a2a2a; padding-bottom: 18px; margin-bottom: 28px; }
 .system { color: #888; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 4px; }

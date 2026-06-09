@@ -3,7 +3,9 @@
 ## [Unreleased]
 
 ### Added
+- **70s tile wallpaper** — `emulators/_shared/textures/70s-bg.webp` (900×900) tiled at 220px as the body background. Applied via `genx-controls.css` so all 305 docs / gamedocs / controls pages inherit, plus the DOS prompt page. Surrounds the centred IBM PC bezel on the prompt view; sits behind the centred `.wrap` on docs pages.
 - **IBM PC bezel for the DOS prompt** — `prompt/index.html` now embeds the shared `PC.png` bezel and scales the 80×25 grid into the screen cutout. Non-uniform `transform: scale(sx, sy)` stretches the 960×300 prompt to fill the cutout in both axes — period-accurate for VGA text mode which used non-square pixels. Auto-scroll via MutationObserver keeps the cursor row visible as new lines render. Resizes cleanly with the browser window.
+- **Three explicit layers behind the bezel** — `.screen-bg` (back, 90% of the bezel-wrap, solid black) → `.prompt-fit` (canvas, sized to the cutout, the prompt grid lives here) → `.bezel-img` (front, PC.png on top). The black backdrop blocks the wallpaper from bleeding through the PNG's anti-aliased cutout boundary.
 - **AMI Megatrends logo proportions match the stretched grid** — sized to 205×51 (½ width, ⅜ height of the source 409×136) so it doesn't appear elongated when the rest of the screen is non-uniformly scaled.
 
 ### Removed
