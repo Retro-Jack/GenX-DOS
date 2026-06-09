@@ -7,9 +7,49 @@
 <link rel="stylesheet" href="../_shared/genx-controls-link.css">
 <script defer src="../_shared/genx-controls-link.js"></script>
 <style>
-  html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: #000 url('../_shared/textures/70s-bg.png') repeat;
+    background-size: 220px;
+    overflow: hidden;
+  }
   body { display: flex; align-items: center; justify-content: center; }
-  canvas { width: min(100vw, calc(100dvh * 4 / 3)); height: min(100dvh, calc(100vw * 3 / 4)); image-rendering: pixelated; }
+
+  /* Three-layer bezel order (back → front):
+     1. .screen-bg  — solid black backdrop slightly bigger than the canvas
+     2. canvas      — the actual emulator surface
+     3. .bezel-img  — Acorn.png monitor PNG on top, cutout reveals canvas
+     Acorn.png is 835x719 (aspect 1.161); cutout at
+     left 6.71%, top 6.82%, w 87.19%, h 84.98%. */
+  .bezel-wrap {
+    position: relative;
+    width: min(100vw, calc(100dvh * 835 / 719));
+    aspect-ratio: 835 / 719;
+  }
+  .screen-bg {
+    position: absolute;
+    inset: 5%;
+    background: #000;
+    z-index: 1;
+  }
+  #ElkJsOutput {
+    position: absolute;
+    left: 8.89%;
+    top: 8.95%;
+    width: 82.83%;
+    height: 80.73%;
+    image-rendering: pixelated;
+    z-index: 2;
+  }
+  .bezel-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 3;
+  }
 </style>
 <script src="jquery/jquery-1.9.1.js"></script>
 <script src="jquery/jquery-ui-1.10.3.custom.min.js"></script>
@@ -32,7 +72,11 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <canvas id="ElkJsOutput" width="640" height="512"></canvas>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <canvas id="ElkJsOutput" width="640" height="512"></canvas>
+    <img class="bezel-img" src="../_shared/bezels/Acorn.png" alt="">
+  </div>
   <script>
   var elkjs = ElkJs("ElkJsOutput");
   var games = {
@@ -51,8 +95,21 @@
   if (key && games[key]) {
     setTimeout(function() { elkjs.openFile(games[key]); }, 3000);
   }
+
+  // Audio auto-unlock: piggyback on the window.open user-activation that
+  // the prompt's launcher click propagated into this tab. ElkJs.soundToggle()
+  // creates the AudioContext on first call and enables sound. If propagation
+  // already expired (e.g. direct URL navigation), the keydown fallback below
+  // unlocks on first key press instead.
+  function _autoUnlockSound() {
+    if (window._gxSoundOn) return;
+    try { elkjs.soundToggle(); window._gxSoundOn = true; } catch (e) {}
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    [0, 100, 500, 1000, 2000].forEach(function (t) { setTimeout(_autoUnlockSound, t); });
+  });
   document.addEventListener('keydown', function initSound() {
-    elkjs.soundToggle();
+    if (!window._gxSoundOn) elkjs.soundToggle();
     document.removeEventListener('keydown', initSound);
   }, { once: true });
   </script>
