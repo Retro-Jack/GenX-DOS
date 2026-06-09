@@ -16,6 +16,25 @@
     <link rel="modulepreload" crossorigin href="./assets/chunk-DECur_0Z.js">
     <link rel="stylesheet" crossorigin href="./assets/index-7uNmJ34o.css">
     <style>
+      /* GenX-DOS dist overrides: strip upstream chrome, paint sitewide wallpaper. */
+      #header-bar, #leds { display: none !important; }
+      html, body {
+        background: #000 url('../../_shared/textures/70s-bg.png') repeat !important;
+        background-size: 220px !important;
+      }
+      /* Standard asset order inside the CUB monitor (back → front):
+         1. .screen-bg — solid black backdrop, 90% of #cub-monitor (5% inset)
+         2. #screen     — the canvas
+         3. #cub-monitor-pic — the CUB bezel PNG on top */
+      #cub-monitor::before {
+        content: '';
+        position: absolute;
+        inset: 5%;
+        background: #000;
+        z-index: 1;
+      }
+      #screen { z-index: 2 !important; }
+      #cub-monitor-pic { z-index: 3 !important; pointer-events: none; }
       /* Mobile-device block — see emulators/_shared/genx-noscript.css for the canonical copy. */
       @media (pointer: coarse), (hover: none) {
         body::before {
@@ -1021,5 +1040,26 @@
     </div>
   <link rel="stylesheet" href="../../_shared/genx-controls-link.css">
 <a href="../controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
+<script>
+  // jsbeeb only resumes audio when #audio-warning gets a mousedown.
+  // Forward any page mousedown to the warning so a click on the canvas
+  // (or anywhere) wakes audio up.
+  document.addEventListener('mousedown', function (e) {
+    var w = document.getElementById('audio-warning');
+    if (!w || e.target === w || w.contains(e.target)) return;
+    w.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+  }, true);
+
+  // Optimistic auto-unlock: fire mousedown to the warning early in case
+  // the user-gesture from the prompt's window.open() click carried over.
+  // Only some browsers honour this, but it's harmless when they don't.
+  function _autoUnlockAudio() {
+    var w = document.getElementById('audio-warning');
+    if (w) w.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    [0, 100, 500, 1000, 2000].forEach(function (t) { setTimeout(_autoUnlockAudio, t); });
+  });
+</script>
 </body>
 </html>

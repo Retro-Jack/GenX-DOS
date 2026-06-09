@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- **jsbeeb dist chrome strip + bezel order + audio auto-unlock** — `dist/index.html` hides upstream `#header-bar` and `#leds`; wallpaper paints on body; standard three-layer order inside `#cub-monitor` (black `::before` at `inset: 5%` z:1 → canvas z:2 → CUB PNG z:3, `pointer-events:none` on the PNG so clicks reach the canvas). Audio unlock: jsbeeb only resumes its `AudioContext` on `mousedown` to `#audio-warning`, so we (a) forward any page mousedown to the warning and (b) fire optimistic mousedowns at 0/100/500/1000/2000 ms on `DOMContentLoaded` so the user-gesture from the prompt's `window.open()` click can propagate through. Confirmed working 10/06/2026.
 - **70s tile wallpaper** — `emulators/_shared/textures/70s-bg.png` (1016×960, seamless 70s arrow-arch pattern) tiled at 220px as the body background. Applied via `genx-controls.css` so the DOS prompt page + all gamedocs inherit. Surrounds the centred IBM PC bezel on the prompt view; sits behind the centred `.wrap` on gamedoc pages.
 - **`body.controls-page` override** in `genx-controls.css` — suppresses the wallpaper on the 24 per-platform `controls.html` pages so the keyboard tables stay on a flat `#0a0a0a` background. The class is set on each `<body>` directly.
 - **Centred menu boxes** — all 38 menu screens in `prompt/javascript/fs.js` now centre their box-drawing artwork in the 80-column grid (per-box indent computed from the box's max width). The `C:\>` prompt line itself stays left-aligned.
