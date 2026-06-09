@@ -1,18 +1,18 @@
 // ============================================================
 // BUILT-IN COMMANDS
 // ============================================================
-registerCmd('exit',    function()    { echo("I'm sorry, Dave, I'm afraid I can't do that."); });
-registerCmd('del',     function()    { echo("File(s) too important for me to allow you to jeopardize."); });
-registerCmd('rmdir',   function()    { echo("Bad command or go away."); });
-registerCmd('chkdsk',  function()    { echo("*Checking...*  Yep, that's a disk."); });
+registerCmd('exit',    function()    { echo("I'm sorry, Dave, I'm afraid I can't do that."); echo(''); });
+registerCmd('del',     function()    { echo("File(s) too important for me to allow you to jeopardize."); echo(''); });
+registerCmd('rmdir',   function()    { echo("Bad command or go away."); echo(''); });
+registerCmd('chkdsk',  function()    { echo("*Checking...*  Yep, that's a disk."); echo(''); });
 registerCmd('help',    function()    { showFullHelp(); });
-registerCmd('format',  function()    { echo("Specified drive does not exist. Anarchist."); });
-registerCmd('edlin',   function()    { echo("Whoa now, this is not MS-DOS!"); });
-registerCmd('edit',    function()    { echo("Error: Correction fluid mismatch."); });
-registerCmd('debug',   function()    { echo("Program terminated normally (0000)"); });
-registerCmd('attrib',  function()    { echo("A ttrib is a terrible thing to waste."); });
-registerCmd('zerocool',function()    { txtPal.fg = 11; txtPal.bg = 1; echo("HACK THE PLANET!"); });
-registerCmd('quit',    function()    { echo("You're just gonna quit, huh? Good luck with that."); });
+registerCmd('format',  function()    { echo("Specified drive does not exist. Anarchist."); echo(''); });
+registerCmd('edlin',   function()    { echo("Whoa now, this is not MS-DOS!"); echo(''); });
+registerCmd('edit',    function()    { echo("Error: Correction fluid mismatch."); echo(''); });
+registerCmd('debug',   function()    { echo("Program terminated normally (0000)"); echo(''); });
+registerCmd('attrib',  function()    { echo("A ttrib is a terrible thing to waste."); echo(''); });
+registerCmd('zerocool',function()    { txtPal.fg = 11; txtPal.bg = 1; echo("HACK THE PLANET!"); echo(''); });
+registerCmd('quit',    function()    { echo("You're just gonna quit, huh? Good luck with that."); echo(''); });
 
 registerCmd('dopefish', function() {
     echo("Lives!");
@@ -31,6 +31,7 @@ registerCmd('dopefish', function() {
         addClass(c, 'f-n');
         promptEl.insertBefore(c, cursorEl);
     }
+    echo('');
 });
 
 registerCmd('echo', function(cmd) {
@@ -89,10 +90,6 @@ var HELP_TEXT = [
     '  echo off         Suppress C:\\> prompt re-render until end of batch',
     '  echo.            Print a blank line and re-enable prompt re-render',
     '  setcol <BF>      Set background + foreground hex colour',
-    '',
-    'STUB COMMANDS (one-liner responses)',
-    '  exit, del, rmdir, format, chkdsk, edlin, edit, debug,',
-    '  attrib, quit',
     '',
     'KEYBOARD',
     '  Enter            Submit',
