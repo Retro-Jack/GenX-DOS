@@ -162,14 +162,6 @@ The remaining per-emulator integration pass should not ship without one of these
 
 ---
 
-## Site decoration
-
-| File | Purpose | Source | Licence |
-| --- | --- | --- | --- |
-| `emulators/_shared/textures/70s-bg.png` | Seamless 70s arrow-arch wallpaper tiled at 220 px on body; surrounds the centred IBM PC bezel on the DOS prompt and sits behind the centred `.wrap` on gamedocs / `dir`-style pages | Adobe Stock asset **171682484** ("Vector seamless trendy texture in retro 70s wallpaper style") — watermark removed locally | ⚠️ Unverified for redistribution. Stock-asset PNG; the watermark-removed variant ships in this repo. If a rights holder objects, replace with a Wikimedia Commons or CC0 70s wallpaper pattern. |
-
----
-
 ## Fonts
 
 - `prompt/img/f12.*.png` — 12×12 CP437 bitmap font sprites. Generated
