@@ -22,6 +22,32 @@ for(_='Uint\\++/_bits@else{B32768D=n.Q,3^,a`5,jreqode~makeC~s$inflate#UZIP.HHF.G
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
   <style>#menu{display:none!important}</style>
+  <script>
+    // Auto-resume after focus loss.
+    //
+    // jsvecx's blur handler called stop() and set menu.style.display = 'block'
+    // (our CSS hides the menu but the runtime still thought it was open). The
+    // runtime's keyup listener calls Mu() on Escape, which when the menu is
+    // open closes it and calls start() after 300 ms.
+    //
+    // The packed runtime didn't expose `start` as a window global, so we
+    // couldn't call it directly. But we can fire a synthetic Escape keyup —
+    // the existing listener picks it up exactly like a real key press would.
+    window.addEventListener('focus', function () {
+        var m = document.getElementById('menu');
+        if (!m || m.style.display !== 'block') return;
+        var ev = new KeyboardEvent('keyup', {
+            key: 'Escape',
+            code: 'Escape',
+            keyCode: 27,
+            which: 27,
+            bubbles: true,
+            cancelable: true
+        });
+        window.dispatchEvent(ev);
+        document.dispatchEvent(ev);
+    });
+  </script>
 
 </body></html>
 <!--

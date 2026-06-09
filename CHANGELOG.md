@@ -6,6 +6,7 @@
 - **Site JS beautified** — `prompt/javascript/*.js`, `emulators/_shared/*.js`, `emulators/_shared-ejs/genx-ejs-boot.js`, and the inline controls-link injector in `apple2/play.html`. Run through `js-beautify` (4-space indent). No behaviour changes; same modules, same exports.
 
 ### Fixed
+- **Vectrex focus-loss auto-resume** — synthetic Escape `keyup` dispatched on `window.focus` triggers the runtime's existing `Mu()` handler, which closes the (internally-open) menu and calls `start()` after 300 ms. No more manual ESC press needed after clicking away.
 - **JS7800 F-key reference** — platform `controls.html` + 10 gamedoc pages had F3 and F4 swapped. F3 is the Reset switch (= start the game on most carts); F4 is Pause. Corrected throughout.
 
 ### Changed
