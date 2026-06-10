@@ -47,6 +47,18 @@
       color: #888; font-family: monospace; pointer-events: none;
       z-index: 2;
     }
+    /* Mask over the bottom strip of the screen. floooh's tiny8bit draws a
+       sokol-debugtext status bar (JOYSTICK/DISC/MOTOR/TRACK + frame timing)
+       at the bottom of the canvas — can't be toggled off without rebuilding
+       the WASM. The cutout aspect is locked, so this strip lands in the same
+       proportional spot at any window size. Black-on-black with the CRT
+       border, so it reads as screen surround, not a bar. */
+    .screen-mask {
+      position: absolute;
+      left: 28.5%; top: 49%; width: 39%; height: 10%;
+      background: #000;
+      z-index: 2;
+    }
     .bezel-img {
       position: absolute;
       inset: 0;
@@ -70,6 +82,7 @@
   <div class="bezel-wrap">
     <div class="screen-bg"></div>
     <canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas>
+    <div class="screen-mask"></div>
     <div id="loading">Booting Amstrad CPC…</div>
     <img class="bezel-img" src="../_shared/bezels/Amstrad.png" alt="">
   </div>
@@ -92,6 +105,22 @@
     }
     document.addEventListener('keydown', fireKeyRemap, { capture: true });
     document.addEventListener('keyup',   fireKeyRemap, { capture: true });
+
+    // Audio auto-unlock: clears sokol's suspended-audio (muted-speaker)
+    // icon on load instead of waiting for a click. sokol resumes its
+    // AudioContext on input over the canvas; a burst of synthetic events
+    // piggybacks on the user-activation the prompt's window.open() click
+    // propagated into this tab. Same pattern as jsbeeb/Electron.
+    function _gxUnlockAudio() {
+      const c = document.getElementById('canvas');
+      if (!c) return;
+      ['pointerdown', 'mousedown', 'touchstart', 'mouseup'].forEach(function (t) {
+        try { c.dispatchEvent(new Event(t, { bubbles: true })); } catch (e) {}
+      });
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      [0, 100, 500, 1000, 2000].forEach(function (t) { setTimeout(_gxUnlockAudio, t); });
+    });
 
     (async function () {
       // No ?game= → boot to plain Locomotive BASIC (the CPC's ROM-BASIC
