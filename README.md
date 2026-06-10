@@ -2,7 +2,7 @@
 
 A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs on the page — no server, no network calls at runtime.
 
-We bundle 19 emulator engines covering 28 sub-systems between them, from the Apple I to the Commodore 128.
+We bundle 20 emulator engines covering 28 sub-systems between them, from the Apple I to the Commodore 128.
 
 **Scope:** 8-bit era only — anything from the 8-bit microcomputing/console era (~1975-1990). The cutoff is *era*, not strict CPU width. See the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected.
 
@@ -34,8 +34,8 @@ prompt/                   the DOS terminal (HTML + JS, no build)
 gamedocs/                 per-game instruction pages (gamedocs/<platform>/<key>.html)
 emulators/
   _shared/                shared CSS + helpers (NumLock warn, RUN/STOP softkey, ...)
-  _shared-ejs/            shared EmulatorJS framework + 5 VICE cores + gearcoleco + FCEUmm
-                          (9 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
+  _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm
+                          (8 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
   apple1/                 Apple I             — apple1js + 10 cassette tapes
   jsbeeb/                 BBC Micro + Master  — Vite-built dist + BBC + Master-enhanced disks
   electron/               Acorn Electron      — ElkJS + 10 UEF snapshots
@@ -90,7 +90,8 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | Tandy CoCo| Ciaran Anscomb/XRoar                 | `play.html?game=<key>`                   |
 | TI-99/4A  | Rasmus-M/js99er (vanilla-JS build)   | `play.html?game=<key>`                   |
 | Atari 400 / 800XL | atari800/atari800 (our own WASM build) | `play.html?game=<key>[&machine=…]` |
-| PET / VIC-20 / MAX / C64 / C16 / Plus/4 / C128 | EmulatorJS + VICE libretro family | `play.html?game=<key>` |
+| VIC-20 / MAX / C64 / C16 / Plus/4 / C128 | EmulatorJS + VICE libretro family | `play.html?game=<key>` |
+| PET       | Thomas Skibo's pet2001 (vanilla JS)  | `play.html?game=<key>`                   |
 | ColecoVision | EmulatorJS + gearcoleco (Drhelius) libretro | `play.html?game=<key>` |
 | Intellivision | jzIntv (Joe Zbiciak) WASM, custom emscripten loader | `play.html?game=<key>` |
 | Amstrad CPC   | floooh/chips-test tiny8bit CPC WASM (Andre Weissflog) | `play.html?game=<key>` (rewrites to `?file=&input=` for sokol_args) |
