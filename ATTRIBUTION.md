@@ -162,7 +162,7 @@ Per [[user notes 06/06/2026]], all nine unverified bezels above were sourced fro
 
 Recommended for the branded monitors (Acorn/Apple/Commodore/PC/Pet): option 1. Recommended for the generic TVs (70s/80s/Sinclair/Vectrex): option 2 is defensible since these are anonymous hardware shots with no obvious commercial-photography fingerprint.
 
-**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both, without yet adding the generic "open an issue if you recognise your work" credit line to their integration footers. That credit line is now an outstanding to-do for the two live bezels. The remaining eight staged bezels should still not ship without one of the resolutions above for each row.
+**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both. The generic "sourced from public web archives, original photographer unknown — open an issue if you recognise your work" credit line is now in place as an HTML comment at the foot of each live page (`prompt/index.html` for PC, `emulators/electron/play.html` for Acorn) — kept as a comment rather than visible text because both pages are fullscreen immersive layouts with no footer area. The remaining eight staged bezels should still not ship without one of the resolutions above for each row.
 
 ---
 
