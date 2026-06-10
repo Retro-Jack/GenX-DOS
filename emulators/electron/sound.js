@@ -112,6 +112,16 @@ ElkJs.Sound = function (opts) {
 
     }
 
+    /* GenX-DOS: upstream elkjs.soundToggle() calls sound.soundInit() on first
+       use, but the method was never defined — sound was effectively never
+       enabled. Provide it here, and also resume the (eagerly-created) AudioContext
+       in case the browser autoplay policy started it suspended. */
+    self.soundInit = function () {
+        if (audioContext && typeof audioContext.resume === 'function' && audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+    }
+
     self.startFrame = function () {
         rowCount = 0;
         frameSamples = 0;
