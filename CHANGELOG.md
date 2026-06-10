@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Changed
+- **jsbeeb CUB monitor breathing room** — the BBC Micro/Master monitor was flush against the top of the viewport. Widened the sizing JS's vertical inset (`r` 68→120 in `dist/assets/index-*.js`) and added `#cub-monitor { margin-top: 60px }` so the monitor centres with ~60px of wallpaper above and below.
 - **PET migrated from VICE xpet to Thomas Skibo's pet2001** (BSD-2-Clause, vanilla JS, no WASM/libretro/EJS). `vice_xpet` ships with a hardcoded Business UK keyboard mapper that no `vicerc` resource overrides — symptom was `Enter`→`P` and scrambled letters. New `emulators/pet/` runtime is ~90 lines of `play.html` driving Skibo's `pet2001/*.js` (9 files), bumps RAM to 32 KB, auto-types `load"*",8`+`run` via the petkeys queue with a per-game `autostart` override in `games.json`. Sub-system count unchanged at 28.
 
 ### Added

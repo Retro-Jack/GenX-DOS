@@ -35,6 +35,12 @@
       }
       #screen { z-index: 2 !important; }
       #cub-monitor-pic { z-index: 3 !important; pointer-events: none; }
+      /* Breathing room above/below the monitor. The sizing JS caps the
+         monitor height at innerHeight minus a vertical inset (we widened
+         that inset 68→120 in assets/index-*.js); margin-top re-centres the
+         resulting slack so ~60px shows above and below instead of all at
+         the bottom. */
+      #cub-monitor { margin-top: 60px !important; }
       /* Mobile-device block — see emulators/_shared/genx-noscript.css for the canonical copy. */
       @media (pointer: coarse), (hover: none) {
         body::before {
