@@ -11,7 +11,7 @@
 
 ### Removed
 - **`gamedocs/pet/petrobot.html`** — orphaned PETSCII Robots gamedoc, left behind when the title was dropped from the PET bundle. No launcher or `games.json` key referenced it.
-- **PETSCII Robots Shareware (2022)** dropped from the PET bundle. Skibo's emulator has no 1541 disk-image support, no BASIC 4 / PET 4032 ROM, and no multi-file disk loader — three hard blockers that all three of PETSCII Robots' boot requirements need. PETSCII Robots remains playable in the C64 sub-system under VICE x64. Documented in detail at `wiki/Emulator-pet2001-Skibo`.
+- **PETSCII Robots Shareware (2022)** dropped from the PET bundle. Skibo's emulator has no 1541 disk-image support, no BASIC 4 / PET 4032 ROM, and no multi-file disk loader — three hard blockers that all three of PETSCII Robots' boot requirements need. The title is no longer shipped on any sub-system; its ATTRIBUTION/README credits were removed accordingly. Documented in detail at `wiki/Emulator-pet2001-Skibo`.
 - **`emulators/_shared-ejs/ejs/data/cores/vice_xpet-legacy-wasm.data`** (1.3 MB) — the libretro VICE PET core, no longer referenced by any bundle. VICE-family shared dir drops from 5 cores to 4.
 
 ### Fixed

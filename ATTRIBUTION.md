@@ -108,9 +108,6 @@ software under permissive terms:
   [Apple I Project](https://www.applefritter.com/apple1) archive.
 - **AltirraOS-800 / -XL** (counted under BIOS, above) — Avery Lee's
   free re-implementation of Atari OS-B / OS-XL.
-- **PETSCII Robots Shareware** — David Murray ("The 8-Bit Guy"), 2022.
-  Free demo build distributed via [the8bitguy.com](https://the8bitguy.com).
-  Shipped under the Commodore 64 sub-system only (`emulators/c64/`).
 - **3D Construction Kit demos and indie homebrew** across various
   platforms — license varies; check the per-bundle `games.json` or
   source archive when in doubt.
