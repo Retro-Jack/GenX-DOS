@@ -4,15 +4,58 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <title>Amstrad CPC</title>
-  <style>
-    /* tiny8bit's CPC emits its native 384x272 framebuffer; scale up at 4:3 */
-    #stage { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); position: relative; }
-    #canvas { width: 100%; height: 100%; display: block; image-rendering: pixelated; image-rendering: crisp-edges; background: #000; }
-    .loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #888; font-family: monospace; pointer-events: none; }
-  </style>
   <link rel="stylesheet" href="../_shared/genx-frame.css">
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <style>
+    /* CRT bezel — Amstrad CPC464 + CTM640 monitor (Amstrad.png, 1502x992,
+       aspect 1.514). Three layers, back to front:
+         1. .screen-bg — black backdrop behind the screen hole, a touch
+            larger than the cutout so the wallpaper can't bleed through the
+            PNG's anti-aliased hole edge.
+         2. #canvas    — the tiny8bit CPC framebuffer, sized to the cutout.
+         3. .bezel-img — Amstrad.png on top; its transparent hole reveals
+            the canvas. Hole detected at left 27.03% top 12.90% w 42.01%
+            h 47.38% (aspect 1.34 ≈ the CPC's 4:3); canvas inset ~1.5% per
+            side so its edges tuck under the bezel lip.
+       Height capped at 100dvh-120px so ~60px of wallpaper shows above and
+       below, matching the jsbeeb/Electron bezels. Wallpaper override must
+       follow genx-frame.css (which sets body black). */
+    html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; }
+    .bezel-wrap {
+      position: relative;
+      width: min(100vw, calc((100dvh - 120px) * 1502 / 992));
+      aspect-ratio: 1502 / 992;
+    }
+    .screen-bg {
+      position: absolute;
+      left: 25.5%; top: 11.4%; width: 45%; height: 51%;
+      background: #000;
+      z-index: 1;
+    }
+    #canvas {
+      position: absolute;
+      left: 28.5%; top: 14.4%; width: 39%; height: 44.4%;
+      image-rendering: pixelated; image-rendering: crisp-edges;
+      background: #000;
+      z-index: 2;
+    }
+    #loading {
+      position: absolute;
+      left: 28.5%; top: 14.4%; width: 39%; height: 44.4%;
+      display: flex; align-items: center; justify-content: center;
+      color: #888; font-family: monospace; pointer-events: none;
+      z-index: 2;
+    }
+    .bezel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 3;
+    }
+  </style>
   <script defer src="../_shared/genx-controls-link.js"></script>
   <script src="../_shared/genx-game-loader.js"></script>
   <link rel="preload" href="cpc.wasm" as="fetch" crossorigin>
@@ -24,11 +67,13 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <div id="stage">
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
     <canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas>
-    <div id="loading" class="loading">Booting Amstrad CPC…</div>
+    <div id="loading">Booting Amstrad CPC…</div>
+    <img class="bezel-img" src="../_shared/bezels/Amstrad.png" alt="">
   </div>
-  
+
   <script>
     // PageUp / PageDown → Fire button. floooh's chips library only wires
     // one fire button (BTN0 == BTN1, mapped to Space). We translate both
@@ -100,5 +145,9 @@
       document.body.appendChild(s);
     })();
   </script>
+
+  <!-- Bezel: Amstrad CPC464 (CTM640 monitor) — photo by Bill Bertram
+       (Wikimedia Commons, "Amstrad CPC464"), CC-BY-SA 2.5. Background
+       alpha-keyed locally; this modified version is likewise CC-BY-SA 2.5. -->
 </body>
 </html>
