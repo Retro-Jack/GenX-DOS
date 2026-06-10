@@ -23,7 +23,10 @@
      left 6.71%, top 6.82%, w 87.19%, h 84.98%. */
   .bezel-wrap {
     position: relative;
-    width: min(100vw, calc(100dvh * 835 / 719));
+    /* Cap height at 100dvh - 120px so ~60px of wallpaper shows above and
+       below (matches the jsbeeb CUB monitor spacing). The flex-centred
+       body splits the slack evenly top/bottom. */
+    width: min(100vw, calc((100dvh - 120px) * 835 / 719));
     aspect-ratio: 835 / 719;
   }
   .screen-bg {
