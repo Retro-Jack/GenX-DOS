@@ -56,8 +56,9 @@ the corresponding emulator folder.
 | `emulators/intellivision/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
 | `emulators/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | GPL-2.0+ (libretro-o2em); frontend bundled under repo terms |
 | `emulators/amstradcpc/` | floooh's tiny8bit CPC WASM | Andre Weissflog | MIT |
+| `emulators/pet/pet2001/` | pet2001 (vanilla-JS PET 2001 emulator) | Thomas Skibo | BSD-2-Clause |
 | `emulators/_shared-ejs/` | EmulatorJS framework | EmulatorJS team | GPL-3.0 |
-| `emulators/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`, `xpet`) | vice-emu.sourceforge.net | GPL-2.0 |
+| `emulators/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`) | vice-emu.sourceforge.net | GPL-2.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | gearcoleco libretro core (ColecoVision) | Drhelius | GPL-3.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | FCEUmm libretro core (NES) | libretro/libretro-fceumm | GPL-2.0 |
 
@@ -109,6 +110,7 @@ software under permissive terms:
   free re-implementation of Atari OS-B / OS-XL.
 - **PETSCII Robots Shareware** — David Murray ("The 8-Bit Guy"), 2022.
   Free demo build distributed via [the8bitguy.com](https://the8bitguy.com).
+  Shipped under the Commodore 64 sub-system only (`emulators/c64/`).
 - **3D Construction Kit demos and indie homebrew** across various
   platforms — license varies; check the per-bundle `games.json` or
   source archive when in doubt.

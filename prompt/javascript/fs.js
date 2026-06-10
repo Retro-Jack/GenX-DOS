@@ -1113,43 +1113,46 @@ var fs = [{
                                     directories: [],
                                     files: [{
                                         name: 'menu.bat',
-                                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  PET  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Adventureland        (1979)  ADVLAND  º\necho                 º   2.  Android NIM          (1979)  ANDNIM   º\necho                 º   3.  Lunar Lander         (1979)  LUNAR    º\necho                 º   4.  Hangman              (1980)  HANGMAN  º\necho                 º   5.  Space Invaders       (1980)  INVADER  º\necho                 º   6.  ComputerSpace 2001   (1981)  CS2001   º\necho                 º   7.  Crazy Balloon        (1981)  CRZBALLN º\necho                 º   8.  Frogger              (1981)  FROGGER  º\necho                 º   9.  Pac-Man              (1982)  PACMAN   º\necho                 º  10.  PETSCII Robots SW    (2022)  PETROBOT º\necho                 º                                             º\necho                 º  11.  BASIC 2 prompt              BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
+                                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  PET  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Star Trek            (1977)  STARTREK º\necho                 º   2.  Adventureland        (1979)  ADVLAND  º\necho                 º   3.  Android NIM          (1979)  ANDNIM   º\necho                 º   4.  Lunar Lander         (1979)  LUNAR    º\necho                 º   5.  Hangman              (1980)  HANGMAN  º\necho                 º   6.  Space Invaders       (1980)  INVADER  º\necho                 º   7.  ComputerSpace 2001   (1981)  CS2001   º\necho                 º   8.  Crazy Balloon        (1981)  CRZBALLN º\necho                 º   9.  Frogger              (1981)  FROGGER  º\necho                 º  10.  Pac-Man              (1982)  PACMAN   º\necho                 º                                             º\necho                 º  11.  BASIC 2 prompt              BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
                                     }, {
                                         name: '0.bat',
                                         data: 'echo off\ncd ..\ncd ..\nmenu\n'
                                     }, {
                                         name: '1.bat',
-                                        data: 'advland\n'
+                                        data: 'startrek\n'
                                     }, {
                                         name: '2.bat',
-                                        data: 'andnim\n'
+                                        data: 'advland\n'
                                     }, {
                                         name: '3.bat',
-                                        data: 'lunar\n'
+                                        data: 'andnim\n'
                                     }, {
                                         name: '4.bat',
-                                        data: 'hangman\n'
+                                        data: 'lunar\n'
                                     }, {
                                         name: '5.bat',
-                                        data: 'invader\n'
+                                        data: 'hangman\n'
                                     }, {
                                         name: '6.bat',
-                                        data: 'cs2001\n'
+                                        data: 'invader\n'
                                     }, {
                                         name: '7.bat',
-                                        data: 'crzballn\n'
+                                        data: 'cs2001\n'
                                     }, {
                                         name: '8.bat',
-                                        data: 'frogger\n'
+                                        data: 'crzballn\n'
                                     }, {
                                         name: '9.bat',
-                                        data: 'pacman\n'
+                                        data: 'frogger\n'
                                     }, {
                                         name: '10.bat',
-                                        data: 'petrobot\n'
+                                        data: 'pacman\n'
                                     }, {
                                         name: '11.bat',
                                         data: 'basic\n'
+                                    }, {
+                                        name: 'startrek.bat',
+                                        link: '../emulators/pet/play.html?game=startrek'
                                     }, {
                                         name: 'andnim.bat',
                                         link: '../emulators/pet/play.html?game=andnim'
@@ -1177,9 +1180,6 @@ var fs = [{
                                     }, {
                                         name: 'pacman.bat',
                                         link: '../emulators/pet/play.html?game=pacman'
-                                    }, {
-                                        name: 'petrobot.bat',
-                                        link: '../emulators/pet/play.html?game=petrobot'
                                     }, {
                                         name: 'basic.bat',
                                         link: '../emulators/pet/play.html?game=basic'

@@ -5,17 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Commodore PET</title>
   <style>
-    /* PET 4032 displayed at 4:3 — 40-column monochrome (green-on-black)
-       on a 9-inch CRT, native framebuffer 320x200, scaled to fit. */
-    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
+    /* PET 2001 native framebuffer is 320x200 doubled to 640x400 (4:5 aspect
+       in Skibo's renderer — 40 cols x 25 rows of 16x16 chars). Fit to viewport
+       preserving 8:5 aspect (640x400 = 1.6:1). */
+    #petscreen { aspect-ratio: 640 / 400; width: min(100vw, calc(100dvh * 640 / 400)); height: min(100dvh, calc(100vw * 400 / 640)); display: block; image-rendering: pixelated; background: #000; }
   </style>
   <link rel="stylesheet" href="../_shared/genx-frame.css">
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
-  <link rel="preload" href="../_shared-ejs/ejs/data/cores/vice_xpet-legacy-wasm.data" as="fetch" crossorigin>
-  <script defer src="../_shared/genx-vice-softkeys.js"></script>
-  <script src="../_shared-ejs/genx-ejs-boot.js"></script>
+  <script src="pet2001/cpu6502.js"></script>
+  <script src="pet2001/petkeys-600.js"></script>
+  <script src="pet2001/pet2001roms.js"></script>
+  <script src="pet2001/pet2001hw.js"></script>
+  <script src="pet2001/pet2001ieee.js"></script>
+  <script src="pet2001/pet2001io.js"></script>
+  <script src="pet2001/pet2001video-mod.js"></script>
+  <script src="pet2001/pet2001.js"></script>
 </head>
 <body>
   <noscript><div class="gx-noscript">
@@ -24,26 +30,78 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <div id="game"><div class="loading">Booting Commodore PET…</div></div>
+  <canvas id="petscreen" width="640" height="400"></canvas>
   <script>
-    // PET — VICE xpet. Default model = 3032 (BASIC 2 chargen); games.json
-    // can override with `"model": "4032"` per game (used by PETSCII Robots).
-    // No joyport — PET has no joystick. keyboardInput=enabled forwards
-    // typed keys to the VICE keyboard callback instead of routing them
-    // through EJS's RetroPad gamepad mapper.
-    genxBootEJS({
-      title: 'Commodore PET',
-      coreName: 'vice_xpet',
-      defaultOptions: {
-        'vice_drive_true_emulation': 'disabled',
-        'vice_autoloadwarp': 'enabled',
-        'keyboardInput': 'enabled',
-        'altKeyboardInput': 'enabled'
-      },
-      perGame: (game, opts) => {
-        opts['vice_pet_model'] = (game && game.model) || '3032';
+    (async function () {
+      var params = new URLSearchParams(location.search);
+      var key = params.get('game');
+
+      var ctx = document.getElementById('petscreen').getContext('2d');
+      window.pet2001 = new Pet2001(ctx);
+      // PET 2001 shipped with 4/8K; bump to 32K so BASIC programs that
+      // expect a 3032-era machine (e.g. Adventureland, Frogger) don't
+      // overrun zero-page on LOAD.
+      pet2001.setRamSize(32 * 1024);
+
+      // 50ms interval mirrors Skibo's reference loop — drives ~1 MHz emulated.
+      var INTERVAL_MS = 50;
+      setInterval(function () { pet2001.cycle(1000 * INTERVAL_MS); }, INTERVAL_MS);
+
+      // Keyboard — Skibo wires keydown + keypress only; release is auto on a timer.
+      window.onkeydown = petkeyOnKeyDown;
+      window.onkeypress = petkeyOnKeyPress;
+
+      // Video blank-timeout hook (Skibo's setTimeout uses global lookup).
+      window.blankTimeoutFunc = function () { pet2001.blankTimeoutFunc(); };
+
+      if (!key) { document.title = 'Commodore PET'; return; }
+
+      var games;
+      try { games = await (await fetch('games.json')).json(); }
+      catch (e) {
+        document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + '</div>';
+        return;
       }
-    });
+      var game = games[key];
+      if (!game) {
+        document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
+        return;
+      }
+      document.title = game.title || key;
+      if (!game.rom) return;
+
+      // PRG format: first 2 bytes are little-endian load address, rest is data.
+      try {
+        var buf = new Uint8Array(await (await fetch(game.rom)).arrayBuffer());
+        var addr = buf[0] | (buf[1] << 8);
+        var bytes = Array.from(buf.subarray(2));
+        pet2001.ieeeLoadData(addr, bytes);
+      } catch (e) {
+        console.warn('PRG load failed:', e);
+        return;
+      }
+
+      // Autostart: type LOAD"*",8<CR> then RUN<CR> via Skibo's keypress queue.
+      // 0-entries between codes release prior keys (PET keyboard matrix needs
+      // a clear-cycle between identical scans). Each queue item = 50ms.
+      function queueChars(text) {
+        for (var i = 0; i < text.length; i++) {
+          petkeyKeyQueue.push(0);
+          petkeyKeyQueue.push(text.charCodeAt(i));
+        }
+        if (petkeyKeypressTimeoutHandle == null) {
+          petkeyKeypressTimeoutHandle = setTimeout(
+            'petkeyKeypressTimeout()', petkeyKeypressTimeoutTime);
+        }
+      }
+      var BOOT_MS = 1500;       // wait for PET RAM-clear + BASIC banner
+      var LOAD_WAIT_MS = 6000;  // worst case ~18KB PRG via IEEE
+      // Skibo's ascii_to_pet_* tables only map lowercase letters; PC 'l'
+      // (108) presses the PET 'L' key, which is displayed as 'L'.
+      var runCmd = game.autostart || 'run\r';
+      setTimeout(function () { queueChars('load"*",8\r'); }, BOOT_MS);
+      setTimeout(function () { queueChars(runCmd); }, BOOT_MS + LOAD_WAIT_MS);
+    })();
   </script>
 </body>
 </html>

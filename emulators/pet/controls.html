@@ -9,66 +9,44 @@
 <body>
   <div class="wrap">
     <div class="head">
-      <div class="system">Commodore · PET 3032</div>
+      <div class="system">Commodore · PET 2001</div>
       <h1>Commodore PET — Controls</h1>
     </div>
 
-    <p class="intro">VICE xpet (gold-standard Commodore PET emulator) running in your browser via EmulatorJS, configured for the PET 3032 by default — 32 KB RAM, BASIC 2 (Upgrade ROM), 40-column green-on-black monochrome CRT, original "graphics" character ROM. The PET 2001 was Commodore's first computer (Jan 1977) and effectively founded the home-computer market; the 3032 (1979) added the same 32&nbsp;KB but kept BASIC 2, which is what 1979–1981-era PETSCII games were authored against — switching to BASIC 4 made most of them render garbled. PETSCII Robots (2022) is the exception and overrides per-game to a 4032 (BASIC 4). Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">Thomas Skibo's <a href="http://www.skibo.net/6502/" target="_blank" rel="noopener">pet2001</a> running in your browser as vanilla JavaScript — no WebAssembly, no libretro, no framework. The bundle emulates a PET 2001 (Commodore's first computer, January 1977) with 32&nbsp;KB RAM and BASIC 2 (the 1979 "Upgrade" ROM). Click the canvas first so the emulator receives keyboard input.</p>
 
-    <p class="note">Most bundled games are single-file BASIC <code>.prg</code>s that load instantly via VICE autostart. The PETSCII Robots shareware is a <code>.d64</code> disk image — that one takes ~30 seconds to boot through real-time IEC drive emulation (you'll hear the drive chunk the whole way), then drops into the title screen.</p>
+    <p class="note">Each game auto-types <code>load"*",8</code> into BASIC about a second and a half after the page loads, then auto-types <code>run</code> (or <code>sys 768</code> for machine-code titles) a few seconds later. Watch the boot screen for the typing — that's the autostart in action, not user keyboard. Once the game is up, all your keystrokes go straight to the PET.</p>
 
-    <h2>Keyboard-only input</h2>
-    <p>The PET has no joystick port. All games are keyboard-controlled. PETSCII Robots uses:</p>
+    <h2>Keyboard</h2>
+    <p>The PET has no joystick port. All games are keyboard-controlled. Skibo maps the PET keyboard symbolically — letters / numbers / punctuation type as themselves. Two PC keys remap:</p>
     <table>
-      <tr><th>Key</th><th>Action</th></tr>
-      <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td>Move (up / left / down / right)</td></tr>
-      <tr><td><kbd>Space</kbd></td><td>Action / fire / pick up</td></tr>
-      <tr><td><kbd>I</kbd></td><td>Inventory</td></tr>
-      <tr><td><kbd>P</kbd></td><td>Pause</td></tr>
-    </table>
-    <p>Most older PET games map directional input to keys near the right-hand side of the keyboard (<kbd>;</kbd> <kbd>'</kbd> for left/right is common), or use number keys. Read the on-screen instructions when each game boots.</p>
-
-    <h2>PET keyboard</h2>
-    <p>VICE maps the PET keyboard "positionally" to your PC keyboard — letters / numbers type as themselves. PET-specific keys:</p>
-    <table>
-      <tr><th>Key</th><th>PET key</th></tr>
-      <tr><td><kbd>Scroll Lock</kbd></td><td>RUN/STOP — breaks out of BASIC programs (remapped from Esc — see note below)</td></tr>
-      <tr><td><kbd>L Alt</kbd></td><td>Commodore-style graphic / inverse toggle</td></tr>
-      <tr><td><kbd>Page Up</kbd></td><td>RVS ON (reverse video)</td></tr>
-      <tr><td><kbd>Page Down</kbd></td><td>RVS OFF</td></tr>
-      <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
+      <tr><th>PC key</th><th>PET key</th></tr>
+      <tr><td><kbd>Enter</kbd></td><td>RETURN</td></tr>
       <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
-      <tr><td><kbd>F1</kbd> – <kbd>F10</kbd></td><td>Function keys (model-dependent — most 3032/4032 software ignores)</td></tr>
     </table>
+    <p>Per-game movement keys vary. Most older PET titles use <kbd>;</kbd> <kbd>'</kbd> <kbd>,</kbd> <kbd>.</kbd> for directional input (near the right hand) or number rows. <kbd>Space</kbd> tends to fire / pick up / pause. Read the on-screen instructions when the game boots.</p>
 
-    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>emulators/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
+    <p class="note">The PET's STOP key isn't mapped to a PC key in Skibo's emulator. To break out of a hung BASIC program, refresh the browser tab — boot time is under two seconds, then autostart re-runs the game.</p>
 
-    <h2>EmulatorJS toolbar</h2>
-    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
-    <table>
-      <tr><th>Button</th><th>Action</th></tr>
-      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
-      <tr><td>Restart</td><td>Cold-reset the PET (cart/disk reloads)</td></tr>
-      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
-      <tr><td>Settings (gear)</td><td>Core options — PET model swap, video filter, sample rate, key remap, etc.</td></tr>
-      <tr><td>Mute</td><td>Toggle audio (the PET has CB2 sound on pin 5 of the user port — most games use it for beeps via POKE)</td></tr>
-      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
-    </table>
+    <h2>What the bundle ships</h2>
+    <p>Ten PRG titles from 1977 to 1982, plus the empty stub that drops you at BASIC's <code>READY.</code> prompt:</p>
+    <ul>
+      <li><strong>Star Trek</strong> (1977) — Mike Mayfield's defining BASIC space game, ported to the PET via Apple/HP minicomputer lineage</li>
+      <li><strong>Android NIM</strong> (1979) — Leo Christopherson's animated NIM with shifting LED faces</li>
+      <li><strong>Lunar Lander</strong> (1979)</li>
+      <li><strong>Adventureland</strong> (1979) — Scott Adams' first text adventure</li>
+      <li><strong>Hangman</strong> (1980)</li>
+      <li><strong>Space Invaders</strong> (1980)</li>
+      <li><strong>Crazy Balloon</strong> (1981)</li>
+      <li><strong>ComputerSpace 2001</strong> (1981)</li>
+      <li><strong>Frogger</strong> (1981)</li>
+      <li><strong>Pac-Man</strong> (1982)</li>
+    </ul>
 
-    <h2>Loading from BASIC 2</h2>
-    <p>VICE auto-LOADs <code>.prg</code> files and the first program on most disks. If you drop to the <code>READY.</code> prompt, BASIC 2 needs the full <code>LOAD</code> / <code>RUN</code> sequence (no <code>DIRECTORY</code> or <code>DLOAD</code> shortcuts — those came with BASIC 4):</p>
-    <table>
-      <tr><th>Command</th><th>Effect</th></tr>
-      <tr><td><code>LOAD"$",8</code></td><td>Load the disk directory into BASIC, then <code>LIST</code> to view</td></tr>
-      <tr><td><code>LOAD"name",8</code></td><td>Load a program by name from disk drive 8</td></tr>
-      <tr><td><code>RUN</code></td><td>Run the loaded program</td></tr>
-    </table>
-    <p class="note">PETSCII Robots (BASIC 4 override) gains the <code>DIRECTORY</code> / <code>DLOAD"name"</code> shortcuts, but you won't see the <code>READY.</code> prompt during its boot — it autoboots straight into the title.</p>
+    <h2>Why no PETSCII Robots?</h2>
+    <p>The 2022 shareware demo by Dave Murray ("The 8-Bit Guy") was carried in an earlier VICE-based version of this bundle. It needs three things Skibo's emulator doesn't have: 1541 disk-image support (PETSCII Robots ships as <code>.d64</code>), the BASIC 4 Editor ROM for the PET 4032, and a multi-file disk loader for tile / level / music assets. None of these are trivially addable. PETSCII Robots is fully playable in the <a href="../c64/">Commodore 64 sub-system</a>, which carries the same shareware demo on its working VICE x64 build.</p>
 
-    <h2>About PETSCII Robots</h2>
-    <p>PETSCII Robots is a modern (2022) survival/strategy title by David Murray ("The 8-Bit Guy") — proof that the 32K PET still has commercial-grade games being written for it 45 years after launch. This is the official shareware build (free demo); the full game is sold by Murray directly. The shareware includes the first three of the full game's 30+ levels.</p>
-
-    <p class="note">Emulator: VICE xpet (GPL-2.0, libretro core) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
+    <p class="note">Emulator: Thomas Skibo's pet2001 (BSD-2-Clause). Shipped locally from this site; no network calls at runtime.</p>
 
     <div class="footer">
       <a href="javascript:window.close()">close tab</a> ·

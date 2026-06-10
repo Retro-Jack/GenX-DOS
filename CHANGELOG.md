@@ -2,6 +2,21 @@
 
 ## [Unreleased]
 
+### Changed
+- **PET migrated from VICE xpet to Thomas Skibo's pet2001** (BSD-2-Clause, vanilla JS, no WASM/libretro/EJS). `vice_xpet` ships with a hardcoded Business UK keyboard mapper that no `vicerc` resource overrides — symptom was `Enter`→`P` and scrambled letters. New `emulators/pet/` runtime is ~90 lines of `play.html` driving Skibo's `pet2001/*.js` (9 files), bumps RAM to 32 KB, auto-types `load"*",8`+`run` via the petkeys queue with a per-game `autostart` override in `games.json`. Sub-system count unchanged at 28.
+
+### Added
+- **Star Trek (1977)** added to the PET bundle as the replacement headline title — Mike Mayfield's defining BASIC space game, sourced from zimmers.net.
+
+### Removed
+- **PETSCII Robots Shareware (2022)** dropped from the PET bundle. Skibo's emulator has no 1541 disk-image support, no BASIC 4 / PET 4032 ROM, and no multi-file disk loader — three hard blockers that all three of PETSCII Robots' boot requirements need. PETSCII Robots remains playable in the C64 sub-system under VICE x64. Documented in detail at `wiki/Emulator-pet2001-Skibo`.
+- **`emulators/_shared-ejs/ejs/data/cores/vice_xpet-legacy-wasm.data`** (1.3 MB) — the libretro VICE PET core, no longer referenced by any bundle. VICE-family shared dir drops from 5 cores to 4.
+
+### Fixed
+- **PET keyboard, full rewrite** — `Enter` now produces Return, letters type as themselves, no stuck keys, no input delay. (Root cause was upstream-libretro and unfixable without recompiling the core; the migration above sidesteps it.)
+- **Frogger boot crash on PET** — Skibo's `pet2001io.js` reads VIA timer-2 latch-low (`via_t2ll`) at line 679 but never declares it with `var`. In sloppy mode the first write at line 552 would implicit-global it, but Frogger reads before writing, so the read crashes with `ReferenceError`. Added the missing `var via_t2ll = 0xff;` declaration plus a matching reset line. Two-line patch, fixes Frogger and any future title that reads T2 before writing.
+- **Doc sync after PET migration** — `README.md`, `ATTRIBUTION.md`, the PET menu in `prompt/javascript/fs.js` (Star Trek slotted in at position 1, PETSCII Robots row removed, numbering shifted), and four wiki pages (`Roadmap`, `File-Structure`, `Virtual-Filesystem`, `Emulator-EmulatorJS-NES-FCEUmm`) all updated to describe PET as Skibo / 4 VICE cores instead of 5.
+
 ### Added
 - **Electron (ElkJS) bezel + audio auto-unlock** — `emulators/electron/play.html` now wraps the canvas in the standard three-layer order (`.screen-bg` z:1 → canvas z:2 → `Acorn.png` z:3) inside a `.bezel-wrap` sized via `min(100vw, calc(100dvh * 835 / 719))`. Body gets the 70s wallpaper. Sound: `_autoUnlockSound()` fires `elkjs.soundToggle()` at 0/100/500/1000/2000 ms on DOMContentLoaded; the original keydown fallback kicks in only if the burst missed the window.open activation window. Second emulator to validate the bezel pattern after jsbeeb.
 - **jsbeeb dist chrome strip + bezel order + audio auto-unlock** — `dist/index.html` hides upstream `#header-bar` and `#leds`; wallpaper paints on body; standard three-layer order inside `#cub-monitor` (black `::before` at `inset: 5%` z:1 → canvas z:2 → CUB PNG z:3, `pointer-events:none` on the PNG so clicks reach the canvas). Audio unlock: jsbeeb only resumes its `AudioContext` on `mousedown` to `#audio-warning`, so we (a) forward any page mousedown to the warning and (b) fire optimistic mousedowns at 0/100/500/1000/2000 ms on `DOMContentLoaded` so the user-gesture from the prompt's `window.open()` click can propagate through. Confirmed working 10/06/2026.
