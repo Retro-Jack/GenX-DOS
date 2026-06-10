@@ -6,6 +6,7 @@
 - **PET migrated from VICE xpet to Thomas Skibo's pet2001** (BSD-2-Clause, vanilla JS, no WASM/libretro/EJS). `vice_xpet` ships with a hardcoded Business UK keyboard mapper that no `vicerc` resource overrides — symptom was `Enter`→`P` and scrambled letters. New `emulators/pet/` runtime is ~90 lines of `play.html` driving Skibo's `pet2001/*.js` (9 files), bumps RAM to 32 KB, auto-types `load"*",8`+`run` via the petkeys queue with a per-game `autostart` override in `games.json`. Sub-system count unchanged at 28.
 
 ### Added
+- **PET 2001 CRT bezel** wired into `emulators/pet/play.html` — `_shared/bezels/Pet.png` replaced with a higher-res blue-trimmed PET 2001 frame (1024×771, maintainer-keyed from the local OBS bezel library). Standard three-layer bezel order (black backdrop → canvas at the detected screen cutout left 28.3%/top 18.6%/41.4%×39.3% → bezel PNG on top), 70s wallpaper behind, generic photographer-unknown credit comment at the foot. Third bezel to go live after PC and Acorn.
 - **Star Trek (1977)** added to the PET bundle as the replacement headline title — Mike Mayfield's defining BASIC space game, sourced from zimmers.net.
 - **`gamedocs/pet/startrek.html`** — per-game instructions for the new headline title (the `?game=startrek` controls link was 404ing without it). Gamedocs sweep stays complete at 281 pages.
 

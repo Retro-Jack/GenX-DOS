@@ -122,12 +122,13 @@ title removed, open an issue at
 ## Bezel artwork
 
 `emulators/_shared/bezels/` contains ten transparent PNG monitor frames
-for the bezel-overlay integration. **Two are now wired in: `PC.png` into
-the DOS prompt page (`prompt/index.html`, 09/06/2026) and `Acorn.png`
-into the Electron bundle (`emulators/electron/play.html`, 10/06/2026).
-The other eight are still staging for the per-emulator integration
-pass.** Each bezel's source and licence must display credit lines when
-the bezel goes live in the rest of `play.html`.
+for the bezel-overlay integration. **Three are now wired in: `PC.png`
+into the DOS prompt page (`prompt/index.html`, 09/06/2026), `Acorn.png`
+into the Electron bundle (`emulators/electron/play.html`, 10/06/2026),
+and `Pet.png` into the PET bundle (`emulators/pet/play.html`,
+10/06/2026). The other seven are still staging for the per-emulator
+integration pass.** Each bezel's source and licence must display credit
+lines when the bezel goes live in the rest of `play.html`.
 
 (Note: jsbeeb's CUB monitor frame lives inside `emulators/jsbeeb/dist/`,
 not here — it's not part of this shared staging set.)
@@ -140,7 +141,7 @@ not here — it's not part of this shared staging set.)
 | `Acorn.png` | Microvitec CUB monitor (brown bezel, "Microvitec CUB" colour logo, red LED) | Unverified — Reddit / retro forums. Microvitec CUBs are extensively documented at [stardot.org.uk](https://stardot.org.uk) and [retrorepairsandrefurbs.com](https://retrorepairsandrefurbs.com); no Wikimedia Commons match found | Unknown | Unverified | ⚠️ Likely a collector / restoration site photo; medium risk |
 | `Apple.png` | Apple Monitor /// ("monitor ///" badge) | Unverified — Reddit / retro forums. Wikimedia Commons has [Apple3.jpg](https://commons.wikimedia.org/wiki/File:Apple3.jpg) (CC-BY-SA 3.0 / GFDL, Alexander Schaelss 2004) but it's lower-res and a different composition | Unknown | Unverified | ⚠️ Replaceable with the Schaelss Commons photo if needed |
 | `Commodore.png` | Commodore 1084S (specifically — "1084S" badge, not "1084") | Unverified — Reddit / retro forums. Wikimedia Commons has [Commodore1084_first_version_front.jpg](https://commons.wikimedia.org/wiki/File:Commodore1084_first_version_front.jpg) (CC-BY-SA 4.0, Gestumblindi 2021) for the 1084 first-version, but not this 1084S variant | Unknown | Unverified | ⚠️ Replaceable with the Gestumblindi 1084 if the model swap is acceptable |
-| `Pet.png` | Commodore PET 2001 integrated monitor (beige chassis, black rounded screen surround) | Unverified — Reddit / retro forums | Unknown | Unverified | ⚠️ Self-contained chassis crop; same provenance gap as the rest of the set |
+| `Pet.png` | Commodore PET 2001 — blue-trimmed CRT surround + "commodore PET 2001 Series" base | Local OBS bezel library (`/mnt/multimedia/Assets/OBS/Bezels/PET_2001.png`); screen hole alpha-keyed locally by the maintainer | Unknown | Unverified | ⚠️ Live (`pet/play.html`); same provenance gap as the rest of the set, covered by the generic credit comment |
 | `PC.png` | IBM 5153 CGA colour monitor (3 knobs, IBM badge top-right, green power LED) — originally staged as `IBM 5153 CGA.png` | Unverified — Reddit / retro forums. Wikimedia Commons has only the 5151 monochrome ([File:5151_monochrome_monitor.jpg](https://commons.wikimedia.org/wiki/File:5151_monochrome_monitor.jpg), CC-BY-SA 2.0 steverenouk), not the 5153 colour variant we have | Unknown | Unverified | ⚠️ The 5153 colour is the period-correct match for our DOS bundle but no verified Commons source found |
 | `Sinclair.png` | Generic 80s portable colour TV with side-speaker panel — historically accurate (Spectrum/ZX81 era used household TVs, no Sinclair-branded monitor existed) | Unverified — Reddit / retro forums | Unknown | Unverified | ⚠️ Lower risk (generic anonymous hardware) |
 | `Vectrex.png` | GCE Vectrex console front view, dark cabinet on wooden surface | Unverified — Reddit / retro forums. Art style suggests it *may* be a CGI render rather than a photograph (user supposition, not confirmed) — community 3D models do circulate for emulation overlays | Unknown | Unverified | ⚠️ Either a photo or a render; in both cases the original artist isn't reachable from the Reddit/forum repost. Replaceable with a Wikipedia Vectrex photo if needed |
@@ -162,7 +163,7 @@ Per [[user notes 06/06/2026]], all nine unverified bezels above were sourced fro
 
 Recommended for the branded monitors (Acorn/Apple/Commodore/PC/Pet): option 1. Recommended for the generic TVs (70s/80s/Sinclair/Vectrex): option 2 is defensible since these are anonymous hardware shots with no obvious commercial-photography fingerprint.
 
-**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both. The generic "sourced from public web archives, original photographer unknown — open an issue if you recognise your work" credit line is now in place as an HTML comment at the foot of each live page (`prompt/index.html` for PC, `emulators/electron/play.html` for Acorn) — kept as a comment rather than visible text because both pages are fullscreen immersive layouts with no footer area. The remaining eight staged bezels should still not ship without one of the resolutions above for each row.
+**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both. The generic "sourced from public web archives, original photographer unknown — open an issue if you recognise your work" credit line is now in place as an HTML comment at the foot of each live page (`prompt/index.html` for PC, `emulators/electron/play.html` for Acorn, `emulators/pet/play.html` for Pet) — kept as a comment rather than visible text because these pages are fullscreen immersive layouts with no footer area. The remaining eight staged bezels should still not ship without one of the resolutions above for each row.
 
 ---
 
