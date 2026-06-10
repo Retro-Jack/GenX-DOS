@@ -121,12 +121,16 @@ title removed, open an issue at
 
 ## Bezel artwork
 
-`emulators/_shared/bezels/` contains transparent PNG monitor frames for
-the bezel-overlay integration. **`PC.png` is wired into the DOS prompt
-page (`prompt/index.html`) as of 09/06/2026; the other eight bezels are
-still staging for the per-emulator integration pass.** Each bezel's
-source and licence must display credit lines when the bezel goes live
-in the rest of `play.html`.
+`emulators/_shared/bezels/` contains ten transparent PNG monitor frames
+for the bezel-overlay integration. **Two are now wired in: `PC.png` into
+the DOS prompt page (`prompt/index.html`, 09/06/2026) and `Acorn.png`
+into the Electron bundle (`emulators/electron/play.html`, 10/06/2026).
+The other eight are still staging for the per-emulator integration
+pass.** Each bezel's source and licence must display credit lines when
+the bezel goes live in the rest of `play.html`.
+
+(Note: jsbeeb's CUB monitor frame lives inside `emulators/jsbeeb/dist/`,
+not here — it's not part of this shared staging set.)
 
 | File | Hardware identified | Verified source | Author | Licence | Integration risk |
 | --- | --- | --- | --- | --- | --- |
@@ -136,13 +140,14 @@ in the rest of `play.html`.
 | `Acorn.png` | Microvitec CUB monitor (brown bezel, "Microvitec CUB" colour logo, red LED) | Unverified — Reddit / retro forums. Microvitec CUBs are extensively documented at [stardot.org.uk](https://stardot.org.uk) and [retrorepairsandrefurbs.com](https://retrorepairsandrefurbs.com); no Wikimedia Commons match found | Unknown | Unverified | ⚠️ Likely a collector / restoration site photo; medium risk |
 | `Apple.png` | Apple Monitor /// ("monitor ///" badge) | Unverified — Reddit / retro forums. Wikimedia Commons has [Apple3.jpg](https://commons.wikimedia.org/wiki/File:Apple3.jpg) (CC-BY-SA 3.0 / GFDL, Alexander Schaelss 2004) but it's lower-res and a different composition | Unknown | Unverified | ⚠️ Replaceable with the Schaelss Commons photo if needed |
 | `Commodore.png` | Commodore 1084S (specifically — "1084S" badge, not "1084") | Unverified — Reddit / retro forums. Wikimedia Commons has [Commodore1084_first_version_front.jpg](https://commons.wikimedia.org/wiki/File:Commodore1084_first_version_front.jpg) (CC-BY-SA 4.0, Gestumblindi 2021) for the 1084 first-version, but not this 1084S variant | Unknown | Unverified | ⚠️ Replaceable with the Gestumblindi 1084 if the model swap is acceptable |
+| `Pet.png` | Commodore PET 2001 integrated monitor (beige chassis, black rounded screen surround) | Unverified — Reddit / retro forums | Unknown | Unverified | ⚠️ Self-contained chassis crop; same provenance gap as the rest of the set |
 | `PC.png` | IBM 5153 CGA colour monitor (3 knobs, IBM badge top-right, green power LED) — originally staged as `IBM 5153 CGA.png` | Unverified — Reddit / retro forums. Wikimedia Commons has only the 5151 monochrome ([File:5151_monochrome_monitor.jpg](https://commons.wikimedia.org/wiki/File:5151_monochrome_monitor.jpg), CC-BY-SA 2.0 steverenouk), not the 5153 colour variant we have | Unknown | Unverified | ⚠️ The 5153 colour is the period-correct match for our DOS bundle but no verified Commons source found |
 | `Sinclair.png` | Generic 80s portable colour TV with side-speaker panel — historically accurate (Spectrum/ZX81 era used household TVs, no Sinclair-branded monitor existed) | Unverified — Reddit / retro forums | Unknown | Unverified | ⚠️ Lower risk (generic anonymous hardware) |
 | `Vectrex.png` | GCE Vectrex console front view, dark cabinet on wooden surface | Unverified — Reddit / retro forums. Art style suggests it *may* be a CGI render rather than a photograph (user supposition, not confirmed) — community 3D models do circulate for emulation overlays | Unknown | Unverified | ⚠️ Either a photo or a render; in both cases the original artist isn't reachable from the Reddit/forum repost. Replaceable with a Wikipedia Vectrex photo if needed |
 
 ### Provenance trail and integration plan
 
-Per [[user notes 06/06/2026]], all eight unverified bezels above were sourced from **Reddit posts and retro-computing forums** between approximately 2024 and 2026. Reddit / forum reposts strip EXIF and break the attribution chain — the original photographer or rights holder for each is no longer reachable from the current artefact. GIMP processing (alpha-keying, cleanup) was applied locally and is recorded in PNG `Comment: Created with GIMP` metadata for most of them.
+Per [[user notes 06/06/2026]], all nine unverified bezels above were sourced from **Reddit posts and retro-computing forums** between approximately 2024 and 2026. Reddit / forum reposts strip EXIF and break the attribution chain — the original photographer or rights holder for each is no longer reachable from the current artefact. GIMP processing (alpha-keying, cleanup) was applied locally and is recorded in PNG `Comment: Created with GIMP` metadata for most of them.
 
 **Two paths to clear the integration blocker before wiring bezels into emulator pages:**
 
@@ -155,9 +160,9 @@ Per [[user notes 06/06/2026]], all eight unverified bezels above were sourced fr
 
 2. **Keep as-is, accept the risk**, and add a generic "bezel artwork sourced from public web archives, original photographers unknown — please open an issue if you recognise your work" credit line on the integration footer. Lower friction but DMCA-exposed if a rights holder objects.
 
-Recommended for the branded monitors (Acorn/Apple/Commodore/PC): option 1. Recommended for the generic TVs (70s/80s/Sinclair/Vectrex): option 2 is defensible since these are anonymous hardware shots with no obvious commercial-photography fingerprint.
+Recommended for the branded monitors (Acorn/Apple/Commodore/PC/Pet): option 1. Recommended for the generic TVs (70s/80s/Sinclair/Vectrex): option 2 is defensible since these are anonymous hardware shots with no obvious commercial-photography fingerprint.
 
-The remaining per-emulator integration pass should not ship without one of these resolutions for each row.
+**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both, without yet adding the generic "open an issue if you recognise your work" credit line to their integration footers. That credit line is now an outstanding to-do for the two live bezels. The remaining eight staged bezels should still not ship without one of the resolutions above for each row.
 
 ---
 
