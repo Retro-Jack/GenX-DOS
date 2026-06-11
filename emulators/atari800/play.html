@@ -4,12 +4,59 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atari 800XL</title>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <style>
-    html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
-    /* Atari 8-bit is 4:3 PAR-corrected. Fill the viewport while maintaining ratio. */
-    #canvas { box-shadow: 2px 2px 10px rgba(0,0,0,.7); image-rendering: pixelated; background: #000; outline: none; aspect-ratio: 4 / 3; width: min(98vw, calc(98vh * 4 / 3)); height: min(98vh, calc(98vw * 3 / 4)); }
+    /* CRT bezel — early-'80s wood-cabinet CRT television (80s.png, 1680x1125).
+       The set floats on the wallpaper: the PNG has a transparent background
+       around the cabinet AND a transparent screen hole. Layers, back to front:
+         1. .screen — clip box at the screen cutout (overflow:hidden, black
+            backdrop). The canvas lives INSIDE it, scaled up past 100% to crop
+            the Atari overscan border; the clip keeps that overflow from
+            bleeding onto the wallpaper through the transparent cabinet margins.
+         2. .bezel-img — 80s.png on top; the canvas shows through the hole and
+            the rounded-corner frame trims the screen's sharp corners.
+       Screen hole (measured): left 15.4% top 21.3% width 46.4% height 52.8%.
+       Height capped at 100dvh-120px so wallpaper shows around the set.
+       Wallpaper override must follow genx-frame.css (which sets body black). */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; color: #fff; font-family: monospace; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    .bezel-wrap {
+      position: relative;
+      width: min(100vw, calc((100dvh - 120px) * 1.25 * 1680 / 1125));
+      aspect-ratio: 1680 / 1125;
+    }
+    .screen {
+      position: absolute;
+      left: 15.4%; top: 21.3%; width: 46.4%; height: 52.8%;
+      background: #000;
+      overflow: hidden;
+      z-index: 1;
+    }
+    #canvas {
+      /* The canvas fills the cutout exactly. atari800 is told (via -stretch
+         full / -fit-screen both / -image-aspect none, see play.html args) to
+         stretch its visible TV area to the whole canvas, so the picture meets
+         all four cutout corners with no letterboxing and no viewport-dependent
+         integer-scale quantisation. */
+      position: absolute;
+      left: 0; top: 0; width: 100%; height: 100%;
+      image-rendering: pixelated;
+      background: #000;
+      outline: none;
+    }
+    .bezel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 2;
+    }
     .err { padding: 20px; }
   </style>
+  <script defer src="../_shared/genx-controls-link.js"></script>
 </head>
 <body>
   <noscript><div class="gx-noscript">
@@ -18,7 +65,12 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
+  <div class="bezel-wrap">
+    <div class="screen">
+      <canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
+    </div>
+    <img class="bezel-img" src="../_shared/bezels/80s.png" alt="">
+  </div>
   <script>
     (async function () {
       const fail = (msg) => { document.body.innerHTML = '<div class="err">' + msg + '</div>'; };
@@ -45,18 +97,23 @@
         document.title = 'Atari 800XL';
       }
 
-      // Build atari800 args. Raw .rom/.bin cart files need explicit -cart
-      // (and optionally -cart-type N for headerless dumps).
-      let args = [];
+      // Video: stretch the visible TV area to completely fill the canvas so
+      // the picture meets all four corners of the CRT-bezel cutout. -stretch
+      // full removes the integer-scale letterboxing (which was quantised and
+      // viewport-dependent); -fit-screen both + -image-aspect none let it fill
+      // without preserving the 4:3 ratio; -horiz-area/-vert-area trim the
+      // overscan border down to the TV-safe area.
+      let args = ['-stretch', 'full', '-fit-screen', 'both', '-image-aspect', 'none',
+                  '-horiz-area', 'tv', '-vert-area', 'tv'];
       if (vfsName) {
         const ext = vfsName.split('.').pop();
         if (ext === 'rom' || ext === 'bin') {
-          args = ['-cart', '/' + vfsName];
           if (game && game.cartType) {
-            args.unshift('-cart-type', String(game.cartType));
+            args.push('-cart-type', String(game.cartType));
           }
+          args.push('-cart', '/' + vfsName);
         } else {
-          args = ['/' + vfsName];
+          args.push('/' + vfsName);
         }
       }
 
@@ -83,10 +140,5 @@
       document.body.appendChild(s);
     })();
   </script>
-  <link rel="stylesheet" href="../_shared/genx-frame.css">
-<link rel="stylesheet" href="../_shared/genx-noscript.css">
-  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
-  <script defer src="../_shared/genx-controls-link.js"></script>
-
 </body>
 </html>
