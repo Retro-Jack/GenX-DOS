@@ -122,14 +122,16 @@ title removed, open an issue at
 ## Bezel artwork
 
 `emulators/_shared/bezels/` contains ten transparent PNG monitor frames
-for the bezel-overlay integration. **Four are now wired in: `PC.png`
+for the bezel-overlay integration. **Five are now wired in: `PC.png`
 into the DOS prompt page (`prompt/index.html`, 09/06/2026), `Acorn.png`
 into the Electron bundle (`emulators/electron/play.html`, 10/06/2026),
 `Pet.png` into the PET bundle (`emulators/pet/play.html`, 10/06/2026),
-and `Amstrad.png` into the CPC bundle (`emulators/amstradcpc/play.html`,
-10/06/2026). The other six are still staging for the per-emulator
-integration pass.** Each bezel's source and licence must display credit
-lines when the bezel goes live in the rest of `play.html`.
+`Amstrad.png` into the CPC bundle (`emulators/amstradcpc/play.html`,
+10/06/2026), and `80s.png` into the Atari 400/800 bundle
+(`emulators/atari800/play.html`, 11/06/2026). The other five are still
+staging for the per-emulator integration pass.** Each bezel's source and
+licence must display credit lines when the bezel goes live in the rest of
+`play.html`.
 
 (Note: jsbeeb's CUB monitor frame lives inside `emulators/jsbeeb/dist/`,
 not here — it's not part of this shared staging set.)
@@ -138,7 +140,7 @@ not here — it's not part of this shared staging set.)
 | --- | --- | --- | --- | --- | --- |
 | `Amstrad.png` | Amstrad CTM640 monitor + CPC464 keyboard | [File:Amstrad_CPC464.jpg](https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg) (Wikimedia Commons) | Bill Bertram (Wikimedia username Pixel8) — 7 May 2005 | CC-BY-SA 2.5 | ✅ **Live** (`amstradcpc/play.html`). Cleared. Modifications inherit share-alike. Background alpha'd in GIMP from the original white-background product photo; CC-BY-SA 2.5 credit comment carried at the foot of the page. |
 | `70s.png` | HMV-branded wood-cabinet console TV (probable Albany / M1-A5 family) | Unverified — reposted via Reddit / retro forums; original photographer unknown | Unknown | Unverified | ⚠️ Stock-photo or collector-site original; medium risk if commercial product photography |
-| `80s.png` | Generic solid-state portable TV (dial + channel buttons) | Unverified — Reddit / retro forums | Unknown | Unverified | ⚠️ Lower risk (generic anonymous hardware) but still unattributed |
+| `80s.png` | Early-'80s wood-cabinet CRT television (slider controls + speaker grille on the right) — replaced the earlier generic-portable-TV image | Local OBS bezel library (`/mnt/multimedia/Assets/OBS/Bezels/80s.png`); transparent background + screen hole, alpha-keyed and resized locally by the maintainer | Unknown | Unverified | ✅ **Live** (`atari800/play.html`). Same provenance gap as the rest of the set; graphics are not provenance-tracked per maintainer policy, so no credit comment ships. |
 | `Acorn.png` | Microvitec CUB monitor (brown bezel, "Microvitec CUB" colour logo, red LED) | Unverified — Reddit / retro forums. Microvitec CUBs are extensively documented at [stardot.org.uk](https://stardot.org.uk) and [retrorepairsandrefurbs.com](https://retrorepairsandrefurbs.com); no Wikimedia Commons match found | Unknown | Unverified | ⚠️ Likely a collector / restoration site photo; medium risk |
 | `Apple.png` | Apple Monitor /// ("monitor ///" badge) | Unverified — Reddit / retro forums. Wikimedia Commons has [Apple3.jpg](https://commons.wikimedia.org/wiki/File:Apple3.jpg) (CC-BY-SA 3.0 / GFDL, Alexander Schaelss 2004) but it's lower-res and a different composition | Unknown | Unverified | ⚠️ Replaceable with the Schaelss Commons photo if needed |
 | `Commodore.png` | Commodore 1084S (specifically — "1084S" badge, not "1084") | Unverified — Reddit / retro forums. Wikimedia Commons has [Commodore1084_first_version_front.jpg](https://commons.wikimedia.org/wiki/File:Commodore1084_first_version_front.jpg) (CC-BY-SA 4.0, Gestumblindi 2021) for the 1084 first-version, but not this 1084S variant | Unknown | Unverified | ⚠️ Replaceable with the Gestumblindi 1084 if the model swap is acceptable |
@@ -164,7 +166,9 @@ Per [[user notes 06/06/2026]], all nine unverified bezels above were sourced fro
 
 Recommended for the branded monitors (Acorn/Apple/Commodore/PC/Pet): option 1. Recommended for the generic TVs (70s/80s/Sinclair/Vectrex): option 2 is defensible since these are anonymous hardware shots with no obvious commercial-photography fingerprint.
 
-**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both. The generic "sourced from public web archives, original photographer unknown — open an issue if you recognise your work" credit line is now in place as an HTML comment at the foot of each live page (`prompt/index.html` for PC, `emulators/electron/play.html` for Acorn, `emulators/pet/play.html` for Pet) — kept as a comment rather than visible text because these pages are fullscreen immersive layouts with no footer area. **`Amstrad.png` is the exception:** it's properly source-cleared (Bill Bertram, CC-BY-SA 2.5), so `amstradcpc/play.html` carries a real attribution comment naming the author + licence rather than the generic "unknown" line. The remaining eight staged bezels should still not ship without one of the resolutions above for each row.
+**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both. The generic "sourced from public web archives, original photographer unknown — open an issue if you recognise your work" credit line is now in place as an HTML comment at the foot of each live page (`prompt/index.html` for PC, `emulators/electron/play.html` for Acorn, `emulators/pet/play.html` for Pet) — kept as a comment rather than visible text because these pages are fullscreen immersive layouts with no footer area. **`Amstrad.png` is the exception:** it's properly source-cleared (Bill Bertram, CC-BY-SA 2.5), so `amstradcpc/play.html` carries a real attribution comment naming the author + licence rather than the generic "unknown" line.
+
+**Update (11/06/2026):** `80s.png` shipped into `atari800/play.html` — the maintainer has since adopted a no-graphic-provenance-tracking policy for bezels/wallpapers/textures (source-code deps stay in scope), so this one ships *without* a credit comment, unlike the PC/Acorn/Pet pages. The four still-staged bezels (`70s/Apple/Commodore/Sinclair/Vectrex`) carry no integration obligation until they're wired.
 
 ---
 
