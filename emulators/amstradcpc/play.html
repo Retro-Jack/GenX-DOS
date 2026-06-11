@@ -24,7 +24,7 @@
     html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; }
     .bezel-wrap {
       position: relative;
-      width: min(100vw, calc((100dvh - 120px) * 1502 / 992));
+      width: min(100vw, calc((100dvh - 120px) * 1502 / 992 * 1.05));
       aspect-ratio: 1502 / 992;
     }
     .screen-bg {
@@ -35,28 +35,16 @@
     }
     #canvas {
       position: absolute;
-      left: 28.5%; top: 14.4%; width: 39%; height: 44.4%;
+      left: 24.85%; top: 4.8%; width: 46.3%; height: 66.4%;
       image-rendering: pixelated; image-rendering: crisp-edges;
       background: #000;
       z-index: 2;
     }
     #loading {
       position: absolute;
-      left: 28.5%; top: 14.4%; width: 39%; height: 44.4%;
+      left: 24.85%; top: 4.8%; width: 46.3%; height: 66.4%;
       display: flex; align-items: center; justify-content: center;
       color: #888; font-family: monospace; pointer-events: none;
-      z-index: 2;
-    }
-    /* Mask over the bottom strip of the screen. floooh's tiny8bit draws a
-       sokol-debugtext status bar (JOYSTICK/DISC/MOTOR/TRACK + frame timing)
-       at the bottom of the canvas — can't be toggled off without rebuilding
-       the WASM. The cutout aspect is locked, so this strip lands in the same
-       proportional spot at any window size. Black-on-black with the CRT
-       border, so it reads as screen surround, not a bar. */
-    .screen-mask {
-      position: absolute;
-      left: 28.5%; top: 49%; width: 39%; height: 10%;
-      background: #000;
       z-index: 2;
     }
     .bezel-img {
@@ -82,7 +70,6 @@
   <div class="bezel-wrap">
     <div class="screen-bg"></div>
     <canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas>
-    <div class="screen-mask"></div>
     <div id="loading">Booting Amstrad CPC…</div>
     <img class="bezel-img" src="../_shared/bezels/Amstrad.png" alt="">
   </div>

@@ -55,7 +55,7 @@ the corresponding emulator folder.
 | `emulators/atari800/atari800.wasm` (embedded) | AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC | Avery Lee | Freely-redistributable open-source OS replacement, compiled into the WASM via `--enable-altirra_bios` (no separate ROM file ships) |
 | `emulators/intellivision/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
 | `emulators/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | GPL-2.0+ (libretro-o2em); frontend bundled under repo terms |
-| `emulators/amstradcpc/` | floooh's tiny8bit CPC WASM | Andre Weissflog | MIT |
+| `emulators/amstradcpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` with a two-line patch (status bar + muted-speaker icon removed; see `emulators/amstradcpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
 | `emulators/pet/pet2001/` | pet2001 (vanilla-JS PET 2001 emulator) | Thomas Skibo | BSD-2-Clause |
 | `emulators/_shared-ejs/` | EmulatorJS framework | EmulatorJS team | GPL-3.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`) | vice-emu.sourceforge.net | GPL-2.0 |

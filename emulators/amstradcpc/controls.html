@@ -13,31 +13,26 @@
       <h1>Amstrad CPC — Controls</h1>
     </div>
 
-    <p class="intro">floooh's tiny8bit CPC emulator (Andre Weissflog) running as a standalone WASM build. The CPC 6128 (128 KB RAM, BASIC 1.1, 3-inch floppy drive) was released 1984 by Amstrad as the UK / European rival to the C64 and Spectrum — the CPC range sold ~3 million units and built one of the strongest 8-bit game libraries outside Japan. Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">floooh's tiny8bit CPC emulator (Andre Weissflog) running as a standalone WASM build — rebuilt locally from source so the on-screen debug status bar and the muted-speaker icon don't paint over the game. The CPC 6128 (128 KB RAM, BASIC 1.1, 3-inch floppy drive) was released 1984 by Amstrad as the UK / European rival to the C64 and Spectrum — the CPC range sold ~3 million units and built one of the strongest 8-bit game libraries outside Japan. Click the canvas first so the emulator receives keyboard input.</p>
 
     <h2>Game launch</h2>
     <p>Pick a game from the menu and it autoboots — no catalog screen, no <code>run"…</code> typing. Each game's <code>games.json</code> entry carries the boot command (e.g. <code>run"ontherun</code> for Roland), which tiny8bit's <code>sokol_args</code> reads as URL params and types into the emulator immediately after the disk mounts.</p>
     <p>The <code>BASIC</code> menu entry skips the autoboot — you land at the bare Locomotive BASIC 1.1 <code>Ready</code> prompt as if no disk were inserted.</p>
 
-    <h2>Joystick (mapped to keyboard)</h2>
-    <p>Most CPC games support joystick input on the dedicated 9-pin port. tiny8bit maps this to the cursor keys with Space as fire:</p>
-    <table>
-      <tr><th>Key</th><th>Action</th></tr>
-      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Joystick directions</td></tr>
-      <tr><td><kbd>Space</kbd></td><td>Fire</td></tr>
-      <tr><td><kbd>PgUp</kbd> / <kbd>PgDn</kbd></td><td>Fire (alternate — also wired to Space for hands that prefer them)</td></tr>
-    </table>
-    <p class="note">tiny8bit's chips library only wires one fire button; <kbd>Space</kbd> is the canonical key. Our <code>play.html</code> adds a capture-phase listener that remaps <kbd>PgUp</kbd> / <kbd>PgDn</kbd> to dispatch as Space, so either side of a numeric keypad can fire.</p>
-
-    <h2>CPC keyboard (for games that need typing)</h2>
-    <p>The CPC keyboard is mapped positionally: letters / digits type as themselves. CPC-specific keys:</p>
+    <h2>Controls — host keyboard → CPC keyboard</h2>
+    <p>The 9-pin joystick port is <em>not</em> emulated here, so your keypresses arrive as the CPC's own keys. In practice that's how most of these titles are meant to be played: pick the game's <strong>keyboard</strong> option and use the cursor keys with Space (or set the game's redefinable keys to suit). Letters and digits type as themselves; the movement / action keys map like this:</p>
     <table>
       <tr><th>Key</th><th>CPC key</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>CPC cursor keys (movement in most games)</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>SPACE — the usual fire / action key</td></tr>
+      <tr><td><kbd>PgUp</kbd> / <kbd>PgDn</kbd></td><td>Fire — remapped to Space (handy on keyboards where Space is awkward)</td></tr>
       <tr><td><kbd>Enter</kbd></td><td>RETURN</td></tr>
-      <tr><td><kbd>Esc</kbd></td><td>ESC (often "pause" or "quit" in-game)</td></tr>
-      <tr><td><kbd>Backspace</kbd></td><td>DEL</td></tr>
-      <tr><td><kbd>Tab</kbd></td><td>TAB</td></tr>
+      <tr><td><kbd>Shift</kbd></td><td>SHIFT</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>ESC — <kbd>Shift</kbd>+<kbd>Esc</kbd> sends BREAK (stops a running program)</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>DEL — <kbd>Shift</kbd>+<kbd>Backspace</kbd> clears the screen</td></tr>
+      <tr><td><kbd>F1</kbd>–<kbd>F10</kbd></td><td>CPC numeric-keypad keys (f0–f9) — some games read these</td></tr>
     </table>
+    <p class="note"><kbd>Space</kbd> is the canonical fire key; our <code>play.html</code> adds a capture-phase listener that remaps <kbd>PgUp</kbd> / <kbd>PgDn</kbd> to dispatch as Space too. Note that some browsers intercept <kbd>F1</kbd> (help) before the emulator sees it — if a game wants the keypad, the others (<kbd>F2</kbd>–<kbd>F10</kbd>) are safer.</p>
 
     <h2>BASIC prompt — common commands</h2>
     <p>From the <code>BASIC</code> menu entry (or if a game drops you back to <code>Ready</code>), these are the period-correct disc commands:</p>

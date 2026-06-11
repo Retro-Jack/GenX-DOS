@@ -11,7 +11,7 @@
     <div class="head">
       <div class="system">Home Computer · Amstrad CPC</div>
       <h1>Elite</h1>
-      <p class="sub">Firebird, 1985 — David Braben &amp; Ian Bell. The open-universe space-trader template that every later game in the genre rebuilds from. Eight galaxies, 256 planets each, all procedurally generated.</p>
+      <p class="sub">Firebird, 1985–1986 — David Braben &amp; Ian Bell. The open-universe space-trader template that every later game in the genre rebuilds from. Eight galaxies, 256 planets each, all procedurally generated.</p>
     </div>
 
     <p class="intro">Start with a Cobra Mk III, 100 credits, and the rank "Harmless". Buy low, sell high, fight off pirates, dock at stations, work up through the combat ratings. Reaching Elite is a long-haul commitment — most players measure it in weeks of real time.</p>
@@ -20,42 +20,94 @@
     <ol>
       <li>Game autoboots — bundle pre-types <code>run"elite</code>.</li>
       <li>Click the canvas first to give it keyboard focus.</li>
-      <li>Press any key past the title; you'll launch from Lave.</li>
+      <li>Press <kbd>1</kbd> to launch from the station when you're ready to fly.</li>
     </ol>
+    <p class="note">Keys below are transcribed from the Amstrad CPC Firebird quick-key card. On a PC keyboard the roll keys <kbd>&lt;</kbd> / <kbd>&gt;</kbd> are <kbd>Shift</kbd>+<kbd>,</kbd> / <kbd>Shift</kbd>+<kbd>.</kbd> — or just use the arrow keys, which the card lists as alternatives.</p>
 
-    <h2>Flight controls</h2>
+    <h2>Space flight controls</h2>
     <table>
-      <tr><th>Key</th><th>Action</th></tr>
-      <tr><td><kbd>S</kbd> / <kbd>X</kbd></td><td>Pitch up / down</td></tr>
-      <tr><td><kbd>,</kbd> / <kbd>.</kbd></td><td>Roll left / right</td></tr>
-      <tr><td><kbd>Space</kbd> / <kbd>?</kbd></td><td>Accelerate / decelerate</td></tr>
-      <tr><td><kbd>A</kbd></td><td>Fire laser</td></tr>
-      <tr><td><kbd>M</kbd></td><td>Arm missile</td></tr>
-      <tr><td><kbd>T</kbd></td><td>Lock missile target</td></tr>
-      <tr><td><kbd>U</kbd></td><td>Unarm missile</td></tr>
-      <tr><td><kbd>E</kbd></td><td>ECM (destroys incoming missile)</td></tr>
-      <tr><td><kbd>J</kbd></td><td>In-system jump (out of fight, to planet)</td></tr>
-      <tr><td><kbd>H</kbd></td><td>Hyperspace</td></tr>
+      <tr><th>Action</th><th>Key</th></tr>
+      <tr><td>Anticlockwise roll</td><td><kbd>&lt;</kbd> or <kbd>←</kbd> (or joystick)</td></tr>
+      <tr><td>Clockwise roll</td><td><kbd>&gt;</kbd> or <kbd>→</kbd> (or joystick)</td></tr>
+      <tr><td>Dive</td><td><kbd>S</kbd> or <kbd>↑</kbd> (or joystick)</td></tr>
+      <tr><td>Climb</td><td><kbd>X</kbd> or <kbd>↓</kbd> (or joystick)</td></tr>
+      <tr><td>Increase speed</td><td><kbd>Space</kbd></td></tr>
+      <tr><td>Decrease speed</td><td><kbd>/</kbd></td></tr>
+      <tr><td>Front view</td><td><kbd>1</kbd></td></tr>
+      <tr><td>Back view</td><td><kbd>2</kbd></td></tr>
+      <tr><td>Left view</td><td><kbd>3</kbd></td></tr>
+      <tr><td>Right view</td><td><kbd>4</kbd></td></tr>
     </table>
 
-    <h2>Menu controls</h2>
+    <h2>Space combat controls</h2>
     <table>
-      <tr><th>Key</th><th>Screen</th></tr>
-      <tr><td><kbd>F1</kbd></td><td>Front view (default)</td></tr>
-      <tr><td><kbd>F2</kbd> / <kbd>F3</kbd> / <kbd>F4</kbd></td><td>Rear / left / right view</td></tr>
-      <tr><td><kbd>F5</kbd></td><td>Galactic chart</td></tr>
-      <tr><td><kbd>F6</kbd></td><td>System chart</td></tr>
-      <tr><td><kbd>F7</kbd></td><td>System data</td></tr>
-      <tr><td><kbd>F8</kbd></td><td>Market prices (at station)</td></tr>
-      <tr><td><kbd>F9</kbd></td><td>Status / inventory</td></tr>
+      <tr><th>Action</th><th>Key</th></tr>
+      <tr><td>Fire laser</td><td><kbd>A</kbd> (or fire button)</td></tr>
+      <tr><td>Target missile</td><td><kbd>T</kbd></td></tr>
+      <tr><td>Fire missile</td><td><kbd>M</kbd></td></tr>
+      <tr><td>Unarm missile</td><td><kbd>U</kbd></td></tr>
+      <tr><td>ECM</td><td><kbd>E</kbd></td></tr>
+      <tr><td>Energy bomb</td><td><kbd>Tab</kbd></td></tr>
+      <tr><td>Escape capsule</td><td><kbd>Esc</kbd></td></tr>
+    </table>
+
+    <h2>Navigation controls</h2>
+    <table>
+      <tr><th>Action</th><th>Key</th></tr>
+      <tr><td>Hyperspace</td><td><kbd>H</kbd></td></tr>
+      <tr><td>Intergalactic jump</td><td>hold <kbd>G</kbd> then <kbd>H</kbd></td></tr>
+      <tr><td>Distance to system</td><td><kbd>D</kbd></td></tr>
+      <tr><td>Cursor cross home</td><td><kbd>Copy</kbd></td></tr>
+      <tr><td>Cursor cross control</td><td><kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> (left, right, up, down)</td></tr>
+      <tr><td>Galactic chart</td><td><kbd>5</kbd></td></tr>
+      <tr><td>Local cluster chart</td><td><kbd>6</kbd></td></tr>
+    </table>
+
+    <h2>Trading controls</h2>
+    <table>
+      <tr><th>Action</th><th>Key</th></tr>
+      <tr><td>Launch from station</td><td><kbd>1</kbd> — only while docked</td></tr>
+      <tr><td>Buy cargo</td><td><kbd>2</kbd> — only while docked</td></tr>
+      <tr><td>Sell cargo</td><td><kbd>3</kbd> — only while docked</td></tr>
+      <tr><td>Equip ship</td><td><kbd>4</kbd> — only while docked</td></tr>
+      <tr><td>Galactic chart</td><td><kbd>5</kbd></td></tr>
+      <tr><td>Local cluster chart</td><td><kbd>6</kbd></td></tr>
+      <tr><td>Data on system</td><td><kbd>7</kbd></td></tr>
+      <tr><td>Market prices</td><td><kbd>8</kbd></td></tr>
+      <tr><td>Status page</td><td><kbd>9</kbd></td></tr>
+      <tr><td>Inventory</td><td><kbd>0</kbd></td></tr>
+      <tr><td>Find Planet</td><td><kbd>F</kbd> — only while docked</td></tr>
+    </table>
+
+    <h2>Game controls</h2>
+    <table>
+      <tr><th>Action</th><th>Key</th></tr>
+      <tr><td>Torus jump drive</td><td><kbd>J</kbd></td></tr>
+      <tr><td>Freeze game</td><td><kbd>Del</kbd></td></tr>
+      <tr><td>Continue game</td><td><kbd>Clr</kbd></td></tr>
+      <tr><td>Initiate save</td><td><kbd>@</kbd> — only while docked</td></tr>
+    </table>
+
+    <h2>Other controls</h2>
+    <p class="note">These controls can only be used while the game is frozen.</p>
+    <table>
+      <tr><th>Action</th><th>Key</th></tr>
+      <tr><td>Keyboard re-centering toggle</td><td><kbd>R</kbd></td></tr>
+      <tr><td>Keyboard / damping toggle</td><td><kbd>D</kbd></td></tr>
+      <tr><td>Keyboard / joystick toggle</td><td><kbd>K</kbd></td></tr>
+      <tr><td>Reverse joystick</td><td><kbd>Y</kbd> — Y-direction only</td></tr>
+      <tr><td>Reverse joystick</td><td><kbd>B</kbd> — both directions</td></tr>
+      <tr><td>Sound effects off</td><td><kbd>Q</kbd></td></tr>
+      <tr><td>Sound effects on</td><td><kbd>S</kbd></td></tr>
+      <tr><td>Start new game</td><td><kbd>T</kbd></td></tr>
     </table>
 
     <h2>Strategy</h2>
     <ul>
       <li><strong>Trade routes first.</strong> Industrial systems buy food and minerals; agricultural systems buy machinery and computers. Two-leg run, fixed profit.</li>
-      <li><strong>Save before docking.</strong> Manual docking is unforgiving — the docking computer (buy ASAP) is worth every credit.</li>
+      <li><strong>Buy a docking computer early.</strong> Manual docking is unforgiving, and since you can only save once you're docked, the auto-docker is worth every credit.</li>
       <li><strong>Don't sell the slave trade.</strong> The Galactic Police remember; you'll be marked Fugitive across the system.</li>
-      <li><strong>Asteroid mining</strong> is steady low-risk income — pick the inner rocky planets, target asteroids with the laser, scoop the splinters.</li>
+      <li><strong>Asteroid mining</strong> is steady low-risk income — fit a mining laser, blast the asteroids you run across in flight, and scoop the splinters they break into.</li>
     </ul>
   </div>
 </body>
