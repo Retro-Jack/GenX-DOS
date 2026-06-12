@@ -7,3 +7,10 @@ html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hi
 body { display: flex; align-items: center; justify-content: center; }
 .err { padding: 20px; color: #fff; font-family: monospace; }
 .loading { padding: 40px; color: #888; text-align: center; font-family: monospace; }
+
+/* Hide EmulatorJS's own chrome on the EJS-driven bundles (VICE family,
+   ColecoVision, NES, Atari 2600): the control bar (play/pause/settings/
+   fullscreen/volume) reappears on mouse-move, plus the right-click context
+   menu — neither belongs in the GenX-DOS no-chrome layout. Harmless on the
+   non-EJS bundles that also load this file (no such elements exist there). */
+.ejs_menu_bar, .ejs_context_menu { display: none !important; }

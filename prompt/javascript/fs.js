@@ -60,34 +60,34 @@ var fs = [{
                                         data: 'centipede\n'
                                     }, {
                                         name: 'adventure.bat',
-                                        link: '../emulators/javatari/play.html?game=adventure'
+                                        link: '../emulators/stella/play.html?game=adventure'
                                     }, {
                                         name: 'asteroids.bat',
-                                        link: '../emulators/javatari/play.html?game=asteroids'
+                                        link: '../emulators/stella/play.html?game=asteroids'
                                     }, {
                                         name: 'pacman.bat',
-                                        link: '../emulators/javatari/play.html?game=pacman'
+                                        link: '../emulators/stella/play.html?game=pacman'
                                     }, {
                                         name: 'pitfall.bat',
-                                        link: '../emulators/javatari/play.html?game=pitfall'
+                                        link: '../emulators/stella/play.html?game=pitfall'
                                     }, {
                                         name: 'invaders.bat',
-                                        link: '../emulators/javatari/play.html?game=invaders'
+                                        link: '../emulators/stella/play.html?game=invaders'
                                     }, {
                                         name: 'breakout.bat',
-                                        link: '../emulators/javatari/play.html?game=breakout'
+                                        link: '../emulators/stella/play.html?game=breakout'
                                     }, {
                                         name: 'missile.bat',
-                                        link: '../emulators/javatari/play.html?game=missile'
+                                        link: '../emulators/stella/play.html?game=missile'
                                     }, {
                                         name: 'yars.bat',
-                                        link: '../emulators/javatari/play.html?game=yars'
+                                        link: '../emulators/stella/play.html?game=yars'
                                     }, {
                                         name: 'centipede.bat',
-                                        link: '../emulators/javatari/play.html?game=centipede'
+                                        link: '../emulators/stella/play.html?game=centipede'
                                     }, {
                                         name: 'riverraid.bat',
-                                        link: '../emulators/javatari/play.html?game=riverraid'
+                                        link: '../emulators/stella/play.html?game=riverraid'
                                     }]
                                 }],
                                 files: [{

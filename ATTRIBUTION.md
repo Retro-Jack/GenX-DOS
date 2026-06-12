@@ -42,7 +42,7 @@ the corresponding emulator folder.
 | `emulators/jsbeeb/` | jsbeeb | Matt Godbolt | GPL-3.0-or-later |
 | `emulators/electron/` | ElkJS | Darren Coles (6502 core ported from Tom Walker's Elkulator) | © Darren Coles 2013 (no SPDX header in source) |
 | `emulators/jsnes/` | EmulatorJS + FCEUmm libretro core | EmulatorJS team; libretro/libretro-fceumm | GPL-3.0 (EmulatorJS), GPL-2.0 (FCEUmm) |
-| `emulators/javatari/` | Javatari.js | Paulo Peccin | AGPL-3.0 |
+| `emulators/stella/` | EmulatorJS + Stella (`stella2014`) libretro core | EmulatorJS team; stella-emu / libretro | GPL-3.0 (EmulatorJS), GPL-2.0 (Stella) |
 | `emulators/js7800/` | JS7800 | raz0red | GPL-2.0 |
 | `emulators/jsvecx/` | JSVecX (fork of raz0red's port of Valavan Manohararajah's VecX) | DrSnuggles | GPL-3.0 |
 | `emulators/webmsx/` | WebMSX | Paulo Peccin | MIT |
@@ -61,10 +61,11 @@ the corresponding emulator folder.
 | `emulators/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`) | vice-emu.sourceforge.net | GPL-2.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | gearcoleco libretro core (ColecoVision) | Drhelius | GPL-3.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | FCEUmm libretro core (NES) | libretro/libretro-fceumm | GPL-2.0 |
+| `emulators/_shared-ejs/ejs/data/cores/` | Stella libretro core (`stella2014`, Atari 2600) | stella-emu / libretro | GPL-2.0 |
 
 ### How the cores are mirrored
 
-EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco) are
+EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco, Stella) are
 mirrored from `cdn.emulatorjs.org/stable/` rather than rebuilt locally. The
 upstream CDN serves the same `.data` archives EmulatorJS itself loads from.
 
