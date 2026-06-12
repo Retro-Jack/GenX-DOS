@@ -7,13 +7,13 @@
     <style>
       html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
       #javatari-screen { box-shadow: 2px 2px 10px rgba(0, 0, 0, .7); }
-      /* Strip Javatari's on-screen chrome so only the TV picture shows: the
-         #jt-bar toolbar (power / logo / fullscreen / settings) and the
-         #jt-console-panel switch panel (POWER / TV TYPE / SELECT / RESET).
-         The panel also reserves margin-bottom on #javatari-screen — zero it
-         so the picture stays centred. Keyboard controls are unaffected. */
-      #jt-bar, #jt-console-panel { display: none !important; }
-      #javatari-screen { margin-bottom: 0 !important; }
+      /* Hide Javatari's top toolbar (power / logo / fullscreen / settings) —
+         gratuitous chrome. The console-switch panel below stays VISIBLE: it's
+         the 2600's functional control surface (GAME RESET starts most games,
+         GAME SELECT cycles variants) and its keyboard equivalents are F11/F12,
+         which the browser reserves — so the clickable switches are the only
+         reliable way to use them. */
+      #jt-bar { display: none !important; }
       .err { padding: 20px; }
     </style>
   </head>
