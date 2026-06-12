@@ -1,4 +1,6 @@
-// Shared bootstrap for the 7 VICE-family + Coleco EmulatorJS bundles.
+// Shared bootstrap for 8 EmulatorJS bundles: the 6 VICE-family machines,
+// ColecoVision, and the Atari 2600 (Stella). (NES/jsnes is also EJS but
+// keeps its own inline boot.)
 //
 // Each bundle's play.html shrinks to:
 //
