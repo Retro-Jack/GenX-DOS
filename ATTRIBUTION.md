@@ -123,13 +123,15 @@ title removed, open an issue at
 ## Bezel artwork
 
 `emulators/_shared/bezels/` contains ten transparent PNG monitor frames
-for the bezel-overlay integration. **Five are now wired in: `PC.png`
+for the bezel-overlay integration. **Six are now wired in: `PC.png`
 into the DOS prompt page (`prompt/index.html`, 09/06/2026), `Acorn.png`
 into the Electron bundle (`emulators/electron/play.html`, 10/06/2026),
 `Pet.png` into the PET bundle (`emulators/pet/play.html`, 10/06/2026),
 `Amstrad.png` into the CPC bundle (`emulators/amstradcpc/play.html`,
-10/06/2026), and `80s.png` into the Atari 400/800 bundle
-(`emulators/atari800/play.html`, 11/06/2026). The other five are still
+10/06/2026), `80s.png` into the Atari 400/800 bundle
+(`emulators/atari800/play.html`, 11/06/2026), and `70s.png` into the
+Atari 2600 / Stella bundle (`emulators/stella/play.html`, 12/06/2026 —
+the first bezel on an EmulatorJS bundle). The other four are still
 staging for the per-emulator integration pass.** Each bezel's source and
 licence must display credit lines when the bezel goes live in the rest of
 `play.html`.
@@ -140,7 +142,7 @@ not here — it's not part of this shared staging set.)
 | File | Hardware identified | Verified source | Author | Licence | Integration risk |
 | --- | --- | --- | --- | --- | --- |
 | `Amstrad.png` | Amstrad CTM640 monitor + CPC464 keyboard | [File:Amstrad_CPC464.jpg](https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg) (Wikimedia Commons) | Bill Bertram (Wikimedia username Pixel8) — 7 May 2005 | CC-BY-SA 2.5 | ✅ **Live** (`amstradcpc/play.html`). Cleared. Modifications inherit share-alike. Background alpha'd in GIMP from the original white-background product photo; CC-BY-SA 2.5 credit comment carried at the foot of the page. |
-| `70s.png` | HMV-branded wood-cabinet console TV (probable Albany / M1-A5 family) | Unverified — reposted via Reddit / retro forums; original photographer unknown | Unknown | Unverified | ⚠️ Stock-photo or collector-site original; medium risk if commercial product photography |
+| `70s.png` | HMV-branded wood-cabinet console TV ("His Master's Voice / PAL Chromatic / Ambassador 26"; probable Albany / M1-A5 family) | Unverified — reposted via Reddit / retro forums; original photographer unknown | Unknown | Unverified | ✅ **Live** (`stella/play.html`). Graphics are not provenance-tracked per maintainer policy, so no credit comment ships. |
 | `80s.png` | Early-'80s wood-cabinet CRT television (slider controls + speaker grille on the right) — replaced the earlier generic-portable-TV image | Local OBS bezel library (`/mnt/multimedia/Assets/OBS/Bezels/80s.png`); transparent background + screen hole, alpha-keyed and resized locally by the maintainer | Unknown | Unverified | ✅ **Live** (`atari800/play.html`). Same provenance gap as the rest of the set; graphics are not provenance-tracked per maintainer policy, so no credit comment ships. |
 | `Acorn.png` | Microvitec CUB monitor (brown bezel, "Microvitec CUB" colour logo, red LED) | Unverified — Reddit / retro forums. Microvitec CUBs are extensively documented at [stardot.org.uk](https://stardot.org.uk) and [retrorepairsandrefurbs.com](https://retrorepairsandrefurbs.com); no Wikimedia Commons match found | Unknown | Unverified | ⚠️ Likely a collector / restoration site photo; medium risk |
 | `Apple.png` | Apple Monitor /// ("monitor ///" badge) | Unverified — Reddit / retro forums. Wikimedia Commons has [Apple3.jpg](https://commons.wikimedia.org/wiki/File:Apple3.jpg) (CC-BY-SA 3.0 / GFDL, Alexander Schaelss 2004) but it's lower-res and a different composition | Unknown | Unverified | ⚠️ Replaceable with the Schaelss Commons photo if needed |

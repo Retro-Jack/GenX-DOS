@@ -4,12 +4,49 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Atari 2600</title>
-  <style>
-    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
-  </style>
   <link rel="stylesheet" href="../_shared/genx-frame.css">
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <style>
+    /* CRT bezel — HMV wood-cabinet TV (70s.png, 1920x1080, edge-to-edge with a
+       transparent screen hole). First bezel on an EmulatorJS bundle: EJS sizes
+       its canvas to fill #game, so we put #game in the screen hole and let it
+       fill, with the bezel PNG on top. Layers (back to front):
+         1. .screen   — black backdrop + clip box at the measured hole.
+         2. #game     — the EJS player; EJS draws the 2600 canvas into it.
+         3. .bezel-img — 70s.png on top; canvas shows through the hole.
+       Screen hole (measured): left 23.75% top 13.9% width 52.4% height 69.8%.
+       Height capped at 100dvh-120px so wallpaper shows above/below. The
+       wallpaper override must follow genx-frame.css (which sets body black). */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    .bezel-wrap {
+      position: relative;
+      width: min(100vw, calc((100dvh - 120px) * 1920 / 1080));
+      aspect-ratio: 1920 / 1080;
+    }
+    .screen {
+      position: absolute;
+      left: 23.75%; top: 13.9%; width: 52.4%; height: 69.8%;
+      background: #000;
+      overflow: hidden;
+      z-index: 1;
+    }
+    #game { position: absolute; inset: 0; width: 100%; height: 100%; }
+    /* EmulatorJS fits the canvas to #game preserving the 2600's aspect, which
+       leaves a black letterbox top/bottom inside the 4:3 screen hole. The
+       canvas already fills the hole's width, so stretch only its height to
+       close the gap (a hair of vertical stretch, fine for a CRT). */
+    #game canvas { height: 100% !important; transform: translateX(-20px); }
+    .bezel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 2;
+    }
+  </style>
   <script defer src="../_shared/genx-controls-link.js"></script>
   <link rel="preload" href="../_shared-ejs/ejs/data/cores/stella2014-legacy-wasm.data" as="fetch" crossorigin>
   <script src="../_shared-ejs/genx-ejs-boot.js"></script>
@@ -21,14 +58,15 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <div id="game"><div class="loading">Booting Atari 2600…</div></div>
+  <div class="bezel-wrap">
+    <div class="screen"><div id="game"><div class="loading">Booting Atari 2600…</div></div></div>
+    <img class="bezel-img" src="../_shared/bezels/70s.png" alt="">
+  </div>
   <script>
-    // Atari 2600 — EmulatorJS + Stella (stella2014 libretro core). Replaced the
-    // standalone Javatari engine, which sized its own canvas (un-bezelable) and
-    // put GAME SELECT / RESET on browser-reserved F11/F12. Here the 2600's
-    // console switches map to plain keys via EJS_defaultControls: the joystick
-    // fire button is Space, GAME RESET (starts most games) is Enter, and
-    // GAME SELECT (cycles variants) is V.
+    // Atari 2600 — EmulatorJS + Stella (stella2014 libretro core). The 2600's
+    // console switches map to plain keys via EJS_defaultControls: joystick fire
+    // is Space, GAME RESET (starts most games) is Enter, GAME SELECT (cycles
+    // variants) is V. Difficulty / Color-B&W stay on the EJS defaults.
     genxBootEJS({
       title: 'Atari 2600',
       coreName: 'atari2600',
