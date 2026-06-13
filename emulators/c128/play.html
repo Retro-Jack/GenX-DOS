@@ -40,16 +40,12 @@
       overflow: hidden;
       z-index: 2;
     }
-    /* C128's VICE x128 allocates a fat 856×288 (2.78:1) framebuffer regardless
-       of vice_c128_video_output. The scaleY hack stretches the rendered
-       content to fill the ~4:3 hole and overflow:hidden on #game clips the
-       empty letterbox bars — mimicking how a real C128 monitor stretched the
-       VDC 640x200 buffer to 4:3 via non-square pixels. (Stands in for the
-       other machines' height:100% canvas fit.) */
-    #game canvas {
-      transform-origin: 50% 50%;
-      transform: scale(1.01) scaleY(calc(2.784 / 1.333));
-    }
+    /* EJS fits the canvas to #game preserving aspect; the hole is ~4:3 so the
+       letterbox is tiny — stretch height only to close it. (The old 856×288
+       scaleY framebuffer hack belonged to the stable x128 core, which boots to
+       garbage; we run the nightly x128 core, which renders a normal
+       framebuffer like the rest of the family.) */
+    #game canvas { height: 100% !important; transform: scale(1.01); }
     .bezel-img {
       position: absolute;
       inset: 0;
@@ -96,6 +92,10 @@
         'vice_joyport_type': '1'
       },
       perGame: (game, opts) => {
+        // Per-game 40/80-col selection. The libretro option values are the
+        // bare keys VICII / VDC (the core's "VIC-II (40 cols)" / "VDC (80
+        // cols)" strings are display labels, NOT settable values — passing a
+        // label makes the core reject it and fall back to 40-col VIC-II).
         opts['vice_c128_video_output'] = (game && game.video) || 'VICII';
       }
     });

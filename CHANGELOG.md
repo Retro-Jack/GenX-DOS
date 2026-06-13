@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **C128 boots again** — the `stable` `vice_x128` libretro core cold-boots to uninitialised-RAM garbage (was live; the other VICE cores are unaffected). Swapped `emulators/_shared-ejs/ejs/data/cores/vice_x128-legacy-wasm.data` to the `nightly` EmulatorJS build, which boots to BASIC 7.0 cleanly. Both video modes work — 40-col VIC-II and 80-col VDC (`vice_c128_video_output` values stay the bare keys `VICII`/`VDC`; the core's `"VIC-II (40 cols)"`/`"VDC (80 cols)"` strings are display labels, not settable values). Commercial 80-col titles (Star Fleet I) play through. Also **dropped the C128 `scaleY` framebuffer hack** — it compensated for the stable core's odd 856×288 buffer; the nightly core renders a normal framebuffer, so C128 now uses the same `#game canvas { height: 100% !important; transform: scale(1.01) }` fit as the rest of the family. *(Known per-game quirk, not the core: ML-direct homebrew like `kquest` loads via `LOAD"*",8,1` but the autostart's `RUN` can't start a non-BASIC image, so it drops to `READY.`)*
+
 ### Changed
 - **jsbeeb CUB monitor breathing room** — the BBC Micro/Master monitor was flush against the top of the viewport. Widened the sizing JS's vertical inset (`r` 68→120 in `dist/assets/index-*.js`) and added `#cub-monitor { margin-top: 60px }` so the monitor centres with ~60px of wallpaper above and below. (One change, both BBC machines — they share `dist/`.)
 - **Electron bezel breathing room** — matched the CUB spacing on `emulators/electron/play.html`: capped `.bezel-wrap` height at `100dvh - 120px` so the Acorn monitor centres with ~60px above and below instead of filling the full height.

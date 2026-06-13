@@ -69,6 +69,11 @@ EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco, Stella) ar
 mirrored from `cdn.emulatorjs.org/stable/` rather than rebuilt locally. The
 upstream CDN serves the same `.data` archives EmulatorJS itself loads from.
 
+**Exception — `vice_x128` (C128):** the current `stable` x128 build cold-boots
+to uninitialised-RAM garbage (verified 13/06/2026; the other VICE cores are
+fine). We mirror the `nightly` x128 build instead (`cdn.emulatorjs.org/nightly/`),
+which boots cleanly. All other VICE cores stay on `stable`.
+
 ### Self-compiled WASM builds
 
 - **atari800** — built from `atari800/atari800` v5.2.0 source via
