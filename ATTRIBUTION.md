@@ -123,18 +123,19 @@ title removed, open an issue at
 ## Bezel artwork
 
 `emulators/_shared/bezels/` contains ten transparent PNG monitor frames
-for the bezel-overlay integration. **Six are now wired in: `PC.png`
+for the bezel-overlay integration. **Seven are now wired in: `PC.png`
 into the DOS prompt page (`prompt/index.html`, 09/06/2026), `Acorn.png`
 into the Electron bundle (`emulators/electron/play.html`, 10/06/2026),
 `Pet.png` into the PET bundle (`emulators/pet/play.html`, 10/06/2026),
 `Amstrad.png` into the CPC bundle (`emulators/amstradcpc/play.html`,
 10/06/2026), `80s.png` into the Atari 400/800 bundle
-(`emulators/atari800/play.html`, 11/06/2026), and `70s.png` into the
+(`emulators/atari800/play.html`, 11/06/2026), `70s.png` into the
 Atari 2600 / Stella bundle (`emulators/stella/play.html`, 12/06/2026 —
-the first bezel on an EmulatorJS bundle). The other four are still
-staging for the per-emulator integration pass.** Each bezel's source and
-licence must display credit lines when the bezel goes live in the rest of
-`play.html`.
+the first bezel on an EmulatorJS bundle), and `Commodore.png` across the
+whole VICE family (`c64`/`c128`/`c16`/`plus4`/`vic20`/`max` — one monitor,
+one hole, 13/06/2026). The other three are still staging for the
+per-emulator integration pass.** Graphics are not provenance-tracked per
+maintainer policy, so wired bezels ship without credit comments.
 
 (Note: jsbeeb's CUB monitor frame lives inside `emulators/jsbeeb/dist/`,
 not here — it's not part of this shared staging set.)
@@ -146,7 +147,7 @@ not here — it's not part of this shared staging set.)
 | `80s.png` | Early-'80s wood-cabinet CRT television (slider controls + speaker grille on the right) — replaced the earlier generic-portable-TV image | Local OBS bezel library (`/mnt/multimedia/Assets/OBS/Bezels/80s.png`); transparent background + screen hole, alpha-keyed and resized locally by the maintainer | Unknown | Unverified | ✅ **Live** (`atari800/play.html`). Same provenance gap as the rest of the set; graphics are not provenance-tracked per maintainer policy, so no credit comment ships. |
 | `Acorn.png` | Microvitec CUB monitor (brown bezel, "Microvitec CUB" colour logo, red LED) | Unverified — Reddit / retro forums. Microvitec CUBs are extensively documented at [stardot.org.uk](https://stardot.org.uk) and [retrorepairsandrefurbs.com](https://retrorepairsandrefurbs.com); no Wikimedia Commons match found | Unknown | Unverified | ⚠️ Likely a collector / restoration site photo; medium risk |
 | `Apple.png` | Apple Monitor /// ("monitor ///" badge) | Unverified — Reddit / retro forums. Wikimedia Commons has [Apple3.jpg](https://commons.wikimedia.org/wiki/File:Apple3.jpg) (CC-BY-SA 3.0 / GFDL, Alexander Schaelss 2004) but it's lower-res and a different composition | Unknown | Unverified | ⚠️ Replaceable with the Schaelss Commons photo if needed |
-| `Commodore.png` | Commodore 1084S (specifically — "1084S" badge, not "1084") | Unverified — Reddit / retro forums. Wikimedia Commons has [Commodore1084_first_version_front.jpg](https://commons.wikimedia.org/wiki/File:Commodore1084_first_version_front.jpg) (CC-BY-SA 4.0, Gestumblindi 2021) for the 1084 first-version, but not this 1084S variant | Unknown | Unverified | ⚠️ Replaceable with the Gestumblindi 1084 if the model swap is acceptable |
+| `Commodore.png` | Commodore 1084S (specifically — "1084S" badge, not "1084") | Unverified — Reddit / retro forums. Wikimedia Commons has [Commodore1084_first_version_front.jpg](https://commons.wikimedia.org/wiki/File:Commodore1084_first_version_front.jpg) (CC-BY-SA 4.0, Gestumblindi 2021) for the 1084 first-version, but not this 1084S variant | Unknown | Unverified | ✅ **Live** across the VICE family (`c64`/`c128`/`c16`/`plus4`/`vic20`/`max`). Graphics are not provenance-tracked per maintainer policy, so no credit comment ships. |
 | `Pet.png` | Commodore PET 2001 — blue-trimmed CRT surround + "commodore PET 2001 Series" base | Local OBS bezel library (`/mnt/multimedia/Assets/OBS/Bezels/PET_2001.png`); screen hole alpha-keyed locally by the maintainer | Unknown | Unverified | ⚠️ Live (`pet/play.html`); same provenance gap as the rest of the set, covered by the generic credit comment |
 | `PC.png` | IBM 5153 CGA colour monitor (3 knobs, IBM badge top-right, green power LED) — originally staged as `IBM 5153 CGA.png` | Unverified — Reddit / retro forums. Wikimedia Commons has only the 5151 monochrome ([File:5151_monochrome_monitor.jpg](https://commons.wikimedia.org/wiki/File:5151_monochrome_monitor.jpg), CC-BY-SA 2.0 steverenouk), not the 5153 colour variant we have | Unknown | Unverified | ⚠️ The 5153 colour is the period-correct match for our DOS bundle but no verified Commons source found |
 | `Sinclair.png` | Generic 80s portable colour TV with side-speaker panel — historically accurate (Spectrum/ZX81 era used household TVs, no Sinclair-branded monitor existed) | Unverified — Reddit / retro forums | Unknown | Unverified | ⚠️ Lower risk (generic anonymous hardware) |
