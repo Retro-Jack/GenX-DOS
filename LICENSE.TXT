@@ -1,0 +1,61 @@
+===============================================================================
+                                  LICENSE
+===============================================================================
+Project:      GenX-DOS
+Author:       Jack Horton (Retro-Jack)
+Year:         2026
+Licence Type: Source-Available / Non-Commercial Hobbyist & Educational
+===============================================================================
+
+TERMS AND CONDITIONS FOR USE, MODIFICATION, AND DISTRIBUTION
+
+1. Grant of License
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to
+   use, view, modify, and merge the Software for personal, educational, and
+   non-commercial hobbyist purposes only, subject to the following conditions.
+
+2. Distribution Restrictions
+   You may redistribute unmodified or modified copies of the original code 
+   written by the Author under the same non-commercial, source-available terms,
+   provided that:
+   a) The original copyright notice, this license block, and the accompanying
+      ATTRIBUTION.md file are included intact in all copies or substantial 
+      portions of the Software.
+   b) Clear and prominent credit is given to the original "LGR base" terminal 
+      code framework in any distributed derivative work.
+
+3. Commercial Restriction
+   The Software, in whole or in part, may NOT be used for commercial purposes,
+   sold, rented, leased, or bundled within a commercial product or service
+   without explicit prior written permission from the Author and all respective
+   upstream copyright holders.
+
+4. Mixed-License & Third-Party Code Notice
+   This repository is a composite work. It bundles independent third-party 
+   software, emulators, system ROMs, game ROMs, web scripts, and visual assets
+   that are subject to their own separate licenses and copyright restrictions.
+   
+   This License applies EXCLUSIVELY to the original integration wrappers, 
+   AMIBIOS POST animations, menu tree structures, and emulator orchestration 
+   code authored by Retro-Jack. 
+   
+   All bundled third-party elements (including, but not limited to, the 
+   underlying LGR terminal framework, jQuery libraries, and vendored WASM 
+   emulators) are explicitly excluded from this License. You must consult 
+   ATTRIBUTION.md and individual bundle subdirectories for the authoritative 
+   upstream licensing terms governing those components.
+
+5. Disclaimer of Warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+   DEALINGS IN THE SOFTWARE.
+
+===============================================================================
+Distributed under Creative Commons Attribution-NonCommercial (CC BY-NC 4.0) 
+as a baseline framework for original elements, where applicable.
+===============================================================================
