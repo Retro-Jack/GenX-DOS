@@ -2639,11 +2639,40 @@ var fs = [{
                             { name: 'shantae.bat', link: '../emulators/gbc/play.html?game=shantae' }
                         ]
                     }]
+                }, {
+                    name: 'LYNX',
+                    directories: [{
+                        name: 'GAMES',
+                        files: [
+                            { name: 'menu.bat', data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º                 ATARI  LYNX                 º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  California Games     (1989)  CALGAMES º\necho                 º   2.  Chip\'s Challenge     (1989)  CHIPS    º\necho                 º   3.  Electrocop           (1989)  ELECTRO  º\necho                 º   4.  Blue Lightning       (1989)  BLUELGHT º\necho                 º   5.  Warbirds             (1989)  WARBIRDS º\necho                 º   6.  Gauntlet III         (1990)  GAUNTLET º\necho                 º   7.  Klax                 (1990)  KLAX     º\necho                 º   8.  Slime World          (1990)  SLIME    º\necho                 º   9.  S.T.U.N. Runner      (1991)  STUNRUN  º\necho                 º  10.  Rampart              (1991)  RAMPART  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
+                            { name: '1.bat', data: 'calgames\n' },
+                            { name: '2.bat', data: 'chips\n' },
+                            { name: '3.bat', data: 'electro\n' },
+                            { name: '4.bat', data: 'bluelght\n' },
+                            { name: '5.bat', data: 'warbirds\n' },
+                            { name: '6.bat', data: 'gauntlet\n' },
+                            { name: '7.bat', data: 'klax\n' },
+                            { name: '8.bat', data: 'slime\n' },
+                            { name: '9.bat', data: 'stunrun\n' },
+                            { name: '10.bat', data: 'rampart\n' },
+                            { name: '0.bat', data: 'echo off\ncd ..\ncd ..\nmenu\n' },
+                            { name: 'calgames.bat', link: '../emulators/lynx/play.html?game=calgames' },
+                            { name: 'chips.bat', link: '../emulators/lynx/play.html?game=chips' },
+                            { name: 'electro.bat', link: '../emulators/lynx/play.html?game=electro' },
+                            { name: 'bluelght.bat', link: '../emulators/lynx/play.html?game=bluelght' },
+                            { name: 'warbirds.bat', link: '../emulators/lynx/play.html?game=warbirds' },
+                            { name: 'gauntlet.bat', link: '../emulators/lynx/play.html?game=gauntlet' },
+                            { name: 'klax.bat', link: '../emulators/lynx/play.html?game=klax' },
+                            { name: 'slime.bat', link: '../emulators/lynx/play.html?game=slime' },
+                            { name: 'stunrun.bat', link: '../emulators/lynx/play.html?game=stunrun' },
+                            { name: 'rampart.bat', link: '../emulators/lynx/play.html?game=rampart' }
+                        ]
+                    }]
                 }],
                 files: [
                     { name: 'menu.bat', data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              HANDHELD  CONSOLES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Nintendo Game Boy    (1989)  GAMEBOY  º\necho                 º                                             º\necho                 º   2.  Atari Lynx           (1989)  LYNX     º\necho                 º                                             º\necho                 º   3.  Sega Game Gear       (1990)  GAMEGEAR º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
                     { name: '1.bat', data: 'cd gameboy\ncd games\nmenu\n' },
-                    { name: '2.bat', data: 'echo off\ncls\necho.\necho.\necho      Atari Lynx -- coming soon!\necho.\necho      Type  MENU  to return.\necho.\n' },
+                    { name: '2.bat', data: 'cd lynx\ncd games\nmenu\n' },
                     { name: '3.bat', data: 'echo off\ncls\necho.\necho.\necho      Sega Game Gear -- coming soon!\necho.\necho      Type  MENU  to return.\necho.\n' },
                     { name: '0.bat', data: 'echo off\ncd ..\nmenu\n' }
                 ]

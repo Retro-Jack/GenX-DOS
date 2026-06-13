@@ -2,7 +2,7 @@
 
 A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs on the page — no server, no network calls at runtime.
 
-We bundle 19 emulator engines covering 29 sub-systems between them, from the Apple I to the Nintendo Game Boy.
+We bundle 19 emulator engines covering 30 sub-systems between them, from the Apple I to the Atari Lynx.
 
 **Scope:** 8-bit era only — anything from the 8-bit microcomputing/console era (~1975-1990). The cutoff is *era*, not strict CPU width. See the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected.
 
@@ -34,8 +34,8 @@ prompt/                   the DOS terminal (HTML + JS, no build)
 gamedocs/                 per-game instruction pages (gamedocs/<platform>/<key>.html)
 emulators/
   _shared/                shared CSS + helpers (NumLock warn, RUN/STOP softkey, ...)
-  _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte
-                          (10 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
+  _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy
+                          (11 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
   apple1/                 Apple I             — apple1js + 10 cassette tapes
   jsbeeb/                 BBC Micro + Master  — Vite-built dist + BBC + Master-enhanced disks
   electron/               Acorn Electron      — ElkJS + 10 UEF snapshots
@@ -43,6 +43,7 @@ emulators/
   jsnes/                  NES                 — EmulatorJS + FCEUmm + 10 .nes ROMs
   stella/                 Atari 2600          — EmulatorJS + Stella (stella2014) + 10 .a26 ROMs
   gbc/                    Game Boy / GBC      — EmulatorJS + gambatte + 10 GB/GBC ROMs (handheld)
+  lynx/                   Atari Lynx          — EmulatorJS + handy + boot ROM + 10 .lnx ROMs (handheld)
   js7800/                 Atari 7800          — JS7800 + 10 .a78 carts
   webmsx/                 MSX1 + MSX2         — WebMSX single-file bundle + 10 + 10 titles
   jsvecx/                 GCE Vectrex         — JSVecX + 24 commercial + ~470 homebrew ROMs

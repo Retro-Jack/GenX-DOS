@@ -63,11 +63,12 @@ the corresponding emulator folder.
 | `emulators/_shared-ejs/ejs/data/cores/` | FCEUmm libretro core (NES) | libretro/libretro-fceumm | GPL-2.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | Stella libretro core (`stella2014`, Atari 2600) | stella-emu / libretro | GPL-2.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | gambatte libretro core (Game Boy / Game Boy Color) | libretro/gambatte (sinamas) | GPL-2.0 |
+| `emulators/_shared-ejs/ejs/data/cores/` | handy libretro core (Atari Lynx) | libretro/libretro-handy (K. Wilkins) | zlib / GPL-compatible |
 
 ### How the cores are mirrored
 
 EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco, Stella,
-gambatte) are mirrored from `cdn.emulatorjs.org/stable/` rather than rebuilt
+gambatte, handy) are mirrored from `cdn.emulatorjs.org/stable/` rather than rebuilt
 locally. The upstream CDN serves the same `.data` archives EmulatorJS itself
 loads from.
 
@@ -98,6 +99,7 @@ copyright holders.
 | File | System | Copyright |
 | --- | --- | --- |
 | `emulators/coleco/colecovision.rom` | ColecoVision | © 1982 Coleco Industries |
+| `emulators/lynx/lynxboot.img` | Atari Lynx boot ROM (512 bytes) | © 1989 Atari Corp. (required by the handy core to start games) |
 | `emulators/intellivision/roms/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
 | `emulators/odyssey2/roms/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. Sourced from the BizHawk firmware archive. |
 

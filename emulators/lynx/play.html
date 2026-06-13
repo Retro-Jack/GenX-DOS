@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atari Lynx</title>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <style>
+    /* Handheld bezel — the device held up in the FOREGROUND over a classroom
+       photo (sneaking a game in class), same style as the Game Boy bundle. The
+       Atari Lynx is a wide landscape unit (lynx.png, 2097x853, body opaque,
+       screen + outer margin keyed transparent), bottom-anchored over the photo;
+       EJS draws the game into the screen hole. Layers (back to front):
+         0. body background — classroom.jpg, full-bleed cover.
+         1. .screen-bg — black backdrop, slightly larger than the hole.
+         2. #game      — the EJS player at the measured screen hole.
+         3. .bezel-img — lynx.png on top; game shows through the screen.
+       Screen hole (measured): left 39.1% top 27.0% width 26.9% height 41.5%.
+       The classroom background must follow genx-frame.css (which sets body
+       black). */
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000 url('../_shared/textures/classroom.jpg') center / cover no-repeat; }
+    body { display: flex; align-items: flex-end; justify-content: center; }
+    .bezel-wrap {
+      position: relative;
+      width: min(70.5vw, calc(61.5vh * 2097 / 853));
+      aspect-ratio: 2097 / 853;
+    }
+    .screen-bg {
+      position: absolute;
+      left: 37.1%; top: 25.0%; width: 30.9%; height: 45.5%;
+      background: #000;
+      z-index: 1;
+    }
+    #game {
+      position: absolute;
+      left: 39.1%; top: 27.0%; width: 26.9%; height: 41.5%;
+      overflow: hidden;
+      z-index: 2;
+    }
+    /* EJS fits the canvas to #game preserving the Lynx's ~1.57 aspect; the hole
+       is cut to that aspect, so a height stretch closes any letterbox. */
+    #game canvas { height: 100% !important; transform: scale(0.95); }
+    .bezel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 3;
+    }
+  </style>
+  <script defer src="../_shared/genx-controls-link.js"></script>
+  <link rel="preload" href="../_shared-ejs/ejs/data/cores/handy-legacy-wasm.data" as="fetch" crossorigin>
+  <script src="../_shared-ejs/genx-ejs-boot.js"></script>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="game"><div class="loading">Booting Atari Lynx…</div></div>
+    <img class="bezel-img" src="../_shared/bezels/lynx.png" alt="">
+  </div>
+  <script>
+    // Atari Lynx — EmulatorJS + handy (libretro core). Needs the 512-byte Lynx
+    // boot ROM (lynxboot.img), shipped in the bundle and passed via biosUrl.
+    genxBootEJS({
+      title: 'Atari Lynx',
+      coreName: 'lynx',
+      biosUrl: 'lynxboot.img',
+      // Lynx layout: arrows = d-pad, X = A, Z = B, Enter = Pause,
+      // Shift = Option 1, Ctrl = Option 2. (RetroPad ids: 0=B, 8=A,
+      // 3=Start→Pause, 10=L→Option 1, 11=R→Option 2.)
+      defaultControls: {
+        0: {
+          0: { value: 'z' },            // B
+          8: { value: 'x' },            // A
+          3: { value: 'enter' },        // Pause
+          10: { value: 'shift' },       // Option 1
+          11: { value: 'ctrl' },        // Option 2
+          4: { value: 'up arrow' },
+          5: { value: 'down arrow' },
+          6: { value: 'left arrow' },
+          7: { value: 'right arrow' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
