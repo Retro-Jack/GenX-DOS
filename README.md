@@ -143,3 +143,10 @@ Summary below; see [ATTRIBUTION.md](ATTRIBUTION.md) for the canonical record inc
 - floooh/chips-test tiny8bit CPC WASM: MIT (Andre Weissflog) — mirrored from `floooh.github.io/tiny8bit/`
 - libretro-o2em: GPL-2.0+ (libretro/libretro-o2em, original o2em by Daniel Boris / Andre de la Rocha) — compiled from upstream source via `emulators/odyssey2/build.sh`
 - Magnavox Odyssey² BIOS (`o2rom.bin`): ©1978 Magnavox/Philips, bundled for emulator-only use
+## License
+
+[![License: CC BY-NC 4.0](https://img.shields.shields.shields.shields.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+The original orchestration code, menu trees, and AMIBIOS POST animations authored by Jack Horton are licensed under **Creative Commons Attribution-NonCommercial 4.0 International**. 
+
+Please note that GenX-DOS is a composite project containing bundled emulators, assets, and the LGR terminal base framework. These components are explicitly excluded from the CC license and remain bound by their original upstream terms. See [ATTRIBUTION.md](ATTRIBUTION.md) for full compliance details.
