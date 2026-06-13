@@ -8,43 +8,56 @@
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <style>
-    /* CRT bezel — HMV wood-cabinet TV (70s.png, 1920x1080, edge-to-edge with a
-       transparent screen hole). First bezel on an EmulatorJS bundle: EJS sizes
-       its canvas to fill #game, so we put #game in the screen hole and let it
-       fill, with the bezel PNG on top. Layers (back to front):
-         1. .screen   — black backdrop + clip box at the measured hole.
-         2. #game     — the EJS player; EJS draws the 2600 canvas into it.
+    /* CRT bezel — wood-cabinet console TV (70s.png, 1240x855, the set isolated
+       from its photo and floating on the wallpaper; screen keyed to a
+       transparent hole). First bezel on an EmulatorJS bundle: EJS sizes its
+       canvas to fill #game, so we put #game in the screen hole and let it fill,
+       with the bezel PNG on top. Layers (back to front):
+         1. .screen-bg — black backdrop, slightly larger than the hole (covers
+            the cutout's anti-aliased edge so wallpaper can't bleed through).
+         2. #game      — the EJS player at the measured hole; EJS draws the
+            2600 canvas into it; overflow clips the stretched/nudged canvas.
          3. .bezel-img — 70s.png on top; canvas shows through the hole.
-       Screen hole (measured): left 23.75% top 13.9% width 52.4% height 69.8%.
+       Screen hole (measured): left 27.6% top 13.1% width 45.4% height 51.6%.
        Height capped at 100dvh-120px so wallpaper shows above/below. The
        wallpaper override must follow genx-frame.css (which sets body black). */
     html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; }
     body { display: flex; align-items: center; justify-content: center; }
     .bezel-wrap {
       position: relative;
-      width: min(100vw, calc((100dvh - 120px) * 1920 / 1080));
-      aspect-ratio: 1920 / 1080;
+      width: min(100vw, calc((100dvh - 120px) * 1240 / 855));
+      aspect-ratio: 1240 / 855;
     }
-    .screen {
+    /* Black backdrop a few % LARGER than the hole — the bezel PNG's cutout has
+       an anti-aliased edge, and without a backdrop behind it the body wallpaper
+       bleeds through that soft boundary. The opaque chassis covers the
+       overspill, so only the hole-shaped reveal shows. */
+    .screen-bg {
       position: absolute;
-      left: 23.75%; top: 13.9%; width: 52.4%; height: 69.8%;
+      left: 25.6%; top: 11.1%; width: 49.4%; height: 55.6%;
       background: #000;
-      overflow: hidden;
       z-index: 1;
     }
-    #game { position: absolute; inset: 0; width: 100%; height: 100%; }
+    /* The EJS player at the measured screen hole; overflow clips the
+       height-stretched + nudged canvas to the hole. */
+    #game {
+      position: absolute;
+      left: 27.6%; top: 13.1%; width: 45.4%; height: 51.6%;
+      overflow: hidden;
+      z-index: 2;
+    }
     /* EmulatorJS fits the canvas to #game preserving the 2600's aspect, which
        leaves a black letterbox top/bottom inside the 4:3 screen hole. The
        canvas already fills the hole's width, so stretch only its height to
        close the gap (a hair of vertical stretch, fine for a CRT). */
-    #game canvas { height: 100% !important; transform: translateX(-20px); }
+    #game canvas { height: 100% !important; transform: translateX(-18px) scale(0.85); }
     .bezel-img {
       position: absolute;
       inset: 0;
       width: 100%; height: 100%;
       object-fit: contain;
       pointer-events: none;
-      z-index: 2;
+      z-index: 3;
     }
   </style>
   <script defer src="../_shared/genx-controls-link.js"></script>
@@ -59,7 +72,8 @@
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
   <div class="bezel-wrap">
-    <div class="screen"><div id="game"><div class="loading">Booting Atari 2600…</div></div></div>
+    <div class="screen-bg"></div>
+    <div id="game"><div class="loading">Booting Atari 2600…</div></div>
     <img class="bezel-img" src="../_shared/bezels/70s.png" alt="">
   </div>
   <script>
