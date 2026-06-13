@@ -62,17 +62,20 @@ the corresponding emulator folder.
 | `emulators/_shared-ejs/ejs/data/cores/` | gearcoleco libretro core (ColecoVision) | Drhelius | GPL-3.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | FCEUmm libretro core (NES) | libretro/libretro-fceumm | GPL-2.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | Stella libretro core (`stella2014`, Atari 2600) | stella-emu / libretro | GPL-2.0 |
+| `emulators/_shared-ejs/ejs/data/cores/` | gambatte libretro core (Game Boy / Game Boy Color) | libretro/gambatte (sinamas) | GPL-2.0 |
 
 ### How the cores are mirrored
 
-EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco, Stella) are
-mirrored from `cdn.emulatorjs.org/stable/` rather than rebuilt locally. The
-upstream CDN serves the same `.data` archives EmulatorJS itself loads from.
+EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco, Stella,
+gambatte) are mirrored from `cdn.emulatorjs.org/stable/` rather than rebuilt
+locally. The upstream CDN serves the same `.data` archives EmulatorJS itself
+loads from.
 
-**Exception — `vice_x128` (C128):** the current `stable` x128 build cold-boots
-to uninitialised-RAM garbage (verified 13/06/2026; the other VICE cores are
-fine). We mirror the `nightly` x128 build instead (`cdn.emulatorjs.org/nightly/`),
-which boots cleanly. All other VICE cores stay on `stable`.
+**Exception — `vice_x128` (C128) and `gambatte` (Game Boy):** the current
+`stable` builds are broken — `vice_x128` cold-boots to uninitialised-RAM
+garbage, and `gambatte` renders a blank white panel (no ROM ever displays).
+Both verified June 2026. We mirror the `nightly` builds of these two instead
+(`cdn.emulatorjs.org/nightly/`), which work. All other cores stay on `stable`.
 
 ### Self-compiled WASM builds
 

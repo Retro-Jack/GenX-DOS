@@ -2608,10 +2608,50 @@ var fs = [{
                 ]
             },
 
+            {
+                name: 'HANDHELD',
+                directories: [{
+                    name: 'GAMEBOY',
+                    directories: [{
+                        name: 'GAMES',
+                        files: [
+                            { name: 'menu.bat', data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  GAME  BOY             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Tetris               (1989)  TETRIS   º\necho                 º   2.  Super Mario Land     (1989)  SMLAND   º\necho                 º   3.  Castlevania          (1989)  CASTLEV  º\necho                 º   4.  Metroid II           (1991)  METROID2 º\necho                 º   5.  Kirby\'s Dream Land   (1992)  KIRBY    º\necho                 º   6.  Link\'s Awakening     (1993)  ZELDA    º\necho                 º   7.  Donkey Kong          (1994)  DKONG    º\necho                 º   8.  Pokemon Red          (1996)  POKEMON  º\necho                 º   9.  Wario Land 3         (2000)  WARIO3   º\necho                 º  10.  Shantae              (2002)  SHANTAE  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
+                            { name: '1.bat', data: 'tetris\n' },
+                            { name: '2.bat', data: 'smland\n' },
+                            { name: '3.bat', data: 'castlev\n' },
+                            { name: '4.bat', data: 'metroid2\n' },
+                            { name: '5.bat', data: 'kirby\n' },
+                            { name: '6.bat', data: 'zelda\n' },
+                            { name: '7.bat', data: 'dkong\n' },
+                            { name: '8.bat', data: 'pokemon\n' },
+                            { name: '9.bat', data: 'wario3\n' },
+                            { name: '10.bat', data: 'shantae\n' },
+                            { name: '0.bat', data: 'echo off\ncd ..\ncd ..\nmenu\n' },
+                            { name: 'tetris.bat', link: '../emulators/gbc/play.html?game=tetris' },
+                            { name: 'smland.bat', link: '../emulators/gbc/play.html?game=smland' },
+                            { name: 'castlev.bat', link: '../emulators/gbc/play.html?game=castlev' },
+                            { name: 'metroid2.bat', link: '../emulators/gbc/play.html?game=metroid2' },
+                            { name: 'kirby.bat', link: '../emulators/gbc/play.html?game=kirby' },
+                            { name: 'zelda.bat', link: '../emulators/gbc/play.html?game=zelda' },
+                            { name: 'dkong.bat', link: '../emulators/gbc/play.html?game=dkong' },
+                            { name: 'pokemon.bat', link: '../emulators/gbc/play.html?game=pokemon' },
+                            { name: 'wario3.bat', link: '../emulators/gbc/play.html?game=wario3' },
+                            { name: 'shantae.bat', link: '../emulators/gbc/play.html?game=shantae' }
+                        ]
+                    }]
+                }],
+                files: [
+                    { name: 'menu.bat', data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              HANDHELD  CONSOLES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Nintendo Game Boy    (1989)  GAMEBOY  º\necho                 º                                             º\necho                 º   2.  Atari Lynx           (1989)  LYNX     º\necho                 º                                             º\necho                 º   3.  Sega Game Gear       (1990)  GAMEGEAR º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
+                    { name: '1.bat', data: 'cd gameboy\ncd games\nmenu\n' },
+                    { name: '2.bat', data: 'echo off\ncls\necho.\necho.\necho      Atari Lynx -- coming soon!\necho.\necho      Type  MENU  to return.\necho.\n' },
+                    { name: '3.bat', data: 'echo off\ncls\necho.\necho.\necho      Sega Game Gear -- coming soon!\necho.\necho      Type  MENU  to return.\necho.\n' },
+                    { name: '0.bat', data: 'echo off\ncd ..\nmenu\n' }
+                ]
+            },
         ],
         files: [{
                 name: 'menu.bat',
-                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             EMULATOR  LAUNCHER              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Home Computers            HOMECOMP    º\necho                 º                                             º\necho                 º   2.  Games Consoles            CONSOLE     º\necho                 º                                             º\necho                 º                                             º\necho                 º   3.  GenX-DOS Wiki             WIKI        º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
+                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             EMULATOR  LAUNCHER              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Home Computers            HOMECOMP    º\necho                 º                                             º\necho                 º   2.  Games Consoles            CONSOLE     º\necho                 º                                             º\necho                 º   3.  Handheld Consoles         HANDHELD    º\necho                 º                                             º\necho                 º                                             º\necho                 º   4.  GenX-DOS Wiki             WIKI        º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
             },
             {
                 name: '1.bat',
@@ -2623,6 +2663,10 @@ var fs = [{
             },
             {
                 name: '3.bat',
+                data: 'cd handheld\nmenu\n'
+            },
+            {
+                name: '4.bat',
                 data: 'wiki\n'
             },
             {

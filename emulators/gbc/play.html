@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game Boy Color</title>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <style>
+    /* Handheld bezel — first of a new kind. Instead of a CRT on the 70s
+       wallpaper, the device is held up in the FOREGROUND over a classroom
+       photo (classroom.jpg), like sneaking a Game Boy Color in class. The
+       grape GBC (gbc.png, 1105x912, body opaque, screen + outer margin keyed
+       transparent) sits over the photo, anchored to the bottom of the window
+       (held up from your lap); EJS draws the game into the screen hole. Layers
+       (back to front):
+         0. body background — classroom.jpg, full-bleed cover.
+         1. .screen-bg — black backdrop, slightly larger than the hole.
+         2. #game      — the EJS player at the measured screen hole.
+         3. .bezel-img — gbc.png on top; game shows through the screen.
+       Screen hole (measured): left 23.2% top 20.2% width 54.2% height 58.0%.
+       The classroom background must follow genx-frame.css (which sets body
+       black). */
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000 url('../_shared/textures/classroom.jpg') center / cover no-repeat; }
+    body { display: flex; align-items: flex-end; justify-content: center; }
+    .bezel-wrap {
+      position: relative;
+      height: min(73.8vh, calc(86.4vw * 912 / 1105));
+      aspect-ratio: 1105 / 912;
+    }
+    .screen-bg {
+      position: absolute;
+      left: 21.2%; top: 18.2%; width: 58.2%; height: 62.0%;
+      background: #000;
+      z-index: 1;
+    }
+    #game {
+      position: absolute;
+      left: 23.2%; top: 20.2%; width: 54.2%; height: 58.0%;
+      overflow: hidden;
+      z-index: 2;
+    }
+    /* EJS fits the canvas to #game preserving the GBC's ~10:9 aspect; the hole
+       is cut to that aspect, so a small height stretch closes any letterbox. */
+    #game canvas { height: 100% !important; transform: scale(0.95); }
+    .bezel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 3;
+    }
+  </style>
+  <script defer src="../_shared/genx-controls-link.js"></script>
+  <link rel="preload" href="../_shared-ejs/ejs/data/cores/gambatte-legacy-wasm.data" as="fetch" crossorigin>
+  <script src="../_shared-ejs/genx-ejs-boot.js"></script>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="game"><div class="loading">Booting Game Boy Color…</div></div>
+    <img class="bezel-img" src="../_shared/bezels/gbc.png" alt="">
+  </div>
+  <script>
+    // Game Boy Color — EmulatorJS + gambatte (GB/GBC libretro core). gambatte
+    // auto-detects GB vs GBC from the ROM header, so the bundle runs both.
+    genxBootEJS({
+      title: 'Game Boy Color',
+      coreName: 'gb',
+      defaultOptions: {
+        // Force Game Boy Color hardware so CGB-only ROMs run (EJS's default
+        // boots gambatte in original-DMG mode → Color-only carts show a blank
+        // white panel). gambatte still runs plain GB games fine in GBC mode.
+        'gambatte_gb_hwmode': 'GBC'
+      },
+      // Universal GB keyboard layout: Z=B, X=A, Enter=Start, Shift=Select,
+      // arrows = d-pad. (RetroPad button ids: 0=B, 8=A, 2=Select, 3=Start.)
+      defaultControls: {
+        0: {
+          0: { value: 'z' },            // B
+          8: { value: 'x' },            // A
+          2: { value: 'shift' },        // Select
+          3: { value: 'enter' },        // Start
+          4: { value: 'up arrow' },
+          5: { value: 'down arrow' },
+          6: { value: 'left arrow' },
+          7: { value: 'right arrow' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
