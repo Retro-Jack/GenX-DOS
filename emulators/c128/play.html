@@ -40,12 +40,16 @@
       overflow: hidden;
       z-index: 2;
     }
-    /* EJS fits the canvas to #game preserving aspect; the hole is ~4:3 so the
-       letterbox is tiny — stretch height only to close it. (The old 856×288
-       scaleY framebuffer hack belonged to the stable x128 core, which boots to
-       garbage; we run the nightly x128 core, which renders a normal
-       framebuffer like the rest of the family.) */
-    #game canvas { height: 100% !important; transform: scale(1.01); }
+    /* EJS fits the canvas to #game preserving aspect; height:100% closes the
+       tiny letterbox. (The old 856×288 scaleY hack belonged to the stable
+       x128 core, which boots to garbage; the nightly core we run renders a
+       normal framebuffer like the rest of the family.) The two video chips
+       fill the glass differently — the 80-col VDC picture sits smaller than
+       the 40-col VIC-II one — so each mode gets its own scale. perGame tags
+       <html> with the active mode (see the script below). */
+    #game canvas { height: 100% !important; }
+    html.gx-vicii #game canvas { transform: scale(1.01); }  /* 40-col VIC-II — family default */
+    html.gx-vdc   #game canvas { transform: scale(1.26); }  /* 80-col VDC — needs the extra fill */
     .bezel-img {
       position: absolute;
       inset: 0;
@@ -96,7 +100,11 @@
         // bare keys VICII / VDC (the core's "VIC-II (40 cols)" / "VDC (80
         // cols)" strings are display labels, NOT settable values — passing a
         // label makes the core reject it and fall back to 40-col VIC-II).
-        opts['vice_c128_video_output'] = (game && game.video) || 'VICII';
+        const vdc = (game && game.video) === 'VDC';
+        opts['vice_c128_video_output'] = vdc ? 'VDC' : 'VICII';
+        // 80-col VDC sits smaller in the glass than 40-col VIC-II, so tag the
+        // page and let CSS pick the right canvas fill scale (see <style>).
+        document.documentElement.classList.add(vdc ? 'gx-vdc' : 'gx-vicii');
       }
     });
   </script>

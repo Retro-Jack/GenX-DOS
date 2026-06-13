@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uniquest — Commodore 128 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../emulators/_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore 128 (VDC 80-col)</div>
+      <h1>Uniquest</h1>
+      <p class="sub">Homebrew fantasy RPG written natively for the C128's 80-column VDC mode — a sprawling text quest with seven cities, an immense forest, a stack of dungeons, 88 types of armour and weapons, and 110 monster types. The 80-column screen is what makes its long room and shop descriptions readable.</p>
+    </div>
+
+    <p class="intro">Boots straight into VDC 80-column mode. You're an adventurer building strength toward a final quest — find the prophet whose knowledge points the way, but you won't find him just by romping around the forest. Grind experience in the starter dungeon, kit out in the city shops, then descend the deeper, deadlier dungeons one coded level at a time.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The <code>.prg</code> autoboots into VDC 80-col — click the canvas once so it takes the keyboard.</li>
+      <li>Work through the opening prompts (it asks questions and you type the answer).</li>
+      <li>Head for the <strong>starter dungeon</strong> first — it's the safe place to build experience before anything dangerous.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <p>Prompt-and-parser driven: you mostly answer the game's questions and type short commands. It's typed input throughout — no joystick.</p>
+    <table>
+      <tr><th>Input</th><th>Effect</th></tr>
+      <tr><td>Type a reply + <kbd>Enter</kbd></td><td>Answer the current prompt (where to go, what to buy, who to fight)</td></tr>
+      <tr><td><code>YES</code> / <code>NO</code></td><td>Confirm or decline (the parser ignores answers starting with the wrong word)</td></tr>
+      <tr><td>Dungeon <em>code</em></td><td>Each dungeon has its own location, difficulty and a code you must type to enter</td></tr>
+      <tr><td>Any key</td><td>Dismiss a description screen / leave a shop when prompted</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Starter dungeon first.</strong> It's explicitly there to build experience cheaply before the real danger elsewhere.</li>
+      <li><strong>Shop carefully.</strong> With 88 armour and weapon types, some always sound better than others — early gold spent well in the city shops carries you a long way.</li>
+      <li><strong>Find the prophet.</strong> His knowledge is what actually moves the main quest forward; wandering the forest alone won't.</li>
+      <li><strong>Note the dungeon codes.</strong> You'll need them to re-enter, and deeper levels cost gold to reach — keep a side note of codes and locations.</li>
+      <li><strong>Save before a new dungeon.</strong> 110 monster types up to dragons means a fresh descent can end badly; use an EmulatorJS save-state before committing.</li>
+    </ul>
+  </div>
+</body>
+</html>
