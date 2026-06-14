@@ -145,7 +145,7 @@ Summary below; see [ATTRIBUTION.md](ATTRIBUTION.md) for the canonical record inc
 - Magnavox Odyssey² BIOS (`o2rom.bin`): ©1978 Magnavox/Philips, bundled for emulator-only use
 ## License
 
-[![License: CC BY-NC 4.0](https://img.shields.shields.shields.shields.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![License: CC BY-NC 4.0](https://img.shields.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 The original orchestration code, menu trees, and AMIBIOS POST animations authored by Jack Horton are licensed under **Creative Commons Attribution-NonCommercial 4.0 International**. 
 
