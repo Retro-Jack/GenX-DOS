@@ -17,28 +17,26 @@
 
     <p class="note">When a disk game is loading, the initial read takes around 20-30 seconds — that's not a freeze, it's the real-time 1541 drive emulation reading the disk over the IEC bus at period-authentic speed. You'll hear the drive chunk and stepper-click the whole way through; the game starts when it falls silent. Most of the bundled games are single-file <code>.prg</code>s that load instantly without disk activity.</p>
 
-    <h2>Joystick (port 1 — Player 1)</h2>
+    <h2>Joystick (numpad)</h2>
+    <p>The joystick is on the numeric keypad (the bundle sets <code>vice_joyport_type='1'</code>). <strong>NumLock must be on</strong> — the numpad only emits digit codes with NumLock on, and a banner reminds you if it's off.</p>
     <table>
       <tr><th>Key</th><th>Action</th></tr>
-      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction</td></tr>
-      <tr><td><kbd>L Ctrl</kbd></td><td>Fire button</td></tr>
+      <tr><td><kbd>Numpad 8</kbd> / <kbd>2</kbd> / <kbd>4</kbd> / <kbd>6</kbd></td><td>Up / down / left / right</td></tr>
+      <tr><td><kbd>Numpad 0</kbd> (or <kbd>5</kbd>)</td><td>Fire</td></tr>
     </table>
-    <p>The Plus/4 has two joystick ports but uses a non-standard 8-pin DIN connector (incompatible with Atari-style sticks). VICE maps Player 1 to port 1; some games look for port 2 instead — use the gear icon's joystick port swap if a game ignores Player 1 input.</p>
+    <p>The Plus/4 has two joystick ports (the non-standard 8-pin DIN, incompatible with Atari-style sticks). If a game ignores the stick it's reading the other port — swap it in the gear menu's core options.</p>
 
     <h2>Plus/4 keyboard</h2>
-    <p>VICE maps the Plus/4 keyboard "positionally" to your PC keyboard — letters / numbers / punctuation type as themselves. Plus/4-specific keys:</p>
+    <p>VICE maps the Plus/4 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro VICE keymap):</p>
     <table>
       <tr><th>Key</th><th>Plus/4 key</th></tr>
-      <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
-      <tr><td><kbd>L Alt</kbd></td><td>Commodore key (C= key — toggles upper/lower case with SHIFT)</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
       <tr><td><kbd>Scroll Lock</kbd></td><td>RUN/STOP (remapped from Esc — see note below)</td></tr>
-      <tr><td><kbd>F1</kbd> – <kbd>F4</kbd></td><td>Plus/4 function keys (the four physical F-keys; SHIFTed gives F5/F6/F7 + HELP)</td></tr>
       <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
       <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
-      <tr><td><kbd>Insert</kbd></td><td>SHIFT + INST/DEL (insert)</td></tr>
-      <tr><td><kbd>Tab</kbd></td><td>Pound symbol (£)</td></tr>
-      <tr><td><kbd>End</kbd></td><td>ESC (Plus/4's actual ESC key — separate from RUN/STOP)</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>£ (pound)</td></tr>
     </table>
+    <p class="note">The Plus/4 is a TED machine: it has no Commodore (C=) key and no RESTORE key, so those C64 mappings don't apply here. Its ESC, HELP and the four function keys are reachable through EmulatorJS's on-screen keyboard (gear menu → keyboard icon).</p>
 
     <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>emulators/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 

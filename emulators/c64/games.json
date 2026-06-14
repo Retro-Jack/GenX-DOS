@@ -1,13 +1,46 @@
 {
-  "lastninja": { "title": "The Last Ninja (1987)",      "rom": "games/lastninja.d64" },
-  "impmiss":   { "title": "Impossible Mission (1984)",  "rom": "games/impmiss.d64" },
-  "wizball":   { "title": "Wizball (1987)",             "rom": "games/wizball.d64" },
-  "elite":     { "title": "Elite (1985)",               "rom": "games/elite.d64" },
-  "intlkrte":  { "title": "International Karate (1986)","rom": "games/intlkrte.d64" },
-  "beachhd":   { "title": "Beach Head (1983)",          "rom": "games/beachhd.d64" },
-  "boulder":   { "title": "Boulder Dash (1984)",        "rom": "games/boulder.d64" },
-  "forbfrst":  { "title": "Forbidden Forest (1983)",    "rom": "games/forbfrst.d64" },
-  "ghosts":    { "title": "Ghosts 'n Goblins (1986)",   "rom": "games/ghosts.d64" },
-  "hunchbck":  { "title": "Hunchback (1983)",           "rom": "games/hunchbck.d64" },
-  "basic":     { "title": "Commodore 64 BASIC",         "rom": "games/empty.prg" }
+  "lastninja": {
+    "title": "The Last Ninja (1987)",
+    "rom": "games/lastninja.d64"
+  },
+  "impmiss": {
+    "title": "Impossible Mission (1984)",
+    "rom": "games/impmiss.d64"
+  },
+  "wizball": {
+    "title": "Wizball (1987)",
+    "rom": "games/wizball.d64"
+  },
+  "elite": {
+    "title": "Elite (1985)",
+    "rom": "games/elite.d64"
+  },
+  "uridium": {
+    "title": "Uridium (1986)",
+    "rom": "games/uridium.d64"
+  },
+  "beachhd": {
+    "title": "Beach Head (1983)",
+    "rom": "games/beachhd.d64"
+  },
+  "boulder": {
+    "title": "Boulder Dash (1984)",
+    "rom": "games/boulder.d64"
+  },
+  "forbfrst": {
+    "title": "Forbidden Forest (1983)",
+    "rom": "games/forbfrst.d64"
+  },
+  "ghosts": {
+    "title": "Ghosts 'n Goblins (1986)",
+    "rom": "games/ghosts.d64"
+  },
+  "hunchbck": {
+    "title": "Hunchback (1983)",
+    "rom": "games/hunchbck.d64"
+  },
+  "basic": {
+    "title": "Commodore 64 BASIC",
+    "rom": "games/empty.prg"
+  }
 }

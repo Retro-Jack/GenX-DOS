@@ -19,27 +19,29 @@
 
     <p class="note">When a disk game is loading, the initial read takes around 20 seconds — that's not a freeze, it's the real-time 1540 drive emulation reading the disk over the IEC bus at period-authentic speed. You'll hear the drive chunk and stepper-click the whole way through; the game starts when it falls silent.</p>
 
-    <h2>Joystick (port 1 — Player 1)</h2>
+    <h2>Joystick (numpad)</h2>
+    <p>The joystick is on the numeric keypad (the bundle sets <code>vice_joyport_type='1'</code>). <strong>NumLock must be on</strong> — the numpad only emits digit codes with NumLock on, and a banner reminds you if it's off. The VIC-20 has only one joystick port, so no port swap is needed.</p>
     <table>
       <tr><th>Key</th><th>Action</th></tr>
-      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction</td></tr>
-      <tr><td><kbd>L Ctrl</kbd></td><td>Fire button</td></tr>
+      <tr><td><kbd>Numpad 8</kbd> / <kbd>2</kbd> / <kbd>4</kbd> / <kbd>6</kbd></td><td>Up / down / left / right</td></tr>
+      <tr><td><kbd>Numpad 0</kbd> (or <kbd>5</kbd>)</td><td>Fire</td></tr>
     </table>
-    <p>The VIC-20 only has a single joystick port — Player 1 is always port 1, no swap needed.</p>
 
     <h2>VIC-20 keyboard</h2>
-    <p>VICE maps the VIC-20 keyboard "positionally" to your PC keyboard — letters / numbers / punctuation type as themselves. VIC-20-specific keys:</p>
+    <p>VICE maps the VIC-20 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro VICE keymap):</p>
     <table>
       <tr><th>Key</th><th>VIC-20 key</th></tr>
-      <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
-      <tr><td><kbd>L Alt</kbd></td><td>Commodore key (C= key — toggles upper/lower case with SHIFT)</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>C= (Commodore key)</td></tr>
       <tr><td><kbd>Scroll Lock</kbd></td><td>RUN/STOP (remapped from Esc — see note below)</td></tr>
-      <tr><td><kbd>Page Up</kbd></td><td>RESTORE (combine with RUN/STOP for warm reset)</td></tr>
-      <tr><td><kbd>F1</kbd> / <kbd>F3</kbd> / <kbd>F5</kbd> / <kbd>F7</kbd></td><td>VIC-20 function keys (only 4 — F2/F4/F6/F8 are SHIFT-modified on hardware)</td></tr>
+      <tr><td><kbd>Page Up</kbd></td><td>RESTORE (combine with RUN/STOP for a warm reset)</td></tr>
       <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Delete</kbd></td><td>↑ (up-arrow / Pi)</td></tr>
       <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
-      <tr><td><kbd>Insert</kbd></td><td>SHIFT + INST/DEL (insert)</td></tr>
-      <tr><td><kbd>Tab</kbd></td><td>Pound symbol (£)</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>£ (pound)</td></tr>
+      <tr><td><kbd>`</kbd> (backquote)</td><td>← (left-arrow)</td></tr>
+      <tr><td><kbd>[</kbd> / <kbd>]</kbd></td><td>@ / *</td></tr>
+      <tr><td><kbd>\</kbd></td><td>= (equals)</td></tr>
     </table>
 
     <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>emulators/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>

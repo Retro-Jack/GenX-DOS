@@ -30,20 +30,22 @@
     <p>Joystick is mapped to the numeric keypad via VICE's <code>vice_joyport_type='1'</code> setting so it doesn't conflict with the keyboard. NumLock needs to be on for the numpad to fire — a banner reminds you if it isn't.</p>
 
     <h2>C128 keyboard</h2>
-    <p>VICE maps the C128 keyboard "positionally" to your PC keyboard. C128-specific keys:</p>
+    <p>VICE maps the C128 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro VICE keymap):</p>
     <table>
       <tr><th>Key</th><th>C128 key</th></tr>
-      <tr><td><kbd>L Ctrl</kbd></td><td>CTRL</td></tr>
-      <tr><td><kbd>L Alt</kbd></td><td>Commodore key (C= key)</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>C= (Commodore key)</td></tr>
       <tr><td><kbd>Scroll Lock</kbd></td><td>RUN/STOP (remapped from Esc — see note below)</td></tr>
-      <tr><td><kbd>End</kbd></td><td>ESC (the C128's actual ESC key — distinct from RUN/STOP)</td></tr>
-      <tr><td><kbd>Tab</kbd></td><td>NO SCRL (no-scroll lock)</td></tr>
-      <tr><td><kbd>F7</kbd></td><td><strong>40/80 DISPLAY</strong> — toggles VIC-IIe ↔ VDC</td></tr>
-      <tr><td><kbd>F1</kbd> – <kbd>F8</kbd></td><td>Function keys</td></tr>
+      <tr><td><kbd>Page Up</kbd></td><td>RESTORE (combine with RUN/STOP for a warm reset)</td></tr>
       <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Delete</kbd></td><td>↑ (up-arrow / Pi)</td></tr>
       <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
-      <tr><td><kbd>Page Up</kbd></td><td>RESTORE (combine with RUN/STOP for warm reset)</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>£ (pound)</td></tr>
+      <tr><td><kbd>`</kbd> (backquote)</td><td>← (left-arrow)</td></tr>
+      <tr><td><kbd>[</kbd> / <kbd>]</kbd></td><td>@ / *</td></tr>
+      <tr><td><kbd>\</kbd></td><td>= (equals)</td></tr>
     </table>
+    <p class="note">The C128's native-mode-only keys (40/80 DISPLAY, ESC, HELP, NO SCROLL, the numeric keypad) aren't on this positional table — reach them through EmulatorJS's on-screen keyboard (gear menu → keyboard icon) if a program needs one.</p>
 
     <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>emulators/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 

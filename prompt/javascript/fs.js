@@ -1365,7 +1365,7 @@ var fs = [{
                                     directories: [],
                                     files: [{
                                         name: 'menu.bat',
-                                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  64  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Beach Head           (1983)  BEACHHD  º\necho                 º   2.  Forbidden Forest     (1983)  FORBFRST º\necho                 º   3.  Hunchback            (1983)  HUNCHBCK º\necho                 º   4.  Boulder Dash         (1984)  BOULDER  º\necho                 º   5.  Impossible Mission   (1984)  IMPMISS  º\necho                 º   6.  Elite                (1985)  ELITE    º\necho                 º   7.  Ghosts \'n Goblins    (1986)  GHOSTS   º\necho                 º   8.  International Karate (1986)  INTLKRTE º\necho                 º   9.  The Last Ninja       (1987)  LASTNINJAº\necho                 º  10.  Wizball              (1987)  WIZBALL  º\necho                 º                                             º\necho                 º  11.  BASIC prompt                BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
+                                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  64  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Beach Head           (1983)  BEACHHD  º\necho                 º   2.  Forbidden Forest     (1983)  FORBFRST º\necho                 º   3.  Hunchback            (1983)  HUNCHBCK º\necho                 º   4.  Boulder Dash         (1984)  BOULDER  º\necho                 º   5.  Impossible Mission   (1984)  IMPMISS  º\necho                 º   6.  Elite                (1985)  ELITE    º\necho                 º   7.  Ghosts \'n Goblins    (1986)  GHOSTS   º\necho                 º   8.  Uridium              (1986)  URIDIUM  º\necho                 º   9.  The Last Ninja       (1987)  LASTNINJAº\necho                 º  10.  Wizball              (1987)  WIZBALL  º\necho                 º                                             º\necho                 º  11.  BASIC prompt                BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
                                     }, {
                                         name: '0.bat',
                                         data: 'echo off\ncd ..\ncd ..\nmenu\n'
@@ -1392,7 +1392,7 @@ var fs = [{
                                         data: 'ghosts\n'
                                     }, {
                                         name: '8.bat',
-                                        data: 'intlkrte\n'
+                                        data: 'uridium\n'
                                     }, {
                                         name: '9.bat',
                                         data: 'lastninja\n'
@@ -1415,8 +1415,8 @@ var fs = [{
                                         name: 'elite.bat',
                                         link: '../emulators/c64/play.html?game=elite'
                                     }, {
-                                        name: 'intlkrte.bat',
-                                        link: '../emulators/c64/play.html?game=intlkrte'
+                                        name: 'uridium.bat',
+                                        link: '../emulators/c64/play.html?game=uridium'
                                     }, {
                                         name: 'beachhd.bat',
                                         link: '../emulators/c64/play.html?game=beachhd'
