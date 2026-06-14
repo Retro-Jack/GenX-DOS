@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sega Game Gear</title>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <style>
+    /* Handheld bezel — the device held up in the FOREGROUND over a classroom
+       photo (sneaking a game in class), same style as the Game Boy + Lynx. The
+       Sega Game Gear is a wide landscape unit (gamegear.png, 1523x818, body
+       opaque, screen + outer margin keyed transparent), bottom-anchored over
+       the photo; EJS draws the game into the screen hole. Layers (back→front):
+         0. body background — classroom.jpg, full-bleed cover.
+         1. .screen-bg — black backdrop, slightly larger than the hole.
+         2. #game      — the EJS player at the measured screen hole.
+         3. .bezel-img — gamegear.png on top; game shows through the screen.
+       Screen hole (measured): left 33.8% top 15.3% width 32.0% height 42.9%.
+       The classroom background must follow genx-frame.css (which sets body
+       black). */
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000 url('../_shared/textures/classroom.jpg') center / cover no-repeat; }
+    body { display: flex; align-items: flex-end; justify-content: center; }
+    .bezel-wrap {
+      position: relative;
+      width: min(61.5vw, calc(60vh * 1523 / 818));
+      aspect-ratio: 1523 / 818;
+    }
+    .screen-bg {
+      position: absolute;
+      left: 31.8%; top: 13.3%; width: 36.0%; height: 46.9%;
+      background: #000;
+      z-index: 1;
+    }
+    #game {
+      position: absolute;
+      left: 33.8%; top: 15.3%; width: 32.0%; height: 42.9%;
+      overflow: hidden;
+      z-index: 2;
+    }
+    /* EJS fits the canvas to #game preserving aspect; the hole is cut to the
+       Game Gear's screen ratio, so a height stretch closes any letterbox. */
+    #game canvas { height: 100% !important; transform: scale(0.95); }
+    .bezel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 3;
+    }
+  </style>
+  <script defer src="../_shared/genx-controls-link.js"></script>
+  <link rel="preload" href="../_shared-ejs/ejs/data/cores/genesis_plus_gx-legacy-wasm.data" as="fetch" crossorigin>
+  <script src="../_shared-ejs/genx-ejs-boot.js"></script>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="game"><div class="loading">Booting Sega Game Gear…</div></div>
+    <img class="bezel-img" src="../_shared/bezels/gamegear.png" alt="">
+  </div>
+  <script>
+    // Sega Game Gear — EmulatorJS + genesis_plus_gx (system 'segaGG'). The GG
+    // has two face buttons (1, 2) + Start: Z = button 1, X = button 2,
+    // Enter = Start, arrows = d-pad.
+    // EJS defaults the master volume to 0.5 (quiet) and passes the value
+    // straight to a Web Audio gain node with no clamp, so >1.0 amplifies.
+    // Run the GG at 1.5 (150%) — its PSG is quiet even at full.
+    window.EJS_volume = 1.5;
+    genxBootEJS({
+      title: 'Sega Game Gear',
+      coreName: 'segaGG',
+      defaultControls: {
+        0: {
+          0: { value: 'z' },            // Button 1
+          8: { value: 'x' },            // Button 2
+          3: { value: 'enter' },        // Start
+          4: { value: 'up arrow' },
+          5: { value: 'down arrow' },
+          6: { value: 'left arrow' },
+          7: { value: 'right arrow' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

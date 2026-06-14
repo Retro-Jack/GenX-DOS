@@ -1,6 +1,7 @@
-// Shared bootstrap for 10 EmulatorJS bundles: the 6 VICE-family machines,
-// ColecoVision, the Atari 2600 (Stella), the Game Boy / GBC (gambatte), and
-// the Atari Lynx (handy). (NES/jsnes is also EJS but keeps its own inline boot.)
+// Shared bootstrap for 11 EmulatorJS bundles: the 6 VICE-family machines,
+// ColecoVision, the Atari 2600 (Stella), the Game Boy / GBC (gambatte), the
+// Atari Lynx (handy), and the Sega Game Gear (genesis_plus_gx). (NES/jsnes is
+// also EJS but keeps its own inline boot.)
 //
 // Each bundle's play.html shrinks to:
 //

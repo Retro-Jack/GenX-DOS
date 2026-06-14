@@ -64,11 +64,12 @@ the corresponding emulator folder.
 | `emulators/_shared-ejs/ejs/data/cores/` | Stella libretro core (`stella2014`, Atari 2600) | stella-emu / libretro | GPL-2.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | gambatte libretro core (Game Boy / Game Boy Color) | libretro/gambatte (sinamas) | GPL-2.0 |
 | `emulators/_shared-ejs/ejs/data/cores/` | handy libretro core (Atari Lynx) | libretro/libretro-handy (K. Wilkins) | zlib / GPL-compatible |
+| `emulators/_shared-ejs/ejs/data/cores/` | genesis_plus_gx libretro core (Sega Game Gear / Master System / Mega Drive) | libretro/Genesis-Plus-GX (Eke-Eke) | non-commercial redistribution licence (see core) |
 
 ### How the cores are mirrored
 
 EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco, Stella,
-gambatte, handy) are mirrored from `cdn.emulatorjs.org/stable/` rather than rebuilt
+gambatte, handy, genesis_plus_gx) are mirrored from `cdn.emulatorjs.org/stable/` rather than rebuilt
 locally. The upstream CDN serves the same `.data` archives EmulatorJS itself
 loads from.
 

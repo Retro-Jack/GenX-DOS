@@ -2668,12 +2668,41 @@ var fs = [{
                             { name: 'rampart.bat', link: '../emulators/lynx/play.html?game=rampart' }
                         ]
                     }]
+                }, {
+                    name: 'GAMEGEAR',
+                    directories: [{
+                        name: 'GAMES',
+                        files: [
+                            { name: 'menu.bat', data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               SEGA  GAME  GEAR              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Columns              (1991)  COLUMNS  º\necho                 º   2.  Sonic the Hedgehog   (1991)  SONIC    º\necho                 º   3.  Shinobi              (1991)  SHINOBI  º\necho                 º   4.  Aerial Assault       (1992)  AERIAL   º\necho                 º   5.  Streets of Rage      (1992)  RAGE     º\necho                 º   6.  Defenders of Oasis   (1992)  OASIS    º\necho                 º   7.  Land of Illusion     (1993)  ILLUSION º\necho                 º   8.  Mortal Kombat        (1993)  KOMBAT   º\necho                 º   9.  Mean Bean Machine    (1993)  MEANBEAN º\necho                 º  10.  Tails Adventure      (1995)  TAILS    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
+                            { name: '1.bat', data: 'columns\n' },
+                            { name: '2.bat', data: 'sonic\n' },
+                            { name: '3.bat', data: 'shinobi\n' },
+                            { name: '4.bat', data: 'aerial\n' },
+                            { name: '5.bat', data: 'rage\n' },
+                            { name: '6.bat', data: 'oasis\n' },
+                            { name: '7.bat', data: 'illusion\n' },
+                            { name: '8.bat', data: 'kombat\n' },
+                            { name: '9.bat', data: 'meanbean\n' },
+                            { name: '10.bat', data: 'tails\n' },
+                            { name: '0.bat', data: 'echo off\ncd ..\ncd ..\nmenu\n' },
+                            { name: 'columns.bat', link: '../emulators/gamegear/play.html?game=columns' },
+                            { name: 'sonic.bat', link: '../emulators/gamegear/play.html?game=sonic' },
+                            { name: 'shinobi.bat', link: '../emulators/gamegear/play.html?game=shinobi' },
+                            { name: 'aerial.bat', link: '../emulators/gamegear/play.html?game=aerial' },
+                            { name: 'rage.bat', link: '../emulators/gamegear/play.html?game=rage' },
+                            { name: 'oasis.bat', link: '../emulators/gamegear/play.html?game=oasis' },
+                            { name: 'illusion.bat', link: '../emulators/gamegear/play.html?game=illusion' },
+                            { name: 'kombat.bat', link: '../emulators/gamegear/play.html?game=kombat' },
+                            { name: 'meanbean.bat', link: '../emulators/gamegear/play.html?game=meanbean' },
+                            { name: 'tails.bat', link: '../emulators/gamegear/play.html?game=tails' }
+                        ]
+                    }]
                 }],
                 files: [
                     { name: 'menu.bat', data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              HANDHELD  CONSOLES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Nintendo Game Boy    (1989)  GAMEBOY  º\necho                 º                                             º\necho                 º   2.  Atari Lynx           (1989)  LYNX     º\necho                 º                                             º\necho                 º   3.  Sega Game Gear       (1990)  GAMEGEAR º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n' },
                     { name: '1.bat', data: 'cd gameboy\ncd games\nmenu\n' },
                     { name: '2.bat', data: 'cd lynx\ncd games\nmenu\n' },
-                    { name: '3.bat', data: 'echo off\ncls\necho.\necho.\necho      Sega Game Gear -- coming soon!\necho.\necho      Type  MENU  to return.\necho.\n' },
+                    { name: '3.bat', data: 'cd gamegear\ncd games\nmenu\n' },
                     { name: '0.bat', data: 'echo off\ncd ..\nmenu\n' }
                 ]
             },
