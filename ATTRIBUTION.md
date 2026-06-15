@@ -53,9 +53,9 @@ the corresponding emulator folder.
 | `systems/js99er/carts/*.rpk` | TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983) | Texas Instruments / Imagic / Sega — original publishers | Distributed for retro-preservation; carts are 40+ years out of commerce. Mirrored from the js99er.net public cart archive (Rasmus Moustgaard). |
 | `systems/atari800/` | atari800 v5.2.0, built from source to WASM | atari800 project | GPL-2.0+ |
 | `systems/atari800/atari800.wasm` (embedded) | AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC | Avery Lee | Freely-redistributable open-source OS replacement, compiled into the WASM via `--enable-altirra_bios` (no separate ROM file ships) |
-| `systems/intellivision/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
+| `systems/intv/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
 | `systems/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | GPL-2.0+ (libretro-o2em); frontend bundled under repo terms |
-| `systems/amstradcpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` with a two-line patch (status bar + muted-speaker icon removed; see `systems/amstradcpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
+| `systems/cpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` with a two-line patch (status bar + muted-speaker icon removed; see `systems/cpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
 | `systems/pet/pet2001/` | pet2001 (vanilla-JS PET 2001 emulator) | Thomas Skibo | BSD-2-Clause |
 | `systems/_shared-ejs/` | EmulatorJS framework | EmulatorJS team | GPL-3.0 |
 | `systems/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`) | vice-emu.sourceforge.net | GPL-2.0 |
@@ -101,7 +101,7 @@ copyright holders.
 | --- | --- | --- |
 | `systems/coleco/colecovision.rom` | ColecoVision | © 1982 Coleco Industries |
 | `systems/lynx/lynxboot.img` | Atari Lynx boot ROM (512 bytes) | © 1989 Atari Corp. (required by the handy core to start games) |
-| `systems/intellivision/roms/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
+| `systems/intv/roms/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
 | `systems/odyssey2/roms/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. Sourced from the BizHawk firmware archive. |
 
 ---
@@ -138,7 +138,7 @@ for the bezel-overlay integration. **Seven are now wired in: `PC.png`
 into the DOS prompt page (`prompt/index.html`, 09/06/2026), `Acorn.png`
 into the Electron bundle (`systems/electron/play.html`, 10/06/2026),
 `Pet.png` into the PET bundle (`systems/pet/play.html`, 10/06/2026),
-`Amstrad.png` into the CPC bundle (`systems/amstradcpc/play.html`,
+`Amstrad.png` into the CPC bundle (`systems/cpc/play.html`,
 10/06/2026), `80s.png` into the Atari 400/800 bundle
 (`systems/atari800/play.html`, 11/06/2026), `70s.png` into the
 Atari 2600 / Stella bundle (`systems/stella/play.html`, 12/06/2026 —
@@ -153,7 +153,7 @@ not here — it's not part of this shared staging set.)
 
 | File | Hardware identified | Verified source | Author | Licence | Integration risk |
 | --- | --- | --- | --- | --- | --- |
-| `Amstrad.png` | Amstrad CTM640 monitor + CPC464 keyboard | [File:Amstrad_CPC464.jpg](https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg) (Wikimedia Commons) | Bill Bertram (Wikimedia username Pixel8) — 7 May 2005 | CC-BY-SA 2.5 | ✅ **Live** (`amstradcpc/play.html`). Cleared. Modifications inherit share-alike. Background alpha'd in GIMP from the original white-background product photo; CC-BY-SA 2.5 credit comment carried at the foot of the page. |
+| `Amstrad.png` | Amstrad CTM640 monitor + CPC464 keyboard | [File:Amstrad_CPC464.jpg](https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg) (Wikimedia Commons) | Bill Bertram (Wikimedia username Pixel8) — 7 May 2005 | CC-BY-SA 2.5 | ✅ **Live** (`cpc/play.html`). Cleared. Modifications inherit share-alike. Background alpha'd in GIMP from the original white-background product photo; CC-BY-SA 2.5 credit comment carried at the foot of the page. |
 | `70s.png` | Real-wood-cabinet console TV with legs (Zenith-style console set) — maintainer-keyed from its photo (background removed, screen alpha'd to a transparent hole) | Unverified — reposted via Pinterest / retro forums; original photographer unknown | Unknown | Unverified | ✅ **Live** (`stella/play.html`). Graphics are not provenance-tracked per maintainer policy, so no credit comment ships. |
 | `80s.png` | Early-'80s wood-cabinet CRT television (slider controls + speaker grille on the right) — replaced the earlier generic-portable-TV image | Local OBS bezel library (`/mnt/multimedia/Assets/OBS/Bezels/80s.png`); transparent background + screen hole, alpha-keyed and resized locally by the maintainer | Unknown | Unverified | ✅ **Live** (`atari800/play.html`). Same provenance gap as the rest of the set; graphics are not provenance-tracked per maintainer policy, so no credit comment ships. |
 | `Acorn.png` | Microvitec CUB monitor (brown bezel, "Microvitec CUB" colour logo, red LED) | Unverified — Reddit / retro forums. Microvitec CUBs are extensively documented at [stardot.org.uk](https://stardot.org.uk) and [retrorepairsandrefurbs.com](https://retrorepairsandrefurbs.com); no Wikimedia Commons match found | Unknown | Unverified | ⚠️ Likely a collector / restoration site photo; medium risk |
@@ -181,7 +181,7 @@ Per [[user notes 06/06/2026]], all nine unverified bezels above were sourced fro
 
 Recommended for the branded monitors (Acorn/Apple/Commodore/PC/Pet): option 1. Recommended for the generic TVs (70s/80s/Sinclair/Vectrex): option 2 is defensible since these are anonymous hardware shots with no obvious commercial-photography fingerprint.
 
-**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both. The generic "sourced from public web archives, original photographer unknown — open an issue if you recognise your work" credit line is now in place as an HTML comment at the foot of each live page (`prompt/index.html` for PC, `systems/electron/play.html` for Acorn, `systems/pet/play.html` for Pet) — kept as a comment rather than visible text because these pages are fullscreen immersive layouts with no footer area. **`Amstrad.png` is the exception:** it's properly source-cleared (Bill Bertram, CC-BY-SA 2.5), so `amstradcpc/play.html` carries a real attribution comment naming the author + licence rather than the generic "unknown" line.
+**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both. The generic "sourced from public web archives, original photographer unknown — open an issue if you recognise your work" credit line is now in place as an HTML comment at the foot of each live page (`prompt/index.html` for PC, `systems/electron/play.html` for Acorn, `systems/pet/play.html` for Pet) — kept as a comment rather than visible text because these pages are fullscreen immersive layouts with no footer area. **`Amstrad.png` is the exception:** it's properly source-cleared (Bill Bertram, CC-BY-SA 2.5), so `cpc/play.html` carries a real attribution comment naming the author + licence rather than the generic "unknown" line.
 
 **Update (11/06/2026):** `80s.png` shipped into `atari800/play.html` — the maintainer has since adopted a no-graphic-provenance-tracking policy for bezels/wallpapers/textures (source-code deps stay in scope), so this one ships *without* a credit comment, unlike the PC/Acorn/Pet pages. The four still-staged bezels (`70s/Apple/Commodore/Sinclair/Vectrex`) carry no integration obligation until they're wired.
 

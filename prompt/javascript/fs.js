@@ -7,7 +7,7 @@
 var fs = [{
     name: 'c',
     directories: [{
-        name: 'EMULATORS',
+        name: 'SYSTEMS',
         directories: [
             // ── CONSOLE ──────────────────────────────────────────────────────────
             {
@@ -314,34 +314,34 @@ var fs = [{
                                 data: 'nightstk\n'
                             }, {
                                 name: 'astro.bat',
-                                link: '../systems/intellivision/play.html?game=astro'
+                                link: '../systems/intv/play.html?game=astro'
                             }, {
                                 name: 'burger.bat',
-                                link: '../systems/intellivision/play.html?game=burger'
+                                link: '../systems/intv/play.html?game=burger'
                             }, {
                                 name: 'tron.bat',
-                                link: '../systems/intellivision/play.html?game=tron'
+                                link: '../systems/intv/play.html?game=tron'
                             }, {
                                 name: 'snafu.bat',
-                                link: '../systems/intellivision/play.html?game=snafu'
+                                link: '../systems/intv/play.html?game=snafu'
                             }, {
                                 name: 'b-17.bat',
-                                link: '../systems/intellivision/play.html?game=b17'
+                                link: '../systems/intv/play.html?game=b17'
                             }, {
                                 name: 'nightstk.bat',
-                                link: '../systems/intellivision/play.html?game=nightstk'
+                                link: '../systems/intv/play.html?game=nightstk'
                             }, {
                                 name: 'advent.bat',
-                                link: '../systems/intellivision/play.html?game=advent'
+                                link: '../systems/intv/play.html?game=advent'
                             }, {
                                 name: 'atlantis.bat',
-                                link: '../systems/intellivision/play.html?game=atlantis'
+                                link: '../systems/intv/play.html?game=atlantis'
                             }, {
                                 name: 'lockchase.bat',
-                                link: '../systems/intellivision/play.html?game=lockchase'
+                                link: '../systems/intv/play.html?game=lockchase'
                             }, {
                                 name: 'starstrk.bat',
-                                link: '../systems/intellivision/play.html?game=starstrk'
+                                link: '../systems/intv/play.html?game=starstrk'
                             }]
                         }],
                         files: [{
@@ -2166,37 +2166,37 @@ var fs = [{
                                 data: 'basic\n'
                             }, {
                                 name: 'basic.bat',
-                                link: '../systems/amstradcpc/play.html'
+                                link: '../systems/cpc/play.html'
                             }, {
                                 name: '3dkit.bat',
-                                link: '../systems/amstradcpc/play.html?game=3dkit'
+                                link: '../systems/cpc/play.html?game=3dkit'
                             }, {
                                 name: 'roland.bat',
-                                link: '../systems/amstradcpc/play.html?game=roland'
+                                link: '../systems/cpc/play.html?game=roland'
                             }, {
                                 name: 'knight.bat',
-                                link: '../systems/amstradcpc/play.html?game=knight'
+                                link: '../systems/cpc/play.html?game=knight'
                             }, {
                                 name: 'bruce.bat',
-                                link: '../systems/amstradcpc/play.html?game=bruce'
+                                link: '../systems/cpc/play.html?game=bruce'
                             }, {
                                 name: 'elite.bat',
-                                link: '../systems/amstradcpc/play.html?game=elite'
+                                link: '../systems/cpc/play.html?game=elite'
                             }, {
                                 name: 'bombjack.bat',
-                                link: '../systems/amstradcpc/play.html?game=bombjack'
+                                link: '../systems/cpc/play.html?game=bombjack'
                             }, {
                                 name: 'dexter.bat',
-                                link: '../systems/amstradcpc/play.html?game=dexter'
+                                link: '../systems/cpc/play.html?game=dexter'
                             }, {
                                 name: 'headover.bat',
-                                link: '../systems/amstradcpc/play.html?game=headover'
+                                link: '../systems/cpc/play.html?game=headover'
                             }, {
                                 name: 'rick.bat',
-                                link: '../systems/amstradcpc/play.html?game=rick'
+                                link: '../systems/cpc/play.html?game=rick'
                             }, {
                                 name: 'chasehq.bat',
-                                link: '../systems/amstradcpc/play.html?game=chasehq'
+                                link: '../systems/cpc/play.html?game=chasehq'
                             }]
                         }],
                         files: [{
@@ -2743,7 +2743,7 @@ var fs = [{
         },
         {
             name: 'menu.bat',
-            data: 'cd emulators\nmenu\n'
+            data: 'cd systems\nmenu\n'
         }
     ]
 }];

@@ -61,8 +61,8 @@ systems/
   plus4/                  Commodore Plus/4    — EmulatorJS + VICE xplus4 + 10 .prg
   c128/                   Commodore 128       — EmulatorJS + VICE x128 native mode + 10 titles
   coleco/                 ColecoVision        — EmulatorJS + gearcoleco + 10 launch-era .col carts
-  intellivision/          Mattel Intellivision — jzIntv WASM (custom loader) + 10 carts
-  amstradcpc/             Amstrad CPC         — floooh tiny8bit CPC WASM + 10 .dsk titles
+  intv/          Mattel Intellivision — jzIntv WASM (custom loader) + 10 carts
+  cpc/             Amstrad CPC         — floooh tiny8bit CPC WASM + 10 .dsk titles
   odyssey2/               Magnavox Odyssey²   — libretro-o2em + custom SDL2 frontend + 10 carts
 ```
 
