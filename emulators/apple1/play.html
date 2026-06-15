@@ -26,14 +26,29 @@
 <link rel="stylesheet" href="../_shared/genx-controls-link.css">
 <script defer src="../_shared/genx-controls-link.js"></script>
 <style>
-  html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+  /* CRT bezel — front-on Apple Monitor /// (Apple.png, 1583x1033, screen
+     hole keyed transparent at left 13.3% top 16.7% width 55.3% height
+     66.7%). Shared with the Apple ][+ (apple2) bundle — same monitor,
+     same hole. apple1js's chrome (title, tape player, soft keyboard,
+     modals) is hidden; the upstream wrapper <div style="margin:auto;
+     width:604px"> is repurposed as the bezel frame, the text canvas sits
+     in the screen hole behind Apple.png, set floats on the 70s wallpaper. */
+  html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; }
   body { display: flex; align-items: center; justify-content: center; }
   h1, h2, .inset, .modal, #keyboard { display: none !important; }
   td > div:not(.overscan) { display: none !important; }
-  body > div[style] { display: contents !important; }
+  body > div[style] {
+    display: block !important;
+    position: relative;
+    width: min(100vw, calc((100dvh - 120px) * 1583 / 1033)) !important;
+    aspect-ratio: 1583 / 1033;
+    margin: 0 !important;
+  }
   #display, #display tbody, #display tr, #display td { display: contents; }
-  .overscan { width: min(100vw, calc(100dvh * 4 / 3)); height: min(100dvh, calc(100vw * 3 / 4)); padding: 0; margin: 0; border: 0; }
-  #text { position: static; width: 100%; height: 100%; }
+  .screen-bg { position: absolute; left: 11.3%; top: 14.7%; width: 59.3%; height: 70.7%; background: #000; z-index: 1; }
+  .overscan { position: absolute; left: 13.3%; top: 16.7%; width: 55.3%; height: 66.7%; padding: 0; margin: 0; border: 0; overflow: hidden; z-index: 2; }
+  #text { position: static; width: 100% !important; height: 100% !important; image-rendering: pixelated; transform: scale(0.9); }
+  .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
 </style>
 
 <meta property="og:title" content="Apple 1js" />
@@ -73,6 +88,7 @@ var tapes = {};
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
   <div style="margin: auto; width: 604px">
+    <div class="screen-bg"></div>
     <h1 style="font-size: 24px" class="motter">Apple 1js</h1>
     <h2 id="subtitle">An Apple 1 Emulator in JavaScript</h2>
     <table id="display">
@@ -106,6 +122,7 @@ var tapes = {};
         <div id="keyboard"></div>
       </div>
     </div>
+    <img class="bezel-img" src="../_shared/bezels/Apple.png?v=6" alt="">
   </div>
   <div class="modal" id="options-modal" aria-hidden="true">
     <div class="modal__overlay" tabindex="-1" data-micromodal-close>
