@@ -1,4 +1,4 @@
-/* Shared style for emulators/<name>/controls.html — dark amber DOS-flavoured docs */
+/* Shared style for systems/<name>/controls.html — dark amber DOS-flavoured docs */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body { background: #0a0a0a; color: #d4d4c8; font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; line-height: 1.6; padding: 48px 24px; }

@@ -11,7 +11,7 @@
     if (document.querySelector('.gx-controls-link')) return;
     var p = new URLSearchParams(location.search);
     var key = p.get('game') || p.get('tape') || p.get('rom') || '';
-    var platform = location.pathname.replace(/.*\/emulators\//, '').replace(/\/.*/, '');
+    var platform = location.pathname.replace(/.*\/systems\//, '').replace(/\/.*/, '');
     var a = document.createElement('a');
     a.href = key ? '../../gamedocs/' + platform + '/' + key + '.html' : 'controls.html';
     a.target = '_blank';

@@ -32,39 +32,39 @@ the authoritative version.
 
 Each bundle directory contains the upstream `LICENSE` or `COPYING` file where
 one was provided. Build recipes for self-compiled WASM bundles
-(`emulators/atari800/build-wasm.sh`, `emulators/odyssey2/build.sh`) live in
+(`systems/atari800/build-wasm.sh`, `systems/odyssey2/build.sh`) live in
 the corresponding emulator folder.
 
 | Bundle directory | Upstream project | Author(s) | Licence |
 | --- | --- | --- | --- |
-| `emulators/apple1/` | apple1js | whscullin | MIT |
-| `emulators/apple2/` | apple2js | whscullin | MIT |
-| `emulators/jsbeeb/` | jsbeeb | Matt Godbolt | GPL-3.0-or-later |
-| `emulators/electron/` | ElkJS | Darren Coles (6502 core ported from Tom Walker's Elkulator) | © Darren Coles 2013 (no SPDX header in source) |
-| `emulators/jsnes/` | EmulatorJS + FCEUmm libretro core | EmulatorJS team; libretro/libretro-fceumm | GPL-3.0 (EmulatorJS), GPL-2.0 (FCEUmm) |
-| `emulators/stella/` | EmulatorJS + Stella (`stella2014`) libretro core | EmulatorJS team; stella-emu / libretro | GPL-3.0 (EmulatorJS), GPL-2.0 (Stella) |
-| `emulators/js7800/` | JS7800 | raz0red | GPL-2.0 |
-| `emulators/jsvecx/` | JSVecX (fork of raz0red's port of Valavan Manohararajah's VecX) | DrSnuggles | GPL-3.0 |
-| `emulators/webmsx/` | WebMSX | Paulo Peccin | MIT |
-| `emulators/jsspeccy/` | JSSpeccy 3.2 | Matt Westcott (gasman) | GPL-3.0 |
-| `emulators/jtyone/` | JtyOne (port of Mike Wynne's EightyOne) | Simon Holdsworth | GPL-2.0 |
-| `emulators/xroar/` | XRoar (WASM) | Ciaran Anscomb | GPL-3.0-or-later |
-| `emulators/js99er/` | Js99'er (vanilla-JS build) | Rasmus Moustgaard | GPL-2.0 |
-| `emulators/js99er/carts/*.rpk` | TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983) | Texas Instruments / Imagic / Sega — original publishers | Distributed for retro-preservation; carts are 40+ years out of commerce. Mirrored from the js99er.net public cart archive (Rasmus Moustgaard). |
-| `emulators/atari800/` | atari800 v5.2.0, built from source to WASM | atari800 project | GPL-2.0+ |
-| `emulators/atari800/atari800.wasm` (embedded) | AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC | Avery Lee | Freely-redistributable open-source OS replacement, compiled into the WASM via `--enable-altirra_bios` (no separate ROM file ships) |
-| `emulators/intellivision/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
-| `emulators/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | GPL-2.0+ (libretro-o2em); frontend bundled under repo terms |
-| `emulators/amstradcpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` with a two-line patch (status bar + muted-speaker icon removed; see `emulators/amstradcpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
-| `emulators/pet/pet2001/` | pet2001 (vanilla-JS PET 2001 emulator) | Thomas Skibo | BSD-2-Clause |
-| `emulators/_shared-ejs/` | EmulatorJS framework | EmulatorJS team | GPL-3.0 |
-| `emulators/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`) | vice-emu.sourceforge.net | GPL-2.0 |
-| `emulators/_shared-ejs/ejs/data/cores/` | gearcoleco libretro core (ColecoVision) | Drhelius | GPL-3.0 |
-| `emulators/_shared-ejs/ejs/data/cores/` | FCEUmm libretro core (NES) | libretro/libretro-fceumm | GPL-2.0 |
-| `emulators/_shared-ejs/ejs/data/cores/` | Stella libretro core (`stella2014`, Atari 2600) | stella-emu / libretro | GPL-2.0 |
-| `emulators/_shared-ejs/ejs/data/cores/` | gambatte libretro core (Game Boy / Game Boy Color) | libretro/gambatte (sinamas) | GPL-2.0 |
-| `emulators/_shared-ejs/ejs/data/cores/` | handy libretro core (Atari Lynx) | libretro/libretro-handy (K. Wilkins) | zlib / GPL-compatible |
-| `emulators/_shared-ejs/ejs/data/cores/` | genesis_plus_gx libretro core (Sega Game Gear / Master System / Mega Drive) | libretro/Genesis-Plus-GX (Eke-Eke) | non-commercial redistribution licence (see core) |
+| `systems/apple1/` | apple1js | whscullin | MIT |
+| `systems/apple2/` | apple2js | whscullin | MIT |
+| `systems/jsbeeb/` | jsbeeb | Matt Godbolt | GPL-3.0-or-later |
+| `systems/electron/` | ElkJS | Darren Coles (6502 core ported from Tom Walker's Elkulator) | © Darren Coles 2013 (no SPDX header in source) |
+| `systems/jsnes/` | EmulatorJS + FCEUmm libretro core | EmulatorJS team; libretro/libretro-fceumm | GPL-3.0 (EmulatorJS), GPL-2.0 (FCEUmm) |
+| `systems/stella/` | EmulatorJS + Stella (`stella2014`) libretro core | EmulatorJS team; stella-emu / libretro | GPL-3.0 (EmulatorJS), GPL-2.0 (Stella) |
+| `systems/js7800/` | JS7800 | raz0red | GPL-2.0 |
+| `systems/jsvecx/` | JSVecX (fork of raz0red's port of Valavan Manohararajah's VecX) | DrSnuggles | GPL-3.0 |
+| `systems/webmsx/` | WebMSX | Paulo Peccin | MIT |
+| `systems/jsspeccy/` | JSSpeccy 3.2 | Matt Westcott (gasman) | GPL-3.0 |
+| `systems/jtyone/` | JtyOne (port of Mike Wynne's EightyOne) | Simon Holdsworth | GPL-2.0 |
+| `systems/xroar/` | XRoar (WASM) | Ciaran Anscomb | GPL-3.0-or-later |
+| `systems/js99er/` | Js99'er (vanilla-JS build) | Rasmus Moustgaard | GPL-2.0 |
+| `systems/js99er/carts/*.rpk` | TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983) | Texas Instruments / Imagic / Sega — original publishers | Distributed for retro-preservation; carts are 40+ years out of commerce. Mirrored from the js99er.net public cart archive (Rasmus Moustgaard). |
+| `systems/atari800/` | atari800 v5.2.0, built from source to WASM | atari800 project | GPL-2.0+ |
+| `systems/atari800/atari800.wasm` (embedded) | AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC | Avery Lee | Freely-redistributable open-source OS replacement, compiled into the WASM via `--enable-altirra_bios` (no separate ROM file ships) |
+| `systems/intellivision/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
+| `systems/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | GPL-2.0+ (libretro-o2em); frontend bundled under repo terms |
+| `systems/amstradcpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` with a two-line patch (status bar + muted-speaker icon removed; see `systems/amstradcpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
+| `systems/pet/pet2001/` | pet2001 (vanilla-JS PET 2001 emulator) | Thomas Skibo | BSD-2-Clause |
+| `systems/_shared-ejs/` | EmulatorJS framework | EmulatorJS team | GPL-3.0 |
+| `systems/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`) | vice-emu.sourceforge.net | GPL-2.0 |
+| `systems/_shared-ejs/ejs/data/cores/` | gearcoleco libretro core (ColecoVision) | Drhelius | GPL-3.0 |
+| `systems/_shared-ejs/ejs/data/cores/` | FCEUmm libretro core (NES) | libretro/libretro-fceumm | GPL-2.0 |
+| `systems/_shared-ejs/ejs/data/cores/` | Stella libretro core (`stella2014`, Atari 2600) | stella-emu / libretro | GPL-2.0 |
+| `systems/_shared-ejs/ejs/data/cores/` | gambatte libretro core (Game Boy / Game Boy Color) | libretro/gambatte (sinamas) | GPL-2.0 |
+| `systems/_shared-ejs/ejs/data/cores/` | handy libretro core (Atari Lynx) | libretro/libretro-handy (K. Wilkins) | zlib / GPL-compatible |
+| `systems/_shared-ejs/ejs/data/cores/` | genesis_plus_gx libretro core (Sega Game Gear / Master System / Mega Drive) | libretro/Genesis-Plus-GX (Eke-Eke) | non-commercial redistribution licence (see core) |
 
 ### How the cores are mirrored
 
@@ -86,7 +86,7 @@ Both verified June 2026. We mirror the `nightly` builds of these two instead
   (adds `build-wasm.sh` + `BUILDING-WASM.md` on top of upstream). The
   pre-built `.js` + `.wasm` in this repo correspond to that build script.
 - **libretro-o2em** — built from upstream libretro/libretro-o2em via
-  `emulators/odyssey2/build.sh`. Custom SDL2/emscripten frontend
+  `systems/odyssey2/build.sh`. Custom SDL2/emscripten frontend
   (`frontend.c`) statically linked with the libretro core; reproducible
   with emsdk.
 
@@ -99,10 +99,10 @@ copyright holders.
 
 | File | System | Copyright |
 | --- | --- | --- |
-| `emulators/coleco/colecovision.rom` | ColecoVision | © 1982 Coleco Industries |
-| `emulators/lynx/lynxboot.img` | Atari Lynx boot ROM (512 bytes) | © 1989 Atari Corp. (required by the handy core to start games) |
-| `emulators/intellivision/roms/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
-| `emulators/odyssey2/roms/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. Sourced from the BizHawk firmware archive. |
+| `systems/coleco/colecovision.rom` | ColecoVision | © 1982 Coleco Industries |
+| `systems/lynx/lynxboot.img` | Atari Lynx boot ROM (512 bytes) | © 1989 Atari Corp. (required by the handy core to start games) |
+| `systems/intellivision/roms/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
+| `systems/odyssey2/roms/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. Sourced from the BizHawk firmware archive. |
 
 ---
 
@@ -133,22 +133,22 @@ title removed, open an issue at
 
 ## Bezel artwork
 
-`emulators/_shared/bezels/` contains ten transparent PNG monitor frames
+`systems/_shared/bezels/` contains ten transparent PNG monitor frames
 for the bezel-overlay integration. **Seven are now wired in: `PC.png`
 into the DOS prompt page (`prompt/index.html`, 09/06/2026), `Acorn.png`
-into the Electron bundle (`emulators/electron/play.html`, 10/06/2026),
-`Pet.png` into the PET bundle (`emulators/pet/play.html`, 10/06/2026),
-`Amstrad.png` into the CPC bundle (`emulators/amstradcpc/play.html`,
+into the Electron bundle (`systems/electron/play.html`, 10/06/2026),
+`Pet.png` into the PET bundle (`systems/pet/play.html`, 10/06/2026),
+`Amstrad.png` into the CPC bundle (`systems/amstradcpc/play.html`,
 10/06/2026), `80s.png` into the Atari 400/800 bundle
-(`emulators/atari800/play.html`, 11/06/2026), `70s.png` into the
-Atari 2600 / Stella bundle (`emulators/stella/play.html`, 12/06/2026 —
+(`systems/atari800/play.html`, 11/06/2026), `70s.png` into the
+Atari 2600 / Stella bundle (`systems/stella/play.html`, 12/06/2026 —
 the first bezel on an EmulatorJS bundle), and `Commodore.png` across the
 whole VICE family (`c64`/`c128`/`c16`/`plus4`/`vic20`/`max` — one monitor,
 one hole, 13/06/2026). The other three are still staging for the
 per-emulator integration pass.** Graphics are not provenance-tracked per
 maintainer policy, so wired bezels ship without credit comments.
 
-(Note: jsbeeb's CUB monitor frame lives inside `emulators/jsbeeb/dist/`,
+(Note: jsbeeb's CUB monitor frame lives inside `systems/jsbeeb/dist/`,
 not here — it's not part of this shared staging set.)
 
 | File | Hardware identified | Verified source | Author | Licence | Integration risk |
@@ -181,7 +181,7 @@ Per [[user notes 06/06/2026]], all nine unverified bezels above were sourced fro
 
 Recommended for the branded monitors (Acorn/Apple/Commodore/PC/Pet): option 1. Recommended for the generic TVs (70s/80s/Sinclair/Vectrex): option 2 is defensible since these are anonymous hardware shots with no obvious commercial-photography fingerprint.
 
-**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both. The generic "sourced from public web archives, original photographer unknown — open an issue if you recognise your work" credit line is now in place as an HTML comment at the foot of each live page (`prompt/index.html` for PC, `emulators/electron/play.html` for Acorn, `emulators/pet/play.html` for Pet) — kept as a comment rather than visible text because these pages are fullscreen immersive layouts with no footer area. **`Amstrad.png` is the exception:** it's properly source-cleared (Bill Bertram, CC-BY-SA 2.5), so `amstradcpc/play.html` carries a real attribution comment naming the author + licence rather than the generic "unknown" line.
+**Status note (10/06/2026):** `PC.png` and `Acorn.png` shipped before either was source-cleared — in practice that took option 2 (accept-the-risk) for both. The generic "sourced from public web archives, original photographer unknown — open an issue if you recognise your work" credit line is now in place as an HTML comment at the foot of each live page (`prompt/index.html` for PC, `systems/electron/play.html` for Acorn, `systems/pet/play.html` for Pet) — kept as a comment rather than visible text because these pages are fullscreen immersive layouts with no footer area. **`Amstrad.png` is the exception:** it's properly source-cleared (Bill Bertram, CC-BY-SA 2.5), so `amstradcpc/play.html` carries a real attribution comment naming the author + licence rather than the generic "unknown" line.
 
 **Update (11/06/2026):** `80s.png` shipped into `atari800/play.html` — the maintainer has since adopted a no-graphic-provenance-tracking policy for bezels/wallpapers/textures (source-code deps stay in scope), so this one ships *without* a credit comment, unlike the PC/Acorn/Pet pages. The four still-staged bezels (`70s/Apple/Commodore/Sinclair/Vectrex`) carry no integration obligation until they're wired.
 
@@ -197,7 +197,7 @@ Recommended for the branded monitors (Acorn/Apple/Commodore/PC/Pet): option 1. R
 
 ## CSS / JS dependencies bundled per-emulator
 
-- `emulators/electron/jquery/jquery-1.9.1.js` + `jquery-ui-1.10.3.custom.min.js` —
+- `systems/electron/jquery/jquery-1.9.1.js` + `jquery-ui-1.10.3.custom.min.js` —
   jQuery 1.9.1 and jQuery UI 1.10.3 custom build, MIT — required by ElkJS
   upstream. Kept as-is to avoid divergence from the ElkJS source.
 

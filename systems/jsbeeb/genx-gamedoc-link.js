@@ -43,7 +43,7 @@
     var key = DISC_TO_KEY[name];
     if (!key) return;
     var a = document.querySelector('.gx-controls-link');
-    // dist/index.html lives at emulators/jsbeeb/dist/, so gamedocs/ is three
-    // levels up (dist -> jsbeeb -> emulators -> repo root).
+    // dist/index.html lives at systems/jsbeeb/dist/, so gamedocs/ is three
+    // levels up (dist -> jsbeeb -> systems -> repo root).
     if (a) a.href = '../../../gamedocs/jsbeeb/' + key + '.html';
 })();

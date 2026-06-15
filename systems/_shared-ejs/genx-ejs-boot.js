@@ -71,7 +71,7 @@ window.genxBootEJS = async function(config) {
     // loader.js prepends "../" to any non-absolute EJS_pathtodata, so we
     // build an absolute pathname derived from the document URL — works
     // both at the repo root locally and under /GenX-DOS/ on Pages.
-    window.EJS_pathtodata = (location.pathname.match(/^.*\/emulators\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
+    window.EJS_pathtodata = (location.pathname.match(/^.*\/systems\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
     window.EJS_core = config.coreName;
     window.EJS_startOnLoaded = true;
     // True forces loader.js to use src/emulator.js (proper ES module with

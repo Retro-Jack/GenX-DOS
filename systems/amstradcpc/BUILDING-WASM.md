@@ -67,8 +67,8 @@ cpc.html   (the demo shell — not used; play.html is our shell)
 Copy the two artifacts over the bundle's:
 
 ```sh
-cp .fibs/dist/emsc-ninja-release/cpc.js   <genx-dos>/emulators/amstradcpc/cpc.js
-cp .fibs/dist/emsc-ninja-release/cpc.wasm <genx-dos>/emulators/amstradcpc/cpc.wasm
+cp .fibs/dist/emsc-ninja-release/cpc.js   <genx-dos>/systems/amstradcpc/cpc.js
+cp .fibs/dist/emsc-ninja-release/cpc.wasm <genx-dos>/systems/amstradcpc/cpc.wasm
 ```
 
 `play.html` and `cpc.html` are unrelated — we only take `cpc.js` + `cpc.wasm`.

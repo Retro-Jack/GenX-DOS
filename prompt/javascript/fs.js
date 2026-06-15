@@ -60,34 +60,34 @@ var fs = [{
                                         data: 'centipede\n'
                                     }, {
                                         name: 'adventure.bat',
-                                        link: '../emulators/stella/play.html?game=adventure'
+                                        link: '../systems/stella/play.html?game=adventure'
                                     }, {
                                         name: 'asteroids.bat',
-                                        link: '../emulators/stella/play.html?game=asteroids'
+                                        link: '../systems/stella/play.html?game=asteroids'
                                     }, {
                                         name: 'pacman.bat',
-                                        link: '../emulators/stella/play.html?game=pacman'
+                                        link: '../systems/stella/play.html?game=pacman'
                                     }, {
                                         name: 'pitfall.bat',
-                                        link: '../emulators/stella/play.html?game=pitfall'
+                                        link: '../systems/stella/play.html?game=pitfall'
                                     }, {
                                         name: 'invaders.bat',
-                                        link: '../emulators/stella/play.html?game=invaders'
+                                        link: '../systems/stella/play.html?game=invaders'
                                     }, {
                                         name: 'breakout.bat',
-                                        link: '../emulators/stella/play.html?game=breakout'
+                                        link: '../systems/stella/play.html?game=breakout'
                                     }, {
                                         name: 'missile.bat',
-                                        link: '../emulators/stella/play.html?game=missile'
+                                        link: '../systems/stella/play.html?game=missile'
                                     }, {
                                         name: 'yars.bat',
-                                        link: '../emulators/stella/play.html?game=yars'
+                                        link: '../systems/stella/play.html?game=yars'
                                     }, {
                                         name: 'centipede.bat',
-                                        link: '../emulators/stella/play.html?game=centipede'
+                                        link: '../systems/stella/play.html?game=centipede'
                                     }, {
                                         name: 'riverraid.bat',
-                                        link: '../emulators/stella/play.html?game=riverraid'
+                                        link: '../systems/stella/play.html?game=riverraid'
                                     }]
                                 }],
                                 files: [{
@@ -138,34 +138,34 @@ var fs = [{
                                         data: 'robotron\n'
                                     }, {
                                         name: 'asteroids.bat',
-                                        link: '../emulators/js7800/play.html?game=asteroids'
+                                        link: '../systems/js7800/play.html?game=asteroids'
                                     }, {
                                         name: 'centipede.bat',
-                                        link: '../emulators/js7800/play.html?game=centipede'
+                                        link: '../systems/js7800/play.html?game=centipede'
                                     }, {
                                         name: 'joust.bat',
-                                        link: '../emulators/js7800/play.html?game=joust'
+                                        link: '../systems/js7800/play.html?game=joust'
                                     }, {
                                         name: 'mspacman.bat',
-                                        link: '../emulators/js7800/play.html?game=mspacman'
+                                        link: '../systems/js7800/play.html?game=mspacman'
                                     }, {
                                         name: 'galaga.bat',
-                                        link: '../emulators/js7800/play.html?game=galaga'
+                                        link: '../systems/js7800/play.html?game=galaga'
                                     }, {
                                         name: 'polepos2.bat',
-                                        link: '../emulators/js7800/play.html?game=polepos2'
+                                        link: '../systems/js7800/play.html?game=polepos2'
                                     }, {
                                         name: 'digdug.bat',
-                                        link: '../emulators/js7800/play.html?game=digdug'
+                                        link: '../systems/js7800/play.html?game=digdug'
                                     }, {
                                         name: 'xevious.bat',
-                                        link: '../emulators/js7800/play.html?game=xevious'
+                                        link: '../systems/js7800/play.html?game=xevious'
                                     }, {
                                         name: 'foodfight.bat',
-                                        link: '../emulators/js7800/play.html?game=foodfight'
+                                        link: '../systems/js7800/play.html?game=foodfight'
                                     }, {
                                         name: 'robotron.bat',
-                                        link: '../emulators/js7800/play.html?game=robotron'
+                                        link: '../systems/js7800/play.html?game=robotron'
                                     }]
                                 }],
                                 files: [{
@@ -235,34 +235,34 @@ var fs = [{
                                 data: 'smb3\n'
                             }, {
                                 name: 'smb.bat',
-                                link: '../emulators/jsnes/play.html?game=smb'
+                                link: '../systems/jsnes/play.html?game=smb'
                             }, {
                                 name: 'smb2.bat',
-                                link: '../emulators/jsnes/play.html?game=smb2'
+                                link: '../systems/jsnes/play.html?game=smb2'
                             }, {
                                 name: 'smb3.bat',
-                                link: '../emulators/jsnes/play.html?game=smb3'
+                                link: '../systems/jsnes/play.html?game=smb3'
                             }, {
                                 name: 'contra.bat',
-                                link: '../emulators/jsnes/play.html?game=contra'
+                                link: '../systems/jsnes/play.html?game=contra'
                             }, {
                                 name: 'megaman2.bat',
-                                link: '../emulators/jsnes/play.html?game=megaman2'
+                                link: '../systems/jsnes/play.html?game=megaman2'
                             }, {
                                 name: 'castlvnia.bat',
-                                link: '../emulators/jsnes/play.html?game=castlvnia'
+                                link: '../systems/jsnes/play.html?game=castlvnia'
                             }, {
                                 name: 'metroid.bat',
-                                link: '../emulators/jsnes/play.html?game=metroid'
+                                link: '../systems/jsnes/play.html?game=metroid'
                             }, {
                                 name: 'tetris.bat',
-                                link: '../emulators/jsnes/play.html?game=tetris'
+                                link: '../systems/jsnes/play.html?game=tetris'
                             }, {
                                 name: 'punchout.bat',
-                                link: '../emulators/jsnes/play.html?game=punchout'
+                                link: '../systems/jsnes/play.html?game=punchout'
                             }, {
                                 name: 'finalfnts.bat',
-                                link: '../emulators/jsnes/play.html?game=finalfnts'
+                                link: '../systems/jsnes/play.html?game=finalfnts'
                             }]
                         }],
                         files: [{
@@ -314,34 +314,34 @@ var fs = [{
                                 data: 'nightstk\n'
                             }, {
                                 name: 'astro.bat',
-                                link: '../emulators/intellivision/play.html?game=astro'
+                                link: '../systems/intellivision/play.html?game=astro'
                             }, {
                                 name: 'burger.bat',
-                                link: '../emulators/intellivision/play.html?game=burger'
+                                link: '../systems/intellivision/play.html?game=burger'
                             }, {
                                 name: 'tron.bat',
-                                link: '../emulators/intellivision/play.html?game=tron'
+                                link: '../systems/intellivision/play.html?game=tron'
                             }, {
                                 name: 'snafu.bat',
-                                link: '../emulators/intellivision/play.html?game=snafu'
+                                link: '../systems/intellivision/play.html?game=snafu'
                             }, {
                                 name: 'b-17.bat',
-                                link: '../emulators/intellivision/play.html?game=b17'
+                                link: '../systems/intellivision/play.html?game=b17'
                             }, {
                                 name: 'nightstk.bat',
-                                link: '../emulators/intellivision/play.html?game=nightstk'
+                                link: '../systems/intellivision/play.html?game=nightstk'
                             }, {
                                 name: 'advent.bat',
-                                link: '../emulators/intellivision/play.html?game=advent'
+                                link: '../systems/intellivision/play.html?game=advent'
                             }, {
                                 name: 'atlantis.bat',
-                                link: '../emulators/intellivision/play.html?game=atlantis'
+                                link: '../systems/intellivision/play.html?game=atlantis'
                             }, {
                                 name: 'lockchase.bat',
-                                link: '../emulators/intellivision/play.html?game=lockchase'
+                                link: '../systems/intellivision/play.html?game=lockchase'
                             }, {
                                 name: 'starstrk.bat',
-                                link: '../emulators/intellivision/play.html?game=starstrk'
+                                link: '../systems/intellivision/play.html?game=starstrk'
                             }]
                         }],
                         files: [{
@@ -393,34 +393,34 @@ var fs = [{
                                 data: 'qbert\n'
                             }, {
                                 name: 'dkong.bat',
-                                link: '../emulators/coleco/play.html?game=dkong'
+                                link: '../systems/coleco/play.html?game=dkong'
                             }, {
                                 name: 'cosmic.bat',
-                                link: '../emulators/coleco/play.html?game=cosmic'
+                                link: '../systems/coleco/play.html?game=cosmic'
                             }, {
                                 name: 'ladybug.bat',
-                                link: '../emulators/coleco/play.html?game=ladybug'
+                                link: '../systems/coleco/play.html?game=ladybug'
                             }, {
                                 name: 'mousetrp.bat',
-                                link: '../emulators/coleco/play.html?game=mousetrp'
+                                link: '../systems/coleco/play.html?game=mousetrp'
                             }, {
                                 name: 'carnival.bat',
-                                link: '../emulators/coleco/play.html?game=carnival'
+                                link: '../systems/coleco/play.html?game=carnival'
                             }, {
                                 name: 'venture.bat',
-                                link: '../emulators/coleco/play.html?game=venture'
+                                link: '../systems/coleco/play.html?game=venture'
                             }, {
                                 name: 'smurf.bat',
-                                link: '../emulators/coleco/play.html?game=smurf'
+                                link: '../systems/coleco/play.html?game=smurf'
                             }, {
                                 name: 'zaxxon.bat',
-                                link: '../emulators/coleco/play.html?game=zaxxon'
+                                link: '../systems/coleco/play.html?game=zaxxon'
                             }, {
                                 name: 'mrdo.bat',
-                                link: '../emulators/coleco/play.html?game=mrdo'
+                                link: '../systems/coleco/play.html?game=mrdo'
                             }, {
                                 name: 'qbert.bat',
-                                link: '../emulators/coleco/play.html?game=qbert'
+                                link: '../systems/coleco/play.html?game=qbert'
                             }]
                         }],
                         files: [{
@@ -472,34 +472,34 @@ var fs = [{
                                 data: 'killbees\n'
                             }, {
                                 name: 'cosmic.bat',
-                                link: '../emulators/odyssey2/play.html?game=cosmic'
+                                link: '../systems/odyssey2/play.html?game=cosmic'
                             }, {
                                 name: 'alienplus.bat',
-                                link: '../emulators/odyssey2/play.html?game=alienplus'
+                                link: '../systems/odyssey2/play.html?game=alienplus'
                             }, {
                                 name: 'kcmunch.bat',
-                                link: '../emulators/odyssey2/play.html?game=kcmunch'
+                                link: '../systems/odyssey2/play.html?game=kcmunch'
                             }, {
                                 name: 'qrings.bat',
-                                link: '../emulators/odyssey2/play.html?game=qrings'
+                                link: '../systems/odyssey2/play.html?game=qrings'
                             }, {
                                 name: 'ufo.bat',
-                                link: '../emulators/odyssey2/play.html?game=ufo'
+                                link: '../systems/odyssey2/play.html?game=ufo'
                             }, {
                                 name: 'atlantis.bat',
-                                link: '../emulators/odyssey2/play.html?game=atlantis'
+                                link: '../systems/odyssey2/play.html?game=atlantis'
                             }, {
                                 name: 'demon.bat',
-                                link: '../emulators/odyssey2/play.html?game=demon'
+                                link: '../systems/odyssey2/play.html?game=demon'
                             }, {
                                 name: 'pickaxe.bat',
-                                link: '../emulators/odyssey2/play.html?game=pickaxe'
+                                link: '../systems/odyssey2/play.html?game=pickaxe'
                             }, {
                                 name: 'smither.bat',
-                                link: '../emulators/odyssey2/play.html?game=smither'
+                                link: '../systems/odyssey2/play.html?game=smither'
                             }, {
                                 name: 'killbees.bat',
-                                link: '../emulators/odyssey2/play.html?game=killbees'
+                                link: '../systems/odyssey2/play.html?game=killbees'
                             }]
                         }],
                         files: [{
@@ -554,37 +554,37 @@ var fs = [{
                                 data: 'minestrm\n'
                             }, {
                                 name: 'starcasl.bat',
-                                link: '../emulators/jsvecx/?rom=Commercial/Star%20Castle_1983&game=starcasl'
+                                link: '../systems/jsvecx/?rom=Commercial/Star%20Castle_1983&game=starcasl'
                             }, {
                                 name: 'berzerk.bat',
-                                link: '../emulators/jsvecx/?rom=Commercial/Berzerk_1982&game=berzerk'
+                                link: '../systems/jsvecx/?rom=Commercial/Berzerk_1982&game=berzerk'
                             }, {
                                 name: 'cosmicch.bat',
-                                link: '../emulators/jsvecx/?rom=Commercial/Cosmic%20Chasm_1982&game=cosmicch'
+                                link: '../systems/jsvecx/?rom=Commercial/Cosmic%20Chasm_1982&game=cosmicch'
                             }, {
                                 name: 'polepos.bat',
-                                link: '../emulators/jsvecx/?rom=Commercial/Pole%20Position_1983&game=polepos'
+                                link: '../systems/jsvecx/?rom=Commercial/Pole%20Position_1983&game=polepos'
                             }, {
                                 name: 'polarrsc.bat',
-                                link: '../emulators/jsvecx/?rom=Commercial/Polar%20Rescue_1983&game=polarrsc'
+                                link: '../systems/jsvecx/?rom=Commercial/Polar%20Rescue_1983&game=polarrsc'
                             }, {
                                 name: 'spike.bat',
-                                link: '../emulators/jsvecx/?rom=Commercial/Spike_1983&game=spike'
+                                link: '../systems/jsvecx/?rom=Commercial/Spike_1983&game=spike'
                             }, {
                                 name: 'startrek.bat',
-                                link: '../emulators/jsvecx/?rom=Commercial/Star%20Trek_1982&game=startrek'
+                                link: '../systems/jsvecx/?rom=Commercial/Star%20Trek_1982&game=startrek'
                             }, {
                                 name: 'solarqst.bat',
-                                link: '../emulators/jsvecx/?rom=Commercial/Solar%20Quest_1982&game=solarqst'
+                                link: '../systems/jsvecx/?rom=Commercial/Solar%20Quest_1982&game=solarqst'
                             }, {
                                 name: 'ripoff.bat',
-                                link: '../emulators/jsvecx/?rom=Commercial/Rip-Off_1982&game=ripoff'
+                                link: '../systems/jsvecx/?rom=Commercial/Rip-Off_1982&game=ripoff'
                             }, {
                                 name: 'scramble.bat',
-                                link: '../emulators/jsvecx/?rom=Commercial/Scramble_1982&game=scramble'
+                                link: '../systems/jsvecx/?rom=Commercial/Scramble_1982&game=scramble'
                             }, {
                                 name: 'minestrm.bat',
-                                link: '../emulators/jsvecx/?game=minestrm'
+                                link: '../systems/jsvecx/?game=minestrm'
                             }]
                         }],
                         files: [{
@@ -682,37 +682,37 @@ var fs = [{
                                         data: 'prompt\n'
                                     }, {
                                         name: 'elite.bat',
-                                        link: '../emulators/jsbeeb/dist/?disc1=Acornsoft/Elite.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?disc1=Acornsoft/Elite.ssd&autoboot'
                                     }, {
                                         name: 'chuckegg.bat',
-                                        link: '../emulators/jsbeeb/dist/?disc1=AnF/ChuckieEgg.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?disc1=AnF/ChuckieEgg.ssd&autoboot'
                                     }, {
                                         name: 'repton.bat',
-                                        link: '../emulators/jsbeeb/dist/?disc1=Superior/Repton.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?disc1=Superior/Repton.ssd&autoboot'
                                     }, {
                                         name: 'manicmn.bat',
-                                        link: '../emulators/jsbeeb/dist/?disc1=SoftwareProjects/ManicMiner.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?disc1=SoftwareProjects/ManicMiner.ssd&autoboot'
                                     }, {
                                         name: 'jetwilly.bat',
-                                        link: '../emulators/jsbeeb/dist/?disc1=Tynesoft/JetSetWilly.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?disc1=Tynesoft/JetSetWilly.ssd&autoboot'
                                     }, {
                                         name: 'citadel.bat',
-                                        link: '../emulators/jsbeeb/dist/?disc1=Superior/Citadel.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?disc1=Superior/Citadel.ssd&autoboot'
                                     }, {
                                         name: 'exile.bat',
-                                        link: '../emulators/jsbeeb/dist/?disc1=Superior/Exile.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?disc1=Superior/Exile.ssd&autoboot'
                                     }, {
                                         name: 'thrust.bat',
-                                        link: '../emulators/jsbeeb/dist/?disc1=Superior/Thrust.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?disc1=Superior/Thrust.ssd&autoboot'
                                     }, {
                                         name: 'snapper.bat',
-                                        link: '../emulators/jsbeeb/dist/?disc1=Acornsoft/Snapper-v1-alt.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?disc1=Acornsoft/Snapper-v1-alt.ssd&autoboot'
                                     }, {
                                         name: 'uridium.bat',
-                                        link: '../emulators/jsbeeb/dist/?disc1=Hewson/Uridium.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?disc1=Hewson/Uridium.ssd&autoboot'
                                     }, {
                                         name: 'prompt.bat',
-                                        link: '../emulators/jsbeeb/dist/'
+                                        link: '../systems/jsbeeb/dist/'
                                     }]
                                 }],
                                 files: [{
@@ -766,37 +766,37 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'snapper.bat',
-                                        link: '../emulators/electron/play.html?game=snapper'
+                                        link: '../systems/electron/play.html?game=snapper'
                                     }, {
                                         name: 'citadel.bat',
-                                        link: '../emulators/electron/play.html?game=citadel'
+                                        link: '../systems/electron/play.html?game=citadel'
                                     }, {
                                         name: 'starship.bat',
-                                        link: '../emulators/electron/play.html?game=starship'
+                                        link: '../systems/electron/play.html?game=starship'
                                     }, {
                                         name: 'repton2.bat',
-                                        link: '../emulators/electron/play.html?game=repton2'
+                                        link: '../systems/electron/play.html?game=repton2'
                                     }, {
                                         name: 'boxer.bat',
-                                        link: '../emulators/electron/play.html?game=boxer'
+                                        link: '../systems/electron/play.html?game=boxer'
                                     }, {
                                         name: 'cybrtron.bat',
-                                        link: '../emulators/electron/play.html?game=cybertron'
+                                        link: '../systems/electron/play.html?game=cybertron'
                                     }, {
                                         name: 'elite.bat',
-                                        link: '../emulators/electron/play.html?game=elite'
+                                        link: '../systems/electron/play.html?game=elite'
                                     }, {
                                         name: 'chuckegg.bat',
-                                        link: '../emulators/electron/play.html?game=chuckie'
+                                        link: '../systems/electron/play.html?game=chuckie'
                                     }, {
                                         name: 'frak.bat',
-                                        link: '../emulators/electron/play.html?game=frak'
+                                        link: '../systems/electron/play.html?game=frak'
                                     }, {
                                         name: 'hopper.bat',
-                                        link: '../emulators/electron/play.html?game=hopper'
+                                        link: '../systems/electron/play.html?game=hopper'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/electron/play.html'
+                                        link: '../systems/electron/play.html'
                                     }]
                                 }],
                                 files: [{
@@ -850,37 +850,37 @@ var fs = [{
                                         data: 'prompt\n'
                                     }, {
                                         name: 'elite.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master&disc1=Acornsoft/EliteMaster.dsd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?model=Master&disc1=Acornsoft/EliteMaster.dsd&autoboot'
                                     }, {
                                         name: 'ninja2.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master&disc1=Superior/LastNinja2.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/LastNinja2.ssd&autoboot'
                                     }, {
                                         name: 'repton3.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master&disc1=Superior/Repton3.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/Repton3.ssd&autoboot'
                                     }, {
                                         name: 'reptoninf.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master&disc1=Superior/ReptonInfinity.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/ReptonInfinity.ssd&autoboot'
                                     }, {
                                         name: 'firetrak.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master&disc1=ElectricDreams/Firetrack.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?model=Master&disc1=ElectricDreams/Firetrack.ssd&autoboot'
                                     }, {
                                         name: 'crazee.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master&disc1=Superior/CrazeeRider.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/CrazeeRider.ssd&autoboot'
                                     }, {
                                         name: 'stryker.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master&disc1=Superior/StrykersRun.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/StrykersRun.ssd&autoboot'
                                     }, {
                                         name: 'bfmof.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master&disc1=Superior/ByFairMeansOrFoul.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/ByFairMeansOrFoul.ssd&autoboot'
                                     }, {
                                         name: 'holedout.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master&disc1=4thDimension/HoledOut.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?model=Master&disc1=4thDimension/HoledOut.ssd&autoboot'
                                     }, {
                                         name: 'ballistx.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master&disc1=Superior/Ballistix.ssd&autoboot'
+                                        link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/Ballistix.ssd&autoboot'
                                     }, {
                                         name: 'prompt.bat',
-                                        link: '../emulators/jsbeeb/dist/?model=Master'
+                                        link: '../systems/jsbeeb/dist/?model=Master'
                                     }]
                                 }],
                                 files: [{
@@ -961,37 +961,37 @@ var fs = [{
                                         data: 'prompt\n'
                                     }, {
                                         name: 'startrek.bat',
-                                        link: '../emulators/apple1/play.html?tape=startrek'
+                                        link: '../systems/apple1/play.html?tape=startrek'
                                     }, {
                                         name: 'blackjk.bat',
-                                        link: '../emulators/apple1/play.html?tape=blackjack'
+                                        link: '../systems/apple1/play.html?tape=blackjack'
                                     }, {
                                         name: 'chess.bat',
-                                        link: '../emulators/apple1/play.html?tape=chess'
+                                        link: '../systems/apple1/play.html?tape=chess'
                                     }, {
                                         name: 'hamurabi.bat',
-                                        link: '../emulators/apple1/play.html?tape=hamurabi'
+                                        link: '../systems/apple1/play.html?tape=hamurabi'
                                     }, {
                                         name: 'lunar.bat',
-                                        link: '../emulators/apple1/play.html?tape=lunar'
+                                        link: '../systems/apple1/play.html?tape=lunar'
                                     }, {
                                         name: 'wumpus.bat',
-                                        link: '../emulators/apple1/play.html?tape=wumpus'
+                                        link: '../systems/apple1/play.html?tape=wumpus'
                                     }, {
                                         name: 'checkers.bat',
-                                        link: '../emulators/apple1/play.html?tape=checkers'
+                                        link: '../systems/apple1/play.html?tape=checkers'
                                     }, {
                                         name: 'puzzle15.bat',
-                                        link: '../emulators/apple1/play.html?tape=puzzle15'
+                                        link: '../systems/apple1/play.html?tape=puzzle15'
                                     }, {
                                         name: 'life.bat',
-                                        link: '../emulators/apple1/play.html?tape=life'
+                                        link: '../systems/apple1/play.html?tape=life'
                                     }, {
                                         name: 'apple30.bat',
-                                        link: '../emulators/apple1/play.html?tape=apple30'
+                                        link: '../systems/apple1/play.html?tape=apple30'
                                     }, {
                                         name: 'prompt.bat',
-                                        link: '../emulators/apple1/play.html'
+                                        link: '../systems/apple1/play.html'
                                     }]
                                 }],
                                 files: [{
@@ -1045,37 +1045,37 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'archon.bat',
-                                        link: '../emulators/apple2/play.html?game=archon'
+                                        link: '../systems/apple2/play.html?game=archon'
                                     }, {
                                         name: 'lemonade.bat',
-                                        link: '../emulators/apple2/play.html?game=lemonade'
+                                        link: '../systems/apple2/play.html?game=lemonade'
                                     }, {
                                         name: 'wolf.bat',
-                                        link: '../emulators/apple2/play.html?game=wolf'
+                                        link: '../systems/apple2/play.html?game=wolf'
                                     }, {
                                         name: 'choplift.bat',
-                                        link: '../emulators/apple2/play.html?game=choplift'
+                                        link: '../systems/apple2/play.html?game=choplift'
                                     }, {
                                         name: 'aztec.bat',
-                                        link: '../emulators/apple2/play.html?game=aztec'
+                                        link: '../systems/apple2/play.html?game=aztec'
                                     }, {
                                         name: 'loderun.bat',
-                                        link: '../emulators/apple2/play.html?game=loderun'
+                                        link: '../systems/apple2/play.html?game=loderun'
                                     }, {
                                         name: 'sammy.bat',
-                                        link: '../emulators/apple2/play.html?game=sammy'
+                                        link: '../systems/apple2/play.html?game=sammy'
                                     }, {
                                         name: 'hardhat.bat',
-                                        link: '../emulators/apple2/play.html?game=hardhat'
+                                        link: '../systems/apple2/play.html?game=hardhat'
                                     }, {
                                         name: 'karateka.bat',
-                                        link: '../emulators/apple2/play.html?game=karateka'
+                                        link: '../systems/apple2/play.html?game=karateka'
                                     }, {
                                         name: 'oregon.bat',
-                                        link: '../emulators/apple2/play.html?game=oregon'
+                                        link: '../systems/apple2/play.html?game=oregon'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/apple2/play.html'
+                                        link: '../systems/apple2/play.html'
                                     }]
                                 }],
                                 files: [{
@@ -1152,37 +1152,37 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'startrek.bat',
-                                        link: '../emulators/pet/play.html?game=startrek'
+                                        link: '../systems/pet/play.html?game=startrek'
                                     }, {
                                         name: 'andnim.bat',
-                                        link: '../emulators/pet/play.html?game=andnim'
+                                        link: '../systems/pet/play.html?game=andnim'
                                     }, {
                                         name: 'lunar.bat',
-                                        link: '../emulators/pet/play.html?game=lunar'
+                                        link: '../systems/pet/play.html?game=lunar'
                                     }, {
                                         name: 'advland.bat',
-                                        link: '../emulators/pet/play.html?game=advland'
+                                        link: '../systems/pet/play.html?game=advland'
                                     }, {
                                         name: 'hangman.bat',
-                                        link: '../emulators/pet/play.html?game=hangman'
+                                        link: '../systems/pet/play.html?game=hangman'
                                     }, {
                                         name: 'invader.bat',
-                                        link: '../emulators/pet/play.html?game=invader'
+                                        link: '../systems/pet/play.html?game=invader'
                                     }, {
                                         name: 'crzballn.bat',
-                                        link: '../emulators/pet/play.html?game=crzballn'
+                                        link: '../systems/pet/play.html?game=crzballn'
                                     }, {
                                         name: 'cs2001.bat',
-                                        link: '../emulators/pet/play.html?game=cs2001'
+                                        link: '../systems/pet/play.html?game=cs2001'
                                     }, {
                                         name: 'frogger.bat',
-                                        link: '../emulators/pet/play.html?game=frogger'
+                                        link: '../systems/pet/play.html?game=frogger'
                                     }, {
                                         name: 'pacman.bat',
-                                        link: '../emulators/pet/play.html?game=pacman'
+                                        link: '../systems/pet/play.html?game=pacman'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/pet/play.html?game=basic'
+                                        link: '../systems/pet/play.html?game=basic'
                                     }]
                                 }],
                                 files: [{
@@ -1236,37 +1236,37 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'avenger.bat',
-                                        link: '../emulators/vic20/play.html?game=avenger'
+                                        link: '../systems/vic20/play.html?game=avenger'
                                     }, {
                                         name: 'ratrace.bat',
-                                        link: '../emulators/vic20/play.html?game=ratrace'
+                                        link: '../systems/vic20/play.html?game=ratrace'
                                     }, {
                                         name: 'gorf.bat',
-                                        link: '../emulators/vic20/play.html?game=gorf'
+                                        link: '../systems/vic20/play.html?game=gorf'
                                     }, {
                                         name: 'omega.bat',
-                                        link: '../emulators/vic20/play.html?game=omega'
+                                        link: '../systems/vic20/play.html?game=omega'
                                     }, {
                                         name: 'chopper.bat',
-                                        link: '../emulators/vic20/play.html?game=chopper'
+                                        link: '../systems/vic20/play.html?game=chopper'
                                     }, {
                                         name: 'gridrun.bat',
-                                        link: '../emulators/vic20/play.html?game=gridrun'
+                                        link: '../systems/vic20/play.html?game=gridrun'
                                     }, {
                                         name: 'frogger.bat',
-                                        link: '../emulators/vic20/play.html?game=frogger'
+                                        link: '../systems/vic20/play.html?game=frogger'
                                     }, {
                                         name: 'pacman.bat',
-                                        link: '../emulators/vic20/play.html?game=pacman'
+                                        link: '../systems/vic20/play.html?game=pacman'
                                     }, {
                                         name: 'atlantis.bat',
-                                        link: '../emulators/vic20/play.html?game=atlantis'
+                                        link: '../systems/vic20/play.html?game=atlantis'
                                     }, {
                                         name: 'demonatk.bat',
-                                        link: '../emulators/vic20/play.html?game=demonatk'
+                                        link: '../systems/vic20/play.html?game=demonatk'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/vic20/play.html?game=basic'
+                                        link: '../systems/vic20/play.html?game=basic'
                                     }]
                                 }],
                                 files: [{
@@ -1320,37 +1320,37 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'clowns.bat',
-                                        link: '../emulators/max/play.html?game=clowns'
+                                        link: '../systems/max/play.html?game=clowns'
                                     }, {
                                         name: 'omegrace.bat',
-                                        link: '../emulators/max/play.html?game=omegrace'
+                                        link: '../systems/max/play.html?game=omegrace'
                                     }, {
                                         name: 'rrr.bat',
-                                        link: '../emulators/max/play.html?game=rrr'
+                                        link: '../systems/max/play.html?game=rrr'
                                     }, {
                                         name: 'jupiter.bat',
-                                        link: '../emulators/max/play.html?game=jupiter'
+                                        link: '../systems/max/play.html?game=jupiter'
                                     }, {
                                         name: 'molatak.bat',
-                                        link: '../emulators/max/play.html?game=molatak'
+                                        link: '../systems/max/play.html?game=molatak'
                                     }, {
                                         name: 'monywars.bat',
-                                        link: '../emulators/max/play.html?game=monywars'
+                                        link: '../systems/max/play.html?game=monywars'
                                     }, {
                                         name: 'speedmth.bat',
-                                        link: '../emulators/max/play.html?game=speedmth'
+                                        link: '../systems/max/play.html?game=speedmth'
                                     }, {
                                         name: 'slalom.bat',
-                                        link: '../emulators/max/play.html?game=slalom'
+                                        link: '../systems/max/play.html?game=slalom'
                                     }, {
                                         name: 'billiard.bat',
-                                        link: '../emulators/max/play.html?game=billiard'
+                                        link: '../systems/max/play.html?game=billiard'
                                     }, {
                                         name: 'pinball.bat',
-                                        link: '../emulators/max/play.html?game=pinball'
+                                        link: '../systems/max/play.html?game=pinball'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/max/play.html?game=basic'
+                                        link: '../systems/max/play.html?game=basic'
                                     }]
                                 }],
                                 files: [{
@@ -1404,37 +1404,37 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'lastninja.bat',
-                                        link: '../emulators/c64/play.html?game=lastninja'
+                                        link: '../systems/c64/play.html?game=lastninja'
                                     }, {
                                         name: 'impmiss.bat',
-                                        link: '../emulators/c64/play.html?game=impmiss'
+                                        link: '../systems/c64/play.html?game=impmiss'
                                     }, {
                                         name: 'wizball.bat',
-                                        link: '../emulators/c64/play.html?game=wizball'
+                                        link: '../systems/c64/play.html?game=wizball'
                                     }, {
                                         name: 'elite.bat',
-                                        link: '../emulators/c64/play.html?game=elite'
+                                        link: '../systems/c64/play.html?game=elite'
                                     }, {
                                         name: 'uridium.bat',
-                                        link: '../emulators/c64/play.html?game=uridium'
+                                        link: '../systems/c64/play.html?game=uridium'
                                     }, {
                                         name: 'beachhd.bat',
-                                        link: '../emulators/c64/play.html?game=beachhd'
+                                        link: '../systems/c64/play.html?game=beachhd'
                                     }, {
                                         name: 'boulder.bat',
-                                        link: '../emulators/c64/play.html?game=boulder'
+                                        link: '../systems/c64/play.html?game=boulder'
                                     }, {
                                         name: 'forbfrst.bat',
-                                        link: '../emulators/c64/play.html?game=forbfrst'
+                                        link: '../systems/c64/play.html?game=forbfrst'
                                     }, {
                                         name: 'ghosts.bat',
-                                        link: '../emulators/c64/play.html?game=ghosts'
+                                        link: '../systems/c64/play.html?game=ghosts'
                                     }, {
                                         name: 'hunchbck.bat',
-                                        link: '../emulators/c64/play.html?game=hunchbck'
+                                        link: '../systems/c64/play.html?game=hunchbck'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/c64/play.html?game=basic'
+                                        link: '../systems/c64/play.html?game=basic'
                                     }]
                                 }],
                                 files: [{
@@ -1488,37 +1488,37 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'fireant.bat',
-                                        link: '../emulators/c16/play.html?game=fireant'
+                                        link: '../systems/c16/play.html?game=fireant'
                                     }, {
                                         name: 'skramble.bat',
-                                        link: '../emulators/c16/play.html?game=skramble'
+                                        link: '../systems/c16/play.html?game=skramble'
                                     }, {
                                         name: 'towrevil.bat',
-                                        link: '../emulators/c16/play.html?game=towrevil'
+                                        link: '../systems/c16/play.html?game=towrevil'
                                     }, {
                                         name: 'xargon.bat',
-                                        link: '../emulators/c16/play.html?game=xargon'
+                                        link: '../systems/c16/play.html?game=xargon'
                                     }, {
                                         name: 'berks.bat',
-                                        link: '../emulators/c16/play.html?game=berks'
+                                        link: '../systems/c16/play.html?game=berks'
                                     }, {
                                         name: 'bigmac.bat',
-                                        link: '../emulators/c16/play.html?game=bigmac'
+                                        link: '../systems/c16/play.html?game=bigmac'
                                     }, {
                                         name: 'hustler.bat',
-                                        link: '../emulators/c16/play.html?game=hustler'
+                                        link: '../systems/c16/play.html?game=hustler'
                                     }, {
                                         name: 'tomthumb.bat',
-                                        link: '../emulators/c16/play.html?game=tomthumb'
+                                        link: '../systems/c16/play.html?game=tomthumb'
                                     }, {
                                         name: 'tuttifrt.bat',
-                                        link: '../emulators/c16/play.html?game=tuttifrt'
+                                        link: '../systems/c16/play.html?game=tuttifrt'
                                     }, {
                                         name: 'punivrse.bat',
-                                        link: '../emulators/c16/play.html?game=punivrse'
+                                        link: '../systems/c16/play.html?game=punivrse'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/c16/play.html?game=basic'
+                                        link: '../systems/c16/play.html?game=basic'
                                     }]
                                 }],
                                 files: [{
@@ -1572,37 +1572,37 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'blagger.bat',
-                                        link: '../emulators/plus4/play.html?game=blagger'
+                                        link: '../systems/plus4/play.html?game=blagger'
                                     }, {
                                         name: 'popeye.bat',
-                                        link: '../emulators/plus4/play.html?game=popeye'
+                                        link: '../systems/plus4/play.html?game=popeye'
                                     }, {
                                         name: 'citadel.bat',
-                                        link: '../emulators/plus4/play.html?game=citadel'
+                                        link: '../systems/plus4/play.html?game=citadel'
                                     }, {
                                         name: 'kikstart.bat',
-                                        link: '../emulators/plus4/play.html?game=kikstart'
+                                        link: '../systems/plus4/play.html?game=kikstart'
                                     }, {
                                         name: 'punchy.bat',
-                                        link: '../emulators/plus4/play.html?game=punchy'
+                                        link: '../systems/plus4/play.html?game=punchy'
                                     }, {
                                         name: 'rockman.bat',
-                                        link: '../emulators/plus4/play.html?game=rockman'
+                                        link: '../systems/plus4/play.html?game=rockman'
                                     }, {
                                         name: 'saboteur.bat',
-                                        link: '../emulators/plus4/play.html?game=saboteur'
+                                        link: '../systems/plus4/play.html?game=saboteur'
                                     }, {
                                         name: 'squirm.bat',
-                                        link: '../emulators/plus4/play.html?game=squirm'
+                                        link: '../systems/plus4/play.html?game=squirm'
                                     }, {
                                         name: 'mercnary.bat',
-                                        link: '../emulators/plus4/play.html?game=mercnary'
+                                        link: '../systems/plus4/play.html?game=mercnary'
                                     }, {
                                         name: 'trailblz.bat',
-                                        link: '../emulators/plus4/play.html?game=trailblz'
+                                        link: '../systems/plus4/play.html?game=trailblz'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/plus4/play.html?game=basic'
+                                        link: '../systems/plus4/play.html?game=basic'
                                     }]
                                 }],
                                 files: [{
@@ -1656,37 +1656,37 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'lastv8.bat',
-                                        link: '../emulators/c128/play.html?game=lastv8'
+                                        link: '../systems/c128/play.html?game=lastv8'
                                     }, {
                                         name: 'rockyh.bat',
-                                        link: '../emulators/c128/play.html?game=rockyh'
+                                        link: '../systems/c128/play.html?game=rockyh'
                                     }, {
                                         name: 'crush.bat',
-                                        link: '../emulators/c128/play.html?game=crush'
+                                        link: '../systems/c128/play.html?game=crush'
                                     }, {
                                         name: 'worldwar.bat',
-                                        link: '../emulators/c128/play.html?game=worldwar'
+                                        link: '../systems/c128/play.html?game=worldwar'
                                     }, {
                                         name: 'invaders.bat',
-                                        link: '../emulators/c128/play.html?game=invaders'
+                                        link: '../systems/c128/play.html?game=invaders'
                                     }, {
                                         name: 'wumpus.bat',
-                                        link: '../emulators/c128/play.html?game=wumpus'
+                                        link: '../systems/c128/play.html?game=wumpus'
                                     }, {
                                         name: 'starflt1.bat',
-                                        link: '../emulators/c128/play.html?game=starflt1'
+                                        link: '../systems/c128/play.html?game=starflt1'
                                     }, {
                                         name: 'rockfall.bat',
-                                        link: '../emulators/c128/play.html?game=rockfall'
+                                        link: '../systems/c128/play.html?game=rockfall'
                                     }, {
                                         name: 'phazer.bat',
-                                        link: '../emulators/c128/play.html?game=phazer'
+                                        link: '../systems/c128/play.html?game=phazer'
                                     }, {
                                         name: 'uniquest.bat',
-                                        link: '../emulators/c128/play.html?game=uniquest'
+                                        link: '../systems/c128/play.html?game=uniquest'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/c128/play.html?game=basic'
+                                        link: '../systems/c128/play.html?game=basic'
                                     }]
                                 }],
                                 files: [{
@@ -1787,40 +1787,40 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'starraid.bat',
-                                        link: '../emulators/atari800/play.html?game=starraid&machine=atari'
+                                        link: '../systems/atari800/play.html?game=starraid&machine=atari'
                                     }, {
                                         name: 'missile.bat',
-                                        link: '../emulators/atari800/play.html?game=missile&machine=atari'
+                                        link: '../systems/atari800/play.html?game=missile&machine=atari'
                                     }, {
                                         name: 'asteroid.bat',
-                                        link: '../emulators/atari800/play.html?game=asteroid&machine=atari'
+                                        link: '../systems/atari800/play.html?game=asteroid&machine=atari'
                                     }, {
                                         name: 'defender.bat',
-                                        link: '../emulators/atari800/play.html?game=defender&machine=atari'
+                                        link: '../systems/atari800/play.html?game=defender&machine=atari'
                                     }, {
                                         name: 'invaders.bat',
-                                        link: '../emulators/atari800/play.html?game=invaders&machine=atari'
+                                        link: '../systems/atari800/play.html?game=invaders&machine=atari'
                                     }, {
                                         name: 'pacman.bat',
-                                        link: '../emulators/atari800/play.html?game=pacman&machine=atari'
+                                        link: '../systems/atari800/play.html?game=pacman&machine=atari'
                                     }, {
                                         name: 'centiped.bat',
-                                        link: '../emulators/atari800/play.html?game=centiped&machine=atari'
+                                        link: '../systems/atari800/play.html?game=centiped&machine=atari'
                                     }, {
                                         name: 'chopliftr.bat',
-                                        link: '../emulators/atari800/play.html?game=chopliftr&machine=atari'
+                                        link: '../systems/atari800/play.html?game=chopliftr&machine=atari'
                                     }, {
                                         name: 'dkong.bat',
-                                        link: '../emulators/atari800/play.html?game=dkong&machine=atari'
+                                        link: '../systems/atari800/play.html?game=dkong&machine=atari'
                                     }, {
                                         name: 'joust.bat',
-                                        link: '../emulators/atari800/play.html?game=joust&machine=atari'
+                                        link: '../systems/atari800/play.html?game=joust&machine=atari'
                                     }, {
                                         name: 'digdug.bat',
-                                        link: '../emulators/atari800/play.html?game=digdug&machine=atari'
+                                        link: '../systems/atari800/play.html?game=digdug&machine=atari'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/atari800/play.html?machine=atari'
+                                        link: '../systems/atari800/play.html?machine=atari'
                                     }]
                                 }],
                                 files: [{
@@ -1874,37 +1874,37 @@ var fs = [{
                                         data: 'basic\n'
                                     }, {
                                         name: 'starraid.bat',
-                                        link: '../emulators/atari800/play.html?game=starraid'
+                                        link: '../systems/atari800/play.html?game=starraid'
                                     }, {
                                         name: 'mule.bat',
-                                        link: '../emulators/atari800/play.html?game=mule'
+                                        link: '../systems/atari800/play.html?game=mule'
                                     }, {
                                         name: 'boulder.bat',
-                                        link: '../emulators/atari800/play.html?game=boulder'
+                                        link: '../systems/atari800/play.html?game=boulder'
                                     }, {
                                         name: 'archon.bat',
-                                        link: '../emulators/atari800/play.html?game=archon'
+                                        link: '../systems/atari800/play.html?game=archon'
                                     }, {
                                         name: 'ballblzr.bat',
-                                        link: '../emulators/atari800/play.html?game=ballblzr'
+                                        link: '../systems/atari800/play.html?game=ballblzr'
                                     }, {
                                         name: 'fractlus.bat',
-                                        link: '../emulators/atari800/play.html?game=fractlus'
+                                        link: '../systems/atari800/play.html?game=fractlus'
                                     }, {
                                         name: 'brucelee.bat',
-                                        link: '../emulators/atari800/play.html?game=brucelee'
+                                        link: '../systems/atari800/play.html?game=brucelee'
                                     }, {
                                         name: 'miner2k.bat',
-                                        link: '../emulators/atari800/play.html?game=miner2k'
+                                        link: '../systems/atari800/play.html?game=miner2k'
                                     }, {
                                         name: 'polepos.bat',
-                                        link: '../emulators/atari800/play.html?game=polepos'
+                                        link: '../systems/atari800/play.html?game=polepos'
                                     }, {
                                         name: 'eastfrnt.bat',
-                                        link: '../emulators/atari800/play.html?game=eastfrnt'
+                                        link: '../systems/atari800/play.html?game=eastfrnt'
                                     }, {
                                         name: 'basic.bat',
-                                        link: '../emulators/atari800/play.html'
+                                        link: '../systems/atari800/play.html'
                                     }]
                                 }],
                                 files: [{
@@ -1981,37 +1981,37 @@ var fs = [{
                                     data: 'basic\n'
                                 }, {
                                     name: 'basic.bat',
-                                    link: '../emulators/jsspeccy/play.html'
+                                    link: '../systems/jsspeccy/play.html'
                                 }, {
                                     name: 'manicmn.bat',
-                                    link: '../emulators/jsspeccy/play.html?game=manicmn'
+                                    link: '../systems/jsspeccy/play.html?game=manicmn'
                                 }, {
                                     name: 'jetwilly.bat',
-                                    link: '../emulators/jsspeccy/play.html?game=jetwilly'
+                                    link: '../systems/jsspeccy/play.html?game=jetwilly'
                                 }, {
                                     name: 'chuckegg.bat',
-                                    link: '../emulators/jsspeccy/play.html?game=chuckegg'
+                                    link: '../systems/jsspeccy/play.html?game=chuckegg'
                                 }, {
                                     name: 'sabrwulf.bat',
-                                    link: '../emulators/jsspeccy/play.html?game=sabrwulf'
+                                    link: '../systems/jsspeccy/play.html?game=sabrwulf'
                                 }, {
                                     name: 'kngtlore.bat',
-                                    link: '../emulators/jsspeccy/play.html?game=kngtlore'
+                                    link: '../systems/jsspeccy/play.html?game=kngtlore'
                                 }, {
                                     name: 'atatac.bat',
-                                    link: '../emulators/jsspeccy/play.html?game=atatac'
+                                    link: '../systems/jsspeccy/play.html?game=atatac'
                                 }, {
                                     name: 'pssst.bat',
-                                    link: '../emulators/jsspeccy/play.html?game=pssst'
+                                    link: '../systems/jsspeccy/play.html?game=pssst'
                                 }, {
                                     name: 'uwurlde.bat',
-                                    link: '../emulators/jsspeccy/play.html?game=uwurlde'
+                                    link: '../systems/jsspeccy/play.html?game=uwurlde'
                                 }, {
                                     name: 'dizzy.bat',
-                                    link: '../emulators/jsspeccy/play.html?game=dizzy'
+                                    link: '../systems/jsspeccy/play.html?game=dizzy'
                                 }, {
                                     name: 'skooldzd.bat',
-                                    link: '../emulators/jsspeccy/play.html?game=skooldzd'
+                                    link: '../systems/jsspeccy/play.html?game=skooldzd'
                                 }]
                             }],
                             files: [{
@@ -2064,37 +2064,37 @@ var fs = [{
                                     data: 'basic\n'
                                 }, {
                                     name: 'basic.bat',
-                                    link: '../emulators/jtyone/play.html'
+                                    link: '../systems/jtyone/play.html'
                                 }, {
                                     name: 'monstmze.bat',
-                                    link: '../emulators/jtyone/play.html?game=monstmze'
+                                    link: '../systems/jtyone/play.html?game=monstmze'
                                 }, {
                                     name: 'mazogs.bat',
-                                    link: '../emulators/jtyone/play.html?game=mazogs'
+                                    link: '../systems/jtyone/play.html?game=mazogs'
                                 }, {
                                     name: 'nightgun.bat',
-                                    link: '../emulators/jtyone/play.html?game=nightgun'
+                                    link: '../systems/jtyone/play.html?game=nightgun'
                                 }, {
                                     name: 'galaxian.bat',
-                                    link: '../emulators/jtyone/play.html?game=galaxian'
+                                    link: '../systems/jtyone/play.html?game=galaxian'
                                 }, {
                                     name: 'chess.bat',
-                                    link: '../emulators/jtyone/play.html?game=chess'
+                                    link: '../systems/jtyone/play.html?game=chess'
                                 }, {
                                     name: 'frogger.bat',
-                                    link: '../emulators/jtyone/play.html?game=frogger'
+                                    link: '../systems/jtyone/play.html?game=frogger'
                                 }, {
                                     name: 'cityxon.bat',
-                                    link: '../emulators/jtyone/play.html?game=cityxon'
+                                    link: '../systems/jtyone/play.html?game=cityxon'
                                 }, {
                                     name: 'blkcryst.bat',
-                                    link: '../emulators/jtyone/play.html?game=blkcryst'
+                                    link: '../systems/jtyone/play.html?game=blkcryst'
                                 }, {
                                     name: 'gp3d.bat',
-                                    link: '../emulators/jtyone/play.html?game=gp3d'
+                                    link: '../systems/jtyone/play.html?game=gp3d'
                                 }, {
                                     name: 'mazerace.bat',
-                                    link: '../emulators/jtyone/play.html?game=mazerace'
+                                    link: '../systems/jtyone/play.html?game=mazerace'
                                 }]
                             }],
                             files: [{
@@ -2166,37 +2166,37 @@ var fs = [{
                                 data: 'basic\n'
                             }, {
                                 name: 'basic.bat',
-                                link: '../emulators/amstradcpc/play.html'
+                                link: '../systems/amstradcpc/play.html'
                             }, {
                                 name: '3dkit.bat',
-                                link: '../emulators/amstradcpc/play.html?game=3dkit'
+                                link: '../systems/amstradcpc/play.html?game=3dkit'
                             }, {
                                 name: 'roland.bat',
-                                link: '../emulators/amstradcpc/play.html?game=roland'
+                                link: '../systems/amstradcpc/play.html?game=roland'
                             }, {
                                 name: 'knight.bat',
-                                link: '../emulators/amstradcpc/play.html?game=knight'
+                                link: '../systems/amstradcpc/play.html?game=knight'
                             }, {
                                 name: 'bruce.bat',
-                                link: '../emulators/amstradcpc/play.html?game=bruce'
+                                link: '../systems/amstradcpc/play.html?game=bruce'
                             }, {
                                 name: 'elite.bat',
-                                link: '../emulators/amstradcpc/play.html?game=elite'
+                                link: '../systems/amstradcpc/play.html?game=elite'
                             }, {
                                 name: 'bombjack.bat',
-                                link: '../emulators/amstradcpc/play.html?game=bombjack'
+                                link: '../systems/amstradcpc/play.html?game=bombjack'
                             }, {
                                 name: 'dexter.bat',
-                                link: '../emulators/amstradcpc/play.html?game=dexter'
+                                link: '../systems/amstradcpc/play.html?game=dexter'
                             }, {
                                 name: 'headover.bat',
-                                link: '../emulators/amstradcpc/play.html?game=headover'
+                                link: '../systems/amstradcpc/play.html?game=headover'
                             }, {
                                 name: 'rick.bat',
-                                link: '../emulators/amstradcpc/play.html?game=rick'
+                                link: '../systems/amstradcpc/play.html?game=rick'
                             }, {
                                 name: 'chasehq.bat',
-                                link: '../emulators/amstradcpc/play.html?game=chasehq'
+                                link: '../systems/amstradcpc/play.html?game=chasehq'
                             }]
                         }],
                         files: [{
@@ -2250,37 +2250,37 @@ var fs = [{
                                 data: 'prompt\n'
                             }, {
                                 name: 'daggor.bat',
-                                link: '../emulators/xroar/play.html?game=daggor'
+                                link: '../systems/xroar/play.html?game=daggor'
                             }, {
                                 name: 'downland.bat',
-                                link: '../emulators/xroar/play.html?game=downland'
+                                link: '../systems/xroar/play.html?game=downland'
                             }, {
                                 name: 'canyon.bat',
-                                link: '../emulators/xroar/play.html?game=canyon'
+                                link: '../systems/xroar/play.html?game=canyon'
                             }, {
                                 name: 'demon.bat',
-                                link: '../emulators/xroar/play.html?game=demon'
+                                link: '../systems/xroar/play.html?game=demon'
                             }, {
                                 name: 'polaris.bat',
-                                link: '../emulators/xroar/play.html?game=polaris'
+                                link: '../systems/xroar/play.html?game=polaris'
                             }, {
                                 name: 'galactic.bat',
-                                link: '../emulators/xroar/play.html?game=galactic'
+                                link: '../systems/xroar/play.html?game=galactic'
                             }, {
                                 name: 'popcorn.bat',
-                                link: '../emulators/xroar/play.html?game=popcorn'
+                                link: '../systems/xroar/play.html?game=popcorn'
                             }, {
                                 name: 'megabug.bat',
-                                link: '../emulators/xroar/play.html?game=megabug'
+                                link: '../systems/xroar/play.html?game=megabug'
                             }, {
                                 name: 'poltrgst.bat',
-                                link: '../emulators/xroar/play.html?game=poltrgst'
+                                link: '../systems/xroar/play.html?game=poltrgst'
                             }, {
                                 name: 'monstrmz.bat',
-                                link: '../emulators/xroar/play.html?game=monstrmz'
+                                link: '../systems/xroar/play.html?game=monstrmz'
                             }, {
                                 name: 'prompt.bat',
-                                link: '../emulators/xroar/play.html'
+                                link: '../systems/xroar/play.html'
                             }]
                         }],
                         files: [{
@@ -2336,37 +2336,37 @@ var fs = [{
                                 data: 'prompt\n'
                             }, {
                                 name: 'wumpus.bat',
-                                link: '../emulators/js99er/play.html?game=wumpus'
+                                link: '../systems/js99er/play.html?game=wumpus'
                             }, {
                                 name: 'carwars.bat',
-                                link: '../emulators/js99er/play.html?game=carwars'
+                                link: '../systems/js99er/play.html?game=carwars'
                             }, {
                                 name: 'tiinvad.bat',
-                                link: '../emulators/js99er/play.html?game=tiinvad'
+                                link: '../systems/js99er/play.html?game=tiinvad'
                             }, {
                                 name: 'tmbcity.bat',
-                                link: '../emulators/js99er/play.html?game=tmbcity'
+                                link: '../systems/js99er/play.html?game=tmbcity'
                             }, {
                                 name: 'alpiner.bat',
-                                link: '../emulators/js99er/play.html?game=alpiner'
+                                link: '../systems/js99er/play.html?game=alpiner'
                             }, {
                                 name: 'microsrg.bat',
-                                link: '../emulators/js99er/play.html?game=microsrg'
+                                link: '../systems/js99er/play.html?game=microsrg'
                             }, {
                                 name: 'munchman.bat',
-                                link: '../emulators/js99er/play.html?game=munchman'
+                                link: '../systems/js99er/play.html?game=munchman'
                             }, {
                                 name: 'parsec.bat',
-                                link: '../emulators/js99er/play.html?game=parsec'
+                                link: '../systems/js99er/play.html?game=parsec'
                             }, {
                                 name: 'doom.bat',
-                                link: '../emulators/js99er/play.html?game=doom'
+                                link: '../systems/js99er/play.html?game=doom'
                             }, {
                                 name: 'buckrgrs.bat',
-                                link: '../emulators/js99er/play.html?game=buckrgrs'
+                                link: '../systems/js99er/play.html?game=buckrgrs'
                             }, {
                                 name: 'prompt.bat',
-                                link: '../emulators/js99er/play.html'
+                                link: '../systems/js99er/play.html'
                             }]
                         }],
                         files: [{
@@ -2424,37 +2424,37 @@ var fs = [{
                                     data: 'prompt\n'
                                 }, {
                                     name: 'antrctic.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx1/antarcticadv.zip&M=MSX1&game=antrctic'
+                                    link: '../systems/webmsx/?ROM=games/msx1/antarcticadv.zip&M=MSX1&game=antrctic'
                                 }, {
                                     name: 'athletic.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx1/athleticland.zip&M=MSX1&game=athletic'
+                                    link: '../systems/webmsx/?ROM=games/msx1/athleticland.zip&M=MSX1&game=athletic'
                                 }, {
                                     name: 'pippols.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx1/pippols.zip&M=MSX1&game=pippols'
+                                    link: '../systems/webmsx/?ROM=games/msx1/pippols.zip&M=MSX1&game=pippols'
                                 }, {
                                     name: 'roadfgtr.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx1/roadfighter.zip&M=MSX1&game=roadfgtr'
+                                    link: '../systems/webmsx/?ROM=games/msx1/roadfighter.zip&M=MSX1&game=roadfgtr'
                                 }, {
                                     name: 'kingsval.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx1/kingsvalley.zip&M=MSX1&game=kingsval'
+                                    link: '../systems/webmsx/?ROM=games/msx1/kingsvalley.zip&M=MSX1&game=kingsval'
                                 }, {
                                     name: 'yiearkf.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx1/yiearkungfu.zip&M=MSX1&game=yiearkf'
+                                    link: '../systems/webmsx/?ROM=games/msx1/yiearkungfu.zip&M=MSX1&game=yiearkf'
                                 }, {
                                     name: 'eggrland.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx1/eggerland.zip&M=MSX1&game=eggrland'
+                                    link: '../systems/webmsx/?ROM=games/msx1/eggerland.zip&M=MSX1&game=eggrland'
                                 }, {
                                     name: 'knightmr.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx1/knightmare.zip&M=MSX1&game=knightmr'
+                                    link: '../systems/webmsx/?ROM=games/msx1/knightmare.zip&M=MSX1&game=knightmr'
                                 }, {
                                     name: 'nemesis.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx1/nemesis.zip&M=MSX1&game=nemesis'
+                                    link: '../systems/webmsx/?ROM=games/msx1/nemesis.zip&M=MSX1&game=nemesis'
                                 }, {
                                     name: 'goonies.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx1/goonies.zip&M=MSX1&game=goonies'
+                                    link: '../systems/webmsx/?ROM=games/msx1/goonies.zip&M=MSX1&game=goonies'
                                 }, {
                                     name: 'prompt.bat',
-                                    link: '../emulators/webmsx/?M=MSX1'
+                                    link: '../systems/webmsx/?M=MSX1'
                                 }]
                             }],
                             files: [{
@@ -2507,37 +2507,37 @@ var fs = [{
                                     data: 'prompt\n'
                                 }, {
                                     name: 'vampkill.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx2/vampirekill.zip&game=vampkill'
+                                    link: '../systems/webmsx/?ROM=games/msx2/vampirekill.zip&game=vampkill'
                                 }, {
                                     name: 'castleex.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx2/castleexcl.zip&game=castleex'
+                                    link: '../systems/webmsx/?ROM=games/msx2/castleexcl.zip&game=castleex'
                                 }, {
                                     name: 'kingkng2.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx2/kingkong2.zip&game=kingkng2'
+                                    link: '../systems/webmsx/?ROM=games/msx2/kingkong2.zip&game=kingkng2'
                                 }, {
                                     name: 'metlgear.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx2/metalgear.zip&game=metlgear'
+                                    link: '../systems/webmsx/?ROM=games/msx2/metalgear.zip&game=metlgear'
                                 }, {
                                     name: 'usas.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx2/usas.zip&game=usas'
+                                    link: '../systems/webmsx/?ROM=games/msx2/usas.zip&game=usas'
                                 }, {
                                     name: 'f1spirit.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx2/f1spirit.zip&game=f1spirit'
+                                    link: '../systems/webmsx/?ROM=games/msx2/f1spirit.zip&game=f1spirit'
                                 }, {
                                     name: 'aleste.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx2/aleste.zip&game=aleste'
+                                    link: '../systems/webmsx/?ROM=games/msx2/aleste.zip&game=aleste'
                                 }, {
                                     name: 'parodius.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx2/parodius.zip&game=parodius'
+                                    link: '../systems/webmsx/?ROM=games/msx2/parodius.zip&game=parodius'
                                 }, {
                                     name: 'manbow.bat',
-                                    link: '../emulators/webmsx/?ROM=games/msx2/spacemanbow.zip&game=manbow'
+                                    link: '../systems/webmsx/?ROM=games/msx2/spacemanbow.zip&game=manbow'
                                 }, {
                                     name: 'sdsnatch.bat',
-                                    link: '../emulators/webmsx/?ANY=games/msx2/sdsnatcher.zip&game=sdsnatch'
+                                    link: '../systems/webmsx/?ANY=games/msx2/sdsnatcher.zip&game=sdsnatch'
                                 }, {
                                     name: 'prompt.bat',
-                                    link: '../emulators/webmsx/'
+                                    link: '../systems/webmsx/'
                                 }]
                             }],
                             files: [{
@@ -2627,16 +2627,16 @@ var fs = [{
                             { name: '9.bat', data: 'wario3\n' },
                             { name: '10.bat', data: 'shantae\n' },
                             { name: '0.bat', data: 'echo off\ncd ..\ncd ..\nmenu\n' },
-                            { name: 'tetris.bat', link: '../emulators/gbc/play.html?game=tetris' },
-                            { name: 'smland.bat', link: '../emulators/gbc/play.html?game=smland' },
-                            { name: 'castlev.bat', link: '../emulators/gbc/play.html?game=castlev' },
-                            { name: 'metroid2.bat', link: '../emulators/gbc/play.html?game=metroid2' },
-                            { name: 'kirby.bat', link: '../emulators/gbc/play.html?game=kirby' },
-                            { name: 'zelda.bat', link: '../emulators/gbc/play.html?game=zelda' },
-                            { name: 'dkong.bat', link: '../emulators/gbc/play.html?game=dkong' },
-                            { name: 'pokemon.bat', link: '../emulators/gbc/play.html?game=pokemon' },
-                            { name: 'wario3.bat', link: '../emulators/gbc/play.html?game=wario3' },
-                            { name: 'shantae.bat', link: '../emulators/gbc/play.html?game=shantae' }
+                            { name: 'tetris.bat', link: '../systems/gbc/play.html?game=tetris' },
+                            { name: 'smland.bat', link: '../systems/gbc/play.html?game=smland' },
+                            { name: 'castlev.bat', link: '../systems/gbc/play.html?game=castlev' },
+                            { name: 'metroid2.bat', link: '../systems/gbc/play.html?game=metroid2' },
+                            { name: 'kirby.bat', link: '../systems/gbc/play.html?game=kirby' },
+                            { name: 'zelda.bat', link: '../systems/gbc/play.html?game=zelda' },
+                            { name: 'dkong.bat', link: '../systems/gbc/play.html?game=dkong' },
+                            { name: 'pokemon.bat', link: '../systems/gbc/play.html?game=pokemon' },
+                            { name: 'wario3.bat', link: '../systems/gbc/play.html?game=wario3' },
+                            { name: 'shantae.bat', link: '../systems/gbc/play.html?game=shantae' }
                         ]
                     }]
                 }, {
@@ -2656,16 +2656,16 @@ var fs = [{
                             { name: '9.bat', data: 'stunrun\n' },
                             { name: '10.bat', data: 'rampart\n' },
                             { name: '0.bat', data: 'echo off\ncd ..\ncd ..\nmenu\n' },
-                            { name: 'calgames.bat', link: '../emulators/lynx/play.html?game=calgames' },
-                            { name: 'chips.bat', link: '../emulators/lynx/play.html?game=chips' },
-                            { name: 'electro.bat', link: '../emulators/lynx/play.html?game=electro' },
-                            { name: 'bluelght.bat', link: '../emulators/lynx/play.html?game=bluelght' },
-                            { name: 'warbirds.bat', link: '../emulators/lynx/play.html?game=warbirds' },
-                            { name: 'gauntlet.bat', link: '../emulators/lynx/play.html?game=gauntlet' },
-                            { name: 'klax.bat', link: '../emulators/lynx/play.html?game=klax' },
-                            { name: 'slime.bat', link: '../emulators/lynx/play.html?game=slime' },
-                            { name: 'stunrun.bat', link: '../emulators/lynx/play.html?game=stunrun' },
-                            { name: 'rampart.bat', link: '../emulators/lynx/play.html?game=rampart' }
+                            { name: 'calgames.bat', link: '../systems/lynx/play.html?game=calgames' },
+                            { name: 'chips.bat', link: '../systems/lynx/play.html?game=chips' },
+                            { name: 'electro.bat', link: '../systems/lynx/play.html?game=electro' },
+                            { name: 'bluelght.bat', link: '../systems/lynx/play.html?game=bluelght' },
+                            { name: 'warbirds.bat', link: '../systems/lynx/play.html?game=warbirds' },
+                            { name: 'gauntlet.bat', link: '../systems/lynx/play.html?game=gauntlet' },
+                            { name: 'klax.bat', link: '../systems/lynx/play.html?game=klax' },
+                            { name: 'slime.bat', link: '../systems/lynx/play.html?game=slime' },
+                            { name: 'stunrun.bat', link: '../systems/lynx/play.html?game=stunrun' },
+                            { name: 'rampart.bat', link: '../systems/lynx/play.html?game=rampart' }
                         ]
                     }]
                 }, {
@@ -2685,16 +2685,16 @@ var fs = [{
                             { name: '9.bat', data: 'meanbean\n' },
                             { name: '10.bat', data: 'tails\n' },
                             { name: '0.bat', data: 'echo off\ncd ..\ncd ..\nmenu\n' },
-                            { name: 'columns.bat', link: '../emulators/gamegear/play.html?game=columns' },
-                            { name: 'sonic.bat', link: '../emulators/gamegear/play.html?game=sonic' },
-                            { name: 'shinobi.bat', link: '../emulators/gamegear/play.html?game=shinobi' },
-                            { name: 'aerial.bat', link: '../emulators/gamegear/play.html?game=aerial' },
-                            { name: 'rage.bat', link: '../emulators/gamegear/play.html?game=rage' },
-                            { name: 'oasis.bat', link: '../emulators/gamegear/play.html?game=oasis' },
-                            { name: 'illusion.bat', link: '../emulators/gamegear/play.html?game=illusion' },
-                            { name: 'kombat.bat', link: '../emulators/gamegear/play.html?game=kombat' },
-                            { name: 'meanbean.bat', link: '../emulators/gamegear/play.html?game=meanbean' },
-                            { name: 'tails.bat', link: '../emulators/gamegear/play.html?game=tails' }
+                            { name: 'columns.bat', link: '../systems/gamegear/play.html?game=columns' },
+                            { name: 'sonic.bat', link: '../systems/gamegear/play.html?game=sonic' },
+                            { name: 'shinobi.bat', link: '../systems/gamegear/play.html?game=shinobi' },
+                            { name: 'aerial.bat', link: '../systems/gamegear/play.html?game=aerial' },
+                            { name: 'rage.bat', link: '../systems/gamegear/play.html?game=rage' },
+                            { name: 'oasis.bat', link: '../systems/gamegear/play.html?game=oasis' },
+                            { name: 'illusion.bat', link: '../systems/gamegear/play.html?game=illusion' },
+                            { name: 'kombat.bat', link: '../systems/gamegear/play.html?game=kombat' },
+                            { name: 'meanbean.bat', link: '../systems/gamegear/play.html?game=meanbean' },
+                            { name: 'tails.bat', link: '../systems/gamegear/play.html?game=tails' }
                         ]
                     }]
                 }],

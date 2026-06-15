@@ -32,7 +32,7 @@ prompt/                   the DOS terminal (HTML + JS, no build)
   javascript/             terminal logic + virtual filesystem (fs.js)
   img/                    bitmap font sprite sheets + AMIBIOS logo
 gamedocs/                 per-game instruction pages (gamedocs/<platform>/<key>.html)
-emulators/
+systems/
   _shared/                shared CSS + helpers (NumLock warn, RUN/STOP softkey, ...)
   _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx
                           (12 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
@@ -68,9 +68,9 @@ emulators/
 
 ## Where the readable source is
 
-The hand-written GenX-DOS code lives in `prompt/javascript/`, `emulators/_shared/`, `emulators/_shared-ejs/`, and each emulator's `play.html` wrapper — all formatted for reading.
+The hand-written GenX-DOS code lives in `prompt/javascript/`, `systems/_shared/`, `systems/_shared-ejs/`, and each emulator's `play.html` wrapper — all formatted for reading.
 
-Everything else under `emulators/<name>/` is upstream: emscripten WASM glue (`xroar.js`, `atari800.js`, `o2em.js`, `jzintv.js`), webpack production bundles (`apple1.js`, `apple2/dist/*.bundle.js`, `jsspeccy.js`), single-file inlined deploys (`webmsx/index.html`, `jsvecx/index.html`), or hand-written JS from the upstream project (ElkJS, js99er's `emu/`). For the readable source of those, follow the upstream link in [ATTRIBUTION.md](ATTRIBUTION.md) or the per-engine integration story on the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators).
+Everything else under `systems/<name>/` is upstream: emscripten WASM glue (`xroar.js`, `atari800.js`, `o2em.js`, `jzintv.js`), webpack production bundles (`apple1.js`, `apple2/dist/*.bundle.js`, `jsspeccy.js`), single-file inlined deploys (`webmsx/index.html`, `jsvecx/index.html`), or hand-written JS from the upstream project (ElkJS, js99er's `emu/`). For the readable source of those, follow the upstream link in [ATTRIBUTION.md](ATTRIBUTION.md) or the per-engine integration story on the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators).
 
 ## The emulator lineup
 
@@ -102,7 +102,7 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
-The six VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4, C128) share a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to **Scroll Lock** + **Pause/Break** + a top-left clickable button via `emulators/_shared/genx-vice-softkeys.js`. The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing; see the wiki for the migration story.
+The six VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4, C128) share a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to **Scroll Lock** + **Pause/Break** + a top-left clickable button via `systems/_shared/genx-vice-softkeys.js`. The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing; see the wiki for the migration story.
 
 ## Documentation
 
@@ -134,15 +134,15 @@ Summary below; see [ATTRIBUTION.md](ATTRIBUTION.md) for the canonical record inc
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
 - Js99'er: GPL-2.0 (Rasmus Moustgaard) — vanilla-JS build; TI-99/4A cart ROMs mirrored from the js99er.net public archive
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL/800/BASIC (Avery Lee, freely redistributable open-source OS replacement) embedded inside `atari800.wasm` at build time via `--enable-altirra_bios` — no separate ROM file ships
-- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across the six VICE-family bundles, ColecoVision, NES, and Atari 2600 via `emulators/_shared-ejs/`
+- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across the six VICE-family bundles, ColecoVision, NES, and Atari 2600 via `systems/_shared-ejs/`
 - VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `x128`, `xvic`, `xplus4`) mirrored from `cdn.emulatorjs.org/stable/`
-- pet2001: BSD-2-Clause (Thomas Skibo) — vanilla-JS PET 2001 emulator at `emulators/pet/pet2001/`
+- pet2001: BSD-2-Clause (Thomas Skibo) — vanilla-JS PET 2001 emulator at `systems/pet/pet2001/`
 - gearcoleco: GPL-3.0 (Drhelius) — libretro ColecoVision core mirrored from `cdn.emulatorjs.org/stable/`
 - ColecoVision BIOS: ©1982 Coleco, bundled for emulator-only use
 - jzIntv: Joe Zbiciak (free-for-personal-use terms) — WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor)
 - Intellivision EXEC + GROM BIOS: ©1979 Mattel Electronics, bundled for emulator-only use
 - floooh/chips-test tiny8bit CPC WASM: MIT (Andre Weissflog) — mirrored from `floooh.github.io/tiny8bit/`
-- libretro-o2em: GPL-2.0+ (libretro/libretro-o2em, original o2em by Daniel Boris / Andre de la Rocha) — compiled from upstream source via `emulators/odyssey2/build.sh`
+- libretro-o2em: GPL-2.0+ (libretro/libretro-o2em, original o2em by Daniel Boris / Andre de la Rocha) — compiled from upstream source via `systems/odyssey2/build.sh`
 - Magnavox Odyssey² BIOS (`o2rom.bin`): ©1978 Magnavox/Philips, bundled for emulator-only use
 ## License
 
