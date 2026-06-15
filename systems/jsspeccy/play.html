@@ -5,9 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sinclair Spectrum</title>
   <style>
-    html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
-    #jsspeccy { box-shadow: 2px 2px 10px rgba(0, 0, 0, .7); }
-    #jsspeccy canvas { image-rendering: pixelated; display: block; }
+    /* CRT bezel — vintage TV (Sinclair.png, 1362x914, screen keyed to a
+       transparent 4:3 hole at left 8.08% top 12.14% width 65.35% height
+       73.96%). Shared with the ZX81 (jtyone) bundle — the Spectrum/ZX81 ran
+       on a TV; the set floats on the 70s wallpaper. JSSpeccy (uiEnabled:false)
+       renders a fixed-zoom canvas into #jsspeccy; we put #jsspeccy in the hole
+       and stretch its canvas to fill. */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; color: #fff; font-family: monospace; }
+    body { display: flex; align-items: center; justify-content: center; }
+    .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1362 / 914)); aspect-ratio: 1362 / 914; }
+    .screen-bg { position: absolute; left: 6.6%; top: 10.6%; width: 68.4%; height: 77.0%; background: #000; z-index: 1; }
+    #jsspeccy { position: absolute; left: 8.08%; top: 12.14%; width: 65.35%; height: 73.96%; overflow: visible; z-index: 2; }
+    #jsspeccy canvas { width: 100% !important; height: 100% !important; display: block; image-rendering: pixelated; transform: translate(8px, 10px) scale(1.155); filter: url(#crtbulge); }
+    .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
     .err { padding: 20px; }
   </style>
   <script src="jsspeccy/jsspeccy.js"></script>
@@ -19,7 +29,17 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <div id="jsspeccy"></div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="crtbulge" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox">
+      <feImage href="../_shared/textures/crt-barrel.png" preserveAspectRatio="none" x="0" y="0" width="1" height="1" result="dmap"/>
+      <feDisplacementMap in="SourceGraphic" in2="dmap" scale="-0.08" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="jsspeccy"></div>
+    <img class="bezel-img" src="../_shared/bezels/Sinclair.png" alt="">
+  </div>
   <script>
     (async function () {
       const params = new URLSearchParams(location.search);
