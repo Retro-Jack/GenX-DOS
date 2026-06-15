@@ -49,6 +49,50 @@ for(_='Uint\\++/_bits@else{B32768D=n.Q,3^,a`5,jreqode~makeC~s$inflate#UZIP.HHF.G
     });
   </script>
 
+<style id="genx-bezel">
+  /* GenX-DOS Vectrex bezel — keyed console (Vectrex.png, 1099x1399 portrait,
+     screen hole 16.38% / 11.79% / 58.69% x 57.90%), floating on the 70s
+     wallpaper and bottom-anchored. jsvecx's sizer() sets #vecscr/#overlay/
+     #wrapper inline to fill the viewport; these !important rules beat the
+     inline styles and pin the vector screen into the bezel's screen hole.
+     sizer's Quality() then reads the pinned clientWidth and sets the canvas
+     buffer to match, so it cooperates rather than fights. */
+  html, body { height: 100%; margin: 0; }
+  body { background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; }
+  #wrapper {
+    position: fixed !important; left: 50% !important; bottom: -3px !important; top: auto !important;
+    transform: translateX(-50%) !important;
+    width:  min(100vw, calc(100dvh * 1099 / 1399)) !important;
+    height: min(calc(100vw * 1399 / 1099), 100dvh) !important;
+    z-index: 2 !important;
+  }
+  #vecscr, #overlay {
+    position: absolute !important;
+    left: 16.38% !important; top: 11.79% !important;
+    width: 58.69% !important; height: 57.90% !important;
+    transform: none !important;
+  }
+  .genx-bezel {
+    position: fixed; left: 50%; bottom: -3px; transform: translateX(-50%);
+    width:  min(100vw, calc(100dvh * 1099 / 1399));
+    height: min(calc(100vw * 1399 / 1099), 100dvh);
+    z-index: 3; pointer-events: none;
+  }
+  .genx-bezel img { width: 100%; height: 100%; display: block; }
+  /* black backdrop behind the canvas, ~1% larger than the hole, so the bezel
+     cutout's anti-aliased edge shows black (the Vectrex screen) not wallpaper */
+  .genx-screenbg {
+    position: fixed; left: 50%; bottom: -3px; transform: translateX(-50%);
+    width:  min(100vw, calc(100dvh * 1099 / 1399));
+    height: min(calc(100vw * 1399 / 1099), 100dvh);
+    z-index: 1; pointer-events: none;
+  }
+  .genx-screenbg::before {
+    content: ''; position: absolute; background: #000;
+    left: 15.4%; top: 10.8%; width: 60.7%; height: 59.9%;
+  }
+</style>
+<div class="genx-screenbg"></div><div class="genx-bezel"><img src="../_shared/bezels/Vectrex.png" alt=""></div>
 </body></html>
 <!--
 JSVecX: Seamless Version by DrSnuggles https://drsnuggles.github.io/jsvecx/
