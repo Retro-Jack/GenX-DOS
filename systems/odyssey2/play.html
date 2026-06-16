@@ -5,9 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Odyssey²</title>
   <style>
-    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); position: relative; }
+    /* CRT bezel — wood-cabinet console TV (70s.png, 1240x855), shared with the
+       Atari 2600, ColecoVision and Intellivision. o2em's #canvas fills #game,
+       so #game is pinned into the screen hole (grown 2px vertically to meet the
+       glass); .screen-bg (black, ~2% larger) hides the cutout's AA edge; 70s.png
+       on top. !important on the wallpaper because genx-frame.css loads AFTER this
+       <style> and resets body to black. */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1240 / 855)); aspect-ratio: 1240 / 855; }
+    .screen-bg { position: absolute; left: 25.6%; top: 11.1%; width: 49.4%; height: 55.6%; background: #000; z-index: 1; }
+    #game { position: absolute; left: 27.6%; top: calc(13.1% - 1px); width: 45.4%; height: calc(51.6% + 2px); overflow: hidden; z-index: 2; }
     #canvas { width: 100%; height: 100%; display: block; image-rendering: pixelated; background: #000; }
     .loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #888; font-family: monospace; pointer-events: none; }
+    .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
   </style>
   <link rel="stylesheet" href="../_shared/genx-frame.css">
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
@@ -24,9 +35,13 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <div id="game">
-    <canvas id="canvas" tabindex="0"></canvas>
-    <div id="loading" class="loading">Booting Odyssey²…</div>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="game">
+      <canvas id="canvas" tabindex="0"></canvas>
+      <div id="loading" class="loading">Booting Odyssey²…</div>
+    </div>
+    <img class="bezel-img" src="../_shared/bezels/70s.png" alt="">
   </div>
   <script>
     // Magnavox Odyssey² — libretro o2em core statically linked into a
