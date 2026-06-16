@@ -11,32 +11,20 @@
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
 
-  <link rel="stylesheet" href="../_shared/genx-noscript.css">
-  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
-  <script defer src="../_shared/genx-controls-link.js"></script>
-
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      overflow: hidden;
-      height: 100%;
-      font-family: monospace;
-      color: #ddd;
-    }
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #canvas {
-      image-rendering: pixelated;
-      image-rendering: crisp-edges;
-      width: min(100vw, calc(100vh * 4 / 3));
-      height: min(100vh, calc(100vw * 3 / 4));
-      background: #000;
-    }
+    /* CRT bezel — shared vintage TV (Sinclair.png, 1362x914, screen hole at
+       8.08%/12.14%/65.35%×73.96%) on the 70s wallpaper, same player-in-hole
+       recipe as the MSX/CoCo/Spectrum. js99er sizes #canvas via CSS, so we pin
+       it into the hole and force it to fill; no barrel/fisheye (the TI picture
+       reads better flat). Black .screen-bg behind hides the cutout edge.
+       !important on the wallpaper because genx-frame.css loads AFTER. */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; font-family: monospace; color: #ddd; }
+    body { display: flex; align-items: center; justify-content: center; }
+    .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1362 / 914)); aspect-ratio: 1362 / 914; }
+    .screen-bg { position: absolute; left: 6.6%; top: 10.6%; width: 68.4%; height: 77.0%; background: #000; z-index: 1; }
+    #screen { position: absolute; left: 8.08%; top: 12.14%; width: 65.35%; height: 73.96%; overflow: hidden; z-index: 2; }
+    #canvas { width: 100% !important; height: 100% !important; display: block; outline: none; border: none; image-rendering: pixelated; image-rendering: crisp-edges; background: #000; transform: translate(8px, 0px) scale(0.9); }
+    .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
     #loading {
       position: fixed;
       top: 50%;
@@ -46,6 +34,11 @@
       font-size: 14px;
     }
   </style>
+
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <script defer src="../_shared/genx-controls-link.js"></script>
 
   <script src="util.js"></script>
   <script src="log.js"></script>
@@ -78,7 +71,11 @@
   <script src="database.js"></script>
 </head>
 <body id="body">
-  <canvas id="canvas" width="304" height="240"></canvas>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="screen"><canvas id="canvas" width="304" height="240"></canvas></div>
+    <img class="bezel-img" src="../_shared/bezels/Sinclair.png" alt="">
+  </div>
   <div id="loading">Loading…</div>
   <script>
     (function () {
