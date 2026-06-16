@@ -1,0 +1,28 @@
+/* Bottom-left Save / Load state buttons for EmulatorJS bundles — same look as
+   the 'controls' link (genx-controls-link.css), which sits bottom-right. Added
+   because the EmulatorJS toolbar (its own save-state UI) is hidden site-wide. */
+.gx-state-bar {
+  position: fixed;
+  bottom: 8px;
+  left: 12px;
+  z-index: 99999;
+  display: flex;
+  gap: 6px;
+}
+.gx-state-btn {
+  color: rgba(255, 176, 0, 0.75);
+  background: #000;
+  border: 1px solid rgba(255, 176, 0, 0.35);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font: 11px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color .15s ease, border-color .15s ease;
+}
+.gx-state-btn:hover { color: #ff8800; border-color: #ff8800; }
+.gx-state-btn svg { width: 10px; height: 10px; fill: currentColor; flex-shrink: 0; }
+.gx-state-flash { color: #ff8800; border-color: #ff8800; }

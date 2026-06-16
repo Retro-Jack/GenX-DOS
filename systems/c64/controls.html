@@ -24,7 +24,7 @@
       <tr><td><kbd>Numpad 8</kbd> / <kbd>2</kbd> / <kbd>4</kbd> / <kbd>6</kbd></td><td>Up / down / left / right</td></tr>
       <tr><td><kbd>Numpad 0</kbd> (or <kbd>5</kbd>)</td><td>Fire</td></tr>
     </table>
-    <p>If a game ignores the stick, it's probably reading the other joystick port — swap it in the gear menu's core options.</p>
+    <p>If a game ignores the stick, it's probably reading the other joystick port; each game in this bundle is preset to the port it expects.</p>
 
     <h2>C64 keyboard</h2>
     <p>VICE maps the C64 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro VICE keymap):</p>
@@ -45,17 +45,7 @@
 
     <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
-    <h2>EmulatorJS toolbar</h2>
-    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
-    <table>
-      <tr><th>Button</th><th>Action</th></tr>
-      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
-      <tr><td>Restart</td><td>Cold-reset the C64 (game restarts)</td></tr>
-      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
-      <tr><td>Settings (gear)</td><td>Core options — joystick port, video filter, sample rate, key remap, etc.</td></tr>
-      <tr><td>Mute</td><td>Toggle SID audio</td></tr>
-      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
-    </table>
+    <p class="note">Save and load state are on the <strong>save</strong> / <strong>load</strong> buttons in the bottom-left corner. To restart a game, reload the page.</p>
 
     <h2>Loading from BASIC</h2>
     <p>VICE auto-LOADs the first program on most disks, but if a game drops you to the <code>READY.</code> prompt, type one of:</p>

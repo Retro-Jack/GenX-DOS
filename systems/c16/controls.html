@@ -24,7 +24,7 @@
       <tr><td><kbd>Numpad 8</kbd> / <kbd>2</kbd> / <kbd>4</kbd> / <kbd>6</kbd></td><td>Up / down / left / right</td></tr>
       <tr><td><kbd>Numpad 0</kbd> (or <kbd>5</kbd>)</td><td>Fire</td></tr>
     </table>
-    <p>The C16 has two joystick ports (the non-standard 8-pin DIN, incompatible with Atari-style sticks). If a game ignores the stick it's reading the other port — swap it in the gear menu's core options.</p>
+    <p>The C16 has two joystick ports (the non-standard 8-pin DIN, incompatible with Atari-style sticks). If a game ignores the stick it's reading the other port; each game is preset to the port it expects.</p>
 
     <h2>C16 keyboard</h2>
     <p>VICE maps the C16 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro VICE keymap):</p>
@@ -36,21 +36,11 @@
       <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
       <tr><td><kbd>Insert</kbd></td><td>£ (pound)</td></tr>
     </table>
-    <p class="note">The C16 is a TED machine: it has no Commodore (C=) key and no RESTORE key, so those C64 mappings don't apply here. Its ESC, HELP and the four function keys are reachable through EmulatorJS's on-screen keyboard (gear menu → keyboard icon).</p>
+    <p class="note">The C16 is a TED machine: it has no Commodore (C=) key and no RESTORE key, so those C64 mappings don't apply here. Its ESC, HELP and the four function keys aren't mapped to PC keys in this build.</p>
 
     <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
-    <h2>EmulatorJS toolbar</h2>
-    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
-    <table>
-      <tr><th>Button</th><th>Action</th></tr>
-      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
-      <tr><td>Restart</td><td>Cold-reset the C16 (game restarts)</td></tr>
-      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
-      <tr><td>Settings (gear)</td><td>Core options — joystick port swap, video filter, sample rate, key remap, etc.</td></tr>
-      <tr><td>Mute</td><td>Toggle TED audio</td></tr>
-      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
-    </table>
+    <p class="note">Save and load state are on the <strong>save</strong> / <strong>load</strong> buttons in the bottom-left corner. To restart a game, reload the page.</p>
 
     <h2>Loading from BASIC 3.5</h2>
     <p>The C16 ships with BASIC 3.5 — the same BASIC as the Plus/4, a big upgrade over the C64's BASIC 2 with full sound/graphics commands. VICE auto-LOADs <code>.prg</code> files, but if you drop to the <code>READY.</code> prompt, type one of:</p>

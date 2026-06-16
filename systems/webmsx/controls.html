@@ -13,7 +13,7 @@
       <h1>MSX — Controls</h1>
     </div>
 
-    <p class="intro">A standard MSX with cart slot, keyboard and a joystick port. WebMSX maps everything to your PC keyboard out of the box; an on-screen menu (the bottom bar) handles disk swap and machine config.</p>
+    <p class="intro">A standard MSX with cart slot, keyboard and a joystick port. WebMSX maps everything to your PC keyboard out of the box; every game auto-loads from the menu and boots straight to play.</p>
 
     <h2>Joystick (Player 1)</h2>
     <table>
@@ -43,24 +43,11 @@
       <tr><td><kbd>Page Up</kbd></td><td>STOP (also pause / breaks programs)</td></tr>
     </table>
 
-    <h2>WebMSX UI</h2>
-    <p>The bottom HUD bar appears when you move the mouse. It exposes:</p>
-    <table>
-      <tr><th>Button</th><th>Action</th></tr>
-      <tr><td>Cartridge slot 1 / 2</td><td>Insert / eject / power-on cart</td></tr>
-      <tr><td>Cassette deck</td><td>Insert tape, play / rewind</td></tr>
-      <tr><td>Disk drive A / B</td><td>Insert floppy, eject (multi-disk games swap here)</td></tr>
-      <tr><td>Power button (top-right)</td><td>Cold reset</td></tr>
-      <tr><td>Reset button</td><td>Warm reset</td></tr>
-      <tr><td>Pause</td><td>Pause / unpause</td></tr>
-      <tr><td>Settings (gear)</td><td>Machine type, region, speed, scaling, audio</td></tr>
-    </table>
-
     <h2>Notes</h2>
-    <p>MSX cartridge games auto-boot. Disk games need to be inserted before the BASIC <code>Ok</code> prompt and reset; multi-disk titles use <code>?ANY=</code> (auto-detect) in the URL so the whole disk set mounts at once.</p>
+    <p>Every MSX game in this build is a cartridge and auto-boots straight to play. To restart, reload the page.</p>
     <p>Press <kbd>Page Up</kbd> (STOP) twice quickly to break out of a hung BASIC program.</p>
 
-    <p class="note">Mapping follows WebMSX (MIT, ppeccin/WebMSX). Hover the bottom HUD for tooltips on every button — the upstream UI has its own help.</p>
+    <p class="note">Mapping follows WebMSX (MIT, ppeccin/WebMSX).</p>
 
     <div class="footer">
       <a href="javascript:window.close()">close tab</a> ·

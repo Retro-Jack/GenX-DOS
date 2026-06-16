@@ -15,7 +15,7 @@
        genx-frame.css loads AFTER this <style> and resets body to black. */
     html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; }
     body { display: flex !important; align-items: flex-end !important; justify-content: center !important; }
-    .bezel-wrap { position: relative; width: min(100vw, calc(100dvh * 2888 / 2611)); aspect-ratio: 2888 / 2611; }
+    .bezel-wrap { position: relative; width: min(100vw, calc(100dvh * 2888 / 2611)); aspect-ratio: 2888 / 2611; transform: translateY(1px); }
     .screen-bg { position: absolute; left: 16.71%; top: 20.48%; width: 62.83%; height: 53.73%; background: #000; z-index: 1; }
     #game { position: absolute; left: 17.71%; top: 21.48%; width: 60.83%; height: 51.73%; overflow: hidden; z-index: 2; }
     #game canvas { height: 100% !important; transform: scale(0.88); }
@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
+  <link rel="stylesheet" href="../_shared/genx-savestate.css">
+  <script defer src="../_shared/genx-savestate.js"></script>
   <link rel="preload" href="../_shared-ejs/ejs/data/cores/fceumm-legacy-wasm.data" as="fetch" crossorigin>
 </head>
 <body>

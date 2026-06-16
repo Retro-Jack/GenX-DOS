@@ -45,21 +45,11 @@
       <tr><td><kbd>[</kbd> / <kbd>]</kbd></td><td>@ / *</td></tr>
       <tr><td><kbd>\</kbd></td><td>= (equals)</td></tr>
     </table>
-    <p class="note">The C128's native-mode-only keys (40/80 DISPLAY, ESC, HELP, NO SCROLL, the numeric keypad) aren't on this positional table — reach them through EmulatorJS's on-screen keyboard (gear menu → keyboard icon) if a program needs one.</p>
+    <p class="note">The C128's native-mode-only keys (40/80 DISPLAY, ESC, HELP, NO SCROLL, the numeric keypad) aren't on this positional table and aren't mapped to PC keys, so a program that needs one of them can't currently use it.</p>
 
     <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
-    <h2>EmulatorJS toolbar</h2>
-    <p>Hover the bottom of the canvas to reveal EmulatorJS's controls strip:</p>
-    <table>
-      <tr><th>Button</th><th>Action</th></tr>
-      <tr><td>Play / Pause</td><td>Pause / unpause emulation</td></tr>
-      <tr><td>Restart</td><td>Cold-reset the C128 (boots back into native BASIC 7.0)</td></tr>
-      <tr><td>Save / Load State</td><td>Snapshot / restore the emulator state at any point</td></tr>
-      <tr><td>Settings (gear)</td><td>Core options — toggle <code>vice_c128_go64</code> to enter C64 mode at boot, swap <code>vice_c128_video_output</code> manually, etc.</td></tr>
-      <tr><td>Mute</td><td>Toggle SID audio</td></tr>
-      <tr><td>Fullscreen</td><td>Take the canvas full-screen</td></tr>
-    </table>
+    <p class="note">Save and load state are on the <strong>save</strong> / <strong>load</strong> buttons in the bottom-left corner. To restart a game, reload the page.</p>
 
     <h2>BASIC 7.0 cheat sheet</h2>
     <p>The 128's BASIC 7.0 is a major upgrade over the C64's BASIC v2 — full graphics + sound + sprite commands plus disk-direct convenience.</p>

@@ -25,16 +25,11 @@
       <tr><td><kbd>Esc</kbd></td><td>ESC — used as an escape/break in some tape programs</td></tr>
       <tr><td><kbd>Ctrl</kbd>+<kbd>L</kbd></td><td>Clear screen (CLEAR SCREEN key on the original)</td></tr>
       <tr><td><kbd>Tab</kbd></td><td>TAB (not standard on the real machine, mapped for convenience)</td></tr>
-      <tr><td>RESET button (in the UI)</td><td>CPU reset — jumps to <code>$FF00</code> (Woz Monitor entry)</td></tr>
+      <tr><td>Reload page</td><td>CPU reset — jumps to <code>$FF00</code> (Woz Monitor entry)</td></tr>
     </table>
 
     <h2>Loading a tape</h2>
-    <p>From the prompt entry (Woz Monitor), the corner gear exposes the bundled cassette library. Each menu game already auto-selects its tape via the <code>?tape=&lt;key&gt;</code> URL — but you can also load tapes by hand:</p>
-    <ol>
-      <li>Open the emulator menu (top-right of the canvas).</li>
-      <li>Pick "Tapes" / "Input Tape", choose a program from the dropdown.</li>
-      <li>In Woz Monitor, type the entry-point address followed by <kbd>R</kbd> (e.g. <code>E000R</code> for Integer BASIC) once the tape finishes loading.</li>
-    </ol>
+    <p>Each menu game auto-selects its tape via the <code>?tape=&lt;key&gt;</code> URL and feeds it in on boot. Once the tape finishes loading, in Woz Monitor type the program's entry-point address followed by <kbd>R</kbd> (e.g. <code>E000R</code> for Integer BASIC).</p>
     <p>The bundled tape library includes 10 games (auto-launched by the menu) plus four system tapes: <strong>Integer BASIC</strong> (Wozniak's original, entry <code>E000R</code>), <strong>Applesoft Lite</strong> (a stripped Applesoft port that fits Apple I memory), <strong>Woz Monitor source</strong> (the ROM listing as a tape), and <strong>VolksForth</strong> (a Forth implementation).</p>
 
     <h2>Woz Monitor commands</h2>
