@@ -4,18 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atari 7800</title>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <style>
-    html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
-    /* Hide upstream demo UI; we drive the emulator via ?cart= URL param. */
-    .header, .controls, .drop__div { display: none !important; }
-    /* Hide js7800's toast/leaderboard messages — no high-score server in self-host. */
-    #snackbar, #errormsg, .message { display: none !important; }
-    /* Hide js7800's commands toolbar (fullscreen/reset buttons under canvas). */
-    #js7800__controls { display: none !important; }
-    #content { display: flex; align-items: center; justify-content: center; }
-    #js7800__target canvas { box-shadow: 2px 2px 10px rgba(0, 0, 0, .7); image-rendering: pixelated; }
+    /* CRT bezel — early-'80s wood-cabinet CRT television (80s.png, 1680x1125),
+       shared with the Atari 800XL. EmulatorJS (prosystem core) sizes its canvas
+       to #game, so #game sits in the screen hole; .screen-bg (black, ~1% larger)
+       hides the cutout's AA edge; 80s.png on top. Screen hole (measured on
+       80s.png): left 15.4% top 21.3% width 46.4% height 52.8%. genx-frame.css is
+       linked BEFORE this <style>, so the wallpaper override wins without !important. */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; color: #fff; font-family: monospace; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1.25 * 1680 / 1125)); aspect-ratio: 1680 / 1125; }
+    .screen-bg { position: absolute; left: 14.4%; top: 20.3%; width: 48.4%; height: 54.8%; background: #000; z-index: 1; }
+    #game { position: absolute; left: 15.4%; top: 21.3%; width: 46.4%; height: 52.8%; overflow: hidden; z-index: 2; }
+    #game canvas { height: 100% !important; transform: scale(0.95, 1.045); }
+    .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
     .err { padding: 20px; }
   </style>
+  <script defer src="../_shared/genx-controls-link.js"></script>
+  <link rel="preload" href="../_shared-ejs/ejs/data/cores/prosystem-legacy-wasm.data" as="fetch" crossorigin>
 </head>
 <body>
   <noscript><div class="gx-noscript">
@@ -24,58 +33,58 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <div id="content">
-    <div class="drop__div"></div>
-    <div id="js7800__target"></div>
-    <div class="controls">
-      <div class="cartselect"><select id="cartselect__select"></select></div>
-      <div id="select-local-file"></div>
-      <div id="select-remote-file"></div>
-    </div>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="game"><div class="loading">Booting Atari 7800…</div></div>
+    <img class="bezel-img" src="../_shared/bezels/80s.png" alt="">
   </div>
+
   <script>
+    // Atari 7800 — EmulatorJS + the prosystem libretro core (EJS_core
+    // 'atari7800' → prosystem). Replaces the old js7800 build, whose
+    // self-managed render loop couldn't be pinned into a CRT bezel.
+    // Games + games.json + .a78 ROMs are reused unchanged.
     (async function () {
+      const fail = (msg) => { document.getElementById('game').innerHTML = '<div class="err">' + msg + '</div>'; };
       const params = new URLSearchParams(location.search);
       const key = params.get('game');
+
+      let gameUrl = null, game = null;
       if (key) {
         let games;
-        try {
-          games = await (await fetch('games.json')).json();
-        } catch (e) {
-          document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + '</div>';
-          return;
-        }
-        const game = games[key];
-        if (!game) {
-          document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
-          return;
-        }
+        try { games = await (await fetch('games.json')).json(); }
+        catch (e) { fail('Failed to load games.json: ' + e.message); return; }
+        game = games[key];
+        if (!game) { fail('Unknown game key: ' + key); return; }
         document.title = game.title || key;
-        // js7800 reads ?cart= at script-load time, so push the ROM URL onto our
-        // own location before injecting the runtime scripts.
-        const u = new URL(location.href);
-        u.searchParams.set('cart', game.rom);
-        history.replaceState(null, '', u);
+        gameUrl = game.rom;
+      } else {
+        document.title = 'Atari 7800';
       }
-      function inject(src) {
-        return new Promise((resolve, reject) => {
-          const s = document.createElement('script');
-          s.src = src; s.async = false;
-          s.onload = resolve; s.onerror = reject;
-          document.body.appendChild(s);
-        });
-      }
-      await inject('js/js7800.min.js');
-      await inject('js/site.min.js');
-      await inject('js/bupboop.js');
-      // site.init wires up the ?cart= URL param handler.
-      if (window.site && window.js7800) site.init(js7800);
+
+      window.EJS_player    = '#game';
+      window.EJS_pathtodata = (location.pathname.match(/^.*\/systems\//) || ['../'])[0] + '_shared-ejs/ejs/data/';
+      window.EJS_core      = 'atari7800';
+      window.EJS_startOnLoaded = true;
+      window.EJS_DEBUG_XX  = true;
+      // 7800 ProLine: two fire buttons + console switches. EJS atari7800 button
+      // ids — 0=BUTTON 1, 8=BUTTON 2, 2=SELECT, 3=PAUSE, 9=RESET (RESET is what
+      // starts a game from the title screen). Arrows are the d-pad (EJS default).
+      window.EJS_defaultControls = {
+        0: {
+          0: { value: 'z' },      // BUTTON 1 (left fire)
+          8: { value: 'x' },      // BUTTON 2 (right fire)
+          9: { value: 'enter' },  // RESET  → starts the game from the title
+          2: { value: 'shift' },  // SELECT → cycles game variations
+          3: { value: 'p' }       // PAUSE
+        }
+      };
+      if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
+
+      const s = document.createElement('script');
+      s.src = '../_shared-ejs/ejs/data/loader.js';
+      document.body.appendChild(s);
     })();
   </script>
-  <link rel="stylesheet" href="../_shared/genx-frame.css">
-<link rel="stylesheet" href="../_shared/genx-noscript.css">
-  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
-  <script defer src="../_shared/genx-controls-link.js"></script>
-
 </body>
 </html>

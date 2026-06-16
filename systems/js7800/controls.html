@@ -13,38 +13,29 @@
       <h1>Atari 7800 — Controls</h1>
     </div>
 
-    <p class="intro">The 7800's ProLine joystick has two action buttons. Player 1 is on the keyboard; the console switches are on function keys.</p>
+    <p class="intro">The 7800's ProLine joystick has two action buttons. Player 1 is on the keyboard out of the box; the console switches sit on Enter / Shift.</p>
 
     <h2>Player 1 joystick</h2>
     <table>
       <tr><th>Key</th><th>Action</th></tr>
       <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>D-Pad</td></tr>
-      <tr><td><kbd>Z</kbd></td><td>Button 1 (Left)</td></tr>
-      <tr><td><kbd>X</kbd></td><td>Button 2 (Right)</td></tr>
-    </table>
-
-    <h2>Player 2 joystick</h2>
-    <table>
-      <tr><th>Key</th><th>Action</th></tr>
-      <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td>D-Pad</td></tr>
-      <tr><td><kbd>Q</kbd></td><td>Button 1</td></tr>
-      <tr><td><kbd>E</kbd></td><td>Button 2</td></tr>
+      <tr><td><kbd>Z</kbd></td><td>Left fire (Button 1)</td></tr>
+      <tr><td><kbd>X</kbd></td><td>Right fire (Button 2)</td></tr>
     </table>
 
     <h2>Console switches</h2>
     <table>
       <tr><th>Key</th><th>Action</th></tr>
-      <tr><td><kbd>F2</kbd></td><td>Select switch</td></tr>
-      <tr><td><kbd>F3</kbd></td><td>Reset (start the game)</td></tr>
-      <tr><td><kbd>F4</kbd></td><td>Pause switch</td></tr>
-      <tr><td><kbd>F12</kbd></td><td>Soft reset (cycle the cart)</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>Reset switch — starts the game from the title screen</td></tr>
+      <tr><td><kbd>Shift</kbd></td><td>Select switch (cycles game variations on many titles)</td></tr>
+      <tr><td><kbd>P</kbd></td><td>Pause switch</td></tr>
     </table>
 
     <h2>Notes</h2>
-    <p>Most 7800 games sit on a "PRESS RESET" screen at boot — tap <kbd>F3</kbd> to start play.</p>
-    <p>The 7800 also supports a Light Gun and Paddle controllers; JS7800 doesn't map these.</p>
+    <p>Most 7800 carts open on a title screen — press <kbd>Enter</kbd> (Reset) to start play; on many titles <kbd>Shift</kbd> (Select) cycles the difficulty/variation first.</p>
+    <p>A USB gamepad works automatically. To remap any key or set up Player 2, open the in-emulator menu (the controller icon on the bottom bar) → <em>Control Settings</em>.</p>
 
-    <p class="note">Mapping follows JS7800 v0.0.9 (GPL-2.0, raz0red/JS7800). Verify in upstream README if a control feels off.</p>
+    <p class="note">Runs on EmulatorJS with the ProSystem libretro core (GPL-2.0). Default keys above; everything is remappable in the in-emulator Control Settings.</p>
 
     <div class="footer">
       <a href="javascript:window.close()">close tab</a> ·
