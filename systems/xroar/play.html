@@ -5,10 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tandy Color Computer</title>
   <style>
-    html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: monospace; }
-    #canvas { box-shadow: 2px 2px 10px rgba(0, 0, 0, .7); image-rendering: pixelated; outline: none; }
+    /* CRT bezel — shared vintage TV (Sinclair.png, 1362x914, screen hole at
+       8.08%/12.14%/65.35%×73.96%) on the 70s wallpaper, same player-in-hole
+       recipe as the Spectrum/MSX. XRoar (SDL2) sizes #canvas itself, so we pin
+       it into the hole and force it to fill; no barrel/fisheye (the CoCo
+       picture reads better flat). Black .screen-bg behind hides the cutout
+       edge. !important on the wallpaper because genx-frame.css loads AFTER. */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; color: #fff; font-family: monospace; }
+    body { display: flex; align-items: center; justify-content: center; }
+    .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1362 / 914)); aspect-ratio: 1362 / 914; }
+    .screen-bg { position: absolute; left: 6.6%; top: 10.6%; width: 68.4%; height: 77.0%; background: #000; z-index: 1; }
+    #screen { position: absolute; left: 8.08%; top: 12.14%; width: 65.35%; height: 73.96%; overflow: hidden; z-index: 2; }
+    #canvas { width: 100% !important; height: 100% !important; display: block; image-rendering: pixelated; outline: none; transform: translate(8px, 0px) scale(0.888); }
+    .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
     .err { padding: 20px; }
   </style>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
 </head>
 <body>
   <noscript><div class="gx-noscript">
@@ -17,7 +29,11 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="screen"><canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas></div>
+    <img class="bezel-img" src="../_shared/bezels/Sinclair.png" alt="">
+  </div>
   <script>
     var Module = {
       canvas: document.getElementById('canvas'),
@@ -90,8 +106,7 @@
       document.body.appendChild(s);
     })();
   </script>
-  <link rel="stylesheet" href="../_shared/genx-frame.css">
-<link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
 
