@@ -5,8 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NES</title>
   <style>
-    /* NES native is 256x240 (8:7 PAR); displayed at 4:3 by convention. */
-    #game { aspect-ratio: 4 / 3; width: min(100vw, calc(100vh * 4 / 3)); height: min(100vh, calc(100vw * 3 / 4)); }
+    /* CRT bezel — Sony Trinitron XBR with the NES on the shelf (nes.png,
+       2888x2611, maintainer-keyed, the set floating on the wallpaper with a
+       transparent screen hole at 17.71%/21.48%/60.83%×51.73%). EmulatorJS sizes
+       its canvas to #game, so #game sits in the screen hole; .screen-bg (black,
+       ~2% larger) hides the cutout's AA edge; nes.png on top. The bottom shelf
+       cubbies are also keyed through (wallpaper shows behind — natural). NES
+       native 256x240 (8:7 PAR), shown 4:3. !important on the wallpaper because
+       genx-frame.css loads AFTER this <style> and resets body to black. */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; }
+    body { display: flex !important; align-items: flex-end !important; justify-content: center !important; }
+    .bezel-wrap { position: relative; width: min(100vw, calc(100dvh * 2888 / 2611)); aspect-ratio: 2888 / 2611; }
+    .screen-bg { position: absolute; left: 16.71%; top: 20.48%; width: 62.83%; height: 53.73%; background: #000; z-index: 1; }
+    #game { position: absolute; left: 17.71%; top: 21.48%; width: 60.83%; height: 51.73%; overflow: hidden; z-index: 2; }
+    #game canvas { height: 100% !important; transform: scale(0.88); }
+    .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
   </style>
   <link rel="stylesheet" href="../_shared/genx-frame.css">
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
@@ -21,7 +34,11 @@
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <div id="game"><div class="loading">Booting NES…</div></div>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="game"><div class="loading">Booting NES…</div></div>
+    <img class="bezel-img" src="../_shared/bezels/nes.png" alt="">
+  </div>
   
   <script>
     (async function () {
