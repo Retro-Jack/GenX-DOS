@@ -110,5 +110,39 @@
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
 
+  <!-- save / load state: XRoar exports write_snapshot (full-machine .sna to the
+       WASM FS); we read those bytes back as the state, and restore by writing
+       them to the FS and reloading via wasm_load_file (same path used to load
+       games). -->
+  <link rel="stylesheet" href="../_shared/genx-savestate.css">
+  <script>
+    (function () {
+      var SNAP = '/gx-state.sna';
+      function M() { return window.Module; }
+      window.GenXStateAdapter = {
+        ready: function () {
+          var m = M();
+          return !!(m && m.FS && m.cwrap && typeof m._write_snapshot === 'function');
+        },
+        getState: function () {
+          var m = M();
+          if (!m._gxWrite) m._gxWrite = m.cwrap('write_snapshot', 'number', ['string']);
+          try { m.FS.unlink(SNAP); } catch (e) {}
+          m._gxWrite(SNAP);
+          return m.FS.readFile(SNAP); // Uint8Array — the .sna machine snapshot
+        },
+        setState: function (bytes) {
+          var m = M();
+          if (!m._gxLoad) m._gxLoad = m.cwrap('wasm_load_file', null, ['string', 'number', 'number']);
+          try { m.FS.unlink(SNAP); } catch (e) {}
+          m.FS.writeFile(SNAP, bytes);
+          m._gxLoad(SNAP, 0, 0); // load the snapshot → restores machine state
+        },
+        refocus: function () { var c = document.getElementById('canvas'); if (c && c.focus) c.focus(); }
+      };
+    })();
+  </script>
+  <script defer src="../_shared/genx-savestate-std.js"></script>
+
 </body>
 </html>
