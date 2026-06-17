@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Odyssey² Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Magnavox · Odyssey²</div>
+      <h1>Odyssey² — Controls</h1>
+    </div>
+
+    <p class="intro">The libretro <strong>o2em</strong> core running in your browser via a small custom SDL2/emscripten frontend. The Magnavox Odyssey² (1978, "Videopac" in Europe) was unusual for its era: every console had a full 47-key membrane <em>keyboard</em> built in alongside its two joysticks, so some games are typed rather than played on the stick. Click the canvas first so the emulator receives keyboard input.</p>
+
+    <h2>Joystick (Player 1)</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Joystick direction</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Action button (fire)</td></tr>
+    </table>
+
+    <h2>Console keyboard</h2>
+    <p>Games that use the built-in keyboard (quizzes, type-in puzzles, the BASIC cartridge) read it directly:</p>
+    <table>
+      <tr><th>Key</th><th>Odyssey² key</th></tr>
+      <tr><td><kbd>A</kbd> – <kbd>Z</kbd></td><td>Letters</td></tr>
+      <tr><td><kbd>0</kbd> – <kbd>9</kbd></td><td>Digits</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>ENT / YES</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>SP</td></tr>
+      <tr><td><kbd>.</kbd> <kbd>,</kbd> <kbd>-</kbd> <kbd>=</kbd> <kbd>/</kbd></td><td>Punctuation row</td></tr>
+    </table>
+
+    <h2>Notes</h2>
+    <p>The Odyssey² BIOS (<code>o2rom.bin</code>, ©1978 Magnavox/Philips) is bundled with this site — the system can't boot without it.</p>
+    <p class="note">Save and load state are on the <strong>save</strong> / <strong>load</strong> buttons in the bottom-left corner. To restart a game, reload the page.</p>
+    <p class="note">Emulator: libretro-o2em (GPL-2.0+; original o2em by Daniel Boris / Andre de la Rocha) compiled to WebAssembly with a custom SDL2 frontend. Shipped locally from this site; no network calls at runtime.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>
