@@ -62,9 +62,11 @@
     setTimeout(function () { t.textContent = label; btn.classList.remove('gx-state-flash'); }, 850);
   }
 
-  function doSave(btn) {
+  // getState/setState may be sync (most engines) or async (atari800 defers
+  // through its frame loop); `await` handles both.
+  async function doSave(btn) {
     try {
-      var st = adapter().getState();
+      var st = await adapter().getState();
       if (st === undefined || st === null) { flash(btn, 'no state'); return; }
       slot = clone(st); // freeze a copy so the slot doesn't track the live machine
       try { localStorage.setItem(lsKey, jStringify(st)); } catch (e) { /* quota — keep in-memory only */ }
@@ -72,12 +74,12 @@
     } catch (e) { console.error('[gx-state] save failed:', e); flash(btn, 'failed'); }
     refocus();
   }
-  function doLoad(btn) {
+  async function doLoad(btn) {
     var st = slot;
     if (st === null) { try { var b = localStorage.getItem(lsKey); if (b) st = jParse(b); } catch (e) {} }
     if (st === null || st === undefined) { flash(btn, 'no save'); return; }
     // Hand the engine a fresh clone so it can't alias (and mutate) our slot.
-    try { adapter().setState(clone(st)); flash(btn, 'loaded'); } catch (e) { console.error('[gx-state] load failed:', e); flash(btn, 'failed'); }
+    try { await adapter().setState(clone(st)); flash(btn, 'loaded'); } catch (e) { console.error('[gx-state] load failed:', e); flash(btn, 'failed'); }
     refocus();
   }
 

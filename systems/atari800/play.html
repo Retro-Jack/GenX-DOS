@@ -57,6 +57,8 @@
     .err { padding: 20px; }
   </style>
   <script defer src="../_shared/genx-controls-link.js"></script>
+  <link rel="stylesheet" href="../_shared/genx-savestate.css">
+  <script defer src="../_shared/genx-savestate-std.js"></script>
 </head>
 <body>
   <noscript><div class="gx-noscript">
@@ -133,6 +135,39 @@
         }],
         print: function (t) { console.log(t); },
         printErr: function (t) { console.warn(t); }
+      };
+
+      // Save / load state — DEFERRED through the emulator's frame loop.
+      // atari800's StateSav reaches emscripten_sleep (machine reinit) and the
+      // wasm runs a blocking ASYNCIFY main loop, so calling it straight from a
+      // button (a separate asyncify op) corrupts the stack. Instead JS only
+      // sets a request flag (_gx_request_*, no sleep); the fork's gx_state_poll()
+      // runs the actual StateSav once per frame on the main-loop stack (safe),
+      // and JS polls _gx_state_status() then reads/writes the MEMFS file itself.
+      // getState/setState are async; genx-savestate-std.js awaits them.
+      var STATE_FILE = '/gx-state.a8s';
+      function waitStatus() {
+        return new Promise(function (resolve) {
+          var n = 0;
+          var iv = setInterval(function () {
+            var s = Module._gx_state_status();      // 0 busy, 1 ok, -1 fail
+            if (s !== 0 || ++n > 300) { clearInterval(iv); resolve(s); }
+          }, 16);
+        });
+      }
+      window.GenXStateAdapter = {
+        ready: function () { return !!(window.Module && Module.FS && typeof Module._gx_request_save === 'function'); },
+        getState: async function () {
+          Module._gx_request_save();
+          if (await waitStatus() !== 1) throw new Error('save failed');
+          return Module.FS.readFile(STATE_FILE);
+        },
+        setState: async function (bytes) {
+          Module.FS.writeFile(STATE_FILE, bytes);
+          Module._gx_request_load();
+          if (await waitStatus() !== 1) throw new Error('load failed');
+        },
+        refocus: function () { var c = document.getElementById('canvas'); if (c && c.focus) c.focus(); }
       };
 
       const s = document.createElement('script');
