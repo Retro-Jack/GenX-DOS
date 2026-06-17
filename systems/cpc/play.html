@@ -58,6 +58,8 @@
   </style>
   <script defer src="../_shared/genx-controls-link.js"></script>
   <script src="../_shared/genx-game-loader.js"></script>
+  <link rel="stylesheet" href="../_shared/genx-savestate.css">
+  <script defer src="../_shared/genx-savestate-std.js"></script>
   <link rel="preload" href="cpc.wasm" as="fetch" crossorigin>
 </head>
 <body>
@@ -152,6 +154,31 @@
         setStatus: () => {},
         monitorRunDependencies: () => {},
         onRuntimeInitialized: () => { document.getElementById('loading').style.display = 'none'; }
+      };
+
+      // Save / load state. Our locally-rebuilt cpc.wasm (see BUILDING-WASM.md)
+      // exports gx_state_* wrappers around chips' cpc_save_snapshot /
+      // cpc_load_snapshot. The snapshot is a self-contained cpc_t struct (no
+      // emscripten_sleep), so unlike atari800 it's safe to call straight from a
+      // button — no frame-loop deferral. JS moves the raw struct bytes through
+      // a fixed static buffer (gx_state_ptr) via HEAPU8.
+      window.GenXStateAdapter = {
+        ready: function () {
+          return !!(window.Module && Module.HEAPU8 && typeof Module._gx_state_save === 'function');
+        },
+        getState: function () {
+          var n = Module._gx_state_save();
+          var p = Module._gx_state_ptr();
+          // Copy out of wasm memory so the slot can't alias the live buffer.
+          return Module.HEAPU8.slice(p, p + n);
+        },
+        setState: function (bytes) {
+          var n = Module._gx_state_size();
+          var p = Module._gx_state_ptr();
+          Module.HEAPU8.set(bytes.subarray(0, n), p);
+          if (!Module._gx_state_load()) throw new Error('load failed');
+        },
+        refocus: function () { var c = document.getElementById('canvas'); if (c && c.focus) c.focus(); }
       };
 
       const s = document.createElement('script');

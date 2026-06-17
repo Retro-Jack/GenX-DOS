@@ -25,6 +25,40 @@ Two lines in `examples/emus/cpc.c`:
 (The forward declaration of `draw_status_bar` is marked
 `__attribute__((unused))` so the now-uncalled function doesn't trip `-Werror`.)
 
+### Save / load state
+
+We also export wrappers around chips' own snapshot API so `play.html`'s
+save-state buttons work. The chips CPC snapshot (`cpc_save_snapshot` /
+`cpc_load_snapshot`, declared in `chips/systems/cpc.h`) is a **self-contained
+`cpc_t` struct copy with no `emscripten_sleep`** — so, unlike atari800, it's
+safe to call straight from a JS button with no frame-loop deferral.
+
+Added to `examples/emus/cpc.c` (just after the `} state;` global), gated on
+`__EMSCRIPTEN__`:
+
+```c
+#include <emscripten.h>
+static cpc_t gx_snap;
+EMSCRIPTEN_KEEPALIVE int   gx_state_size(void) { return (int)sizeof(cpc_t); }
+EMSCRIPTEN_KEEPALIVE void* gx_state_ptr(void)  { return (void*)&gx_snap; }
+EMSCRIPTEN_KEEPALIVE int   gx_state_save(void) { cpc_save_snapshot(&state.cpc, &gx_snap); return (int)sizeof(cpc_t); }
+EMSCRIPTEN_KEEPALIVE int   gx_state_load(void) { return cpc_load_snapshot(&state.cpc, CPC_SNAPSHOT_VERSION, &gx_snap) ? 1 : 0; }
+```
+
+`play.html` moves the raw struct bytes in/out of `gx_snap` through `HEAPU8`.
+That requires **`HEAPU8` on the `Module` object**, which the stock fibs
+Emscripten config does *not* export (it sets no `EXPORTED_RUNTIME_METHODS`), so
+add one line to the imported `fibs-extras/emscripten.ts` `build()` hook (the
+same gotcha that bit the o2em rebuild):
+
+```ts
+b.addLinkOptions([`-sEXPORTED_RUNTIME_METHODS=['HEAPU8','ccall','cwrap']`]);
+```
+
+The file lives at `.fibs/imports/fibs-extras/emscripten.ts` after the first
+`config` run — edit it, then re-run `config` (so the new link flag is baked
+into the ninja files) before `build cpc`.
+
 Nothing else is changed — the URL-param config (`file`, `input`, `type`,
 `joystick`) that `play.html` drives still works exactly as upstream.
 
