@@ -31,9 +31,10 @@ the authoritative version.
 ## Emulators
 
 Each bundle directory contains the upstream `LICENSE` or `COPYING` file where
-one was provided. Build recipes for self-compiled WASM bundles
-(`systems/atari800/build-wasm.sh`, `systems/odyssey2/build.sh`) live in
-the corresponding emulator folder.
+one was provided. Build recipes for self-compiled WASM bundles live with their
+bundle (`systems/odyssey2/build.sh`, `systems/cpc/BUILDING-WASM.md`); atari800's
+`build-wasm.sh` lives in the [`Retro-Jack/atari800`](https://github.com/Retro-Jack/atari800)
+fork rather than the bundle.
 
 | Bundle directory | Upstream project | Author(s) | Licence |
 | --- | --- | --- | --- |
@@ -55,7 +56,7 @@ the corresponding emulator folder.
 | `systems/atari800/atari800.wasm` (embedded) | AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC | Avery Lee | Freely-redistributable open-source OS replacement, compiled into the WASM via `--enable-altirra_bios` (no separate ROM file ships) |
 | `systems/intv/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
 | `systems/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | GPL-2.0+ (libretro-o2em); frontend bundled under repo terms |
-| `systems/cpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` with a two-line patch (status bar + muted-speaker icon removed; see `systems/cpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
+| `systems/cpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` (status bar + muted-speaker icon patched out, plus `gx_state_*` save-state wrappers; see `systems/cpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
 | `systems/pet/pet2001/` | pet2001 (vanilla-JS PET 2001 emulator) | Thomas Skibo | BSD-2-Clause |
 | `systems/_shared-ejs/` | EmulatorJS framework | EmulatorJS team | GPL-3.0 |
 | `systems/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`) | vice-emu.sourceforge.net | GPL-2.0 |
@@ -86,6 +87,20 @@ Both verified June 2026. We mirror the `nightly` builds of these two instead
   [`Retro-Jack/atari800`](https://github.com/Retro-Jack/atari800) fork
   (adds `build-wasm.sh` + `BUILDING-WASM.md` on top of upstream). The
   pre-built `.js` + `.wasm` in this repo correspond to that build script.
+  The fork also adds `gx_state_*` `EMSCRIPTEN_KEEPALIVE` wrappers around
+  atari800's `StateSav_*AtariState`, run from a `gx_state_poll()` in the
+  `sdl/main.c` frame loop so the file-based save/load is deferred onto the
+  main-loop ASYNCIFY stack (a direct call would be a second concurrent
+  asyncify op and corrupt the heap) — that's what drives the page's
+  save/load buttons.
+- **cpc (tiny8bit)** — rebuilt from `floooh/chips-test` via fibs (Deno +
+  emsdk), recipe in `systems/cpc/BUILDING-WASM.md`. Beyond the overlay
+  removal, `examples/emus/cpc.c` gains `gx_state_*` `EMSCRIPTEN_KEEPALIVE`
+  wrappers around chips' `cpc_save_snapshot`/`cpc_load_snapshot`, with
+  `HEAPU8` added to `EXPORTED_RUNTIME_METHODS` in the fibs `emscripten.ts`.
+  The chips snapshot is a self-contained struct copy (no `emscripten_sleep`),
+  so unlike atari800 the adapter calls it straight from the button — no
+  frame-loop deferral.
 - **libretro-o2em** — built from upstream libretro/libretro-o2em via
   `systems/odyssey2/build.sh`. Custom SDL2/emscripten frontend
   (`frontend.c`) statically linked with the libretro core; reproducible

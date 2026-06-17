@@ -145,7 +145,7 @@ Summary below; see [ATTRIBUTION.md](ATTRIBUTION.md) for the canonical record inc
 - ColecoVision BIOS: ©1982 Coleco, bundled for emulator-only use
 - jzIntv: Joe Zbiciak (free-for-personal-use terms) — WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor)
 - Intellivision EXEC + GROM BIOS: ©1979 Mattel Electronics, bundled for emulator-only use
-- floooh/chips-test tiny8bit CPC WASM: MIT (Andre Weissflog) — mirrored from `floooh.github.io/tiny8bit/`
+- floooh/chips-test tiny8bit CPC WASM: MIT (Andre Weissflog) — locally rebuilt from source (overlays patched out + save-state wrappers; see `systems/cpc/BUILDING-WASM.md`)
 - libretro-o2em: GPL-2.0+ (libretro/libretro-o2em, original o2em by Daniel Boris / Andre de la Rocha) — compiled from upstream source via `systems/odyssey2/build.sh`
 - Magnavox Odyssey² BIOS (`o2rom.bin`): ©1978 Magnavox/Philips, bundled for emulator-only use
 
