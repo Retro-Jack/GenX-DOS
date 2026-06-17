@@ -21,7 +21,7 @@
 
   var slot = null; // in-memory snapshot for this session
   var p = new URLSearchParams(location.search);
-  var key = p.get('game') || p.get('tape') || p.get('rom') || p.get('disk') || 'state';
+  var key = p.get('game') || p.get('tape') || p.get('rom') || p.get('disk') || p.get('disc1') || 'state';
   var platform = location.pathname.replace(/.*\/systems\//, '').replace(/\/.*/, '');
   var lsKey = 'gx-state:' + platform + ':' + key;
 
