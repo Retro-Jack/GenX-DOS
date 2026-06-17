@@ -22,6 +22,9 @@
     #wmsx-screen-canvas { image-rendering: pixelated; transform: translate(8px, -10px) scale(0.842); }
     /* hide WebMSX's control bar entirely (GenX bundles don't show emulator chrome) */
     #wmsx-bar { display: none !important; }
+    /* hide WebMSX's on-screen OSD toasts (e.g. "AUTO: NTSC 60Hz", state/media
+       notices) — a DOM overlay; our save/load buttons flash their own status */
+    #wmsx-osd { display: none !important; }
     .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
   </style>
   <link rel="stylesheet" href="../_shared/genx-frame.css">
@@ -73,5 +76,18 @@
   <script src="wmsx.js"></script>
   <!-- controls link added as a normal element AFTER the engine: no </script> can leak into the engine -->
   <script defer src="../_shared/genx-controls-link.js"></script>
+
+  <!-- save / load state: WebMSX exposes WMSX.room.machine with saveState()/
+       loadState() (the same API its netplay uses). -->
+  <link rel="stylesheet" href="../_shared/genx-savestate.css">
+  <script>
+    window.GenXStateAdapter = {
+      ready:    function () { return !!(window.WMSX && WMSX.room && WMSX.room.machine && typeof WMSX.room.machine.saveState === 'function'); },
+      getState: function () { return WMSX.room.machine.saveState(true); },
+      setState: function (s) { WMSX.room.machine.loadState(s); },
+      refocus:  function () { var c = document.getElementById('wmsx-screen-canvas'); if (c && c.focus) c.focus(); }
+    };
+  </script>
+  <script defer src="../_shared/genx-savestate-std.js"></script>
 </body>
 </html>
