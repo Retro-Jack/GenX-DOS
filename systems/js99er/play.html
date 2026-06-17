@@ -39,6 +39,8 @@
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
+  <link rel="stylesheet" href="../_shared/genx-savestate.css">
+  <script defer src="../_shared/genx-savestate-std.js"></script>
 
   <script src="util.js"></script>
   <script src="log.js"></script>
@@ -90,12 +92,24 @@
       var ti994a = new TI994A(canvas, {FLOPPY1: new DiskImage("FLOPPY1")}, settings);
       var sound = new Sound(settings.isSoundEnabled(), ti994a.tms9919, ti994a.tms5220);
 
+      // Save / load state — TI994A.getState() returns a JSON-serializable
+      // snapshot; restoreState() puts it back. (genx-savestate-std.js wires the
+      // bottom-left save/load buttons once `ready` returns true.)
+      var _booted = false;
+      window.GenXStateAdapter = {
+        ready:    function () { return _booted; },
+        getState: function () { return ti994a.getState(); },
+        setState: function (s) { ti994a.restoreState(s); },
+        refocus:  function () { canvas.focus(); }
+      };
+
       var loadingEl = document.getElementById('loading');
       function hideLoading() { if (loadingEl) loadingEl.style.display = 'none'; }
 
       function startBoot() {
         hideLoading();
         ti994a.start();
+        _booted = true;
         // grab keyboard focus
         canvas.tabIndex = 0;
         canvas.focus();
