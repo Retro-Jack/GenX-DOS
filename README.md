@@ -104,6 +104,10 @@ ROMs are bundled locally — nothing is fetched at runtime.
 
 The six VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4, C128) share a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to **Scroll Lock** + **Pause/Break** + a top-left clickable button via `systems/_shared/genx-vice-softkeys.js`. The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing; see the wiki for the migration story.
 
+## Save / load state
+
+Most bundles carry **save** / **load** buttons in the bottom-left corner — an instant in-browser snapshot of the running machine, kept in memory and mirrored to `localStorage` so it survives a reload. The 13 EmulatorJS bundles use the libretro cores' own state API (`systems/_shared/genx-savestate.js`); the standalone engines that expose a reachable save-state — TI-99/4A, BBC Micro/Master (mid-game, even Elite), MSX, Tandy CoCo and the Odyssey² — ride each emulator's native API through `systems/_shared/genx-savestate-std.js` + a small per-bundle `GenXStateAdapter`. For the Odyssey² we rebuilt the o2em WASM to expose libretro's `retro_serialize`/`retro_unserialize` (its frontend never called them, so they'd been dead-code-eliminated). The remaining engines (Apple, Electron, Spectrum, ZX81, Atari 400/800XL, Amstrad CPC, Vectrex, PET) expose no reachable state API, so those bundles have no buttons.
+
 ## Documentation
 
 See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki) for the long form. Each engine's integration story is its own page.

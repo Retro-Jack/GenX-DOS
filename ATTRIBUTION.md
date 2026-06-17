@@ -89,7 +89,10 @@ Both verified June 2026. We mirror the `nightly` builds of these two instead
 - **libretro-o2em** — built from upstream libretro/libretro-o2em via
   `systems/odyssey2/build.sh`. Custom SDL2/emscripten frontend
   (`frontend.c`) statically linked with the libretro core; reproducible
-  with emsdk.
+  with emsdk. `frontend.c` also adds `gx_state_*` `EMSCRIPTEN_KEEPALIVE`
+  wrappers around the core's `retro_serialize`/`retro_unserialize` to
+  expose save/load state to the page (with `HEAPU8` in
+  `EXPORTED_RUNTIME_METHODS`).
 
 ---
 
