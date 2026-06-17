@@ -12,6 +12,7 @@
 #include <emscripten.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 
 #include "libretro.h"
@@ -195,6 +196,45 @@ static long load_file(const char *path, uint8_t **out) {
     fread(*out, 1, sz, f);
     fclose(f);
     return sz;
+}
+
+/* GenX save / load state -------------------------------------------------
+ * The o2em libretro core implements retro_serialize/unserialize, but nothing
+ * else here called them, so they were dead-code-eliminated. These KEEPALIVE
+ * wrappers expose them to JS (systems/odyssey2/play.html). The serialized
+ * blob is owned by gx_buf so JS never needs _malloc/_free:
+ *   save: ptr = _gx_state_save(); size = _gx_state_size(); read HEAPU8[ptr..]
+ *   load: ptr = _gx_state_buffer(size); fill HEAPU8[ptr..]; _gx_state_load(size)
+ */
+static unsigned char *gx_buf = NULL;
+static size_t gx_buf_size = 0;
+
+EMSCRIPTEN_KEEPALIVE
+int gx_state_save(void) {
+    size_t sz = retro_serialize_size();
+    if (sz == 0) return 0;
+    unsigned char *nb = (unsigned char *)realloc(gx_buf, sz);
+    if (!nb) return 0;
+    gx_buf = nb;
+    if (!retro_serialize(gx_buf, sz)) { gx_buf_size = 0; return 0; }
+    gx_buf_size = sz;
+    return (int)(intptr_t)gx_buf;   /* HEAP offset of the serialized state */
+}
+
+EMSCRIPTEN_KEEPALIVE
+int gx_state_size(void) { return (int)gx_buf_size; }
+
+EMSCRIPTEN_KEEPALIVE
+int gx_state_buffer(int size) {     /* (re)alloc gx_buf for JS to fill before load */
+    unsigned char *nb = (unsigned char *)realloc(gx_buf, (size_t)size);
+    if (!nb) return 0;
+    gx_buf = nb; gx_buf_size = (size_t)size;
+    return (int)(intptr_t)gx_buf;
+}
+
+EMSCRIPTEN_KEEPALIVE
+int gx_state_load(int size) {       /* restore from gx_buf (JS just filled it) */
+    return retro_unserialize(gx_buf, (size_t)size) ? 1 : 0;
 }
 
 int main(int argc, char **argv) {

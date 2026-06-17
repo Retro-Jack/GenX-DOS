@@ -66,7 +66,7 @@ COMMON_SRCS=(
 # INITIAL_MEMORY=32M is comfortable for 1 KB BIOS + ~16 KB cart + SDL.
 emcc -O2 -s USE_SDL=2 \
   -s INITIAL_MEMORY=33554432 -s ALLOW_MEMORY_GROWTH=1 \
-  -s EXPORTED_RUNTIME_METHODS=FS,callMain \
+  -s EXPORTED_RUNTIME_METHODS=FS,callMain,HEAPU8 \
   -s MODULARIZE=1 -s EXPORT_NAME=createO2EM \
   -I"$LRC/include" \
   -o "$HERE/o2em.js" \

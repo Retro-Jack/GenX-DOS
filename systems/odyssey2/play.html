@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
+  <link rel="stylesheet" href="../_shared/genx-savestate.css">
+  <script defer src="../_shared/genx-savestate-std.js"></script>
   <script src="../_shared/genx-game-loader.js"></script>
   <link rel="preload" href="o2em.wasm" as="fetch" crossorigin>
   <link rel="preload" href="o2rom.bin" as="fetch" crossorigin>
@@ -80,7 +82,29 @@
       s.onload = () => {
         document.getElementById('loading')?.remove();
         canvas.focus();
-        createO2EM(Module);
+        createO2EM(Module).then((m) => {
+          // Expose the instance for the save/load-state adapter below. o2em's
+          // libretro core implements retro_serialize; frontend.c wraps it as
+          // _gx_state_save/_size/_buffer/_load (see that file).
+          window.GenXO2 = m;
+          window.GenXStateAdapter = {
+            ready: function () { return !!(m && m._gx_state_save && m.HEAPU8); },
+            getState: function () {
+              var ptr = m._gx_state_save();
+              if (!ptr) return null;
+              var sz = m._gx_state_size();
+              if (!sz) return null;
+              return m.HEAPU8.slice(ptr, ptr + sz); // copy out of the heap
+            },
+            setState: function (bytes) {
+              var ptr = m._gx_state_buffer(bytes.length);
+              if (!ptr) return;
+              m.HEAPU8.set(bytes, ptr);
+              m._gx_state_load(bytes.length);
+            },
+            refocus: function () { canvas.focus(); }
+          };
+        });
       };
       s.onerror = () => fail('Failed to load o2em.js');
       document.body.appendChild(s);
