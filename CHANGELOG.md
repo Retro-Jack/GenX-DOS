@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-06-22
+
+First tagged release. Everything below predates the 1.0.0 tag — the full
+build-up of the suite to 19 engines / 32 sub-systems, all bezeled, most with
+save/load state.
+
 ### Added
 - **Tandy TRS-80 Model I — new platform (sdltrs WASM).** New `systems/trs80/` bundle on **sdltrs** (Mark Grebe / Jens Guenther, BSD-2-Clause), built from source to WASM via emscripten ASYNCIFY — `emscripten_sleep` replaces sdltrs's blocking `SDL_Delay`/`SDL_WaitEvent` so the continuous Z80 loop yields each timer tick; Model I Level II BASIC ROM embedded via `--embed-file`. 10 year-sorted Big Five / Adventure International `.cmd` arcade games (Galaxy Invasion → Crazy Painter), each entered directly via `trs_load_cmd`. CRT bezel (`TRS80.png`), top-left **CLEAR** softkey (synthetic Home — most games start with CLEAR), 10 gamedocs + controls page. New **TANDY** parent menu groups the Model I with the Color Computer. Engines 18 → 19, sub-systems 31 → 32.
 - **Save / load state on the Amstrad CPC (cpc) — rebuilt the tiny8bit WASM.** floooh's chips library already has `cpc_save_snapshot` / `cpc_load_snapshot` (a self-contained `cpc_t` struct copy, no `emscripten_sleep`), but the stock build didn't export them. Rebuilt `cpc.wasm` from `floooh/chips-test` with `EMSCRIPTEN_KEEPALIVE` `gx_state_*` wrappers added to `examples/emus/cpc.c`, plus `HEAPU8` added to `EXPORTED_RUNTIME_METHODS` in the fibs `emscripten.ts` (the stock fibs config exports none — same gotcha as the o2em rebuild). The adapter is **synchronous** (no ASYNCIFY deferral — the chips snapshot has no nested sleep, unlike atari800); `play.html` moves the raw struct bytes in/out via `HEAPU8`. Verified mid-game on **Bruce Lee**. BUILDING-WASM.md documents the new patch.
