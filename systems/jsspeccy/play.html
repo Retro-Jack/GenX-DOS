@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sinclair Spectrum</title>
+  <title>Sinclair ZX Spectrum</title>
   <style>
     /* CRT bezel — vintage TV (Sinclair.png, 1362x914, screen keyed to a
        transparent 4:3 hole at left 8.08% top 12.14% width 65.35% height
@@ -58,12 +58,12 @@
           document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
           return;
         }
-        document.title = game.title || key;
+        document.title = 'Sinclair ZX Spectrum';
         opts.openUrl = game.rom;
         opts.autoStart = true;
         opts.autoLoadTapes = true;
       } else {
-        document.title = 'Sinclair Spectrum';
+        document.title = 'Sinclair ZX Spectrum';
       }
       window.emu = JSSpeccy(document.getElementById('jsspeccy'), opts);
     })();

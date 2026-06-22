@@ -50,6 +50,8 @@ fork rather than the bundle.
 | `systems/jsspeccy/` | JSSpeccy 3.2 | Matt Westcott (gasman) | GPL-3.0 |
 | `systems/jtyone/` | JtyOne (port of Mike Wynne's EightyOne) | Simon Holdsworth | GPL-2.0 |
 | `systems/xroar/` | XRoar (WASM) | Ciaran Anscomb | GPL-3.0-or-later |
+| `systems/trs80/` | sdltrs (SDL2 TRS-80 emulator), built from source to WASM | Mark Grebe / Jens Guenther (gitlab.com/jengun/sdltrs) | BSD-2-Clause |
+| `systems/trs80/sdltrs.wasm` (embedded) | TRS-80 Model I Level II BASIC ROM (12 KB) | © Tandy / Microsoft | Bundled for emulator-only use; embedded into the WASM at build time via `--embed-file` (no separate ROM file ships) |
 | `systems/js99er/` | Js99'er (vanilla-JS build) | Rasmus Moustgaard | GPL-2.0 |
 | `systems/js99er/carts/*.rpk` | TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983) | Texas Instruments / Imagic / Sega — original publishers | Distributed for retro-preservation; carts are 40+ years out of commerce. Mirrored from the js99er.net public cart archive (Rasmus Moustgaard). |
 | `systems/atari800/` | atari800 v5.2.0, built from source to WASM | atari800 project | GPL-2.0+ |
@@ -108,6 +110,15 @@ Both verified June 2026. We mirror the `nightly` builds of these two instead
   wrappers around the core's `retro_serialize`/`retro_unserialize` to
   expose save/load state to the page (with `HEAPU8` in
   `EXPORTED_RUNTIME_METHODS`).
+- **sdltrs (TRS-80 Model I)** — built from `jengun/sdltrs`
+  (gitlab.com/jengun/sdltrs) to WASM via emscripten (`build-wasm.sh`,
+  `-sASYNCIFY` + `-sUSE_SDL=2`, `-sMODULARIZE`). Two `#ifdef __EMSCRIPTEN__`
+  patches swap sdltrs's blocking `SDL_Delay` throttle (`trs_interrupt.c`) and
+  `SDL_WaitEvent` (`trs_sdl_interface.c`) for `emscripten_sleep`, so the
+  continuous Z80 loop yields once per timer tick and the page stays
+  responsive. The Model I Level II BASIC ROM is embedded via `--embed-file`.
+  sdltrs ships a built-in save-state (`trs_state_save`/`trs_state_load`) that
+  isn't wired to the page yet.
 
 ---
 

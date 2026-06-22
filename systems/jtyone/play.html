@@ -55,7 +55,7 @@
           document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
           return;
         }
-        document.title = game.title || key;
+        document.title = 'Sinclair ZX81';
         // JtyOne reads window.location.search at script-load time. Use the
         // `tzx` param as a generic URL passthrough; the loader sees the .p
         // extension and calls tape.setP() on the bytes parsed from the

@@ -54,7 +54,7 @@ window.genxBootEJS = async function(config) {
             fail('Unknown game key: ' + key);
             return;
         }
-        document.title = game.title || key;
+        document.title = config.title || key;
         gameUrl = game.rom;
     } else {
         document.title = config.title || '';

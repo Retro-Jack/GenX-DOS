@@ -58,7 +58,7 @@
         catch (e) { fail('Failed to load games.json: ' + e.message); return; }
         game = games[key];
         if (!game) { fail('Unknown game key: ' + key); return; }
-        document.title = game.title || key;
+        document.title = 'Atari 7800';
         gameUrl = game.rom;
       } else {
         document.title = 'Atari 7800';

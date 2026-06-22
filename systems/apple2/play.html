@@ -13,7 +13,7 @@
 <html>
 <head>
 
-<title>Apple ][</title>
+<title>Apple II</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="css/apple2.css" />
@@ -368,13 +368,13 @@
       _a.innerHTML = 'controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg>';
       document.body.appendChild(_a);
       if (!key) {
-        document.title = 'Apple ][';
+        document.title = 'Apple II';
         history.replaceState(null, '', location.pathname);
         return;
       }
       fetch('games.json').then(r => r.json()).then(games => {
         const g = games[key];
-        if (g && g.title) document.title = g.title;
+        document.title = 'Apple II';
       }).catch(() => {});
       const out = new URLSearchParams();
       out.set('disk', key);

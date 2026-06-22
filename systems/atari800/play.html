@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atari 800XL</title>
+  <title>Atari 800</title>
   <link rel="stylesheet" href="../_shared/genx-frame.css">
   <link rel="stylesheet" href="../_shared/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/genx-controls-link.css">
@@ -90,13 +90,13 @@
         }
         game = games[key];
         if (!game) { fail('Unknown game key: ' + key); return; }
-        document.title = game.title || key;
+        document.title = 'Atari 800';
         romUrl = game.rom;
         // atari800 sniffs the format from the extension; preserve it.
         const m = romUrl.match(/\.[A-Za-z0-9]+$/);
         vfsName = 'game' + (m ? m[0].toLowerCase() : '.atr');
       } else {
-        document.title = 'Atari 800XL';
+        document.title = 'Atari 800';
       }
 
       // Video: stretch the visible TV area to completely fill the canvas so

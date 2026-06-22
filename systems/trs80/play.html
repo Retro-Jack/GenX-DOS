@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tandy TRS-80</title>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <style>
+    /* CRT bezel — Radio Shack TRS-80 Model I (TRS80.png, 1487x1169, aspect
+       1.272): monitor on the expansion interface, keyboard in front, the two
+       Mini Disk drives off to the left, on a keyed-transparent background.
+       Three layers, back to front:
+         1. .screen-bg — black backdrop, a touch larger than the cutout so the
+            wallpaper can't bleed through the PNG's anti-aliased hole edge.
+         2. #screen    — holds the emulator's <canvas>, sized to the cutout.
+         3. .bezel-img — TRS80.png on top; its transparent screen hole reveals
+            the canvas, and the CRT's rounded corners trim the canvas corners.
+       Screen hole measured (alpha flood-fill): left 26.83% top 7.10%
+       w 36.25% h 36.44%. The sdltrs canvas is a clean 512x384 (4:3) text area
+       — no phosphor padding to overscan-crop (unlike the old engine), so the
+       canvas just fills the cutout. Wallpaper override must follow
+       genx-frame.css (body black). */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; color: #fff; font-family: monospace; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    .bezel-wrap {
+      position: relative;
+      height: 100vh;
+      aspect-ratio: 1487 / 1169;
+      max-width: 100vw;
+    }
+    .screen-bg {
+      position: absolute;
+      left: 26.1%; top: 6.4%; width: 37.7%; height: 37.9%;
+      background: #000;
+      z-index: 1;
+    }
+    #screen {
+      position: absolute;
+      left: 26.83%; top: 7.10%; width: 36.25%; height: 36.44%;
+      z-index: 2;
+      overflow: hidden;
+    }
+    /* Backing store is pinned to sdltrs's native surface (1024x768, via the
+       canvas width/height attrs) so the software SDL_UpdateWindowSurface
+       putImageData lands at full size; CSS then scales the display to fill the
+       cutout. Don't set width/height attrs to anything but the surface size or
+       only the top-left corner draws. */
+    #screen canvas { display: block; width: 100% !important; height: 100% !important; image-rendering: pixelated; transform: scale(0.858); transform-origin: center; outline: none; border: none; }
+    #screen canvas:focus { outline: none; }
+    .bezel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .err { padding: 20px; }
+  </style>
+  <script defer src="../_shared/genx-controls-link.js"></script>
+  <script defer src="../_shared/genx-trs80-softkeys.js"></script>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="screen"><canvas id="screen-canvas" width="1024" height="768" tabindex="0"></canvas></div>
+    <img class="bezel-img" src="../_shared/bezels/TRS80.png" alt="">
+  </div>
+
+  <!-- sdltrs.js defines the createSDLTRS() factory; it MUST load before the
+       boot code below references it. -->
+  <script src="sdltrs.js"></script>
+  <script>
+    (async function () {
+      const fail = (msg) => { document.body.innerHTML = '<div class="err">' + msg + '</div>'; };
+      const canvas = document.getElementById('screen-canvas');
+      const params = new URLSearchParams(location.search);
+      const key = params.get('game');
+      if (!key) { document.title = 'Tandy TRS-80'; return; }
+
+      let games;
+      try { games = await (await fetch('games.json')).json(); }
+      catch (e) { fail('Failed to load games.json: ' + e.message); return; }
+      const game = games[key];
+      if (!game) { fail('Unknown game key: ' + key); return; }
+      document.title = 'Tandy TRS-80';
+
+      let cmdBytes;
+      try { cmdBytes = new Uint8Array(await (await fetch(game.rom)).arrayBuffer()); }
+      catch (e) { fail('Failed to load program: ' + e.message); return; }
+
+      // Model I, 48K, Level II ROM (embedded at /level2.rom). -noled / -borderwidth 0
+      // give a clean 512x384 text area with nothing but the screen. The .cmd is
+      // written to MEMFS and passed as the positional arg; trs_load_cmd jumps
+      // straight into it (no disk boot needed). -scale 2 for crisp pixels.
+      createSDLTRS({
+        canvas: canvas,
+        arguments: ['-m1', '-romfile1', '/level2.rom', '-noled', '-borderwidth', '0', '-scale', '2', '/game.cmd'],
+        preRun: [function (m) { m.FS.writeFile('/game.cmd', cmdBytes); }],
+        print: function () {},
+        printErr: function () {},
+      }).catch(function (e) { fail('Emulator failed: ' + (e && e.message ? e.message : e)); });
+    })();
+  </script>
+</body>
+</html>

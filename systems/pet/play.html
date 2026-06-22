@@ -104,7 +104,7 @@
         document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
         return;
       }
-      document.title = game.title || key;
+      document.title = 'Commodore PET';
       if (!game.rom) return;
 
       // PRG format: first 2 bytes are little-endian load address, rest is data.

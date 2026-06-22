@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tandy Color Computer</title>
+  <title>Tandy CoCo</title>
   <style>
     /* CRT bezel — shared vintage TV (Sinclair.png, 1362x914, screen hole at
        8.08%/12.14%/65.35%×73.96%) on the 70s wallpaper, same player-in-hole
@@ -96,10 +96,10 @@
           document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
           return;
         }
-        document.title = game.title || key;
+        document.title = 'Tandy CoCo';
         pendingGame = game;
       } else {
-        document.title = 'Tandy Color Computer';
+        document.title = 'Tandy CoCo';
       }
       const s = document.createElement('script');
       s.src = 'xroar.js';

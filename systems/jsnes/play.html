@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NES</title>
+  <title>Nintendo Entertainment System</title>
   <style>
     /* CRT bezel — Sony Trinitron XBR with the NES on the shelf (nes.png,
        2888x2611, maintainer-keyed, the set floating on the wallpaper with a
@@ -56,10 +56,10 @@
         catch (e) { fail('Failed to load games.json: ' + e.message); return; }
         game = games[key];
         if (!game) { fail('Unknown game key: ' + key); return; }
-        document.title = game.title || key;
+        document.title = 'Nintendo Entertainment System';
         gameUrl = game.rom;
       } else {
-        document.title = 'NES';
+        document.title = 'Nintendo Entertainment System';
       }
 
       window.EJS_player    = '#game';

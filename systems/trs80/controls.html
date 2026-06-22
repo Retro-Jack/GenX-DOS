@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tandy TRS-80 Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Tandy · TRS-80 Model I (Level II BASIC)</div>
+      <h1>TRS-80 Model I — Controls</h1>
+    </div>
+
+    <p class="intro">A Radio Shack TRS-80 Model I with 48&nbsp;KB and Level&nbsp;II BASIC, running on the <code>sdltrs</code> emulator. Each menu entry loads a self-contained <code>.cmd</code> arcade game and jumps straight into it — there's no <code>CLOAD</code> or disk step.</p>
+
+    <h2>Keyboard</h2>
+    <p>The Model I's keyboard maps directly to your PC keyboard for letters, numbers and punctuation. The keys that differ from a modern layout:</p>
+    <table>
+      <tr><th>PC key</th><th>TRS-80 key</th></tr>
+      <tr><td><kbd>Home</kbd> or <kbd>Delete</kbd></td><td><strong>CLEAR</strong> — most arcade games start with it (see the CLEAR button below)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>BREAK — interrupts a running program / returns to BASIC</td></tr>
+      <tr><td><kbd>&uarr;</kbd> <kbd>&darr;</kbd> <kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>TRS-80 arrow keys (movement in most games)</td></tr>
+      <tr><td><kbd>Shift</kbd> + <kbd>&darr;</kbd></td><td>@ / cursor-down on the original keyboard</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>ENTER</td></tr>
+      <tr><td><kbd>Shift</kbd></td><td>SHIFT (the Model I has no lower-case without the mod, so text is upper-case)</td></tr>
+    </table>
+
+    <h2>Playing the games</h2>
+    <p>Almost every Big Five Software / Adventure International title in this collection follows the same pattern:</p>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> (and <kbd>&uarr;</kbd> <kbd>&darr;</kbd>)</td><td>Move / steer</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Fire</td></tr>
+      <tr><td><strong>CLEAR</strong> (<kbd>Home</kbd>)</td><td>Start play from the title screen</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>BREAK — abort back to the BASIC <code>READY</code> prompt</td></tr>
+    </table>
+    <p>Each game also prints its own key list on its title or instruction screen — check there for the exact rotate / thrust / smart-bomb keys, then press <strong>CLEAR</strong> to begin. The per-game pages (the <em>controls</em> link on each game) spell these out.</p>
+
+    <h2>The CLEAR button</h2>
+    <p class="note">A labelled <strong>CLEAR</strong> button sits in the top-left corner. It sends the TRS-80 CLEAR key, which most games use to begin play — handy on laptops and keyboards with no <kbd>Home</kbd> key. The keyboard shortcut is <kbd>Home</kbd> or <kbd>Delete</kbd>.</p>
+
+    <p class="note">Mapping follows <code>sdltrs</code> (BSD-2-Clause, Mark Grebe / Jens Guenther). To restart a game, reload the page.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>

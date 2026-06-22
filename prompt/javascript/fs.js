@@ -2205,88 +2205,186 @@ var fs = [{
                         }]
                     },
                     {
-                        name: 'COCO',
+                        name: 'TANDY',
                         directories: [{
-                            name: 'GAMES',
-                            directories: [],
+                            name: 'COCO',
+                            directories: [{
+                                name: 'GAMES',
+                                directories: [],
+                                files: [{
+                                    name: 'menu.bat',
+                                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             TANDY  COCO  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Mega-Bug             (1981)  MEGABUG  º\necho                 º   2.  Poltergeist          (1981)  POLTRGST º\necho                 º   3.  Popcorn              (1981)  POPCORN  º\necho                 º   4.  Canyon Climber       (1982)  CANYON   º\necho                 º   5.  Demon Attack         (1982)  DEMON    º\necho                 º   6.  Daggorath            (1982)  DAGGOR   º\necho                 º   7.  Monster Maze         (1982)  MONSTRMZ º\necho                 º   8.  Downland             (1983)  DOWNLAND º\necho                 º   9.  Galactic Attack      (1983)  GALACTIC º\necho                 º  10.  Polaris              (1983)  POLARIS  º\necho                 º                                             º\necho                 º  11.  Color BASIC prompt           PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
+                                }, {
+                                    name: '0.bat',
+                                    data: 'echo off\ncd ..\ncd ..\nmenu\n'
+                                }, {
+                                    name: '1.bat',
+                                    data: 'megabug\n'
+                                }, {
+                                    name: '2.bat',
+                                    data: 'poltrgst\n'
+                                }, {
+                                    name: '3.bat',
+                                    data: 'popcorn\n'
+                                }, {
+                                    name: '4.bat',
+                                    data: 'canyon\n'
+                                }, {
+                                    name: '5.bat',
+                                    data: 'demon\n'
+                                }, {
+                                    name: '6.bat',
+                                    data: 'daggor\n'
+                                }, {
+                                    name: '7.bat',
+                                    data: 'monstrmz\n'
+                                }, {
+                                    name: '8.bat',
+                                    data: 'downland\n'
+                                }, {
+                                    name: '9.bat',
+                                    data: 'galactic\n'
+                                }, {
+                                    name: '10.bat',
+                                    data: 'polaris\n'
+                                }, {
+                                    name: '11.bat',
+                                    data: 'prompt\n'
+                                }, {
+                                    name: 'daggor.bat',
+                                    link: '../systems/xroar/play.html?game=daggor'
+                                }, {
+                                    name: 'downland.bat',
+                                    link: '../systems/xroar/play.html?game=downland'
+                                }, {
+                                    name: 'canyon.bat',
+                                    link: '../systems/xroar/play.html?game=canyon'
+                                }, {
+                                    name: 'demon.bat',
+                                    link: '../systems/xroar/play.html?game=demon'
+                                }, {
+                                    name: 'polaris.bat',
+                                    link: '../systems/xroar/play.html?game=polaris'
+                                }, {
+                                    name: 'galactic.bat',
+                                    link: '../systems/xroar/play.html?game=galactic'
+                                }, {
+                                    name: 'popcorn.bat',
+                                    link: '../systems/xroar/play.html?game=popcorn'
+                                }, {
+                                    name: 'megabug.bat',
+                                    link: '../systems/xroar/play.html?game=megabug'
+                                }, {
+                                    name: 'poltrgst.bat',
+                                    link: '../systems/xroar/play.html?game=poltrgst'
+                                }, {
+                                    name: 'monstrmz.bat',
+                                    link: '../systems/xroar/play.html?game=monstrmz'
+                                }, {
+                                    name: 'prompt.bat',
+                                    link: '../systems/xroar/play.html'
+                                }]
+                            }],
                             files: [{
                                 name: 'menu.bat',
-                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             TANDY  COCO  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Mega-Bug             (1981)  MEGABUG  º\necho                 º   2.  Poltergeist          (1981)  POLTRGST º\necho                 º   3.  Popcorn              (1981)  POPCORN  º\necho                 º   4.  Canyon Climber       (1982)  CANYON   º\necho                 º   5.  Demon Attack         (1982)  DEMON    º\necho                 º   6.  Daggorath            (1982)  DAGGOR   º\necho                 º   7.  Monster Maze         (1982)  MONSTRMZ º\necho                 º   8.  Downland             (1983)  DOWNLAND º\necho                 º   9.  Galactic Attack      (1983)  GALACTIC º\necho                 º  10.  Polaris              (1983)  POLARIS  º\necho                 º                                             º\necho                 º  11.  Color BASIC prompt           PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
-                            }, {
-                                name: '0.bat',
-                                data: 'echo off\ncd ..\ncd ..\nmenu\n'
-                            }, {
-                                name: '1.bat',
-                                data: 'megabug\n'
-                            }, {
-                                name: '2.bat',
-                                data: 'poltrgst\n'
-                            }, {
-                                name: '3.bat',
-                                data: 'popcorn\n'
-                            }, {
-                                name: '4.bat',
-                                data: 'canyon\n'
-                            }, {
-                                name: '5.bat',
-                                data: 'demon\n'
-                            }, {
-                                name: '6.bat',
-                                data: 'daggor\n'
-                            }, {
-                                name: '7.bat',
-                                data: 'monstrmz\n'
-                            }, {
-                                name: '8.bat',
-                                data: 'downland\n'
-                            }, {
-                                name: '9.bat',
-                                data: 'galactic\n'
-                            }, {
-                                name: '10.bat',
-                                data: 'polaris\n'
-                            }, {
-                                name: '11.bat',
-                                data: 'prompt\n'
-                            }, {
-                                name: 'daggor.bat',
-                                link: '../systems/xroar/play.html?game=daggor'
-                            }, {
-                                name: 'downland.bat',
-                                link: '../systems/xroar/play.html?game=downland'
-                            }, {
-                                name: 'canyon.bat',
-                                link: '../systems/xroar/play.html?game=canyon'
-                            }, {
-                                name: 'demon.bat',
-                                link: '../systems/xroar/play.html?game=demon'
-                            }, {
-                                name: 'polaris.bat',
-                                link: '../systems/xroar/play.html?game=polaris'
-                            }, {
-                                name: 'galactic.bat',
-                                link: '../systems/xroar/play.html?game=galactic'
-                            }, {
-                                name: 'popcorn.bat',
-                                link: '../systems/xroar/play.html?game=popcorn'
-                            }, {
-                                name: 'megabug.bat',
-                                link: '../systems/xroar/play.html?game=megabug'
-                            }, {
-                                name: 'poltrgst.bat',
-                                link: '../systems/xroar/play.html?game=poltrgst'
-                            }, {
-                                name: 'monstrmz.bat',
-                                link: '../systems/xroar/play.html?game=monstrmz'
-                            }, {
-                                name: 'prompt.bat',
-                                link: '../systems/xroar/play.html'
+                                data: 'echo off\ncd games\nmenu\necho.\n'
+                            }]
+                        },
+                        {
+                            name: 'TRS80',
+                            directories: [{
+                                name: 'GAMES',
+                                directories: [],
+                                files: [{
+                                        name: 'menu.bat',
+                                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           TRS-80  MODEL I  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Galaxy Invasion      (1980)  GALAXY   º\necho                 º   2.  Cosmic Fighter       (1980)  COSMIC   º\necho                 º   3.  Attack Force         (1980)  ATTACK   º\necho                 º   4.  Super Nova           (1980)  SUPERNOV º\necho                 º   5.  Defense Command      (1981)  DEFENSE  º\necho                 º   6.  Robot Attack         (1981)  ROBOT    º\necho                 º   7.  Armored Patrol       (1981)  ARMORED  º\necho                 º   8.  Eliminator           (1981)  ELIMINTR º\necho                 º   9.  Sea Dragon           (1982)  SEADRGN  º\necho                 º  10.  Crazy Painter        (1982)  CRAZYPNT º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
+                                    }, {
+                                        name: '0.bat',
+                                        data: 'echo off\ncd ..\ncd ..\nmenu\n'
+                                    }, {
+                                        name: '1.bat',
+                                        data: 'galaxy\n'
+                                    }, {
+                                        name: '2.bat',
+                                        data: 'cosmic\n'
+                                    }, {
+                                        name: '3.bat',
+                                        data: 'attack\n'
+                                    }, {
+                                        name: '4.bat',
+                                        data: 'supernov\n'
+                                    }, {
+                                        name: '5.bat',
+                                        data: 'defense\n'
+                                    }, {
+                                        name: '6.bat',
+                                        data: 'robot\n'
+                                    }, {
+                                        name: '7.bat',
+                                        data: 'armored\n'
+                                    }, {
+                                        name: '8.bat',
+                                        data: 'elimintr\n'
+                                    }, {
+                                        name: '9.bat',
+                                        data: 'seadrgn\n'
+                                    }, {
+                                        name: '10.bat',
+                                        data: 'crazypnt\n'
+                                    }, {
+                                        name: 'galaxy.bat',
+                                        link: '../systems/trs80/play.html?game=galaxy'
+                                    }, {
+                                        name: 'cosmic.bat',
+                                        link: '../systems/trs80/play.html?game=cosmic'
+                                    }, {
+                                        name: 'attack.bat',
+                                        link: '../systems/trs80/play.html?game=attack'
+                                    }, {
+                                        name: 'supernov.bat',
+                                        link: '../systems/trs80/play.html?game=supernov'
+                                    }, {
+                                        name: 'defense.bat',
+                                        link: '../systems/trs80/play.html?game=defense'
+                                    }, {
+                                        name: 'robot.bat',
+                                        link: '../systems/trs80/play.html?game=robot'
+                                    }, {
+                                        name: 'armored.bat',
+                                        link: '../systems/trs80/play.html?game=armored'
+                                    }, {
+                                        name: 'elimintr.bat',
+                                        link: '../systems/trs80/play.html?game=elimintr'
+                                    }, {
+                                        name: 'seadrgn.bat',
+                                        link: '../systems/trs80/play.html?game=seadrgn'
+                                    }, {
+                                        name: 'crazypnt.bat',
+                                        link: '../systems/trs80/play.html?game=crazypnt'
+                                    }]
+                            }],
+                            files: [{
+                                name: 'menu.bat',
+                                data: 'echo off\ncd games\nmenu\necho.\n'
                             }]
                         }],
                         files: [{
-                            name: 'menu.bat',
-                            data: 'echo off\ncd games\nmenu\necho.\n'
-                        }]
+                                name: 'menu.bat',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              TANDY  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  TRS-80 Model I       (1977)  TRS80    º\necho                 º                                             º\necho                 º   2.  Color Computer       (1980)  COCO     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
+                            },
+                            {
+                                name: '1.bat',
+                                data: 'cd trs80\ncd games\nmenu\n'
+                            },
+                            {
+                                name: '2.bat',
+                                data: 'cd coco\ncd games\nmenu\n'
+                            },
+                            {
+                                name: '0.bat',
+                                data: 'cd ..\nmenu\n'
+                            }
+                        ]
                     },
 
                     // TI-99/4A
@@ -2563,7 +2661,7 @@ var fs = [{
                 ],
                 files: [{
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               HOME  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Acorn                (1981)  ACORN    º\necho                 º   2.  Amstrad              (1984)  CPC      º\necho                 º   3.  Apple                (1976)  APPLE    º\necho                 º   4.  Atari                (1979)  ATARI    º\necho                 º   5.  Commodore            (1977)  COMMODRE º\necho                 º   6.  MSX                  (1983)  MSX      º\necho                 º   7.  Sinclair             (1981)  SINCLAIR º\necho                 º   8.  Tandy                (1980)  COCO     º\necho                 º   9.  Texas Instruments    (1979)  TI99     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
+                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               HOME  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Acorn                (1981)  ACORN    º\necho                 º   2.  Amstrad              (1984)  CPC      º\necho                 º   3.  Apple                (1976)  APPLE    º\necho                 º   4.  Atari                (1979)  ATARI    º\necho                 º   5.  Commodore            (1977)  COMMODRE º\necho                 º   6.  MSX                  (1983)  MSX      º\necho                 º   7.  Sinclair             (1981)  SINCLAIR º\necho                 º   8.  Tandy                (1977)  TANDY    º\necho                 º   9.  Texas Instruments    (1979)  TI99     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n'
                     },
                     {
                         name: '1.bat',
@@ -2595,7 +2693,7 @@ var fs = [{
                     },
                     {
                         name: '8.bat',
-                        data: 'cd coco\ncd games\nmenu\n'
+                        data: 'cd tandy\nmenu\n'
                     },
                     {
                         name: '9.bat',
