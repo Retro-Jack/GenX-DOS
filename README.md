@@ -20,14 +20,6 @@ python3 -m http.server 8765
 
 Open <http://127.0.0.1:8765/prompt/>.
 
-## Download for Windows
-
-Prefer a double-click? The [latest release](https://github.com/Retro-Jack/GenX-DOS/releases/latest) ships an offline Windows installer:
-
-**[⬇ GenX-DOS-1.0.0-setup.exe](https://github.com/Retro-Jack/GenX-DOS/releases/download/v1.0.0/GenX-DOS-1.0.0-setup.exe)**
-
-It's a per-user install (no admin): it lays down the whole site, installs Python 3.12 only if you don't already have it, and adds a **GenX-DOS** Start-Menu/Desktop shortcut that serves the site locally and opens your browser. Everything runs offline once installed.
-
 ## What you'll find in the repo
 
 ```
