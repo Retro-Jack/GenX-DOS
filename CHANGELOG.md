@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- **Offline Windows installer.** `packaging/windows/` (NSIS `installer.nsi` + `serve.bat`): a per-user, no-admin installer that lays down the whole site, silently installs Python 3.12 only if it isn't already present, and adds a **GenX-DOS** Start-Menu/Desktop shortcut that serves the site locally (`python -m http.server 8765`) and opens the browser. Built with `makensis` (LZMA-solid, ~88 MB) and attached to the v1.0.0 release; README gained a "Download for Windows" link.
+
 ## [1.0.0] - 2026-06-22
 
 First tagged release. Everything below predates the 1.0.0 tag — the full
