@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **Gamedoc accuracy sweep (per-platform web verification).** Intellivision: corrected two release years — BurgerTime is the **1983** Mattel/Data East port (not 1982) and Atlantis shipped **1982** (not 1981); fixed `games.json`, both gamedocs, and the year-sorted menu (BurgerTime drops to #10). Controls were already accurate. (TRS-80 and Tandy CoCo corrected earlier in the sweep.)
+
 ### Changed
 - **Small menus (<5 items) now use blank-line spacing, consistently.** Six parent choosers — Atari Consoles, and the Acorn / Apple / Atari / Sinclair / MSX "Computers" menus — listed their items on consecutive lines; brought them in line with the rule (one blank line between each item) already used by Handheld Consoles and the Tandy chooser. All 36 menu boxes re-verified at a 45-wide interior with aligned borders.
 - **Audit + doc sync (23/06/2026).** Orphan-file + stale-text sweep. **No orphan files** — every `_shared` asset/bezel/texture has a runtime ref (`PC.png` is the DOS-prompt bezel, not a `systems/` orphan), the TRS-80 bundle is clean, and every game maps to a gamedoc with no orphan gamedocs. **No stale text:** the dropped Windows installer and the abandoned SV-328/Blastar leave zero residue in any doc; counts are current everywhere (19 engines / 32 sub-systems / 13 EmulatorJS bundles). **Wiki:** filled the TRS-80 gaps the original sync missed — Roadmap scope list + shipped table + the gamedoc-count line (now 321 pages across 32 sub-systems), and the Project-Overview save-state list.

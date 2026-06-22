@@ -4,7 +4,7 @@
     "rom": "games/astrosmash.int"
   },
   "burger": {
-    "title": "BurgerTime (1982 Mattel)",
+    "title": "BurgerTime (1983 Mattel)",
     "rom": "games/burgertime.int"
   },
   "tron": {
@@ -22,7 +22,7 @@
     "rom": "games/adventur.int"
   },
   "atlantis": {
-    "title": "Atlantis (1981 Imagic)",
+    "title": "Atlantis (1982 Imagic)",
     "rom": "games/atlantis.int"
   },
   "lockchase": {
