@@ -32,11 +32,11 @@
     "rom": "games/elimintr.cmd"
   },
   "seadrgn": {
-    "title": "Sea Dragon (1982, Big Five)",
+    "title": "Sea Dragon (1982, Adventure Int'l)",
     "rom": "games/seadrgn.cmd"
   },
   "crazypnt": {
-    "title": "Crazy Painter (1982, Big Five)",
+    "title": "Crazy Painter (1982, Cornsoft)",
     "rom": "games/crazypnt.cmd"
   }
 }
