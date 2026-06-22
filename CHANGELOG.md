@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Fixed
+- **Vectrex controls — corrected the whole set against the game manuals.** Every Vectrex gamedoc had guessed button maps (fire on Button 1, thrust on the stick); the real convention is **Button 4 = fire, Button 3 = thrust**, joystick = direction/rotation. Verified all 11 games from their manuals (Ozyr's archive, Vectrex Wiki, scanned GCE manuals) and rewrote each control table — e.g. Mine Storm (B2 = Escape/teleport), Solar Quest (B2 smart bomb, B1 transport), Cosmic Chasm (B1 drill, B2 shield), Spike (B4 jump, B2/B3 kick L/R — not "Speak/Punch"), Pole Position (B3/4 gas, B1/2 gears — no brake), Polar Rescue (stick dive/surface, B4 torpedo), Star Trek (B4 laser, B3 shield, B2 dock). Fixed matching prose errors (Star Castle has no hyperspace; Spike doesn't throw rocks) and rebuilt `controls.html`'s per-game table. No gameplay-affecting guesswork remains.
 - **Gamedoc accuracy sweep (per-platform web verification).** Intellivision: corrected two release years — BurgerTime is the **1983** Mattel/Data East port (not 1982) and Atlantis shipped **1982** (not 1981); fixed `games.json`, both gamedocs, and the year-sorted menu (BurgerTime drops to #10). Controls were already accurate. (TRS-80 and Tandy CoCo corrected earlier in the sweep.)
 
 ### Changed
