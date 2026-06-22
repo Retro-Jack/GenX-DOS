@@ -1,12 +1,21 @@
 {
-  "calgames": { "title": "California Games (1989)",                "rom": "roms/calgames.lnx" },
-  "chips":    { "title": "Chip's Challenge (1989)",                "rom": "roms/chips.lnx" },
-  "electro":  { "title": "Electrocop (1989)",                      "rom": "roms/electro.lnx" },
-  "bluelght": { "title": "Blue Lightning (1989)",                  "rom": "roms/bluelght.lnx" },
-  "warbirds": { "title": "Warbirds (1989)",                        "rom": "roms/warbirds.lnx" },
-  "gauntlet": { "title": "Gauntlet: The Third Encounter (1990)",   "rom": "roms/gauntlet.lnx" },
-  "klax":     { "title": "Klax (1990)",                            "rom": "roms/klax.lnx" },
-  "slime":    { "title": "Todd's Adventures in Slime World (1990)", "rom": "roms/slime.lnx" },
-  "stunrun":  { "title": "S.T.U.N. Runner (1991)",                 "rom": "roms/stunrun.lnx" },
-  "rampart":  { "title": "Rampart (1991)",                         "rom": "roms/rampart.lnx" }
+  "calgames": {
+    "title": "California Games (1989)",
+    "rom": "roms/calgames.lnx"
+  },
+  "chips": { "title": "Chip's Challenge (1989)", "rom": "roms/chips.lnx" },
+  "electro": { "title": "Electrocop (1989)", "rom": "roms/electro.lnx" },
+  "bluelght": { "title": "Blue Lightning (1989)", "rom": "roms/bluelght.lnx" },
+  "warbirds": { "title": "Warbirds (1989)", "rom": "roms/warbirds.lnx" },
+  "gauntlet": {
+    "title": "Gauntlet: The Third Encounter (1990)",
+    "rom": "roms/gauntlet.lnx"
+  },
+  "klax": { "title": "Klax (1990)", "rom": "roms/klax.lnx" },
+  "slime": {
+    "title": "Todd's Adventures in Slime World (1990)",
+    "rom": "roms/slime.lnx"
+  },
+  "stunrun": { "title": "S.T.U.N. Runner (1991)", "rom": "roms/stunrun.lnx" },
+  "rampart": { "title": "Rampart (1991)", "rom": "roms/rampart.lnx" }
 }

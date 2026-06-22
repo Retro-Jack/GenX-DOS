@@ -10,9 +10,9 @@
 // any play.html that uses numpad-as-joystick:
 //   <script defer src="../_shared/genx-numlock-warn.js"></script>
 // Skip the include on bundles without a joystick port (PET).
-(function() {
-    const ready = () => {
-        const css = `
+(function () {
+  const ready = () => {
+    const css = `
       #genx-numlock-warn {
         position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
         background: #2a1f00; color: #ffcc00;
@@ -32,45 +32,48 @@
       }
       #genx-numlock-warn button:hover { background: #ffcc00; color: #000; }
     `;
-        const style = document.createElement('style');
-        style.textContent = css;
-        document.head.appendChild(style);
+    const style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
 
-        const el = document.createElement('div');
-        el.id = 'genx-numlock-warn';
-        el.hidden = true;
-        el.innerHTML =
-            '<span id="genx-numlock-warn-msg">' +
-            '<strong>NumLock is off.</strong> Joystick is mapped to the numpad (8 / 4 / 6 / 2 = directions, 0 or 5 = fire) — turn NumLock on if directions don\'t work.' +
-            '</span>' +
-            '<button type="button">dismiss</button>';
-        document.body.appendChild(el);
-        el.querySelector('button').addEventListener('click', () => {
-            el.hidden = true;
-        });
+    const el = document.createElement('div');
+    el.id = 'genx-numlock-warn';
+    el.hidden = true;
+    el.innerHTML =
+      '<span id="genx-numlock-warn-msg">' +
+      "<strong>NumLock is off.</strong> Joystick is mapped to the numpad (8 / 4 / 6 / 2 = directions, 0 or 5 = fire) — turn NumLock on if directions don't work." +
+      '</span>' +
+      '<button type="button">dismiss</button>';
+    document.body.appendChild(el);
+    el.querySelector('button').addEventListener('click', () => {
+      el.hidden = true;
+    });
 
-        let shown = false;
-        const onKey = (e) => {
-            if (shown) return;
-            shown = true;
-            window.removeEventListener('keydown', onKey, true);
-            // Listen at window/capture so SDL/EJS handlers attached to document
-            // or canvas don't beat us to the event. getModifierState is the
-            // only way to read NumLock state from JS — there is no
-            // navigator.keyboardLockState or similar.
-            if (typeof e.getModifierState === 'function' && !e.getModifierState('NumLock')) {
-                el.hidden = false;
-                setTimeout(() => {
-                    el.hidden = true;
-                }, 12000);
-            }
-        };
-        window.addEventListener('keydown', onKey, true);
+    let shown = false;
+    const onKey = (e) => {
+      if (shown) return;
+      shown = true;
+      window.removeEventListener('keydown', onKey, true);
+      // Listen at window/capture so SDL/EJS handlers attached to document
+      // or canvas don't beat us to the event. getModifierState is the
+      // only way to read NumLock state from JS — there is no
+      // navigator.keyboardLockState or similar.
+      if (
+        typeof e.getModifierState === 'function' &&
+        !e.getModifierState('NumLock')
+      ) {
+        el.hidden = false;
+        setTimeout(() => {
+          el.hidden = true;
+        }, 12000);
+      }
     };
+    window.addEventListener('keydown', onKey, true);
+  };
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', ready);
-    } else {
-        ready();
-    }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready);
+  } else {
+    ready();
+  }
 })();

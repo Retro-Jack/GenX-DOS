@@ -1,12 +1,15 @@
 {
-  "columns":  { "title": "Columns (1991)",                            "rom": "roms/columns.gg" },
-  "sonic":    { "title": "Sonic the Hedgehog (1991)",                 "rom": "roms/sonic.gg" },
-  "shinobi":  { "title": "Shinobi (1991)",                            "rom": "roms/shinobi.gg" },
-  "aerial":   { "title": "Aerial Assault (1992)",                     "rom": "roms/aerial.gg" },
-  "rage":     { "title": "Streets of Rage (1992)",                    "rom": "roms/rage.gg" },
-  "oasis":    { "title": "Defenders of Oasis (1992)",                 "rom": "roms/oasis.gg" },
-  "illusion": { "title": "Land of Illusion (1993)",                   "rom": "roms/illusion.gg" },
-  "kombat":   { "title": "Mortal Kombat (1993)",                      "rom": "roms/kombat.gg" },
-  "meanbean": { "title": "Dr. Robotnik's Mean Bean Machine (1993)",   "rom": "roms/meanbean.gg" },
-  "tails":    { "title": "Tails Adventure (1995)",                    "rom": "roms/tails.gg" }
+  "columns": { "title": "Columns (1991)", "rom": "roms/columns.gg" },
+  "sonic": { "title": "Sonic the Hedgehog (1991)", "rom": "roms/sonic.gg" },
+  "shinobi": { "title": "Shinobi (1991)", "rom": "roms/shinobi.gg" },
+  "aerial": { "title": "Aerial Assault (1992)", "rom": "roms/aerial.gg" },
+  "rage": { "title": "Streets of Rage (1992)", "rom": "roms/rage.gg" },
+  "oasis": { "title": "Defenders of Oasis (1992)", "rom": "roms/oasis.gg" },
+  "illusion": { "title": "Land of Illusion (1993)", "rom": "roms/illusion.gg" },
+  "kombat": { "title": "Mortal Kombat (1993)", "rom": "roms/kombat.gg" },
+  "meanbean": {
+    "title": "Dr. Robotnik's Mean Bean Machine (1993)",
+    "rom": "roms/meanbean.gg"
+  },
+  "tails": { "title": "Tails Adventure (1995)", "rom": "roms/tails.gg" }
 }

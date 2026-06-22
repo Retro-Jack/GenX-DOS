@@ -1,12 +1,42 @@
 {
-  "galaxy":   { "title": "Galaxy Invasion (1980, Big Five)",        "rom": "games/galaxy.cmd" },
-  "cosmic":   { "title": "Cosmic Fighter (1980, Big Five)",         "rom": "games/cosmic.cmd" },
-  "attack":   { "title": "Attack Force (1980, Big Five)",           "rom": "games/attack.cmd" },
-  "supernov": { "title": "Super Nova (1980, Big Five)",             "rom": "games/supernov.cmd" },
-  "defense":  { "title": "Defense Command (1981, Big Five)",        "rom": "games/defense.cmd" },
-  "robot":    { "title": "Robot Attack (1981, Big Five)",           "rom": "games/robot.cmd" },
-  "armored":  { "title": "Armored Patrol (1981, Adventure Int'l)",  "rom": "games/armored.cmd" },
-  "elimintr": { "title": "Eliminator (1981, Adventure Int'l)",      "rom": "games/elimintr.cmd" },
-  "seadrgn":  { "title": "Sea Dragon (1982, Big Five)",             "rom": "games/seadrgn.cmd" },
-  "crazypnt": { "title": "Crazy Painter (1982, Big Five)",          "rom": "games/crazypnt.cmd" }
+  "galaxy": {
+    "title": "Galaxy Invasion (1980, Big Five)",
+    "rom": "games/galaxy.cmd"
+  },
+  "cosmic": {
+    "title": "Cosmic Fighter (1980, Big Five)",
+    "rom": "games/cosmic.cmd"
+  },
+  "attack": {
+    "title": "Attack Force (1980, Big Five)",
+    "rom": "games/attack.cmd"
+  },
+  "supernov": {
+    "title": "Super Nova (1980, Big Five)",
+    "rom": "games/supernov.cmd"
+  },
+  "defense": {
+    "title": "Defense Command (1981, Big Five)",
+    "rom": "games/defense.cmd"
+  },
+  "robot": {
+    "title": "Robot Attack (1981, Big Five)",
+    "rom": "games/robot.cmd"
+  },
+  "armored": {
+    "title": "Armored Patrol (1981, Adventure Int'l)",
+    "rom": "games/armored.cmd"
+  },
+  "elimintr": {
+    "title": "Eliminator (1981, Adventure Int'l)",
+    "rom": "games/elimintr.cmd"
+  },
+  "seadrgn": {
+    "title": "Sea Dragon (1982, Big Five)",
+    "rom": "games/seadrgn.cmd"
+  },
+  "crazypnt": {
+    "title": "Crazy Painter (1982, Big Five)",
+    "rom": "games/crazypnt.cmd"
+  }
 }

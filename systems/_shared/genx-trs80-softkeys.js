@@ -15,30 +15,31 @@
 // Include via one tag in systems/trs80/play.html:
 //   <script defer src="../_shared/genx-trs80-softkeys.js"></script>
 (function () {
-    const fireClear = () => {
-        const init = {
-            key: 'Home',
-            code: 'Home',
-            keyCode: 36,
-            which: 36,
-            bubbles: true,
-            cancelable: true,
-        };
-        const targets = [document, window, document.body];
-        const cv = document.querySelector('canvas');
-        if (cv) targets.push(cv);
-        for (const t of targets) {
-            try {
-                t.dispatchEvent(new KeyboardEvent('keydown', init));
-                setTimeout(() => t.dispatchEvent(new KeyboardEvent('keyup', init)), 80);
-            } catch (_) {
-                /* swallow */ }
-        }
+  const fireClear = () => {
+    const init = {
+      key: 'Home',
+      code: 'Home',
+      keyCode: 36,
+      which: 36,
+      bubbles: true,
+      cancelable: true,
     };
+    const targets = [document, window, document.body];
+    const cv = document.querySelector('canvas');
+    if (cv) targets.push(cv);
+    for (const t of targets) {
+      try {
+        t.dispatchEvent(new KeyboardEvent('keydown', init));
+        setTimeout(() => t.dispatchEvent(new KeyboardEvent('keyup', init)), 80);
+      } catch (_) {
+        /* swallow */
+      }
+    }
+  };
 
-    // Soft button — top-left corner, clear of the top-right controls link.
-    const ready = () => {
-        const css = `
+  // Soft button — top-left corner, clear of the top-right controls link.
+  const ready = () => {
+    const css = `
       #genx-trs80-clear {
         position: fixed; top: 8px; left: 8px;
         z-index: 100;
@@ -51,22 +52,23 @@
       #genx-trs80-clear:hover { opacity: 1; background: rgba(60,60,60,0.95); color: #fff; border-color: #aaa; }
       #genx-trs80-clear:active { background: #444; }
     `;
-        const style = document.createElement('style');
-        style.textContent = css;
-        document.head.appendChild(style);
+    const style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
 
-        const btn = document.createElement('button');
-        btn.id = 'genx-trs80-clear';
-        btn.type = 'button';
-        btn.textContent = 'CLEAR';
-        btn.title = 'Sends the TRS-80 CLEAR key (keyboard shortcut: Home or Delete) — most games start with CLEAR';
-        btn.addEventListener('click', fireClear);
-        document.body.appendChild(btn);
-    };
+    const btn = document.createElement('button');
+    btn.id = 'genx-trs80-clear';
+    btn.type = 'button';
+    btn.textContent = 'CLEAR';
+    btn.title =
+      'Sends the TRS-80 CLEAR key (keyboard shortcut: Home or Delete) — most games start with CLEAR';
+    btn.addEventListener('click', fireClear);
+    document.body.appendChild(btn);
+  };
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', ready);
-    } else {
-        ready();
-    }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready);
+  } else {
+    ready();
+  }
 })();

@@ -1,0 +1,11 @@
+.git/
+
+# Vendored / upstream emulator runtimes — JS *and* JSON. Prettier is usually
+# semantic-safe, but beautifying these broke EmulatorJS at runtime (the
+# "Download Game Core" stall), so every third-party engine file stays exactly
+# as shipped. Our own code (prompt/**, systems/**/genx-*.js) and our game
+# manifests (systems/<sys>/games.json) are still formatted.
+systems/**/*.js
+systems/**/*.json
+!systems/**/genx-*.js
+!systems/*/games.json

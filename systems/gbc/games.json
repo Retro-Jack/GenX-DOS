@@ -1,12 +1,24 @@
 {
-  "tetris":   { "title": "Tetris (1989)",                              "rom": "roms/tetris.gb" },
-  "smland":   { "title": "Super Mario Land (1989)",                    "rom": "roms/supermarioland.gb" },
-  "castlev":  { "title": "Castlevania: The Adventure (1989)",          "rom": "roms/castlevania.gb" },
-  "metroid2": { "title": "Metroid II: Return of Samus (1991)",         "rom": "roms/metroid2.gb" },
-  "kirby":    { "title": "Kirby's Dream Land (1992)",                  "rom": "roms/kirby.gb" },
-  "zelda":    { "title": "The Legend of Zelda: Link's Awakening (1993)", "rom": "roms/zelda.gb" },
-  "dkong":    { "title": "Donkey Kong (1994)",                         "rom": "roms/donkeykong.gb" },
-  "pokemon":  { "title": "Pokémon Red (1996)",                         "rom": "roms/pokemonred.gb" },
-  "wario3":   { "title": "Wario Land 3 (2000)",                        "rom": "roms/warioland3.gbc" },
-  "shantae":  { "title": "Shantae (2002)",                            "rom": "roms/shantae.gbc" }
+  "tetris": { "title": "Tetris (1989)", "rom": "roms/tetris.gb" },
+  "smland": {
+    "title": "Super Mario Land (1989)",
+    "rom": "roms/supermarioland.gb"
+  },
+  "castlev": {
+    "title": "Castlevania: The Adventure (1989)",
+    "rom": "roms/castlevania.gb"
+  },
+  "metroid2": {
+    "title": "Metroid II: Return of Samus (1991)",
+    "rom": "roms/metroid2.gb"
+  },
+  "kirby": { "title": "Kirby's Dream Land (1992)", "rom": "roms/kirby.gb" },
+  "zelda": {
+    "title": "The Legend of Zelda: Link's Awakening (1993)",
+    "rom": "roms/zelda.gb"
+  },
+  "dkong": { "title": "Donkey Kong (1994)", "rom": "roms/donkeykong.gb" },
+  "pokemon": { "title": "Pokémon Red (1996)", "rom": "roms/pokemonred.gb" },
+  "wario3": { "title": "Wario Land 3 (2000)", "rom": "roms/warioland3.gbc" },
+  "shantae": { "title": "Shantae (2002)", "rom": "roms/shantae.gbc" }
 }
