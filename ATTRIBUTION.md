@@ -22,7 +22,8 @@ the authoritative version.
   `<meta name="Originator" content="Mike's brain -- thanks, Mike!">`.
   The interactive prompt under `prompt/`, the `fs.js` virtual `C:` drive
   layout, the command dispatcher, and the CP437 sprite font and renderer
-  originate from LGR's DOS-prompt project. GenX-DOS extends that base.
+  originate from **LGR-DOS** (the "LGR-DOS Command Prompt"), LGR's
+  in-browser DOS-prompt project. GenX-DOS extends that base.
 - **AMIBIOS POST animation, emulator integration wrappers, menu tree,
   and all bundled-emulator-specific code** — © Retro-Jack. Original work
   added on top of the LGR terminal base.
