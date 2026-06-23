@@ -23,8 +23,10 @@ the authoritative version.
 - **AMIBIOS POST animation, emulator integration wrappers, menu tree,
   and all bundled-emulator-specific code** — © Retro-Jack. Original work
   added on top of the LGR terminal base.
-- No licence file in repo; treated as source-available for
-  personal/educational use. Credit the LGR base in any derivative work.
+- Retro-Jack's original work (above) is licensed **CC BY-NC 4.0** — see
+  `LICENSE.TXT`. The LGR terminal base is explicitly **excluded** from
+  that licence and stays under LGR's own terms: source-available, with a
+  clear credit to the LGR base required in any derivative work.
 
 ---
 
