@@ -18,7 +18,11 @@
     <style>
       /* GenX-DOS dist overrides: strip upstream chrome, paint sitewide wallpaper. */
       #header-bar, #leds { display: none !important; }
-      html, body {
+      /* Wallpaper on the root only (not body): #cub-monitor's margin-top:60px
+         collapses through the block body, which would offset a second body
+         background by 60px and seam the pattern right at the bezel's top edge.
+         The root background propagates to the viewport and tiles uniformly. */
+      html {
         background: #000 url('../../_shared/textures/70s-bg.png') repeat !important;
         background-size: 220px !important;
       }
