@@ -3790,7 +3790,7 @@ var fs = [
           },
           {
             name: '0.bat',
-            data: 'cd ..\nmenu\n',
+            data: 'echo off\ncls\necho GenX-DOS by LGR and Retro Jack (2026)\necho ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ\necho.\necho Type "help" or "menu" to continue.\necho.\n',
           },
         ],
       },
