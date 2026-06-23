@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-06-23
+
 ### Added
 - **Subtle "source · licence" credit on every emulator page.** A new self-contained `systems/_shared/genx-repo-link.js` injects a bottom-centre note — `GenX-DOS · source · licence` — linking to the GitHub repo and `LICENSE.TXT`. It sits in a small dark pill so it reads over the wallpaper (bare amber text vanished into the busy pattern, the same reason the controls / save-load links carry their own background). Included on all 29 launch pages (26 `play.html` + the jsbeeb/jsvecx/webmsx wrappers). The text is `pointer-events:none` so only the two links are clickable and it never steals a click from the emulator; it sits clear of the controls link (bottom-right) and save/load buttons (bottom-left).
 
