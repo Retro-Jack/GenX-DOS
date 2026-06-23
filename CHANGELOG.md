@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- **Subtle "source · licence" credit on every emulator page.** A new self-contained `systems/_shared/genx-repo-link.js` injects a low-opacity bottom-centre note — `GenX-DOS · source · licence` — linking to the GitHub repo and `LICENSE.TXT`. Included on all 29 launch pages (26 `play.html` + the jsbeeb/jsvecx/webmsx wrappers). The text is `pointer-events:none` so only the two links are clickable and it never steals a click from the emulator; it sits clear of the controls link (bottom-right) and save/load buttons (bottom-left).
+
 ### Fixed
 - **Enforced 10 games per system — Atari 400 was 11.** Star Raiders was listed on both the Atari 400 and Atari 800XL menus (different machine configs), so the 400 menu held 11 games. Removed it from the Atari 400 (it stays on the 800XL); the 400 now lists 10 games + Atari BASIC at #11, like every other system. Box re-aligned (45-wide) and the choice <code>.bat</code> files renumbered 1–11. Site-wide count verified: all 31 game menus are exactly 10 games, with built-in software (BASIC / Mine Storm / Woz Monitor) at #11 where present.
 - **EmulatorJS console/handheld bundles — verified consistent (gamedoc ↔ controls.html).** Swept NES, 2600, 7800, ColecoVision, Odyssey², Game Boy/Color, Game Gear, Lynx and the whole VICE family (C64, C128, C16, VIC-20, MAX, Plus/4): every gamedoc maps the controller keys exactly as its controls.html does (X=A/Z=B on NES/GB/Lynx, Z/X = left/right fire on 7800, Z/X = Button 1/2 on Game Gear, numpad joystick on the VICE family, etc.), and game-specific combos spot-check correct (Castlevania sub-weapon, Punch-Out dodge). **No errors.** One tidy-up: the Plus/4 gamedocs drive the joystick with the arrow keys + L Ctrl (the EmulatorJS RetroPad mapping, equivalent to the numpad), which its controls.html only documented as the numpad — added the arrow-key note so the two surfaces agree (c128 already documented both).
