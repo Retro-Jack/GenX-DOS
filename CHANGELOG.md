@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-06-24
+
 ### Changed
 - **Orphan + doc-sync audit (24/06/2026).** Full sweep after the v1.0.1 release. **No orphan files** — every shared helper (JS/CSS), bezel, texture, font sheet, and prompt script resolves to a runtime reference; no stray/temp files; no leftover `packaging/` dir. README and ATTRIBUTION verified current (19 engines / 32 sub-systems / 13 EmulatorJS bundles; every bundle and core attributed). **Wiki fixes:** `Virtual-Filesystem` was stale — it still described only CONSOLE + HOMECOMP (no **Handheld Consoles** category) and counted "28 sub-systems"; rebuilt the menu tree to the current EMULATOR LAUNCHER layout (HOMECOMP / CONSOLE / HANDHELD / WIKI / Exit), added the TANDY parent (TRS-80 + CoCo) and the three handhelds (Game Boy/Color, Lynx, Game Gear), and corrected the count to 32. `File-Structure` was missing the `gbc/` `lynx/` `gamegear/` dirs from both the tree and the per-emulator table, and omitted the `prosystem` core from the `_shared-ejs` line — all added.
 
