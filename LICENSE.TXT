@@ -43,7 +43,7 @@ The licensor cannot revoke these freedoms as long as you follow the license term
    way that suggests the licensor endorses you or your use. 
    
    Per upstream source requirements, you must also preserve a clear and prominent 
-   credit to the original "LGR base" terminal code framework in any distributed 
+   credit to the original "LGR" (www.lazygamereviews.com) base terminal code framework in any distributed
    derivative work.
 
 2. NON-COMMERCIAL:
