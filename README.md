@@ -125,7 +125,7 @@ See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki) for the long form. E
 
 Summary below; see [ATTRIBUTION.md](ATTRIBUTION.md) for the canonical record including source URLs, authors, BIOS/ROM provenance, bezel artwork licences, and BY-SA share-alike obligations.
 
-- DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system by Mike @ **LGR — Lazy Game Reviews** (<https://www.lazygamereviews.com>)
+- DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system by Mike, written informally for **LGR — Lazy Game Reviews** (Clint Basinger, <https://www.lazygamereviews.com>)
 - AMIBIOS POST animation, emulator integration wrappers, menu tree, and bundled-emulator-specific code by Retro-Jack
 - jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb)
 - ElkJS: (c) Darren Coles 2013 (dmcoles/elkjs) — 6502 core ported from Elkulator by Tom Walker

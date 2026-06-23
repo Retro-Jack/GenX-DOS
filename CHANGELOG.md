@@ -23,6 +23,7 @@
 - **Gamedoc accuracy sweep (per-platform web verification).** Intellivision: corrected two release years — BurgerTime is the **1983** Mattel/Data East port (not 1982) and Atlantis shipped **1982** (not 1981); fixed `games.json`, both gamedocs, and the year-sorted menu (BurgerTime drops to #10). Controls were already accurate. (TRS-80 and Tandy CoCo corrected earlier in the sweep.)
 
 ### Changed
+- **Name Clint Basinger in the LGR credit.** The terminal-base credit (README + ATTRIBUTION) now records that Mike wrote it informally for LGR — Lazy Game Reviews (Clint Basinger), rather than the brand alone.
 - **ATTRIBUTION: refresh the Site-code licence note.** Replaced the pre-LICENSE.TXT line ("No licence file in repo; treated as source-available…") with the current state — Retro-Jack's original code is CC BY-NC 4.0 (see LICENSE.TXT); the LGR terminal base is excluded from that licence and stays under LGR's own terms with the required credit.
 - **LICENSE: name LGR in the upstream-credit clause.** The required credit now reads the original "LGR" (www.lazygamereviews.com) base terminal code framework, naming Lazy Game Reviews and its site rather than just "LGR base".
 - **Root launcher "0. Exit" now exits to the prompt with a sign-off.** At the top level there's nowhere to go "back" to, so the entry (relabelled from "Back" to "Exit") used to just re-enter the launcher. It now clears the screen and prints "GenX-DOS by LGR and Retro Jack (2026)" with a "Type help or menu to continue" hint. (The category choosers' Back still steps up a level, unchanged.)
