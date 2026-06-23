@@ -2295,7 +2295,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              ATARI  400  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Star Raiders         (1979)  STARRAID º\necho                 º   2.  Space Invaders       (1980)  INVADERS º\necho                 º   3.  Asteroids            (1981)  ASTEROID º\necho                 º   4.  Defender             (1981)  DEFENDER º\necho                 º   5.  Missile Command      (1981)  MISSILE  º\necho                 º   6.  Centipede            (1982)  CENTIPED º\necho                 º   7.  Choplifter           (1982)  CHOPLIFTRº\necho                 º   8.  Pac-Man              (1982)  PACMAN   º\necho                 º   9.  Dig Dug              (1983)  DIGDUG   º\necho                 º  10.  Donkey Kong          (1983)  DKONG    º\necho                 º  11.  Joust                (1983)  JOUST    º\necho                 º                                             º\necho                 º  12.  Atari BASIC prompt           BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              ATARI  400  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Space Invaders       (1980)  INVADERS º\necho                 º   2.  Asteroids            (1981)  ASTEROID º\necho                 º   3.  Defender             (1981)  DEFENDER º\necho                 º   4.  Missile Command      (1981)  MISSILE  º\necho                 º   5.  Centipede            (1982)  CENTIPED º\necho                 º   6.  Choplifter           (1982)  CHOPLIFTRº\necho                 º   7.  Pac-Man              (1982)  PACMAN   º\necho                 º   8.  Dig Dug              (1983)  DIGDUG   º\necho                 º   9.  Donkey Kong          (1983)  DKONG    º\necho                 º  10.  Joust                (1983)  JOUST    º\necho                 º                                             º\necho                 º  11.  Atari BASIC prompt           BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2303,55 +2303,47 @@ var fs = [
                           },
                           {
                             name: '1.bat',
-                            data: 'starraid\n',
-                          },
-                          {
-                            name: '2.bat',
                             data: 'invaders\n',
                           },
                           {
-                            name: '3.bat',
+                            name: '2.bat',
                             data: 'asteroid\n',
                           },
                           {
-                            name: '4.bat',
+                            name: '3.bat',
                             data: 'defender\n',
                           },
                           {
-                            name: '5.bat',
+                            name: '4.bat',
                             data: 'missile\n',
                           },
                           {
-                            name: '6.bat',
+                            name: '5.bat',
                             data: 'centiped\n',
                           },
                           {
-                            name: '7.bat',
+                            name: '6.bat',
                             data: 'chopliftr\n',
                           },
                           {
-                            name: '8.bat',
+                            name: '7.bat',
                             data: 'pacman\n',
                           },
                           {
-                            name: '9.bat',
+                            name: '8.bat',
                             data: 'digdug\n',
                           },
                           {
-                            name: '10.bat',
+                            name: '9.bat',
                             data: 'dkong\n',
                           },
                           {
-                            name: '11.bat',
+                            name: '10.bat',
                             data: 'joust\n',
                           },
                           {
-                            name: '12.bat',
+                            name: '11.bat',
                             data: 'basic\n',
-                          },
-                          {
-                            name: 'starraid.bat',
-                            link: '../systems/atari800/play.html?game=starraid&machine=atari',
                           },
                           {
                             name: 'missile.bat',
