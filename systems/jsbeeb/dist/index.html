@@ -18,12 +18,14 @@
     <style>
       /* GenX-DOS dist overrides: strip upstream chrome, paint sitewide wallpaper. */
       #header-bar, #leds { display: none !important; }
-      /* Wallpaper on the root only (not body): #cub-monitor's margin-top:60px
-         collapses through the block body, which would offset a second body
-         background by 60px and seam the pattern right at the bezel's top edge.
-         The root background propagates to the viewport and tiles uniformly. */
-      html {
-        background: #000 url('../../_shared/textures/70s-bg.png') repeat !important;
+      /* Wallpaper on html AND body — body's upstream background is black, so it
+         needs the override too (root-only leaves body black over its box). The
+         `fixed` attachment anchors BOTH to the viewport so they tile from the
+         same origin: without it, #cub-monitor's margin-top:60px collapses
+         through the block body and offsets the body copy by 60px, seaming the
+         pattern at the bezel's top edge. */
+      html, body {
+        background: #000 url('../../_shared/textures/70s-bg.png') repeat fixed !important;
         background-size: 220px !important;
       }
       /* Standard asset order inside the CUB monitor (back → front):
