@@ -79,6 +79,9 @@
             overflow: hidden;
             transform-origin: center center;
             flex-shrink: 0;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
         }
 
         .font {
@@ -87,6 +90,13 @@
             height: 12px;
             float: left;
             overflow: hidden;
+            /* Pixel font — sample nearest-neighbour, not bilinear. Without this
+               Firefox bleeds the neighbouring sprite-sheet cell along each
+               glyph's clip edge under the non-integer transform: scale,
+               drawing a hairline across every text row. */
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
         }
 
         /* Mobile-device block — see systems/_shared/genx-noscript.css for the canonical copy. */
@@ -133,6 +143,14 @@
             if (!wrap || !prompt) return;
             var sx = wrap.clientWidth / 960;
             var sy = wrap.clientHeight / 300;
+            // Snap each 12px cell to a whole number of device pixels so row
+            // and column boundaries land on real pixels — otherwise Firefox
+            // antialiases the sub-pixel clip edge of every glyph div into a
+            // hairline on every text row. Floor so the grid never overflows
+            // the cutout; .prompt-fit's black fill covers the small slack.
+            var dpr = window.devicePixelRatio || 1;
+            sx = Math.max(1, Math.floor(12 * sx * dpr)) / (12 * dpr);
+            sy = Math.max(1, Math.floor(12 * sy * dpr)) / (12 * dpr);
             prompt.style.transform = 'scale(' + sx + ',' + sy + ')';
         }
 
