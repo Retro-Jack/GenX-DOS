@@ -17,7 +17,9 @@ the authoritative version.
 
 - **DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system**
   — by Mike, who wrote it informally for **LGR — Lazy Game Reviews**
-  (Clint Basinger, <https://www.lazygamereviews.com>).
+  (Clint Basinger, <https://www.lazygamereviews.com>). LGR's own site
+  metadata credits Mike — `<meta name="Generator" content="Mike">` and
+  `<meta name="Originator" content="Mike's brain -- thanks, Mike!">`.
   The interactive prompt under `prompt/`, the `fs.js` virtual `C:` drive
   layout, the command dispatcher, and the CP437 sprite font and renderer
   originate from LGR's DOS-prompt project. GenX-DOS extends that base.
