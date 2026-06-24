@@ -114,6 +114,8 @@ Most bundles carry **save** / **load** buttons in the bottom-left corner — an 
 
 See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki) for the long form. Each engine's integration story is its own page.
 
+Prefer a narrative read? **[Booting a Museum in a Browser Tab](docs/tech_article.md)** is a magazine-style feature on the project — the concept, the static/no-build constraint, the emulator war stories, and the curation philosophy.
+
 - **[Project Overview](https://github.com/Retro-Jack/GenX-DOS/wiki/Project-Overview)** — what the site does and how it's structured
 - **[Virtual Filesystem](https://github.com/Retro-Jack/GenX-DOS/wiki/Virtual-Filesystem)** — the simulated `C:` drive and menu layout
 - **[Commands](https://github.com/Retro-Jack/GenX-DOS/wiki/Commands)** — the DOS commands the prompt understands

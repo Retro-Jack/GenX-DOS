@@ -3,7 +3,7 @@
 ## [Unreleased]
 
 ### Added
-- **`docs/tech_article.md`** — a magazine-style feature article on the project (the concept, the static/no-build constraint, the WASM-rebuild and save-state war stories, the curation philosophy, and the honest seams).
+- **`docs/tech_article.md`** — a magazine-style feature article on the project (the concept, the static/no-build constraint, the WASM-rebuild and save-state war stories, the curation philosophy, and the honest seams). Linked from the README's Documentation section and the new wiki `_Sidebar.md`.
 
 ## [1.0.3] - 2026-06-24
 
