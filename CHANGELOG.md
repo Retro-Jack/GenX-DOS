@@ -2,8 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.5.1] - 2026-06-25
+
 ### Added
-- **Prominent "accuracy not guaranteed" caveat** on the three obscure gamedocs that couldn't be manual-verified in the re-audit (C128 Invaders, C128 Phazer, MAX Speed/Bingo Math). New reusable `.caveat` callout class in `genx-controls.css` (amber left-bar warning box).
+- **Prominent "accuracy not guaranteed" caveat** on the three obscure gamedocs that couldn't be manual-verified in the re-audit (C128 Invaders, C128 Phazer, MAX Speed/Bingo Math). New reusable `.caveat` callout class in `genx-controls.css` (amber left-bar warning box), placed directly under the header description.
 
 ## [1.0.5] - 2026-06-25
 
