@@ -3,7 +3,7 @@
 ## [Unreleased]
 
 ### Changed
-- **Tightened the "0. Exit" sign-off spacing.** Dropped the two `echo.` blank lines from the root `SYSTEMS\0.bat` so the exit screen prints the title, rule line, and "Type help or menu to continue" with no surrounding blank rows.
+- **Simplified the "0. Exit" sign-off.** Dropped the two `echo.` blank lines and shortened the header to `GenX-DOS (2026)` with a short rule line — the exit screen now prints just the title, rule, and "Type help or menu to continue".
 
 ## [1.0.2] - 2026-06-24
 
