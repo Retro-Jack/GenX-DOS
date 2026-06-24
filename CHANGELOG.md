@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- **`source · licence` credit on the DOS prompt page too.** The same self-contained `genx-repo-link.js` pill that sits on every emulator page is now included on `prompt/index.html`, so the menu/prompt surface carries the bottom-centre `GenX-DOS · source · licence` credit as well.
 - **`echo on` command.** The prompt now understands `echo on` (mirroring `echo off`): it re-enables echo and drops to a fresh `C:\>` prompt. A batch can end with `echo on` to return the user to a live prompt without the trailing blank line that `echo.` leaves.
 
 ### Fixed
