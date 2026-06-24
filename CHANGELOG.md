@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- **Tightened the "0. Exit" sign-off spacing.** Dropped the two `echo.` blank lines from the root `SYSTEMS\0.bat` so the exit screen prints the title, rule line, and "Type help or menu to continue" with no surrounding blank rows.
+
 ## [1.0.2] - 2026-06-24
 
 ### Changed
