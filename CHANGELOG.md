@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-06-25
+
 ### Fixed
 - **Gamedoc accuracy re-audit of the EmulatorJS console/handheld bundles (post-quota pass).** The original 12a audit verified the standalone emulators against manuals but only gave the EJS bundles a gamedoc↔controls.html *consistency* check (the WebSearch quota had run out). Re-verifying each game's specific keys against manuals:
   - **NES (4/10 fixed):** Mega Man 2 — weapon menu opens with **START**, not Select (Select just moves the menu cursor). Final Fantasy — main menu opens with **START**; Select changes marching order (was attributed to Select / "Start unused"). Super Mario Bros. 3 — the world-map item box opens with **B** (A uses the chosen item); Select is unused (was "Select uses inventory"). Castlevania — stairs climb with **Up / Down** at a staircase, not a held diagonal (a CV3 mechanic).
