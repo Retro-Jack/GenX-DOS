@@ -2,8 +2,14 @@
 
 ## [Unreleased]
 
+### Added
+- **`echo on` command.** The prompt now understands `echo on` (mirroring `echo off`): it re-enables echo and drops to a fresh `C:\>` prompt. A batch can end with `echo on` to return the user to a live prompt without the trailing blank line that `echo.` leaves.
+
+### Fixed
+- **"0. Exit" now drops to a `C:\>` prompt again.** Trimming the `echo.` lines from `SYSTEMS\0.bat` (above) removed the side effect that re-enabled echo and redrew the prompt — so the sign-off screen sat there with no cursor. The batch now ends with the new `echo on`, restoring the live prompt with no extra blank line.
+
 ### Changed
-- **Simplified the "0. Exit" sign-off.** Dropped the two `echo.` blank lines and shortened the header to `GenX-DOS (2026)` with a short rule line — the exit screen now prints just the title, rule, and "Type help or menu to continue".
+- **Simplified the "0. Exit" sign-off.** Dropped the two `echo.` blank lines and shortened the header to `GenX-DOS (2026)` with a short rule line — the exit screen now prints the title, rule, "Type help or menu to continue", then a fresh `C:\>` prompt.
 
 ## [1.0.2] - 2026-06-24
 

@@ -100,6 +100,14 @@ registerCmd('echo', function (cmd) {
     bEchoOff = true;
     return;
   }
+  if (cmd == 'on') {
+    // Re-enable echo. Returning undefined lets the dispatcher redraw the
+    // C:\> prompt (handleCmd calls prompt() after a command that doesn't
+    // return false), so a batch can end with `echo on` to drop to a live
+    // prompt — without printing a blank line the way `echo.` does.
+    bEchoOff = false;
+    return;
+  }
   echo(cmd);
 });
 registerCmd('echo.', function () {
@@ -163,6 +171,7 @@ var HELP_TEXT = [
   'DISPLAY',
   '  echo <text>      Print text',
   '  echo off         Suppress C:\\> prompt re-render until end of batch',
+  '  echo on          Re-enable echo and drop to a fresh C:\\> prompt',
   '  echo.            Print a blank line and re-enable prompt re-render',
   '  setcol <BF>      Set background + foreground hex colour',
   '',
