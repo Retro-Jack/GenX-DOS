@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-06-24
+
 ### Changed
 - **README License section now links `LICENSE.TXT` prominently**, alongside the existing `ATTRIBUTION.md` link (the full licence text was previously only reachable via the CC badge).
 - **ZX Spectrum (jsspeccy) bezel no longer fisheye-distorted and sits flatter in the glass.** Removed the `#crtbulge` barrel-distortion filter (and its now-unused SVG/displacement-map) and dropped the fixed `translate()` nudge it needed. The screen now overscans the bezel cutout at `scale(1.09)`.
