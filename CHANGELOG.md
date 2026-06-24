@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- **README License section now links `LICENSE.TXT` prominently**, alongside the existing `ATTRIBUTION.md` link (the full licence text was previously only reachable via the CC badge).
+
 ### Added
 - **`docs/tech_article.md`** — a magazine-style feature article on the project (the concept, the static/no-build constraint, the WASM-rebuild and save-state war stories, the curation philosophy, and the honest seams). Linked from the README's Documentation section and the new wiki `_Sidebar.md`.
 
