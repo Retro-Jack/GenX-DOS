@@ -1,4 +1,4 @@
-// genx-repo-link.js — injects a subtle bottom-centre "source · licence"
+// genx-repo-link.js — injects a subtle bottom-centre "licence · source"
 // credit onto every emulator entry page. Self-contained: it creates its
 // own <style>, so a page only needs one `<script defer src=...>` include
 // (no matching CSS <link>). The links are absolute GitHub URLs, so the
@@ -29,9 +29,9 @@
   d.className = 'gx-repo-link';
   d.innerHTML =
     'GenX-DOS · <a href="' +
-    REPO +
-    '" target="_blank" rel="noopener">source</a> · <a href="' +
     LIC +
-    '" target="_blank" rel="noopener">licence</a>';
+    '" target="_blank" rel="noopener">licence</a> · <a href="' +
+    REPO +
+    '" target="_blank" rel="noopener">source</a>';
   document.body.appendChild(d);
 })();

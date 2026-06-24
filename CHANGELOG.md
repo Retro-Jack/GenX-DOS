@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- **Swapped the credit pill order to `GenX-DOS · licence · source`** (was `source · licence`) sitewide — one edit in `genx-repo-link.js`, so every emulator page and the DOS prompt page update together.
+
 ## [1.0.4] - 2026-06-24
 
 ### Changed
