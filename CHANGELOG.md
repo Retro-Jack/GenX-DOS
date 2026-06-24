@@ -8,6 +8,7 @@
   - **Atari 2600 (clean):** all 10 verified against manuals (incl. Asteroids thrust=Up/hyperspace=Down and Pitfall ladder Up/Down) — no changes.
   - **Atari 7800 (1/10 fixed):** Pole Position II — the ProLine maps **gas to the left button (Z)** and **brake to the right button (X)**, with **high/low gear on Up/Down**; the gamedoc had accelerate/brake on the D-pad and the gears on the buttons (fully inverted). Xevious verified correct (Z = air Zapper, X = ground Blaster in two-button mode).
   - **ColecoVision (1/10 fixed):** Mouse Trap — the three coloured doors are operated by **keypad 1 / 2 / 3** and the dog transform by **keypad 5** (not the fire buttons, and not by walking up to a wall switch). The other nine verified correct.
+  - **Magnavox Odyssey² (1/10 fixed):** Atlantis — there are **two** indestructible sentry posts (not three guns); the joystick **selects** the left/right post and you **fire with the action button** (the gamedoc had each direction firing a separate gun with no button), and pushing the stick **forward launches the once-per-wave Blitz Bomb**. Rewrote against the Odyssey² manual.
 
 ### Changed
 - **Swapped the credit pill order to `GenX-DOS · licence · source`** (was `source · licence`) sitewide — one edit in `genx-repo-link.js`, so every emulator page and the DOS prompt page update together.
