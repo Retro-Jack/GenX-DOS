@@ -46,11 +46,12 @@
       overflow: hidden;
       z-index: 2;
     }
-    /* EmulatorJS fits the canvas to #game preserving the 2600's aspect, which
-       leaves a black letterbox top/bottom inside the 4:3 screen hole. The
-       canvas already fills the hole's width, so stretch only its height to
-       close the gap (a hair of vertical stretch, fine for a CRT). */
-    #game canvas { height: 100% !important; transform: translateX(-18px) scale(0.85); }
+    /* EmulatorJS fits the canvas to #game preserving the 2600's aspect. Anchor
+       the canvas centre to the hole centre (top/left 50% + translate(-50%,-50%))
+       so it stays put no matter what width the core emits per game — a fixed
+       translateX nudge made different games drift to different positions. Height
+       fills the hole; scale trims a touch so it sits inside the bezel glass. */
+    #game canvas { position: absolute !important; top: 50% !important; left: 50% !important; height: 100% !important; transform: translate(-50%, -50%) scale(0.85); }
     .bezel-img {
       position: absolute;
       inset: 0;
