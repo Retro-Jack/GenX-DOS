@@ -4,6 +4,10 @@
 
 ### Changed
 - **README License section now links `LICENSE.TXT` prominently**, alongside the existing `ATTRIBUTION.md` link (the full licence text was previously only reachable via the CC badge).
+- **ZX Spectrum (jsspeccy) bezel no longer fisheye-distorted and sits flatter in the glass.** Removed the `#crtbulge` barrel-distortion filter (and its now-unused SVG/displacement-map) and dropped the fixed `translate()` nudge it needed. The screen now overscans the bezel cutout at `scale(1.09)`.
+
+### Fixed
+- **ZX Spectrum (jsspeccy) screen now tracks the window size.** JSSpeccy (`uiEnabled:false`) injects its own `appContainer` div with a fixed inline pixel width (`320 × zoom`), which pinned the whole stack to that size so the canvas ignored the percentage-sized bezel cutout. Forcing the injected div to fill the hole (`inset:0; width/height:100%`) lets the canvas scale with the bezel like the ZX81 (jtyone) canvas does — fixing both the broken resize and the resulting black band at the top of the screen.
 
 ### Added
 - **`docs/tech_article.md`** — a magazine-style feature article on the project (the concept, the static/no-build constraint, the WASM-rebuild and save-state war stories, the curation philosophy, and the honest seams). Linked from the README's Documentation section and the new wiki `_Sidebar.md`.
