@@ -5,6 +5,8 @@
 ### Fixed
 - **Gamedoc accuracy re-audit of the EmulatorJS console/handheld bundles (post-quota pass).** The original 12a audit verified the standalone emulators against manuals but only gave the EJS bundles a gamedoc↔controls.html *consistency* check (the WebSearch quota had run out). Re-verifying each game's specific keys against manuals:
   - **NES (4/10 fixed):** Mega Man 2 — weapon menu opens with **START**, not Select (Select just moves the menu cursor). Final Fantasy — main menu opens with **START**; Select changes marching order (was attributed to Select / "Start unused"). Super Mario Bros. 3 — the world-map item box opens with **B** (A uses the chosen item); Select is unused (was "Select uses inventory"). Castlevania — stairs climb with **Up / Down** at a staircase, not a held diagonal (a CV3 mechanic).
+  - **Atari 2600 (clean):** all 10 verified against manuals (incl. Asteroids thrust=Up/hyperspace=Down and Pitfall ladder Up/Down) — no changes.
+  - **Atari 7800 (1/10 fixed):** Pole Position II — the ProLine maps **gas to the left button (Z)** and **brake to the right button (X)**, with **high/low gear on Up/Down**; the gamedoc had accelerate/brake on the D-pad and the gears on the buttons (fully inverted). Xevious verified correct (Z = air Zapper, X = ground Blaster in two-button mode).
 
 ### Changed
 - **Swapped the credit pill order to `GenX-DOS · licence · source`** (was `source · licence`) sitewide — one edit in `genx-repo-link.js`, so every emulator page and the DOS prompt page update together.
