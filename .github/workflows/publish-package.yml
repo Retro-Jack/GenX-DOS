@@ -39,11 +39,10 @@ jobs:
           build-args: |
             VERSION=${{ steps.meta.outputs.version }}
           # GitHub shows the package-listing description from the manifest
-          # annotation (a Docker LABEL alone doesn't drive it). Set it at both
-          # manifest and index level so it populates regardless of arch layout.
+          # annotation (a Docker LABEL alone doesn't drive it). Single-platform
+          # export only supports manifest-level annotations.
           annotations: |
             org.opencontainers.image.description=GenX-DOS v${{ steps.meta.outputs.version }} — container image: the full GenX-DOS static site (browser DOS-prompt terminal + 8-bit emulator suite) served by nginx.
-            index:org.opencontainers.image.description=GenX-DOS v${{ steps.meta.outputs.version }} — container image: the full GenX-DOS static site (browser DOS-prompt terminal + 8-bit emulator suite) served by nginx.
           tags: |
             ${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.version }}
             ${{ steps.meta.outputs.image }}:latest
