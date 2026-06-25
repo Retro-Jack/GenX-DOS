@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.6] - 2026-06-25
+
 ### Added
 - **Separate `systems/atari400/` bundle.** The 400 menu now launches from its own bundle (honest `…/systems/atari400/…` URL path) instead of sharing `systems/atari800/`. Same atari800 emulator core, but the 400 bundle defaults to OS-B and the 800XL bundle to OS-XL. The 10 OS-B games + their ROMs + gamedocs moved to `atari400/` / `gamedocs/atari400/`; `atari800/` now holds the 800XL set only.
 - **Split the shared WebMSX bundle into `systems/msx1/` + `systems/msx2/`** so the URL path names the actual machine instead of the ambiguous `systems/webmsx/`. Each bundle ships the WebMSX engine and its own `games/` + gamedocs (`gamedocs/msx1/`, `gamedocs/msx2/`); the MSX2 menu links now pass an explicit `M=MSX2` rather than relying on the engine default.
