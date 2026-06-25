@@ -32,10 +32,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # The docker-container driver is required for manifest annotations to be
+      # written to the pushed image (the default driver drops them).
+      - uses: docker/setup-buildx-action@v3
+
       - uses: docker/build-push-action@v6
         with:
           context: .
           push: true
+          # Keep a single image manifest (no attestation manifest list) so the
+          # description annotation lands where GitHub reads it.
+          provenance: false
           build-args: |
             VERSION=${{ steps.meta.outputs.version }}
           # GitHub shows the package-listing description from the manifest
