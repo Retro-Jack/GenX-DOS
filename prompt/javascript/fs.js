@@ -2347,47 +2347,47 @@ var fs = [
                           },
                           {
                             name: 'missile.bat',
-                            link: '../systems/atari800/play.html?game=missile&machine=400',
+                            link: '../systems/atari400/play.html?game=missile',
                           },
                           {
                             name: 'asteroid.bat',
-                            link: '../systems/atari800/play.html?game=asteroid&machine=400',
+                            link: '../systems/atari400/play.html?game=asteroid',
                           },
                           {
                             name: 'defender.bat',
-                            link: '../systems/atari800/play.html?game=defender&machine=400',
+                            link: '../systems/atari400/play.html?game=defender',
                           },
                           {
                             name: 'invaders.bat',
-                            link: '../systems/atari800/play.html?game=invaders&machine=400',
+                            link: '../systems/atari400/play.html?game=invaders',
                           },
                           {
                             name: 'pacman.bat',
-                            link: '../systems/atari800/play.html?game=pacman&machine=400',
+                            link: '../systems/atari400/play.html?game=pacman',
                           },
                           {
                             name: 'centiped.bat',
-                            link: '../systems/atari800/play.html?game=centiped&machine=400',
+                            link: '../systems/atari400/play.html?game=centiped',
                           },
                           {
                             name: 'chopliftr.bat',
-                            link: '../systems/atari800/play.html?game=chopliftr&machine=400',
+                            link: '../systems/atari400/play.html?game=chopliftr',
                           },
                           {
                             name: 'dkong.bat',
-                            link: '../systems/atari800/play.html?game=dkong&machine=400',
+                            link: '../systems/atari400/play.html?game=dkong',
                           },
                           {
                             name: 'joust.bat',
-                            link: '../systems/atari800/play.html?game=joust&machine=400',
+                            link: '../systems/atari400/play.html?game=joust',
                           },
                           {
                             name: 'digdug.bat',
-                            link: '../systems/atari800/play.html?game=digdug&machine=400',
+                            link: '../systems/atari400/play.html?game=digdug',
                           },
                           {
                             name: 'basic.bat',
-                            link: '../systems/atari800/play.html?machine=400',
+                            link: '../systems/atari400/play.html',
                           },
                         ],
                       },
