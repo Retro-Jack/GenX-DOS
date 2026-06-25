@@ -65,7 +65,8 @@ systems/
   _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem
                           (13 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
   apple1/                 Apple I             — apple1js + 10 cassette tapes
-  jsbeeb/                 BBC Micro + Master  — Vite-built dist + BBC + Master-enhanced disks
+  bbcmicro/               BBC Micro           — jsbeeb Vite dist (Model B) + BBC disks
+  bbcmaster/              BBC Master 128      — jsbeeb Vite dist (model=Master) + Master-enhanced disks
   electron/               Acorn Electron      — ElkJS + 10 UEF snapshots
   apple2/                 Apple ][+           — apple2js webpack dist + 10 .dsk images
   jsnes/                  NES                 — EmulatorJS + FCEUmm + 10 .nes ROMs
@@ -74,14 +75,16 @@ systems/
   lynx/                   Atari Lynx          — EmulatorJS + handy + boot ROM + 10 .lnx ROMs (handheld)
   gamegear/               Sega Game Gear      — EmulatorJS + genesis_plus_gx + 10 .gg ROMs (handheld)
   js7800/                 Atari 7800          — EmulatorJS + ProSystem + 10 .a78 carts
-  webmsx/                 MSX1 + MSX2         — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 + 10 titles
+  msx1/                   MSX1                — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 titles
+  msx2/                   MSX2                — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 titles
   jsvecx/                 GCE Vectrex         — JSVecX + 24 commercial + ~470 homebrew ROMs
   jsspeccy/               Sinclair Spectrum   — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81       — JtyOne + 10 .p tapes
   xroar/                  Tandy CoCo          — XRoar WASM + 10 .ccc carts
   trs80/                  Tandy TRS-80 Model I — sdltrs built from source to WASM + 10 .cmd games
   js99er/                 TI-99/4A            — vanilla-JS js99er + 10 .rpk carts
-  atari800/               Atari 400 + 800XL   — atari800 built from source to WASM
+  atari400/               Atari 400           — atari800 WASM, boots OS-B
+  atari800/               Atari 800XL         — atari800 WASM, boots OS-XL
   pet/                    Commodore PET       — Thomas Skibo's pet2001 (vanilla JS) + 10 .prg
   vic20/                  Commodore VIC-20    — EmulatorJS + VICE xvic + 10 cart .prg
   max/                    Commodore MAX       — EmulatorJS + VICE x64 in Ultimax mode + 10 .crt
@@ -99,7 +102,7 @@ systems/
 
 The hand-written GenX-DOS code lives in `prompt/javascript/`, `systems/_shared/`, `systems/_shared-ejs/`, and each emulator's `play.html` wrapper — all formatted for reading.
 
-Everything else under `systems/<name>/` is upstream: emscripten WASM glue (`xroar.js`, `atari800.js`, `o2em.js`, `jzintv.js`), webpack production bundles (`apple1.js`, `apple2/dist/*.bundle.js`, `jsspeccy.js`), single-file inlined deploys (`jsvecx/index.html`), the stock WebMSX engine (`webmsx/wmsx.js`), or hand-written JS from the upstream project (ElkJS, js99er's `emu/`). For the readable source of those, follow the upstream link in [ATTRIBUTION.md](ATTRIBUTION.md) or the per-engine integration story on the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators).
+Everything else under `systems/<name>/` is upstream: emscripten WASM glue (`xroar.js`, `atari800.js`, `o2em.js`, `jzintv.js`), webpack production bundles (`apple1.js`, `apple2/dist/*.bundle.js`, `jsspeccy.js`), single-file inlined deploys (`jsvecx/index.html`), the stock WebMSX engine (`msx1/wmsx.js`, `msx2/wmsx.js`), or hand-written JS from the upstream project (ElkJS, js99er's `emu/`). For the readable source of those, follow the upstream link in [ATTRIBUTION.md](ATTRIBUTION.md) or the per-engine integration story on the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators).
 
 ## The emulator lineup
 
@@ -115,14 +118,14 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | NES       | EmulatorJS + FCEUmm libretro core    | `play.html?game=<key>`                   |
 | 2600      | EmulatorJS + Stella (stella2014 core) | `play.html?game=<key>`                  |
 | 7800      | EmulatorJS + ProSystem (prosystem core) | `play.html?game=<key>`                |
-| MSX       | ppeccin/WebMSX                       | `?ROM=games/<sub>/<name>.zip[&M=MSX1]`   |
+| MSX1 / MSX2 | ppeccin/WebMSX (split into `msx1/` + `msx2/` bundles) | `?ROM=games/<name>.zip&M=MSX1` \| `&M=MSX2` |
 | Vectrex   | DrSnuggles/jsvecx                    | `index.html?rom=<dir>/<title>&game=<key>` |
 | Spectrum  | gasman/JSSpeccy 3                    | `play.html?game=<key>`                   |
 | ZX81      | JtyOne                               | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar                 | `play.html?game=<key>`                   |
 | TRS-80 Model I | jengun/sdltrs (our own WASM build) | `play.html?game=<key>`                |
 | TI-99/4A  | Rasmus-M/js99er (vanilla-JS build)   | `play.html?game=<key>`                   |
-| Atari 400 / 800XL | atari800/atari800 (our own WASM build) | `play.html?game=<key>[&machine=…]` |
+| Atari 400 / 800XL | atari800/atari800 (our own WASM build; split into `atari400/` + `atari800/` bundles) | `play.html?game=<key>` |
 | VIC-20 / MAX / C64 / C16 / Plus/4 / C128 | EmulatorJS + VICE libretro family | `play.html?game=<key>` |
 | PET       | Thomas Skibo's pet2001 (vanilla JS)  | `play.html?game=<key>`                   |
 | ColecoVision | EmulatorJS + gearcoleco (Drhelius) libretro | `play.html?game=<key>` |
