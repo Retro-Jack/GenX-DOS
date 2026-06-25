@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.8] - 2026-06-25
+
 ### Changed
 - **Doc sync after the bundle splits.** Updated README and the GitHub wiki (File Structure, Project Overview, Emulators, atari800, jsbeeb, WebMSX pages) to name the per-machine bundles — `atari400/`+`atari800/`, `msx1/`+`msx2/`, `bbcmicro/`+`bbcmaster/` — and dropped the now-false "share one build" / `?machine=` claims. Orphan-file audit found none to remove (gamedocs, ROMs all referenced); the BBC bundles each carry the full upstream jsbeeb disc set by design (full-copy split).
 
