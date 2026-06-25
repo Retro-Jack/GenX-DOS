@@ -53,6 +53,14 @@ jobs:
           node-version: 20
           registry-url: https://npm.pkg.github.com
 
-      - run: npm publish
+      - name: Publish if this version isn't already on the registry
+        run: |
+          name=$(node -p "require('./package.json').name")
+          ver=$(node -p "require('./package.json').version")
+          if npm view "$name@$ver" version --registry=https://npm.pkg.github.com >/dev/null 2>&1; then
+            echo "$name@$ver already published — skipping."
+          else
+            npm publish
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

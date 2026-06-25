@@ -4,6 +4,12 @@
 # mime.types already maps .wasm to application/wasm, so the cores stream fine.
 FROM nginx:alpine
 
+# Links the published image to the repo (shows under the repo's Packages) and
+# carries basic provenance.
+LABEL org.opencontainers.image.source="https://github.com/Retro-Jack/GenX-DOS"
+LABEL org.opencontainers.image.description="GenX-DOS — a browser DOS-prompt terminal and self-hosted 8-bit emulator suite."
+LABEL org.opencontainers.image.licenses="CC-BY-NC-4.0"
+
 RUN rm -rf /usr/share/nginx/html/*
 COPY . /usr/share/nginx/html/
 
