@@ -2,9 +2,6 @@
 
 ## [Unreleased]
 
-### Changed
-- Reworded the gamedoc caveat copy: "obscure homebrew title" → "obscure / homebrew title" (C128 Invaders, C128 Phazer).
-
 ## [1.0.5.1] - 2026-06-25
 
 ### Added
