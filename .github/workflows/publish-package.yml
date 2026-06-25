@@ -36,6 +36,8 @@ jobs:
         with:
           context: .
           push: true
+          build-args: |
+            VERSION=${{ steps.meta.outputs.version }}
           tags: |
             ${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.version }}
             ${{ steps.meta.outputs.image }}:latest

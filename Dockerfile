@@ -4,10 +4,16 @@
 # mime.types already maps .wasm to application/wasm, so the cores stream fine.
 FROM nginx:alpine
 
-# Links the published image to the repo (shows under the repo's Packages) and
-# carries basic provenance.
+# Version is passed in by the publish workflow (build-arg VERSION) so the
+# package description below always names the release it was built from.
+ARG VERSION=dev
+
+# Links the published image to the repo (shows under the repo's Packages),
+# carries provenance, and gives the package page a description that states
+# the version and format.
 LABEL org.opencontainers.image.source="https://github.com/Retro-Jack/GenX-DOS"
-LABEL org.opencontainers.image.description="GenX-DOS — a browser DOS-prompt terminal and self-hosted 8-bit emulator suite."
+LABEL org.opencontainers.image.version="${VERSION}"
+LABEL org.opencontainers.image.description="GenX-DOS v${VERSION} — container image: the full GenX-DOS static site (browser DOS-prompt terminal + 8-bit emulator suite) served by nginx. Run it with: docker run -p 8080:80 ghcr.io/retro-jack/genx-dos"
 LABEL org.opencontainers.image.licenses="CC-BY-NC-4.0"
 
 RUN rm -rf /usr/share/nginx/html/*
