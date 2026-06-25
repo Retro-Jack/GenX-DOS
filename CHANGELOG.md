@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **Atari 400 games were silently booting as an 800XL.** The 400 menu launched every game with `?machine=atari`, but `play.html`'s machine-flag table had no `atari` key, so no machine flag was applied and atari800 fell back to its default machine — the 800XL. Switched the 400 menu links (10 games + BASIC) to `?machine=400` (→ `-atari` / OS-B), and added an `atari` alias to the table so any existing `machine=atari` URLs also boot OS-B. The tab title and the per-game gamedoc titles/subheads now name the actual machine (**Atari 400** for the OS-B set, **Atari 800XL** for the XL set) instead of a blanket "Atari 800".
+
 ## [1.0.5.1] - 2026-06-25
 
 ### Added
