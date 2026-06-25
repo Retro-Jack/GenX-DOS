@@ -1,0 +1,39 @@
+// BBC Micro corner controls-link wiring.
+//
+// jsbeeb's dist/index.html is a Vite build launched with disc-image URLs
+// (`?disc1=<publisher>/<Title>.ssd`) — there is no `?game=` key, so the
+// shared genx-controls-link.js can't resolve the per-game gamedoc. Instead
+// the page ships a hardcoded `<a class="gx-controls-link" href="../controls.html">`;
+// this script upgrades that href to the right `gamedocs/bbcmicro/<key>.html`
+// based on the disc that was loaded.
+//
+// Map is keyed on the disc filename (without directory or extension). A disc
+// with no entry here (or the keyless BASIC launch) falls through to the
+// generic controls.html.
+(function () {
+  var DISC_TO_KEY = {
+    Elite: 'elite',
+    ChuckieEgg: 'chuckegg',
+    Repton: 'repton',
+    ManicMiner: 'manicmn',
+    JetSetWilly: 'jetwilly',
+    Citadel: 'citadel',
+    Exile: 'exile',
+    Thrust: 'thrust',
+    'Snapper-v1-alt': 'snapper',
+    Uridium: 'uridium',
+  };
+
+  var disc = new URLSearchParams(location.search).get('disc1');
+  if (!disc) return;
+  var name = disc
+    .split('/')
+    .pop()
+    .replace(/\.[^.]+$/, '');
+  var key = DISC_TO_KEY[name];
+  if (!key) return;
+  var a = document.querySelector('.gx-controls-link');
+  // dist/index.html lives at systems/bbcmicro/dist/, so gamedocs/ is three
+  // levels up (dist -> bbcmicro -> systems -> repo root).
+  if (a) a.href = '../../../gamedocs/bbcmicro/' + key + '.html';
+})();

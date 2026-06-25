@@ -46,7 +46,7 @@ fork rather than the bundle.
 | --- | --- | --- | --- |
 | `systems/apple1/` | apple1js | whscullin | MIT |
 | `systems/apple2/` | apple2js | whscullin | MIT |
-| `systems/jsbeeb/` | jsbeeb | Matt Godbolt | GPL-3.0-or-later |
+| `systems/bbcmicro/`, `systems/bbcmaster/` | jsbeeb (same engine in two bundles — the Micro bundle boots Model B, the Master bundle boots `model=Master`) | Matt Godbolt | GPL-3.0-or-later |
 | `systems/electron/` | ElkJS | Darren Coles (6502 core ported from Tom Walker's Elkulator) | © Darren Coles 2013 (no SPDX header in source) |
 | `systems/jsnes/` | EmulatorJS + FCEUmm libretro core | EmulatorJS team; libretro/libretro-fceumm | GPL-3.0 (EmulatorJS), GPL-2.0 (FCEUmm) |
 | `systems/stella/` | EmulatorJS + Stella (`stella2014`) libretro core | EmulatorJS team; stella-emu / libretro | GPL-3.0 (EmulatorJS), GPL-2.0 (Stella) |
@@ -175,7 +175,7 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
 
 **Exception — `Amstrad.png`** is properly source-cleared and carries a binding obligation: cropped from [File:Amstrad_CPC464.jpg](https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg) (Wikimedia Commons) by Bill Bertram (username Pixel8), 7 May 2005, **CC-BY-SA 2.5**. Modifications inherit share-alike; `systems/cpc/play.html` carries the author + licence as an attribution comment.
 
-(Note: jsbeeb's CUB monitor frame lives inside `systems/jsbeeb/dist/` as part of the upstream build, not this shared set.)
+(Note: jsbeeb's CUB monitor frame lives inside `systems/bbcmicro/dist/` and `systems/bbcmaster/dist/` as part of the upstream build, not this shared set.)
 
 ---
 

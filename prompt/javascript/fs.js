@@ -892,47 +892,47 @@ var fs = [
                           },
                           {
                             name: 'elite.bat',
-                            link: '../systems/jsbeeb/dist/?disc1=Acornsoft/Elite.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=Acornsoft/Elite.ssd&autoboot',
                           },
                           {
                             name: 'chuckegg.bat',
-                            link: '../systems/jsbeeb/dist/?disc1=AnF/ChuckieEgg.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=AnF/ChuckieEgg.ssd&autoboot',
                           },
                           {
                             name: 'repton.bat',
-                            link: '../systems/jsbeeb/dist/?disc1=Superior/Repton.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=Superior/Repton.ssd&autoboot',
                           },
                           {
                             name: 'manicmn.bat',
-                            link: '../systems/jsbeeb/dist/?disc1=SoftwareProjects/ManicMiner.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=SoftwareProjects/ManicMiner.ssd&autoboot',
                           },
                           {
                             name: 'jetwilly.bat',
-                            link: '../systems/jsbeeb/dist/?disc1=Tynesoft/JetSetWilly.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=Tynesoft/JetSetWilly.ssd&autoboot',
                           },
                           {
                             name: 'citadel.bat',
-                            link: '../systems/jsbeeb/dist/?disc1=Superior/Citadel.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=Superior/Citadel.ssd&autoboot',
                           },
                           {
                             name: 'exile.bat',
-                            link: '../systems/jsbeeb/dist/?disc1=Superior/Exile.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=Superior/Exile.ssd&autoboot',
                           },
                           {
                             name: 'thrust.bat',
-                            link: '../systems/jsbeeb/dist/?disc1=Superior/Thrust.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=Superior/Thrust.ssd&autoboot',
                           },
                           {
                             name: 'snapper.bat',
-                            link: '../systems/jsbeeb/dist/?disc1=Acornsoft/Snapper-v1-alt.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=Acornsoft/Snapper-v1-alt.ssd&autoboot',
                           },
                           {
                             name: 'uridium.bat',
-                            link: '../systems/jsbeeb/dist/?disc1=Hewson/Uridium.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=Hewson/Uridium.ssd&autoboot',
                           },
                           {
                             name: 'prompt.bat',
-                            link: '../systems/jsbeeb/dist/',
+                            link: '../systems/bbcmicro/dist/',
                           },
                         ],
                       },
@@ -1118,47 +1118,47 @@ var fs = [
                           },
                           {
                             name: 'elite.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master&disc1=Acornsoft/EliteMaster.dsd&autoboot',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Acornsoft/EliteMaster.dsd&autoboot',
                           },
                           {
                             name: 'ninja2.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/LastNinja2.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/LastNinja2.ssd&autoboot',
                           },
                           {
                             name: 'repton3.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/Repton3.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/Repton3.ssd&autoboot',
                           },
                           {
                             name: 'reptoninf.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/ReptonInfinity.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/ReptonInfinity.ssd&autoboot',
                           },
                           {
                             name: 'firetrak.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master&disc1=ElectricDreams/Firetrack.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=ElectricDreams/Firetrack.ssd&autoboot',
                           },
                           {
                             name: 'crazee.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/CrazeeRider.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/CrazeeRider.ssd&autoboot',
                           },
                           {
                             name: 'stryker.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/StrykersRun.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/StrykersRun.ssd&autoboot',
                           },
                           {
                             name: 'bfmof.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/ByFairMeansOrFoul.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/ByFairMeansOrFoul.ssd&autoboot',
                           },
                           {
                             name: 'holedout.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master&disc1=4thDimension/HoledOut.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=4thDimension/HoledOut.ssd&autoboot',
                           },
                           {
                             name: 'ballistx.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master&disc1=Superior/Ballistix.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/Ballistix.ssd&autoboot',
                           },
                           {
                             name: 'prompt.bat',
-                            link: '../systems/jsbeeb/dist/?model=Master',
+                            link: '../systems/bbcmaster/dist/?model=Master',
                           },
                         ],
                       },
