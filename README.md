@@ -20,6 +20,34 @@ python3 -m http.server 8765
 
 Open <http://127.0.0.1:8765/prompt/>.
 
+## Run it as a package
+
+GenX-DOS is also published as [GitHub Packages](https://github.com/Retro-Jack/GenX-DOS/packages) — the whole site bundled with its dependencies, no clone required.
+
+**Container image** (the site served by nginx):
+
+```sh
+docker run --rm -p 8080:80 ghcr.io/retro-jack/genx-dos:latest
+```
+
+Then open <http://127.0.0.1:8080/>.
+
+**npm package** (the static site as files, to self-host or embed):
+
+```sh
+npm install @retro-jack/genx-dos --registry=https://npm.pkg.github.com
+```
+
+```js
+const express = require('express');
+const genxdos = require('@retro-jack/genx-dos');
+
+express().use(express.static(genxdos.path)).listen(8080);
+// open http://127.0.0.1:8080/
+```
+
+Both are rebuilt and published automatically on every GitHub Release (see `.github/workflows/publish-package.yml`).
+
 ## What you'll find in the repo
 
 ```

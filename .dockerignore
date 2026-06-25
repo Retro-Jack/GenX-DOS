@@ -1,0 +1,11 @@
+.git
+.github
+.gitignore
+.dockerignore
+.prettierignore
+.prettierrc
+.nojekyll
+Dockerfile
+make_fonts.py
+node_modules
+npm-debug.log

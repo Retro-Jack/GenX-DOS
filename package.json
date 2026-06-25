@@ -1,0 +1,39 @@
+{
+  "name": "@retro-jack/genx-dos",
+  "version": "1.0.6",
+  "description": "GenX-DOS — a browser-based DOS-prompt terminal and self-hosted 8-bit emulator suite, bundled as a static site you can serve anywhere.",
+  "homepage": "https://retro-jack.github.io/GenX-DOS/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Retro-Jack/GenX-DOS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Retro-Jack/GenX-DOS/issues"
+  },
+  "author": "Jack Horton (Retro-Jack)",
+  "license": "SEE LICENSE IN LICENSE.TXT",
+  "keywords": [
+    "emulator",
+    "retro",
+    "8-bit",
+    "dos",
+    "static-site",
+    "webassembly"
+  ],
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "index.html",
+    "favicon.ico",
+    "prompt/",
+    "systems/",
+    "gamedocs/",
+    "docs/",
+    "ATTRIBUTION.md",
+    "LICENSE.TXT",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}
