@@ -2,8 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.7] - 2026-06-25
+
 ### Added
-- **Published as GitHub Packages.** A `Dockerfile` (the whole site served by nginx → `ghcr.io/retro-jack/genx-dos`) and an npm package (`@retro-jack/genx-dos`, the static site as files), each built and pushed by a `.github/workflows/publish-package.yml` workflow on every GitHub Release. README documents `docker run` and `npm install` usage.
+- **Published as GitHub Packages.** A `Dockerfile` (the whole site served by nginx → `ghcr.io/retro-jack/genx-dos`) and an npm package (`@retro-jack/genx-dos`, the static site as files), each built and pushed by a `.github/workflows/publish-package.yml` workflow on every GitHub Release. README documents `docker run` and `npm install` usage. Each package's listing description states its version and format (container via a manifest annotation, npm via the package description).
 
 ## [1.0.6] - 2026-06-25
 
