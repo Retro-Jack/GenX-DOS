@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MSX2</title>
+  <style>
+    /* CRT bezel — vintage TV (Sinclair.png, 1362x914, screen keyed to a
+       transparent 4:3 hole at left 8.08% top 12.14% width 65.35% height
+       73.96%). Shared with the Spectrum/ZX81 bundles; the set floats on the
+       70s wallpaper. WebMSX (SCREEN_RESIZE_DISABLED:false) sizes its canvas to
+       fit #wmsx-screen, so we put #wmsx in the hole and force the canvas to
+       fill it; the CRT barrel filter goes on the canvas. !important on the
+       wallpaper because genx-frame.css loads AFTER this <style>. */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1362 / 914)); aspect-ratio: 1362 / 914; }
+    .screen-bg { position: absolute; left: 6.6%; top: 10.6%; width: 68.4%; height: 77.0%; background: #000; z-index: 1; }
+    #wmsx { position: absolute; left: 8.08%; top: 12.14%; width: 65.35%; height: 73.96%; overflow: visible; z-index: 2; }
+    #wmsx-screen { width: 100%; height: 100%; box-shadow: none; }
+    #wmsx-screen-canvas-outer, #wmsx-screen-canvas { width: 100% !important; height: 100% !important; display: block; }
+    #wmsx-screen-canvas { image-rendering: pixelated; transform: translate(8px, -10px) scale(0.842); }
+    /* hide WebMSX's control bar entirely (GenX bundles don't show emulator chrome) */
+    #wmsx-bar { display: none !important; }
+    /* hide WebMSX's on-screen OSD toasts (e.g. "AUTO: NTSC 60Hz", state/media
+       notices) — a DOM overlay; our save/load buttons flash their own status */
+    #wmsx-osd { display: none !important; }
+    .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
+  </style>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <script>
+    /* Clean WebMSX integration (rebuilt 16/06/2026 from the official 6.0
+       *embedded* build: wmsx.js is the engine, this file is OUR wrapper, so
+       the engine is never edited — no risk of the old all-in-one breakage
+       where an injected closing-script-tag closed the inline engine).
+
+       ALLOW_URL_PARAMETERS lets the engine read the menu's ?ROM= / ?M= / ?ANY=
+       params and auto-load (ROM->CARTRIDGE1_URL, M->MACHINE, ANY->AUTODETECT_URL
+       via WebMSX's own abbreviations). The extra ?game= param is ignored by
+       the engine and consumed by genx-controls-link.js for the controls link. */
+    window.WMSX = {
+      SCREEN_ELEMENT_ID: 'wmsx-screen',
+      ALLOW_URL_PARAMETERS: true,
+      SCREEN_CONTROL_BAR: 0          /* 0 = auto-hide (on hover); 1 = always */
+    };
+    (function () {
+      var g = new URLSearchParams(location.search).get('game');
+      document.title = 'MSX2';
+    })();
+  </script>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="crtbulge" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox">
+      <feImage href="../_shared/textures/crt-barrel.png" preserveAspectRatio="none" x="0" y="0" width="1" height="1" result="dmap"/>
+      <feDisplacementMap in="SourceGraphic" in2="dmap" scale="-0.08" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="wmsx"><div id="wmsx-screen"></div></div>
+    <img class="bezel-img" src="../_shared/bezels/Sinclair.png" alt="">
+  </div>
+
+  <!-- engine: stock embedded build, never modified -->
+  <script src="wmsx.js"></script>
+  <!-- controls link added as a normal element AFTER the engine: no </script> can leak into the engine -->
+  <script defer src="../_shared/genx-controls-link.js"></script>
+<script defer src="../_shared/genx-repo-link.js"></script>
+
+  <!-- save / load state: WebMSX exposes WMSX.room.machine with saveState()/
+       loadState() (the same API its netplay uses). -->
+  <link rel="stylesheet" href="../_shared/genx-savestate.css">
+  <script>
+    window.GenXStateAdapter = {
+      ready:    function () { return !!(window.WMSX && WMSX.room && WMSX.room.machine && typeof WMSX.room.machine.saveState === 'function'); },
+      getState: function () { return WMSX.room.machine.saveState(true); },
+      setState: function (s) { WMSX.room.machine.loadState(s); },
+      refocus:  function () { var c = document.getElementById('wmsx-screen-canvas'); if (c && c.focus) c.focus(); }
+    };
+  </script>
+  <script defer src="../_shared/genx-savestate-std.js"></script>
+</body>
+</html>

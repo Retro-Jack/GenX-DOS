@@ -3318,47 +3318,47 @@ var fs = [
                           },
                           {
                             name: 'antrctic.bat',
-                            link: '../systems/webmsx/?ROM=games/msx1/antarcticadv.zip&M=MSX1&game=antrctic',
+                            link: '../systems/msx1/?ROM=games/antarcticadv.zip&M=MSX1&game=antrctic',
                           },
                           {
                             name: 'athletic.bat',
-                            link: '../systems/webmsx/?ROM=games/msx1/athleticland.zip&M=MSX1&game=athletic',
+                            link: '../systems/msx1/?ROM=games/athleticland.zip&M=MSX1&game=athletic',
                           },
                           {
                             name: 'pippols.bat',
-                            link: '../systems/webmsx/?ROM=games/msx1/pippols.zip&M=MSX1&game=pippols',
+                            link: '../systems/msx1/?ROM=games/pippols.zip&M=MSX1&game=pippols',
                           },
                           {
                             name: 'roadfgtr.bat',
-                            link: '../systems/webmsx/?ROM=games/msx1/roadfighter.zip&M=MSX1&game=roadfgtr',
+                            link: '../systems/msx1/?ROM=games/roadfighter.zip&M=MSX1&game=roadfgtr',
                           },
                           {
                             name: 'kingsval.bat',
-                            link: '../systems/webmsx/?ROM=games/msx1/kingsvalley.zip&M=MSX1&game=kingsval',
+                            link: '../systems/msx1/?ROM=games/kingsvalley.zip&M=MSX1&game=kingsval',
                           },
                           {
                             name: 'yiearkf.bat',
-                            link: '../systems/webmsx/?ROM=games/msx1/yiearkungfu.zip&M=MSX1&game=yiearkf',
+                            link: '../systems/msx1/?ROM=games/yiearkungfu.zip&M=MSX1&game=yiearkf',
                           },
                           {
                             name: 'eggrland.bat',
-                            link: '../systems/webmsx/?ROM=games/msx1/eggerland.zip&M=MSX1&game=eggrland',
+                            link: '../systems/msx1/?ROM=games/eggerland.zip&M=MSX1&game=eggrland',
                           },
                           {
                             name: 'knightmr.bat',
-                            link: '../systems/webmsx/?ROM=games/msx1/knightmare.zip&M=MSX1&game=knightmr',
+                            link: '../systems/msx1/?ROM=games/knightmare.zip&M=MSX1&game=knightmr',
                           },
                           {
                             name: 'nemesis.bat',
-                            link: '../systems/webmsx/?ROM=games/msx1/nemesis.zip&M=MSX1&game=nemesis',
+                            link: '../systems/msx1/?ROM=games/nemesis.zip&M=MSX1&game=nemesis',
                           },
                           {
                             name: 'goonies.bat',
-                            link: '../systems/webmsx/?ROM=games/msx1/goonies.zip&M=MSX1&game=goonies',
+                            link: '../systems/msx1/?ROM=games/goonies.zip&M=MSX1&game=goonies',
                           },
                           {
                             name: 'prompt.bat',
-                            link: '../systems/webmsx/?M=MSX1',
+                            link: '../systems/msx1/?M=MSX1',
                           },
                         ],
                       },
@@ -3431,47 +3431,47 @@ var fs = [
                           },
                           {
                             name: 'vampkill.bat',
-                            link: '../systems/webmsx/?ROM=games/msx2/vampirekill.zip&game=vampkill',
+                            link: '../systems/msx2/?ROM=games/vampirekill.zip&M=MSX2&game=vampkill',
                           },
                           {
                             name: 'castleex.bat',
-                            link: '../systems/webmsx/?ROM=games/msx2/castleexcl.zip&game=castleex',
+                            link: '../systems/msx2/?ROM=games/castleexcl.zip&M=MSX2&game=castleex',
                           },
                           {
                             name: 'kingkng2.bat',
-                            link: '../systems/webmsx/?ROM=games/msx2/kingkong2.zip&game=kingkng2',
+                            link: '../systems/msx2/?ROM=games/kingkong2.zip&M=MSX2&game=kingkng2',
                           },
                           {
                             name: 'metlgear.bat',
-                            link: '../systems/webmsx/?ROM=games/msx2/metalgear.zip&game=metlgear',
+                            link: '../systems/msx2/?ROM=games/metalgear.zip&M=MSX2&game=metlgear',
                           },
                           {
                             name: 'usas.bat',
-                            link: '../systems/webmsx/?ROM=games/msx2/usas.zip&game=usas',
+                            link: '../systems/msx2/?ROM=games/usas.zip&M=MSX2&game=usas',
                           },
                           {
                             name: 'f1spirit.bat',
-                            link: '../systems/webmsx/?ROM=games/msx2/f1spirit.zip&game=f1spirit',
+                            link: '../systems/msx2/?ROM=games/f1spirit.zip&M=MSX2&game=f1spirit',
                           },
                           {
                             name: 'aleste.bat',
-                            link: '../systems/webmsx/?ROM=games/msx2/aleste.zip&game=aleste',
+                            link: '../systems/msx2/?ROM=games/aleste.zip&M=MSX2&game=aleste',
                           },
                           {
                             name: 'parodius.bat',
-                            link: '../systems/webmsx/?ROM=games/msx2/parodius.zip&game=parodius',
+                            link: '../systems/msx2/?ROM=games/parodius.zip&M=MSX2&game=parodius',
                           },
                           {
                             name: 'manbow.bat',
-                            link: '../systems/webmsx/?ROM=games/msx2/spacemanbow.zip&game=manbow',
+                            link: '../systems/msx2/?ROM=games/spacemanbow.zip&M=MSX2&game=manbow',
                           },
                           {
                             name: 'quarth.bat',
-                            link: '../systems/webmsx/?ROM=games/msx2/quarth.zip&game=quarth',
+                            link: '../systems/msx2/?ROM=games/quarth.zip&M=MSX2&game=quarth',
                           },
                           {
                             name: 'prompt.bat',
-                            link: '../systems/webmsx/',
+                            link: '../systems/msx2/?M=MSX2',
                           },
                         ],
                       },
