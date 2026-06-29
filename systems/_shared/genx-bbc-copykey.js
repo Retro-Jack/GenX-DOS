@@ -40,14 +40,14 @@
       #genx-bbc-copy {
         position: fixed; top: 8px; left: 8px;
         z-index: 100;
-        background: rgba(0,0,0,0.72); color: #c0c0c0;
-        border: 1px solid #555; border-radius: 3px;
-        font: 12px/1 monospace; padding: 5px 10px;
-        cursor: pointer; opacity: 0.6;
-        transition: opacity 0.15s;
+        color: rgba(255, 176, 0, 0.75); background: #000;
+        border: 1px solid rgba(255, 176, 0, 0.35); border-radius: 4px;
+        font: 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        letter-spacing: 0.05em; padding: 5px 10px;
+        cursor: pointer;
+        transition: color 0.15s ease, border-color 0.15s ease;
       }
-      #genx-bbc-copy:hover { opacity: 1; background: rgba(60,60,60,0.95); color: #fff; border-color: #aaa; }
-      #genx-bbc-copy:active { background: #444; }
+      #genx-bbc-copy:hover { color: #ff8800; border-color: #ff8800; }
     `;
     document.head.appendChild(style);
 
