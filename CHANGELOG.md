@@ -4,6 +4,7 @@
 
 ### Fixed
 - **BBC Micro / Master audio auto-unlock and visible prompt (jsbeeb).** Replaced the fixed audio-unlock burst with a poll-loop that re-fires until audio actually resumes, covering a cold load that lands past the old 2 s cutoff, so Chromium/Brave start sound on launch again. Firefox won't resume an opened tab's audio from a synthetic event, so its "suspended audio — click for sound" prompt is now pinned as a fixed banner across the top of the window (it was buried behind the bezel) to make the required click obvious.
+- **Elite gamedoc corrections (BBC Micro + Master).** Documented the dual-purpose function keys from the original control card (<kbd>F10</kbd>/<kbd>F1</kbd>–<kbd>F3</kbd> are cockpit views in flight but Launch / Buy / Sell / Equip when docked); fixed the swapped <kbd>F4</kbd>/<kbd>F5</kbd> (F4 = long-range galactic chart, F5 = short-range), the wrong "<kbd>F1</kbd> sets a target" (F1 is rear view), and the startup flow (the real prompt is *Load New Commander (Y/N)?* — N for the default Commander Jameson). Replaced the false "disc save survives between sessions" claim with a note that the disc is read-only in the browser, so use the save / load buttons to persist progress.
 
 ## [1.0.8] - 2026-06-25
 

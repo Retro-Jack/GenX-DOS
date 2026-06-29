@@ -18,10 +18,12 @@
 
     <h2>Getting started</h2>
     <ol>
-      <li>At the title press <kbd>Space</kbd>, then <kbd>2</kbd> to start a new commander.</li>
+      <li>At the title press <kbd>Space</kbd>. At the <em>Load New Commander (Y/N)?</em> prompt, press <kbd>N</kbd> to play the default Commander Jameson, or <kbd>Y</kbd> to open the disc-access menu and load a saved commander.</li>
       <li>Launch from Lave station — match the rotation, fly out, <kbd>J</kbd> to in-system jump to the planet.</li>
-      <li>Buy Food (cheap on Lave), <kbd>F7</kbd> market, <kbd>F4</kbd>/<kbd>F5</kbd> charts, <kbd>F1</kbd> set target, <kbd>H</kbd> hyperspace.</li>
+      <li>Buy Food (cheap on Lave); <kbd>F7</kbd> market, <kbd>F4</kbd>/<kbd>F5</kbd> charts to pick a destination, <kbd>H</kbd> hyperspace.</li>
     </ol>
+
+    <p><strong>Saving your progress:</strong> the disc is read-only in the browser, so an in-game <em>Save Commander</em> won't survive closing the tab — use the GenX <strong>save / load</strong> buttons to keep your commander (ship, cash, rating) between sessions.</p>
 
     <h2>Flight controls</h2>
     <table>
@@ -41,12 +43,21 @@
       <tr><td><kbd>Esc</kbd></td><td>Launch escape pod</td></tr>
     </table>
 
-    <h2>Views &amp; menus</h2>
+    <h2>Function keys — dual purpose</h2>
+    <p>In flight these switch cockpit views; when docked they trigger the station actions.</p>
     <table>
-      <tr><th>Input</th><th>Screen</th></tr>
-      <tr><td><kbd>F10</kbd></td><td>Front view</td></tr>
-      <tr><td><kbd>F1</kbd>–<kbd>F3</kbd></td><td>Rear / Left / Right</td></tr>
-      <tr><td><kbd>F4</kbd> / <kbd>F5</kbd></td><td>Short / long-range chart</td></tr>
+      <tr><th>Key</th><th>In flight</th><th>When docked</th></tr>
+      <tr><td><kbd>F10</kbd></td><td>Front view</td><td>Launch</td></tr>
+      <tr><td><kbd>F1</kbd></td><td>Rear view</td><td>Buy cargo</td></tr>
+      <tr><td><kbd>F2</kbd></td><td>Left view</td><td>Sell cargo</td></tr>
+      <tr><td><kbd>F3</kbd></td><td>Right view</td><td>Equip ship</td></tr>
+    </table>
+
+    <h2>Information screens</h2>
+    <table>
+      <tr><th>Key</th><th>Screen</th></tr>
+      <tr><td><kbd>F4</kbd></td><td>Long-range (galactic) chart</td></tr>
+      <tr><td><kbd>F5</kbd></td><td>Short-range chart</td></tr>
       <tr><td><kbd>F6</kbd></td><td>System data</td></tr>
       <tr><td><kbd>F7</kbd></td><td>Market</td></tr>
       <tr><td><kbd>F8</kbd></td><td>Status</td></tr>
@@ -60,7 +71,6 @@
       <li><strong>Flicker-free wireframes.</strong> The 65C12's extra speed lets the renderer double-buffer cleanly — no scanline tearing in dense combat.</li>
       <li><strong>Extra cockpit colours.</strong> The 128K RAM allows palette switching mid-frame; the dashboard and chart screens use more hues than the BBC original.</li>
       <li><strong>Disc-driven mission chain.</strong> Constrictor, Cougar, Thargoid mothership missions are all on the disc — no separate "Mission Disc" sale.</li>
-      <li><strong>Save/Load to disc.</strong> Faster than the tape commander files; survives between sessions cleanly.</li>
     </ul>
 
     <h2>Strategy basics</h2>
