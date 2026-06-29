@@ -47,6 +47,24 @@
          resulting slack so ~60px shows above and below instead of all at
          the bottom. */
       #cub-monitor { margin-top: 60px !important; }
+      /* Audio-suspended prompt. Autoplay-blocking browsers (Firefox especially)
+         need a real click/keypress before sound starts, so this call-to-action
+         has to be obvious. Upstream styles it position:absolute / z-index:1, which
+         lets the wallpaper and bezel bury it. Pin it as a fixed banner across the
+         very top of the viewport, above the bezel. jsbeeb still owns show/hide via
+         display/opacity, so the auto-unlock detection is unaffected. */
+      #audio-warning {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        text-align: center !important;
+        font-weight: bold !important;
+        z-index: 1000 !important;
+        cursor: pointer !important;
+      }
       /* Mobile-device block — see systems/_shared/genx-noscript.css for the canonical copy. */
       @media (pointer: coarse), (hover: none) {
         body::before {
@@ -1076,15 +1094,34 @@
     w.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
   }, true);
 
-  // Optimistic auto-unlock: fire mousedown to the warning early in case
-  // the user-gesture from the prompt's window.open() click carried over.
-  // Only some browsers honour this, but it's harmless when they don't.
-  function _autoUnlockAudio() {
-    var w = document.getElementById('audio-warning');
-    if (w) w.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
-  }
+  // Optimistic auto-unlock: the prompt's window.open() click propagates into
+  // this tab as transient user-activation for a few seconds. jsbeeb binds its
+  // #audio-warning mousedown handler only once its audio stack has finished
+  // initialising, which can land anywhere in the first few seconds, so a fixed
+  // early burst can fire-and-finish before the handler exists. Instead, poll-
+  // fire the mousedown on a short interval until audio is confirmed running
+  // (jsbeeb sets the warning's inline opacity to '0' only when it resumes the
+  // context) or until the activation window closes. Synthetic clicks are
+  // harmless before the handler is bound, and the forwarding shim above still
+  // covers a genuine click in stricter browsers (e.g. Firefox).
   document.addEventListener('DOMContentLoaded', function () {
-    [0, 100, 500, 1000, 2000].forEach(function (t) { setTimeout(_autoUnlockAudio, t); });
+    // On a cold load jsbeeb must fetch its audio-worklet module, ROMs and disc
+    // before the handler goes live, which can land a few seconds in. A tab
+    // opened from a real keypress keeps sticky user activation, so a late
+    // resume still counts. 8s comfortably covers a cold load; the loop also
+    // self-terminates the instant audio resumes (Chromium), so it only runs the
+    // full window in the Firefox no-win case.
+    var deadline = Date.now() + 8000;
+    function tick() {
+      var w = document.getElementById('audio-warning');
+      if (w && w.style.opacity === '0') return true; // audio running — stop
+      if (w) w.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+      return false;
+    }
+    tick();
+    var timer = setInterval(function () {
+      if (tick() || Date.now() > deadline) clearInterval(timer);
+    }, 150);
   });
 </script>
 <script defer src="../../_shared/genx-repo-link.js"></script>

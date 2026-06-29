@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **BBC Micro / Master audio auto-unlock and visible prompt (jsbeeb).** Replaced the fixed audio-unlock burst with a poll-loop that re-fires until audio actually resumes, covering a cold load that lands past the old 2 s cutoff, so Chromium/Brave start sound on launch again. Firefox won't resume an opened tab's audio from a synthetic event, so its "suspended audio — click for sound" prompt is now pinned as a fixed banner across the top of the window (it was buried behind the bezel) to make the required click obvious.
+
 ## [1.0.8] - 2026-06-25
 
 ### Changed
