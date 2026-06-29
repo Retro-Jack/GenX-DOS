@@ -98,13 +98,20 @@
         fireEsc,
       ),
     );
-    bar.appendChild(
-      mk(
-        'RESTORE',
-        'Sends RESTORE to the C64-family core (keyboard shortcut: Page Up). RUN/STOP + RESTORE soft-resets.',
-        fireRestore,
-      ),
-    );
+    // RESTORE only exists on C64-family keyboards (C64, C128, VIC-20, MAX).
+    // The Plus/4 and C16 (TED machines) have no RESTORE key, so skip it there.
+    const platform = location.pathname
+      .replace(/.*\/systems\//, '')
+      .replace(/\/.*/, '');
+    if (platform !== 'plus4' && platform !== 'c16') {
+      bar.appendChild(
+        mk(
+          'RESTORE',
+          'Sends RESTORE to the C64-family core (keyboard shortcut: Page Up). RUN/STOP + RESTORE soft-resets.',
+          fireRestore,
+        ),
+      );
+    }
     document.body.appendChild(bar);
   };
 
