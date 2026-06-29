@@ -59,7 +59,7 @@
   cursor: pointer;
 }
 .gx-state-slot:last-child { border-bottom: 0; }
-/* Used slots read slightly brighter; empty slots stay at full button brightness
-   (never dimmed) so they don't look unselectable — you save into empty ones. */
-.gx-state-slot.gx-state-used { color: rgba(255, 176, 0, 0.95); }
+/* Empty and used slots both sit at the default button brightness — status is
+   carried by the "empty"/"used" label, never by dimming, so no slot looks
+   unselectable. */
 .gx-state-slot:hover { color: #ff8800; background: rgba(255, 176, 0, 0.1); }
