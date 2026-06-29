@@ -3,7 +3,7 @@
 ## [Unreleased]
 
 ### Added
-- **Five save slots per game (save-state buttons).** The bottom-left Save/Load controls now each open a drop-up menu of five slots showing empty/used (empty slots aren't loadable). Persistence moved from `localStorage` to **IndexedDB** (object store `gx-savestate`, keyed `platform:game:slot`) — no quota worries, stores state binary directly, and different games keep independent saves. Applies to both the EmulatorJS (`genx-savestate.js`) and standalone (`genx-savestate-std.js`) handlers; all gamedocs reworded to "Five save slots per game".
+- **Five save slots per game (save-state buttons).** The bottom-left Save/Load controls now each open a drop-up menu of five slots, each labelled empty/used. Persistence moved from `localStorage` to **IndexedDB** (object store `gx-savestate`, keyed `platform:game:slot`) — no quota worries, stores state binary directly, and different games keep independent saves. Applies to both the EmulatorJS (`genx-savestate.js`) and standalone (`genx-savestate-std.js`) handlers; all gamedocs reworded to "Five save slots per game".
 
 ### Fixed
 - **BBC Micro / Master audio auto-unlock and visible prompt (jsbeeb).** Replaced the fixed audio-unlock burst with a poll-loop that re-fires until audio actually resumes, covering a cold load that lands past the old 2 s cutoff, so Chromium/Brave start sound on launch again. Firefox won't resume an opened tab's audio from a synthetic event, so its "suspended audio — click for sound" prompt is now pinned as a fixed banner across the top of the window (it was buried behind the bezel) to make the required click obvious.

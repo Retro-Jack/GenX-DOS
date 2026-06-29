@@ -239,7 +239,6 @@
           used = !!filledSet[n];
         r.textContent = n + (used ? ' used' : ' empty');
         r.classList.toggle('gx-state-used', used);
-        if (m.kind === 'load') r.disabled = !used; // can't load an empty slot
       }
     });
   }
@@ -266,9 +265,8 @@
         r.className = 'gx-state-slot';
         r.addEventListener('click', function (e) {
           e.stopPropagation();
-          if (r.disabled) return;
           closeAll();
-          onPick(n, toggle);
+          onPick(n, toggle); // load on an empty slot just flashes "no save"
         });
         rows[n] = r;
         pop.appendChild(r);

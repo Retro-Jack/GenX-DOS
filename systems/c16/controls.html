@@ -40,7 +40,7 @@
 
     <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
-    <p class="note">Save and load state are on the <strong>save</strong> / <strong>load</strong> buttons in the bottom-left corner. To restart a game, reload the page.</p>
+    <p class="note">The <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner each open a menu of <strong>five save slots</strong> — a full machine snapshot per slot, so they work mid-game even in titles with no save of their own. Slots are per-game and survive a reload. To restart, reload the page.</p>
 
     <h2>Loading from BASIC 3.5</h2>
     <p>The C16 ships with BASIC 3.5 — the same BASIC as the Plus/4, a big upgrade over the C64's BASIC 2 with full sound/graphics commands. VICE auto-LOADs <code>.prg</code> files, but if you drop to the <code>READY.</code> prompt, type one of:</p>

@@ -48,7 +48,7 @@
   appearance: none;
   -webkit-appearance: none;
   background: #000;
-  color: rgba(255, 176, 0, 0.6);
+  color: rgba(255, 176, 0, 0.75);
   border: 0;
   border-bottom: 1px solid rgba(255, 176, 0, 0.15);
   padding: 6px 12px;
@@ -59,6 +59,7 @@
   cursor: pointer;
 }
 .gx-state-slot:last-child { border-bottom: 0; }
-.gx-state-slot.gx-state-used { color: rgba(255, 176, 0, 0.9); }
-.gx-state-slot:hover:not(:disabled) { color: #ff8800; background: rgba(255, 176, 0, 0.1); }
-.gx-state-slot:disabled { color: rgba(255, 176, 0, 0.28); cursor: default; }
+/* Used slots read slightly brighter; empty slots stay at full button brightness
+   (never dimmed) so they don't look unselectable — you save into empty ones. */
+.gx-state-slot.gx-state-used { color: rgba(255, 176, 0, 0.95); }
+.gx-state-slot:hover { color: #ff8800; background: rgba(255, 176, 0, 0.1); }
