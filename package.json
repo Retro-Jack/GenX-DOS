@@ -1,6 +1,6 @@
 {
   "name": "@retro-jack/genx-dos",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "GenX-DOS — npm package (version tracks the GenX-DOS release): the full static site as installable files — a browser DOS-prompt terminal + 8-bit emulator suite. Serve or embed the bundled files; require('@retro-jack/genx-dos').path resolves the site root.",
   "homepage": "https://retro-jack.github.io/GenX-DOS/",
   "repository": {
