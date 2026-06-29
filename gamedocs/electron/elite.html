@@ -11,18 +11,20 @@
     <div class="head">
       <div class="system">Home Computer · Acorn Electron</div>
       <h1>Elite</h1>
-      <p class="sub">Acornsoft, 1985 — David Braben &amp; Ian Bell, Electron port by Andy Onions. 2,048 procedurally-generated planets across 8 galaxies in a machine with no Mode 7 — a feat of compression.</p>
+      <p class="sub">Acornsoft, 1984 — David Braben &amp; Ian Bell. The Acorn Electron conversion, out within weeks of the BBC original: the same 2,048-planet, 8-galaxy universe squeezed onto the Electron's more limited hardware.</p>
     </div>
 
-    <p class="intro">You start in Lave with 100 credits, a Cobra Mk III, a pulse laser, and a rating of "Harmless". Trade goods between systems, fight (or flee) the pirates that ambush you, dock at space stations, upgrade your ship. The Electron version drops one cockpit colour and a few visual flourishes but keeps the same universe and core loop as the BBC original.</p>
+    <p class="intro">You start in Lave with 100 credits, a Cobra Mk III, a pulse laser, and a rating of "Harmless". Trade goods between systems, fight (or flee) the pirates that ambush you, dock at space stations, upgrade your ship. The Electron's hardware forced some cuts — no split-screen view, no suns, no Thargoids, fewer ship types and a noticeably slower frame rate (which arguably makes it easier) — but the trading-and-combat heart of Elite is intact.</p>
 
     <h2>Getting started</h2>
     <ol>
-      <li>At the title press <kbd>Space</kbd>, then <kbd>2</kbd> to start a new commander (or <kbd>1</kbd> to load).</li>
+      <li>At the title press <kbd>Space</kbd>. At the <em>Load New Commander (Y/N)?</em> prompt, press <kbd>N</kbd> to play the default Commander Jameson. (<kbd>Y</kbd> opens the load-commander prompt, but this build can't keep saves — see below.)</li>
       <li>You launch from inside Lave station — match the rotation of the stars before flying out, then hit <kbd>J</kbd> to in-system jump.</li>
-      <li>Press <kbd>Alt</kbd>+<kbd>7</kbd> for the market (buy Food on Lave), <kbd>Alt</kbd>+<kbd>5</kbd>/<kbd>Alt</kbd>+<kbd>4</kbd> for the charts, <kbd>Alt</kbd>+<kbd>1</kbd> to set a target, <kbd>H</kbd> to hyperspace.</li>
+      <li>Press <kbd>Alt</kbd>+<kbd>7</kbd> for the market (buy Food on Lave); <kbd>Alt</kbd>+<kbd>4</kbd>/<kbd>Alt</kbd>+<kbd>5</kbd> bring up the charts to choose a destination, then <kbd>H</kbd> to hyperspace.</li>
       <li>On arrival the station orbits the planet — line up with the rotating slot to dock.</li>
     </ol>
+
+    <p><strong>Saving your progress:</strong> the Electron build loads from a fixed snapshot and the ElkJS engine has no save-state button, so an in-game commander save won't survive closing the tab — progress can't be carried between sessions.</p>
 
     <h2>Flight controls</h2>
     <table>
@@ -30,7 +32,7 @@
       <tr><td><kbd>S</kbd> / <kbd>X</kbd></td><td>Pitch — dive / climb</td></tr>
       <tr><td><kbd>&lt;</kbd> / <kbd>&gt;</kbd></td><td>Roll left / right</td></tr>
       <tr><td><kbd>Space</kbd></td><td>Accelerate</td></tr>
-      <tr><td><kbd>/</kbd></td><td>Decelerate</td></tr>
+      <tr><td><kbd>?</kbd> (slash)</td><td>Decelerate</td></tr>
       <tr><td><kbd>A</kbd></td><td>Fire laser</td></tr>
       <tr><td><kbd>T</kbd></td><td>Target missile</td></tr>
       <tr><td><kbd>M</kbd></td><td>Fire missile</td></tr>
@@ -42,16 +44,24 @@
       <tr><td><kbd>Esc</kbd></td><td>Launch escape pod</td></tr>
     </table>
 
-    <h2>Cockpit views &amp; menus</h2>
+    <h2>Function keys — dual purpose</h2>
+    <p>The Electron has no function-key row — its red function keys are FUNC + a number, and ElkJS maps FUNC to <kbd>Alt</kbd>. In flight these switch cockpit views; when docked they trigger the station actions.</p>
     <table>
-      <tr><th>Input</th><th>Screen</th></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>0</kbd></td><td>Front view</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd></td><td>Rear / Left / Right</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>4</kbd></td><td>Galactic short-range chart</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>5</kbd></td><td>Long-range chart</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>6</kbd></td><td>Data on selected system</td></tr>
+      <tr><th>Key</th><th>In flight</th><th>When docked</th></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>0</kbd></td><td>Front view</td><td>Launch</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>1</kbd></td><td>Rear view</td><td>Buy cargo</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>2</kbd></td><td>Left view</td><td>Sell cargo</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>3</kbd></td><td>Right view</td><td>Equip ship</td></tr>
+    </table>
+
+    <h2>Information screens</h2>
+    <table>
+      <tr><th>Key</th><th>Screen</th></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>4</kbd></td><td>Long-range (galactic) chart</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>5</kbd></td><td>Short-range chart</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>6</kbd></td><td>Data on system</td></tr>
       <tr><td><kbd>Alt</kbd>+<kbd>7</kbd></td><td>Market prices</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>8</kbd></td><td>Status report</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>8</kbd></td><td>Status</td></tr>
       <tr><td><kbd>Alt</kbd>+<kbd>9</kbd></td><td>Inventory</td></tr>
       <tr><td><kbd>Tab</kbd></td><td>Energy bomb (one-shot — wipes nearby ships)</td></tr>
     </table>
@@ -60,12 +70,12 @@
     <ul>
       <li><strong>Agricultural → Industrial → back.</strong> Food/Furs/Textiles on agricultural worlds, sell at industrial; Computers/Machinery on the return.</li>
       <li><strong>Stay legal at first.</strong> Narcotics, Slaves, and Firearms get you fined; profitable only with police-evading kit.</li>
-      <li><strong>Fuel scoops</strong> let you skim a star for free hyperspace fuel — carefully.</li>
-      <li><strong>Don't fight Thargoids unprovoked.</strong> The first one ends most early commanders' careers.</li>
+      <li><strong>Fuel scoop is cargo-only here.</strong> The Electron has no suns, so you can't skim a star for fuel — the scoop only picks up cargo canisters left by destroyed ships.</li>
+      <li><strong>Slower pace, kinder dogfights.</strong> The Electron runs Elite noticeably slower than the BBC, giving you more reaction time when pirates jump you.</li>
     </ul>
 
     <h2>Electron vs BBC version</h2>
-    <p>The core Elite universe is identical. The Electron's single-ULA hardware means slightly slower frame rate during dense space combat and one fewer colour in the cockpit overlay. Save files are interchangeable between BBC and Electron tape versions.</p>
+    <p>The universe is the same — 2,048 planets, 8 galaxies, the trading-and-combat loop — but the Electron's hardware forced cuts. With no 6845 CRTC the BBC's memory-saving split-screen mode couldn't be reprogrammed, so the dashboard/space split, the suns and the Thargoids were all dropped, along with some ship types, and the whole game runs noticeably slower (which makes it a touch easier).</p>
   </div>
 </body>
 </html>
