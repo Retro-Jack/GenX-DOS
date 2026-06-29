@@ -11,10 +11,10 @@
     <div class="head">
       <div class="system">Home Computer · BBC Master 128</div>
       <h1>Elite (Master version)</h1>
-      <p class="sub">Acornsoft / Imagineer, 1986 — David Braben &amp; Ian Bell. Master-enhanced Elite: more colours in the cockpit, smoother wireframe rendering, the full mission chain on a double-sided disc.</p>
+      <p class="sub">Acornsoft, 1986 — David Braben &amp; Ian Bell. Master-enhanced Elite: flicker-free ships, finer scoring and improved sound, with built-in missions on a double-sided disc.</p>
     </div>
 
-    <p class="intro">The Master release of Elite is the most polished 8-bit version. Same universe — 2,048 systems across 8 galaxies, same Cobra Mk III, same trading/combat loop — but the Master 128's extra RAM and 65C12 speed let the cockpit show more colour and the wireframes draw faster. This build (the flicker-free reconstruction from bbcelite.com) ships as a double-sided disc image (`.dsd`); `*DRIVE 2` in the !BOOT loads side 1 of the disc.</p>
+    <p class="intro">The Master release is a refined 8-bit Elite. Same universe — 2,048 systems across 8 galaxies, same Cobra Mk III, same trading/combat loop — but it inherits the flicker-free ship-drawing algorithm from the Apple II version (released earlier the same year) and adds finer scoring, reworked sound and a volume control. This build is reconstructed from the documented source at bbcelite.com and ships as a double-sided disc image (`.dsd`); `*DRIVE 2` in the !BOOT loads side 1 of the disc.</p>
 
     <h2>Getting started</h2>
     <ol>
@@ -31,7 +31,7 @@
       <tr><td><kbd>S</kbd> / <kbd>X</kbd></td><td>Pitch — dive / climb</td></tr>
       <tr><td><kbd>&lt;</kbd> / <kbd>&gt;</kbd></td><td>Roll left / right</td></tr>
       <tr><td><kbd>Space</kbd></td><td>Accelerate</td></tr>
-      <tr><td><kbd>/</kbd></td><td>Decelerate</td></tr>
+      <tr><td><kbd>?</kbd> (slash)</td><td>Decelerate</td></tr>
       <tr><td><kbd>A</kbd></td><td>Fire laser</td></tr>
       <tr><td><kbd>T</kbd></td><td>Target missile</td></tr>
       <tr><td><kbd>M</kbd></td><td>Fire missile</td></tr>
@@ -68,9 +68,11 @@
 
     <h2>Master version differences</h2>
     <ul>
-      <li><strong>Flicker-free wireframes.</strong> The 65C12's extra speed lets the renderer double-buffer cleanly — no scanline tearing in dense combat.</li>
-      <li><strong>Extra cockpit colours.</strong> The 128K RAM allows palette switching mid-frame; the dashboard and chart screens use more hues than the BBC original.</li>
-      <li><strong>Disc-driven mission chain.</strong> Constrictor, Cougar, Thargoid mothership missions are all on the disc — no separate "Mission Disc" sale.</li>
+      <li><strong>Flicker-free ships.</strong> The Master uses the improved ship-drawing algorithm from the Apple II version (released earlier the same year) — far less flicker than the cassette/disc BBC builds.</li>
+      <li><strong>Finer kill scoring.</strong> Kills are scored by ship type and can be fractional, instead of the original's flat one-kill-per-ship.</li>
+      <li><strong>Coloured laser sights &amp; energy-bomb storm.</strong> The laser crosshairs change colour with the laser type, and the energy bomb sets off a lightning-storm effect.</li>
+      <li><strong>Updated sound + volume control.</strong> Reworked sound effects with an in-game volume control — a real bonus on original hardware.</li>
+      <li><strong>Trumble mission dropped.</strong> The Trumble code is still present but inactive; that mission was cut when the 6502 Second Processor and C64 versions were merged into the Master build (no sprite support). The Constrictor and Thargoid missions remain.</li>
     </ul>
 
     <h2>Strategy basics</h2>
