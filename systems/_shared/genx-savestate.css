@@ -26,3 +26,39 @@
 .gx-state-btn:hover { color: #ff8800; border-color: #ff8800; }
 .gx-state-btn svg { width: 10px; height: 10px; fill: currentColor; flex-shrink: 0; }
 .gx-state-flash { color: #ff8800; border-color: #ff8800; }
+
+/* Save / Load each open a drop-up menu of the three per-game slots. The bar
+   sits at the bottom of the viewport, so the list rises above the button; each
+   row shows whether that slot holds a save. */
+.gx-state-menu { position: relative; display: inline-flex; }
+.gx-state-pop {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 4px);
+  display: none;
+  flex-direction: column;
+  min-width: 100%;
+  background: #000;
+  border: 1px solid rgba(255, 176, 0, 0.35);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.gx-state-menu.open .gx-state-pop { display: flex; }
+.gx-state-slot {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #000;
+  color: rgba(255, 176, 0, 0.6);
+  border: 0;
+  border-bottom: 1px solid rgba(255, 176, 0, 0.15);
+  padding: 6px 12px;
+  font: 11px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.05em;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.gx-state-slot:last-child { border-bottom: 0; }
+.gx-state-slot.gx-state-used { color: rgba(255, 176, 0, 0.9); }
+.gx-state-slot:hover:not(:disabled) { color: #ff8800; background: rgba(255, 176, 0, 0.1); }
+.gx-state-slot:disabled { color: rgba(255, 176, 0, 0.28); cursor: default; }

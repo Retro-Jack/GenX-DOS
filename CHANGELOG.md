@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- **Five save slots per game (save-state buttons).** The bottom-left Save/Load controls now each open a drop-up menu of five slots showing empty/used (empty slots aren't loadable). Persistence moved from `localStorage` to **IndexedDB** (object store `gx-savestate`, keyed `platform:game:slot`) — no quota worries, stores state binary directly, and different games keep independent saves. Applies to both the EmulatorJS (`genx-savestate.js`) and standalone (`genx-savestate-std.js`) handlers; all gamedocs reworded to "Five save slots per game".
+
 ### Fixed
 - **BBC Micro / Master audio auto-unlock and visible prompt (jsbeeb).** Replaced the fixed audio-unlock burst with a poll-loop that re-fires until audio actually resumes, covering a cold load that lands past the old 2 s cutoff, so Chromium/Brave start sound on launch again. Firefox won't resume an opened tab's audio from a synthetic event, so its "suspended audio — click for sound" prompt is now pinned as a fixed banner across the top of the window (it was buried behind the bezel) to make the required click obvious.
 - **Elite gamedoc corrections (BBC Micro + Master).** Documented the dual-purpose function keys from the original control card (<kbd>F10</kbd>/<kbd>F1</kbd>–<kbd>F3</kbd> are cockpit views in flight but Launch / Buy / Sell / Equip when docked); fixed the swapped <kbd>F4</kbd>/<kbd>F5</kbd> (F4 = long-range galactic chart, F5 = short-range), the wrong "<kbd>F1</kbd> sets a target" (F1 is rear view), and the startup flow (the real prompt is *Load New Commander (Y/N)?* — N for the default Commander Jameson). Replaced the false "disc save survives between sessions" claim with a note that the disc is read-only in the browser, so use the save / load buttons to persist progress.
