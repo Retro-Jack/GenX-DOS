@@ -4,6 +4,7 @@
 
 ### Added
 - **BBC COPY soft button (jsbeeb).** The BBC's COPY key has no obvious PC equivalent (jsbeeb maps it to <kbd>End</kbd>), so the BBC Micro and Master bundles now show a clickable **COPY** button (top-left, in the GenX button style) that sends it — handy for games where COPY is "continue", e.g. Manic Miner. New shared `systems/_shared/genx-bbc-copykey.js`; the VICE RUN/STOP softkey was restyled to match (amber GenX look, same size).
+- **VICE RESTORE soft button.** Added a RESTORE button stacked under RUN/STOP on the C64-family bundles — sends the RESTORE / NMI key (libretro VICE maps it to Page Up, which works natively too). RUN/STOP + RESTORE soft-resets.
 
 ### Fixed
 - **BBC Micro / Master audio auto-unlock and visible prompt (jsbeeb).** Replaced the fixed audio-unlock burst with a poll-loop that re-fires until audio actually resumes, covering a cold load that lands past the old 2 s cutoff, so Chromium/Brave start sound on launch again. Firefox won't resume an opened tab's audio from a synthetic event, so its "suspended audio — click for sound" prompt is now pinned as a fixed banner across the top of the window (it was buried behind the bezel) to make the required click obvious.
