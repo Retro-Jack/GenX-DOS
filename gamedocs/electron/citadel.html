@@ -14,25 +14,25 @@
       <p class="sub">Superior Software, 1985 — Michael Jakobsen. Electron port of the BBC arcade-adventure-platformer; ~100 interconnected rooms.</p>
     </div>
 
-    <p class="intro">Find the citadel hidden somewhere in the maze, recover the magical artefacts, and escape. Rooms hold keys, food, scrolls, and helpful objects — alongside creatures that drain energy on contact. Match the right object to the right obstacle; the puzzle is half platforming, half adventure inventory.</p>
+    <p class="intro">Find the five hidden crystals scattered across the maze and return them to open the way into the citadel. Rooms hold keys, food, scrolls, and helpful objects — alongside creatures that drain energy on contact. Match the right object to the right obstacle; the puzzle is half platforming, half adventure inventory.</p>
 
     <h2>Getting started</h2>
     <ol>
-      <li>Press <kbd>Space</kbd> at the title to start.</li>
+      <li>The snapshot boots into Citadel's room slideshow (an attract demo that cycles through rooms) — press <kbd>Return</kbd> to start playing.</li>
       <li>You start outside the castle. Walk through the door on the right and collect everything you can pick up.</li>
       <li>You carry one object at a time; drop the current item by walking over a new one — choose carefully.</li>
     </ol>
 
     <h2>Controls</h2>
+    <p>The snapshot boots with Citadel's default key layout (below). The Electron's <kbd>*</kbd> and <kbd>?</kbd> keys aren't where a PC keyboard puts them — ElkJS maps the <kbd>:</kbd>&thinsp;<kbd>*</kbd> key to your PC apostrophe <kbd>'</kbd> and the <kbd>/</kbd>&thinsp;<kbd>?</kbd> key to <kbd>/</kbd>, so press those for up/down.</p>
     <table>
-      <tr><th>Input</th><th>Action</th></tr>
-      <tr><td><kbd>Z</kbd></td><td>Left</td></tr>
-      <tr><td><kbd>X</kbd></td><td>Right</td></tr>
-      <tr><td><kbd>Return</kbd></td><td>Jump</td></tr>
-      <tr><td><kbd>Space</kbd></td><td>Use / drop object</td></tr>
-      <tr><td><kbd>S</kbd></td><td>Sound on / off</td></tr>
-      <tr><td><kbd>P</kbd></td><td>Pause</td></tr>
-      <tr><td><kbd>Esc</kbd></td><td>Abandon</td></tr>
+      <tr><th>PC key</th><th>Electron key</th><th>Action</th></tr>
+      <tr><td><kbd>Z</kbd></td><td>Z</td><td>Left</td></tr>
+      <tr><td><kbd>X</kbd></td><td>X</td><td>Right</td></tr>
+      <tr><td><kbd>'</kbd> (apostrophe)</td><td>*</td><td>Up</td></tr>
+      <tr><td><kbd>/</kbd></td><td>?</td><td>Down</td></tr>
+      <tr><td><kbd>Return</kbd></td><td>Return</td><td>Action (jump)</td></tr>
+      <tr><td><kbd>Space</kbd> or <kbd>Shift</kbd></td><td>Space / Shift</td><td>Cast spell / use object</td></tr>
     </table>
 
     <h2>Useful objects</h2>
@@ -43,7 +43,7 @@
       <tr><td>Scroll</td><td>One-shot spell; colour determines effect</td></tr>
       <tr><td>Cross</td><td>Repels ghosts</td></tr>
       <tr><td>Wand</td><td>Disables a specific monster type briefly</td></tr>
-      <tr><td>Cube</td><td>Treasure — one of 16 to collect</td></tr>
+      <tr><td>Crystal</td><td>One of the five you must find and return to enter the citadel</td></tr>
     </table>
 
     <h2>Strategy</h2>
