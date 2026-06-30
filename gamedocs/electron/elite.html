@@ -18,13 +18,13 @@
 
     <h2>Getting started</h2>
     <ol>
-      <li>At the title press <kbd>Space</kbd>. At the <em>Load New Commander (Y/N)?</em> prompt, press <kbd>N</kbd> to play the default Commander Jameson. (<kbd>Y</kbd> opens the load-commander prompt, but this build can't keep saves — see below.)</li>
+      <li>At the title, press <kbd>Space</kbd>, then <kbd>N</kbd> at the <em>Load New Commander (Y/N)?</em> prompt to fly the default Commander Jameson.</li>
       <li>You launch from inside Lave station — match the rotation of the stars before flying out, then hit <kbd>J</kbd> to in-system jump.</li>
-      <li>Press <kbd>Alt</kbd>+<kbd>7</kbd> for the market (buy Food on Lave); <kbd>Alt</kbd>+<kbd>4</kbd>/<kbd>Alt</kbd>+<kbd>5</kbd> bring up the charts to choose a destination, then <kbd>H</kbd> to hyperspace.</li>
+      <li>Press <kbd>Alt</kbd>+<kbd>8</kbd> for the market (buy Food on Lave); <kbd>Alt</kbd>+<kbd>5</kbd>/<kbd>Alt</kbd>+<kbd>6</kbd> bring up the charts to choose a destination, then <kbd>H</kbd> to hyperspace.</li>
       <li>On arrival the station orbits the planet — line up with the rotating slot to dock.</li>
     </ol>
 
-    <p><strong>Saving your progress:</strong> the Electron build loads from a fixed snapshot and the ElkJS engine has no save-state button, so an in-game commander save won't survive closing the tab — progress can't be carried between sessions.</p>
+    <p><strong>Saving:</strong> on a real Electron, Elite saves your commander to tape — but this bundle runs from a fixed, read-only snapshot with no writable storage (and this emulator has no save-state function that can be implemented here), so progress can't be kept between sessions. Every visit starts fresh as Commander Jameson; the startup <kbd>Y</kbd> (load commander) option has nothing to load.</p>
 
     <h2>Flight controls</h2>
     <table>
@@ -45,24 +45,24 @@
     </table>
 
     <h2>Function keys — dual purpose</h2>
-    <p>The Electron has no function-key row — its red function keys are FUNC + a number, and ElkJS maps FUNC to <kbd>Alt</kbd>. In flight these switch cockpit views; when docked they trigger the station actions.</p>
+    <p>The Electron has no function-key row — its red function keys are FUNC + a number, and this emulator maps FUNC to <kbd>Alt</kbd>. In flight these switch cockpit views; when docked they trigger the station actions.</p>
     <table>
       <tr><th>Key</th><th>In flight</th><th>When docked</th></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>0</kbd></td><td>Front view</td><td>Launch</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>1</kbd></td><td>Rear view</td><td>Buy cargo</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>2</kbd></td><td>Left view</td><td>Sell cargo</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>3</kbd></td><td>Right view</td><td>Equip ship</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>1</kbd></td><td>Front view</td><td>Launch</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>2</kbd></td><td>Rear view</td><td>Buy cargo</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>3</kbd></td><td>Left view</td><td>Sell cargo</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>4</kbd></td><td>Right view</td><td>Equip ship</td></tr>
     </table>
 
     <h2>Information screens</h2>
     <table>
       <tr><th>Key</th><th>Screen</th></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>4</kbd></td><td>Long-range (galactic) chart</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>5</kbd></td><td>Short-range chart</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>6</kbd></td><td>Data on system</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>7</kbd></td><td>Market prices</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>8</kbd></td><td>Status</td></tr>
-      <tr><td><kbd>Alt</kbd>+<kbd>9</kbd></td><td>Inventory</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>5</kbd></td><td>Long-range (galactic) chart</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>6</kbd></td><td>Short-range chart</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>7</kbd></td><td>Data on system</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>8</kbd></td><td>Market prices</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>9</kbd></td><td>Status</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>0</kbd></td><td>Inventory</td></tr>
       <tr><td><kbd>Tab</kbd></td><td>Energy bomb (one-shot — wipes nearby ships)</td></tr>
     </table>
 
