@@ -74,7 +74,7 @@ ElkJs.Sound = function (opts) {
         }
 
         while (i < n) {
-            outputArray[i++] = audioBuffer[i2++];
+            outputArray[i++] = audioBuffer[i2++] * 0.25;   // GenX: output at 25% volume
         }
 
         audioBuffer.splice(0, i2);

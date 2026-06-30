@@ -97,22 +97,18 @@
     setTimeout(function() { elkjs.openFile(games[key]); }, 3000);
   }
 
-  // Audio auto-unlock: piggyback on the window.open user-activation that
-  // the prompt's launcher click propagated into this tab. ElkJs.soundToggle()
-  // creates the AudioContext on first call and enables sound. If propagation
-  // already expired (e.g. direct URL navigation), the keydown fallback below
-  // unlocks on first key press instead.
-  function _autoUnlockSound() {
-    if (window._gxSoundOn) return;
-    try { elkjs.soundToggle(); window._gxSoundOn = true; } catch (e) {}
-  }
+  // Audio unlock. ElkJS creates the AudioContext suspended (autoplay policy).
+  // Best-effort: piggyback on the window.open user-activation propagated from
+  // the prompt launcher click. Reliable: resume on every real user gesture —
+  // resumeAudio() is idempotent (only resumes when suspended) so leaving the
+  // listeners attached is harmless.
+  function _enableSound() { try { elkjs.resumeAudio(); } catch (e) {} }
   document.addEventListener('DOMContentLoaded', function () {
-    [0, 100, 500, 1000, 2000].forEach(function (t) { setTimeout(_autoUnlockSound, t); });
+    [0, 100, 500, 1000, 2000].forEach(function (t) { setTimeout(_enableSound, t); });
   });
-  document.addEventListener('keydown', function initSound() {
-    if (!window._gxSoundOn) elkjs.soundToggle();
-    document.removeEventListener('keydown', initSound);
-  }, { once: true });
+  ['keydown', 'pointerdown', 'touchstart'].forEach(function (ev) {
+    document.addEventListener(ev, _enableSound);
+  });
   </script>
 
   <!-- Bezel credit (Acorn.png — Microvitec CUB monitor frame): bezel

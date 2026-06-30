@@ -146,7 +146,17 @@ function ElkJs(output) {
 		soundEnabled = !soundEnabled;
 		return soundEnabled;
 	}
-	
+
+	// GenX: resume-only, idempotent. soundToggle() resumes the AudioContext
+	// only on its first call; if that first call lacked a valid user gesture
+	// the context stays suspended (no sound). Call this on every real gesture
+	// to keep retrying resume and ensure sound is enabled — without toggling off.
+	self.resumeAudio = function () {
+		sound.soundInit();
+		soundInit = true;
+		soundEnabled = true;
+	}
+
 	self.openFile = function(file) {
 		 uefHandler.loadUEF(file,autoLoad);
 	}
