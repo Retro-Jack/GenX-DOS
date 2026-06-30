@@ -29,7 +29,7 @@
     <p>The Plus/4 has two joystick ports (the non-standard 8-pin DIN, incompatible with Atari-style sticks). If a game ignores the stick it's reading the other port; each game is preset to the port it expects.</p>
 
     <h2>Plus/4 keyboard</h2>
-    <p>This emulator maps the Plus/4 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro keymap):</p>
+    <p>This emulator maps the Plus/4 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from this emulator's keymap):</p>
     <table>
       <tr><th>Key</th><th>Plus/4 key</th></tr>
       <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
@@ -40,7 +40,7 @@
     </table>
     <p class="note">The Plus/4 is a TED machine: it has no Commodore (C=) key and no RESTORE key, so those C64 mappings don't apply here. Its ESC, HELP and the four function keys aren't mapped to PC keys in this build.</p>
 
-    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches the emulator. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
+    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the emulator's keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches the emulator. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the emulator as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
     <p class="note">The <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner each open a menu of <strong>five save slots</strong> — a full machine snapshot per slot, so they work mid-game even in titles with no save of their own. Slots are per-game and survive a reload. To restart, reload the page.</p>
 

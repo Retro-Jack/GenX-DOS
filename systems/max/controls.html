@@ -27,7 +27,7 @@
     <p>If a cart ignores the stick, it's reading the other joystick port; each cart is preset to the port it expects.</p>
 
     <h2>MAX keyboard</h2>
-    <p>The MAX has a membrane key matrix sharing the C64's layout; this emulator maps it positionally — letters, numbers and most punctuation type as themselves. The special keys (from the libretro keymap):</p>
+    <p>The MAX has a membrane key matrix sharing the C64's layout; this emulator maps it positionally — letters, numbers and most punctuation type as themselves. The special keys (from this emulator's keymap):</p>
     <table>
       <tr><th>Key</th><th>MAX key</th></tr>
       <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
@@ -40,14 +40,14 @@
       <tr><td><kbd>Insert</kbd></td><td>£ (pound)</td></tr>
     </table>
 
-    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches the emulator. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
+    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the emulator's keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches the emulator. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the emulator as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
     <p class="note">The <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner each open a menu of <strong>five save slots</strong> — a full machine snapshot per slot, so they work mid-game even in titles with no save of their own. Slots are per-game and survive a reload. To restart, reload the page.</p>
 
     <h2>Why so few games?</h2>
     <p>The MAX was Commodore's attempt at an entry-level games console for the Japanese market, launched June 1982 — six months before the C64 reached US shelves. With only 2 KB of usable RAM (less than the VIC-20!) and no BASIC ROM, it was crippled out of the gate; the parallel C64 launch made it instantly redundant. Production stopped within months and Commodore Japan moved on. Only ~27 official cartridges ever shipped — the entire library is smaller than a single year of Commodore 64 releases. The MAX is the rarest mainstream Commodore product.</p>
 
-    <p class="note">Cart format: Ultimax-mode 8K cartridges mapped to $E000 (and 16K split $8000 + $E000). VICE accepts these as standard <code>.crt</code> files with hardware type 0, EXROM=1, GAME=0. Emulator: VICE x64 (GPL-2.0, libretro core) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
+    <p class="note">Cart format: Ultimax-mode 8K cartridges mapped to $E000 (and 16K split $8000 + $E000). This emulator accepts these as standard <code>.crt</code> files with hardware type 0, EXROM=1, GAME=0. Emulator: VICE x64 (GPL-2.0, libretro core) under <a href="https://github.com/EmulatorJS/EmulatorJS" target="_blank" rel="noopener">EmulatorJS</a> (GPL-3.0). Both shipped locally from this site; no network calls at runtime.</p>
 
     <div class="footer">
       <a href="javascript:window.close()">close tab</a> ·

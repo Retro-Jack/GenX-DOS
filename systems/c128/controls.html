@@ -30,7 +30,7 @@
     <p>Joystick is mapped to the numeric keypad via the emulator's <code>vice_joyport_type='1'</code> setting so it doesn't conflict with the keyboard. NumLock needs to be on for the numpad to fire — a banner reminds you if it isn't.</p>
 
     <h2>C128 keyboard</h2>
-    <p>This emulator maps the C128 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro keymap):</p>
+    <p>This emulator maps the C128 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from this emulator's keymap):</p>
     <table>
       <tr><th>Key</th><th>C128 key</th></tr>
       <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
@@ -47,7 +47,7 @@
     </table>
     <p class="note">The C128's native-mode-only keys (40/80 DISPLAY, ESC, HELP, NO SCROLL, the numeric keypad) aren't on this positional table and aren't mapped to PC keys, so a program that needs one of them can't currently use it.</p>
 
-    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches the emulator. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
+    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the emulator's keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches the emulator. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the emulator as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
     <p class="note">The <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner each open a menu of <strong>five save slots</strong> — a full machine snapshot per slot, so they work mid-game even in titles with no save of their own. Slots are per-game and survive a reload. To restart, reload the page.</p>
 
