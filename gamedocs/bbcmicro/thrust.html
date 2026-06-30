@@ -11,7 +11,7 @@
     <div class="head">
       <div class="system">Home Computer · BBC Micro</div>
       <h1>Thrust</h1>
-      <p class="sub">Superior Software (originally Firebird), 1986 — Jeremy Smith. Gravity-physics puzzle/shooter inspired by Atari's <em>Gravitar</em>; one screen, deadly inertia, infinite re-tries.</p>
+      <p class="sub">Superior Software, 1986 — Jeremy C. Smith. Gravity-physics puzzle/shooter inspired by Atari's <em>Gravitar</em>; one screen, deadly inertia, infinite re-tries. (Superior licensed the ports to Firebird, whose budget C64 version actually reached the shops first.)</p>
     </div>
 
     <p class="intro">You pilot a tiny ship through caverns to retrieve a stolen klystron pod, hooked beneath the ship by a tractor beam. The pod swings on inertia, every wall is lethal, and your only acceleration is rotational thrust. Get the pod out, escape the cavern, and refuel from depots without overheating.</p>
@@ -25,13 +25,18 @@
     </ol>
 
     <h2>Controls</h2>
+    <p>jsbeeb's default layout maps these BBC keys straight to the matching PC keys. Rotation is held — keep <kbd>Caps&nbsp;Lock</kbd> or <kbd>Ctrl</kbd> pressed to keep turning.</p>
     <table>
       <tr><th>Key</th><th>Action</th></tr>
       <tr><td><kbd>Caps&nbsp;Lock</kbd></td><td>Rotate left</td></tr>
       <tr><td><kbd>Ctrl</kbd></td><td>Rotate right</td></tr>
       <tr><td><kbd>Shift</kbd></td><td>Thrust (in the facing direction)</td></tr>
       <tr><td><kbd>Return</kbd></td><td>Fire</td></tr>
-      <tr><td><kbd>Space</kbd></td><td>Tractor beam / shields — pick up &amp; drop the pod</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Shield / tractor beam — pick up &amp; drop the pod</td></tr>
+      <tr><td><kbd>End</kbd> (or the COPY button)</td><td>Freeze (BBC COPY)</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>Unfreeze (BBC DELETE)</td></tr>
+      <tr><td><kbd>Q</kbd> / <kbd>S</kbd></td><td>Sound off / on (Quiet / Sound)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Quit game</td></tr>
     </table>
 
     <h2>Surfaces &amp; objects</h2>
@@ -49,6 +54,7 @@
       <li><strong>Pod swing is predictable.</strong> Like a real pendulum. Time direction reversals at the bottom of the swing for the least disturbance.</li>
       <li><strong>Don't refuel while carrying the pod.</strong> The fuel cell explodes if the pod swings into it.</li>
       <li><strong>Destroy the reactor for the bonus.</strong> Risky — you have ~5 seconds to escape the cavern after the explosion, but the score multiplier is huge.</li>
+      <li><strong>Snapshot between caverns.</strong> Thrust has no in-game save, so use the save/load buttons at the bottom-left of the browser window — five slots — to bank progress before a tricky cavern.</li>
     </ul>
   </div>
 </body>
