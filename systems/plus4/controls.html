@@ -13,7 +13,7 @@
       <h1>Commodore Plus/4 — Controls</h1>
     </div>
 
-    <p class="intro">VICE xplus4 (the Plus/4 / C16 / C116 build of the gold-standard Commodore emulator) running in your browser via EmulatorJS. The Plus/4 has 64 KB of RAM and the TED chip (combined video + sound) with a 121-colour palette. Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">The Commodore Plus/4 in your browser. The Plus/4 has 64 KB of RAM and the TED chip (combined video + sound) with a 121-colour palette. Click the canvas first so the emulator receives keyboard input.</p>
 
     <p class="note">When a disk game is loading, the initial read takes around 20-30 seconds — that's not a freeze, it's the real-time 1541 drive emulation reading the disk over the IEC bus at period-authentic speed. You'll hear the drive chunk and stepper-click the whole way through; the game starts when it falls silent. Most of the bundled games are single-file <code>.prg</code>s that load instantly without disk activity.</p>
 
@@ -29,7 +29,7 @@
     <p>The Plus/4 has two joystick ports (the non-standard 8-pin DIN, incompatible with Atari-style sticks). If a game ignores the stick it's reading the other port; each game is preset to the port it expects.</p>
 
     <h2>Plus/4 keyboard</h2>
-    <p>VICE maps the Plus/4 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro VICE keymap):</p>
+    <p>This emulator maps the Plus/4 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro keymap):</p>
     <table>
       <tr><th>Key</th><th>Plus/4 key</th></tr>
       <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
@@ -40,12 +40,12 @@
     </table>
     <p class="note">The Plus/4 is a TED machine: it has no Commodore (C=) key and no RESTORE key, so those C64 mappings don't apply here. Its ESC, HELP and the four function keys aren't mapped to PC keys in this build.</p>
 
-    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
+    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches the emulator. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
     <p class="note">The <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner each open a menu of <strong>five save slots</strong> — a full machine snapshot per slot, so they work mid-game even in titles with no save of their own. Slots are per-game and survive a reload. To restart, reload the page.</p>
 
     <h2>Loading from BASIC 3.5</h2>
-    <p>The Plus/4 ships with BASIC 3.5 (a big upgrade over C64's BASIC 2 — full sound/graphics commands). VICE auto-LOADs <code>.prg</code> files and the first program on most disks, but if a game drops you to the <code>READY.</code> prompt, type one of:</p>
+    <p>The Plus/4 ships with BASIC 3.5 (a big upgrade over C64's BASIC 2 — full sound/graphics commands). This emulator auto-LOADs <code>.prg</code> files and the first program on most disks, but if a game drops you to the <code>READY.</code> prompt, type one of:</p>
     <table>
       <tr><th>Command</th><th>Effect</th></tr>
       <tr><td><code>DIRECTORY</code></td><td>List the disk directory (Plus/4 BASIC 3.5 shortcut — equivalent to <code>LOAD"$",8</code> on C64)</td></tr>

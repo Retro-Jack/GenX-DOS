@@ -13,10 +13,10 @@
       <h1>Amstrad CPC — Controls</h1>
     </div>
 
-    <p class="intro">floooh's tiny8bit CPC emulator (Andre Weissflog) running as a standalone WASM build — rebuilt locally from source so the on-screen debug status bar and the muted-speaker icon don't paint over the game. The CPC 6128 (128 KB RAM, BASIC 1.1, 3-inch floppy drive) was released 1984 by Amstrad as the UK / European rival to the C64 and Spectrum — the CPC range sold ~3 million units and built one of the strongest 8-bit game libraries outside Japan. Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">The Amstrad CPC 6128 (128 KB RAM, BASIC 1.1, 3-inch floppy drive), running in your browser. Released 1984 by Amstrad as the UK / European rival to the C64 and Spectrum — the CPC range sold ~3 million units and built one of the strongest 8-bit game libraries outside Japan. Click the canvas first so the emulator receives keyboard input.</p>
 
     <h2>Game launch</h2>
-    <p>Pick a game from the menu and it autoboots — no catalog screen, no <code>run"…</code> typing. Each game's <code>games.json</code> entry carries the boot command (e.g. <code>run"ontherun</code> for Roland), which tiny8bit's <code>sokol_args</code> reads as URL params and types into the emulator immediately after the disk mounts.</p>
+    <p>Pick a game from the menu and it autoboots — no catalog screen, no <code>run"…</code> typing. Each game's <code>games.json</code> entry carries the boot command (e.g. <code>run"ontherun</code> for Roland), which the emulator reads as URL params and types into the emulator immediately after the disk mounts.</p>
     <p>The <code>BASIC</code> menu entry skips the autoboot — you land at the bare Locomotive BASIC 1.1 <code>Ready</code> prompt as if no disk were inserted.</p>
 
     <h2>Controls — host keyboard → CPC keyboard</h2>
@@ -48,7 +48,7 @@
     <p class="note">The <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner each open a menu of <strong>five save slots</strong> — a full machine snapshot per slot, so they work mid-game even in titles with no save of their own. Slots are per-game and survive a reload. To restart, reload the page.</p>
 
     <h2>Reset</h2>
-    <p>tiny8bit has no toolbar — to cold-reset the emulator, reload the page in your browser (F5 / Ctrl+R). The bundled disk re-mounts and the game re-autoboots.</p>
+    <p>This emulator has no toolbar — to cold-reset it, reload the page in your browser (F5 / Ctrl+R). The bundled disk re-mounts and the game re-autoboots.</p>
 
     <p class="note">Emulator: tiny8bit CPC (MIT, by Andre Weissflog — <a href="https://github.com/floooh/chips-test" target="_blank" rel="noopener">floooh/chips-test</a>). Three prior cores were tried and dropped: EmulatorJS + Caprice32 (cap32) aborts during disk attach with a missing <code>getControllerPortInfo</code> export; CrocoDS boots but stops at a catalog menu with no API to skip; cpcbox is minified beyond editing and rejects our <code>.dsk</code> images. tiny8bit was the fourth attempt — clean URL-param config, no EJS dependency, drop-in autoboot via the <code>input</code> field. Shipped locally; no network calls at runtime.</p>
 

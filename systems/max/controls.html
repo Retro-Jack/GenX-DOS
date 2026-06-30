@@ -13,7 +13,7 @@
       <h1>Commodore MAX Machine — Controls</h1>
     </div>
 
-    <p class="intro">VICE x64 (gold-standard Commodore emulator) running in your browser via EmulatorJS, switched into Ultimax mode — that's the MAX Machine: a Japan-only 1982 home console using the same VIC-II + SID + 6510 chipset as the C64, but with only 2 KB of RAM and no built-in BASIC. Every program is a cartridge. Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">The MAX Machine in your browser — a Japan-only 1982 home console using the same VIC-II + SID + 6510 chipset as the C64, but with only 2 KB of RAM and no built-in BASIC. Every program is a cartridge. Click the canvas first so the emulator receives keyboard input.</p>
 
     <p class="note">The MAX library is small — about 27 commercial cartridges were ever produced, all in Japan in 1982-83. Eight of the most iconic carts are bundled here, plus the MAX BASIC cartridge (which is how you'd boot the MAX into a usable BASIC environment, since the machine ships without BASIC in ROM).</p>
 
@@ -27,7 +27,7 @@
     <p>If a cart ignores the stick, it's reading the other joystick port; each cart is preset to the port it expects.</p>
 
     <h2>MAX keyboard</h2>
-    <p>The MAX has a membrane key matrix sharing the C64's layout; VICE maps it positionally — letters, numbers and most punctuation type as themselves. The special keys (from the libretro VICE keymap):</p>
+    <p>The MAX has a membrane key matrix sharing the C64's layout; this emulator maps it positionally — letters, numbers and most punctuation type as themselves. The special keys (from the libretro keymap):</p>
     <table>
       <tr><th>Key</th><th>MAX key</th></tr>
       <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
@@ -40,7 +40,7 @@
       <tr><td><kbd>Insert</kbd></td><td>£ (pound)</td></tr>
     </table>
 
-    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
+    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches the emulator. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
     <p class="note">The <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner each open a menu of <strong>five save slots</strong> — a full machine snapshot per slot, so they work mid-game even in titles with no save of their own. Slots are per-game and survive a reload. To restart, reload the page.</p>
 

@@ -13,7 +13,7 @@
       <h1>Commodore VIC-20 — Controls</h1>
     </div>
 
-    <p class="intro">VICE xvic (the VIC-20 build of the gold-standard Commodore emulator) running in your browser via EmulatorJS. Most VIC-20 software is cartridge-based and boots instantly; the few disk-based titles autoboot when the page loads. Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">The VIC-20 in your browser. Most VIC-20 software is cartridge-based and boots instantly; the few disk-based titles autoboot when the page loads. Click the canvas first so the emulator receives keyboard input.</p>
 
     <p class="note">The bundled VIC-20 is configured with full memory expansion (35K — all RAM banks at $2000-$7FFF + $A000-$BFFF). Cartridge games override this with their own memory map; disk and tape games written for any of the standard +3K / +8K / +16K / +24K configurations all run cleanly under +all.</p>
 
@@ -28,7 +28,7 @@
     </table>
 
     <h2>VIC-20 keyboard</h2>
-    <p>VICE maps the VIC-20 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro VICE keymap):</p>
+    <p>This emulator maps the VIC-20 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro keymap):</p>
     <table>
       <tr><th>Key</th><th>VIC-20 key</th></tr>
       <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
@@ -44,12 +44,12 @@
       <tr><td><kbd>\</kbd></td><td>= (equals)</td></tr>
     </table>
 
-    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
+    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches the emulator. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
     <p class="note">The <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner each open a menu of <strong>five save slots</strong> — a full machine snapshot per slot, so they work mid-game even in titles with no save of their own. Slots are per-game and survive a reload. To restart, reload the page.</p>
 
     <h2>Loading from BASIC</h2>
-    <p>VICE auto-LOADs cartridges and the first program on most disks, but if a game drops you to the <code>READY.</code> prompt, type one of:</p>
+    <p>This emulator auto-LOADs cartridges and the first program on most disks, but if a game drops you to the <code>READY.</code> prompt, type one of:</p>
     <table>
       <tr><th>Command</th><th>Effect</th></tr>
       <tr><td><code>LOAD"$",8</code></td><td>List the directory of disk drive 8</td></tr>

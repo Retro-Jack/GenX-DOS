@@ -13,7 +13,7 @@
       <h1>Commodore 128 — Controls</h1>
     </div>
 
-    <p class="intro">VICE x128 (the gold-standard Commodore 128 emulator) running in your browser via EmulatorJS, configured for the C128 in <strong>native mode</strong> (BASIC 7.0, 128 KB RAM, dual VIC-IIe + VDC video chips, 8502 + Z80 CPUs). The 128 famously had three personalities: this bundle skips C64 compatibility mode (we have <a href="../c64/play.html">a dedicated C64 bundle</a> for that) and skips CP/M mode, focusing on the 128's distinctive native features. Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">The Commodore 128 in your browser, configured in <strong>native mode</strong> (BASIC 7.0, 128 KB RAM, dual VIC-IIe + VDC video chips, 8502 + Z80 CPUs). The 128 famously had three personalities: this bundle skips C64 compatibility mode (we have <a href="../c64/play.html">a dedicated C64 bundle</a> for that) and skips CP/M mode, focusing on the 128's distinctive native features. Click the canvas first so the emulator receives keyboard input.</p>
 
     <p class="note">Each game's <code>games.json</code> entry sets the right video chip up-front — VIC-IIe (40 columns, same as the C64) for action games and VDC (80 columns) for the 80-column titles (Star Fleet I, Uniquest, Invaders and the other VDC homebrews) that need the wider display. You can manually swap chips at any time by pressing <kbd>F7</kbd> (the C128's "40/80 DISPLAY" toggle key).</p>
 
@@ -27,10 +27,10 @@
       <tr><td><kbd>Numpad ↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> (8/2/4/6)</td><td>Stick direction</td></tr>
       <tr><td><kbd>Numpad 0</kbd> or <kbd>5</kbd></td><td>Fire button</td></tr>
     </table>
-    <p>Joystick is mapped to the numeric keypad via VICE's <code>vice_joyport_type='1'</code> setting so it doesn't conflict with the keyboard. NumLock needs to be on for the numpad to fire — a banner reminds you if it isn't.</p>
+    <p>Joystick is mapped to the numeric keypad via the emulator's <code>vice_joyport_type='1'</code> setting so it doesn't conflict with the keyboard. NumLock needs to be on for the numpad to fire — a banner reminds you if it isn't.</p>
 
     <h2>C128 keyboard</h2>
-    <p>VICE maps the C128 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro VICE keymap):</p>
+    <p>This emulator maps the C128 keyboard "positionally" to your PC keyboard — letters, numbers and most punctuation type as themselves. The special keys (from the libretro keymap):</p>
     <table>
       <tr><th>Key</th><th>C128 key</th></tr>
       <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
@@ -47,7 +47,7 @@
     </table>
     <p class="note">The C128's native-mode-only keys (40/80 DISPLAY, ESC, HELP, NO SCROLL, the numeric keypad) aren't on this positional table and aren't mapped to PC keys, so a program that needs one of them can't currently use it.</p>
 
-    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches VICE. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
+    <p class="note"><strong>Why Scroll Lock for RUN/STOP?</strong> Browsers capture <kbd>Esc</kbd> to exit pointer-lock and fullscreen before the libretro keyboard callback can see it, so a real <kbd>Esc</kbd> press never reaches the emulator. The bundle remaps <kbd>Scroll Lock</kbd> via <code>systems/_shared/genx-vice-softkeys.js</code> — a document-level keydown listener swallows the Scroll Lock press and dispatches a synthetic <kbd>Escape</kbd> event (synthetic events don't trigger the browser's Esc-capture since they aren't real user gestures), which then reaches the core as RUN/STOP. Scroll Lock has no other use in this bundle so the remap is free.</p>
 
     <p class="note">The <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner each open a menu of <strong>five save slots</strong> — a full machine snapshot per slot, so they work mid-game even in titles with no save of their own. Slots are per-game and survive a reload. To restart, reload the page.</p>
 
