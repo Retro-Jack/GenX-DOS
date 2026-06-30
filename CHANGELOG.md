@@ -5,6 +5,9 @@
 ### Added
 - **BBC COPY soft button (jsbeeb).** The BBC's COPY key has no obvious PC equivalent (jsbeeb maps it to <kbd>End</kbd>), so the BBC Micro and Master bundles now show a clickable **COPY** button (top-left, in the GenX button style) that sends it — handy for games where COPY is "continue", e.g. Manic Miner. New shared `systems/_shared/genx-bbc-copykey.js`.
 
+### Changed
+- **BBC Micro menu: Jet Set Willy re-dated to 1986 and re-sorted.** The menu listed Jet Set Willy as 1985; the Tynesoft BBC release is 1986 (bbcmicro.co.uk), matching the corrected gamedoc. With the year-ascending order, Repton (1985) moves up to #6 and Jet Set Willy (1986) drops to #7; the number→game launchers were swapped to match.
+
 ### Removed
 - **VICE RUN/STOP / RESTORE on-screen buttons.** Dropped the C64-family soft buttons — RUN/STOP and RESTORE aren't in-game keys (their real uses are breaking a program at the BASIC prompt and the RUN/STOP+RESTORE reset), so they were UI clutter. The keyboard routes stay: Scroll Lock / Pause → RUN/STOP, and Page Up → RESTORE (libretro default).
 
