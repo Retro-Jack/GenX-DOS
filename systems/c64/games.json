@@ -35,9 +35,9 @@
     "title": "Ghosts 'n Goblins (1986)",
     "rom": "games/ghosts.d64"
   },
-  "hunchbck": {
-    "title": "Hunchback (1983)",
-    "rom": "games/hunchbck.d64"
+  "petrobot": {
+    "title": "Attack of the PETSCII Robots (2021)",
+    "rom": "games/petrobot.d64"
   },
   "basic": {
     "title": "Commodore 64 BASIC",

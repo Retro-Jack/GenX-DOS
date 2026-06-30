@@ -1774,7 +1774,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  64  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Beach Head           (1983)  BEACHHD  º\necho                 º   2.  Forbidden Forest     (1983)  FORBFRST º\necho                 º   3.  Hunchback            (1983)  HUNCHBCK º\necho                 º   4.  Boulder Dash         (1984)  BOULDER  º\necho                 º   5.  Impossible Mission   (1984)  IMPMISS  º\necho                 º   6.  Elite                (1985)  ELITE    º\necho                 º   7.  Ghosts 'n Goblins    (1986)  GHOSTS   º\necho                 º   8.  Uridium              (1986)  URIDIUM  º\necho                 º   9.  The Last Ninja       (1987)  LASTNINJAº\necho                 º  10.  Wizball              (1987)  WIZBALL  º\necho                 º                                             º\necho                 º  11.  BASIC prompt                BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                            data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  64  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Beach Head           (1983)  BEACHHD  º\necho                 º   2.  Forbidden Forest     (1983)  FORBFRST º\necho                 º   3.  Boulder Dash         (1984)  BOULDER  º\necho                 º   4.  Impossible Mission   (1984)  IMPMISS  º\necho                 º   5.  Elite                (1985)  ELITE    º\necho                 º   6.  Ghosts 'n Goblins    (1986)  GHOSTS   º\necho                 º   7.  Uridium              (1986)  URIDIUM  º\necho                 º   8.  The Last Ninja       (1987)  LASTNINJAº\necho                 º   9.  Wizball              (1987)  WIZBALL  º\necho                 º  10.  PETSCII Robots       (2021)  PETROBOT º\necho                 º                                             º\necho                 º  11.  BASIC prompt                BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                           },
                           {
                             name: '0.bat',
@@ -1790,35 +1790,35 @@ var fs = [
                           },
                           {
                             name: '3.bat',
-                            data: 'hunchbck\n',
-                          },
-                          {
-                            name: '4.bat',
                             data: 'boulder\n',
                           },
                           {
-                            name: '5.bat',
+                            name: '4.bat',
                             data: 'impmiss\n',
                           },
                           {
-                            name: '6.bat',
+                            name: '5.bat',
                             data: 'elite\n',
                           },
                           {
-                            name: '7.bat',
+                            name: '6.bat',
                             data: 'ghosts\n',
                           },
                           {
-                            name: '8.bat',
+                            name: '7.bat',
                             data: 'uridium\n',
                           },
                           {
-                            name: '9.bat',
+                            name: '8.bat',
                             data: 'lastninja\n',
                           },
                           {
-                            name: '10.bat',
+                            name: '9.bat',
                             data: 'wizball\n',
+                          },
+                          {
+                            name: '10.bat',
+                            data: 'petrobot\n',
                           },
                           {
                             name: '11.bat',
@@ -1861,8 +1861,8 @@ var fs = [
                             link: '../systems/c64/play.html?game=ghosts',
                           },
                           {
-                            name: 'hunchbck.bat',
-                            link: '../systems/c64/play.html?game=hunchbck',
+                            name: 'petrobot.bat',
+                            link: '../systems/c64/play.html?game=petrobot',
                           },
                           {
                             name: 'basic.bat',

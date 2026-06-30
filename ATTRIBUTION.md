@@ -159,6 +159,13 @@ software under permissive terms:
 - **3D Construction Kit demos and indie homebrew** across various
   platforms — license varies; check the per-bundle `games.json` or
   source archive when in doubt.
+- **Attack of the PETSCII Robots** (C64, `systems/c64/games/petrobot.d64`) —
+  David Murray ("The 8-Bit Guy") / 8-Bit Productions, 2021. The official
+  free **shareware** build (2 of the full game's 13 levels) is explicitly
+  redistributable — "You are free to distribute this archive." Downloaded
+  from [the8bitguy.com](https://www.the8bitguy.com/25753/petscii-robot-shareware-available/);
+  the full game is for sale. Bundled disk only — the manual PDF and notes
+  in the original archive are not shipped.
 
 For every other commercial title, redistribution within this repo is on a
 preservation / personal-use basis. If you are a rights holder and want a
