@@ -953,7 +953,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           ACORN  ELECTRON  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Hopper               (1983)  HOPPER   º\necho                 º   2.  Snapper              (1983)  SNAPPER  º\necho                 º   3.  Starship Command     (1983)  STARSHIP º\necho                 º   4.  Boxer                (1984)  BOXER    º\necho                 º   5.  Chuckie Egg          (1984)  CHUCKEGG º\necho                 º   6.  Cybertron Mission    (1984)  CYBRTRON º\necho                 º   7.  Frak!                (1984)  FRAK     º\necho                 º   8.  Citadel              (1985)  CITADEL  º\necho                 º   9.  Elite                (1985)  ELITE    º\necho                 º  10.  Repton 2             (1985)  REPTON2  º\necho                 º                                             º\necho                 º  11.  Electron BASIC prompt       BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           ACORN  ELECTRON  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Snapper              (1983)  SNAPPER  º\necho                 º   2.  Starship Command     (1983)  STARSHIP º\necho                 º   3.  Boxer                (1984)  BOXER    º\necho                 º   4.  Cybertron Mission    (1984)  CYBRTRON º\necho                 º   5.  Citadel              (1985)  CITADEL  º\necho                 º   6.  Elite                (1985)  ELITE    º\necho                 º   7.  Repton 2             (1985)  REPTON2  º\necho                 º                                             º\necho                 º   8.  Electron BASIC prompt       BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -961,46 +961,34 @@ var fs = [
                           },
                           {
                             name: '1.bat',
-                            data: 'hopper\n',
-                          },
-                          {
-                            name: '2.bat',
                             data: 'snapper\n',
                           },
                           {
-                            name: '3.bat',
+                            name: '2.bat',
                             data: 'starship\n',
                           },
                           {
-                            name: '4.bat',
+                            name: '3.bat',
                             data: 'boxer\n',
                           },
                           {
-                            name: '5.bat',
-                            data: 'chuckegg\n',
-                          },
-                          {
-                            name: '6.bat',
+                            name: '4.bat',
                             data: 'cybrtron\n',
                           },
                           {
-                            name: '7.bat',
-                            data: 'frak\n',
-                          },
-                          {
-                            name: '8.bat',
+                            name: '5.bat',
                             data: 'citadel\n',
                           },
                           {
-                            name: '9.bat',
+                            name: '6.bat',
                             data: 'elite\n',
                           },
                           {
-                            name: '10.bat',
+                            name: '7.bat',
                             data: 'repton2\n',
                           },
                           {
-                            name: '11.bat',
+                            name: '8.bat',
                             data: 'basic\n',
                           },
                           {
@@ -1030,18 +1018,6 @@ var fs = [
                           {
                             name: 'elite.bat',
                             link: '../systems/electron/play.html?game=elite',
-                          },
-                          {
-                            name: 'chuckegg.bat',
-                            link: '../systems/electron/play.html?game=chuckie',
-                          },
-                          {
-                            name: 'frak.bat',
-                            link: '../systems/electron/play.html?game=frak',
-                          },
-                          {
-                            name: 'hopper.bat',
-                            link: '../systems/electron/play.html?game=hopper',
                           },
                           {
                             name: 'basic.bat',
