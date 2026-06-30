@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- **Wiki link in the bottom-centre credit.** The "GenX-DOS · licence · source" pill on every emulator page now also links the **wiki** (`systems/_shared/genx-repo-link.js`).
 - **BBC COPY soft button (jsbeeb).** The BBC's COPY key has no obvious PC equivalent (jsbeeb maps it to <kbd>End</kbd>), so the BBC Micro and Master bundles now show a clickable **COPY** button (top-left, in the GenX button style) that sends it — handy for games where COPY is "continue", e.g. Manic Miner. New shared `systems/_shared/genx-bbc-copykey.js`.
 
 ### Changed

@@ -1,4 +1,4 @@
-// genx-repo-link.js — injects a subtle bottom-centre "licence · source"
+// genx-repo-link.js — injects a subtle bottom-centre "licence · source · wiki"
 // credit onto every emulator entry page. Self-contained: it creates its
 // own <style>, so a page only needs one `<script defer src=...>` include
 // (no matching CSS <link>). The links are absolute GitHub URLs, so the
@@ -7,13 +7,14 @@
 // Sits in a small dark pill (the surround is the wallpaper, not black, so
 // bare text would vanish into it — same reason the controls / save-load
 // links carry their own background). Understated but legible. The pill is
-// pointer-events:none so only the two links take clicks and it never
+// pointer-events:none so only the links take clicks and it never
 // steals one from the emulator; it stays clear of the controls link
 // (bottom-right) and the save / load buttons (bottom-left).
 (function () {
   if (document.querySelector('.gx-repo-link')) return;
   var REPO = 'https://github.com/Retro-Jack/GenX-DOS';
   var LIC = 'https://github.com/Retro-Jack/GenX-DOS/blob/master/LICENSE.TXT';
+  var WIKI = 'https://github.com/Retro-Jack/GenX-DOS/wiki';
   var s = document.createElement('style');
   s.textContent =
     '.gx-repo-link{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);' +
@@ -32,6 +33,8 @@
     LIC +
     '" target="_blank" rel="noopener">licence</a> · <a href="' +
     REPO +
-    '" target="_blank" rel="noopener">source</a>';
+    '" target="_blank" rel="noopener">source</a> · <a href="' +
+    WIKI +
+    '" target="_blank" rel="noopener">wiki</a>';
   document.body.appendChild(d);
 })();
