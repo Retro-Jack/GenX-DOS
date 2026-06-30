@@ -6,6 +6,7 @@
 - **BBC COPY soft button (jsbeeb).** The BBC's COPY key has no obvious PC equivalent (jsbeeb maps it to <kbd>End</kbd>), so the BBC Micro and Master bundles now show a clickable **COPY** button (top-left, in the GenX button style) that sends it — handy for games where COPY is "continue", e.g. Manic Miner. New shared `systems/_shared/genx-bbc-copykey.js`.
 
 ### Changed
+- **Acorn Electron canvas shrunk 5%.** The ElkJS canvas now sits at 78.69%×76.69% of the bezel (down from 82.83%×80.73%), re-centred (left/top nudged to 10.96%/10.97%) so it shrinks toward the same point inside the Acorn monitor cutout.
 - **BBC Micro menu: Jet Set Willy re-dated to 1986 and re-sorted.** The menu listed Jet Set Willy as 1985; the Tynesoft BBC release is 1986 (bbcmicro.co.uk), matching the corrected gamedoc. With the year-ascending order, Repton (1985) moves up to #6 and Jet Set Willy (1986) drops to #7; the number→game launchers were swapped to match. Uridium re-dated 1986 → 1987 to match its title screen (A.I.M.'s BBC conversion; the Graftgold original is 1986) — it stays at #9 between Thrust (1986) and Exile (1988), so no reorder.
 
 ### Removed
