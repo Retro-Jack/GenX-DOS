@@ -953,7 +953,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           ACORN  ELECTRON  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Snapper              (1983)  SNAPPER  º\necho                 º   2.  Starship Command     (1983)  STARSHIP º\necho                 º   3.  Boxer                (1984)  BOXER    º\necho                 º   4.  Cybertron Mission    (1984)  CYBRTRON º\necho                 º   5.  Citadel              (1985)  CITADEL  º\necho                 º   6.  Elite                (1985)  ELITE    º\necho                 º   7.  Repton 2             (1985)  REPTON2  º\necho                 º                                             º\necho                 º   8.  Electron BASIC prompt       BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           ACORN  ELECTRON  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Cybertron Mission    (1983)  CYBRTRON º\necho                 º   2.  Snapper              (1983)  SNAPPER  º\necho                 º   3.  Starship Command     (1983)  STARSHIP º\necho                 º   4.  Boxer                (1984)  BOXER    º\necho                 º   5.  Citadel              (1985)  CITADEL  º\necho                 º   6.  Elite                (1985)  ELITE    º\necho                 º   7.  Repton 2             (1985)  REPTON2  º\necho                 º                                             º\necho                 º   8.  Electron BASIC prompt       BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -961,19 +961,19 @@ var fs = [
                           },
                           {
                             name: '1.bat',
-                            data: 'snapper\n',
+                            data: 'cybrtron\n',
                           },
                           {
                             name: '2.bat',
-                            data: 'starship\n',
+                            data: 'snapper\n',
                           },
                           {
                             name: '3.bat',
-                            data: 'boxer\n',
+                            data: 'starship\n',
                           },
                           {
                             name: '4.bat',
-                            data: 'cybrtron\n',
+                            data: 'boxer\n',
                           },
                           {
                             name: '5.bat',
