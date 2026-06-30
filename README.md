@@ -61,7 +61,7 @@ prompt/                   the DOS terminal (HTML + JS, no build)
   img/                    bitmap font sprite sheets + AMIBIOS logo
 gamedocs/                 per-game instruction pages (gamedocs/<platform>/<key>.html)
 systems/
-  _shared/                shared CSS + helpers (NumLock warn, RUN/STOP softkey, ...)
+  _shared/                shared CSS + helpers (NumLock warn, VICE RUN/STOP key remap, BBC COPY button, save-state, ...)
   _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem
                           (13 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
   apple1/                 Apple I             — apple1js + 10 cassette tapes
@@ -135,7 +135,9 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 
 ROMs are bundled locally — nothing is fetched at runtime.
 
-The six VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4, C128) share a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to **Scroll Lock** + **Pause/Break** + a top-left clickable button via `systems/_shared/genx-vice-softkeys.js`. The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing; see the wiki for the migration story.
+The six VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4, C128) share a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to **Scroll Lock** + **Pause/Break** via `systems/_shared/genx-vice-softkeys.js` (RESTORE stays on the libretro default Page Up). The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing; see the wiki for the migration story.
+
+The BBC bundles (jsbeeb) add a top-left **COPY** button via `systems/_shared/genx-bbc-copykey.js` — the BBC COPY key maps to the PC End key, which isn't obvious, so titles that use it (e.g. Manic Miner's "continue") get a click target. The TRS-80 Model I (sdltrs) likewise adds a **CLEAR** button via `systems/_shared/genx-trs80-softkeys.js`.
 
 ## Save / load state
 
