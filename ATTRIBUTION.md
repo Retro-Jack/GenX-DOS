@@ -192,10 +192,17 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
 - `systems/electron/jquery/jquery-1.9.1.js` + `jquery-ui-1.10.3.custom.min.js` —
   jQuery 1.9.1 and jQuery UI 1.10.3 custom build, MIT — required by ElkJS
   upstream. Kept as-is to avoid divergence from the ElkJS source.
+- `systems/electron/` — ElkJS (© Darren Coles 2013) is **locally patched** from
+  the upstream source: `display.js` row-doubling (removes upstream's baked-in
+  scanlines), `sound.js` (adds the `soundInit()` AudioContext resume the upstream
+  `soundToggle()` referenced but never defined, plus a 25% output mix), and
+  `elkjs.js` (`resumeAudio()`, to start sound on a user gesture). The upstream
+  duplicate jQuery 1.7.2 was removed. See CHANGELOG / wiki for the why.
 
-Other emulator bundles use vendored copies of their upstream dependencies
-without modification; the upstream `LICENSE` / `COPYING` files in each
-bundle directory cover those.
+Other emulator bundles vendor their upstream dependencies; where a bundle's
+runtime is locally modified (e.g. ElkJS above, the atari800 / CPC / o2em WASM
+rebuilds) the change is recorded here or in the CHANGELOG. The upstream
+`LICENSE` / `COPYING` files in each bundle directory cover the originals.
 
 ---
 
