@@ -15,7 +15,7 @@
     Elite: 'elite',
     ChuckieEgg: 'chuckegg',
     Repton: 'repton',
-    ManicMiner: 'manicmn',
+    Revs: 'revs',
     JetSetWilly: 'jetwilly',
     Citadel: 'citadel',
     Exile: 'exile',

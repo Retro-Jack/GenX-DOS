@@ -1,8 +1,8 @@
 // GenX-DOS COPY soft button for the jsbeeb (BBC Micro / Master) bundles.
 //
 // The BBC's COPY key has no obvious PC equivalent — jsbeeb maps it to the PC
-// End key (also Right-Ctrl / F11). Several BBC games use COPY (e.g. Manic
-// Miner's "continue" after a freeze), so this adds a clickable COPY button,
+// End key (also Right-Ctrl / F11). Several BBC games use COPY (as an in-game
+// "continue" or action key), so this adds a clickable COPY button,
 // top-left, in the same style as the VICE RUN/STOP softkey. jsbeeb listens for
 // keydown on `document` and reads `event.which/keyCode` (no isTrusted check),
 // so a synthetic End event maps cleanly to COPY.
@@ -56,7 +56,7 @@
     btn.type = 'button';
     btn.textContent = 'COPY';
     btn.title =
-      'Sends the BBC COPY key (keyboard shortcut: End) — e.g. Manic Miner "continue" after a freeze';
+      'Sends the BBC COPY key (keyboard shortcut: End) — an in-game "continue" or action key in some titles';
     btn.addEventListener('click', () => {
       fireCopy();
       btn.blur();
