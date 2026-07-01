@@ -18,7 +18,7 @@
     ReptonInfinity: 'reptoninf',
     Firetrack: 'firetrak',
     CrazeeRider: 'crazee',
-    StrykersRun: 'stryker',
+    Commando: 'commando',
     ByFairMeansOrFoul: 'bfmof',
     HoledOut: 'holedout',
     Ballistix: 'ballistx',

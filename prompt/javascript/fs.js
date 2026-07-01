@@ -1042,7 +1042,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           MASTER-ENHANCED  TITLES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Stryker's Run        (1986)  STRYKER  º\necho                 º   2.  Repton 3             (1986)  REPTON3  º\necho                 º   3.  Elite                (1986)  ELITE    º\necho                 º   4.  Crazee Rider         (1987)  CRAZEE   º\necho                 º   5.  Firetrack            (1987)  FIRETRAK º\necho                 º   6.  Repton Infinity      (1988)  REPTONINFº\necho                 º   7.  Fair or Foul         (1988)  BFMOF    º\necho                 º   8.  Holed Out            (1989)  HOLEDOUT º\necho                 º   9.  Last Ninja 2         (1990)  NINJA2   º\necho                 º  10.  Ballistix            (1990)  BALLISTX º\necho                 º                                             º\necho                 º  11.  BBC BASIC prompt            PROMPT    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           MASTER-ENHANCED  TITLES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Commando             (1985)  COMMANDO º\necho                 º   2.  Repton 3             (1986)  REPTON3  º\necho                 º   3.  Elite                (1986)  ELITE    º\necho                 º   4.  Crazee Rider         (1987)  CRAZEE   º\necho                 º   5.  Firetrack            (1987)  FIRETRAK º\necho                 º   6.  Repton Infinity      (1988)  REPTONINFº\necho                 º   7.  Fair or Foul         (1988)  BFMOF    º\necho                 º   8.  Holed Out            (1989)  HOLEDOUT º\necho                 º   9.  Last Ninja 2         (1990)  NINJA2   º\necho                 º  10.  Ballistix            (1990)  BALLISTX º\necho                 º                                             º\necho                 º  11.  BBC BASIC prompt            PROMPT    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1050,7 +1050,7 @@ var fs = [
                           },
                           {
                             name: '1.bat',
-                            data: 'stryker\n',
+                            data: 'commando\n',
                           },
                           {
                             name: '2.bat',
@@ -1117,8 +1117,8 @@ var fs = [
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/CrazeeRider.ssd&autoboot',
                           },
                           {
-                            name: 'stryker.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/StrykersRun.ssd&autoboot',
+                            name: 'commando.bat',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Elite/Commando.ssd&autoboot',
                           },
                           {
                             name: 'bfmof.bat',
