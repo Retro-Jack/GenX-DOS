@@ -11,9 +11,9 @@
     "title": "Contra",
     "rom": "roms/contra.nes"
   },
-  "megaman2": {
-    "title": "Mega Man 2",
-    "rom": "roms/megaman2.nes"
+  "megaman": {
+    "title": "Mega Man",
+    "rom": "roms/megaman.nes"
   },
   "castlvnia": {
     "title": "Castlevania",

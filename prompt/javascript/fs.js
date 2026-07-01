@@ -258,7 +258,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  NES  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Super Mario Bros.    (1985)  MARIO    º\necho                 º   2.  Castlevania          (1987)  CASTLEV  º\necho                 º   3.  Kid Icarus           (1987)  KIDICARUSº\necho                 º   4.  Metroid              (1987)  METROID  º\necho                 º   5.  Mike Tyson's P-O!!   (1987)  PUNCHOUT º\necho                 º   6.  Contra               (1988)  CONTRA   º\necho                 º   7.  Mega Man 2           (1989)  MEGAMAN2 º\necho                 º   8.  Tetris               (1989)  TETRIS   º\necho                 º   9.  Final Fantasy        (1990)  FINALFNT º\necho                 º  10.  Super Mario Bros. 3  (1990)  MARIO 3  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  NES  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Super Mario Bros.    (1985)  MARIO    º\necho                 º   2.  Castlevania          (1987)  CASTLEV  º\necho                 º   3.  Kid Icarus           (1987)  KIDICARUSº\necho                 º   4.  Mega Man             (1987)  MEGAMAN  º\necho                 º   5.  Metroid              (1987)  METROID  º\necho                 º   6.  Mike Tyson's P-O!!   (1987)  PUNCHOUT º\necho                 º   7.  Contra               (1988)  CONTRA   º\necho                 º   8.  Tetris               (1989)  TETRIS   º\necho                 º   9.  Final Fantasy        (1990)  FINALFNT º\necho                 º  10.  Super Mario Bros. 3  (1990)  MARIO 3  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       {
                         name: '0.bat',
@@ -278,19 +278,19 @@ var fs = [
                       },
                       {
                         name: '4.bat',
-                        data: 'metroid\n',
+                        data: 'megaman\n',
                       },
                       {
                         name: '5.bat',
-                        data: 'punchout\n',
+                        data: 'metroid\n',
                       },
                       {
                         name: '6.bat',
-                        data: 'contra\n',
+                        data: 'punchout\n',
                       },
                       {
                         name: '7.bat',
-                        data: 'megaman2\n',
+                        data: 'contra\n',
                       },
                       {
                         name: '8.bat',
@@ -321,8 +321,8 @@ var fs = [
                         link: '../systems/jsnes/play.html?game=contra',
                       },
                       {
-                        name: 'megaman2.bat',
-                        link: '../systems/jsnes/play.html?game=megaman2',
+                        name: 'megaman.bat',
+                        link: '../systems/jsnes/play.html?game=megaman',
                       },
                       {
                         name: 'castlvnia.bat',
