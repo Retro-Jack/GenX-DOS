@@ -133,7 +133,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  7800  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Asteroids            (1986)  ASTEROIDSº\necho                 º   2.  Centipede            (1986)  CENTIPEDEº\necho                 º   3.  Joust                (1986)  JOUST    º\necho                 º   4.  Ms. Pac-Man          (1986)  MSPACMAN º\necho                 º   5.  Pole Position II     (1986)  POLEPOS2 º\necho                 º   6.  Xevious              (1986)  XEVIOUS  º\necho                 º   7.  Dig Dug              (1987)  DIGDUG   º\necho                 º   8.  Food Fight           (1987)  FOODFIGHTº\necho                 º   9.  Galaga               (1987)  GALAGA   º\necho                 º  10.  Robotron 2084        (1987)  ROBOTRON º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  7800  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Asteroids            (1986)  ASTEROIDSº\necho                 º   2.  Centipede            (1986)  CENTIPEDEº\necho                 º   3.  Joust                (1986)  JOUST    º\necho                 º   4.  Ms. Pac-Man          (1986)  MSPACMAN º\necho                 º   5.  Xevious              (1986)  XEVIOUS  º\necho                 º   6.  Desert Falcon        (1987)  DESERTFL º\necho                 º   7.  Dig Dug              (1987)  DIGDUG   º\necho                 º   8.  Food Fight           (1987)  FOODFIGHTº\necho                 º   9.  Galaga               (1987)  GALAGA   º\necho                 º  10.  Robotron 2084        (1987)  ROBOTRON º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -157,11 +157,11 @@ var fs = [
                           },
                           {
                             name: '5.bat',
-                            data: 'polepos2\n',
+                            data: 'xevious\n',
                           },
                           {
                             name: '6.bat',
-                            data: 'xevious\n',
+                            data: 'desertfl\n',
                           },
                           {
                             name: '7.bat',
@@ -200,8 +200,8 @@ var fs = [
                             link: '../systems/js7800/play.html?game=galaga',
                           },
                           {
-                            name: 'polepos2.bat',
-                            link: '../systems/js7800/play.html?game=polepos2',
+                            name: 'desertfl.bat',
+                            link: '../systems/js7800/play.html?game=desertfl',
                           },
                           {
                             name: 'digdug.bat',

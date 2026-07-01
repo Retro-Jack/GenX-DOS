@@ -4,7 +4,7 @@
   "joust": { "title": "Joust", "rom": "roms/joust.a78" },
   "mspacman": { "title": "Ms. Pac-Man", "rom": "roms/mspacman.a78" },
   "galaga": { "title": "Galaga", "rom": "roms/galaga.a78" },
-  "polepos2": { "title": "Pole Position II", "rom": "roms/polepos2.a78" },
+  "desertfl": { "title": "Desert Falcon", "rom": "roms/desertfl.a78" },
   "digdug": { "title": "Dig Dug", "rom": "roms/digdug.a78" },
   "xevious": { "title": "Xevious", "rom": "roms/xevious.a78" },
   "foodfight": { "title": "Food Fight", "rom": "roms/foodfight.a78" },
