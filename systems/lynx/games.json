@@ -7,9 +7,9 @@
   "electro": { "title": "Electrocop (1989)", "rom": "roms/electro.lnx" },
   "bluelght": { "title": "Blue Lightning (1989)", "rom": "roms/bluelght.lnx" },
   "warbirds": { "title": "Warbirds (1989)", "rom": "roms/warbirds.lnx" },
-  "gauntlet": {
-    "title": "Gauntlet: The Third Encounter (1990)",
-    "rom": "roms/gauntlet.lnx"
+  "zarlor": {
+    "title": "Zarlor Mercenary (1990)",
+    "rom": "roms/zarlor.lnx"
   },
   "klax": { "title": "Klax (1990)", "rom": "roms/klax.lnx" },
   "slime": {

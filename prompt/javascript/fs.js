@@ -3596,14 +3596,14 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º                 ATARI  LYNX                 º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  California Games     (1989)  CALGAMES º\necho                 º   2.  Chip's Challenge     (1989)  CHIPS    º\necho                 º   3.  Electrocop           (1989)  ELECTRO  º\necho                 º   4.  Blue Lightning       (1989)  BLUELGHT º\necho                 º   5.  Warbirds             (1989)  WARBIRDS º\necho                 º   6.  Gauntlet III         (1990)  GAUNTLET º\necho                 º   7.  Klax                 (1990)  KLAX     º\necho                 º   8.  Slime World          (1990)  SLIME    º\necho                 º   9.  S.T.U.N. Runner      (1991)  STUNRUN  º\necho                 º  10.  Rampart              (1991)  RAMPART  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º                 ATARI  LYNX                 º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  California Games     (1989)  CALGAMES º\necho                 º   2.  Chip's Challenge     (1989)  CHIPS    º\necho                 º   3.  Electrocop           (1989)  ELECTRO  º\necho                 º   4.  Blue Lightning       (1989)  BLUELGHT º\necho                 º   5.  Warbirds             (1989)  WARBIRDS º\necho                 º   6.  Zarlor Mercenary     (1990)  ZARLOR   º\necho                 º   7.  Klax                 (1990)  KLAX     º\necho                 º   8.  Slime World          (1990)  SLIME    º\necho                 º   9.  S.T.U.N. Runner      (1991)  STUNRUN  º\necho                 º  10.  Rampart              (1991)  RAMPART  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       { name: '1.bat', data: 'calgames\n' },
                       { name: '2.bat', data: 'chips\n' },
                       { name: '3.bat', data: 'electro\n' },
                       { name: '4.bat', data: 'bluelght\n' },
                       { name: '5.bat', data: 'warbirds\n' },
-                      { name: '6.bat', data: 'gauntlet\n' },
+                      { name: '6.bat', data: 'zarlor\n' },
                       { name: '7.bat', data: 'klax\n' },
                       { name: '8.bat', data: 'slime\n' },
                       { name: '9.bat', data: 'stunrun\n' },
@@ -3630,8 +3630,8 @@ var fs = [
                         link: '../systems/lynx/play.html?game=warbirds',
                       },
                       {
-                        name: 'gauntlet.bat',
-                        link: '../systems/lynx/play.html?game=gauntlet',
+                        name: 'zarlor.bat',
+                        link: '../systems/lynx/play.html?game=zarlor',
                       },
                       {
                         name: 'klax.bat',
