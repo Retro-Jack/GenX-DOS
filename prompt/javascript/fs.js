@@ -3531,17 +3531,17 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  GAME  BOY             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Tetris               (1989)  TETRIS   º\necho                 º   2.  Super Mario Land     (1989)  SMLAND   º\necho                 º   3.  Castlevania          (1989)  CASTLEV  º\necho                 º   4.  Gargoyle's Quest     (1990)  GARGOYLE º\necho                 º   5.  Kirby's Dream Land   (1992)  KIRBY    º\necho                 º   6.  Link's Awakening     (1993)  ZELDA    º\necho                 º   7.  Donkey Kong          (1994)  DKONG    º\necho                 º   8.  Pokemon Red          (1996)  POKEMON  º\necho                 º   9.  Wario Land 3         (2000)  WARIO3   º\necho                 º  10.  Shantae              (2002)  SHANTAE  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  GAME  BOY             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Tetris               (1989)  TETRIS   º\necho                 º   2.  Super Mario Land     (1989)  SMLAND   º\necho                 º   3.  Castlevania          (1989)  CASTLEV  º\necho                 º   4.  Gargoyle's Quest     (1990)  GARGOYLE º\necho                 º   5.  Final Fantasy Adv.   (1991)  FFADV    º\necho                 º   6.  Kirby's Dream Land   (1992)  KIRBY    º\necho                 º   7.  Link's Awakening     (1993)  ZELDA    º\necho                 º   8.  Donkey Kong          (1994)  DKONG    º\necho                 º   9.  Pokemon Red          (1996)  POKEMON  º\necho                 º  10.  Shantae              (2002)  SHANTAE  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       { name: '1.bat', data: 'tetris\n' },
                       { name: '2.bat', data: 'smland\n' },
                       { name: '3.bat', data: 'castlev\n' },
                       { name: '4.bat', data: 'gargoyle\n' },
-                      { name: '5.bat', data: 'kirby\n' },
-                      { name: '6.bat', data: 'zelda\n' },
-                      { name: '7.bat', data: 'dkong\n' },
-                      { name: '8.bat', data: 'pokemon\n' },
-                      { name: '9.bat', data: 'wario3\n' },
+                      { name: '5.bat', data: 'ffadv\n' },
+                      { name: '6.bat', data: 'kirby\n' },
+                      { name: '7.bat', data: 'zelda\n' },
+                      { name: '8.bat', data: 'dkong\n' },
+                      { name: '9.bat', data: 'pokemon\n' },
                       { name: '10.bat', data: 'shantae\n' },
                       { name: '0.bat', data: 'echo off\ncd ..\ncd ..\nmenu\n' },
                       {
@@ -3577,8 +3577,8 @@ var fs = [
                         link: '../systems/gbc/play.html?game=pokemon',
                       },
                       {
-                        name: 'wario3.bat',
-                        link: '../systems/gbc/play.html?game=wario3',
+                        name: 'ffadv.bat',
+                        link: '../systems/gbc/play.html?game=ffadv',
                       },
                       {
                         name: 'shantae.bat',

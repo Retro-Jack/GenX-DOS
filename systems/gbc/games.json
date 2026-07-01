@@ -19,6 +19,9 @@
   },
   "dkong": { "title": "Donkey Kong (1994)", "rom": "roms/donkeykong.gb" },
   "pokemon": { "title": "Pokémon Red (1996)", "rom": "roms/pokemonred.gb" },
-  "wario3": { "title": "Wario Land 3 (2000)", "rom": "roms/warioland3.gbc" },
+  "ffadv": {
+    "title": "Final Fantasy Adventure (1991)",
+    "rom": "roms/ffadv.gb"
+  },
   "shantae": { "title": "Shantae (2002)", "rom": "roms/shantae.gbc" }
 }
