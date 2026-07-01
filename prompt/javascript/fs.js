@@ -3347,7 +3347,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           MSX2  -  CARTS  &  DISKS          º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Castle Excellent     (1986)  CASTLEEX º\necho                 º   2.  King Kong 2          (1986)  KINGKNG2 º\necho                 º   3.  Vampire Killer       (1986)  VAMPKILL º\necho                 º   4.  F-1 Spirit           (1987)  F1SPIRIT º\necho                 º   5.  Metal Gear           (1987)  METLGEAR º\necho                 º   6.  The Treasure of Usas (1987)  USAS     º\necho                 º   7.  Aleste               (1988)  ALESTE   º\necho                 º   8.  Parodius Da!         (1988)  PARODIUS º\necho                 º   9.  Space Manbow         (1989)  MANBOW   º\necho                 º  10.  Quarth               (1990)  QUARTH   º\necho                 º                                             º\necho                 º  11.  MSX BASIC prompt             PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           MSX2  -  CARTS  &  DISKS          º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Castle Excellent     (1986)  CASTLEEX º\necho                 º   2.  Vampire Killer       (1986)  VAMPKILL º\necho                 º   3.  Bubble Bobble        (1987)  BUBBLBOB º\necho                 º   4.  F-1 Spirit           (1987)  F1SPIRIT º\necho                 º   5.  Metal Gear           (1987)  METLGEAR º\necho                 º   6.  The Treasure of Usas (1987)  USAS     º\necho                 º   7.  Aleste               (1988)  ALESTE   º\necho                 º   8.  Parodius Da!         (1988)  PARODIUS º\necho                 º   9.  Space Manbow         (1989)  MANBOW   º\necho                 º  10.  Quarth               (1990)  QUARTH   º\necho                 º                                             º\necho                 º  11.  MSX BASIC prompt             PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -3359,11 +3359,11 @@ var fs = [
                           },
                           {
                             name: '2.bat',
-                            data: 'kingkng2\n',
+                            data: 'vampkill\n',
                           },
                           {
                             name: '3.bat',
-                            data: 'vampkill\n',
+                            data: 'bubblbob\n',
                           },
                           {
                             name: '4.bat',
@@ -3406,8 +3406,8 @@ var fs = [
                             link: '../systems/msx2/?ROM=games/castleexcl.zip&M=MSX2&game=castleex',
                           },
                           {
-                            name: 'kingkng2.bat',
-                            link: '../systems/msx2/?ROM=games/kingkong2.zip&M=MSX2&game=kingkng2',
+                            name: 'bubblbob.bat',
+                            link: '../systems/msx2/?ROM=games/bubblebobble.zip&M=MSX2&game=bubblbob',
                           },
                           {
                             name: 'metlgear.bat',
