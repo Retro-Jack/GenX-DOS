@@ -8,9 +8,9 @@
     "title": "Castlevania: The Adventure (1989)",
     "rom": "roms/castlevania.gb"
   },
-  "metroid2": {
-    "title": "Metroid II: Return of Samus (1991)",
-    "rom": "roms/metroid2.gb"
+  "gargoyle": {
+    "title": "Gargoyle's Quest (1990)",
+    "rom": "roms/gargoyle.gb"
   },
   "kirby": { "title": "Kirby's Dream Land (1992)", "rom": "roms/kirby.gb" },
   "zelda": {
