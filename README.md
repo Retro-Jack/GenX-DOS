@@ -67,7 +67,7 @@ systems/
   apple1/                 Apple I             — apple1js + 10 cassette tapes
   bbcmicro/               BBC Micro           — jsbeeb Vite dist (Model B) + BBC disks
   bbcmaster/              BBC Master 128      — jsbeeb Vite dist (model=Master) + Master-enhanced disks
-  electron/               Acorn Electron      — ElkJS + 7 UEF snapshots
+  electron/               Acorn Electron      — ElkJS + 6 UEF snapshots
   apple2/                 Apple ][+           — apple2js webpack dist + 10 .dsk images
   jsnes/                  NES                 — EmulatorJS + FCEUmm + 10 .nes ROMs
   stella/                 Atari 2600          — EmulatorJS + Stella (stella2014) + 10 .a26 ROMs

@@ -3,9 +3,9 @@
     "title": "Super Mario Bros.",
     "rom": "roms/smb.nes"
   },
-  "smb3": {
-    "title": "Super Mario Bros. 3",
-    "rom": "roms/smb3.nes"
+  "zelda": {
+    "title": "The Legend of Zelda",
+    "rom": "roms/zelda.nes"
   },
   "contra": {
     "title": "Contra",

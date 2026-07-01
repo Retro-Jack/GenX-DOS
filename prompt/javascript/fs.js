@@ -258,7 +258,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  NES  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Super Mario Bros.    (1985)  MARIO    º\necho                 º   2.  Castlevania          (1987)  CASTLEV  º\necho                 º   3.  Kid Icarus           (1987)  KIDICARUSº\necho                 º   4.  Mega Man             (1987)  MEGAMAN  º\necho                 º   5.  Metroid              (1987)  METROID  º\necho                 º   6.  Mike Tyson's P-O!!   (1987)  PUNCHOUT º\necho                 º   7.  Contra               (1988)  CONTRA   º\necho                 º   8.  Tetris               (1989)  TETRIS   º\necho                 º   9.  Final Fantasy        (1990)  FINALFNT º\necho                 º  10.  Super Mario Bros. 3  (1990)  MARIO 3  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  NES  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Super Mario Bros.    (1985)  MARIO    º\necho                 º   2.  Castlevania          (1987)  CASTLEV  º\necho                 º   3.  Kid Icarus           (1987)  KIDICARUSº\necho                 º   4.  Mega Man             (1987)  MEGAMAN  º\necho                 º   5.  Metroid              (1987)  METROID  º\necho                 º   6.  Mike Tyson's P-O!!   (1987)  PUNCHOUT º\necho                 º   7.  The Legend of Zelda  (1987)  ZELDA    º\necho                 º   8.  Contra               (1988)  CONTRA   º\necho                 º   9.  Tetris               (1989)  TETRIS   º\necho                 º  10.  Final Fantasy        (1990)  FINALFNT º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       {
                         name: '0.bat',
@@ -290,19 +290,19 @@ var fs = [
                       },
                       {
                         name: '7.bat',
-                        data: 'contra\n',
+                        data: 'zelda\n',
                       },
                       {
                         name: '8.bat',
-                        data: 'tetris\n',
+                        data: 'contra\n',
                       },
                       {
                         name: '9.bat',
-                        data: 'finalfnts\n',
+                        data: 'tetris\n',
                       },
                       {
                         name: '10.bat',
-                        data: 'smb3\n',
+                        data: 'finalfnts\n',
                       },
                       {
                         name: 'smb.bat',
@@ -313,8 +313,8 @@ var fs = [
                         link: '../systems/jsnes/play.html?game=kidicarus',
                       },
                       {
-                        name: 'smb3.bat',
-                        link: '../systems/jsnes/play.html?game=smb3',
+                        name: 'zelda.bat',
+                        link: '../systems/jsnes/play.html?game=zelda',
                       },
                       {
                         name: 'contra.bat',
@@ -953,7 +953,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           ACORN  ELECTRON  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Cybertron Mission    (1983)  CYBRTRON º\necho                 º   2.  Snapper              (1983)  SNAPPER  º\necho                 º   3.  Starship Command     (1983)  STARSHIP º\necho                 º   4.  Boxer                (1984)  BOXER    º\necho                 º   5.  Citadel              (1985)  CITADEL  º\necho                 º   6.  Elite                (1985)  ELITE    º\necho                 º   7.  Repton 2             (1985)  REPTON2  º\necho                 º                                             º\necho                 º   8.  Electron BASIC prompt       BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           ACORN  ELECTRON  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Cybertron Mission    (1983)  CYBRTRON º\necho                 º   2.  Snapper              (1983)  SNAPPER  º\necho                 º   3.  Starship Command     (1983)  STARSHIP º\necho                 º   4.  Boxer                (1984)  BOXER    º\necho                 º   5.  Citadel              (1985)  CITADEL  º\necho                 º   6.  Elite                (1985)  ELITE    º\necho                 º                                             º\necho                 º   7.  Electron BASIC prompt       BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -985,10 +985,6 @@ var fs = [
                           },
                           {
                             name: '7.bat',
-                            data: 'repton2\n',
-                          },
-                          {
-                            name: '8.bat',
                             data: 'basic\n',
                           },
                           {
@@ -1002,10 +998,6 @@ var fs = [
                           {
                             name: 'starship.bat',
                             link: '../systems/electron/play.html?game=starship',
-                          },
-                          {
-                            name: 'repton2.bat',
-                            link: '../systems/electron/play.html?game=repton2',
                           },
                           {
                             name: 'boxer.bat',
