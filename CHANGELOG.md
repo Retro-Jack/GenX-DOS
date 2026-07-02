@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- **CI: bumped `publish-package.yml` actions off deprecated Node 20.** GitHub Actions runners are dropping the Node 20 shim, so the actions were force-run on Node 24. Updated to current majors — `actions/checkout@v7`, `actions/setup-node@v6`, `docker/login-action@v4`, `docker/setup-buildx-action@v4`, `docker/build-push-action@v7` — and moved the npm publish step to Node 22 LTS.
+
 ## [1.2.0] - 2026-07-03
 
 ### Added
