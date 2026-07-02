@@ -1,6 +1,6 @@
 # GenX-DOS
 
-A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs on the page — no server, no network calls at runtime. Try it <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">here</a>.
+A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs on the page — no server, no network calls at runtime. Try it [here](https://retro-jack.github.io/GenX-DOS/).
 
 <p align="center">
   <img src="docs/screenshot-menu.png" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
