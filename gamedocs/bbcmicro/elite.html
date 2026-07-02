@@ -6,7 +6,7 @@
   <title>Elite — Acorn BBC Micro — GenX-DOS</title>
   <link rel="stylesheet" href="../../systems/_shared/genx-controls.css">
 </head>
-<body>
+<body class="acorn">
   <div class="wrap">
     <div class="head">
       <div class="system">Home Computer · BBC Micro</div>
@@ -45,7 +45,7 @@
     </table>
 
     <h2>Function keys — dual purpose</h2>
-    <p>Elite's function keys do one thing in flight and another at the station: <kbd>F10</kbd> and <kbd>F1</kbd>–<kbd>F3</kbd> switch cockpit views while flying, but trigger the dock actions when you're docked. (See <em>BBC keyboard quirks</em> below for how these map to the BBC's red <kbd>f0</kbd>–<kbd>f3</kbd>.)</p>
+    <p>Elite's function keys do one thing in flight and another at the station: <kbd>F10</kbd> and <kbd>F1</kbd>–<kbd>F3</kbd> switch cockpit views while flying, but trigger the dock actions when you're docked. (See <em>BBC keyboard quirks</em> below for how these map to the BBC's red <kbd class="fkey">f<sub>0</sub></kbd>–<kbd class="fkey">f<sub>3</sub></kbd>.)</p>
     <table>
       <tr><th>Key</th><th>In flight</th><th>When docked</th></tr>
       <tr><td><kbd>F10</kbd></td><td>Front view</td><td>Launch</td></tr>
@@ -76,7 +76,7 @@
     </ul>
 
     <h2>BBC keyboard quirks</h2>
-    <p>The original BBC has red function keys <kbd>f0</kbd>–<kbd>f9</kbd>. This emulator maps them to your PC's function-key row: <kbd>f1</kbd>–<kbd>f9</kbd> are <strong>1:1</strong> (BBC <kbd>f1</kbd> = <kbd>F1</kbd>, … <kbd>f9</kbd> = <kbd>F9</kbd>), and BBC <kbd>f0</kbd> — the front view — is <strong><kbd>F10</kbd></strong> (the BBC has no <kbd>F0</kbd> equivalent on a PC keyboard, so it sits at the end of the row). Elite doesn't use the arrow keys: flight is the classic BBC layout — <kbd>&lt;</kbd>/<kbd>&gt;</kbd> roll, <kbd>S</kbd>/<kbd>X</kbd> pitch.</p>
+    <p>The original BBC has red function keys <kbd class="fkey">f<sub>0</sub></kbd>–<kbd class="fkey">f<sub>9</sub></kbd>. This emulator maps them to your PC's function-key row: <kbd class="fkey">f<sub>1</sub></kbd>–<kbd class="fkey">f<sub>9</sub></kbd> are <strong>1:1</strong> (BBC <kbd class="fkey">f<sub>1</sub></kbd> = <kbd>F1</kbd>, … <kbd class="fkey">f<sub>9</sub></kbd> = <kbd>F9</kbd>), and BBC <kbd class="fkey">f<sub>0</sub></kbd> — the front view — is <strong><kbd>F10</kbd></strong> (the BBC has no <kbd>F0</kbd> equivalent on a PC keyboard, so it sits at the end of the row). Elite doesn't use the arrow keys: flight is the classic BBC layout — <kbd>&lt;</kbd>/<kbd>&gt;</kbd> roll, <kbd>S</kbd>/<kbd>X</kbd> pitch.</p>
   </div>
 </body>
 </html>
