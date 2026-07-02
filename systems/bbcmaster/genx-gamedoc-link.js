@@ -13,7 +13,7 @@
 (function () {
   var DISC_TO_KEY = {
     EliteMaster: 'elite',
-    LastNinja2: 'ninja2',
+    Nevryon: 'nevryon',
     Galaforce: 'galaforce',
     PalaceOfMagic: 'palaceofmagic',
     Firetrack: 'firetrak',
