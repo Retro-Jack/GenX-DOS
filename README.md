@@ -174,7 +174,7 @@ The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.m
 - JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
 - sdltrs: BSD-2-Clause (Mark Grebe / Jens Guenther, gitlab.com/jengun/sdltrs) — TRS-80 Model I, built from source to WASM; Model I Level II BASIC ROM (©Tandy/Microsoft) embedded for emulation
-- Js99'er: GPL-2.0 (Rasmus Moustgaard) — vanilla-JS build; TI-99/4A cart ROMs mirrored from the js99er.net public archive
+- Js99'er: GPL-2.0 (Rasmus Moustgaard) — vanilla-JS build
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL/800/BASIC (Avery Lee, freely redistributable open-source OS replacement) embedded inside `atari800.wasm` at build time via `--enable-altirra_bios` — no separate ROM file ships
 - EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 13 bundles via `systems/_shared-ejs/` — the six VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, and the three handhelds (Game Boy/GBC, Lynx, Game Gear)
 - VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `x128`, `xvic`, `xplus4`) mirrored from `cdn.emulatorjs.org/stable/`

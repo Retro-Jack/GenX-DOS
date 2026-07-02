@@ -1,8 +1,8 @@
 # Attribution
 
-GenX-DOS bundles emulators, system ROMs, game ROMs, and visual assets sourced
-from third parties. This file is the canonical record of where each piece came
-from and under what terms it is redistributed.
+GenX-DOS bundles third-party emulators, libraries, system ROMs, and visual
+assets. This file is the canonical record of those components and the terms
+under which they are redistributed.
 
 It is maintained alongside [CHANGELOG.md](CHANGELOG.md): whenever a new
 emulator, BIOS, ROM, bezel, font, or other asset is added or replaced, an
@@ -59,7 +59,7 @@ fork rather than the bundle.
 | `systems/trs80/` | sdltrs (SDL2 TRS-80 emulator), built from source to WASM | Mark Grebe / Jens Guenther (gitlab.com/jengun/sdltrs) | BSD-2-Clause |
 | `systems/trs80/sdltrs.wasm` (embedded) | TRS-80 Model I Level II BASIC ROM (12 KB) | © Tandy / Microsoft | Bundled for emulator-only use; embedded into the WASM at build time via `--embed-file` (no separate ROM file ships) |
 | `systems/js99er/` | Js99'er (vanilla-JS build) | Rasmus Moustgaard | GPL-2.0 |
-| `systems/js99er/carts/*.rpk` | TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983) | Texas Instruments / Imagic / Sega — original publishers | Distributed for retro-preservation; carts are 40+ years out of commerce. Mirrored from the js99er.net public cart archive (Rasmus Moustgaard). |
+| `systems/js99er/carts/*.rpk` | TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983) | Texas Instruments / Imagic / Sega — original publishers | Distributed for retro-preservation; carts are 40+ years out of commerce. |
 | `systems/atari800/`, `systems/atari400/` | atari800 v5.2.0, built from source to WASM (same core shipped in two bundles — the 400 bundle boots OS-B, the 800XL bundle boots OS-XL) | atari800 project | GPL-2.0+ |
 | `systems/atari800/atari800.wasm`, `systems/atari400/atari800.wasm` (embedded) | AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC | Avery Lee | Freely-redistributable open-source OS replacement, compiled into the WASM via `--enable-altirra_bios` (no separate ROM file ships) |
 | `systems/intv/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
@@ -138,7 +138,7 @@ copyright holders.
 | `systems/coleco/colecovision.rom` | ColecoVision | © 1982 Coleco Industries |
 | `systems/lynx/lynxboot.img` | Atari Lynx boot ROM (512 bytes) | © 1989 Atari Corp. (required by the handy core to start games) |
 | `systems/intv/roms/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
-| `systems/odyssey2/roms/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. Sourced from the BizHawk firmware archive. |
+| `systems/odyssey2/roms/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. |
 
 ---
 
@@ -152,8 +152,7 @@ Notable inclusions where the rights holder has explicitly released the
 software under permissive terms:
 
 - **Apple I cassette tapes** — Integer BASIC era homebrew + Apple's own
-  30th Anniversary demo by Brian Wiser. Sourced from the
-  [Apple I Project](https://www.applefritter.com/apple1) archive.
+  30th Anniversary demo by Brian Wiser.
 - **AltirraOS-800 / -XL** (counted under BIOS, above) — Avery Lee's
   free re-implementation of Atari OS-B / OS-XL.
 - **3D Construction Kit demos and indie homebrew** across various
