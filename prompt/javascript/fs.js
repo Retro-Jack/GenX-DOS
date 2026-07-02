@@ -2105,7 +2105,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  128  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  128 Crush            (1985)  CRUSH    º\necho                 º   2.  Rocky Horror Show    (1985)  ROCKYH   º\necho                 º   3.  The Last V8          (1985)  LASTV8   º\necho                 º   4.  Star Fleet I         (1987)  STARFLT1 º\necho                 º   5.  Invaders             (19xx)  INVADERS º\necho                 º   6.  Uniquest             (19xx)  UNIQUEST º\necho                 º   7.  World at War         (2017)  WORLDWAR º\necho                 º   8.  Phazer               (2023)  PHAZER   º\necho                 º   9.  Rockfall 128         (2023)  ROCKFALL º\necho                 º  10.  Wumpus 2.0           (2023)  WUMPUS   º\necho                 º                                             º\necho                 º  11.  BASIC 7.0 prompt            BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  128  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  128 Crush            (1985)  CRUSH    º\necho                 º   2.  Rocky Horror Show    (1985)  ROCKYH   º\necho                 º   3.  The Last V8          (1985)  LASTV8   º\necho                 º   4.  Thai Boxing          (1986)  THAIBOX  º\necho                 º   5.  Star Fleet I         (1987)  STARFLT1 º\necho                 º   6.  Invaders             (19xx)  INVADERS º\necho                 º   7.  Uniquest             (19xx)  UNIQUEST º\necho                 º   8.  World at War         (2017)  WORLDWAR º\necho                 º   9.  Phazer               (2023)  PHAZER   º\necho                 º  10.  Rockfall 128         (2023)  ROCKFALL º\necho                 º                                             º\necho                 º  11.  BASIC 7.0 prompt            BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2125,31 +2125,31 @@ var fs = [
                           },
                           {
                             name: '4.bat',
-                            data: 'starflt1\n',
+                            data: 'thaibox\n',
                           },
                           {
                             name: '5.bat',
-                            data: 'invaders\n',
+                            data: 'starflt1\n',
                           },
                           {
                             name: '6.bat',
-                            data: 'uniquest\n',
+                            data: 'invaders\n',
                           },
                           {
                             name: '7.bat',
-                            data: 'worldwar\n',
+                            data: 'uniquest\n',
                           },
                           {
                             name: '8.bat',
-                            data: 'phazer\n',
+                            data: 'worldwar\n',
                           },
                           {
                             name: '9.bat',
-                            data: 'rockfall\n',
+                            data: 'phazer\n',
                           },
                           {
                             name: '10.bat',
-                            data: 'wumpus\n',
+                            data: 'rockfall\n',
                           },
                           {
                             name: '11.bat',
@@ -2176,8 +2176,8 @@ var fs = [
                             link: '../systems/c128/play.html?game=invaders',
                           },
                           {
-                            name: 'wumpus.bat',
-                            link: '../systems/c128/play.html?game=wumpus',
+                            name: 'thaibox.bat',
+                            link: '../systems/c128/play.html?game=thaibox',
                           },
                           {
                             name: 'starflt1.bat',

@@ -29,10 +29,10 @@
     "rom": "games/uniquest.prg",
     "video": "VDC"
   },
-  "wumpus": {
-    "title": "Wumpus 2.0 (homebrew, 80-col)",
-    "rom": "games/wumpus.d64",
-    "video": "VDC"
+  "thaibox": {
+    "title": "Thai Boxing (1986)",
+    "rom": "games/thaibox.d64",
+    "video": "VICII"
   },
   "starflt1": {
     "title": "Star Fleet I (1987, 80-col)",
