@@ -22,7 +22,7 @@ The defining constraint is almost monastic: **static, no build step, no runtime 
 
 This sounds limiting. It's actually the smartest decision in the project. A preservation site whose whole point is "this old software still runs" can't afford to depend on a CDN that might 404 in 2031, or a build toolchain that bit-rots, or a third-party emulator host that goes dark. By refusing all of it, GenX-DOS becomes the thing it's preserving: a self-contained artifact you could burn to a disc and run in a decade.
 
-It also means the repository is a beast — 441 MB, with jsbeeb alone weighing 25 MB — and that thirteen of the emulators had to be talked into *sharing* one copy of the EmulatorJS framework instead of each dragging its own, a move that saved roughly 25 MB. Frugality and excess, side by side.
+It also means the repository is a beast — around 150 MB checked out, closer to 460 MB cloned with its full history — with no single bundle dominating: the two BBC builds (`bbcmicro` and `bbcmaster`, ~25 MB each since the jsbeeb split) and jsvecx (~22 MB) sit at the top. And thirteen of the emulators had to be talked into *sharing* one copy of the EmulatorJS framework instead of each dragging its own, a move that saved roughly 25 MB. Frugality and excess, side by side.
 
 ## Where the week-long fights happened
 
