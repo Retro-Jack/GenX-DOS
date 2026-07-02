@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- **`SECURITY.md`.** Short security policy — scope (static client-side site, no backend/user data), supported versions (latest release + live site), and private vulnerability reporting via the GitHub Security tab or email.
 - **Social preview image (`docs/social-preview.png`).** The repo's GitHub social-preview card — a 1280×640 image rendered from the site's own CP437 sprite sheets (`prompt/img/f12.*.png`), with the glyphs vertically stretched to match the live terminal. Committed for safekeeping; also set as the repo's Social preview via Settings.
 - **Wiki link in the bottom-centre credit.** The "GenX-DOS · licence · source" pill on every emulator page now also links the **wiki** (`systems/_shared/genx-repo-link.js`).
 - **BBC COPY soft button (jsbeeb).** The BBC's COPY key has no obvious PC equivalent (jsbeeb maps it to <kbd>End</kbd>), so the BBC Micro and Master bundles now show a clickable **COPY** button (top-left, in the GenX button style) that sends it — handy for games where COPY is "continue", e.g. Manic Miner. New shared `systems/_shared/genx-bbc-copykey.js`.
