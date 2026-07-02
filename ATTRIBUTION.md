@@ -137,8 +137,8 @@ copyright holders.
 | --- | --- | --- |
 | `systems/coleco/colecovision.rom` | ColecoVision | © 1982 Coleco Industries |
 | `systems/lynx/lynxboot.img` | Atari Lynx boot ROM (512 bytes) | © 1989 Atari Corp. (required by the handy core to start games) |
-| `systems/intv/roms/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
-| `systems/odyssey2/roms/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. |
+| `systems/intv/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
+| `systems/odyssey2/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. |
 
 ---
 
