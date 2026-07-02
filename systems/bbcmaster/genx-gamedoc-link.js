@@ -14,7 +14,7 @@
   var DISC_TO_KEY = {
     EliteMaster: 'elite',
     LastNinja2: 'ninja2',
-    Repton3: 'repton3',
+    Galaforce: 'galaforce',
     ReptonInfinity: 'reptoninf',
     Firetrack: 'firetrak',
     CrazeeRider: 'crazee',
