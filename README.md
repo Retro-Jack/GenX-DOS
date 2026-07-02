@@ -4,7 +4,7 @@ A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs
 
 <p align="center">
   <img src="docs/screenshot-menu.png" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
-  <img src="docs/screenshot.png" width="49%" alt="GenX-DOS running Metal Gear (MSX2) in a browser, framed in a CRT bezel">
+  <img src="docs/screenshot.png" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
 </p>
 
 We bundle 19 emulator engines covering 32 sub-systems between them, from the Apple I to the Sega Game Gear.
