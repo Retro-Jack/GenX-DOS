@@ -240,7 +240,7 @@ save/load state.
   - **Overlay removal (rebuilt WASM):** floooh's stock binary unconditionally draws a sokol-debugtext status bar (JOYSTICK/DISC/MOTOR/TRACK + frame timing) and a suspended-audio muted-speaker icon. Rather than masking them, rebuilt `cpc.js`/`cpc.wasm` from `floooh/chips-test` (fibs, `emsc-ninja-release`): commented out `draw_status_bar()` and hardcoded `disable_speaker_icon = true` in `examples/emus/cpc.c`. Recipe at `systems/cpc/BUILDING-WASM.md`. Audio auto-unlock burst kept so sound resumes on load. Supersedes the earlier black-strip mask.
 - **`systems/cpc/BUILDING-WASM.md`** — build recipe for the patched `cpc.js`/`cpc.wasm` (source, two-line patch, fibs config + build, install paths).
 - **PET 2001 CRT bezel** wired into `systems/pet/play.html` — `_shared/bezels/Pet.png` replaced with a higher-res blue-trimmed PET 2001 frame (1024×771, maintainer-keyed from the local OBS bezel library). Standard three-layer bezel order (black backdrop → canvas at the detected screen cutout left 30.3%/top 20.5%/37.3%×35.4% → bezel PNG on top), 70s wallpaper behind, generic photographer-unknown credit comment at the foot. Third bezel to go live after PC and Acorn.
-- **Star Trek (1977)** added to the PET bundle as the replacement headline title — Mike Mayfield's defining BASIC space game.
+- **Star Trek (1977)** added to the PET bundle as the replacement headline title — Mike Mayfield's defining BASIC space game, sourced from zimmers.net.
 - **`gamedocs/pet/startrek.html`** — per-game instructions for the new headline title (the `?game=startrek` controls link was 404ing without it). Gamedocs sweep stays complete at 281 pages.
 
 ### Removed
@@ -392,7 +392,7 @@ save/load state.
 - **Mattel Intellivision** at `systems/intv/` via jzIntv WASM. EJS doesn't ship an Intellivision core, so this bundle has its own emscripten Module loader + `Module.launchJzintv()` API. Custom `desk.kbd` adds arrow→disc + numpad→keypad bindings the stock map omits. BIOS (exec.bin + grom.bin, ©1979 Mattel) bundle-local.
 - **Commodore 128** at `systems/c128/` via VICE x128 — seventh and final VICE-family sub-system. Native mode (`vice_c128_go64: 'disabled'`). Per-game `video` field toggles `VICII` (40-col) vs `VDC` (80-col). CSS `scaleY(2.088)` hack on the canvas works around VICE x128's 856×288 framebuffer letterboxing inside the 4:3 container.
 - **`_shared/genx-vice-softkeys.js`** — keyboard remap + soft button for VICE RUN/STOP. Browsers capture Esc before the libretro keyboard callback sees it, so synthetic Escape gets dispatched from three fallbacks: Scroll Lock, Pause/Break, and a top-left soft button. Wired into all 7 VICE play.html.
-- **Commodore PET** at `systems/pet/` via VICE xpet. Default = model 3032 (BASIC 2 chargen); 4032 broke 9/10 bundled games with garbled PETSCII. PETSCII Robots gets a per-game `model` override (needs BASIC 4 + 32K + ships TILESET.PET). 10 games, plus PETSCII Robots. **Skipped:** Microchess 2.0, 3D Star Trek, Cosmiads (non-standard load addresses VICE doesn't autostart).
+- **Commodore PET** at `systems/pet/` via VICE xpet. Default = model 3032 (BASIC 2 chargen); 4032 broke 9/10 bundled games with garbled PETSCII. PETSCII Robots gets a per-game `model` override (needs BASIC 4 + 32K + ships TILESET.PET). 10 games sourced from `zimmers.net` + PETSCII Robots from the8bitguy.com. **Skipped:** Microchess 2.0, 3D Star Trek, Cosmiads (non-standard load addresses VICE doesn't autostart).
 - **Commodore MAX Machine** at `systems/max/` via VICE x64 in Ultimax mode (`vice_c64_model: 'ultimax'`) — 2 KB RAM, no built-in BASIC. 8 carts + MAX BASIC. Of the 8 carts, 5 were bank-extracted from the MultiMax EasyFlash compilation. Wrapped as proper Ultimax-mode `.crt`s; 16K MultiMax banks split $8000+$A000 in EasyFlash addressing become $8000+$E000 in Ultimax mode.
 - **Commodore 16** at `systems/c16/` via VICE xplus4 in C16 mode (`vice_plus4_model: 'c16pal'`) — 16K RAM. 10 first-in-series UK-budget titles from plus4world.com. Bundle structure cloned from `systems/plus4/` so the self-containment patches carry over for free.
 - **Commodore Plus/4** at `systems/plus4/` via VICE xplus4. 10 first-in-series classics. BASIC entry uses a Plus/4-specific empty.prg (load address `$1001` for BASIC 3.5).
@@ -446,7 +446,7 @@ save/load state.
 - **Platform parent menus normalised to `(YYYY) CODE`** — `[GAMES]` markers removed; Sinclair reordered so ZX81 (1981) precedes Spectrum (1982).
 - **Master-Enhanced Titles masthead** — was 46 chars; back to 45.
 - **Vectrex Mine Storm row** — was 44 chars; back to 45.
-- **C128 indie release dates researched** — `(home)` → `(indie)`. 128 Crush 1985, Knight's Quest 1991, Tetris 128 1991 confirmed from internal stamps. Phazer, Rockfall 128, Wumpus 2.0, World at War have no stamp — dated by best estimate.
+- **C128 indie release dates researched** — `(home)` → `(indie)`. 128 Crush 1985, Knight's Quest 1991, Tetris 128 1991 confirmed from internal stamps. Phazer, Rockfall 128, Wumpus 2.0, World at War have no stamp — fall back to zimmers.net mtimes.
 - **ACORN parent menu** created — BBC Micro, Electron, Master grouped under one ACORN entry.
 - **HOMECOMP grouped by manufacturer, sorted by release date.** "Atari Consoles" / "Atari Home Computers" shortened to "Atari".
 - **CONSOLE sorted by release date.**

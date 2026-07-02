@@ -152,7 +152,8 @@ Notable inclusions where the rights holder has explicitly released the
 software under permissive terms:
 
 - **Apple I cassette tapes** — Integer BASIC era homebrew + Apple's own
-  30th Anniversary demo by Brian Wiser.
+  30th Anniversary demo by Brian Wiser. Sourced from the
+  [Apple I Project](https://www.applefritter.com/apple1) archive.
 - **AltirraOS-800 / -XL** (counted under BIOS, above) — Avery Lee's
   free re-implementation of Atari OS-B / OS-XL.
 - **3D Construction Kit demos and indie homebrew** across various
