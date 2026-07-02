@@ -118,7 +118,12 @@
       // and let cpc.js initialise with empty sokol_args.
       const hasGame = new URLSearchParams(location.search).has('game');
       let game = null;
-      const fail = (msg) => { document.getElementById('loading').innerHTML = '<div class="err">' + msg + '</div>'; };
+      const fail = (msg) => {
+        const d = document.createElement('div');
+        d.className = 'err';
+        d.textContent = msg;
+        document.getElementById('loading').replaceChildren(d);
+      };
 
       if (hasGame) {
         const _gx = await window.genxLoadGame('#loading');

@@ -76,7 +76,12 @@
   </div>
   <script>
     (async function () {
-      const fail = (msg) => { document.body.innerHTML = '<div class="err">' + msg + '</div>'; };
+      const fail = (msg) => {
+        const d = document.createElement('div');
+        d.className = 'err';
+        d.textContent = msg;
+        document.body.replaceChildren(d);
+      };
       const params = new URLSearchParams(location.search);
       const key = params.get('game');
       let romUrl = null, vfsName = null, game = null;

@@ -10,13 +10,20 @@
 window.genxLoadGame = async function (errorTarget) {
   const target = errorTarget || '#game';
   const fail = (msg) => {
+    // Build with textContent so a crafted ?game= key can't inject markup.
+    const div = document.createElement('div');
+    div.className = 'err';
+    div.textContent = msg;
     const el = document.querySelector(target);
-    if (el) el.innerHTML = '<div class="err">' + msg + '</div>';
-    else
-      document.body.innerHTML =
-        '<div class="err" style="padding:20px;color:#fff;font-family:monospace">' +
-        msg +
-        '</div>';
+    if (el) {
+      el.replaceChildren(div);
+    } else {
+      div.setAttribute(
+        'style',
+        'padding:20px;color:#fff;font-family:monospace',
+      );
+      document.body.replaceChildren(div);
+    }
   };
   const params = new URLSearchParams(location.search);
   const key = params.get('game');

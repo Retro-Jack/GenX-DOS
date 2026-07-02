@@ -81,7 +81,12 @@
   <script src="sdltrs.js"></script>
   <script>
     (async function () {
-      const fail = (msg) => { document.body.innerHTML = '<div class="err">' + msg + '</div>'; };
+      const fail = (msg) => {
+        const d = document.createElement('div');
+        d.className = 'err';
+        d.textContent = msg;
+        document.body.replaceChildren(d);
+      };
       const canvas = document.getElementById('screen-canvas');
       const params = new URLSearchParams(location.search);
       const key = params.get('game');

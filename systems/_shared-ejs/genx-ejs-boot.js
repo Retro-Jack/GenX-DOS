@@ -32,8 +32,13 @@
 // always passes ?game=basic when the user picks BASIC.
 window.genxBootEJS = async function (config) {
   const fail = (msg) => {
+    // textContent, not innerHTML, so a crafted ?game= key can't inject markup.
     const el = document.getElementById('game');
-    if (el) el.innerHTML = '<div class="err">' + msg + '</div>';
+    if (!el) return;
+    const div = document.createElement('div');
+    div.className = 'err';
+    div.textContent = msg;
+    el.replaceChildren(div);
   };
 
   const params = new URLSearchParams(location.search);

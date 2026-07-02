@@ -97,12 +97,18 @@
       var games;
       try { games = await (await fetch('games.json')).json(); }
       catch (e) {
-        document.body.innerHTML = '<div class="err">Failed to load games.json: ' + e.message + '</div>';
+        var d2 = document.createElement('div');
+        d2.className = 'err';
+        d2.textContent = 'Failed to load games.json: ' + e.message;
+        document.body.replaceChildren(d2);
         return;
       }
       var game = games[key];
       if (!game) {
-        document.body.innerHTML = '<div class="err">Unknown game key: ' + key + '</div>';
+        var d = document.createElement('div');
+        d.className = 'err';
+        d.textContent = 'Unknown game key: ' + key;
+        document.body.replaceChildren(d);
         return;
       }
       document.title = 'Commodore PET';

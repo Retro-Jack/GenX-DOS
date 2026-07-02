@@ -437,8 +437,6 @@ function handleCmd(cmd) {
     return;
   }
 
-  cmd = cmd.replace(' \& ', ' & ');
-
   if (!bEchoOff) {
     promptMode = true;
     document.onkeypress({

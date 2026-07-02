@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **Reflected-XSS hardening in the game-loader error paths.** CodeQL flagged the `?game=` key flowing into `innerHTML` when a wrapper renders its "Unknown game key" / "no game" error. Real but low-impact (static site, no cookies/sessions to steal) — still, all error rendering now builds the message with `textContent` instead of `innerHTML`: the shared `genx-game-loader.js` and `genx-ejs-boot.js` helpers plus the inline `fail()`/error blocks in ten `play.html` wrappers (Atari 400/800XL, 7800, NES, Spectrum, ZX81, PET, TRS-80, CoCo, CPC). The `games.json` fetch-error messages got the same treatment for uniformity. Also removed a dead no-op `replace(' \& ')` in `commands-core.js` (CodeQL js/identity-replacement; real `&&` chaining is handled separately).
+
 ### Changed
 - **CI: bumped `publish-package.yml` actions off deprecated Node 20.** GitHub Actions runners are dropping the Node 20 shim, so the actions were force-run on Node 24. Updated to current majors — `actions/checkout@v7`, `actions/setup-node@v6`, `docker/login-action@v4`, `docker/setup-buildx-action@v4`, `docker/build-push-action@v7` — and moved the npm publish step to Node 22 LTS.
 
