@@ -2,10 +2,14 @@
 
 ## [Unreleased]
 
+### Added
+- **Dependabot config (`.github/dependabot.yml`).** Weekly checks on the GitHub Actions dependencies.
+
 ### Fixed
 - **Reflected-XSS hardening in the game-loader error paths.** CodeQL flagged the `?game=` key flowing into `innerHTML` when a wrapper renders its "Unknown game key" / "no game" error. Real but low-impact (static site, no cookies/sessions to steal) — still, all error rendering now builds the message with `textContent` instead of `innerHTML`: the shared `genx-game-loader.js` and `genx-ejs-boot.js` helpers plus the inline `fail()`/error blocks in ten `play.html` wrappers (Atari 400/800XL, 7800, NES, Spectrum, ZX81, PET, TRS-80, CoCo, CPC). The `games.json` fetch-error messages got the same treatment for uniformity. Also removed a dead no-op `replace(' \& ')` in `commands-core.js` (CodeQL js/identity-replacement; real `&&` chaining is handled separately).
 
 ### Changed
+- **Doc sync + orphan audit (July pass).** Orphan scan found no authored orphans — every flagged candidate is a dynamic-path mechanism (js99er builds `carts/<key>.rpk`, JtyOne's loader appends `.hex` to `tapes/<name>.p`, jsvecx's `roms/` library is upstream-vendored). Synced the repo trees in the README and the wiki File-Structure page with the root files that post-date them (LICENSE.TXT, SECURITY.md, `docs/`, the npm/container packaging trio, `.github/`), fixed the wiki's per-emulator table still listing the PET under VICE (it runs Skibo's pet2001), and added the shared save-state / soft-button helpers to the wiki's `_shared/` listing.
 - **CI: bumped `publish-package.yml` actions off deprecated Node 20.** GitHub Actions runners are dropping the Node 20 shim, so the actions were force-run on Node 24. Updated to current majors — `actions/checkout@v7`, `actions/setup-node@v6`, `docker/login-action@v4`, `docker/setup-buildx-action@v4`, `docker/build-push-action@v7` — and moved the npm publish step to Node 22 LTS.
 
 ## [1.2.0] - 2026-07-03

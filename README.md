@@ -60,6 +60,10 @@ index.html                fake BIOS POST screen, redirects to prompt/
 serve.sh                  starts the local server
 CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset
+LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)
+SECURITY.md               scope + private vulnerability reporting
+package.json / index.js   the npm package; Dockerfile builds the ghcr container
+docs/                     tech article + README screenshots + social preview
 prompt/                   the DOS terminal (HTML + JS, no build)
   index.html
   javascript/             terminal logic + virtual filesystem (fs.js)
@@ -98,8 +102,8 @@ systems/
   plus4/                  Commodore Plus/4    — EmulatorJS + VICE xplus4 + 10 .prg
   c128/                   Commodore 128       — EmulatorJS + VICE x128 native mode + 10 titles
   coleco/                 ColecoVision        — EmulatorJS + gearcoleco + 10 launch-era .col carts
-  intv/          Mattel Intellivision — jzIntv WASM (custom loader) + 10 carts
-  cpc/             Amstrad CPC         — floooh tiny8bit CPC WASM + 10 .dsk titles
+  intv/                   Mattel Intellivision — jzIntv WASM (custom loader) + 10 carts
+  cpc/                    Amstrad CPC         — floooh tiny8bit CPC WASM + 10 .dsk titles
   odyssey2/               Magnavox Odyssey²   — libretro-o2em + custom SDL2 frontend + 10 carts
 ```
 
