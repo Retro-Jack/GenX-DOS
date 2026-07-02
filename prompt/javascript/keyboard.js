@@ -28,12 +28,9 @@ document.onkeypress = function (e) {
     k = 'n';
   }
 
-  // Backspace key — delete previous character
-  if (k == 8) {
-    if (gotClass(cursorEl.previousSibling, 'p')) return;
-    cursorEl.parentElement.removeChild(cursorEl.previousSibling);
-    return;
-  }
+  // Backspace is handled in keydown (doKeyDown) — modern browsers no longer
+  // fire keypress for it. Ignore here so it never renders as a glyph.
+  if (k == 8) return;
 
   // Render the character as a font div
   addClass(c, 'f-' + k);
@@ -84,14 +81,17 @@ function doKeyDown(e) {
 
   var k = e.keyCode || e.charCode;
 
-  // Backspace — Firefox doesn't fire keypress for backspace
+  // Backspace — delete the character before the cursor. Handled here in
+  // keydown for every browser (keypress no longer fires for Backspace in
+  // modern Chrome/Firefox/Safari). The 'p' class marks the protected prompt
+  // prefix / printed output, which must not be erased.
   if (k == 8) {
     e.stopPropagation();
     e.preventDefault();
-    if (window.navigator.userAgent.toLowerCase().indexOf('firefox') == -1)
-      document.onkeypress({
-        keyCode: 8,
-      });
+    var prev = cursorEl && cursorEl.previousSibling;
+    if (prev && !gotClass(prev, 'p')) {
+      cursorEl.parentElement.removeChild(prev);
+    }
     return false;
   }
 
