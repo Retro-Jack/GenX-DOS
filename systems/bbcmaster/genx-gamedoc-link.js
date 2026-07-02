@@ -15,7 +15,7 @@
     EliteMaster: 'elite',
     LastNinja2: 'ninja2',
     Galaforce: 'galaforce',
-    ReptonInfinity: 'reptoninf',
+    PalaceOfMagic: 'palaceofmagic',
     Firetrack: 'firetrak',
     CrazeeRider: 'crazee',
     Commando: 'commando',

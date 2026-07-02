@@ -1034,7 +1034,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           MASTER-ENHANCED  TITLES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Commando             (1985)  COMMANDO º\necho                 º   2.  Galaforce            (1986)  GALAFORCEº\necho                 º   3.  Elite                (1986)  ELITE    º\necho                 º   4.  Crazee Rider         (1987)  CRAZEE   º\necho                 º   5.  Firetrack            (1987)  FIRETRAK º\necho                 º   6.  Repton Infinity      (1988)  REPTONINFº\necho                 º   7.  Fair or Foul         (1988)  BFMOF    º\necho                 º   8.  Holed Out            (1989)  HOLEDOUT º\necho                 º   9.  Last Ninja 2         (1990)  NINJA2   º\necho                 º  10.  Ballistix            (1990)  BALLISTX º\necho                 º                                             º\necho                 º  11.  BBC BASIC prompt            PROMPT    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           MASTER-ENHANCED  TITLES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Commando             (1985)  COMMANDO º\necho                 º   2.  Galaforce            (1986)  GALAFORCEº\necho                 º   3.  Elite                (1986)  ELITE    º\necho                 º   4.  Crazee Rider         (1987)  CRAZEE   º\necho                 º   5.  Firetrack            (1987)  FIRETRAK º\necho                 º   6.  Palace of Magic      (1987)  PALACE   º\necho                 º   7.  Fair or Foul         (1988)  BFMOF    º\necho                 º   8.  Holed Out            (1989)  HOLEDOUT º\necho                 º   9.  Last Ninja 2         (1990)  NINJA2   º\necho                 º  10.  Ballistix            (1990)  BALLISTX º\necho                 º                                             º\necho                 º  11.  BBC BASIC prompt            PROMPT    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1062,7 +1062,7 @@ var fs = [
                           },
                           {
                             name: '6.bat',
-                            data: 'reptoninf\n',
+                            data: 'palace\n',
                           },
                           {
                             name: '7.bat',
@@ -1097,8 +1097,8 @@ var fs = [
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/Galaforce.ssd&autoboot',
                           },
                           {
-                            name: 'reptoninf.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/ReptonInfinity.ssd&autoboot',
+                            name: 'palace.bat',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/PalaceOfMagic.ssd&autoboot',
                           },
                           {
                             name: 'firetrak.bat',
