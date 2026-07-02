@@ -431,7 +431,7 @@ save/load state.
 ### Changed
 - **ATTRIBUTION.md bezel section expanded** — the 8 OBS bezels were sourced via Reddit/forums; EXIF stripped, original photographers unreachable. Hardware identified by visible markings (Microvitec CUB, IBM 5153 CGA, Commodore 1084S, Apple Monitor ///). Wikimedia replacement candidates logged where available.
 - **Amstrad bezel** — desk-shot swapped for a tight CTM640 cutout (Wikimedia Commons CC-BY-SA 2.5, Bill Bertram). Screen cutout now dominates the frame.
-- **Bezel staging** — replaced 8 auto-named stock images with 9 cleanly-named PNGs from `/mnt/multimedia/Assets/OBS/Bezels/`. Pure asset swap.
+- **Bezel staging** — replaced 8 auto-named stock images with 9 cleanly-named PNGs. Pure asset swap.
 - **NES Duck Hunt → Super Mario Bros. 2 (1988)** — Duck Hunt needs the Zapper, which `play.html` doesn't wire.
 - **`commands-core.js` `find()` comment** — example string referenced the removed Genesis bundle. Swapped to "Cybernes".
 - **Scope rule formalised: 8-bit era only.** Cutoff is era, not strict bit-width. Intellivision (CP1610 16-bit ALU) is in; Genesis/SNES/ST/Amiga/Mac/Archimedes are out.
