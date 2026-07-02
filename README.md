@@ -2,6 +2,8 @@
 
 A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs on the page — no server, no network calls at runtime.
 
+![GenX-DOS running Metal Gear (MSX2) in a browser, framed in a CRT bezel](docs/screenshot.png)
+
 We bundle 19 emulator engines covering 32 sub-systems between them, from the Apple I to the Sega Game Gear.
 
 **Scope:** 8-bit *feel* — anything with the look and sound of an 8-bit machine (sprite-based, chiptune, low-res), including the 8-bit-feel handhelds (Game Boy/GBC, Game Gear, Lynx) even where they run into the late 90s. The cutoff is the *aesthetic*, not the calendar or strict CPU width; 16-bit home consoles/computers (Genesis, SNES, Amiga, ST) stay out. See the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected.
