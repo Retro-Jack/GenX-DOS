@@ -8,6 +8,7 @@
 - **BBC COPY soft button (jsbeeb).** The BBC's COPY key has no obvious PC equivalent (jsbeeb maps it to <kbd>End</kbd>), so the BBC Micro and Master bundles now show a clickable **COPY** button (top-left, in the GenX button style) that sends it — handy for games where COPY is "continue", e.g. Manic Miner. New shared `systems/_shared/genx-bbc-copykey.js`.
 
 ### Changed
+- **LICENSE.TXT: fixed a header typo** ("EXPRESSCE" → "EXPRESS" disclaimer of warranty). No change to terms.
 - **ATTRIBUTION: corrected two BIOS paths.** The Intellivision EXEC/GROM and Odyssey² `o2rom.bin` live at their bundle roots (`systems/intv/`, `systems/odyssey2/`), not the `roms/` subdirs the table listed.
 - **Tech article: corrected the repository-size paragraph.** The `jsbeeb` bundle was split into `bbcmicro`/`bbcmaster`, so the "441 MB, with jsbeeb alone weighing 25 MB" line had gone stale. Updated to the current footprint (~150 MB checked out, ~460 MB cloned with history) with the two BBC builds and jsvecx as the heaviest bundles.
 - **Revs gamedoc: added the Shift+f-key race options.** Audited against the game's keyboard overlay — the driving keys were already right, but the doc was missing the shifted function-key controls: keyboard/joystick select, volume, retire, return to pits and freeze/resume.

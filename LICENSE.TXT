@@ -54,7 +54,7 @@ The licensor cannot revoke these freedoms as long as you follow the license term
    others from doing anything the license permits.
 
 ===============================================================================
-EXPRESSCE DISCLAIMER OF WARRANTY
+EXPRESS DISCLAIMER OF WARRANTY
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
