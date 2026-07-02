@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/Retro-Jack/GenX-DOS/security/advisories/new
+    about: Please report security issues privately, not as public issues.
+  - name: Documentation / integration stories
+    url: https://github.com/Retro-Jack/GenX-DOS/wiki
+    about: The wiki covers how each emulator is integrated and how the prompt works.

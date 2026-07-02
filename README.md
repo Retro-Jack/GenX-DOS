@@ -62,6 +62,7 @@ CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset
 LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)
 SECURITY.md               scope + private vulnerability reporting
+CONTRIBUTING.md           local setup + PR ground rules; CODE_OF_CONDUCT.md alongside
 package.json / index.js   the npm package; Dockerfile builds the ghcr container
 docs/                     tech article + README screenshots + social preview
 prompt/                   the DOS terminal (HTML + JS, no build)

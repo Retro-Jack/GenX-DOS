@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- **Community-profile files.** `CONTRIBUTING.md` (local setup, PR ground rules, scope rule, licensing), `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1), issue templates (bug report + rights-holder takedown request, with a config pointing security reports at private advisories) and a PR checklist template. Completes the GitHub community-profile checklist.
 - **Dependabot config (`.github/dependabot.yml`).** Weekly checks on the GitHub Actions dependencies.
 
 ### Fixed
