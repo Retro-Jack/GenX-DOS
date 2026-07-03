@@ -11,32 +11,35 @@
     <div class="head">
       <div class="system">Home Computer · Amstrad CPC</div>
       <h1>Roland on the Run</h1>
-      <p class="sub">Amsoft, 1984 — the launch-era platformer starring Amstrad's mascot Roland the Rat. Five levels of run-and-jump avoiding the Cat.</p>
+      <p class="sub">Amsoft / Epicsoft, 1984 — Said A. Abouelhassan. Launch-era Roland: ride the train, jump the traffic, make the hideouts.</p>
     </div>
 
-    <p class="intro">Roland is loose in the Greater Sewer System and the Cat is chasing him. Run along the platforms, dodge the Cat and the falling debris, collect cheese for points, and reach the exit on each of the five levels.</p>
+    <p class="intro">Roland's escape is a moving puzzle in lanes. You control the speed of the train he's riding; from its roof he leaps to the first line of traffic, from there to the second, and finally to the hideouts at the roadside. Each lane moves at its own pace — the game is matching speeds and timing the three jumps.</p>
 
     <h2>Getting started</h2>
     <ol>
-      <li>Game autoboots — the bundle pre-types <code>run"ontherun</code>.</li>
-      <li>Click the canvas first to give it keyboard focus.</li>
-      <li>Press a key at the title screen to start.</li>
+      <li>Game autoboots — the bundle pre-types <code>run"ontherun</code>. Click the canvas first to give it keyboard focus.</li>
+      <li>The game asks for your number of lives — <strong>any number from 1 to 255</strong>, gloriously — then a starting level from 1 to 9.</li>
+      <li>Lose the lot and it's <kbd>Y</kbd> for another game.</li>
     </ol>
 
     <h2>Controls</h2>
-    <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported.</p>
+    <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported. The <kbd>&lt;</kbd> and <kbd>&gt;</kbd> keys live on your <kbd>,</kbd> and <kbd>.</kbd> keys. Keys below are as the game's own operating instructions list them.</p>
     <table>
       <tr><th>Key</th><th>Action</th></tr>
-      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Move / climb</td></tr>
-      <tr><td><kbd>Space</kbd></td><td>Jump</td></tr>
-      <tr><td><kbd>Esc</kbd></td><td>Pause / quit to title</td></tr>
+      <tr><td><kbd>&gt;</kbd></td><td>Accelerate the train</td></tr>
+      <tr><td><kbd>&lt;</kbd></td><td>Decelerate the train</td></tr>
+      <tr><td><kbd>Z</kbd></td><td>Jump from the train to the first line of traffic</td></tr>
+      <tr><td><kbd>X</kbd></td><td>Jump from the first line of traffic to the second</td></tr>
+      <tr><td><kbd>C</kbd></td><td>Jump from the second line of traffic to the road hideouts</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Hold — any key restarts play</td></tr>
     </table>
 
     <h2>Strategy</h2>
     <ul>
-      <li><strong>Cheese first.</strong> Most pieces are deliberately on routes that risk a Cat encounter — read the patrol path before committing.</li>
-      <li><strong>Jump is short.</strong> Stand on the edge of a platform to maximise reach; mid-platform jumps undershoot.</li>
-      <li><strong>The Cat won't climb every ladder.</strong> Use vertical splits to break line-of-sight.</li>
+      <li><strong>Each jump key is lane-specific</strong> — Z, X and C only work from their own lane, so there's no mashing your way across. Know which lane you're in.</li>
+      <li><strong>Drive the train, don't fight it.</strong> Speed control is half the game: slow down to line Roland up with a gap before committing to the first jump.</li>
+      <li><strong>Learning a level? Take 255 lives.</strong> The lives prompt is the difficulty dial — set it low only when you're ready to make level 9 mean something.</li>
     </ul>
   </div>
 </body>
