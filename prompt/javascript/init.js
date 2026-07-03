@@ -203,7 +203,13 @@ function biosSetupLock(p) {
   drawPrompt();
 
   document.onkeydown = function (e) {
-    if (e.key === 'Enter') {
+    if (e.key === 'Escape') {
+      // Give up on SETUP: back to the POST with the boot pause re-armed.
+      // Once halted this handler is gone — no escaping System Halted!.
+      e.preventDefault();
+      p.removeChild(box);
+      armSetupWindow(p);
+    } else if (e.key === 'Enter') {
       e.preventDefault();
       buf = '';
       if (++tries >= 3) {
@@ -253,18 +259,25 @@ function init() {
   goFontGo();
   var p = document.getElementById('prompt');
   renderAmiBiosPost(p, function () {
-    var proceed = setTimeout(function () {
-      document.onkeydown = null;
-      continueBoot(p);
-    }, 5000);
-    document.onkeydown = function (e) {
-      if (e.key === 'Delete') {
-        e.preventDefault();
-        clearTimeout(proceed);
-        biosSetupLock(p);
-      }
-    };
+    armSetupWindow(p);
   });
+}
+
+// The 5 s POST pause. <DEL> opens the CMOS password gate instead of
+// continuing; Esc in the gate re-arms this window (POST visible again,
+// fresh 5 s, <DEL> still live).
+function armSetupWindow(p) {
+  var proceed = setTimeout(function () {
+    document.onkeydown = null;
+    continueBoot(p);
+  }, 5000);
+  document.onkeydown = function (e) {
+    if (e.key === 'Delete') {
+      e.preventDefault();
+      clearTimeout(proceed);
+      biosSetupLock(p);
+    }
+  };
 }
 
 function continueBoot(p) {
