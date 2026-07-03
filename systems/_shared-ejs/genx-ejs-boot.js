@@ -89,6 +89,10 @@ window.genxBootEJS = async function (config) {
   window.EJS_defaultOptions = options;
   if (config.defaultControls)
     window.EJS_defaultControls = config.defaultControls;
+  // When coreName names a concrete core (e.g. 'genesis_plus_gx' because the
+  // system's first-choice core isn't bundled), controlScheme pins the input
+  // scheme to the intended system (e.g. 'segaMS').
+  if (config.controlScheme) window.EJS_controlScheme = config.controlScheme;
   if (config.biosUrl)
     window.EJS_biosUrl = new URL(config.biosUrl, location.href).href;
   if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;

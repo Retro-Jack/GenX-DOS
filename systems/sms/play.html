@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../_shared/favicon.ico"><link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sega Master System</title>
+  <link rel="stylesheet" href="../_shared/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <style>
+    /* CRT bezel — early-'80s wood-cabinet CRT television (80s.png, 1680x1125,
+       transparent background around the cabinet AND a transparent screen
+       hole — same set the Atari 800XL page uses). EJS sizes its canvas to
+       fill #game, so #game sits at the measured screen hole and the bezel
+       PNG goes on top. Layers (back to front):
+         1. .screen-bg — black backdrop slightly larger than the hole (covers
+            the cutout's anti-aliased edge so wallpaper can't bleed through).
+         2. #game      — the EJS player at the measured hole; overflow clips.
+         3. .bezel-img — 80s.png on top; canvas shows through the hole.
+       Screen hole (measured): left 15.4% top 21.3% width 46.4% height 52.8%.
+       Height capped at 100dvh-120px so wallpaper shows around the set.
+       Wallpaper override must follow genx-frame.css (which sets body black). */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    .bezel-wrap {
+      position: relative;
+      width: min(100vw, calc((100dvh - 120px) * 1.25 * 1680 / 1125));
+      aspect-ratio: 1680 / 1125;
+    }
+    .screen-bg {
+      position: absolute;
+      left: 13.4%; top: 19.3%; width: 50.4%; height: 56.8%;
+      background: #000;
+      z-index: 1;
+    }
+    #game {
+      position: absolute;
+      left: 15.4%; top: 21.3%; width: 46.4%; height: 52.8%;
+      overflow: hidden;
+      z-index: 2;
+    }
+    /* EJS fits the canvas to #game preserving the SMS's 256x192 aspect —
+       centre-anchor it to the hole and fill on height (SMS 4:3 ≈ the hole's
+       aspect); slight scale keeps it inside the bezel glass. */
+    #game canvas { position: absolute !important; top: 50% !important; left: 50% !important; height: 100% !important; transform: translate(-50%, -50%) scale(0.92, 1.02); }
+    .bezel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 3;
+    }
+  </style>
+  <script defer src="../_shared/genx-controls-link.js"></script>
+  <script defer src="../_shared/genx-repo-link.js"></script>
+  <link rel="stylesheet" href="../_shared/genx-savestate.css">
+  <script defer src="../_shared/genx-savestate.js"></script>
+  <script src="../_shared/genx-game-loader.js"></script>
+  <script src="../_shared-ejs/genx-ejs-boot.js"></script>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </noscript>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div id="game"><div class="loading">Booting Sega Master System…</div></div>
+    <img class="bezel-img" src="../_shared/bezels/80s.png" alt="">
+  </div>
+  <script>
+    // Sega Master System — EmulatorJS + genesis_plus_gx (system 'segaMS').
+    // Two face buttons + console Pause: Z = button 1, X = button 2,
+    // Enter = Pause (the console button), arrows = d-pad.
+    // coreName is the concrete core: EJS would resolve the 'segaMS' system
+    // alias to smsplus, which we don't bundle — genesis_plus_gx (already
+    // shipped for Game Gear) runs the SMS natively. controlScheme keeps the
+    // Master System input layout.
+    genxBootEJS({
+      title: 'Sega Master System',
+      coreName: 'genesis_plus_gx',
+      controlScheme: 'segaMS',
+      defaultControls: {
+        0: {
+          0: { value: 'z' },            // Button 1
+          8: { value: 'x' },            // Button 2
+          3: { value: 'enter' },        // Pause (console button)
+          4: { value: 'up arrow' },
+          5: { value: 'down arrow' },
+          6: { value: 'left arrow' },
+          7: { value: 'right arrow' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

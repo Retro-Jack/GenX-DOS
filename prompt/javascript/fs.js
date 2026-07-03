@@ -674,123 +674,115 @@ var fs = [
               },
 
               {
-                name: 'VECTREX',
-                directories: [
-                  {
-                    name: 'GAMES',
-                    directories: [],
-                    files: [
-                      {
-                        name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          VECTREX  COMMERCIAL  GAMES         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Berzerk              (1982)  BERZERK  º\necho                 º   2.  Cosmic Chasm         (1982)  COSMICCH º\necho                 º   3.  Rip-Off              (1982)  RIPOFF   º\necho                 º   4.  Scramble             (1982)  SCRAMBLE º\necho                 º   5.  Solar Quest          (1982)  SOLARQST º\necho                 º   6.  Star Trek            (1982)  STARTREK º\necho                 º   7.  Polar Rescue         (1983)  POLARRSC º\necho                 º   8.  Pole Position        (1983)  POLEPOS  º\necho                 º   9.  Spike                (1983)  SPIKE    º\necho                 º  10.  Star Castle          (1983)  STARCASL º\necho                 º                                             º\necho                 º  11.  Mine Storm (built-in)        MINESTRM º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
-                      },
-                      {
-                        name: '0.bat',
-                        data: 'echo off\ncd ..\ncd ..\nmenu\n',
-                      },
-                      {
-                        name: '1.bat',
-                        data: 'berzerk\n',
-                      },
-                      {
-                        name: '2.bat',
-                        data: 'cosmicch\n',
-                      },
-                      {
-                        name: '3.bat',
-                        data: 'ripoff\n',
-                      },
-                      {
-                        name: '4.bat',
-                        data: 'scramble\n',
-                      },
-                      {
-                        name: '5.bat',
-                        data: 'solarqst\n',
-                      },
-                      {
-                        name: '6.bat',
-                        data: 'startrek\n',
-                      },
-                      {
-                        name: '7.bat',
-                        data: 'polarrsc\n',
-                      },
-                      {
-                        name: '8.bat',
-                        data: 'polepos\n',
-                      },
-                      {
-                        name: '9.bat',
-                        data: 'spike\n',
-                      },
-                      {
-                        name: '10.bat',
-                        data: 'starcasl\n',
-                      },
-                      {
-                        name: '11.bat',
-                        data: 'minestrm\n',
-                      },
-                      {
-                        name: 'starcasl.bat',
-                        link: '../systems/jsvecx/?rom=Commercial/Star%20Castle_1983&game=starcasl',
-                      },
-                      {
-                        name: 'berzerk.bat',
-                        link: '../systems/jsvecx/?rom=Commercial/Berzerk_1982&game=berzerk',
-                      },
-                      {
-                        name: 'cosmicch.bat',
-                        link: '../systems/jsvecx/?rom=Commercial/Cosmic%20Chasm_1982&game=cosmicch',
-                      },
-                      {
-                        name: 'polepos.bat',
-                        link: '../systems/jsvecx/?rom=Commercial/Pole%20Position_1983&game=polepos',
-                      },
-                      {
-                        name: 'polarrsc.bat',
-                        link: '../systems/jsvecx/?rom=Commercial/Polar%20Rescue_1983&game=polarrsc',
-                      },
-                      {
-                        name: 'spike.bat',
-                        link: '../systems/jsvecx/?rom=Commercial/Spike_1983&game=spike',
-                      },
-                      {
-                        name: 'startrek.bat',
-                        link: '../systems/jsvecx/?rom=Commercial/Star%20Trek_1982&game=startrek',
-                      },
-                      {
-                        name: 'solarqst.bat',
-                        link: '../systems/jsvecx/?rom=Commercial/Solar%20Quest_1982&game=solarqst',
-                      },
-                      {
-                        name: 'ripoff.bat',
-                        link: '../systems/jsvecx/?rom=Commercial/Rip-Off_1982&game=ripoff',
-                      },
-                      {
-                        name: 'scramble.bat',
-                        link: '../systems/jsvecx/?rom=Commercial/Scramble_1982&game=scramble',
-                      },
-                      {
-                        name: 'minestrm.bat',
-                        link: '../systems/jsvecx/?game=minestrm',
-                      },
-                    ],
-                  },
-                ],
-                files: [
-                  {
-                    name: 'menu.bat',
-                    data: 'echo off\ncd games\nmenu\n',
-                  },
-                ],
-              },
+                  name: 'SMS',
+                  directories: [
+                    {
+                      name: 'GAMES',
+                      directories: [],
+                      files: [
+                        {
+                          name: 'menu.bat',
+                          data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SEGA  MASTER  SYSTEM  GAMES         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Alex Kidd            (1986)  ALEXKIDD º\necho                 º   2.  Fantasy Zone         (1986)  FANTZONE º\necho                 º   3.  Wonder Boy           (1986)  WONDRBOY º\necho                 º   4.  Out Run              (1987)  OUTRUN   º\necho                 º   5.  Phantasy Star        (1988)  PHANTSTR º\necho                 º   6.  R-Type               (1988)  RTYPE    º\necho                 º   7.  Shinobi              (1988)  SHINOBI  º\necho                 º   8.  Psycho Fox           (1989)  PSYCHFOX º\necho                 º   9.  Castle of Illusion   (1990)  CASTLE   º\necho                 º  10.  Sonic the Hedgehog   (1991)  SONIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                        },
+                        {
+                          name: '0.bat',
+                          data: 'echo off\ncd ..\ncd ..\nmenu\n',
+                        },
+                        {
+                          name: '1.bat',
+                          data: 'alexkidd\n',
+                        },
+                        {
+                          name: '2.bat',
+                          data: 'fantzone\n',
+                        },
+                        {
+                          name: '3.bat',
+                          data: 'wondrboy\n',
+                        },
+                        {
+                          name: '4.bat',
+                          data: 'outrun\n',
+                        },
+                        {
+                          name: '5.bat',
+                          data: 'phantstr\n',
+                        },
+                        {
+                          name: '6.bat',
+                          data: 'rtype\n',
+                        },
+                        {
+                          name: '7.bat',
+                          data: 'shinobi\n',
+                        },
+                        {
+                          name: '8.bat',
+                          data: 'psychfox\n',
+                        },
+                        {
+                          name: '9.bat',
+                          data: 'castle\n',
+                        },
+                        {
+                          name: '10.bat',
+                          data: 'sonic\n',
+                        },
+                        {
+                          name: 'alexkidd.bat',
+                          link: '../systems/sms/play.html?game=alexkidd',
+                        },
+                        {
+                          name: 'fantzone.bat',
+                          link: '../systems/sms/play.html?game=fantzone',
+                        },
+                        {
+                          name: 'wondrboy.bat',
+                          link: '../systems/sms/play.html?game=wondrboy',
+                        },
+                        {
+                          name: 'outrun.bat',
+                          link: '../systems/sms/play.html?game=outrun',
+                        },
+                        {
+                          name: 'phantstr.bat',
+                          link: '../systems/sms/play.html?game=phantstr',
+                        },
+                        {
+                          name: 'rtype.bat',
+                          link: '../systems/sms/play.html?game=rtype',
+                        },
+                        {
+                          name: 'shinobi.bat',
+                          link: '../systems/sms/play.html?game=shinobi',
+                        },
+                        {
+                          name: 'psychfox.bat',
+                          link: '../systems/sms/play.html?game=psychfox',
+                        },
+                        {
+                          name: 'castle.bat',
+                          link: '../systems/sms/play.html?game=castle',
+                        },
+                        {
+                          name: 'sonic.bat',
+                          link: '../systems/sms/play.html?game=sonic',
+                        },
+                      ],
+                    },
+                  ],
+                  files: [
+                    {
+                      name: 'menu.bat',
+                      data: 'echo off\ncd games\nmenu\n',
+                    },
+                  ],
+                },
             ],
             files: [
               {
                 name: 'menu.bat',
-                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              CONSOLE  SYSTEMS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Atari                (1977)  ATARI    º\necho                 º   2.  ColecoVision         (1982)  CVISION  º\necho                 º   3.  Intellivision        (1979)  INTV     º\necho                 º   4.  NES                  (1985)  NES      º\necho                 º   5.  Odysseyý             (1978)  ODYSSEY2 º\necho                 º   6.  Vectrex              (1982)  VECTREX  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              CONSOLE  SYSTEMS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Atari                (1977)  ATARI    º\necho                 º   2.  ColecoVision         (1982)  CVISION  º\necho                 º   3.  Intellivision        (1979)  INTV     º\necho                 º   4.  NES                  (1985)  NES      º\necho                 º   5.  Odysseyý             (1978)  ODYSSEY2 º\necho                 º   6.  Sega Master System   (1986)  SMS      º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
               },
               {
                 name: '1.bat',
@@ -814,7 +806,7 @@ var fs = [
               },
               {
                 name: '6.bat',
-                data: 'cd vectrex\nmenu\n',
+                data: 'cd sms\nmenu\n',
               },
               {
                 name: '0.bat',

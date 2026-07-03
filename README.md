@@ -7,7 +7,7 @@ A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs
   <img src="docs/screenshot.png" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
 </p>
 
-We bundle 19 emulator engines covering 32 sub-systems between them, from the Apple I to the Sega Game Gear.
+We bundle 18 emulator engines covering 32 sub-systems between them, from the Apple I to the Sega Master System.
 
 **Scope:** 8-bit *feel* — anything with the look and sound of an 8-bit machine (sprite-based, chiptune, low-res), including the 8-bit-feel handhelds (Game Boy/GBC, Game Gear, Lynx) even where they run into the late 90s. The cutoff is the *aesthetic*, not the calendar or strict CPU width; 16-bit home consoles/computers (Genesis, SNES, Amiga, ST) stay out. See the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected.
 
@@ -73,7 +73,7 @@ gamedocs/                 per-game instruction pages (gamedocs/<platform>/<key>.
 systems/
   _shared/                shared CSS + helpers (NumLock warn, VICE RUN/STOP key remap, BBC COPY button, save-state, ...)
   _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem
-                          (13 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
+                          (14 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
   apple1/                 Apple I             — apple1js + 10 cassette tapes
   bbcmicro/               BBC Micro           — jsbeeb Vite dist (Model B) + BBC disks
   bbcmaster/              BBC Master 128      — jsbeeb Vite dist (model=Master) + Master-enhanced disks
@@ -87,7 +87,7 @@ systems/
   js7800/                 Atari 7800          — EmulatorJS + ProSystem + 10 .a78 carts
   msx1/                   MSX1                — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 titles
   msx2/                   MSX2                — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 titles
-  jsvecx/                 GCE Vectrex         — JSVecX + 24 commercial + ~470 homebrew ROMs
+  sms/                    Sega Master System  — EmulatorJS + genesis_plus_gx + 10 .sms carts
   jsspeccy/               Sinclair Spectrum   — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81       — JtyOne + 10 .p tapes
   xroar/                  Tandy CoCo          — XRoar WASM + 10 .ccc carts
@@ -112,7 +112,7 @@ systems/
 
 The hand-written GenX-DOS code lives in `prompt/javascript/`, `systems/_shared/`, `systems/_shared-ejs/`, and each emulator's `play.html` wrapper — all formatted for reading.
 
-Everything else under `systems/<name>/` is upstream: emscripten WASM glue (`xroar.js`, `atari800.js`, `o2em.js`, `jzintv.js`), webpack production bundles (`apple1.js`, `apple2/dist/*.bundle.js`, `jsspeccy.js`), single-file inlined deploys (`jsvecx/index.html`), the stock WebMSX engine (`msx1/wmsx.js`, `msx2/wmsx.js`), or hand-written JS from the upstream project (ElkJS, js99er's `emu/`). For the readable source of those, follow the upstream link in [ATTRIBUTION.md](ATTRIBUTION.md) or the per-engine integration story on the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators).
+Everything else under `systems/<name>/` is upstream: emscripten WASM glue (`xroar.js`, `atari800.js`, `o2em.js`, `jzintv.js`), webpack production bundles (`apple1.js`, `apple2/dist/*.bundle.js`, `jsspeccy.js`), the stock WebMSX engine (`msx1/wmsx.js`, `msx2/wmsx.js`), or hand-written JS from the upstream project (ElkJS, js99er's `emu/`). For the readable source of those, follow the upstream link in [ATTRIBUTION.md](ATTRIBUTION.md) or the per-engine integration story on the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators).
 
 ## The emulator lineup
 
@@ -129,7 +129,6 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | 2600      | EmulatorJS + Stella (stella2014 core) | `play.html?game=<key>`                  |
 | 7800      | EmulatorJS + ProSystem (prosystem core) | `play.html?game=<key>`                |
 | MSX1 / MSX2 | ppeccin/WebMSX (split into `msx1/` + `msx2/` bundles) | `?ROM=games/<name>.zip&M=MSX1` \| `&M=MSX2` |
-| Vectrex   | DrSnuggles/jsvecx                    | `index.html?rom=<dir>/<title>&game=<key>` |
 | Spectrum  | gasman/JSSpeccy 3                    | `play.html?game=<key>`                   |
 | ZX81      | JtyOne                               | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar                 | `play.html?game=<key>`                   |
@@ -151,7 +150,7 @@ The BBC bundles (jsbeeb) add a top-left **COPY** button via `systems/_shared/gen
 
 ## Save / load state
 
-Most bundles carry **save** / **load** controls in the bottom-left corner — each opens a drop-up menu of **five save slots per game**, an instant in-browser snapshot of the running machine kept in memory and persisted to **IndexedDB** (`gx-savestate`, keyed `platform:game:slot`) so the slots survive a reload. Because they're keyed per game, different games keep independent saves. The 13 EmulatorJS bundles use the libretro cores' own state API (`systems/_shared/genx-savestate.js`); the standalone engines that expose a reachable save-state — TI-99/4A, BBC Micro/Master (mid-game, even Elite), MSX, Tandy CoCo, Odyssey², Atari 400/800XL and Amstrad CPC — ride each emulator's native API through `systems/_shared/genx-savestate-std.js` + a small per-bundle `GenXStateAdapter`. Three needed a WASM rebuild to expose state the stock build hid: the **Odyssey²** (o2em — call libretro's dead-code-eliminated `retro_serialize`/`retro_unserialize`), the **Atari 400/800XL** (atari800 fork — `StateSav_*`, deferred through the frame loop to dodge an ASYNCIFY clash) and the **Amstrad CPC** (tiny8bit — export chips' `cpc_save_snapshot`/`cpc_load_snapshot`). The remaining engines (Apple, Electron, Spectrum, ZX81, Vectrex, Intellivision, PET) expose no reachable state API, so those bundles have no buttons. The TRS-80 Model I (sdltrs) ships a built-in save-state (`trs_state_save`/`trs_state_load`) that isn't wired to buttons yet — so no buttons there either, for now.
+Most bundles carry **save** / **load** controls in the bottom-left corner — each opens a drop-up menu of **five save slots per game**, an instant in-browser snapshot of the running machine kept in memory and persisted to **IndexedDB** (`gx-savestate`, keyed `platform:game:slot`) so the slots survive a reload. Because they're keyed per game, different games keep independent saves. The 14 EmulatorJS bundles use the libretro cores' own state API (`systems/_shared/genx-savestate.js`); the standalone engines that expose a reachable save-state — TI-99/4A, BBC Micro/Master (mid-game, even Elite), MSX, Tandy CoCo, Odyssey², Atari 400/800XL and Amstrad CPC — ride each emulator's native API through `systems/_shared/genx-savestate-std.js` + a small per-bundle `GenXStateAdapter`. Three needed a WASM rebuild to expose state the stock build hid: the **Odyssey²** (o2em — call libretro's dead-code-eliminated `retro_serialize`/`retro_unserialize`), the **Atari 400/800XL** (atari800 fork — `StateSav_*`, deferred through the frame loop to dodge an ASYNCIFY clash) and the **Amstrad CPC** (tiny8bit — export chips' `cpc_save_snapshot`/`cpc_load_snapshot`). The remaining engines (Apple, Electron, Spectrum, ZX81, Intellivision, PET) expose no reachable state API, so those bundles have no buttons. The TRS-80 Model I (sdltrs) ships a built-in save-state (`trs_state_save`/`trs_state_load`) that isn't wired to buttons yet — so no buttons there either, for now.
 
 ## Documentation
 
@@ -179,14 +178,13 @@ The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.m
 - Stella: GPL-2.0 (`stella2014` libretro core, stella-emu) — Atari 2600; mirrored from `cdn.emulatorjs.org/stable/`
 - ProSystem: GPL-2.0 (`prosystem` libretro core, stella-emu/libretro — Atari 7800) — mirrored from `cdn.emulatorjs.org/stable/`
 - WebMSX: MIT (ppeccin/WebMSX, Paulo Peccin)
-- JSVecX: GPL-3.0 (raz0red, fork by DrSnuggles — JS port of Valavan Manohararajah's VecX)
 - JSSpeccy 3: GPL-3.0 (Matt Westcott / gasman)
 - JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
 - sdltrs: BSD-2-Clause (Mark Grebe / Jens Guenther, gitlab.com/jengun/sdltrs) — TRS-80 Model I, built from source to WASM; Model I Level II BASIC ROM (©Tandy/Microsoft) embedded for emulation
 - Js99'er: GPL-2.0 (Rasmus Moustgaard) — vanilla-JS build
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL/800/BASIC (Avery Lee, freely redistributable open-source OS replacement) embedded inside `atari800.wasm` at build time via `--enable-altirra_bios` — no separate ROM file ships
-- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 13 bundles via `systems/_shared-ejs/` — the six VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, and the three handhelds (Game Boy/GBC, Lynx, Game Gear)
+- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 14 bundles via `systems/_shared-ejs/` — the six VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, Sega Master System, and the three handhelds (Game Boy/GBC, Lynx, Game Gear)
 - VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `x128`, `xvic`, `xplus4`) mirrored from `cdn.emulatorjs.org/stable/`
 - pet2001: BSD-2-Clause (Thomas Skibo) — vanilla-JS PET 2001 emulator at `systems/pet/pet2001/`
 - gearcoleco: GPL-3.0 (Drhelius) — libretro ColecoVision core mirrored from `cdn.emulatorjs.org/stable/`

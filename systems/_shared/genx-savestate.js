@@ -224,7 +224,7 @@
       for (var n = 1; n <= SLOTS; n++) {
         var r = m.rows[n],
           used = !!filledSet[n];
-        r.textContent = n + (used ? ' used' : ' empty');
+        r.textContent = n + (used ? ' used' : ' vacant');
         r.classList.toggle('gx-state-used', used);
       }
     });

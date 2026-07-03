@@ -1,0 +1,42 @@
+{
+  "alexkidd": {
+    "title": "Alex Kidd in Miracle World (1986)",
+    "rom": "roms/alexkidd.sms"
+  },
+  "fantzone": {
+    "title": "Fantasy Zone (1986)",
+    "rom": "roms/fantzone.sms"
+  },
+  "wondrboy": {
+    "title": "Wonder Boy (1986)",
+    "rom": "roms/wondrboy.sms"
+  },
+  "outrun": {
+    "title": "Out Run (1987)",
+    "rom": "roms/outrun.sms"
+  },
+  "phantstr": {
+    "title": "Phantasy Star (1988)",
+    "rom": "roms/phantstr.sms"
+  },
+  "rtype": {
+    "title": "R-Type (1988)",
+    "rom": "roms/rtype.sms"
+  },
+  "shinobi": {
+    "title": "Shinobi (1988)",
+    "rom": "roms/shinobi.sms"
+  },
+  "psychfox": {
+    "title": "Psycho Fox (1989)",
+    "rom": "roms/psychfox.sms"
+  },
+  "castle": {
+    "title": "Castle of Illusion (1990)",
+    "rom": "roms/castle.sms"
+  },
+  "sonic": {
+    "title": "Sonic the Hedgehog (1991)",
+    "rom": "roms/sonic.sms"
+  }
+}
