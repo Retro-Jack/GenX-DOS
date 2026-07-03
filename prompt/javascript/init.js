@@ -153,6 +153,83 @@ function renderAmiBios(p) {
 }
 
 // ============================================================
+// SETUP PASSWORD GATE
+// Pressing <DEL> during the post-POST pause opens the CMOS
+// password prompt. No password unlocks it; three wrong answers
+// halt the system, exactly as AMI intended. Reload to reboot.
+// ============================================================
+function biosSetupLock(p) {
+  var INNER = 32; // box interior width in characters
+  var buf = '';
+  var tries = 0;
+
+  var box = document.createElement('div');
+  box.style.position = 'absolute';
+  box.style.left = (960 - (INNER + 2) * 12) / 2 + 'px';
+  // 123 (not 120) so the box rows sit on the same 12px text grid as the
+  // POST text behind it — the AMI logo at the top offsets that grid by 3px.
+  box.style.top = '123px';
+  box.style.width = (INNER + 2) * 12 + 'px';
+  box.style.background = '#0000a0';
+  p.style.position = 'relative';
+  p.appendChild(box);
+
+  function rep(ch, n) {
+    return new Array(n + 1).join(ch);
+  }
+
+  function drawBox(middle) {
+    box.innerHTML = '';
+    bootLine(box, [bootW('É' + rep('Í', INNER) + '»')]);
+    bootLine(box, [bootW('º' + middle + 'º')]);
+    bootLine(box, [bootW('È' + rep('Í', INNER) + '¼')]);
+  }
+
+  function drawPrompt() {
+    drawBox(
+      ' Enter CURRENT Password: ' +
+        rep('*', buf.length) +
+        rep(' ', 7 - buf.length),
+    );
+  }
+
+  function drawHalt() {
+    var msg = 'System Halted!';
+    var pad = (INNER - msg.length) / 2;
+    box.style.background = '#a00000';
+    drawBox(rep(' ', Math.floor(pad)) + msg + rep(' ', Math.ceil(pad)));
+  }
+
+  drawPrompt();
+
+  document.onkeydown = function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      buf = '';
+      if (++tries >= 3) {
+        drawHalt();
+        document.onkeydown = null;
+      } else {
+        drawPrompt();
+      }
+    } else if (e.key === 'Backspace') {
+      e.preventDefault();
+      buf = buf.slice(0, -1);
+      drawPrompt();
+    } else if (
+      e.key.length === 1 &&
+      !e.ctrlKey &&
+      !e.altKey &&
+      buf.length < 6
+    ) {
+      e.preventDefault();
+      buf += e.key;
+      drawPrompt();
+    }
+  };
+}
+
+// ============================================================
 // INITIALIZATION
 // Boot animation runs inside #prompt so the AMIBIOS table stays
 // on-screen while the menu draws below it (no cls between them):
@@ -163,7 +240,9 @@ function renderAmiBios(p) {
 //                             per 32 ms), then six device detection
 //                             lines stream in at 500 ms intervals,
 //                             then the footer (Hit <DEL>, BIOS ID).
-//   2. Pause 5 s            — full POST visible.
+//   2. Pause 5 s            — full POST visible. <DEL> here opens
+//                             the CMOS password gate instead of
+//                             continuing (see biosSetupLock).
 //   3. Clear screen         — cls equivalent (wipe #prompt).
 //   4. Render AMIBIOS table.
 //   5. "Starting GenX-DOS . . ." after two blank lines, 1 s pause,
@@ -174,20 +253,32 @@ function init() {
   goFontGo();
   var p = document.getElementById('prompt');
   renderAmiBiosPost(p, function () {
-    setTimeout(function () {
-      p.innerHTML = '';
-      renderAmiBios(p);
-      bootNewline(p);
-      bootNewline(p);
-      bootLine(p, [bootG('Starting GenX-DOS . . .')]);
-      setTimeout(function () {
-        bootNewline(p);
-        bootLine(p, [bootG('Type "help" <enter> for assistance.')]);
-        bootNewline(p);
-        initTerminal();
-      }, 1000);
+    var proceed = setTimeout(function () {
+      document.onkeydown = null;
+      continueBoot(p);
     }, 5000);
+    document.onkeydown = function (e) {
+      if (e.key === 'Delete') {
+        e.preventDefault();
+        clearTimeout(proceed);
+        biosSetupLock(p);
+      }
+    };
   });
+}
+
+function continueBoot(p) {
+  p.innerHTML = '';
+  renderAmiBios(p);
+  bootNewline(p);
+  bootNewline(p);
+  bootLine(p, [bootG('Starting GenX-DOS . . .')]);
+  setTimeout(function () {
+    bootNewline(p);
+    bootLine(p, [bootG('Type "help" <enter> for assistance.')]);
+    bootNewline(p);
+    initTerminal();
+  }, 1000);
 }
 
 function initTerminal() {

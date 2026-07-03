@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- **Boot: the POST screen's `<DEL>` prompt is no longer just for show.** Press Delete during the post-POST pause and you'll meet the CMOS password prompt (white-on-blue, six characters, asterisk echo) — drawn in the boot sequence's own CP437 sprite font. No password unlocks it; the third wrong attempt turns the box red with `System Halted!` and only a reload reboots the machine. Exactly as AMI intended.
 - **Community-profile files.** `CONTRIBUTING.md` (local setup, PR ground rules, scope rule, licensing), `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1), issue templates (bug report + rights-holder takedown request, with a config pointing security reports at private advisories) and a PR checklist template. Completes the GitHub community-profile checklist.
 - **Dependabot config (`.github/dependabot.yml`).** Weekly checks on the GitHub Actions dependencies.
 
