@@ -16,7 +16,7 @@
     Nevryon: 'nevryon',
     Galaforce: 'galaforce',
     PalaceOfMagic: 'palaceofmagic',
-    Firetrack: 'firetrak',
+    BoneCruncher: 'bonecrun',
     CrazeeRider: 'crazee',
     Commando: 'commando',
     ByFairMeansOrFoul: 'bfmof',
