@@ -60,6 +60,7 @@
   <script src="../_shared/genx-game-loader.js"></script>
   <link rel="stylesheet" href="../_shared/genx-savestate.css">
   <script defer src="../_shared/genx-savestate-std.js"></script>
+  <script defer src="../_shared/genx-gamepad-keys.js"></script>
   <link rel="preload" href="cpc.wasm" as="fetch" crossorigin>
 </head>
 <body>
@@ -95,52 +96,24 @@
     document.addEventListener('keydown', fireKeyRemap, { capture: true });
     document.addEventListener('keyup',   fireKeyRemap, { capture: true });
 
-    // USB gamepad → CPC joystick. The engine has no Gamepad API support,
-    // so we poll pad 0 and synthesize the arrow/Space key events sokol
-    // already understands; games launched with ?joystick=true route those
-    // to the emulated 9-pin port. D-pad or left stick steers, any face
-    // button fires. Idle pads send nothing, so keyboard games are
-    // unaffected until you actually wiggle the pad.
-    (function () {
-      var KEYS = {
+    // USB gamepad → CPC joystick, via the shared shim. Games launched
+    // with ?joystick=true route the synthesized arrows/Space to the
+    // emulated 9-pin port. D-pad or left stick steers, any face button
+    // fires.
+    window.GenXGamepadMap = {
+      axes: {
         left:  { key: 'ArrowLeft',  code: 'ArrowLeft',  keyCode: 37 },
         right: { key: 'ArrowRight', code: 'ArrowRight', keyCode: 39 },
         up:    { key: 'ArrowUp',    code: 'ArrowUp',    keyCode: 38 },
-        down:  { key: 'ArrowDown',  code: 'ArrowDown',  keyCode: 40 },
-        fire:  { key: ' ',          code: 'Space',      keyCode: 32 }
-      };
-      var state = { left: false, right: false, up: false, down: false, fire: false };
-      var DEAD = 0.4;
-      function send(name, down) {
-        var k = KEYS[name];
-        document.dispatchEvent(new KeyboardEvent(down ? 'keydown' : 'keyup', {
-          key: k.key, code: k.code, keyCode: k.keyCode, which: k.keyCode,
-          bubbles: true, cancelable: true
-        }));
+        down:  { key: 'ArrowDown',  code: 'ArrowDown',  keyCode: 40 }
+      },
+      buttons: {
+        0: { key: ' ', code: 'Space', keyCode: 32 },
+        1: { key: ' ', code: 'Space', keyCode: 32 },
+        2: { key: ' ', code: 'Space', keyCode: 32 },
+        3: { key: ' ', code: 'Space', keyCode: 32 }
       }
-      function poll() {
-        var pads = navigator.getGamepads ? navigator.getGamepads() : [];
-        var p = null;
-        for (var i = 0; i < pads.length; i++) if (pads[i]) { p = pads[i]; break; }
-        if (p) {
-          var ax = p.axes[0] || 0, ay = p.axes[1] || 0;
-          var b = p.buttons || [];
-          function pressed(i) { return !!(b[i] && b[i].pressed); }
-          var want = {
-            left:  ax < -DEAD || pressed(14),
-            right: ax >  DEAD || pressed(15),
-            up:    ay < -DEAD || pressed(12),
-            down:  ay >  DEAD || pressed(13),
-            fire:  pressed(0) || pressed(1) || pressed(2) || pressed(3)
-          };
-          for (var n in want) {
-            if (want[n] !== state[n]) { state[n] = want[n]; send(n, want[n]); }
-          }
-        }
-        requestAnimationFrame(poll);
-      }
-      requestAnimationFrame(poll);
-    })();
+    };
 
     // Audio auto-unlock: clears sokol's suspended-audio (muted-speaker)
     // icon on load instead of waiting for a click. sokol resumes its
