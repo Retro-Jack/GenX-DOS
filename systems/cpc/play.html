@@ -18,13 +18,12 @@
             the canvas. Hole detected at left 27.03% top 12.90% w 42.01%
             h 47.38% (aspect 1.34 ≈ the CPC's 4:3); canvas inset ~1.5% per
             side so its edges tuck under the bezel lip.
-       Height capped at 100dvh-120px so ~60px of wallpaper shows above and
-       below, matching the jsbeeb/Electron bezels. Wallpaper override must
+       Bezel fills the full viewport height (100dvh). Wallpaper override must
        follow genx-frame.css (which sets body black). */
     html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; }
     .bezel-wrap {
       position: relative;
-      width: min(100vw, calc((100dvh - 120px) * 1502 / 992 * 1.05));
+      width: min(100vw, calc(100dvh * 1502 / 992 * 1.05));
       aspect-ratio: 1502 / 992;
     }
     .screen-bg {
