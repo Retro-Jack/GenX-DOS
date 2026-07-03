@@ -28,7 +28,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  2600  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Breakout             (1978)  BREAKOUT º\necho                 º   2.  Adventure            (1980)  ADVENTUREº\necho                 º   3.  Space Invaders       (1980)  INVADERS º\necho                 º   4.  Asteroids            (1981)  ASTEROIDSº\necho                 º   5.  Missile Command      (1981)  MISSILE  º\necho                 º   6.  Pac-Man              (1982)  PACMAN   º\necho                 º   7.  Pitfall!             (1982)  PITFALL  º\necho                 º   8.  River Raid           (1982)  RIVERRAIDº\necho                 º   9.  Yars' Revenge        (1982)  YARS     º\necho                 º  10.  Centipede            (1983)  CENTIPEDEº\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                            data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  2600  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Breakout             (1978)  BREAKOUT º\necho                 º   2.  Adventure            (1980)  ADVENTUR º\necho                 º   3.  Space Invaders       (1980)  INVADERS º\necho                 º   4.  Asteroids            (1981)  ASTEROID º\necho                 º   5.  Missile Command      (1981)  MISSILE  º\necho                 º   6.  Pac-Man              (1982)  PACMAN   º\necho                 º   7.  Pitfall!             (1982)  PITFALL  º\necho                 º   8.  River Raid           (1982)  RIVERAID º\necho                 º   9.  Yars' Revenge        (1982)  YARS     º\necho                 º  10.  Centipede            (1983)  CENTIPED º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                           },
                           {
                             name: '0.bat',
@@ -40,7 +40,7 @@ var fs = [
                           },
                           {
                             name: '2.bat',
-                            data: 'adventure\n',
+                            data: 'adventur\n',
                           },
                           {
                             name: '3.bat',
@@ -48,7 +48,7 @@ var fs = [
                           },
                           {
                             name: '4.bat',
-                            data: 'asteroids\n',
+                            data: 'asteroid\n',
                           },
                           {
                             name: '5.bat',
@@ -64,7 +64,7 @@ var fs = [
                           },
                           {
                             name: '8.bat',
-                            data: 'riverraid\n',
+                            data: 'riveraid\n',
                           },
                           {
                             name: '9.bat',
@@ -72,14 +72,14 @@ var fs = [
                           },
                           {
                             name: '10.bat',
-                            data: 'centipede\n',
+                            data: 'centiped\n',
                           },
                           {
-                            name: 'adventure.bat',
+                            name: 'adventur.bat',
                             link: '../systems/stella/play.html?game=adventure',
                           },
                           {
-                            name: 'asteroids.bat',
+                            name: 'asteroid.bat',
                             link: '../systems/stella/play.html?game=asteroids',
                           },
                           {
@@ -107,11 +107,11 @@ var fs = [
                             link: '../systems/stella/play.html?game=yars',
                           },
                           {
-                            name: 'centipede.bat',
+                            name: 'centiped.bat',
                             link: '../systems/stella/play.html?game=centipede',
                           },
                           {
-                            name: 'riverraid.bat',
+                            name: 'riveraid.bat',
                             link: '../systems/stella/play.html?game=riverraid',
                           },
                         ],
@@ -133,7 +133,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  7800  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Asteroids            (1986)  ASTEROIDSº\necho                 º   2.  Centipede            (1986)  CENTIPEDEº\necho                 º   3.  Joust                (1986)  JOUST    º\necho                 º   4.  Ms. Pac-Man          (1986)  MSPACMAN º\necho                 º   5.  Xevious              (1986)  XEVIOUS  º\necho                 º   6.  Desert Falcon        (1987)  DESERTFL º\necho                 º   7.  Dig Dug              (1987)  DIGDUG   º\necho                 º   8.  Food Fight           (1987)  FOODFIGHTº\necho                 º   9.  Galaga               (1987)  GALAGA   º\necho                 º  10.  Robotron 2084        (1987)  ROBOTRON º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  7800  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Asteroids            (1986)  ASTEROID º\necho                 º   2.  Centipede            (1986)  CENTIPED º\necho                 º   3.  Joust                (1986)  JOUST    º\necho                 º   4.  Ms. Pac-Man          (1986)  MSPACMAN º\necho                 º   5.  Xevious              (1986)  XEVIOUS  º\necho                 º   6.  Desert Falcon        (1987)  DESERTFL º\necho                 º   7.  Dig Dug              (1987)  DIGDUG   º\necho                 º   8.  Food Fight           (1987)  FOODFGHT º\necho                 º   9.  Galaga               (1987)  GALAGA   º\necho                 º  10.  Robotron 2084        (1987)  ROBOTRON º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -141,11 +141,11 @@ var fs = [
                           },
                           {
                             name: '1.bat',
-                            data: 'asteroids\n',
+                            data: 'asteroid\n',
                           },
                           {
                             name: '2.bat',
-                            data: 'centipede\n',
+                            data: 'centiped\n',
                           },
                           {
                             name: '3.bat',
@@ -169,7 +169,7 @@ var fs = [
                           },
                           {
                             name: '8.bat',
-                            data: 'foodfight\n',
+                            data: 'foodfght\n',
                           },
                           {
                             name: '9.bat',
@@ -180,11 +180,11 @@ var fs = [
                             data: 'robotron\n',
                           },
                           {
-                            name: 'asteroids.bat',
+                            name: 'asteroid.bat',
                             link: '../systems/js7800/play.html?game=asteroids',
                           },
                           {
-                            name: 'centipede.bat',
+                            name: 'centiped.bat',
                             link: '../systems/js7800/play.html?game=centipede',
                           },
                           {
@@ -212,7 +212,7 @@ var fs = [
                             link: '../systems/js7800/play.html?game=xevious',
                           },
                           {
-                            name: 'foodfight.bat',
+                            name: 'foodfght.bat',
                             link: '../systems/js7800/play.html?game=foodfight',
                           },
                           {
@@ -258,7 +258,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  NES  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Super Mario Bros.    (1985)  MARIO    º\necho                 º   2.  Castlevania          (1987)  CASTLEV  º\necho                 º   3.  Kid Icarus           (1987)  KIDICARUSº\necho                 º   4.  Mega Man             (1987)  MEGAMAN  º\necho                 º   5.  Metroid              (1987)  METROID  º\necho                 º   6.  Mike Tyson's P-O!!   (1987)  PUNCHOUT º\necho                 º   7.  The Legend of Zelda  (1987)  ZELDA    º\necho                 º   8.  Contra               (1988)  CONTRA   º\necho                 º   9.  Tetris               (1989)  TETRIS   º\necho                 º  10.  Final Fantasy        (1990)  FINALFNT º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  NES  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Super Mario Bros.    (1985)  MARIO    º\necho                 º   2.  Castlevania          (1987)  CASTLEV  º\necho                 º   3.  Kid Icarus           (1987)  KIDICARU º\necho                 º   4.  Mega Man             (1987)  MEGAMAN  º\necho                 º   5.  Metroid              (1987)  METROID  º\necho                 º   6.  Mike Tyson's P-O!!   (1987)  PUNCHOUT º\necho                 º   7.  The Legend of Zelda  (1987)  ZELDA    º\necho                 º   8.  Contra               (1988)  CONTRA   º\necho                 º   9.  Tetris               (1989)  TETRIS   º\necho                 º  10.  Final Fantasy        (1990)  FINALFNT º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       {
                         name: '0.bat',
@@ -270,11 +270,11 @@ var fs = [
                       },
                       {
                         name: '2.bat',
-                        data: 'castlvnia\n',
+                        data: 'castlev\n',
                       },
                       {
                         name: '3.bat',
-                        data: 'kidicarus\n',
+                        data: 'kidicaru\n',
                       },
                       {
                         name: '4.bat',
@@ -302,14 +302,14 @@ var fs = [
                       },
                       {
                         name: '10.bat',
-                        data: 'finalfnts\n',
+                        data: 'finalfnt\n',
                       },
                       {
                         name: 'smb.bat',
                         link: '../systems/jsnes/play.html?game=smb',
                       },
                       {
-                        name: 'kidicarus.bat',
+                        name: 'kidicaru.bat',
                         link: '../systems/jsnes/play.html?game=kidicarus',
                       },
                       {
@@ -325,7 +325,7 @@ var fs = [
                         link: '../systems/jsnes/play.html?game=megaman',
                       },
                       {
-                        name: 'castlvnia.bat',
+                        name: 'castlev.bat',
                         link: '../systems/jsnes/play.html?game=castlvnia',
                       },
                       {
@@ -341,7 +341,7 @@ var fs = [
                         link: '../systems/jsnes/play.html?game=punchout',
                       },
                       {
-                        name: 'finalfnts.bat',
+                        name: 'finalfnt.bat',
                         link: '../systems/jsnes/play.html?game=finalfnts',
                       },
                     ],
@@ -364,7 +364,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: "echo off\ncls\necho                ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                º            INTELLIVISION  GAMES             º\necho                ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                º                                             º\necho                º   1.  Adventure            (1981)  ADVENT   º\necho                º   2.  Astrosmash           (1981)  ASTRO    º\necho                º   3.  B-17 Bomber          (1981)  B-17     º\necho                º   4.  Snafu                (1981)  SNAFU    º\necho                º   5.  Star Strike          (1981)  STARSTRK º\necho                º   6.  TRON: Deadly Discs   (1981)  TRON     º\necho                º   7.  Atlantis             (1982)  ATLANTIS º\necho                º   8.  Lock 'N' Chase       (1982)  LOCKCHASEº\necho                º   9.  Night Stalker        (1982)  NIGHTSTK º\necho                º  10.  BurgerTime           (1983)  BURGER   º\necho                º                                             º\necho                º   0.  Back                                  º\necho                º                                             º\necho                ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                º        Type a number and press ENTER        º\necho                ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                        data: "echo off\ncls\necho                ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                º            INTELLIVISION  GAMES             º\necho                ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                º                                             º\necho                º   1.  Adventure            (1981)  ADVENT   º\necho                º   2.  Astrosmash           (1981)  ASTRO    º\necho                º   3.  B-17 Bomber          (1981)  B-17     º\necho                º   4.  Snafu                (1981)  SNAFU    º\necho                º   5.  Star Strike          (1981)  STARSTRK º\necho                º   6.  TRON: Deadly Discs   (1981)  TRON     º\necho                º   7.  Atlantis             (1982)  ATLANTIS º\necho                º   8.  Lock 'N' Chase       (1982)  LOCKCHAS º\necho                º   9.  Night Stalker        (1982)  NIGHTSTK º\necho                º  10.  BurgerTime           (1983)  BURGER   º\necho                º                                             º\necho                º   0.  Back                                  º\necho                º                                             º\necho                ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                º        Type a number and press ENTER        º\necho                ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       {
                         name: '0.bat',
@@ -404,7 +404,7 @@ var fs = [
                       },
                       {
                         name: '9.bat',
-                        data: 'lockchase\n',
+                        data: 'lockchas\n',
                       },
                       {
                         name: '10.bat',
@@ -443,7 +443,7 @@ var fs = [
                         link: '../systems/intv/play.html?game=atlantis',
                       },
                       {
-                        name: 'lockchase.bat',
+                        name: 'lockchas.bat',
                         link: '../systems/intv/play.html?game=lockchase',
                       },
                       {
@@ -576,7 +576,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               ODYSSEYý  GAMES               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Cosmic Conflict!     (1979)  COSMIC   º\necho                 º   2.  Alien Invaders+!     (1980)  ALIENPLUSº\necho                 º   3.  K.C. Munchkin!       (1981)  KCMUNCH  º\necho                 º   4.  Quest for Rings!     (1981)  QRINGS   º\necho                 º   5.  UFO!                 (1981)  UFO      º\necho                 º   6.  Atlantis             (1982)  ATLANTIS º\necho                 º   7.  Demon Attack         (1982)  DEMON    º\necho                 º   8.  Pick Axe Pete!       (1982)  PICKAXE  º\necho                 º   9.  Smithereens!         (1982)  SMITHER  º\necho                 º  10.  Killer Bees!         (1983)  KILLBEES º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               ODYSSEYý  GAMES               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Cosmic Conflict!     (1979)  COSMIC   º\necho                 º   2.  Alien Invaders+!     (1980)  ALIENPLS º\necho                 º   3.  K.C. Munchkin!       (1981)  KCMUNCH  º\necho                 º   4.  Quest for Rings!     (1981)  QRINGS   º\necho                 º   5.  UFO!                 (1981)  UFO      º\necho                 º   6.  Atlantis             (1982)  ATLANTIS º\necho                 º   7.  Demon Attack         (1982)  DEMON    º\necho                 º   8.  Pick Axe Pete!       (1982)  PICKAXE  º\necho                 º   9.  Smithereens!         (1982)  SMITHER  º\necho                 º  10.  Killer Bees!         (1983)  KILLBEES º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -588,7 +588,7 @@ var fs = [
                       },
                       {
                         name: '2.bat',
-                        data: 'alienplus\n',
+                        data: 'alienpls\n',
                       },
                       {
                         name: '3.bat',
@@ -627,7 +627,7 @@ var fs = [
                         link: '../systems/odyssey2/play.html?game=cosmic',
                       },
                       {
-                        name: 'alienplus.bat',
+                        name: 'alienpls.bat',
                         link: '../systems/odyssey2/play.html?game=alienplus',
                       },
                       {
@@ -1046,7 +1046,7 @@ var fs = [
                           },
                           {
                             name: '2.bat',
-                            data: 'galaforce\n',
+                            data: 'galforce\n',
                           },
                           {
                             name: '3.bat',
@@ -1093,7 +1093,7 @@ var fs = [
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=4thDimension/Nevryon.ssd&autoboot',
                           },
                           {
-                            name: 'galaforce.bat',
+                            name: 'galforce.bat',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/Galaforce.ssd&autoboot',
                           },
                           {
@@ -1766,7 +1766,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  64  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Beach Head           (1983)  BEACHHD  º\necho                 º   2.  Forbidden Forest     (1983)  FORBFRST º\necho                 º   3.  Boulder Dash         (1984)  BOULDER  º\necho                 º   4.  Impossible Mission   (1984)  IMPMISS  º\necho                 º   5.  Elite                (1985)  ELITE    º\necho                 º   6.  Ghosts 'n Goblins    (1986)  GHOSTS   º\necho                 º   7.  Uridium              (1986)  URIDIUM  º\necho                 º   8.  The Last Ninja       (1987)  LASTNINJAº\necho                 º   9.  Wizball              (1987)  WIZBALL  º\necho                 º  10.  PETSCII Robots       (2021)  PETROBOT º\necho                 º                                             º\necho                 º  11.  BASIC prompt                BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                            data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  64  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Beach Head           (1983)  BEACHHD  º\necho                 º   2.  Forbidden Forest     (1983)  FORBFRST º\necho                 º   3.  Boulder Dash         (1984)  BOULDER  º\necho                 º   4.  Impossible Mission   (1984)  IMPMISS  º\necho                 º   5.  Elite                (1985)  ELITE    º\necho                 º   6.  Ghosts 'n Goblins    (1986)  GHOSTS   º\necho                 º   7.  Uridium              (1986)  URIDIUM  º\necho                 º   8.  The Last Ninja       (1987)  LASTNINJ º\necho                 º   9.  Wizball              (1987)  WIZBALL  º\necho                 º  10.  PETSCII Robots       (2021)  PETROBOT º\necho                 º                                             º\necho                 º  11.  BASIC prompt                BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                           },
                           {
                             name: '0.bat',
@@ -1802,7 +1802,7 @@ var fs = [
                           },
                           {
                             name: '8.bat',
-                            data: 'lastninja\n',
+                            data: 'lastninj\n',
                           },
                           {
                             name: '9.bat',
@@ -1817,7 +1817,7 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'lastninja.bat',
+                            name: 'lastninj.bat',
                             link: '../systems/c64/play.html?game=lastninja',
                           },
                           {
@@ -2263,7 +2263,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              ATARI  400  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Space Invaders       (1980)  INVADERS º\necho                 º   2.  Asteroids            (1981)  ASTEROID º\necho                 º   3.  Defender             (1981)  DEFENDER º\necho                 º   4.  Missile Command      (1981)  MISSILE  º\necho                 º   5.  Centipede            (1982)  CENTIPED º\necho                 º   6.  Choplifter           (1982)  CHOPLIFTRº\necho                 º   7.  Pac-Man              (1982)  PACMAN   º\necho                 º   8.  Dig Dug              (1983)  DIGDUG   º\necho                 º   9.  Donkey Kong          (1983)  DKONG    º\necho                 º  10.  Joust                (1983)  JOUST    º\necho                 º                                             º\necho                 º  11.  Atari BASIC prompt           BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              ATARI  400  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Space Invaders       (1980)  INVADERS º\necho                 º   2.  Asteroids            (1981)  ASTEROID º\necho                 º   3.  Defender             (1981)  DEFENDER º\necho                 º   4.  Missile Command      (1981)  MISSILE  º\necho                 º   5.  Centipede            (1982)  CENTIPED º\necho                 º   6.  Choplifter           (1982)  CHOPLIFT º\necho                 º   7.  Pac-Man              (1982)  PACMAN   º\necho                 º   8.  Dig Dug              (1983)  DIGDUG   º\necho                 º   9.  Donkey Kong          (1983)  DKONG    º\necho                 º  10.  Joust                (1983)  JOUST    º\necho                 º                                             º\necho                 º  11.  Atari BASIC prompt           BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2291,7 +2291,7 @@ var fs = [
                           },
                           {
                             name: '6.bat',
-                            data: 'chopliftr\n',
+                            data: 'choplift\n',
                           },
                           {
                             name: '7.bat',
@@ -2338,7 +2338,7 @@ var fs = [
                             link: '../systems/atari400/play.html?game=centiped',
                           },
                           {
-                            name: 'chopliftr.bat',
+                            name: 'choplift.bat',
                             link: '../systems/atari400/play.html?game=chopliftr',
                           },
                           {
