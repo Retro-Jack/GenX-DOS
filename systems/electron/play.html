@@ -96,6 +96,48 @@
     setTimeout(function() { elkjs.openFile(games[key]); }, 3000);
   }
 
+  // USB gamepad → keyboard maps, one per game (each game has its own keys).
+  // ElkJS reads evt.keyCode from document-level key events, which is exactly
+  // what the shared shim synthesizes. Keycodes follow keyboard.js's table.
+  var K = {
+    Z:      { key: 'z', code: 'KeyZ',   keyCode: 90 },
+    X:      { key: 'x', code: 'KeyX',   keyCode: 88 },
+    A:      { key: 'a', code: 'KeyA',   keyCode: 65 },
+    S:      { key: 's', code: 'KeyS',   keyCode: 83 },
+    T:      { key: 't', code: 'KeyT',   keyCode: 84 },
+    E:      { key: 'e', code: 'KeyE',   keyCode: 69 },
+    M:      { key: 'm', code: 'KeyM',   keyCode: 77 },
+    N:      { key: 'n', code: 'KeyN',   keyCode: 78 },
+    quote:  { key: "'", code: 'Quote',  keyCode: 222 },
+    slash:  { key: '/', code: 'Slash',  keyCode: 191 },
+    comma:  { key: ',', code: 'Comma',  keyCode: 188 },
+    period: { key: '.', code: 'Period', keyCode: 190 },
+    space:  { key: ' ', code: 'Space',  keyCode: 32 },
+    enter:  { key: 'Enter', code: 'Enter', keyCode: 13 },
+    shift:  { key: 'Shift', code: 'ShiftLeft', keyCode: 16 }
+  };
+  var zxud = { left: K.Z, right: K.X, up: K.quote, down: K.slash };
+  var pads = {
+    // Face buttons: 0=A 1=B 2=X 3=Y, 4=LB 5=RB (standard mapping).
+    snapper:   { axes: zxud,
+                 buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space } },
+    citadel:   { axes: zxud,
+                 buttons: { 0: K.enter, 1: K.space } },
+    boxer:     { axes: zxud,
+                 buttons: { 0: K.enter, 1: K.shift } },
+    cybertron: { axes: { left: K.comma, right: K.period, up: K.A, down: K.Z },
+                 buttons: { 0: K.M, 1: K.M, 2: K.M, 3: K.M } },
+    starship:  { axes: { left: K.Z, right: K.X, up: K.M, down: K.comma },
+                 buttons: { 0: K.N, 1: K.N, 2: K.N, 3: K.N } },
+    elite:     { axes: { left: K.comma, right: K.period, up: K.S, down: K.X },
+                 buttons: { 0: K.A, 1: K.space, 2: K.slash, 3: K.T,
+                            4: K.E, 5: K.M } }
+  };
+  if (key && pads[key]) window.GenXGamepadMap = pads[key];
+  </script>
+  <script src="../_shared/genx-gamepad-keys.js"></script>
+  <script>
+
   // Audio unlock. ElkJS creates the AudioContext suspended (autoplay policy).
   // Best-effort: piggyback on the window.open user-activation propagated from
   // the prompt launcher click. Reliable: resume on every real user gesture —
