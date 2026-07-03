@@ -4,11 +4,6 @@
     "rom": "games/roland.dsk",
     "input": "run\"ontherun\n"
   },
-  "knight": {
-    "title": "Knight Lore (1984 Ultimate)",
-    "rom": "games/knight.dsk",
-    "input": "run\"knight\n"
-  },
   "bruce": {
     "title": "Bruce Lee (1984 US Gold)",
     "rom": "games/bruce.dsk",
@@ -48,5 +43,11 @@
     "title": "3D Construction Kit (1991 Domark)",
     "rom": "games/3dkit.dsk",
     "input": "run\"disc\n"
+  },
+  "starstrike": {
+    "title": "3D Starstrike (1985 Realtime)",
+    "rom": "games/starstrike.dsk",
+    "input": "run\"3d\n",
+    "joystick": true
   }
 }
