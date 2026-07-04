@@ -78,6 +78,22 @@
   </div>
 
   <script>
+    // Build the corner controls link synchronously. The ?game= param is
+    // consumed by the sokol_args URL rewrite below, so the deferred shared
+    // genx-controls-link.js races it and can lose the gamedoc target; the
+    // shared script skips when a .gx-controls-link already exists. Same
+    // pattern as the apple2 bundle.
+    (function () {
+      var key = new URLSearchParams(location.search).get('game');
+      var a = document.createElement('a');
+      a.href = key ? '../../gamedocs/cpc/' + key + '.html' : 'controls.html';
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.className = 'gx-controls-link';
+      a.innerHTML = 'controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg>';
+      document.body.appendChild(a);
+    })();
+
     // PageUp / PageDown → Fire button. floooh's chips library only wires
     // one fire button (BTN0 == BTN1, mapped to Space). We translate both
     // PageUp and PageDown events into synthetic Space events so either

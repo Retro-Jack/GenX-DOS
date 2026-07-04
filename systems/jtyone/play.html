@@ -172,8 +172,10 @@
         // `tzx` param as a generic URL passthrough; the loader sees the .p
         // extension and calls tape.setP() on the bytes parsed from the
         // .hex file (loader appends .hex automatically when fetching).
+        // Keep ?game= alongside ?tzx=: the deferred shared controls-link
+        // script needs it to build the gamedoc URL (deleting it raced the
+        // rewrite), and JtyOne ignores params it doesn't know.
         const u = new URL(location.href);
-        u.searchParams.delete('game');
         u.searchParams.set('tzx', game.tape);
         history.replaceState(null, '', u);
       } else {
