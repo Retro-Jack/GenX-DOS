@@ -39,6 +39,58 @@
   </div>
   <span id="emulator_status">&nbsp;</span>
   <script>
+    // USB gamepad → keyboard maps, one per game. JtyOne listens on document
+    // and decodes e.key (single chars) with an e.keyCode fallback, so the
+    // shim's defaults work as-is. This block must run before the loader
+    // below — it rewrites ?game= to ?tzx= via replaceState. The three
+    // typed-command games (blkcryst, cityxon, chess) get no map.
+    (function () {
+      var K = {
+        one:   { key: '1', code: 'Digit1', keyCode: 49 },
+        five:  { key: '5', code: 'Digit5', keyCode: 53 },
+        six:   { key: '6', code: 'Digit6', keyCode: 54 },
+        seven: { key: '7', code: 'Digit7', keyCode: 55 },
+        eight: { key: '8', code: 'Digit8', keyCode: 56 },
+        zero:  { key: '0', code: 'Digit0', keyCode: 48 },
+        A: { key: 'a', code: 'KeyA', keyCode: 65 },
+        D: { key: 'd', code: 'KeyD', keyCode: 68 },
+        Q: { key: 'q', code: 'KeyQ', keyCode: 81 },
+        P: { key: 'p', code: 'KeyP', keyCode: 80 },
+        V: { key: 'v', code: 'KeyV', keyCode: 86 },
+        W: { key: 'w', code: 'KeyW', keyCode: 87 },
+        X: { key: 'x', code: 'KeyX', keyCode: 88 },
+        space: { key: ' ', code: 'Space', keyCode: 32 }
+      };
+      var cursors = { left: K.five, right: K.eight, up: K.seven, down: K.six };
+      var pads = {
+        // Face buttons: 0=A 1=B 2=X 3=Y, 4=LB 5=RB, 9=Start (standard
+        // mapping); Start maps to each game's own title/start key.
+        galaxian: { axes: { left: K.five, right: K.eight },
+                    buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero,
+                               9: K.zero } },
+        frogger:  { axes: cursors,
+                    buttons: { 0: K.seven, 1: K.seven, 2: K.seven, 3: K.seven,
+                               9: K.zero } },
+        mazerace: { axes: cursors,
+                    buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero,
+                               9: K.zero } },
+        gp3d:     { axes: cursors,
+                    buttons: { 0: K.seven, 1: K.six, 9: K.zero } },
+        monstmze: { axes: { left: K.five, right: K.eight, up: K.seven },
+                    buttons: { 0: K.seven, 1: K.seven, 2: K.seven, 3: K.seven,
+                               9: K.seven } },
+        mazogs:   { axes: { left: K.A, right: K.D, up: K.W, down: K.X },
+                    buttons: { 0: K.V, 1: K.V, 2: K.V, 3: K.V, 9: K.V } },
+        nightgun: { axes: { left: K.Q, right: K.P, up: K.one, down: K.A },
+                    buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space,
+                               9: K.space } }
+      };
+      var g = new URLSearchParams(location.search).get('game');
+      if (g && pads[g]) window.GenXGamepadMap = pads[g];
+    })();
+  </script>
+  <script src="../_shared/genx-gamepad-keys.js"></script>
+  <script>
     (async function () {
       const params = new URLSearchParams(location.search);
       const key = params.get('game');

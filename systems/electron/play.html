@@ -118,20 +118,24 @@
   };
   var zxud = { left: K.Z, right: K.X, up: K.quote, down: K.slash };
   var pads = {
-    // Face buttons: 0=A 1=B 2=X 3=Y, 4=LB 5=RB (standard mapping).
+    // Face buttons: 0=A 1=B 2=X 3=Y, 4=LB 5=RB, 9=Start (standard mapping).
+    // Every game maps Start to its own title-screen key so a game can be
+    // started without touching the keyboard.
     snapper:   { axes: zxud,
-                 buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space } },
+                 buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space,
+                            9: K.space } },
     citadel:   { axes: zxud,
-                 buttons: { 0: K.enter, 1: K.space } },
+                 buttons: { 0: K.enter, 1: K.space, 9: K.enter } },
     boxer:     { axes: zxud,
-                 buttons: { 0: K.enter, 1: K.shift } },
+                 buttons: { 0: K.enter, 1: K.shift, 9: K.space } },
     cybertron: { axes: { left: K.comma, right: K.period, up: K.A, down: K.Z },
-                 buttons: { 0: K.M, 1: K.M, 2: K.M, 3: K.M } },
+                 buttons: { 0: K.M, 1: K.M, 2: K.M, 3: K.M, 9: K.space } },
     starship:  { axes: { left: K.Z, right: K.X, up: K.M, down: K.comma },
-                 buttons: { 0: K.N, 1: K.N, 2: K.N, 3: K.N } },
-    elite:     { axes: { left: K.comma, right: K.period, up: K.S, down: K.X },
+                 buttons: { 0: K.N, 1: K.N, 2: K.N, 3: K.N, 9: K.space } },
+    // Flightsim-style games get the vertical axis inverted: up climbs.
+    elite:     { axes: { left: K.comma, right: K.period, up: K.X, down: K.S },
                  buttons: { 0: K.A, 1: K.space, 2: K.slash, 3: K.T,
-                            4: K.E, 5: K.M } }
+                            4: K.E, 5: K.M, 9: K.space } }
   };
   if (key && pads[key]) window.GenXGamepadMap = pads[key];
   </script>

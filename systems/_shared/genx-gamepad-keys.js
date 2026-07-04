@@ -14,7 +14,10 @@
 //     buttons: {                    // pad button index → key
 //       0: { key: ' ', code: 'Space', keyCode: 32 },
 //     },
-//     target: document,             // optional dispatch target
+//     target: document,             // optional dispatch target — an element,
+//                                   // or a function returning one (resolved
+//                                   // per event, for elements the engine
+//                                   // only injects after it boots)
 //   };
 //
 // Pad 0 is polled each frame; edges are translated into synthetic
@@ -23,12 +26,47 @@
 (function () {
   var map = window.GenXGamepadMap;
   if (!map) return;
-  var target = map.target || document;
-  var DEAD = 0.4;
+  var PRESS = 0.5;
+  var RELEASE = 0.3;
   var state = {};
 
+  // Add ?paddebug to the page URL for an on-screen log of every synthetic
+  // key event the shim sends (and where it sends it).
+  var DEBUG = /[?&]paddebug\b/.test(location.search);
+  var dbg;
+  function debugLog(line) {
+    if (!DEBUG) return;
+    if (!dbg) {
+      dbg = document.createElement('pre');
+      dbg.style.cssText =
+        'position:fixed;left:8px;top:8px;z-index:99999;' +
+        'background:rgba(0,0,0,.85);color:#0f0;font:14px/1.4 monospace;' +
+        'padding:6px 10px;margin:0;pointer-events:none';
+      document.body.appendChild(dbg);
+    }
+    dbg.textContent = (line + '\n' + dbg.textContent)
+      .split('\n')
+      .slice(0, 18)
+      .join('\n');
+  }
+
+  function target() {
+    var t = map.target;
+    if (typeof t === 'function') t = t();
+    return t || document;
+  }
+
   function send(key, down) {
-    target.dispatchEvent(
+    var el = target();
+    debugLog(
+      (down ? 'DOWN ' : 'UP   ') +
+        JSON.stringify(key.key) +
+        ' keyCode=' +
+        key.keyCode +
+        ' -> ' +
+        (el === document ? 'document' : '<' + el.tagName.toLowerCase() + '>'),
+    );
+    el.dispatchEvent(
       new KeyboardEvent(down ? 'keydown' : 'keyup', {
         key: key.key,
         code: key.code,
@@ -64,12 +102,20 @@
       if (map.axes) {
         var ax = p.axes[0] || 0;
         var ay = p.axes[1] || 0;
+        // Hysteresis: a held direction releases at a lower deflection than
+        // it pressed at, so a stick hovering near the threshold can't
+        // machine-gun keydown/keyup pairs into the emulator.
+        function beyond(name, v) {
+          return v > (state[name] ? RELEASE : PRESS);
+        }
         if (map.axes.left)
-          set('left', map.axes.left, ax < -DEAD || pressed(14));
+          set('left', map.axes.left, beyond('left', -ax) || pressed(14));
         if (map.axes.right)
-          set('right', map.axes.right, ax > DEAD || pressed(15));
-        if (map.axes.up) set('up', map.axes.up, ay < -DEAD || pressed(12));
-        if (map.axes.down) set('down', map.axes.down, ay > DEAD || pressed(13));
+          set('right', map.axes.right, beyond('right', ax) || pressed(15));
+        if (map.axes.up)
+          set('up', map.axes.up, beyond('up', -ay) || pressed(12));
+        if (map.axes.down)
+          set('down', map.axes.down, beyond('down', ay) || pressed(13));
       }
       if (map.buttons) {
         for (var idx in map.buttons) {

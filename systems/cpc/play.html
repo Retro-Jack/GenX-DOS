@@ -99,8 +99,10 @@
     // USB gamepad → CPC joystick, via the shared shim. Games launched
     // with ?joystick=true route the synthesized arrows/Space to the
     // emulated 9-pin port. D-pad or left stick steers, any face button
-    // fires.
-    window.GenXGamepadMap = {
+    // fires. No ?game= means the plain BASIC prompt — leave the shim
+    // dormant there so a pad can't type into BASIC.
+    if (new URLSearchParams(location.search).get('game'))
+      window.GenXGamepadMap = {
       axes: {
         left:  { key: 'ArrowLeft',  code: 'ArrowLeft',  keyCode: 37 },
         right: { key: 'ArrowRight', code: 'ArrowRight', keyCode: 39 },
