@@ -50,6 +50,26 @@
       .join('\n');
   }
 
+  // Debug heartbeat: prove the shim is alive and show whether the browser
+  // is exposing a pad at all (pads only appear after a button is pressed
+  // while the page is focused). Refreshes once a second.
+  if (DEBUG) {
+    debugLog('shim alive, map loaded');
+    setInterval(function () {
+      var pads = navigator.getGamepads ? navigator.getGamepads() : [];
+      var p = null;
+      for (var i = 0; i < pads.length; i++) {
+        if (pads[i]) {
+          p = pads[i];
+          break;
+        }
+      }
+      debugLog(
+        p ? 'pad: ' + p.id.slice(0, 40) : 'pad: none visible (press a button)',
+      );
+    }, 1000);
+  }
+
   function target() {
     var t = map.target;
     if (typeof t === 'function') t = t();
