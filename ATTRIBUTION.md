@@ -173,6 +173,22 @@ title removed, open an issue at
 
 ---
 
+## Research and reference sources
+
+Reference works — not bundled code — consulted to get the per-game gamedocs
+right (control schemes and in-game behaviour). The project leans on them and is
+glad to say so.
+
+- **Paul Farrow — ZX81 disassemblies** ([www.fruitcake.plus.com](http://www.fruitcake.plus.com)).
+  Paul's meticulous, fully-commented disassemblies of *3D Monster Maze* (Malcolm
+  Evans, New Generation Software, 1981) and *Mazogs* (Don Priestley, Bug-Byte,
+  1981) are the authority behind those two ZX81 gamedocs — the verified movement
+  and menu keys, and details like Mazogs' situation-report key, that we would
+  otherwise have had to guess at. Painstaking preservation work, freely shared
+  decades on. Thank you.
+
+---
+
 ## Bezel artwork
 
 `systems/_shared/bezels/` holds the transparent PNG monitor/console frames used by the CRT-bezel overlays. **Every platform is now wired to a bezel** (the per-emulator integration pass is complete).
