@@ -11,15 +11,15 @@
     <div class="head">
       <div class="system">Home Computer · Sinclair ZX81</div>
       <h1>Chess (Psion)</h1>
-      <p class="sub">Psion, 1981 — David Potter's chess engine, fitted into 1K of ZX81 RAM. Psion's very first commercial release; later 16K versions added levels and book openings.</p>
+      <p class="sub">Psion, published by Sinclair Research, 1982 — a full chess program for the 16K ZX81. Not to be confused with the famous <em>1K ZX Chess</em> (David Horne, 1982), which squeezed a whole chess game into 672 bytes: this is the larger, stronger Psion program, not that one.</p>
     </div>
 
-    <p class="intro">A full chess engine running in a kilobyte. The interface is text-coordinate (you type "E2 E4" to move pawn from e2 to e4); the board is rendered as a small grid using ZX81 block graphics. Eight strength levels in the 16K edition; the 1K original played only one mode.</p>
+    <p class="intro">A complete chess engine for the 16K ZX81. The interface is text-coordinate — you type a move as its source square then its destination (files <strong>A–H</strong>, ranks <strong>1–8</strong>), e.g. "E2 E4" to push the king's pawn — and the board is drawn as a small grid in ZX81 block graphics. It offers a choice of playing strengths.</p>
 
     <h2>Getting started</h2>
     <ol>
       <li>Press <kbd>Enter</kbd> at the title to start a new game.</li>
-      <li>Choose strength level 1–8 (16K version) or just press Enter for the default.</li>
+      <li>Choose a playing strength, or just press Enter for the default.</li>
       <li>You play White by default. Enter moves in coordinate notation: source square then destination, e.g. <kbd>E</kbd><kbd>2</kbd> <kbd>Space</kbd> <kbd>E</kbd><kbd>4</kbd> <kbd>Enter</kbd>.</li>
       <li>The computer responds; the board redraws with the new position.</li>
     </ol>
@@ -49,7 +49,7 @@
     <h2>Strategy</h2>
     <ul>
       <li><strong>This is a chess engine, not a teacher.</strong> No move suggestions, no undo on most versions, no hint feature.</li>
-      <li><strong>Strength level 1 plays openings book moves</strong> and basic tactics; level 8 thinks for noticeable seconds per move on the original 3.5 MHz Z80.</li>
+      <li><strong>The higher strengths take real time to move.</strong> The engine thinks for noticeable seconds per move — and does it in the ZX81's FAST mode with the screen blanked to black (see the note under "Getting started").</li>
       <li><strong>Move clock is real on the higher levels.</strong> The engine searches in FAST mode with the display switched off, so the screen sits black while it works (see the note under "Getting started") — 30+ seconds at level 6+.</li>
       <li><strong>Save with <kbd>S</kbd></strong> on the 16K edition writes the position to tape (the 1K edition has no save) — but tape saves aren't preserved once you close the tab, and this engine has no save-state button, so a saved position won't carry between sessions.</li>
     </ul>
