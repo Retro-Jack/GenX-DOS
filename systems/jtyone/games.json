@@ -3,7 +3,11 @@
   "mazogs": { "title": "Mazogs", "tape": "tapes/mazogs.p" },
   "nightgun": { "title": "Night Gunner", "tape": "tapes/nightgun.p" },
   "galaxian": { "title": "Galaxians", "tape": "tapes/galaxian.p" },
-  "chess": { "title": "Chess", "tape": "tapes/chess.p" },
+  "1kchessk": { "title": "1K Chess (King's Pawn)", "tape": "tapes/1kchessk.p" },
+  "1kchessq": {
+    "title": "1K Chess (Queen's Pawn)",
+    "tape": "tapes/1kchessq.p"
+  },
   "frogger": { "title": "Frogger", "tape": "tapes/frogger.p" },
   "cityxon": { "title": "City of Xon", "tape": "tapes/cityxon.p" },
   "blkcryst": { "title": "Black Crystal", "tape": "tapes/blkcryst.p" },

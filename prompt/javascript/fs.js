@@ -2615,11 +2615,42 @@ var fs = [
                     directories: [
                       {
                         name: 'GAMES',
-                        directories: [],
+                        directories: [
+                          {
+                            name: '1KCHESS',
+                            directories: [],
+                            files: [
+                              {
+                                name: 'menu.bat',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SINCLAIR  ZX81  -  1K CHESS         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º     Choose the computer\'s opening move      º\necho                 º                                             º\necho                 º   1.  King\'s Pawn          (1.e4)  1KCHESSK º\necho                 º                                             º\necho                 º   2.  Queen\'s Pawn         (1.d4)  1KCHESSQ º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                              },
+                              {
+                                name: '0.bat',
+                                data: 'echo off\ncd ..\nmenu\n',
+                              },
+                              {
+                                name: '1.bat',
+                                data: '1kchessk\n',
+                              },
+                              {
+                                name: '2.bat',
+                                data: '1kchessq\n',
+                              },
+                              {
+                                name: '1kchessk.bat',
+                                link: '../systems/jtyone/play.html?game=1kchessk',
+                              },
+                              {
+                                name: '1kchessq.bat',
+                                link: '../systems/jtyone/play.html?game=1kchessq',
+                              },
+                            ],
+                          },
+                        ],
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            SINCLAIR  ZX81  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  3D Monster Maze      (1981)  MONSTMZE º\necho                 º   2.  Chess (Psion)        (1981)  CHESS    º\necho                 º   3.  Mazogs               (1981)  MAZOGS   º\necho                 º   4.  Black Crystal        (1982)  BLKCRYST º\necho                 º   5.  City of Xon          (1982)  CITYXON  º\necho                 º   6.  Frogger              (1982)  FROGGER  º\necho                 º   7.  Galaxians            (1982)  GALAXIAN º\necho                 º   8.  3D Grand Prix        (1983)  GP3D     º\necho                 º   9.  Maze Death Race      (1983)  MAZERACE º\necho                 º  10.  Night Gunner         (1983)  NIGHTGUN º\necho                 º                                             º\necho                 º  11.  ZX81 BASIC prompt            BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            SINCLAIR  ZX81  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  3D Monster Maze      (1981)  MONSTMZE º\necho                 º   2.  Mazogs               (1981)  MAZOGS   º\necho                 º   3.  1K Chess             (1982)  1KCHESS  º\necho                 º   4.  Black Crystal        (1982)  BLKCRYST º\necho                 º   5.  City of Xon          (1982)  CITYXON  º\necho                 º   6.  Frogger              (1982)  FROGGER  º\necho                 º   7.  Galaxians            (1982)  GALAXIAN º\necho                 º   8.  3D Grand Prix        (1983)  GP3D     º\necho                 º   9.  Maze Death Race      (1983)  MAZERACE º\necho                 º  10.  Night Gunner         (1983)  NIGHTGUN º\necho                 º                                             º\necho                 º  11.  ZX81 BASIC prompt            BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2631,11 +2662,11 @@ var fs = [
                           },
                           {
                             name: '2.bat',
-                            data: 'chess\n',
+                            data: 'mazogs\n',
                           },
                           {
                             name: '3.bat',
-                            data: 'mazogs\n',
+                            data: '1kchess\n',
                           },
                           {
                             name: '4.bat',
@@ -2690,8 +2721,8 @@ var fs = [
                             link: '../systems/jtyone/play.html?game=galaxian',
                           },
                           {
-                            name: 'chess.bat',
-                            link: '../systems/jtyone/play.html?game=chess',
+                            name: '1kchess.bat',
+                            data: 'echo off\ncd 1kchess\nmenu\n',
                           },
                           {
                             name: 'frogger.bat',

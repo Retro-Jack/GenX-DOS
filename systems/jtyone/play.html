@@ -43,7 +43,7 @@
     // and decodes e.key (single chars) with an e.keyCode fallback, so the
     // shim's defaults work as-is. This block must run before the loader
     // below — it rewrites ?game= to ?tzx= via replaceState. The three
-    // typed-command games (blkcryst, cityxon, chess) get no map.
+    // typed-command games (blkcryst, cityxon, 1kchessk, 1kchessq) get no map.
     (function () {
       var K = {
         one:   { key: '1', code: 'Digit1', keyCode: 49 },
@@ -101,7 +101,7 @@
       // with no in-game function are swallowed before the emulator sees
       // them. Arrow keys are allowed where the emulator's arrow→5/6/7/8
       // translation lands on a functional key. The typed-command games
-      // (blkcryst, cityxon, chess) keep the full keyboard and get no entry.
+      // (blkcryst, cityxon, 1kchessk, 1kchessq) keep the full keyboard and get no entry.
       var K5 = 53, K6 = 54, K7 = 55, K8 = 56, K0 = 48;
       var AL = 37, AU = 38, AR = 39, AD = 40; // arrows → 5/7/8/6
       var allow = {
