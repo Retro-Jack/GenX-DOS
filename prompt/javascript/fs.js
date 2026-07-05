@@ -2622,7 +2622,7 @@ var fs = [
                             files: [
                               {
                                 name: 'menu.bat',
-                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SINCLAIR  ZX81  -  1K CHESS         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º     Choose the computer\'s opening move      º\necho                 º                                             º\necho                 º   1.  King\'s Pawn          (1.e4)  1KCHESSK º\necho                 º                                             º\necho                 º   2.  Queen\'s Pawn         (1.d4)  1KCHESSQ º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SINCLAIR  ZX81  -  1K CHESS         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º     Choose the computer\'s opening move      º\necho                 º                                             º\necho                 º   1.  Queen\'s Pawn         (1.d4)  1KCHESSQ º\necho                 º                                             º\necho                 º   2.  King\'s Pawn          (1.e4)  1KCHESSK º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                               },
                               {
                                 name: '0.bat',
@@ -2630,11 +2630,11 @@ var fs = [
                               },
                               {
                                 name: '1.bat',
-                                data: '1kchessk\n',
+                                data: '1kchessq\n',
                               },
                               {
                                 name: '2.bat',
-                                data: '1kchessq\n',
+                                data: '1kchessk\n',
                               },
                               {
                                 name: '1kchessk.bat',
