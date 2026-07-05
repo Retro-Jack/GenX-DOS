@@ -24,6 +24,8 @@
       <li>The computer responds; the board redraws with the new position.</li>
     </ol>
 
+    <p class="note-plain"><strong>The screen goes black while the computer is thinking.</strong> Like a lot of ZX81 software that needs every scrap of CPU speed, the engine computes in the machine's FAST mode, which switches off the display while it runs — so the picture blanks to black during the computer's move and snaps back the moment it has chosen. It is <em>not</em> a crash or a frozen tab; just wait. The darker it stays, the harder it's thinking — 30+ seconds is normal at the higher strength levels.</p>
+
     <h2>Controls</h2>
     <p class="note-plain">A gamepad has no role here — moves are typed as coordinates, all keyboard by design.</p>
     <table>
@@ -48,7 +50,7 @@
     <ul>
       <li><strong>This is a chess engine, not a teacher.</strong> No move suggestions, no undo on most versions, no hint feature.</li>
       <li><strong>Strength level 1 plays openings book moves</strong> and basic tactics; level 8 thinks for noticeable seconds per move on the original 3.5 MHz Z80.</li>
-      <li><strong>Move clock is real on the higher levels.</strong> The screen shows "THINKING" while the engine searches; can take 30+ seconds at level 6+.</li>
+      <li><strong>Move clock is real on the higher levels.</strong> The engine searches in FAST mode with the display switched off, so the screen sits black while it works (see the note under "Getting started") — 30+ seconds at level 6+.</li>
       <li><strong>Save with <kbd>S</kbd></strong> on the 16K edition writes the position to tape (the 1K edition has no save) — but tape saves aren't preserved once you close the tab, and this engine has no save-state button, so a saved position won't carry between sessions.</li>
     </ul>
   </div>
