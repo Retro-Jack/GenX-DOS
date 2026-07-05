@@ -67,24 +67,20 @@
         J: { key: 'j', code: 'KeyJ', keyCode: 74 },
         U: { key: 'u', code: 'KeyU', keyCode: 85 },
         Y: { key: 'y', code: 'KeyY', keyCode: 89 },
-        space: { key: ' ', code: 'Space', keyCode: 32 },
-        enter: { key: 'Enter', code: 'Enter', keyCode: 13 }
+        space: { key: ' ', code: 'Space', keyCode: 32 }
       };
       var cursors = { left: K.five, right: K.eight, up: K.seven, down: K.six };
       var pads = {
-        // Face buttons: 0=A 1=B 2=X 3=Y, 4=LB 5=RB, 9=Start (standard
-        // mapping); Start maps to each game's own title/start key.
+        // Face buttons 0=A 1=B 2=X 3=Y. The pad is gameplay only — no Start
+        // button is mapped (use the keyboard for a game's title/start).
         galaxian: { axes: { left: K.five, right: K.eight },
-                    buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero,
-                               9: K.zero } },
+                    buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero } },
         frogger:  { axes: cursors,
-                    buttons: { 0: K.seven, 1: K.seven, 2: K.seven, 3: K.seven,
-                               9: K.zero } },
+                    buttons: { 0: K.seven, 1: K.seven, 2: K.seven, 3: K.seven } },
         mazerace: { axes: cursors,
-                    buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero,
-                               9: K.zero } },
+                    buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero } },
         gp3d:     { axes: cursors,
-                    buttons: { 0: K.seven, 1: K.six, 9: K.zero } },
+                    buttons: { 0: K.seven, 1: K.six } },
         // Menu keys verified from the disassembly: K shows instructions, C
         // proceeds (intro, and again at the death screen), A restarts (the
         // tape's two NEW tokens are patched to RUN so A can never strand
@@ -92,22 +88,19 @@
         // 5/7/8. The on-screen STOP/LIST/CONT labels are patched to
         // "A"/"K"/"C".
         monstmze: { axes: { left: K.five, right: K.eight, up: K.seven },
-                    buttons: { 0: K.seven, 1: K.C, 2: K.K, 3: K.seven,
-                               9: K.C } },
+                    buttons: { 0: K.seven, 1: K.C, 2: K.K, 3: K.seven } },
         // 3D Defender's four keyboard zones emulate a joystick, so a straight
         // cardinal needs two zones at once — the shim's multi-key directions
         // compose them. Distinct keys per direction (all from the right zone
         // range) so no key is shared between two directions on a diagonal.
         // Vertical is inverted to match the on-screen sight (push up = sight up):
         //   up=Q-T+Y-P · down=A-G+H-NL · left=A-G+Q-T · right=H-NL+Y-P
-        // Fire = any number-row key (one press looses a burst). Start = Enter,
-        // which launches the game after the intro scroll.
+        // Fire = any number-row key (one press looses a burst).
         '3ddefend': { axes: { up:    [K.E, K.U], down:  [K.A, K.H],
                               left:  [K.S, K.Q], right: [K.J, K.Y] },
-                      buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero, 9: K.enter } },
+                      buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero } },
         nightgun: { axes: { left: K.Q, right: K.P, up: K.one, down: K.A },
-                    buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space,
-                               9: K.space } }
+                    buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space } }
       };
       var g = new URLSearchParams(location.search).get('game');
       if (g && pads[g]) window.GenXGamepadMap = pads[g];

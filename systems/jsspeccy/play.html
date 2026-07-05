@@ -134,46 +134,40 @@
       };
       var qwre = { left: K.Q, right: K.W, up: K.R, down: K.E };
       var pads = {
-        // Face buttons: 0=A 1=B 2=X 3=Y, 4=LB 5=RB, 9=Start (standard
-        // mapping). Every game maps Start to its own title-screen key so a
-        // game can be started without touching the keyboard.
+        // Face buttons 0=A 1=B 2=X 3=Y. The pad is gameplay only — no Start
+        // button is mapped (use the keyboard for a game's title/start).
         manicmn:  { axes: { left: K.Q, right: K.W },
-                    buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space,
-                               9: K.space } },
+                    buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space } },
         jetwilly: { axes: { left: K.Q, right: K.W },
-                    buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space,
-                               9: K.space } },
+                    buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space } },
         // Chuckie Egg's real defaults (established in-game, key by key):
         // 9 left, 0 right, 2 up, W down, Z or M jumps — nothing else does,
         // Space included. The old gamedoc's ,/./A/Z were wrong; . "worked"
         // only because it synthesizes Symbol Shift+M and M jumps.
         chuckegg: { axes: { left: K.nine, right: K.zero, up: K.two, down: K.W },
-                    buttons: { 0: K.Z, 1: K.Z, 2: K.Z, 3: K.Z,
-                               9: K.one } },
+                    buttons: { 0: K.Z, 1: K.Z, 2: K.Z, 3: K.Z } },
         // Pad-verified: E is up, R is down — the reverse of Atic Atac's
         // layout (the old gamedoc had them swapped).
         sabrwulf: { axes: { left: K.Q, right: K.W, up: K.E, down: K.R },
-                    buttons: { 0: K.T, 1: K.T, 2: K.T, 3: K.T, 9: K.space } },
+                    buttons: { 0: K.T, 1: K.T, 2: K.T, 3: K.T } },
         kngtlore: { axes: { left: K.Z, right: K.X, up: K.A },
-                    buttons: { 0: K.Q, 1: K.one, 9: K.space } },
+                    buttons: { 0: K.Q, 1: K.one } },
         atatac:   { axes: qwre,
-                    buttons: { 0: K.T, 1: K.Z, 9: K.K } },
+                    buttons: { 0: K.T, 1: K.Z } },
         // Pad-verified: R is up, E is down (the old gamedoc had them
         // swapped), so Pssst uses the same Q/W/R/E layout as its Ultimate
         // stablemates after all.
         pssst:    { axes: qwre,
-                    buttons: { 0: K.T, 1: K.T, 2: K.T, 3: K.T, 9: K.space } },
+                    buttons: { 0: K.T, 1: K.T, 2: K.T, 3: K.T } },
         // Keys verified against the game's own instructions: T fire,
         // B/N/M/SS/Space pick up-drop, CS/Z/X/C/V drop from rope, Enter
         // pause. Sabreman starts unarmed — weapons are pickups.
         uwurlde:  { axes: qwre,
-                    buttons: { 0: K.T, 1: K.space, 2: K.Z, 3: K.T,
-                               9: K.enter } },
+                    buttons: { 0: K.T, 1: K.space, 2: K.Z, 3: K.T } },
         dizzy:    { axes: { left: K.Z, right: K.X },
-                    buttons: { 0: K.space, 1: K.enter, 9: K.space } },
+                    buttons: { 0: K.space, 1: K.enter } },
         skooldzd: { axes: { left: K.O, right: K.P, up: K.Q, down: K.A },
-                    buttons: { 0: K.J, 1: K.H, 2: K.F, 3: K.S, 4: K.W,
-                               9: K.enter } }
+                    buttons: { 0: K.J, 1: K.H, 2: K.F, 3: K.S, 4: K.W } }
       };
       var g = new URLSearchParams(location.search).get('game');
       if (g && pads[g]) {
