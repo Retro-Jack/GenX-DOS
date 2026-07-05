@@ -1,6 +1,6 @@
 {
   "monstmze": { "title": "3D Monster Maze", "tape": "tapes/monstmze.p" },
-  "mazogs": { "title": "Mazogs", "tape": "tapes/mazogs.p" },
+  "3ddefend": { "title": "3D Defender", "tape": "tapes/3ddefend.p" },
   "nightgun": { "title": "Night Gunner", "tape": "tapes/nightgun.p" },
   "galaxian": { "title": "Galaxians", "tape": "tapes/galaxian.p" },
   "1kchessk": { "title": "1K Chess (King's Pawn)", "tape": "tapes/1kchessk.p" },

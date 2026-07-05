@@ -48,7 +48,7 @@
 
     <h2>USB gamepad</h2>
     <p>The seven action games support a USB gamepad — the pad presses each game's own keys, with <kbd>Start</kbd> mapped to its title-screen key; the exact mapping is on each game's controls page. The three typed-command games (Black Crystal, City of Zion, 1K Chess) are keyboard by design.</p>
-    <p>On the game pages, keys with no in-game function are filtered out — on a ZX81 every stray key is live BASIC (<kbd>Space</kbd> is BREAK), so the filter stops an accidental keypress from stopping the program.</p>
+    <p>On a ZX81 every unused key is live BASIC (<kbd>Space</kbd> is BREAK), so where a stray keypress could stop a game its page quietly blocks the keys with no in-game role. It's a fallback, applied only where a game actually needs it.</p>
 
     <p class="note">Mapping follows JtyOne (GPL-2.0, Simon Holdsworth — JS port of Mike Wynne's EightyOne). Verify in the upstream README if a control feels off.</p>
 

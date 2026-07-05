@@ -76,7 +76,7 @@
     return t || document;
   }
 
-  function send(key, down) {
+  function sendOne(key, down) {
     var el = target();
     debugLog(
       (down ? 'DOWN ' : 'UP   ') +
@@ -96,6 +96,18 @@
         cancelable: true,
       }),
     );
+  }
+
+  // A mapping value may be a single { key, code, keyCode } or an ARRAY of
+  // them. An array presses (and releases) several keys together on one edge —
+  // for games whose "up"/"down"/etc. is really two keyboard keys held at once
+  // (e.g. 3D Defender's four-zone joystick emulation).
+  function send(keys, down) {
+    if (Array.isArray(keys)) {
+      for (var i = 0; i < keys.length; i++) sendOne(keys[i], down);
+    } else {
+      sendOne(keys, down);
+    }
   }
 
   function set(name, key, want) {

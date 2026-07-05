@@ -2650,7 +2650,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            SINCLAIR  ZX81  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  3D Monster Maze      (1981)  MONSTMZE º\necho                 º   2.  Mazogs               (1981)  MAZOGS   º\necho                 º   3.  1K Chess             (1982)  1KCHESS  º\necho                 º   4.  Black Crystal        (1982)  BLKCRYST º\necho                 º   5.  City of Xon          (1982)  CITYXON  º\necho                 º   6.  Frogger              (1982)  FROGGER  º\necho                 º   7.  Galaxians            (1982)  GALAXIAN º\necho                 º   8.  3D Grand Prix        (1983)  GP3D     º\necho                 º   9.  Maze Death Race      (1983)  MAZERACE º\necho                 º  10.  Night Gunner         (1983)  NIGHTGUN º\necho                 º                                             º\necho                 º  11.  ZX81 BASIC prompt            BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            SINCLAIR  ZX81  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  3D Defender          (1981)  3DDEFEND º\necho                 º   2.  3D Monster Maze      (1981)  MONSTMZE º\necho                 º   3.  1K Chess             (1982)  1KCHESS  º\necho                 º   4.  Black Crystal        (1982)  BLKCRYST º\necho                 º   5.  City of Xon          (1982)  CITYXON  º\necho                 º   6.  Frogger              (1982)  FROGGER  º\necho                 º   7.  Galaxians            (1982)  GALAXIAN º\necho                 º   8.  3D Grand Prix        (1983)  GP3D     º\necho                 º   9.  Maze Death Race      (1983)  MAZERACE º\necho                 º  10.  Night Gunner         (1983)  NIGHTGUN º\necho                 º                                             º\necho                 º  11.  ZX81 BASIC prompt            BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2658,11 +2658,11 @@ var fs = [
                           },
                           {
                             name: '1.bat',
-                            data: 'monstmze\n',
+                            data: '3ddefend\n',
                           },
                           {
                             name: '2.bat',
-                            data: 'mazogs\n',
+                            data: 'monstmze\n',
                           },
                           {
                             name: '3.bat',
@@ -2709,8 +2709,8 @@ var fs = [
                             link: '../systems/jtyone/play.html?game=monstmze',
                           },
                           {
-                            name: 'mazogs.bat',
-                            link: '../systems/jtyone/play.html?game=mazogs',
+                            name: '3ddefend.bat',
+                            link: '../systems/jtyone/play.html?game=3ddefend',
                           },
                           {
                             name: 'nightgun.bat',

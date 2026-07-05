@@ -61,7 +61,14 @@
         V: { key: 'v', code: 'KeyV', keyCode: 86 },
         W: { key: 'w', code: 'KeyW', keyCode: 87 },
         X: { key: 'x', code: 'KeyX', keyCode: 88 },
-        space: { key: ' ', code: 'Space', keyCode: 32 }
+        E: { key: 'e', code: 'KeyE', keyCode: 69 },
+        S: { key: 's', code: 'KeyS', keyCode: 83 },
+        H: { key: 'h', code: 'KeyH', keyCode: 72 },
+        J: { key: 'j', code: 'KeyJ', keyCode: 74 },
+        U: { key: 'u', code: 'KeyU', keyCode: 85 },
+        Y: { key: 'y', code: 'KeyY', keyCode: 89 },
+        space: { key: ' ', code: 'Space', keyCode: 32 },
+        enter: { key: 'Enter', code: 'Enter', keyCode: 13 }
       };
       var cursors = { left: K.five, right: K.eight, up: K.seven, down: K.six };
       var pads = {
@@ -87,8 +94,17 @@
         monstmze: { axes: { left: K.five, right: K.eight, up: K.seven },
                     buttons: { 0: K.seven, 1: K.C, 2: K.K, 3: K.seven,
                                9: K.C } },
-        mazogs:   { axes: { left: K.A, right: K.D, up: K.W, down: K.X },
-                    buttons: { 0: K.V, 1: K.V, 2: K.V, 3: K.V, 9: K.V } },
+        // 3D Defender's four keyboard zones emulate a joystick, so a straight
+        // cardinal needs two zones at once — the shim's multi-key directions
+        // compose them. Distinct keys per direction (all from the right zone
+        // range) so no key is shared between two directions on a diagonal.
+        // Vertical is inverted to match the on-screen sight (push up = sight up):
+        //   up=Q-T+Y-P · down=A-G+H-NL · left=A-G+Q-T · right=H-NL+Y-P
+        // Fire = any number-row key (one press looses a burst). Start = Enter,
+        // which launches the game after the intro scroll.
+        '3ddefend': { axes: { up:    [K.E, K.U], down:  [K.A, K.H],
+                              left:  [K.S, K.Q], right: [K.J, K.Y] },
+                      buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero, 9: K.enter } },
         nightgun: { axes: { left: K.Q, right: K.P, up: K.one, down: K.A },
                     buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space,
                                9: K.space } }
@@ -96,17 +112,16 @@
       var g = new URLSearchParams(location.search).get('game');
       if (g && pads[g]) window.GenXGamepadMap = pads[g];
 
-      // Per-game key allowlist. On a ZX81 every key is live BASIC — Space
-      // is BREAK, and stray keys at a menu can NEW the program — so keys
-      // with no in-game function are swallowed before the emulator sees
-      // them. Arrow keys are allowed where the emulator's arrow→5/6/7/8
-      // translation lands on a functional key. The typed-command games
-      // (blkcryst, cityxon, 1kchessk, 1kchessq) keep the full keyboard and get no entry.
+      // Per-game key allowlist — a FALLBACK, not the default. On a ZX81 every
+      // key is live BASIC (Space is BREAK, a stray key can NEW the program),
+      // so an entry swallows keys with no in-game function. Reach for it only
+      // if a stray key actually drops a game to BASIC in play — it can also
+      // fight the pad. The games below are the ones that needed it; new and
+      // typed-command games get none.
       var K5 = 53, K6 = 54, K7 = 55, K8 = 56, K0 = 48;
       var AL = 37, AU = 38, AR = 39, AD = 40; // arrows → 5/7/8/6
       var allow = {
         monstmze: [K5, K7, K8, AL, AU, AR, 67, 75, 65, 89],   // 5/7/8, C K A Y
-        mazogs:   [87, 88, 65, 68, 86],                       // W X A D V
         nightgun: [49, 50, 51, 52, K5, K6, K7, K8, 57, K0,    // 1-0: sight up
                    65, 83, 68, 70, 71, 72, 74, 75, 76,        // A-L: sight down
                    81, 87, 69, 82, 84,                        // Q-T: left
