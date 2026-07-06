@@ -186,6 +186,14 @@ glad to say so.
   had to guess at. Painstaking preservation work, freely shared decades on.
   Thank you.
 
+- **Mark Moxon — bbcelite.com** ([www.bbcelite.com](https://www.bbcelite.com)).
+  Mark's fully-commented, line-by-line disassembly of *Elite* (Ian Bell & David
+  Braben, Acornsoft 1984) across its 8-bit versions is the authority behind our
+  Elite gamedocs — the correct publisher and year, the real flight and chart
+  keys, and which features each port actually has (no Thargoids or suns on the
+  Electron, the Master's fractional scoring). A monumental preservation effort,
+  freely shared. Thank you.
+
 ---
 
 ## Bezel artwork
