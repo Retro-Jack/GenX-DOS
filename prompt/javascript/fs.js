@@ -674,110 +674,110 @@ var fs = [
               },
 
               {
-                  name: 'SMS',
-                  directories: [
-                    {
-                      name: 'GAMES',
-                      directories: [],
-                      files: [
-                        {
-                          name: 'menu.bat',
-                          data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SEGA  MASTER  SYSTEM  GAMES         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Alex Kidd            (1986)  ALEXKIDD º\necho                 º   2.  Fantasy Zone         (1986)  FANTZONE º\necho                 º   3.  Wonder Boy           (1986)  WONDRBOY º\necho                 º   4.  Out Run              (1987)  OUTRUN   º\necho                 º   5.  Phantasy Star        (1988)  PHANTSTR º\necho                 º   6.  R-Type               (1988)  RTYPE    º\necho                 º   7.  Shinobi              (1988)  SHINOBI  º\necho                 º   8.  Psycho Fox           (1989)  PSYCHFOX º\necho                 º   9.  Castle of Illusion   (1990)  CASTLE   º\necho                 º  10.  Sonic the Hedgehog   (1991)  SONIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
-                        },
-                        {
-                          name: '0.bat',
-                          data: 'echo off\ncd ..\ncd ..\nmenu\n',
-                        },
-                        {
-                          name: '1.bat',
-                          data: 'alexkidd\n',
-                        },
-                        {
-                          name: '2.bat',
-                          data: 'fantzone\n',
-                        },
-                        {
-                          name: '3.bat',
-                          data: 'wondrboy\n',
-                        },
-                        {
-                          name: '4.bat',
-                          data: 'outrun\n',
-                        },
-                        {
-                          name: '5.bat',
-                          data: 'phantstr\n',
-                        },
-                        {
-                          name: '6.bat',
-                          data: 'rtype\n',
-                        },
-                        {
-                          name: '7.bat',
-                          data: 'shinobi\n',
-                        },
-                        {
-                          name: '8.bat',
-                          data: 'psychfox\n',
-                        },
-                        {
-                          name: '9.bat',
-                          data: 'castle\n',
-                        },
-                        {
-                          name: '10.bat',
-                          data: 'sonic\n',
-                        },
-                        {
-                          name: 'alexkidd.bat',
-                          link: '../systems/sms/play.html?game=alexkidd',
-                        },
-                        {
-                          name: 'fantzone.bat',
-                          link: '../systems/sms/play.html?game=fantzone',
-                        },
-                        {
-                          name: 'wondrboy.bat',
-                          link: '../systems/sms/play.html?game=wondrboy',
-                        },
-                        {
-                          name: 'outrun.bat',
-                          link: '../systems/sms/play.html?game=outrun',
-                        },
-                        {
-                          name: 'phantstr.bat',
-                          link: '../systems/sms/play.html?game=phantstr',
-                        },
-                        {
-                          name: 'rtype.bat',
-                          link: '../systems/sms/play.html?game=rtype',
-                        },
-                        {
-                          name: 'shinobi.bat',
-                          link: '../systems/sms/play.html?game=shinobi',
-                        },
-                        {
-                          name: 'psychfox.bat',
-                          link: '../systems/sms/play.html?game=psychfox',
-                        },
-                        {
-                          name: 'castle.bat',
-                          link: '../systems/sms/play.html?game=castle',
-                        },
-                        {
-                          name: 'sonic.bat',
-                          link: '../systems/sms/play.html?game=sonic',
-                        },
-                      ],
-                    },
-                  ],
-                  files: [
-                    {
-                      name: 'menu.bat',
-                      data: 'echo off\ncd games\nmenu\n',
-                    },
-                  ],
-                },
+                name: 'SMS',
+                directories: [
+                  {
+                    name: 'GAMES',
+                    directories: [],
+                    files: [
+                      {
+                        name: 'menu.bat',
+                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SEGA  MASTER  SYSTEM  GAMES         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Alex Kidd            (1986)  ALEXKIDD º\necho                 º   2.  Fantasy Zone         (1986)  FANTZONE º\necho                 º   3.  Wonder Boy           (1986)  WONDRBOY º\necho                 º   4.  Out Run              (1987)  OUTRUN   º\necho                 º   5.  Phantasy Star        (1988)  PHANTSTR º\necho                 º   6.  R-Type               (1988)  RTYPE    º\necho                 º   7.  Shinobi              (1988)  SHINOBI  º\necho                 º   8.  Psycho Fox           (1989)  PSYCHFOX º\necho                 º   9.  Castle of Illusion   (1990)  CASTLE   º\necho                 º  10.  Sonic the Hedgehog   (1991)  SONIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                      },
+                      {
+                        name: '0.bat',
+                        data: 'echo off\ncd ..\ncd ..\nmenu\n',
+                      },
+                      {
+                        name: '1.bat',
+                        data: 'alexkidd\n',
+                      },
+                      {
+                        name: '2.bat',
+                        data: 'fantzone\n',
+                      },
+                      {
+                        name: '3.bat',
+                        data: 'wondrboy\n',
+                      },
+                      {
+                        name: '4.bat',
+                        data: 'outrun\n',
+                      },
+                      {
+                        name: '5.bat',
+                        data: 'phantstr\n',
+                      },
+                      {
+                        name: '6.bat',
+                        data: 'rtype\n',
+                      },
+                      {
+                        name: '7.bat',
+                        data: 'shinobi\n',
+                      },
+                      {
+                        name: '8.bat',
+                        data: 'psychfox\n',
+                      },
+                      {
+                        name: '9.bat',
+                        data: 'castle\n',
+                      },
+                      {
+                        name: '10.bat',
+                        data: 'sonic\n',
+                      },
+                      {
+                        name: 'alexkidd.bat',
+                        link: '../systems/sms/play.html?game=alexkidd',
+                      },
+                      {
+                        name: 'fantzone.bat',
+                        link: '../systems/sms/play.html?game=fantzone',
+                      },
+                      {
+                        name: 'wondrboy.bat',
+                        link: '../systems/sms/play.html?game=wondrboy',
+                      },
+                      {
+                        name: 'outrun.bat',
+                        link: '../systems/sms/play.html?game=outrun',
+                      },
+                      {
+                        name: 'phantstr.bat',
+                        link: '../systems/sms/play.html?game=phantstr',
+                      },
+                      {
+                        name: 'rtype.bat',
+                        link: '../systems/sms/play.html?game=rtype',
+                      },
+                      {
+                        name: 'shinobi.bat',
+                        link: '../systems/sms/play.html?game=shinobi',
+                      },
+                      {
+                        name: 'psychfox.bat',
+                        link: '../systems/sms/play.html?game=psychfox',
+                      },
+                      {
+                        name: 'castle.bat',
+                        link: '../systems/sms/play.html?game=castle',
+                      },
+                      {
+                        name: 'sonic.bat',
+                        link: '../systems/sms/play.html?game=sonic',
+                      },
+                    ],
+                  },
+                ],
+                files: [
+                  {
+                    name: 'menu.bat',
+                    data: 'echo off\ncd games\nmenu\n',
+                  },
+                ],
+              },
             ],
             files: [
               {
@@ -888,7 +888,7 @@ var fs = [
                           },
                           {
                             name: 'chuckegg.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=AnF/ChuckieEgg.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=AnF/ChuckieEgg.ssd&autoboot&GP.FIRE=SPACE&GP.D12=A&GP.D13=Z&GP.D14=COMMA&GP.D15=PERIOD',
                           },
                           {
                             name: 'repton.bat',
@@ -2622,7 +2622,7 @@ var fs = [
                             files: [
                               {
                                 name: 'menu.bat',
-                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SINCLAIR  ZX81  -  1K CHESS         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º     Choose the computer\'s opening move      º\necho                 º                                             º\necho                 º   1.  Queen\'s Pawn         (1.d4)  1KCHESSQ º\necho                 º                                             º\necho                 º   2.  King\'s Pawn          (1.e4)  1KCHESSK º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SINCLAIR  ZX81  -  1K CHESS         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º     Choose the computer's opening move      º\necho                 º                                             º\necho                 º   1.  Queen's Pawn         (1.d4)  1KCHESSQ º\necho                 º                                             º\necho                 º   2.  King's Pawn          (1.e4)  1KCHESSK º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                               },
                               {
                                 name: '0.bat',

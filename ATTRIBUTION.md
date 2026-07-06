@@ -46,7 +46,7 @@ fork rather than the bundle.
 | --- | --- | --- | --- |
 | `systems/apple1/` | apple1js | whscullin | MIT |
 | `systems/apple2/` | apple2js | whscullin | MIT |
-| `systems/bbcmicro/`, `systems/bbcmaster/` | jsbeeb (same engine in two bundles — the Micro bundle boots Model B, the Master bundle boots `model=Master`) | Matt Godbolt | GPL-3.0-or-later |
+| `systems/bbcmicro/`, `systems/bbcmaster/` | jsbeeb, built from the [`Retro-Jack/jsbeeb`](https://github.com/Retro-Jack/jsbeeb) fork (same engine in two bundles — the Micro bundle boots Model B, the Master bundle boots `model=Master`; local changes in the fork's `GENX-CHANGES.md`) | Matt Godbolt | GPL-3.0-or-later |
 | `systems/electron/` | ElkJS | Darren Coles (6502 core ported from Tom Walker's Elkulator) | © Darren Coles 2013 (no SPDX header in source) |
 | `systems/jsnes/` | EmulatorJS + FCEUmm libretro core | EmulatorJS team; libretro/libretro-fceumm | GPL-3.0 (EmulatorJS), GPL-2.0 (FCEUmm) |
 | `systems/stella/` | EmulatorJS + Stella (`stella2014`) libretro core | EmulatorJS team; stella-emu / libretro | GPL-3.0 (EmulatorJS), GPL-2.0 (Stella) |
@@ -108,6 +108,17 @@ Both verified June 2026. We mirror the `nightly` builds of these two instead
   The chips snapshot is a self-contained struct copy (no `emscripten_sleep`),
   so unlike atari800 the adapter calls it straight from the button — no
   frame-loop deferral.
+- **jsbeeb (BBC Micro / Master)** — built from the
+  [`Retro-Jack/jsbeeb`](https://github.com/Retro-Jack/jsbeeb) fork (a pure-JS
+  Vite build; the pre-built `dist/assets/` engine files in both bundles come
+  from `npm run build` on the fork's `main` branch). Two local changes, both
+  documented in the fork's `GENX-CHANGES.md`: (1) **d-pad gamepad remap** —
+  four `GP.D12`–`GP.D15` cases in `src/gamepads.js` so a launch URL can map the
+  d-pad buttons to any BBC key (jsbeeb hardwires them to Z/X/:/? with no remap
+  hook); this is a general improvement offered upstream on the fork's clean
+  `gamepad-dpad-remap` branch. (2) **monitor inset** — `src/main.js`
+  `bottomReservedSize` widened 68→120 for the sitewide-wallpaper breathing room
+  (GenX-local, not upstreamed).
 - **libretro-o2em** — built from upstream libretro/libretro-o2em via
   `systems/odyssey2/build.sh`. Custom SDL2/emscripten frontend
   (`frontend.c`) statically linked with the libretro core; reproducible
