@@ -1,6 +1,6 @@
 # Booting a Museum in a Browser Tab
 
-### How GenX-DOS turns a fake DOS prompt into a 32-system emulation arcade — with no installer, no plugins, and not a single byte fetched at runtime
+### How GenX-DOS turns a fake DOS prompt into a 33-system emulation arcade — with no installer, no plugins, and not a single byte fetched at runtime
 
 ---
 
@@ -22,13 +22,13 @@ The defining constraint is almost monastic: **static, no build step, no runtime 
 
 This sounds limiting. It's actually the smartest decision in the project. A preservation site whose whole point is "this old software still runs" can't afford to depend on a CDN that might 404 in 2031, or a build toolchain that bit-rots, or a third-party emulator host that goes dark. By refusing all of it, GenX-DOS becomes the thing it's preserving: a self-contained artifact you could burn to a disc and run in a decade.
 
-It also means the repository is a beast — around 135 MB checked out, closer to 445 MB cloned with its full history — with no single bundle dominating: the two BBC builds (`bbcmicro` and `bbcmaster`, ~25 MB each since the jsbeeb split) sit at the top. And fourteen of the bundles had to be talked into *sharing* one copy of the EmulatorJS framework instead of each dragging its own, a move that saved roughly 25 MB. Frugality and excess, side by side.
+It also means the repository is a beast — around 138 MB checked out, closer to 450 MB cloned with its full history — with no single bundle dominating: the two BBC builds (`bbcmicro` and `bbcmaster`, ~25 MB each since the jsbeeb split) sit at the top. And fourteen of the bundles had to be talked into *sharing* one copy of the EmulatorJS framework instead of each dragging its own, a move that saved roughly 25 MB. Frugality and excess, side by side.
 
 ## Where the week-long fights happened
 
-Plugging in eighteen emulator engines to cover thirty-two sub-systems — from the Apple I to the Sega Game Gear — sounds like a lot of glue code. Some of it was. The interesting parts were the engines that fought back.
+Plugging in nineteen emulator engines to cover thirty-three sub-systems — from the Apple I to the Sega Game Gear — sounds like a lot of glue code. Some of it was. The interesting parts were the engines that fought back.
 
-Four emulators had to be **recompiled from source to WebAssembly** because no suitable browser build existed: the Atari 800, the Magnavox Odyssey², the TRS-80 Model I, and the Amstrad CPC. That's not configuration work; that's wrangling Emscripten toolchains. And then there was the save-state problem, which is the kind of bug that earns a war story.
+Five emulators had to be **recompiled from source to WebAssembly** because no suitable browser build existed: the Atari 800, the Magnavox Odyssey², the TRS-80 Model I, the Amstrad CPC — and, most drastically, the TRS-80 Model 100, where a whole FLTK desktop emulator (VirtualT) was cut down to just its 8085 core and run headless behind a hand-written browser front end. That's not configuration work; that's wrangling Emscripten toolchains. And then there was the save-state problem, which is the kind of bug that earns a war story.
 
 The Atari build wanted in-browser save states, but the function that serialises the machine's state internally calls `emscripten_sleep` — which makes it an *asyncify* operation. The trouble is that the emulator's main loop is *already* a suspended asyncify operation. Call the save routine from a button click and you get two concurrent stack unwinds sharing one asyncify stack, stomping each other into a flood of "memory access out of bounds." The fix was to defer the save through the frame loop so it never runs concurrently with the loop it's part of. That is a genuinely subtle piece of systems engineering hiding behind a button that just says *Save*.
 
