@@ -7,7 +7,7 @@ A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs
   <img src="docs/screenshot.png" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
 </p>
 
-We bundle 18 emulator engines covering 32 sub-systems between them, from the Apple I to the Sega Master System.
+We bundle 19 emulator engines covering 33 sub-systems between them, from the Apple I to the Sega Master System.
 
 **Scope:** 8-bit *feel* — anything with the look and sound of an 8-bit machine (sprite-based, chiptune, low-res), including the 8-bit-feel handhelds (Game Boy/GBC, Game Gear, Lynx) even where they run into the late 90s. The cutoff is the *aesthetic*, not the calendar or strict CPU width; 16-bit home consoles/computers (Genesis, SNES, Amiga, ST) stay out. See the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected.
 
@@ -92,6 +92,7 @@ systems/
   jtyone/                 Sinclair ZX81       — JtyOne + 10 .p tapes
   xroar/                  Tandy CoCo          — XRoar WASM + 10 .ccc carts
   trs80/                  Tandy TRS-80 Model I — sdltrs built from source to WASM + 10 .cmd games
+  m100/                   Tandy Model 100     — VirtualT core extracted to WASM + 10 .ba games (portable)
   js99er/                 TI-99/4A            — vanilla-JS js99er + 10 .rpk carts
   atari400/               Atari 400           — atari800 WASM, boots OS-B
   atari800/               Atari 800XL         — atari800 WASM, boots OS-XL
@@ -133,6 +134,7 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | ZX81      | JtyOne                               | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar                 | `play.html?game=<key>`                   |
 | TRS-80 Model I | jengun/sdltrs (our own WASM build) | `play.html?game=<key>`                |
+| Model 100 | Hurd & Pettit/VirtualT (our own core-only WASM build) | `play.html?game=<key>`     |
 | TI-99/4A  | Rasmus-M/js99er (vanilla-JS build)   | `play.html?game=<key>`                   |
 | Atari 400 / 800XL | atari800/atari800 (our own WASM build; split into `atari400/` + `atari800/` bundles) | `play.html?game=<key>` |
 | VIC-20 / MAX / C64 / C16 / Plus/4 / C128 | EmulatorJS + VICE libretro family | `play.html?game=<key>` |

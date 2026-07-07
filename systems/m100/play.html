@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../_shared/favicon.ico"><link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tandy TRS-80 Model 100</title>
+  <style>
+    /* Wood-block backdrop the Model 100 sits against, filling the viewport. */
+    html, body {
+      margin: 0; height: 100%;
+      background: #140d07 url('../_shared/textures/woodblock.jpg') center / cover fixed;
+    }
+    body { display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+    /* Bezel: the Model 100 shot on a desk (Model100.png, 1924x1084), scaled to
+       fit the viewport. The LCD in the photo is an OPAQUE black rectangle, so
+       the live canvas is layered ON TOP of it (highest z-index), positioned to
+       the measured cutout: left 31.5% top 21.2% width 32.4% height 15.9%. */
+    .bezel-wrap {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1924 / 1084));
+      aspect-ratio: 1924 / 1084;
+    }
+    .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 1; }
+    .screen-bg, #canvas {
+      position: absolute; left: 31.5%; top: 21.2%; width: 32.4%; height: 15.9%;
+    }
+    .screen-bg { background: #000; z-index: 2; }
+    #canvas { z-index: 3; image-rendering: pixelated; background: #000; outline: none; }
+  </style>
+  <link rel="stylesheet" href="../_shared/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <script defer src="../_shared/genx-controls-link.js"></script>
+  <script defer src="../_shared/genx-repo-link.js"></script>
+  <link rel="preload" href="virtualt.wasm" as="fetch" crossorigin>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This is a client-side DOS terminal and emulator suite.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+
+  <div class="bezel-wrap">
+    <img class="bezel-img" src="../_shared/bezels/Model100.png" alt="Tandy TRS-80 Model 100 portable computer">
+    <div class="screen-bg"></div>
+    <canvas id="canvas" tabindex="0"></canvas>
+  </div>
+
+  <script>
+    // Fetch games/<name>.ba from ?game= and write it to /game.ba in MEMFS before
+    // the emulator's main() runs; frontend_sdl.c loads /game.ba and auto-runs it.
+    // No ?game= (the bare-boot menu entry) => nothing written => plain Model 100.
+    (async () => {
+      var game = new URLSearchParams(location.search).get('game');
+      var BKEY = 'genx-m100-ram';   // battery-backed RAM slot (Startup Menu only)
+      async function grab(u) {
+        try { var r = await fetch(u); if (r.ok) return new Uint8Array(await r.arrayBuffer()); } catch (e) {}
+        return null;
+      }
+      var bytes = null, adrs = null, note = null, savedRam = null;
+      if (game) {
+        bytes = await grab('games/' + game.toLowerCase() + '.ba');
+      } else {
+        // Startup Menu (bare boot): restore battery-backed RAM if we have it;
+        // otherwise seed empty ADRS.DO / NOTE.DO so ADDRSS/SCHEDL open first time.
+        try {
+          var stored = localStorage.getItem(BKEY);
+          if (stored) savedRam = Uint8Array.from(atob(stored), function (c) { return c.charCodeAt(0); });
+        } catch (e) {}
+        if (!savedRam) { adrs = await grab('adrs.do'); note = await grab('note.do'); }
+      }
+      window.Module = {
+        canvas: document.getElementById('canvas'),
+        preRun: [function () {
+          if (bytes) Module.FS.writeFile('/game.ba', bytes);
+          if (adrs) Module.FS.writeFile('/adrs.do', adrs);
+          if (note) Module.FS.writeFile('/note.do', note);
+        }],
+      };
+      var s = document.createElement('script');
+      s.src = 'virtualt.js';
+      document.body.appendChild(s);
+
+      // Battery backup for the Startup Menu: once the machine has booted, restore
+      // any saved RAM, then persist the 32 KB of RAM to storage every 10 s and on
+      // close — so your files, notes and typed-in programs survive between visits.
+      if (!game) {
+        function ready() { return window.Module && Module._gx_ram_ptr && Module.HEAPU8; }
+        function saveRam() {
+          if (!ready()) return;
+          var p = Module._gx_ram_ptr(), n = Module._gx_ram_size();
+          var ram = Module.HEAPU8.subarray(p, p + n), b = '';
+          for (var i = 0; i < n; i++) b += String.fromCharCode(ram[i]);
+          try { localStorage.setItem(BKEY, btoa(b)); } catch (e) {}
+        }
+        setTimeout(function arm() {
+          if (!ready()) { setTimeout(arm, 300); return; }
+          if (savedRam) {                              // restore = overwrite RAM + warm reboot
+            Module.HEAPU8.set(savedRam, Module._gx_ram_ptr());
+            Module._gx_warm_reset();
+          }
+          setInterval(saveRam, 10000);
+          window.addEventListener('beforeunload', saveRam);
+        }, 2500);
+      }
+    })();
+  </script>
+</body>
+</html>

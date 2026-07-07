@@ -135,6 +135,17 @@ Both verified June 2026. We mirror the `nightly` builds of these two instead
   responsive. The Model I Level II BASIC ROM is embedded via `--embed-file`.
   sdltrs ships a built-in save-state (`trs_state_save`/`trs_state_load`) that
   isn't wired to the page yet.
+- **VirtualT (Tandy TRS-80 Model 100)** — Stephen Hurd & Ken Pettit's VirtualT
+  (BSD, © 2004; [sourceforge.net/projects/virtualt](https://sourceforge.net/projects/virtualt/))
+  is a full FLTK desktop emulator; this bundle is built from its **core only**.
+  The FLTK-free 8085 CPU, memory, HD44102 LCD and keyboard-matrix sources are
+  compiled to WASM with emscripten (`-sASYNCIFY` + `-sUSE_SDL=2`) behind a small
+  headless SDL2 frontend (`frontend_sdl.c`) plus headless display / file / clock /
+  stub units written for this project; the ~40 FLTK GUI/IDE/debugger files are
+  dropped. Because so much of the original is stripped away this is an
+  **acknowledgement, not a fork** — VirtualT's BSD licence and the original
+  copyright are preserved in the retained sources. The 32 KB Model 100 ROM is
+  embedded via `--embed-file`.
 
 ---
 
@@ -204,6 +215,27 @@ glad to say so.
   keys, and which features each port actually has (no Thargoids or suns on the
   Electron, the Master's fractional scoring). A monumental preservation effort,
   freely shared. Thank you.
+
+- **David D. Busch — *25 Games for your TRS-80 Model 100*** (TAB Books, 1984).
+  The Model 100 bundle's games are hand-transcribed BASIC type-in listings from
+  this book, and its per-game chapters are the authority behind those gamedocs —
+  the controls, scoring and how-to-play. A lovely artefact of the type-in era,
+  leaned on here with thanks. As with the other bundled game code, these listings
+  are included on a preservation / personal-use basis; a rights holder who wants
+  them removed can open an issue.
+
+- **Tandy — *TRS-80 Model 100 Owner's Manual*** (Radio Shack, 1983;
+  [archive.org](https://archive.org/details/trs-80-m-100-user-guide)). The authority
+  behind the Model 100 controls page — the exact TEXT / ADDRSS / SCHEDL usage and
+  function-key labels (Find, Load, Save, Sel, Copy, Cut, Menu; and that ADDRSS and
+  SCHEDL *find* records you enter in TEXT) come straight from it rather than memory.
+
+- **dplassgit** — proposed the Tandy Model 100 as a GenX-DOS platform in
+  [discussion #2, "Tandy 100?"](https://github.com/Retro-Jack/GenX-DOS/discussions/2)
+  (*"Based on the Intel 8085 CPU… it definitely has the 8-bit feel"*). The whole
+  platform exists because of that suggestion — and thanks to the above book, we
+  were able to ship the usual amount of games, even when the primary source
+  failed. Thanks for the nudge.
 
 ---
 

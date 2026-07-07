@@ -3108,11 +3108,123 @@ var fs = [
                       },
                     ],
                   },
-                ],
+                  {
+                    name: 'M100',
+                    directories: [
+                      {
+                        name: 'GAMES',
+                        directories: [],
+                        files: [
+                      {
+                        name: 'menu.bat',
+                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           TRS-80  MODEL 100  GAMES          º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bowling              (1984)  BOWLING  º\necho                 º   2.  Codebreaker          (1984)  CODEBREK º\necho                 º   3.  ELIZA                (1984)  ELIZA    º\necho                 º   4.  Four Seasons         (1984)  FSNSOL   º\necho                 º   5.  Invisible Maze       (1984)  INVMAZE  º\necho                 º   6.  Paper Rock Scissors  (1984)  PRS      º\necho                 º   7.  Road Rally           (1984)  RALLY    º\necho                 º   8.  Skydiver             (1984)  SKYDIVER º\necho                 º   9.  Slot Machine         (1984)  SLOTS    º\necho                 º  10.  Worm Hole (Snake)    (1984)  WORMHOLE º\necho                 º                                             º\necho                 º  11.  Startup Menu                 M100     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                      },
+                      {
+                        name: '0.bat',
+                        data: 'echo off\ncd ..\ncd ..\nmenu\n',
+                      },
+                      {
+                        name: '1.bat',
+                        data: 'bowling\n',
+                      },
+                      {
+                        name: '2.bat',
+                        data: 'codebrek\n',
+                      },
+                      {
+                        name: '3.bat',
+                        data: 'eliza\n',
+                      },
+                      {
+                        name: '4.bat',
+                        data: 'fsnsol\n',
+                      },
+                      {
+                        name: '5.bat',
+                        data: 'invmaze\n',
+                      },
+                      {
+                        name: '6.bat',
+                        data: 'prs\n',
+                      },
+                      {
+                        name: '7.bat',
+                        data: 'rally\n',
+                      },
+                      {
+                        name: '8.bat',
+                        data: 'skydiver\n',
+                      },
+                      {
+                        name: '9.bat',
+                        data: 'slots\n',
+                      },
+                      {
+                        name: '10.bat',
+                        data: 'wormhole\n',
+                      },
+                      {
+                        name: '11.bat',
+                        data: 'm100\n',
+                      },
+                      {
+                        name: 'bowling.bat',
+                        link: '../systems/m100/play.html?game=bowling',
+                      },
+                      {
+                        name: 'codebrek.bat',
+                        link: '../systems/m100/play.html?game=codebrek',
+                      },
+                      {
+                        name: 'eliza.bat',
+                        link: '../systems/m100/play.html?game=eliza',
+                      },
+                      {
+                        name: 'fsnsol.bat',
+                        link: '../systems/m100/play.html?game=fsnsol',
+                      },
+                      {
+                        name: 'invmaze.bat',
+                        link: '../systems/m100/play.html?game=invmaze',
+                      },
+                      {
+                        name: 'prs.bat',
+                        link: '../systems/m100/play.html?game=prs',
+                      },
+                      {
+                        name: 'rally.bat',
+                        link: '../systems/m100/play.html?game=rally',
+                      },
+                      {
+                        name: 'skydiver.bat',
+                        link: '../systems/m100/play.html?game=skydiver',
+                      },
+                      {
+                        name: 'slots.bat',
+                        link: '../systems/m100/play.html?game=slots',
+                      },
+                      {
+                        name: 'wormhole.bat',
+                        link: '../systems/m100/play.html?game=wormhole',
+                      },
+                      {
+                        name: 'm100.bat',
+                        link: '../systems/m100/play.html',
+                      },
+                        ],
+                      },
+                    ],
+                    files: [
+                      {
+                        name: 'menu.bat',
+                        data: 'echo off\ncd games\nmenu\necho.\n',
+                      },
+                    ],
+                  },                ],
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              TANDY  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  TRS-80 Model I       (1977)  TRS80    º\necho                 º                                             º\necho                 º   2.  Color Computer       (1980)  COCO     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              TANDY  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  TRS-80 Model I       (1977)  TRS80    º\necho                 º                                             º\necho                 º   2.  Color Computer       (1980)  COCO     º\necho                 º                                             º\necho                 º   3.  Model 100 (Portable) (1983)  M100     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -3121,6 +3233,10 @@ var fs = [
                   {
                     name: '2.bat',
                     data: 'cd coco\ncd games\nmenu\n',
+                  },
+                  {
+                    name: '3.bat',
+                    data: 'cd m100\ncd games\nmenu\n',
                   },
                   {
                     name: '0.bat',

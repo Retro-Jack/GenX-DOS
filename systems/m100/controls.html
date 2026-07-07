@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../_shared/favicon.ico"><link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tandy TRS-80 Model 100 Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Tandy · TRS-80 Model 100 (Portable Computer)</div>
+      <h1>TRS-80 Model 100 — Controls</h1>
+    </div>
+
+    <p class="intro">A Radio Shack TRS-80 Model 100 — the 1983 portable with a full-travel keyboard, a 240&nbsp;&times;&nbsp;64 monochrome LCD and Microsoft BASIC in ROM — running in your browser. Each menu entry loads a single Model 100 program into the machine's RAM and starts it automatically; there's no cassette or wait. The bare "Model 100" entry boots the machine with nothing loaded, straight to its own menu.</p>
+
+    <h2>Keyboard</h2>
+    <p>The Model 100's keyboard maps straight onto your PC's — letters, numbers and punctuation (the machine composes its own shifted characters, so you just type), and the obvious special keys are right where you'd expect: <kbd>Enter</kbd>, <kbd>Shift</kbd>, <kbd>Ctrl</kbd>, <kbd>Tab</kbd>, <kbd>Esc</kbd>, <kbd>Backspace</kbd>, the arrow keys and <kbd>F1</kbd>–<kbd>F8</kbd>. Only two Model 100 keys sit somewhere non-obvious:</p>
+    <table>
+      <tr><th>Model 100</th><th>PC key</th><th>What it does</th></tr>
+      <tr><td><kbd>GRPH</kbd></td><td><kbd>Left&nbsp;Alt</kbd></td><td>Graphics characters</td></tr>
+      <tr><td><kbd>CODE</kbd></td><td><kbd>Right&nbsp;Alt</kbd></td><td>Accented / code characters</td></tr>
+    </table>
+
+    <h2>The built-in applications</h2>
+    <p>Choose the bare <strong>Startup Menu</strong> entry and you get the Model 100 as it shipped — its own menu of ROM applications. Move the cursor with the arrow keys, press <kbd>ENTER</kbd> to launch one, and <kbd>F8</kbd> (labelled <strong>Menu</strong>) to come back. Press <strong>LABEL</strong> to show the current function-key definitions along the bottom line, and <kbd>SHIFT</kbd>+<kbd>Pause/Break</kbd> to cancel an operation.</p>
+
+    <p><strong>TEXT</strong> is the word processor. Selecting it asks <em>"File to edit?"</em> — type a name (up to six letters) and press <kbd>ENTER</kbd> to create a document called <code>&lt;name&gt;.DO</code>, then type away. Its function keys:</p>
+    <table>
+      <tr><th>Key</th><th>Action in TEXT</th></tr>
+      <tr><td><kbd>F1</kbd> Find</td><td>Type a string; the cursor jumps to the first match</td></tr>
+      <tr><td><kbd>F7</kbd> Sel</td><td>Mark the start of a selection, then move the cursor to extend it</td></tr>
+      <tr><td><kbd>F5</kbd> Copy · <kbd>F6</kbd> Cut</td><td>Copy or cut the selection; the <strong>PASTE</strong> key inserts it back</td></tr>
+      <tr><td><kbd>F2</kbd> Load · <kbd>F3</kbd> Save</td><td>Cassette load / save — no effect in the browser</td></tr>
+      <tr><td><kbd>F8</kbd> Menu</td><td>Save the document and return to the main menu</td></tr>
+    </table>
+
+    <p><strong>ADDRSS</strong> (address book) and <strong>SCHEDL</strong> (scheduler) are <em>finders</em>, not editors — you type the data in TEXT, then they search it:</p>
+    <ol>
+      <li><strong>Enter the records in TEXT.</strong> Name the file <code>ADRS</code> for the address book or <code>NOTE</code> for the scheduler. Each record is one entry — a name, phone and address; or a date, time and note — and you press <kbd>ENTER</kbd> to end each one, then <kbd>F8</kbd> to save and exit.</li>
+      <li><strong>Then find them.</strong> Open <strong>ADDRSS</strong> or <strong>SCHEDL</strong>, press <kbd>F1</kbd> Find, type any word from an entry and press <kbd>ENTER</kbd> — every matching record appears (page through with the <strong>More</strong> / <strong>Quit</strong> keys if there are several). <kbd>F5</kbd> prints the results instead, and <kbd>F8</kbd> returns to the menu.</li>
+    </ol>
+    <p class="note-plain"><strong>Record format:</strong> there's barely any — one record per line (press <kbd>ENTER</kbd> to end each), and the pieces within it can be in any order, because Find simply matches any text in the line. Just make sure whatever you'll search on — a surname, a date — is somewhere in the entry.</p>
+    <table>
+      <tr><th>File</th><th>Example record (one line)</th></tr>
+      <tr><td><code>ADRS</code> (ADDRSS)</td><td><code>Flintstone, Fred&nbsp;&nbsp;&nbsp;555&nbsp;2468&nbsp;&nbsp;&nbsp;301 Cobblestone Way, Bedrock</code></td></tr>
+      <tr><td><code>NOTE</code> (SCHEDL)</td><td><code>Fri 18:00&nbsp;&nbsp;&nbsp;Bowling night with Barney</code></td></tr>
+    </table>
+    <p class="note-plain">Finding <em>Flintstone</em> or <em>Barney</em> then pulls the whole record up.</p>
+
+    <h2>Saving your work &amp; managing files</h2>
+    <p>The <strong>main menu is your filing cabinet</strong> — every document and program you make shows up on it. Move the cursor with the arrow keys and press <kbd>ENTER</kbd> to open any of them (or the built-in apps). The menu has no file keys of its own; you save, load and delete through <strong>BASIC</strong> and <strong>TEXT</strong>:</p>
+    <table>
+      <tr><th>Command / key</th><th>What it does</th></tr>
+      <tr><td>BASIC · <code>SAVE"NAME"</code></td><td>Save the current BASIC program as <code>NAME.BA</code> — it appears on the menu</td></tr>
+      <tr><td>BASIC · <code>LOAD"NAME"</code> · <code>RUN"NAME"</code></td><td>Load a saved program back, or load and run it in one go</td></tr>
+      <tr><td>BASIC · <code>FILES</code></td><td>List everything currently stored</td></tr>
+      <tr><td>BASIC · <code>KILL"NAME.DO"</code></td><td>Delete a file — give the full name <em>and</em> extension in quotes (<code>.DO</code> for documents, <code>.BA</code> for programs)</td></tr>
+      <tr><td>TEXT · <kbd>F8</kbd> Menu</td><td>Saves the open document to memory and returns to the menu</td></tr>
+    </table>
+    <p class="note-plain">One gotcha worth knowing: the Model 100 stores file names in <strong>upper case</strong>, and <code>KILL</code> matches them <em>exactly</em> — so type the name in capitals (tap <strong>Caps&nbsp;Lock</strong> first), or you'll get a "file not found" (<code>FF</code>) error even though the file's right there on the menu.</p>
+    <p class="note-plain">The <strong>Load</strong> and <strong>Save</strong> function keys in TEXT — and BASIC's <code>CLOAD</code> / <code>CSAVE</code> — drive a cassette recorder, which the browser has no equivalent for, so they do nothing here. You don't need them: <kbd>F8</kbd> and <code>SAVE</code> keep your work in memory, and on the Startup Menu the battery backup below carries it between sessions.</p>
+
+    <p class="note-plain"><strong>The Startup Menu has battery backup.</strong> Like the real Model 100's battery-backed RAM, whatever you create here — documents in TEXT, address-book and scheduler entries, a BASIC program you type in — is saved and comes back the next time you open it. But it's <strong>entirely browser-contingent</strong>: it lives in this browser's local storage on this device, so it survives a refresh or reopening the page, yet it's gone if you clear your browsing data, it won't follow you to another browser or computer, and in a private / incognito window it only lasts until you close that window. The games are the exception — each one launches fresh every time.</p>
+
+    <p class="note-plain">Per-game controls are on each game's own page. Click a game in the menu and the corner <strong>controls</strong> link takes you to it.</p>
+  </div>
+</body>
+</html>
