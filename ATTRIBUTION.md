@@ -145,7 +145,9 @@ Both verified June 2026. We mirror the `nightly` builds of these two instead
   dropped. Because so much of the original is stripped away this is an
   **acknowledgement, not a fork** — VirtualT's BSD licence and the original
   copyright are preserved in the retained sources. The 32 KB Model 100 ROM is
-  embedded via `--embed-file`.
+  embedded via `--embed-file`. The five headless units (`frontend_sdl.c` plus the
+  display / file / clock / stub replacements), a reproducible `build.sh`,
+  `BUILDING-WASM.md` and VirtualT's BSD licence are in `systems/m100/src/`.
 
 ---
 
