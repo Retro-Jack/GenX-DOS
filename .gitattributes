@@ -1,0 +1,3 @@
+# Model 100 native document files (ADRS.DO / NOTE.DO) are TEXT-app data, not
+# Stata source — keep them out of GitHub's language statistics.
+systems/m100/*.do linguist-detectable=false
