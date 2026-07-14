@@ -170,6 +170,7 @@ Prefer a narrative read? **[Booting a Museum in a Browser Tab](docs/tech_article
 - **[Font System](https://github.com/Retro-Jack/GenX-DOS/wiki/Font-System)** — how we draw the 12×12 CP437 glyphs
 - **[Emulators](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators)** — index of every engine, each with its own page
 - **[Customising the Filesystem](https://github.com/Retro-Jack/GenX-DOS/wiki/Customising-the-Filesystem)** — adding entries, batches, menus
+- **[Your Data](https://github.com/Retro-Jack/GenX-DOS/wiki/Your-Data)** — exactly what GenX-DOS keeps in your browser's local storage, and when (nothing leaves your machine)
 
 ## License
 
