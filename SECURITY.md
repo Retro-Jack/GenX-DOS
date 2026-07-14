@@ -3,8 +3,11 @@
 ## Scope
 
 GenX-DOS is a static, client-side site — no server, no backend, no accounts,
-and no personal data is collected. Save-states live only in your own browser's
-IndexedDB. The realistic security surface is:
+and no personal data is collected. Anything the site keeps (save-states, the
+Model 100's battery RAM, emulator settings) lives only in your own browser and
+never leaves your machine — see
+[Your Data](https://github.com/Retro-Jack/GenX-DOS/wiki/Your-Data) for the full
+list and when each is written. The realistic security surface is:
 
 - client-side issues in the hand-written terminal code under `prompt/` — e.g. a
   way to inject or execute unintended script through the simulated DOS prompt;

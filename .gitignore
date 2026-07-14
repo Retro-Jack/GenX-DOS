@@ -12,3 +12,7 @@ __MACOSX/
 .fseventsd
 Icon?
 
+
+# Local Claude Code worktrees/settings and dev-only probe
+.claude/
+_paddiag.html
