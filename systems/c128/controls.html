@@ -13,11 +13,11 @@
       <h1>Commodore 128 — Controls</h1>
     </div>
 
-    <p class="intro">The Commodore 128 in your browser, configured in <strong>native mode</strong> (BASIC 7.0, 128 KB RAM, dual VIC-IIe + VDC video chips, 8502 + Z80 CPUs). The 128 famously had three personalities: this bundle skips C64 compatibility mode (we have <a href="../c64/play.html">a dedicated C64 bundle</a> for that) and skips CP/M mode, focusing on the 128's distinctive native features. Click the canvas first so the emulator receives keyboard input.</p>
+    <p class="intro">The Commodore 128 in your browser, configured in <strong>native mode</strong> (BASIC 7.0, 128 KB RAM, dual VIC-IIe + VDC video chips, 8502 + Z80 CPUs). The 128 famously had three personalities: this bundle skips C64 compatibility mode (we have <a href="../c64/play.html">a dedicated C64 bundle</a> for that) and skips CP/M mode, focusing on the 128's distinctive native features. Click the game area to enable sound and controls.</p>
 
     <p class="note">Each game's <code>games.json</code> entry sets the right video chip up-front — VIC-IIe (40 columns, same as the C64) for action games and VDC (80 columns) for the 80-column titles (Star Fleet I, Uniquest, Invaders and the other VDC homebrews) that need the wider display. You can manually swap chips at any time by pressing <kbd>F7</kbd> (the C128's "40/80 DISPLAY" toggle key).</p>
 
-    <p class="note"><strong>On first load, click the canvas once</strong> — the C128 KERNAL takes ~2 seconds to boot (RAM test, dual-video init, BASIC 7.0 setup) and the browser's audio context can't start without a user gesture, so the boot stays frozen on whatever frame it reached until you click. After that single click, boot proceeds normally and finishes at the <code>READY.</code> prompt.</p>
+    <p class="note"><strong>On first load, click the game area to enable sound and controls</strong> — the C128 KERNAL takes ~2 seconds to boot (RAM test, dual-video init, BASIC 7.0 setup) and the browser's audio context can't start without a user gesture, so the boot stays frozen on whatever frame it reached until you click. After that single click, boot proceeds normally and finishes at the <code>READY.</code> prompt.</p>
 
     <p class="note">Every bundled game is a single-disk (or single-file) title — no mid-session disk swaps required. (Trinity and Beyond Zork were on the shortlist but their C128 80-column releases ship as dual-sided 1571 D71 images that prompt for disk B mid-game, so single-disk titles were chosen instead.)</p>
 
