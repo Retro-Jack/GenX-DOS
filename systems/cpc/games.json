@@ -14,11 +14,6 @@
     "rom": "games/elite.dsk",
     "input": "run\"elite\n"
   },
-  "bombjack": {
-    "title": "Bomb Jack (1986 Elite Systems)",
-    "rom": "games/bombjack.dsk",
-    "input": "run\"bomb\n"
-  },
   "dexter": {
     "title": "Get Dexter (1986 ERE Informatique)",
     "rom": "games/dexter.dsk",
@@ -49,5 +44,10 @@
     "rom": "games/starstrike.dsk",
     "input": "run\"3d\n",
     "joystick": true
+  },
+  "tauceti": {
+    "title": "Tau Ceti (1986 CRL)",
+    "rom": "games/tauceti.dsk",
+    "input": "run\"disc\n"
   }
 }
