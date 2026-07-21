@@ -2783,7 +2783,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             AMSTRAD  CPC  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bruce Lee            (1984)  BRUCE    º\necho                 º   2.  Roland on the Run    (1984)  ROLAND   º\necho                 º   3.  3D Starstrike        (1985)  STARSTRK º\necho                 º   4.  Elite                (1985)  ELITE    º\necho                 º   5.  Tau Ceti             (1986)  TAUCETI  º\necho                 º   6.  The Eidolon          (1986)  EIDOLON  º\necho                 º   7.  Head over Heels      (1987)  HEADOVER º\necho                 º   8.  Chase H.Q.           (1989)  CHASEHQ  º\necho                 º   9.  Rick Dangerous       (1989)  RICK     º\necho                 º  10.  3D Construction Kit  (1991)  3DKIT    º\necho                 º                                             º\necho                 º  11.  Locomotive BASIC prompt     BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             AMSTRAD  CPC  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bruce Lee            (1984)  BRUCE    º\necho                 º   2.  Roland on the Run    (1984)  ROLAND   º\necho                 º   3.  3D Starstrike        (1985)  STARSTRK º\necho                 º   4.  Tau Ceti             (1986)  TAUCETI  º\necho                 º   5.  The Eidolon          (1986)  EIDOLON  º\necho                 º   6.  Head over Heels      (1987)  HEADOVER º\necho                 º   7.  Chase H.Q.           (1989)  CHASEHQ  º\necho                 º   8.  Rick Dangerous       (1989)  RICK     º\necho                 º   9.  Prince of Persia     (1990)  PRINCE   º\necho                 º  10.  3D Construction Kit  (1991)  3DKIT    º\necho                 º                                             º\necho                 º  11.  Locomotive BASIC prompt     BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -2803,27 +2803,27 @@ var fs = [
                       },
                       {
                         name: '4.bat',
-                        data: 'elite\n',
-                      },
-                      {
-                        name: '5.bat',
                         data: 'tauceti\n',
                       },
                       {
-                        name: '6.bat',
+                        name: '5.bat',
                         data: 'eidolon\n',
                       },
                       {
-                        name: '7.bat',
+                        name: '6.bat',
                         data: 'headover\n',
                       },
                       {
-                        name: '8.bat',
+                        name: '7.bat',
                         data: 'chasehq\n',
                       },
                       {
-                        name: '9.bat',
+                        name: '8.bat',
                         data: 'rick\n',
+                      },
+                      {
+                        name: '9.bat',
+                        data: 'prince\n',
                       },
                       {
                         name: '10.bat',
@@ -2854,8 +2854,8 @@ var fs = [
                         link: '../systems/cpc/play.html?game=bruce',
                       },
                       {
-                        name: 'elite.bat',
-                        link: '../systems/cpc/play.html?game=elite',
+                        name: 'prince.bat',
+                        link: '../systems/cpc/play.html?game=prince',
                       },
                       {
                         name: 'tauceti.bat',

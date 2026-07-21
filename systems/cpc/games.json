@@ -9,11 +9,6 @@
     "rom": "games/bruce.dsk",
     "input": "run\"bruce\n"
   },
-  "elite": {
-    "title": "Elite (1985 Firebird)",
-    "rom": "games/elite.dsk",
-    "input": "run\"elite\n"
-  },
   "headover": {
     "title": "Head over Heels (1987 Ocean)",
     "rom": "games/headover.dsk",
@@ -49,6 +44,12 @@
     "title": "The Eidolon (1986 Activision)",
     "rom": "games/eidolon.dsk",
     "input": "run\"disc\n",
+    "joystick": true
+  },
+  "prince": {
+    "title": "Prince of Persia (1990 Broderbund)",
+    "rom": "games/prince.dsk",
+    "input": "run\"prince\n",
     "joystick": true
   }
 }
