@@ -48,6 +48,6 @@
   "tauceti": {
     "title": "Tau Ceti (1986 CRL)",
     "rom": "games/tauceti.dsk",
-    "input": "run\"disc\n"
+    "input": "run\"tauceti\n"
   }
 }
