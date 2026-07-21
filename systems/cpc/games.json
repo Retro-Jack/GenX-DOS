@@ -14,11 +14,6 @@
     "rom": "games/elite.dsk",
     "input": "run\"elite\n"
   },
-  "dexter": {
-    "title": "Get Dexter (1986 ERE Informatique)",
-    "rom": "games/dexter.dsk",
-    "input": "run\"disc\n"
-  },
   "headover": {
     "title": "Head over Heels (1987 Ocean)",
     "rom": "games/headover.dsk",
@@ -49,5 +44,11 @@
     "title": "Tau Ceti (1986 CRL)",
     "rom": "games/tauceti.dsk",
     "input": "run\"tauceti\n"
+  },
+  "eidolon": {
+    "title": "The Eidolon (1986 Activision)",
+    "rom": "games/eidolon.dsk",
+    "input": "run\"disc\n",
+    "joystick": true
   }
 }

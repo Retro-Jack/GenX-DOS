@@ -2783,7 +2783,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             AMSTRAD  CPC  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bruce Lee            (1984)  BRUCE    º\necho                 º   2.  Roland on the Run    (1984)  ROLAND   º\necho                 º   3.  3D Starstrike        (1985)  STARSTRK º\necho                 º   4.  Elite                (1985)  ELITE    º\necho                 º   5.  Get Dexter           (1986)  DEXTER   º\necho                 º   6.  Tau Ceti             (1986)  TAUCETI  º\necho                 º   7.  Head over Heels      (1987)  HEADOVER º\necho                 º   8.  Chase H.Q.           (1989)  CHASEHQ  º\necho                 º   9.  Rick Dangerous       (1989)  RICK     º\necho                 º  10.  3D Construction Kit  (1991)  3DKIT    º\necho                 º                                             º\necho                 º  11.  Locomotive BASIC prompt     BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             AMSTRAD  CPC  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bruce Lee            (1984)  BRUCE    º\necho                 º   2.  Roland on the Run    (1984)  ROLAND   º\necho                 º   3.  3D Starstrike        (1985)  STARSTRK º\necho                 º   4.  Elite                (1985)  ELITE    º\necho                 º   5.  Tau Ceti             (1986)  TAUCETI  º\necho                 º   6.  The Eidolon          (1986)  EIDOLON  º\necho                 º   7.  Head over Heels      (1987)  HEADOVER º\necho                 º   8.  Chase H.Q.           (1989)  CHASEHQ  º\necho                 º   9.  Rick Dangerous       (1989)  RICK     º\necho                 º  10.  3D Construction Kit  (1991)  3DKIT    º\necho                 º                                             º\necho                 º  11.  Locomotive BASIC prompt     BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -2807,11 +2807,11 @@ var fs = [
                       },
                       {
                         name: '5.bat',
-                        data: 'dexter\n',
+                        data: 'tauceti\n',
                       },
                       {
                         name: '6.bat',
-                        data: 'tauceti\n',
+                        data: 'eidolon\n',
                       },
                       {
                         name: '7.bat',
@@ -2862,8 +2862,8 @@ var fs = [
                         link: '../systems/cpc/play.html?game=tauceti',
                       },
                       {
-                        name: 'dexter.bat',
-                        link: '../systems/cpc/play.html?game=dexter',
+                        name: 'eidolon.bat',
+                        link: '../systems/cpc/play.html?game=eidolon',
                       },
                       {
                         name: 'headover.bat',
