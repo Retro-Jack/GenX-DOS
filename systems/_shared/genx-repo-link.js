@@ -1,8 +1,10 @@
-// genx-repo-link.js — injects a subtle bottom-centre "licence · source · wiki"
+// genx-repo-link.js — injects a subtle bottom-centre "licence · source · readme"
 // credit onto every emulator entry page. Self-contained: it creates its
 // own <style>, so a page only needs one `<script defer src=...>` include
-// (no matching CSS <link>). The links are absolute GitHub URLs, so the
-// script works at any path depth (play.html, jsbeeb/dist/index.html, …).
+// (no matching CSS <link>). The GitHub links are absolute URLs; the readme
+// link (the on-site feature article) is resolved from this script's own
+// src, so everything works at any path depth (play.html,
+// jsbeeb/dist/index.html, …) and on any host — localhost, Pages, a clone.
 //
 // Sits in a small dark pill (the surround is the wallpaper, not black, so
 // bare text would vanish into it — same reason the controls / save-load
@@ -14,7 +16,15 @@
   if (document.querySelector('.gx-repo-link')) return;
   var REPO = 'https://github.com/Retro-Jack/GenX-DOS';
   var LIC = 'https://github.com/Retro-Jack/GenX-DOS/blob/master/LICENSE.TXT';
-  var WIKI = 'https://github.com/Retro-Jack/GenX-DOS/wiki';
+  // Site root, derived from where this script itself was loaded from.
+  var ROOT =
+    document.currentScript && document.currentScript.src
+      ? document.currentScript.src.replace(
+          /systems\/_shared\/genx-repo-link\.js.*$/,
+          '',
+        )
+      : '/';
+  var ARTICLE = ROOT + 'docs/tech_article.html';
   var s = document.createElement('style');
   s.textContent =
     '.gx-repo-link{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);' +
@@ -34,7 +44,7 @@
     '" target="_blank" rel="noopener">licence</a> · <a href="' +
     REPO +
     '" target="_blank" rel="noopener">source</a> · <a href="' +
-    WIKI +
-    '" target="_blank" rel="noopener">wiki</a>';
+    ARTICLE +
+    '" target="_blank" rel="noopener">readme</a>';
   document.body.appendChild(d);
 })();
