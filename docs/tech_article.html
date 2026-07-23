@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Booting a Museum in a Browser Tab — GenX-DOS</title>
+<link rel="shortcut icon" href="../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../systems/_shared/animated_favicon1.gif">
+<style>
+  /* Self-hosted faces — this site makes no runtime network calls, and its
+     feature article is not going to be the exception. */
+  @font-face{font-family:'Michroma';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/michroma-400.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Serif';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/ibm-plex-serif-400.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Serif';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/ibm-plex-serif-600.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/ibm-plex-serif-400-italic.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:600;font-display:swap;src:url('fonts/ibm-plex-serif-600-italic.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/ibm-plex-mono-400.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/ibm-plex-mono-600.woff2') format('woff2')}
+  :root{
+    --paper:#E9E7DE;
+    --ink:#17150F;
+    --cyan:#0090C8;
+    --magenta:#D6006E;
+    --yellow:#F2BE00;
+    --crt:#0A0F0A;
+    --phosphor:#35FF6D;
+    --rule:3px solid var(--ink);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:#CFCDC4}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Serif',Georgia,serif;
+    font-size:1.0625rem;
+    line-height:1.62;
+    max-width:1060px;
+    margin:0 auto;
+    box-shadow:0 0 0 1px #B9B7AE, 0 24px 60px rgba(0,0,0,.28);
+  }
+  a{color:inherit;text-decoration-color:var(--magenta);text-decoration-thickness:2px;text-underline-offset:3px}
+  a:hover{color:var(--magenta)}
+  a:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+
+  /* ---------- masthead strip ---------- */
+  .strip{
+    background:var(--yellow);
+    border-bottom:var(--rule);
+    display:flex;justify-content:space-between;align-items:center;
+    padding:.55rem 1.4rem;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.72rem;letter-spacing:.14em;font-weight:600;
+  }
+  .strip .tag{font-family:'Michroma',sans-serif;font-size:.78rem;letter-spacing:.22em}
+  .strip .issue{text-align:right}
+
+  /* ---------- opener ---------- */
+  .opener{padding:2.6rem 1.4rem 2rem;border-bottom:var(--rule)}
+  .kicker{
+    font-family:'Michroma',sans-serif;font-size:.72rem;letter-spacing:.3em;
+    color:var(--cyan);margin-bottom:1.1rem;
+  }
+  h1{
+    font-family:'Michroma',sans-serif;
+    font-weight:400;
+    font-size:clamp(2rem, 6.2vw, 4rem);
+    line-height:1.08;
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    max-width:17ch;
+    text-wrap:balance;
+    margin-bottom:1.4rem;
+  }
+  h1 .tab{color:var(--magenta)}
+  .standfirst{
+    font-size:1.28rem;line-height:1.5;font-style:italic;
+    max-width:52ch;margin-bottom:1.6rem;
+  }
+  .byline{
+    display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;
+    border-top:2px solid var(--ink);
+    padding-top:.7rem;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.72rem;letter-spacing:.12em;font-weight:600;
+  }
+  .byline b{color:var(--magenta)}
+
+
+  .caption{
+    font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.06em;
+    background:var(--ink);color:var(--paper);
+    padding:.45rem .7rem;margin-top:0;
+  }
+  .caption b{color:var(--yellow);font-weight:600}
+
+  /* ---------- screenshots ---------- */
+  .shot{border:var(--rule);box-shadow:8px 8px 0 var(--magenta)}
+  .shot img{display:block;width:100%;height:auto}
+  .shot.incol{box-shadow:6px 6px 0 var(--cyan);margin:1.7rem 0}
+
+  /* ---------- article grid ---------- */
+  .feature{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 280px;
+    gap:0 2.6rem;
+    padding:2.4rem 1.4rem 2.6rem;
+  }
+  .copy{max-width:66ch}
+  .copy p{margin-bottom:1.15rem;text-align:justify;hyphens:auto}
+  .copy p:last-child{margin-bottom:0}
+  .crosshead{
+    font-family:'Michroma',sans-serif;font-weight:400;
+    font-size:.92rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--cyan);
+    border-top:var(--rule);
+    padding-top:.85rem;
+    margin:2.1rem 0 1rem;
+  }
+  .copy > .crosshead:first-child{margin-top:0}
+  .dropcap::first-letter{
+    font-family:'Michroma',sans-serif;
+    float:left;
+    font-size:3.1rem;line-height:1;
+    padding:.35rem .55rem;
+    margin:.2rem .65rem 0 0;
+    background:var(--yellow);
+    border:var(--rule);
+  }
+  .pull{
+    font-family:'Michroma',sans-serif;font-weight:400;
+    font-size:1.18rem;line-height:1.5;text-transform:uppercase;
+    color:var(--magenta);
+    border-top:4px solid var(--magenta);
+    border-bottom:4px solid var(--magenta);
+    padding:1.05rem .2rem;
+    margin:1.9rem 0;
+  }
+  code{
+    font-family:'IBM Plex Mono',monospace;font-size:.88em;
+    background:#DDDACE;padding:.06em .3em;
+  }
+
+  /* ---------- rail boxouts ---------- */
+  .rail{display:flex;flex-direction:column;gap:2rem}
+  .boxout{border:var(--rule);background:var(--paper)}
+  .boxout h3{
+    font-family:'Michroma',sans-serif;font-weight:400;
+    font-size:.74rem;letter-spacing:.14em;
+    background:var(--cyan);color:var(--paper);
+    padding:.55rem .8rem;
+  }
+  .boxout.hot h3{background:var(--magenta)}
+  .boxout ul{list-style:none;padding:.9rem .9rem 1rem}
+  .boxout li{
+    font-family:'IBM Plex Mono',monospace;font-size:.78rem;line-height:1.45;
+    display:flex;justify-content:space-between;gap:1rem;
+    padding:.34rem 0;border-bottom:1px solid #C9C6BA;
+  }
+  .boxout li:last-child{border-bottom:0}
+  .boxout li b{font-weight:600}
+  .boxout .note{
+    font-size:.82rem;line-height:1.5;font-family:'IBM Plex Serif',serif;
+    padding:.9rem .9rem 1rem;
+  }
+  .boxout .note strong{color:var(--magenta)}
+
+  /* ---------- review box (signature) ---------- */
+  .verdict{
+    margin:0 1.4rem 2.6rem;
+    background:var(--yellow);
+    border:var(--rule);
+    box-shadow:8px 8px 0 var(--magenta);
+  }
+  .verdict-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:var(--rule);
+    padding:.85rem 1.2rem;
+  }
+  .verdict-head h2{
+    font-family:'Michroma',sans-serif;font-weight:400;
+    font-size:1.05rem;letter-spacing:.14em;
+  }
+  .verdict-head span{
+    font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.12em;font-weight:600;
+  }
+  .meters{
+    display:grid;grid-template-columns:1fr 1fr;gap:1rem 2.4rem;
+    padding:1.2rem;
+  }
+  .meter{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.1em;font-weight:600}
+  .meter .row{display:flex;justify-content:space-between;margin-bottom:.35rem}
+  .meter .bar{height:14px;border:2px solid var(--ink);background:var(--paper)}
+  .meter .fill{height:100%;background:var(--ink)}
+  .overall{
+    display:flex;justify-content:space-between;align-items:center;gap:1.5rem;
+    border-top:var(--rule);
+    padding:1rem 1.2rem;
+    flex-wrap:wrap;
+  }
+  .overall .word{font-size:.95rem;font-style:italic;max-width:34ch}
+  .overall .score{
+    font-family:'Michroma',sans-serif;font-size:2.4rem;
+    background:var(--ink);color:var(--yellow);
+    padding:.25rem .7rem;
+    flex:none;
+  }
+
+  /* ---------- footer ---------- */
+  .foot{
+    border-top:var(--rule);
+    background:var(--ink);color:var(--paper);
+    padding:1.2rem 1.4rem 1.5rem;
+    font-family:'IBM Plex Mono',monospace;font-size:.74rem;line-height:1.7;letter-spacing:.04em;
+  }
+  .foot a{color:var(--yellow);text-decoration-color:var(--yellow)}
+  .foot a:hover{color:var(--paper)}
+  .foot .lic{color:#9B988C}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:880px){
+    .feature{grid-template-columns:1fr;gap:2rem}
+    .rail{flex-direction:row;flex-wrap:wrap}
+    .rail .boxout{flex:1 1 260px}
+    .meters{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="strip">
+  <span class="tag">FEATURE</span>
+  <span class="issue">EMULATION&nbsp;·&nbsp;JULY 2026</span>
+</header>
+
+<section class="opener">
+  <p class="kicker">RETRO&nbsp;COMPUTING&nbsp;/&nbsp;PRESERVATION</p>
+  <h1>Booting a museum in a <span class="tab">browser&nbsp;tab</span></h1>
+      <p class="standfirst">How GenX-DOS turns a fake DOS prompt into a 33-system emulation arcade — with no installer, no plugins, and not a single byte fetched at runtime.</p>
+      <div class="byline">
+        <span><b>SYSTEMS:</b> 33</span>
+        <span><b>ENGINES:</b> 19</span>
+        <span><b>NETWORK CALLS:</b> 0</span>
+      </div>
+</section>
+
+<div class="feature">
+  <article class="copy">
+    <p class="dropcap">There's a particular sound a 486 made when you turned it on. You can't hear it here — this is a browser tab — but everything else is in place. An AMIBIOS logo flashes. Memory counts up in 64&nbsp;KB increments. A configuration table rattles off a numeric coprocessor that's politely <em>Absent</em>. Then the screen clears to a black field, a grey <code>C:\&gt;</code> blinks, and the machine waits for you the way machines used to: by doing nothing at all until you type something.</p>
+    <p>You don't type a thing. The launcher boots itself, and a box-drawn list appears — Home Computers, Games Consoles, Handheld Consoles — rendered in the chunky CP437 glyphs of a VGA text mode. Drill in, type a number, and a Commodore 64 boots inside a curved CRT bezel, the burnt-orange wallpaper of a 1977 living room visible around the glass. Forty-year-old games run. Nothing was installed. Nothing phoned home.</p>
+    <figure class="shot incol" style="box-shadow:6px 6px 0 var(--magenta)">
+      <img src="screenshot-menu.png" alt="The GenX-DOS launcher menu, box-drawn in CP437, inside an IBM 5153 CRT bezel on 70s orange wallpaper — running in a Firefox tab" width="1465" height="915">
+      <figcaption class="caption"><b>THE LAUNCHER:</b> box-drawn CP437 on an IBM 5153, C:\SYSTEMS&gt; waiting below — and yes, that is a browser tab</figcaption>
+    </figure>
+    <p>This is <strong>GenX-DOS</strong>, and the trick it pulls off is harder than it looks.</p>
+
+    <h2 class="crosshead">The lie that makes it work</h2>
+    <p>The conceit is simple: a DOS prompt as a launcher. The execution is a stack of careful deceptions. That <code>C:\&gt;</code> isn't a terminal emulator — it's a simulated filesystem where every directory you <code>cd</code> into is a JavaScript object, and every "program" is a <code>.bat</code> script that either prints a menu or opens an emulator. The text isn't text at all: each character is a 12×12 pixel sprite, sliced from a bitmap font sheet and positioned by CSS, so the whole display has the authentic blocky bite of a real VGA console rather than the smooth anti-aliasing of a web font.</p>
+    <p>That foundation isn't original, and the project is scrupulous about saying so. The terminal, the virtual C: drive, and the sprite-font renderer come from <strong>LGR-DOS</strong>, written for Clint Basinger's <em>Lazy Game Reviews</em>. GenX-DOS is what got built on top: the boot animation, the menu trees, the emulator integrations, the bezels, and several hundred pages of per-game documentation. The attribution file reads like a museum's provenance ledger, down to the Wikimedia photographer whose Amstrad CPC photo carries a share-alike obligation.</p>
+
+    <h2 class="crosshead">One rule that shapes everything</h2>
+    <p>The defining constraint is almost monastic: <strong>static, no build step, no runtime network calls.</strong> The entire site is HTML and JavaScript served straight off a GitHub Pages branch. No bundler, nothing to compile. Every ROM, every emulator core, every byte of game data lives on the same origin and ships in the clone.</p>
+    <p>This sounds limiting. It's actually the smartest decision in the project. A preservation site whose whole point is "this old software still runs" can't afford to depend on a CDN that might 404 in 2031, or a build toolchain that bit-rots, or a third-party emulator host that goes dark.</p>
+    <div class="pull">By refusing all of it, GenX-DOS becomes the thing it's preserving.</div>
+    <p>It also means the repository is a beast — around 138&nbsp;MB checked out, closer to 450&nbsp;MB cloned with its full history. Fourteen of the bundles had to be talked into <em>sharing</em> one copy of the EmulatorJS framework instead of each dragging its own, a move that saved roughly 25&nbsp;MB. Frugality and excess, side by side.</p>
+
+    <h2 class="crosshead">Where the week-long fights happened</h2>
+    <p>Plugging in nineteen emulator engines to cover thirty-three sub-systems — from the Apple&nbsp;I to the Sega Game Gear — sounds like a lot of glue code. Some of it was. The interesting parts were the engines that fought back: five emulators recompiled from source to WebAssembly because no suitable browser build existed, a save-state routine whose <em>asyncify</em> stack collided with the main loop it was part of, and two libretro cores that shipped broken in their stable builds and had to be quietly swapped for nightlies.</p>
+    <p>And then, because every retro project eventually meets it, there was <strong>the Firefox problem</strong>: a faint hairline through every row of text, born of sub-pixel anti-aliasing on a non-integer transform. The eventual fix snaps each character cell to whole device pixels. The residual shimmer that remains?</p>
+    <div class="pull">Sometimes the bug becomes the feature.</div>
+
+    <h2 class="crosshead">A point of view about the past</h2>
+    <p>What elevates GenX-DOS above "a pile of emulators" is that it has <em>opinions</em>. The scope isn't "8-bit era" — it's <strong>8-bit feel</strong>. The aesthetic decides, not the calendar: the Game Boy, Game Gear and Lynx are in, late-90s release dates be damned; the Genesis and Amiga are out. Ten games per system, sorted by year. When a franchise qualifies, the <em>first</em> entry gets the nod. Given a choice of formats, the floppy release beats the CD.</p>
+    <figure class="shot incol">
+      <img src="screenshot.png" alt="California Games booting on an Atari Lynx handheld bezel, held up in front of a classroom photo — running in a browser" width="1465" height="915">
+      <figcaption class="caption"><b>8-BIT FEEL:</b> California Games on the Lynx — 1989 release date be damned, it looks and sounds the part</figcaption>
+    </figure>
+
+    <h2 class="crosshead">Insert disk and press any key</h2>
+    <p>But here's the thing about standing in front of it. You type <code>0</code> to exit, and the screen clears to a small sign-off and drops you back to a live prompt, cursor blinking, waiting again — and it answers to real DOS. <code>dir</code> the drive, <code>cd</code> into its folders, <code>type</code> a file, <code>find</code> a game; the menus are only the paved road through a C: drive that's there to be played with. For a second the whole illusion holds completely: it's 1991, the machine is yours, and there's a whole shelf of cartridges one number away.</p>
+    <p>It's a museum that boots in a tab. And unlike most museums, you're allowed to touch everything.</p>
+  </article>
+
+  <aside class="rail">
+    <div class="boxout">
+      <h3>THE NUMBERS</h3>
+      <ul>
+        <li><span>Systems</span><b>33</b></li>
+        <li><span>Emulator engines</span><b>19</b></li>
+        <li><span>Games</span><b>327</b></li>
+        <li><span>Size on disk</span><b>138 MB</b></li>
+        <li><span>Telemetry/downloads</span><b>0</b></li>
+      </ul>
+    </div>
+    <div class="boxout hot">
+      <h3>REBUILT FROM SOURCE</h3>
+      <p class="note">Five machines had no usable browser build, so their emulators were recompiled to WebAssembly by hand: the <strong>Atari 800</strong>, the <strong>Odyssey²</strong>, the <strong>TRS-80 Model&nbsp;I</strong>, the <strong>Amstrad CPC</strong> — and the <strong>TRS-80 Model&nbsp;100</strong>, a whole desktop emulator cut down to its 8085 core and run headless.</p>
+    </div>
+    <div class="boxout">
+      <h3>HONEST SEAMS</h3>
+      <p class="note">No automated tests — the safety net is a human eye and a habit of verifying every change against production. The terminal renders output by firing synthetic keypresses at itself: a clever hack that's also a little haunted.</p>
+    </div>
+  </aside>
+</div>
+
+<section class="verdict">
+  <div class="verdict-head">
+    <h2>GX VERDICT</h2>
+    <span>REVIEWED: GENX-DOS · FORMAT: BROWSER TAB</span>
+  </div>
+  <div class="meters">
+    <div class="meter">
+      <div class="row"><span>AUTHENTICITY</span><span>94%</span></div>
+      <div class="bar"><div class="fill" style="width:94%"></div></div>
+    </div>
+    <div class="meter">
+      <div class="row"><span>SELF-RELIANCE</span><span>98%</span></div>
+      <div class="bar"><div class="fill" style="width:98%"></div></div>
+    </div>
+    <div class="meter">
+      <div class="row"><span>PEDANTRY</span><span>96%</span></div>
+      <div class="bar"><div class="fill" style="width:96%"></div></div>
+    </div>
+    <div class="meter">
+      <div class="row"><span>LASTABILITY</span><span>91%</span></div>
+      <div class="bar"><div class="fill" style="width:91%"></div></div>
+    </div>
+  </div>
+  <div class="overall">
+    <p class="word">"A museum that boots in a tab — and you're allowed to touch everything."</p>
+    <div class="score">94%</div>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>GenX-DOS is live at <a href="https://retro-jack.github.io/GenX-DOS/">retro-jack.github.io/GenX-DOS</a> and open-source on <a href="https://github.com/Retro-Jack/GenX-DOS">GitHub</a>.</p>
+  <p class="lic">The orchestration code is CC BY-NC 4.0; the bundled emulators and the LGR terminal base keep their own licences.</p>
+</footer>
+
+</body>
+</html>
