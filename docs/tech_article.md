@@ -6,7 +6,7 @@
 
 There's a particular sound a 486 made when you turned it on. You can't hear it here — this is a browser tab — but everything else is in place. An AMIBIOS logo flashes. Memory counts up in 64 KB increments. A configuration table rattles off a numeric coprocessor that's politely *Absent*. Then the screen clears to a black field, a grey `C:\>` blinks, and the machine waits for you the way machines used to: by doing nothing at all until you type something.
 
-Type `menu`. A box-drawn list appears — Home Computers, Games Consoles, Handheld Consoles — rendered in the chunky CP437 glyphs of a CGA text mode. Drill in, type a number, and a Commodore 64 boots inside a curved CRT bezel, the wood-grain wallpaper of a 1977 living room visible around the glass. Forty-year-old games run. Nothing was installed. Nothing phoned home.
+You don't even type anything. The menu boots itself — a box-drawn list, Home Computers, Games Consoles, Handheld Consoles — rendered in the chunky CP437 glyphs of a VGA text mode. Drill in, type a number, and a Commodore 64 boots inside a curved CRT bezel, the wood-grain wallpaper of a 1977 living room visible around the glass. Forty-year-old games run. Nothing was installed. Nothing phoned home.
 
 This is **GenX-DOS**, and the trick it pulls off is harder than it looks.
 
