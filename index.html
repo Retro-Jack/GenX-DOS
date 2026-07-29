@@ -112,7 +112,7 @@
   }
 
   /* ---------- section scaffolding ---------- */
-  section{padding:4.5rem 0}
+  section.wrap{padding:2rem 24px}   /* vertical rhythm — needs section.wrap or .wrap's padding cancels it */
   .sec-label{
     font-family:'Michroma',sans-serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
     color:var(--amber);display:flex;align-items:center;gap:1rem;margin-bottom:2rem;
@@ -181,7 +181,7 @@
     .cards{grid-template-columns:1fr}
     .shots{grid-template-columns:1fr}
     .links{grid-template-columns:1fr}
-    section{padding:3.4rem 0}
+    section.wrap{padding:1.6rem 24px}
   }
 </style>
 </head>
@@ -206,18 +206,6 @@
 </header>
 
 <main>
-  <section class="wrap" id="specs">
-    <p class="sec-label">Spec sheet</p>
-    <div class="spec">
-      <div class="spec-row"><span class="k">Systems</span><span class="lead"></span><span class="v">33</span></div>
-      <div class="spec-row"><span class="k">Games</span><span class="lead"></span><span class="v">327</span></div>
-      <div class="spec-row"><span class="k">Emulators</span><span class="lead"></span><span class="v">19</span></div>
-      <div class="spec-row"><span class="k">To install</span><span class="lead"></span><span class="v zero">nothing</span></div>
-      <div class="spec-row"><span class="k">Tracking &amp; downloads</span><span class="lead"></span><span class="v zero">0</span></div>
-      <p class="spec-cap">Every machine, game and page ships in one clone and runs from a single origin.</p>
-    </div>
-  </section>
-
   <section class="wrap" id="about">
     <p class="sec-label">What you're looking at</p>
     <div class="cards">
@@ -233,6 +221,18 @@
         <h3>It has opinions</h3>
         <p>Not "the 8-bit era" — the 8-bit <em>feel</em>. Ten games a system, sorted by year, every control checked against the original manuals. Curated, not dumped.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="specs">
+    <p class="sec-label">Spec sheet</p>
+    <div class="spec">
+      <div class="spec-row"><span class="k">Systems</span><span class="lead"></span><span class="v">33</span></div>
+      <div class="spec-row"><span class="k">Games</span><span class="lead"></span><span class="v">327</span></div>
+      <div class="spec-row"><span class="k">Emulators</span><span class="lead"></span><span class="v">19</span></div>
+      <div class="spec-row"><span class="k">To install</span><span class="lead"></span><span class="v zero">nothing</span></div>
+      <div class="spec-row"><span class="k">Tracking &amp; downloads</span><span class="lead"></span><span class="v zero">0</span></div>
+      <p class="spec-cap">Every machine, game and page ships in one clone and runs from a single origin.</p>
     </div>
   </section>
 
