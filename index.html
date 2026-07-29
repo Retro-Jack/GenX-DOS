@@ -177,15 +177,55 @@
   footer .lic{font-size:12px;color:var(--dim);letter-spacing:.04em}
 
   /* ---------- responsive ---------- */
-  @media (max-width:760px){
-    .cards{grid-template-columns:1fr}
-    .shots{grid-template-columns:1fr}
-    .links{grid-template-columns:1fr}
-    section.wrap{padding:1.6rem 24px}
+  /* ---------- touch / no-keyboard gate ---------- */
+  /* This site is driven entirely by a physical keyboard, so touch devices get a
+     graphic instead of the landing. Comma (OR) form on purpose: iPadOS reports
+     hover, so pointer:coarse is what catches it. */
+  .touchblock{display:none}
+  @media (pointer: coarse), (hover: none){
+    body{overflow:hidden}
+    .topbar, .hero, main, footer{display:none !important}
+    .touchblock{
+      display:flex;position:fixed;inset:0;z-index:100000;
+      background:var(--crt);
+      align-items:center;justify-content:center;
+      padding:28px;text-align:center;
+    }
   }
+  .tb-inner{max-width:32rem}
+  .tb-mark{
+    font-family:'Michroma',sans-serif;color:var(--amber);
+    font-size:1.35rem;letter-spacing:.06em;margin-bottom:2rem;
+    text-shadow:0 0 22px rgba(255,176,0,.42);
+  }
+  .tb-art{
+    font-family:'VGA437','IBM Plex Mono',monospace;color:var(--amber);
+    font-size:clamp(.72rem,4vw,1.05rem);line-height:1.12;letter-spacing:0;
+    margin:0 0 2rem;text-shadow:0 0 12px rgba(255,176,0,.3);overflow-x:auto;
+  }
+  .tb-head{
+    font-family:'VGA437','IBM Plex Mono',monospace;font-weight:400;
+    color:var(--green);font-size:clamp(1.2rem,6vw,1.7rem);letter-spacing:.02em;
+    text-transform:uppercase;margin-bottom:1.1rem;
+  }
+  .tb-body{color:var(--paper);font-size:1rem;line-height:1.65;margin:0 auto;max-width:30ch}
 </style>
 </head>
 <body>
+  <div class="touchblock">
+    <div class="tb-inner">
+      <div class="tb-mark">GenX-DOS</div>
+      <pre class="tb-art" aria-hidden="true">┌───┬───┬───┬───┬───┐
+│ Q │ W │ E │ R │ T │
+├───┼───┼───┼───┼───┤
+│ A │ S │ D │ F │ G │
+├───┴───┴───┴───┴───┤
+│       SPACE       │
+└───────────────────┘</pre>
+      <h2 class="tb-head">This one needs a keyboard</h2>
+      <p class="tb-body">GenX-DOS is a desktop DOS terminal and 8-bit emulator suite — you drive every machine from a physical keyboard, so a touchscreen can't run it. Open it on a desktop or laptop and the whole museum is open to you.</p>
+    </div>
+  </div>
 
 <div class="topbar">
   <span class="mark">GenX-DOS</span>
