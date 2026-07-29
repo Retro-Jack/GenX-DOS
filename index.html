@@ -11,6 +11,8 @@
   @font-face{font-family:'Michroma';font-style:normal;font-weight:400;font-display:swap;src:url('docs/fonts/michroma-400.woff2') format('woff2')}
   @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('docs/fonts/ibm-plex-mono-400.woff2') format('woff2')}
   @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url('docs/fonts/ibm-plex-mono-600.woff2') format('woff2')}
+  /* Genuine IBM VGA CP437 text-mode font (VileR / int10h.org, CC BY-SA 4.0) — used only for the two DOS-readout moments: the spec sheet and the boot button. */
+  @font-face{font-family:'VGA437';font-style:normal;font-weight:400;font-display:swap;src:url('docs/fonts/web437-vga.woff') format('woff')}
 
   :root{
     --crt:#0B0D10;
@@ -76,8 +78,8 @@
 
   .boot{
     display:inline-flex;align-items:center;gap:.7em;
-    font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:1.15rem;
-    letter-spacing:.12em;text-transform:uppercase;
+    font-family:'VGA437','IBM Plex Mono',monospace;font-weight:400;font-size:1.35rem;
+    letter-spacing:.04em;text-transform:uppercase;
     color:var(--green);background:transparent;
     border:2px solid var(--green);border-radius:2px;
     padding:.85rem 2rem;text-decoration:none;
@@ -124,8 +126,9 @@
     padding:1.6rem 1.8rem;max-width:620px;
   }
   .spec-row{
-    display:flex;align-items:baseline;gap:.6rem;
-    font-size:clamp(.85rem,2.2vw,1.05rem);letter-spacing:.04em;
+    display:flex;align-items:baseline;gap:.7rem;
+    font-family:'VGA437','IBM Plex Mono',monospace;
+    font-size:clamp(1rem,2.6vw,1.35rem);letter-spacing:.02em;
     padding:.5rem 0;
   }
   .spec-row .k{color:var(--paper);text-transform:uppercase;white-space:nowrap}
@@ -193,7 +196,7 @@
   <p class="eyebrow">Retro computing · self-hosted · desktop</p>
   <h1 class="wordmark">GenX-DOS</h1>
   <p class="tagline">Boot classic computers and consoles from a life-like DOS prompt. <b>Nothing to install. Nothing phones home.</b></p>
-  <a class="boot" href="prompt/">Boot the prompt <span class="cur" aria-hidden="true"></span></a>
+  <a class="boot" href="prompt/">Enter the museum <span class="cur" aria-hidden="true"></span></a>
   <p class="boot-note">Desktop · keyboard-driven · nothing to install</p>
 
   <figure class="screen">
