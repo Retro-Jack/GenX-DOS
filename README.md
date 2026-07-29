@@ -56,7 +56,7 @@ Both are rebuilt and published automatically on every GitHub Release (see `.gith
 ## What you'll find in the repo
 
 ```
-index.html                fake BIOS POST screen, redirects to prompt/
+index.html                landing page — intro, spec sheet, links, and the way into prompt/
 serve.sh                  starts the local server
 CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset
@@ -64,7 +64,7 @@ LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party exclud
 SECURITY.md               scope + private vulnerability reporting
 CONTRIBUTING.md           local setup + PR ground rules; CODE_OF_CONDUCT.md alongside
 package.json / index.js   the npm package; Dockerfile builds the ghcr container
-docs/                     tech article + README screenshots + social preview
+docs/                     tech article + landing/README screenshots + social preview + self-hosted fonts
 prompt/                   the DOS terminal (HTML + JS, no build)
   index.html
   javascript/             terminal logic + virtual filesystem (fs.js)
