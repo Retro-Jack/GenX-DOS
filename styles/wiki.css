@@ -59,8 +59,6 @@ code{font-family:'IBM Plex Mono',monospace;font-size:.85em;color:var(--amber);
 pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;
   padding:1rem 1.1rem;margin:0 0 1.25rem;overflow-x:auto}
 pre code{color:var(--paper);background:none;padding:0;font-size:.8rem;line-height:1.55;word-break:normal}
-pre.plain{font-family:'IBM Plex Mono',monospace;color:var(--paper);font-size:.76rem;line-height:1.5;
-  white-space:pre;word-break:normal}
 
 .content table{border-collapse:collapse;width:100%;margin:0 0 1.3rem;font-size:.88rem;
   border:1px solid var(--line);display:block;overflow-x:auto}

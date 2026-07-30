@@ -18,7 +18,7 @@ ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
 EXTRA = {'README':      (os.path.join(ROOT, 'README.md'),      'md'),
          'ATTRIBUTION': (os.path.join(ROOT, 'ATTRIBUTION.md'), 'md'),
          'CHANGELOG':   (os.path.join(ROOT, 'CHANGELOG.md'),   'md'),
-         'LICENSE':     (os.path.join(ROOT, 'LICENSE.TXT'),    'text')}
+         'LICENSE':     (os.path.join(ROOT, 'LICENSE.TXT'),    'license')}
 # Map a repo-root filename to its imported slug (LICENSE.TXT -> LICENSE, X.md -> X).
 FILE2SLUG = {'LICENSE.TXT': 'LICENSE'}
 def file2slug(fname):
@@ -109,6 +109,52 @@ def first_h1(md_text):
             return line[2:].strip()
     return None
 
+# ---- plain-text LICENSE.TXT -> design-language markdown (drop the ASCII banners) ----
+def _is_rule(s):
+    s = s.strip()
+    return bool(s) and set(s) <= {'=', '-'}
+def _caps_ratio(text):
+    letters = [c for c in text if c.isalpha()]
+    return sum(c.isupper() for c in letters) / len(letters) if letters else 0.0
+def license_to_md(raw):
+    lines = [ln.rstrip() for ln in raw.splitlines()]
+    n = len(lines)
+    out, para = ['# License'], []
+    def flush_para():
+        if not para: return
+        text = ' '.join(x.strip() for x in para).strip(); para.clear()
+        if not text: return
+        text = re.sub(r'(https?://\S+)', r'[\1](\1)', text)
+        out.append(('> ' + text) if _caps_ratio(text) > 0.9 and len(text) > 80 else text)
+    i = 0
+    while i < n and (_is_rule(lines[i]) or not lines[i].strip() or lines[i].strip() == 'LICENSE'):
+        i += 1
+    while i < n and lines[i].strip() and ':' in lines[i] and not _is_rule(lines[i]):  # metadata
+        k, _, v = lines[i].partition(':'); meta = [k.strip(), v.strip()]; i += 1
+        while i < n and lines[i].startswith(' ') and lines[i].strip() and ':' not in lines[i]:
+            meta[1] += ' ' + lines[i].strip(); i += 1
+        out.append('- **%s:** %s' % (meta[0], meta[1]))
+    while i < n:
+        ln = lines[i]; s = ln.strip()
+        if _is_rule(s) or not s:
+            flush_para(); i += 1; continue
+        nxt = lines[i + 1].strip() if i + 1 < n else ''
+        if re.match(r"^[A-Z0-9 &.'\"-]+$", s) and re.search('[A-Z]', s) and len(s) <= 45 and nxt == '':
+            flush_para(); out.append('## ' + s); i += 1; continue
+        if s.startswith('* '):
+            flush_para(); out.append('- ' + s[2:].strip()); i += 1; continue
+        m = re.match(r'^(\d+)\.\s+([A-Z][A-Z -]+):\s*$', s)     # numbered obligation
+        if m:
+            flush_para(); i += 1; body = []
+            while i < n and lines[i].strip() and not _is_rule(lines[i]):
+                body.append(lines[i].strip()); i += 1
+            name = m.group(2).title().replace('Non-Commercial', 'Non-commercial')
+            out.append('**%s. %s.** %s' % (m.group(1), name, ' '.join(body)))
+            continue
+        para.append(ln); i += 1
+    flush_para()
+    return '\n\n'.join(out)
+
 # ---- sidebar nav from _Sidebar.md ----
 def build_nav(active_slug):
     lines = open(os.path.join(HERE, '_Sidebar.md')).read().splitlines()
@@ -171,15 +217,13 @@ def main():
     for slug, path, kind in jobs:
         raw = open(path).read()
         dead = set()
-        if kind == 'text':                         # plain-text doc (LICENSE) -> preformatted
-            title = slug.title()
-            body = '<h1>%s</h1>\n<pre class="plain">%s</pre>' % (title, html.escape(raw))
-        else:
-            title = first_h1(raw) or slug.replace('-', ' ')
-            md = make_md()
-            body = md.convert(pre_wikilinks(raw))
-            body = rewrite_imgs(body)
-            body = rewrite_hrefs(body, dead)
+        if kind == 'license':                      # plain-text LICENSE.TXT -> styled markdown
+            raw = license_to_md(raw)
+        title = first_h1(raw) or slug.replace('-', ' ')
+        md = make_md()
+        body = md.convert(pre_wikilinks(raw))
+        body = rewrite_imgs(body)
+        body = rewrite_hrefs(body, dead)
         if dead: dead_all[slug] = dead
         page = TEMPLATE.format(title=html.escape(title),
                                nav=build_nav(slug),
@@ -254,8 +298,6 @@ code{font-family:'IBM Plex Mono',monospace;font-size:.85em;color:var(--amber);
 pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;
   padding:1rem 1.1rem;margin:0 0 1.25rem;overflow-x:auto}
 pre code{color:var(--paper);background:none;padding:0;font-size:.8rem;line-height:1.55;word-break:normal}
-pre.plain{font-family:'IBM Plex Mono',monospace;color:var(--paper);font-size:.76rem;line-height:1.5;
-  white-space:pre;word-break:normal}
 
 .content table{border-collapse:collapse;width:100%;margin:0 0 1.3rem;font-size:.88rem;
   border:1px solid var(--line);display:block;overflow-x:auto}
