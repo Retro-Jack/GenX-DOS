@@ -1,6 +1,6 @@
 GenX-DOS is a static page that recreates a 1990s DOS prompt in the browser. Visitors land on a fake AMIBIOS POST screen, get dropped into a `C:\>` prompt, and navigate numbered menus to launch emulated games — all running locally in the page.
 
-There's no backend, no build step, no framework — just HTML and JavaScript served as static files (GitHub Pages today, any static host tomorrow). It does need to be *served* over HTTP, though: the emulators fetch their ROMs and WASM as the page loads, so opening the files straight from disk (`file://`) loads the shell but won't run the games.
+There's no backend, no build step, no framework — just HTML and JavaScript hosted as static files (GitHub Pages today, any static host tomorrow). It does need to be *hosted* over HTTP, though: the emulators fetch their ROMs and WASM as the page loads, so opening the files straight from disk (`file://`) loads the shell but won't run the games.
 
 ## The boot flow
 
