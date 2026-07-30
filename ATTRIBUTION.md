@@ -255,22 +255,22 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
 
 ## Fonts
 
-- `prompt/img/f12.*.png` — 12×12 CP437 bitmap font sprites. Generated
+- `systems/_shared/styles/VGA_font/f12.*.png` — 12×12 CP437 bitmap font sprites. Generated
   locally by `make_fonts.py` from Unicode CP437 mappings; the rendered
   glyph shapes derive from public-domain VGA CP437 reference data.
 
-- `docs/fonts/web437-vga.woff` — **Web437 IBM VGA 9×16**, from the Ultimate
+- `styles/fonts/web437-vga.woff` — **Web437 IBM VGA 9×16**, from the Ultimate
     Oldschool PC Font Pack by **VileR** (<https://int10h.org/oldschool-pc-fonts/>),
     © 2016–2020 VileR. Licensed **CC BY-SA 4.0**
     (<https://creativecommons.org/licenses/by-sa/4.0/>). A genuine IBM VGA
     text-mode CP437 font; used on the landing page (`index.html`) for the spec
     sheet and the "Enter the museum" button. Unmodified.
 
-- `docs/fonts/michroma-400.woff2` — **Michroma** by Vernon Adams. Licensed
+- `styles/fonts/michroma-400.woff2` — **Michroma** by Vernon Adams. Licensed
     **SIL Open Font License 1.1**. Display face on the landing page and the
     feature article (`docs/article/index.html`).
 
-- `docs/fonts/ibm-plex-mono-*.woff2`, `docs/fonts/ibm-plex-serif-*.woff2` —
+- `styles/fonts/ibm-plex-mono-*.woff2`, `styles/fonts/ibm-plex-serif-*.woff2` —
     **IBM Plex Mono** and **IBM Plex Serif** by Mike Abbink & Bold Monday for
     IBM. Licensed **SIL Open Font License 1.1**. Body / UI faces on the landing
     page and the feature article. Subsetted to the Latin range.
