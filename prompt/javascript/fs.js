@@ -884,47 +884,47 @@ var fs = [
                           },
                           {
                             name: 'elite.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Acornsoft/Elite.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/index.html?disc1=Acornsoft/Elite.ssd&autoboot',
                           },
                           {
                             name: 'chuckegg.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=AnF/ChuckieEgg.ssd&autoboot&GP.FIRE=SPACE&GP.D12=A&GP.D13=Z&GP.D14=COMMA&GP.D15=PERIOD',
+                            link: '../systems/bbcmicro/dist/index.html?disc1=AnF/ChuckieEgg.ssd&autoboot&GP.FIRE=SPACE&GP.D12=A&GP.D13=Z&GP.D14=COMMA&GP.D15=PERIOD',
                           },
                           {
                             name: 'repton.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Superior/Repton.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/index.html?disc1=Superior/Repton.ssd&autoboot',
                           },
                           {
                             name: 'revs.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Acornsoft/Revs.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/index.html?disc1=Acornsoft/Revs.ssd&autoboot',
                           },
                           {
                             name: 'jetwilly.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Tynesoft/JetSetWilly.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/index.html?disc1=Tynesoft/JetSetWilly.ssd&autoboot',
                           },
                           {
                             name: 'citadel.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Superior/Citadel.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/index.html?disc1=Superior/Citadel.ssd&autoboot',
                           },
                           {
                             name: 'exile.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Superior/Exile.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/index.html?disc1=Superior/Exile.ssd&autoboot',
                           },
                           {
                             name: 'thrust.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Superior/Thrust.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/index.html?disc1=Superior/Thrust.ssd&autoboot',
                           },
                           {
                             name: 'snapper.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Acornsoft/Snapper-v1-alt.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/index.html?disc1=Acornsoft/Snapper-v1-alt.ssd&autoboot',
                           },
                           {
                             name: 'uridium.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Hewson/Uridium.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/index.html?disc1=Hewson/Uridium.ssd&autoboot',
                           },
                           {
                             name: 'prompt.bat',
-                            link: '../systems/bbcmicro/dist/',
+                            link: '../systems/bbcmicro/dist/index.html',
                           },
                         ],
                       },
@@ -1078,47 +1078,47 @@ var fs = [
                           },
                           {
                             name: 'elite.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Acornsoft/EliteMaster.dsd&autoboot',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master&disc1=Acornsoft/EliteMaster.dsd&autoboot',
                           },
                           {
                             name: 'nevryon.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=4thDimension/Nevryon.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master&disc1=4thDimension/Nevryon.ssd&autoboot',
                           },
                           {
                             name: 'galforce.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/Galaforce.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master&disc1=Superior/Galaforce.ssd&autoboot',
                           },
                           {
                             name: 'palace.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/PalaceOfMagic.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master&disc1=Superior/PalaceOfMagic.ssd&autoboot',
                           },
                           {
                             name: 'bonecrun.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/BoneCruncher.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master&disc1=Superior/BoneCruncher.ssd&autoboot',
                           },
                           {
                             name: 'crazee.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/CrazeeRider.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master&disc1=Superior/CrazeeRider.ssd&autoboot',
                           },
                           {
                             name: 'commando.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Elite/Commando.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master&disc1=Elite/Commando.ssd&autoboot',
                           },
                           {
                             name: 'bfmof.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/ByFairMeansOrFoul.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master&disc1=Superior/ByFairMeansOrFoul.ssd&autoboot',
                           },
                           {
                             name: 'holedout.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=4thDimension/HoledOut.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master&disc1=4thDimension/HoledOut.ssd&autoboot',
                           },
                           {
                             name: 'ballistx.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/Ballistix.ssd&autoboot',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master&disc1=Superior/Ballistix.ssd&autoboot',
                           },
                           {
                             name: 'prompt.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master',
+                            link: '../systems/bbcmaster/dist/index.html?model=Master',
                           },
                         ],
                       },
@@ -3425,47 +3425,47 @@ var fs = [
                           },
                           {
                             name: 'antrctic.bat',
-                            link: '../systems/msx1/?ROM=games/antarcticadv.zip&M=MSX1&game=antrctic',
+                            link: '../systems/msx1/index.html?ROM=games/antarcticadv.zip&M=MSX1&game=antrctic',
                           },
                           {
                             name: 'athletic.bat',
-                            link: '../systems/msx1/?ROM=games/athleticland.zip&M=MSX1&game=athletic',
+                            link: '../systems/msx1/index.html?ROM=games/athleticland.zip&M=MSX1&game=athletic',
                           },
                           {
                             name: 'pippols.bat',
-                            link: '../systems/msx1/?ROM=games/pippols.zip&M=MSX1&game=pippols',
+                            link: '../systems/msx1/index.html?ROM=games/pippols.zip&M=MSX1&game=pippols',
                           },
                           {
                             name: 'roadfgtr.bat',
-                            link: '../systems/msx1/?ROM=games/roadfighter.zip&M=MSX1&game=roadfgtr',
+                            link: '../systems/msx1/index.html?ROM=games/roadfighter.zip&M=MSX1&game=roadfgtr',
                           },
                           {
                             name: 'kingsval.bat',
-                            link: '../systems/msx1/?ROM=games/kingsvalley.zip&M=MSX1&game=kingsval',
+                            link: '../systems/msx1/index.html?ROM=games/kingsvalley.zip&M=MSX1&game=kingsval',
                           },
                           {
                             name: 'yiearkf.bat',
-                            link: '../systems/msx1/?ROM=games/yiearkungfu.zip&M=MSX1&game=yiearkf',
+                            link: '../systems/msx1/index.html?ROM=games/yiearkungfu.zip&M=MSX1&game=yiearkf',
                           },
                           {
                             name: 'eggrland.bat',
-                            link: '../systems/msx1/?ROM=games/eggerland.zip&M=MSX1&game=eggrland',
+                            link: '../systems/msx1/index.html?ROM=games/eggerland.zip&M=MSX1&game=eggrland',
                           },
                           {
                             name: 'knightmr.bat',
-                            link: '../systems/msx1/?ROM=games/knightmare.zip&M=MSX1&game=knightmr',
+                            link: '../systems/msx1/index.html?ROM=games/knightmare.zip&M=MSX1&game=knightmr',
                           },
                           {
                             name: 'nemesis.bat',
-                            link: '../systems/msx1/?ROM=games/nemesis.zip&M=MSX1&game=nemesis',
+                            link: '../systems/msx1/index.html?ROM=games/nemesis.zip&M=MSX1&game=nemesis',
                           },
                           {
                             name: 'goonies.bat',
-                            link: '../systems/msx1/?ROM=games/goonies.zip&M=MSX1&game=goonies',
+                            link: '../systems/msx1/index.html?ROM=games/goonies.zip&M=MSX1&game=goonies',
                           },
                           {
                             name: 'prompt.bat',
-                            link: '../systems/msx1/?M=MSX1',
+                            link: '../systems/msx1/index.html?M=MSX1',
                           },
                         ],
                       },
@@ -3538,47 +3538,47 @@ var fs = [
                           },
                           {
                             name: 'vampkill.bat',
-                            link: '../systems/msx2/?ROM=games/vampirekill.zip&M=MSX2&game=vampkill',
+                            link: '../systems/msx2/index.html?ROM=games/vampirekill.zip&M=MSX2&game=vampkill',
                           },
                           {
                             name: 'castleex.bat',
-                            link: '../systems/msx2/?ROM=games/castleexcl.zip&M=MSX2&game=castleex',
+                            link: '../systems/msx2/index.html?ROM=games/castleexcl.zip&M=MSX2&game=castleex',
                           },
                           {
                             name: 'bubblbob.bat',
-                            link: '../systems/msx2/?ROM=games/bubblebobble.zip&M=MSX2&game=bubblbob',
+                            link: '../systems/msx2/index.html?ROM=games/bubblebobble.zip&M=MSX2&game=bubblbob',
                           },
                           {
                             name: 'metlgear.bat',
-                            link: '../systems/msx2/?ROM=games/metalgear.zip&M=MSX2&game=metlgear',
+                            link: '../systems/msx2/index.html?ROM=games/metalgear.zip&M=MSX2&game=metlgear',
                           },
                           {
                             name: 'usas.bat',
-                            link: '../systems/msx2/?ROM=games/usas.zip&M=MSX2&game=usas',
+                            link: '../systems/msx2/index.html?ROM=games/usas.zip&M=MSX2&game=usas',
                           },
                           {
                             name: 'f1spirit.bat',
-                            link: '../systems/msx2/?ROM=games/f1spirit.zip&M=MSX2&game=f1spirit',
+                            link: '../systems/msx2/index.html?ROM=games/f1spirit.zip&M=MSX2&game=f1spirit',
                           },
                           {
                             name: 'aleste.bat',
-                            link: '../systems/msx2/?ROM=games/aleste.zip&M=MSX2&game=aleste',
+                            link: '../systems/msx2/index.html?ROM=games/aleste.zip&M=MSX2&game=aleste',
                           },
                           {
                             name: 'parodius.bat',
-                            link: '../systems/msx2/?ROM=games/parodius.zip&M=MSX2&game=parodius',
+                            link: '../systems/msx2/index.html?ROM=games/parodius.zip&M=MSX2&game=parodius',
                           },
                           {
                             name: 'manbow.bat',
-                            link: '../systems/msx2/?ROM=games/spacemanbow.zip&M=MSX2&game=manbow',
+                            link: '../systems/msx2/index.html?ROM=games/spacemanbow.zip&M=MSX2&game=manbow',
                           },
                           {
                             name: 'quarth.bat',
-                            link: '../systems/msx2/?ROM=games/quarth.zip&M=MSX2&game=quarth',
+                            link: '../systems/msx2/index.html?ROM=games/quarth.zip&M=MSX2&game=quarth',
                           },
                           {
                             name: 'prompt.bat',
-                            link: '../systems/msx2/?M=MSX2',
+                            link: '../systems/msx2/index.html?M=MSX2',
                           },
                         ],
                       },
@@ -3893,7 +3893,7 @@ var fs = [
           },
           {
             name: 'wiki.bat',
-            link: '../docs/wiki/',
+            link: '../docs/wiki/index.html',
           },
           {
             name: '0.bat',
