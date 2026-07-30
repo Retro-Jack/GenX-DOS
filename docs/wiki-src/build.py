@@ -69,6 +69,13 @@ def resolve(target):
     dead = page not in KNOWN and page != 'Home'
     return _local(page, frag), dead
 
+def with_index(url):
+    """Explicit filename for local testing: a relative dir-link (ends in '/')
+    gets index.html so file:// and no-auto-index servers resolve it."""
+    if url and url.endswith('/') and not re.match(r'(https?:)?//|mailto:|#', url):
+        return url + 'index.html'
+    return url
+
 # ---- markdown engine (GitHub-style heading ids so #anchors resolve) ----
 def make_md():
     return markdown.Markdown(
@@ -91,7 +98,7 @@ def rewrite_hrefs(htmltext, dead_sink):
         url, dead = resolve(m.group(1))
         if dead:
             dead_sink.add(m.group(1))
-        return 'href="%s"' % url
+        return 'href="%s"' % with_index(url)
     return HREF.sub(sub, htmltext)
 
 IMG = re.compile(r'<img\b[^>]*>')
@@ -178,6 +185,7 @@ def build_nav(active_slug):
             text, target = m.group(1), m.group(2)
             url, _ = resolve(target)
             active = ' class="active"' if url == out_name(active_slug) else ''
+            url = with_index(url)
             cur.append('<li><a href="%s"%s>%s</a></li>' % (url, active, html.escape(text)))
     flush()
     return '\n'.join(out)
@@ -196,7 +204,7 @@ TEMPLATE = '''<!doctype html>
 <body>
 <header class="top">
   <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
-  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+  <span class="out"><a href="../../prompt/index.html">Prompt</a><a href="../article/index.html">Article</a><a href="../../index.html">&#8617;&nbsp;Site</a></span>
 </header>
 <div class="layout">
   <nav class="side">
@@ -207,7 +215,7 @@ TEMPLATE = '''<!doctype html>
   </main>
 </div>
 <footer class="foot">
-  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../index.html">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
 </footer>
 </body>
 </html>
