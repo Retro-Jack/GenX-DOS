@@ -5,7 +5,6 @@ set -euo pipefail
 
 PORT="${1:-8765}"
 HOST="127.0.0.1"
-URL="http://${HOST}:${PORT}/"
 
 cd "$(dirname "$(realpath "$0")")"
 
@@ -14,10 +13,28 @@ if ! command -v python3 >/dev/null 2>&1; then
     exit 1
 fi
 
-if ss -ltn "sport = :${PORT}" 2>/dev/null | grep -q LISTEN; then
-    echo "Port ${PORT} is already in use. Pass a different port: ./serve.sh 9000" >&2
-    exit 1
+port_free() {
+    ! ss -ltn "sport = :$1" 2>/dev/null | grep -q LISTEN
+}
+
+# If the chosen port is taken, fall back to a random free port in the IANA
+# dynamic range (49152-65535) rather than giving up.
+if ! port_free "${PORT}"; then
+    echo "Port ${PORT} is in use — selecting a free port..." >&2
+    ORIG_PORT="${PORT}"
+    PORT=""
+    for _ in $(seq 1 50); do
+        CANDIDATE=$(( (RANDOM % 16384) + 49152 ))
+        if port_free "${CANDIDATE}"; then PORT="${CANDIDATE}"; break; fi
+    done
+    if [ -z "${PORT}" ]; then
+        echo "Could not find a free port after 50 attempts." >&2
+        exit 1
+    fi
+    echo "Using port ${PORT} instead of ${ORIG_PORT}." >&2
 fi
+
+URL="http://${HOST}:${PORT}/"
 
 echo "Serving GenX-DOS on ${URL}"
 echo "Press Ctrl+C to stop."
