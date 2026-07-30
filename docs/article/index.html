@@ -4,221 +4,209 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Booting a Museum in a Browser Tab — GenX-DOS</title>
-<link rel="shortcut icon" href="../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../systems/_shared/animated_favicon1.gif">
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
 <style>
   /* Self-hosted faces — this site makes no runtime network calls, and its
      feature article is not going to be the exception. */
-  @font-face{font-family:'Michroma';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/michroma-400.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Serif';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/ibm-plex-serif-400.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Serif';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/ibm-plex-serif-600.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/ibm-plex-serif-400-italic.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:600;font-display:swap;src:url('fonts/ibm-plex-serif-600-italic.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/ibm-plex-mono-400.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/ibm-plex-mono-600.woff2') format('woff2')}
+  @font-face{font-family:'Michroma';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/michroma-400.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Serif';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/ibm-plex-serif-400.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Serif';font-style:normal;font-weight:600;font-display:swap;src:url('../fonts/ibm-plex-serif-600.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:400;font-display:swap;src:url('../fonts/ibm-plex-serif-400-italic.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:600;font-display:swap;src:url('../fonts/ibm-plex-serif-600-italic.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/ibm-plex-mono-400.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url('../fonts/ibm-plex-mono-600.woff2') format('woff2')}
   :root{
-    --paper:#E9E7DE;
-    --ink:#17150F;
-    --cyan:#0090C8;
-    --magenta:#D6006E;
-    --yellow:#F2BE00;
-    --crt:#0A0F0A;
-    --phosphor:#35FF6D;
-    --rule:3px solid var(--ink);
+    /* Reshaped to the landing page's design language (dark CRT terminal): thin
+       amber-.22 lines, rounded panels, subtle glows, amber identity, green
+       accents, cyan links. Var names kept from the original print palette —
+       'yellow' now holds amber, 'magenta' the phosphor green. Serif body is a
+       deliberate keep (long-form readability); all chrome follows the landing. */
+    --paper:#D4D1C6;
+    --ink:#0B0D10;
+    --cyan:#4BC4D6;
+    --magenta:#35FF6D; /* green  */
+    --yellow:#FFB000;  /* amber  */
+    --crt:#0B0D10;
+    --panel:#14171C;
+    --dim:#837D6E;
+    --line:rgba(255,176,0,.22);
+    --rule:1px solid var(--line);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{background:#CFCDC4}
+  html{background:var(--crt)}
   body{
-    background:var(--paper);
-    color:var(--ink);
+    background:var(--crt);
+    color:var(--paper);
     font-family:'IBM Plex Serif',Georgia,serif;
     font-size:1.0625rem;
     line-height:1.62;
-    max-width:1060px;
+    max-width:1000px;
     margin:0 auto;
-    box-shadow:0 0 0 1px #B9B7AE, 0 24px 60px rgba(0,0,0,.28);
   }
-  a{color:inherit;text-decoration-color:var(--magenta);text-decoration-thickness:2px;text-underline-offset:3px}
-  a:hover{color:var(--magenta)}
-  a:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+  a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(75,196,214,.4)}
+  a:hover{color:#8fe3ef;border-bottom-color:var(--cyan)}
+  a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 
   /* ---------- masthead strip ---------- */
   .strip{
-    background:var(--yellow);
-    border-bottom:var(--rule);
     display:flex;justify-content:space-between;align-items:center;
-    padding:.55rem 1.4rem;
+    padding:.75rem 1.5rem;
+    border-bottom:1px solid var(--line);
+    color:var(--dim);
     font-family:'IBM Plex Mono',monospace;
-    font-size:.72rem;letter-spacing:.14em;font-weight:600;
+    font-size:.72rem;letter-spacing:.16em;font-weight:600;text-transform:uppercase;
   }
-  .strip .tag{font-family:'Michroma',sans-serif;font-size:.78rem;letter-spacing:.22em}
+  .strip .tag{font-family:'Michroma',sans-serif;font-size:.72rem;letter-spacing:.22em;color:var(--yellow)}
   .strip .issue{text-align:right}
 
   /* ---------- opener ---------- */
-  .opener{padding:2.6rem 1.4rem 2rem;border-bottom:var(--rule)}
+  .opener{padding:3rem 1.5rem 2.2rem;border-bottom:1px solid var(--line)}
   .kicker{
-    font-family:'Michroma',sans-serif;font-size:.72rem;letter-spacing:.3em;
-    color:var(--cyan);margin-bottom:1.1rem;
+    font-family:'Michroma',sans-serif;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--magenta);margin-bottom:1.2rem;
   }
   h1{
-    font-family:'Michroma',sans-serif;
-    font-weight:400;
-    font-size:clamp(2rem, 6.2vw, 4rem);
-    line-height:1.08;
-    letter-spacing:.01em;
-    text-transform:uppercase;
-    max-width:17ch;
-    text-wrap:balance;
-    margin-bottom:1.4rem;
+    color:var(--yellow);
+    font-family:'Michroma',sans-serif;font-weight:400;
+    font-size:clamp(2rem, 6.2vw, 3.8rem);
+    line-height:1.1;letter-spacing:.01em;text-transform:uppercase;
+    max-width:17ch;text-wrap:balance;margin-bottom:1.5rem;
   }
   h1 .tab{color:var(--magenta)}
   .standfirst{
-    font-size:1.28rem;line-height:1.5;font-style:italic;
-    max-width:52ch;margin-bottom:1.6rem;
+    font-size:1.26rem;line-height:1.5;font-style:italic;color:var(--paper);
+    max-width:52ch;margin-bottom:1.7rem;
   }
   .byline{
     display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;
-    border-top:2px solid var(--ink);
-    padding-top:.7rem;
+    border-top:1px solid var(--line);padding-top:.9rem;
     font-family:'IBM Plex Mono',monospace;
-    font-size:.72rem;letter-spacing:.12em;font-weight:600;
+    font-size:.72rem;letter-spacing:.12em;font-weight:600;color:var(--dim);
   }
-  .byline b{color:var(--magenta)}
+  .byline b{color:var(--yellow);font-weight:600}
 
-
+  /* ---------- screenshots ---------- */
+  .shot{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#000;box-shadow:0 0 40px rgba(255,176,0,.06)}
+  .shot img{display:block;width:100%;height:auto}
+  .shot.incol{margin:1.8rem 0}
   .caption{
-    font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.06em;
-    background:var(--ink);color:var(--paper);
-    padding:.45rem .7rem;margin-top:0;
+    font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.05em;
+    background:var(--panel);color:var(--dim);
+    padding:.65rem .85rem;border-top:1px solid var(--line);
   }
   .caption b{color:var(--yellow);font-weight:600}
   .caption code{background:none;color:inherit;padding:0;font-size:inherit}
 
-  /* ---------- screenshots ---------- */
-  .shot{border:var(--rule);box-shadow:8px 8px 0 var(--magenta)}
-  .shot img{display:block;width:100%;height:auto}
-  .shot.incol{box-shadow:6px 6px 0 var(--cyan);margin:1.7rem 0}
-
   /* ---------- article grid ---------- */
   .feature{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) 280px;
-    gap:0 2.6rem;
-    padding:2.4rem 1.4rem 2.6rem;
+    display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:0 2.8rem;
+    padding:2.6rem 1.5rem 2.8rem;
   }
   .copy{max-width:66ch}
   .copy p{margin-bottom:1.15rem;text-align:justify;hyphens:auto}
   .copy p:last-child{margin-bottom:0}
   .crosshead{
     font-family:'Michroma',sans-serif;font-weight:400;
-    font-size:.92rem;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--cyan);
-    border-top:var(--rule);
-    padding-top:.85rem;
-    margin:2.1rem 0 1rem;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--yellow);
+    display:flex;align-items:center;gap:1rem;
+    margin:2.5rem 0 1.2rem;
   }
+  .crosshead::after{content:"";flex:1;height:1px;background:var(--line)}
   .copy > .crosshead:first-child{margin-top:0}
   .dropcap::first-letter{
-    font-family:'Michroma',sans-serif;
-    float:left;
-    font-size:3.1rem;line-height:1;
-    padding:.35rem .55rem;
-    margin:.2rem .65rem 0 0;
-    background:var(--yellow);
-    border:var(--rule);
+    font-family:'Michroma',sans-serif;float:left;
+    font-size:2.9rem;line-height:1;
+    padding:.28rem .48rem;margin:.28rem .7rem 0 0;
+    color:var(--yellow);
+    border:1px solid var(--line);border-radius:4px;
   }
   .pull{
     font-family:'Michroma',sans-serif;font-weight:400;
-    font-size:1.18rem;line-height:1.5;text-transform:uppercase;
+    font-size:1.1rem;line-height:1.5;text-transform:uppercase;
     color:var(--magenta);
-    border-top:4px solid var(--magenta);
-    border-bottom:4px solid var(--magenta);
-    padding:1.05rem .2rem;
-    margin:1.9rem 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:1.1rem .2rem;margin:2.1rem 0;
   }
   code{
-    font-family:'IBM Plex Mono',monospace;font-size:.88em;
-    background:#DDDACE;padding:.06em .3em;
+    font-family:'IBM Plex Mono',monospace;font-size:.86em;
+    color:var(--yellow);background:rgba(255,176,0,.10);
+    padding:.08em .36em;border-radius:3px;
   }
 
   /* ---------- rail boxouts ---------- */
-  .rail{display:flex;flex-direction:column;gap:2rem}
-  .boxout{border:var(--rule);background:var(--paper)}
+  .rail{display:flex;flex-direction:column;gap:1.6rem}
+  .boxout{border:1px solid var(--line);border-radius:4px;background:var(--panel);overflow:hidden}
   .boxout h3{
     font-family:'Michroma',sans-serif;font-weight:400;
-    font-size:.74rem;letter-spacing:.14em;
-    background:var(--cyan);color:var(--paper);
-    padding:.55rem .8rem;
+    font-size:.72rem;letter-spacing:.14em;
+    color:var(--yellow);
+    padding:.75rem .9rem;border-bottom:1px solid var(--line);
   }
-  .boxout.hot h3{background:var(--magenta)}
-  .boxout ul{list-style:none;padding:.9rem .9rem 1rem}
+  .boxout.hot h3{color:var(--magenta)}
+  .boxout ul{list-style:none;padding:.5rem .9rem .7rem}
   .boxout li{
     font-family:'IBM Plex Mono',monospace;font-size:.78rem;line-height:1.45;
     display:flex;justify-content:space-between;gap:1rem;
-    padding:.34rem 0;border-bottom:1px solid #C9C6BA;
+    padding:.42rem 0;border-bottom:1px solid var(--line);
   }
   .boxout li:last-child{border-bottom:0}
-  .boxout li b{font-weight:600}
+  .boxout li span{color:var(--paper)}
+  .boxout li b{font-weight:600;color:var(--yellow)}
   .boxout .note{
-    font-size:.82rem;line-height:1.5;font-family:'IBM Plex Serif',serif;
+    font-size:.84rem;line-height:1.55;font-family:'IBM Plex Serif',serif;color:var(--paper);
     padding:.9rem .9rem 1rem;
   }
-  .boxout .note strong{color:var(--magenta)}
+  .boxout .note strong{color:var(--magenta);font-weight:600}
 
-  /* ---------- review box (signature) ---------- */
+  /* ---------- review box ---------- */
   .verdict{
-    margin:0 1.4rem 2.6rem;
-    background:var(--yellow);
-    border:var(--rule);
-    box-shadow:8px 8px 0 var(--magenta);
+    margin:0 1.5rem 2.8rem;
+    background:var(--panel);
+    border:1px solid var(--line);border-radius:4px;overflow:hidden;
+    box-shadow:0 0 50px rgba(255,176,0,.06);
   }
   .verdict-head{
-    display:flex;justify-content:space-between;align-items:baseline;
-    border-bottom:var(--rule);
-    padding:.85rem 1.2rem;
+    display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;
+    border-bottom:1px solid var(--line);padding:.9rem 1.2rem;
   }
   .verdict-head h2{
-    font-family:'Michroma',sans-serif;font-weight:400;
-    font-size:1.05rem;letter-spacing:.14em;
+    color:var(--yellow);
+    font-family:'Michroma',sans-serif;font-weight:400;font-size:1.02rem;letter-spacing:.14em;
   }
   .verdict-head span{
-    font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.12em;font-weight:600;
+    font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.12em;font-weight:600;color:var(--dim);
   }
-  .meters{
-    display:grid;grid-template-columns:1fr 1fr;gap:1rem 2.4rem;
-    padding:1.2rem;
-  }
-  .meter{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.1em;font-weight:600}
-  .meter .row{display:flex;justify-content:space-between;margin-bottom:.35rem}
-  .meter .bar{height:14px;border:2px solid var(--ink);background:var(--paper)}
-  .meter .fill{height:100%;background:var(--ink)}
+  .meters{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem 2.6rem;padding:1.3rem 1.2rem}
+  .meter{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;font-weight:600;color:var(--dim)}
+  .meter .row{display:flex;justify-content:space-between;margin-bottom:.4rem}
+  .meter .row span:last-child{color:var(--yellow)}
+  .meter .bar{height:10px;border:1px solid var(--line);border-radius:3px;background:var(--crt);overflow:hidden}
+  .meter .fill{height:100%;background:var(--magenta);box-shadow:0 0 12px rgba(53,255,109,.4)}
   .overall{
-    display:flex;justify-content:space-between;align-items:center;gap:1.5rem;
-    border-top:var(--rule);
-    padding:1rem 1.2rem;
-    flex-wrap:wrap;
+    display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;
+    border-top:1px solid var(--line);padding:1.1rem 1.2rem;
   }
-  .overall .word{font-size:.95rem;font-style:italic;max-width:34ch}
+  .overall .word{font-size:.98rem;font-style:italic;color:var(--paper);max-width:34ch}
   .overall .score{
-    font-family:'Michroma',sans-serif;font-size:2.4rem;
-    background:var(--ink);color:var(--yellow);
-    padding:.25rem .7rem;
-    flex:none;
+    font-family:'Michroma',sans-serif;font-size:2.2rem;color:var(--yellow);
+    border:1px solid var(--line);border-radius:4px;padding:.1rem .55rem;flex:none;
   }
 
   /* ---------- footer ---------- */
   .foot{
-    border-top:var(--rule);
-    background:var(--ink);color:var(--paper);
-    padding:1.2rem 1.4rem 1.5rem;
+    border-top:1px solid var(--line);
+    color:var(--dim);text-align:center;
+    padding:2.2rem 1.5rem 2.6rem;
     font-family:'IBM Plex Mono',monospace;font-size:.74rem;line-height:1.7;letter-spacing:.04em;
   }
-  .foot a{color:var(--yellow);text-decoration-color:var(--yellow)}
-  .foot a:hover{color:var(--paper)}
-  .foot .lic{color:#9B988C}
+  .foot a{color:var(--yellow);text-decoration:none;border-bottom:1px solid var(--line)}
+  .foot a:hover{color:var(--paper);border-bottom-color:var(--yellow)}
+  .foot .lic{color:var(--dim);margin-top:.6rem}
 
   /* ---------- responsive ---------- */
   @media (max-width:880px){
-    .feature{grid-template-columns:1fr;gap:2rem}
+    .feature{grid-template-columns:1fr;gap:2.2rem}
     .rail{flex-direction:row;flex-wrap:wrap}
     .rail .boxout{flex:1 1 260px}
     .meters{grid-template-columns:1fr}
@@ -246,8 +234,8 @@
 <div class="feature">
   <article class="copy">
     <p class="dropcap">There's a particular sound a 486 made when you turned it on. You can't hear it here — this is a browser tab — but everything else is in place. An AMIBIOS logo flashes. Memory counts up in 64&nbsp;KB increments. A configuration table rattles off a numeric coprocessor that's politely <em>Absent</em>. Then the screen clears to a black field and a box-drawn menu draws itself — Home Computers, Games Consoles, Handheld Consoles — in the chunky lettering of a real DOS screen, a grey <code>C:\SYSTEMS&gt;</code> blinking beneath it, waiting for you the way machines used to: by doing nothing at all until you type something.</p>
-    <figure class="shot incol" style="box-shadow:6px 6px 0 var(--magenta)">
-      <img src="screenshot-menu.png" alt="The GenX-DOS launcher menu, box-drawn in CP437, inside an IBM 5153 CRT bezel on 70s orange wallpaper — running in a Firefox tab" width="1465" height="915">
+    <figure class="shot incol">
+      <img src="../screenshot-menu.png" alt="The GenX-DOS launcher menu, box-drawn in CP437, inside an IBM 5153 CRT bezel on 70s orange wallpaper — running in a Firefox tab" width="1465" height="915">
       <figcaption class="caption"><b>THE LAUNCHER:</b> the menu on an IBM monitor, <code>C:\SYSTEMS&gt;</code> waiting below — and yes, that is a browser tab</figcaption>
     </figure>
     <p>Type a number and a Commodore 64 boots inside a curved CRT bezel, the burnt-orange wallpaper of a 1977 living room visible around the glass. Forty-year-old games run. Nothing was installed. Nothing phoned home.</p>
@@ -271,7 +259,7 @@
     <h2 class="crosshead">A point of view about the past</h2>
     <p>What elevates GenX-DOS above "a pile of emulators" is that it has <em>opinions</em>. The scope isn't "8-bit era" — it's <strong>8-bit feel</strong>. The aesthetic decides, not the calendar: the Game Boy, Game Gear and Lynx are in, late-90s release dates be damned; the Genesis and Amiga are out. Ten games per system, sorted by year. When a franchise qualifies, the <em>first</em> entry gets the nod.</p>
     <figure class="shot incol">
-      <img src="screenshot.png" alt="California Games booting on an Atari Lynx handheld bezel, held up in front of a classroom photo — running in a browser" width="1465" height="915">
+      <img src="../screenshot.png" alt="California Games booting on an Atari Lynx handheld bezel, held up in front of a classroom photo — running in a browser" width="1465" height="915">
       <figcaption class="caption"><b>8-BIT FEEL:</b> California Games on the Lynx — 1989 release date be damned, it looks and sounds the part</figcaption>
     </figure>
     <p>Every game carries its own instruction page — real keys, checked against the original manuals and inlays, not guessed — and most machines will take a USB gamepad if the game suits one. Where the original wanted a joystick, the pad drives the machine's own joystick port, just as it would have in 1985.</p>

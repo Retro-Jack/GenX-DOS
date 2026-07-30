@@ -24,7 +24,7 @@
           '',
         )
       : '/';
-  var ARTICLE = ROOT + 'docs/tech_article.html';
+  var ARTICLE = ROOT + 'docs/article/';
   var s = document.createElement('style');
   s.textContent =
     '.gx-repo-link{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);' +

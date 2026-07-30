@@ -268,7 +268,7 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
 
 - `docs/fonts/michroma-400.woff2` — **Michroma** by Vernon Adams. Licensed
     **SIL Open Font License 1.1**. Display face on the landing page and the
-    feature article (`docs/tech_article.html`).
+    feature article (`docs/article/index.html`).
 
 - `docs/fonts/ibm-plex-mono-*.woff2`, `docs/fonts/ibm-plex-serif-*.woff2` —
     **IBM Plex Mono** and **IBM Plex Serif** by Mike Abbink & Bold Monday for
