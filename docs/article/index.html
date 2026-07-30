@@ -5,33 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Booting a Museum in a Browser Tab — GenX-DOS</title>
 <link rel="shortcut icon" href="../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="../../styles/genx.css">
 <style>
-  /* Self-hosted faces — this site makes no runtime network calls, and its
-     feature article is not going to be the exception. */
-  @font-face{font-family:'Michroma';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/michroma-400.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Serif';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/ibm-plex-serif-400.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Serif';font-style:normal;font-weight:600;font-display:swap;src:url('../fonts/ibm-plex-serif-600.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:400;font-display:swap;src:url('../fonts/ibm-plex-serif-400-italic.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:600;font-display:swap;src:url('../fonts/ibm-plex-serif-600-italic.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/ibm-plex-mono-400.woff2') format('woff2')}
-  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url('../fonts/ibm-plex-mono-600.woff2') format('woff2')}
-  :root{
-    /* Reshaped to the landing page's design language (dark CRT terminal): thin
-       amber-.22 lines, rounded panels, subtle glows, amber identity, green
-       accents, cyan links. Var names kept from the original print palette —
-       'yellow' now holds amber, 'magenta' the phosphor green. Serif body is a
-       deliberate keep (long-form readability); all chrome follows the landing. */
-    --paper:#D4D1C6;
-    --ink:#0B0D10;
-    --cyan:#4BC4D6;
-    --magenta:#35FF6D; /* green  */
-    --yellow:#FFB000;  /* amber  */
-    --crt:#0B0D10;
-    --panel:#14171C;
-    --dim:#837D6E;
-    --line:rgba(255,176,0,.22);
-    --rule:1px solid var(--line);
-  }
   *{box-sizing:border-box;margin:0;padding:0}
   html{background:var(--crt)}
   body{
@@ -56,23 +31,23 @@
     font-family:'IBM Plex Mono',monospace;
     font-size:.72rem;letter-spacing:.16em;font-weight:600;text-transform:uppercase;
   }
-  .strip .tag{font-family:'Michroma',sans-serif;font-size:.72rem;letter-spacing:.22em;color:var(--yellow)}
+  .strip .tag{font-family:'Michroma',sans-serif;font-size:.72rem;letter-spacing:.22em;color:var(--amber)}
   .strip .issue{text-align:right}
 
   /* ---------- opener ---------- */
   .opener{padding:3rem 1.5rem 2.2rem;border-bottom:1px solid var(--line)}
   .kicker{
     font-family:'Michroma',sans-serif;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
-    color:var(--magenta);margin-bottom:1.2rem;
+    color:var(--green);margin-bottom:1.2rem;
   }
   h1{
-    color:var(--yellow);
+    color:var(--amber);
     font-family:'Michroma',sans-serif;font-weight:400;
     font-size:clamp(2rem, 6.2vw, 3.8rem);
     line-height:1.1;letter-spacing:.01em;text-transform:uppercase;
     max-width:17ch;text-wrap:balance;margin-bottom:1.5rem;
   }
-  h1 .tab{color:var(--magenta)}
+  h1 .tab{color:var(--green)}
   .standfirst{
     font-size:1.26rem;line-height:1.5;font-style:italic;color:var(--paper);
     max-width:52ch;margin-bottom:1.7rem;
@@ -83,7 +58,7 @@
     font-family:'IBM Plex Mono',monospace;
     font-size:.72rem;letter-spacing:.12em;font-weight:600;color:var(--dim);
   }
-  .byline b{color:var(--yellow);font-weight:600}
+  .byline b{color:var(--amber);font-weight:600}
 
   /* ---------- screenshots ---------- */
   .shot{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#000;box-shadow:0 0 40px rgba(255,176,0,.06)}
@@ -94,7 +69,7 @@
     background:var(--panel);color:var(--dim);
     padding:.65rem .85rem;border-top:1px solid var(--line);
   }
-  .caption b{color:var(--yellow);font-weight:600}
+  .caption b{color:var(--amber);font-weight:600}
   .caption code{background:none;color:inherit;padding:0;font-size:inherit}
 
   /* ---------- article grid ---------- */
@@ -108,7 +83,7 @@
   .crosshead{
     font-family:'Michroma',sans-serif;font-weight:400;
     font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--yellow);
+    color:var(--amber);
     display:flex;align-items:center;gap:1rem;
     margin:2.5rem 0 1.2rem;
   }
@@ -118,19 +93,19 @@
     font-family:'Michroma',sans-serif;float:left;
     font-size:2.9rem;line-height:1;
     padding:.28rem .48rem;margin:.28rem .7rem 0 0;
-    color:var(--yellow);
+    color:var(--amber);
     border:1px solid var(--line);border-radius:4px;
   }
   .pull{
     font-family:'Michroma',sans-serif;font-weight:400;
     font-size:1.1rem;line-height:1.5;text-transform:uppercase;
-    color:var(--magenta);
+    color:var(--green);
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);
     padding:1.1rem .2rem;margin:2.1rem 0;
   }
   code{
     font-family:'IBM Plex Mono',monospace;font-size:.86em;
-    color:var(--yellow);background:rgba(255,176,0,.10);
+    color:var(--amber);background:rgba(255,176,0,.10);
     padding:.08em .36em;border-radius:3px;
   }
 
@@ -140,10 +115,10 @@
   .boxout h3{
     font-family:'Michroma',sans-serif;font-weight:400;
     font-size:.72rem;letter-spacing:.14em;
-    color:var(--yellow);
+    color:var(--amber);
     padding:.75rem .9rem;border-bottom:1px solid var(--line);
   }
-  .boxout.hot h3{color:var(--magenta)}
+  .boxout.hot h3{color:var(--green)}
   .boxout ul{list-style:none;padding:.5rem .9rem .7rem}
   .boxout li{
     font-family:'IBM Plex Mono',monospace;font-size:.78rem;line-height:1.45;
@@ -152,12 +127,12 @@
   }
   .boxout li:last-child{border-bottom:0}
   .boxout li span{color:var(--paper)}
-  .boxout li b{font-weight:600;color:var(--yellow)}
+  .boxout li b{font-weight:600;color:var(--amber)}
   .boxout .note{
     font-size:.84rem;line-height:1.55;font-family:'IBM Plex Serif',serif;color:var(--paper);
     padding:.9rem .9rem 1rem;
   }
-  .boxout .note strong{color:var(--magenta);font-weight:600}
+  .boxout .note strong{color:var(--green);font-weight:600}
 
   /* ---------- review box ---------- */
   .verdict{
@@ -171,7 +146,7 @@
     border-bottom:1px solid var(--line);padding:.9rem 1.2rem;
   }
   .verdict-head h2{
-    color:var(--yellow);
+    color:var(--amber);
     font-family:'Michroma',sans-serif;font-weight:400;font-size:1.02rem;letter-spacing:.14em;
   }
   .verdict-head span{
@@ -180,16 +155,16 @@
   .meters{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem 2.6rem;padding:1.3rem 1.2rem}
   .meter{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;font-weight:600;color:var(--dim)}
   .meter .row{display:flex;justify-content:space-between;margin-bottom:.4rem}
-  .meter .row span:last-child{color:var(--yellow)}
+  .meter .row span:last-child{color:var(--amber)}
   .meter .bar{height:10px;border:1px solid var(--line);border-radius:3px;background:var(--crt);overflow:hidden}
-  .meter .fill{height:100%;background:var(--magenta);box-shadow:0 0 12px rgba(53,255,109,.4)}
+  .meter .fill{height:100%;background:var(--green);box-shadow:0 0 12px rgba(53,255,109,.4)}
   .overall{
     display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;
     border-top:1px solid var(--line);padding:1.1rem 1.2rem;
   }
   .overall .word{font-size:.98rem;font-style:italic;color:var(--paper);max-width:34ch}
   .overall .score{
-    font-family:'Michroma',sans-serif;font-size:2.2rem;color:var(--yellow);
+    font-family:'Michroma',sans-serif;font-size:2.2rem;color:var(--amber);
     border:1px solid var(--line);border-radius:4px;padding:.1rem .55rem;flex:none;
   }
 
@@ -200,8 +175,8 @@
     padding:2.2rem 1.5rem 2.6rem;
     font-family:'IBM Plex Mono',monospace;font-size:.74rem;line-height:1.7;letter-spacing:.04em;
   }
-  .foot a{color:var(--yellow);text-decoration:none;border-bottom:1px solid var(--line)}
-  .foot a:hover{color:var(--paper);border-bottom-color:var(--yellow)}
+  .foot a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--line)}
+  .foot a:hover{color:var(--paper);border-bottom-color:var(--amber)}
   .foot .lic{color:var(--dim);margin-top:.6rem}
 
   /* ---------- responsive ---------- */

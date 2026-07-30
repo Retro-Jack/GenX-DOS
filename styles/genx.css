@@ -1,0 +1,16 @@
+/* GenX-DOS — shared design tokens + self-hosted faces. Imported by every
+   front-facing page in the site design language (landing, article, wiki,
+   controls + gamedocs), so fonts and the palette are declared in ONE place.
+   Fonts live in fonts/ (beside this file). */
+@font-face{font-family:'Michroma';font-weight:400;font-display:swap;src:url('fonts/michroma-400.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Serif';font-weight:400;font-display:swap;src:url('fonts/ibm-plex-serif-400.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Serif';font-weight:600;font-display:swap;src:url('fonts/ibm-plex-serif-600.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/ibm-plex-serif-400-italic.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:600;font-display:swap;src:url('fonts/ibm-plex-serif-600-italic.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-weight:400;font-display:swap;src:url('fonts/ibm-plex-mono-400.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-weight:600;font-display:swap;src:url('fonts/ibm-plex-mono-600.woff2') format('woff2')}
+@font-face{font-family:'VGA437';font-weight:400;font-display:swap;src:url('fonts/web437-vga.woff') format('woff')}
+:root{
+  --crt:#0B0D10; --panel:#14171C; --amber:#FFB000; --green:#35FF6D; --cyan:#4BC4D6;
+  --paper:#D4D1C6; --dim:#837D6E; --line:rgba(255,176,0,.22);
+}
