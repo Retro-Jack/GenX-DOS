@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Start a local web server in the repo root and open the prompt in the default browser.
+# Start a local web server in the repo root and open the landing page in the default browser.
 # Usage: ./serve.sh [port]
 set -euo pipefail
 
 PORT="${1:-8765}"
 HOST="127.0.0.1"
-URL="http://${HOST}:${PORT}/prompt/"
+URL="http://${HOST}:${PORT}/"
 
 cd "$(dirname "$(realpath "$0")")"
 
