@@ -57,7 +57,7 @@ systems/_shared/styles/VGA_font/f12.&lt;0..15&gt;.png   per-CGA-colour variants
 </table>
 <h2 id="what-a-rendered-character-looks-like">What a rendered character looks like</h2>
 <pre><code class="language-html">&lt;div class=&quot;font f-65&quot;
-     style=&quot;background-color:#000000; background-image:url(img/f12.7.png)&quot;
+     style=&quot;background-color:#000000; background-image:url(../systems/_shared/styles/VGA_font/f12.7.png)&quot;
      v=&quot;A&quot;&gt;&lt;/div&gt;
 </code></pre>
 <table>
@@ -168,7 +168,7 @@ systems/_shared/styles/VGA_font/f12.&lt;0..15&gt;.png   per-CGA-colour variants
 </tbody>
 </table>
 <h2 id="regenerating-colour-variants">Regenerating colour variants</h2>
-<p><code>make_fonts.py</code> (in the repo root) takes <code>f12.7.png</code> and writes the other 15 variants by re-tinting the alpha channel. Run it after editing the master sheet.</p>
+<p><code>make_fonts.py</code> (in <code>systems/_shared/styles/VGA_font/</code>, beside the sheets) takes <code>f12.7.png</code> and writes the other 15 variants by re-tinting the alpha channel. Run it after editing the master sheet.</p>
   </main>
 </div>
 <footer class="foot">

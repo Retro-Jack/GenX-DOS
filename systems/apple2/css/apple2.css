@@ -118,18 +118,6 @@ body {
     max-width: 50%;
 }
 
-.disk-light {
-    margin: 5px;
-    background-image: url(red-off-16.png);
-    flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-}
-
-.disk-light.on {
-    background-image: url(red-on-16.png);
-}
-
 .disk-label {
     color: #000;
     font-family: sans-serif;

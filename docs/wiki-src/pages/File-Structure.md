@@ -12,7 +12,6 @@ genx-dos/
 ├── serve.sh                  starts local http.server, opens browser
 ├── index.html                landing page (intro, spec sheet, links) → prompt/
 ├── favicon.ico
-├── make_fonts.py             generates f12.N.png palette variants
 ├── package.json / index.js   the npm package (@retro-jack/genx-dos)
 ├── Dockerfile                the ghcr.io container image (site served by nginx)
 ├── .github/                  publish-package workflow (release → ghcr + npm), Dependabot config, issue/PR templates
@@ -34,27 +33,20 @@ genx-dos/
 │   │   ├── commands.js       echo, cls, setcol, help
 │   │   └── init.js           entry point + AMIBIOS POST animation
 │   └── img/
-│       ├── ami-logo.png      AMIBIOS POST logo
-│       ├── f12.7.png         master sprite sheet (light grey)
-│       └── f12.<0-15>.png    CGA palette variants
+│       └── ami-logo.png      AMIBIOS POST logo   (f12.* sheets now live in systems/_shared/styles/VGA_font/)
 │
 ├── gamedocs/                per-game instruction pages
 │   └── <platform>/          one HTML file per game, named by URL param key
 │
 └── systems/
-    ├── _shared/             shared CSS used by every gamedoc + controls.html (360 pages)
-    │                        + corner controls-link CSS/JS
-    │                        + genx-frame.css (universal play.html page reset + .err/.loading)
-    │                        + genx-noscript.css (no-JS overlay)
-    │                        + genx-game-loader.js (?game=KEY → games.json lookup helper)
-    │                        + genx-numlock-warn.js (NumLock-off banner for VICE bundles)
-    │                        + genx-vice-softkeys.js (RUN/STOP remap to Scroll Lock/Pause)
-    │                        + genx-savestate.js / genx-savestate-std.js (save/load slots → IndexedDB)
-    │                        + genx-bbc-copykey.js / genx-trs80-softkeys.js (COPY / CLEAR soft buttons)
-    │                        + genx-gamepad-keys.js (USB pad → key events, per-bundle map)
-    │                        + favicon.ico / animated_favicon1.gif (site favicon, linked by every page)
-    │                        + bezels/   PNG monitor frames (every platform now bezeled)
-    │                        + textures/ 70s wallpaper tile (sitewide body background)
+    ├── _shared/             shared JS + CSS + assets for every gamedoc + controls.html (360 pages) + play.html
+    │   ├── genx-*.js        controls-link, game-loader, numlock-warn, vice-softkeys,
+    │   │                    savestate(-std), bbc-copykey, trs80-softkeys, gamepad-keys, repo-link
+    │   ├── styles/          all shared CSS (genx-controls/frame/noscript/savestate/controls-link.css)
+    │   │   └── VGA_font/    DOS-prompt CP437 sheets f12.<0-15>.png + make_fonts.py generator
+    │   ├── bezels/          PNG monitor frames (every platform now bezeled)
+    │   ├── textures/        70s wallpaper tile (sitewide body background)
+    │   └── favicon.ico / animated_favicon1.gif   site favicon, linked by every page
     ├── _shared-ejs/         shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem cores
     │                        (14 bundles share; saves ~25 MB vs per-bundle copies)
     ├── apple1/              Apple I            (copied from scullin/apple1js)
@@ -135,5 +127,5 @@ Each `play.html`-based emulator has a `games.json` mapping `<key>` → `{title, 
 | `prompt/img/ami-logo.png` | AMIBIOS POST splash logo |
 | `systems/_shared/styles/VGA_font/f12.7.png` | 192×192 px, 16×16 grid of 12×12 px CP437 glyphs (light grey) |
 | `systems/_shared/styles/VGA_font/f12.<N>.png` | Pre-tinted variant for CGA palette index N |
-| `make_fonts.py` | One-shot PIL script that tints `f12.7.png` into the other variants |
+| `systems/_shared/styles/VGA_font/make_fonts.py` | One-shot PIL script that tints `f12.7.png` into the other variants (run it from beside the sheets) |
 | `serve.sh` | `python3 -m http.server 8765` wrapper that also opens the browser |

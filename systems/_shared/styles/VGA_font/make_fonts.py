@@ -34,7 +34,7 @@ PALETTE = [
     (0xff, 0xff, 0xff),  # 15  White
 ]
 
-img_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'prompt', 'img')
+img_dir = os.path.dirname(os.path.abspath(__file__))
 source_path = os.path.join(img_dir, 'f12.7.png')
 
 src = Image.open(source_path).convert('RGBA')

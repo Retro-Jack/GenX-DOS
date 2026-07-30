@@ -28,7 +28,7 @@ plus two utility classes:
 
 ```html
 <div class="font f-65"
-     style="background-color:#000000; background-image:url(img/f12.7.png)"
+     style="background-color:#000000; background-image:url(../systems/_shared/styles/VGA_font/f12.7.png)"
      v="A"></div>
 ```
 
@@ -67,4 +67,4 @@ Active colours live in `txtPal = { bg, fg }` (indices into the table below). Cha
 
 ## Regenerating colour variants
 
-`make_fonts.py` (in the repo root) takes `f12.7.png` and writes the other 15 variants by re-tinting the alpha channel. Run it after editing the master sheet.
+`make_fonts.py` (in `systems/_shared/styles/VGA_font/`, beside the sheets) takes `f12.7.png` and writes the other 15 variants by re-tinting the alpha channel. Run it after editing the master sheet.

@@ -301,38 +301,6 @@ canvas {
     color: #4f4;
 }
 
-#keyboard .key-OPEN_APPLE div {
-    background-image: url(../img/open-apple24.png);
-    width: 24px;
-    height: 24px;
-    bottom: 1px;
-    left: 4px;
-}
-
-#keyboard .key-OPEN_APPLE span {
-    display: none;
-}
-
-#keyboard .key-OPEN_APPLE.active div {
-    background-image: url(../img/open-apple24-green.png);
-}
-
-#keyboard .key-CLOSED_APPLE div {
-    background-image: url(../img/closed-apple24.png);
-    width: 24px;
-    height: 24px;
-    bottom: 1px;
-    left: 4px;
-}
-
-#keyboard .key-CLOSED_APPLE.active div {
-    background-image: url(../img/closed-apple24-green.png);
-}
-
-#keyboard .key-CLOSED_APPLE span {
-    display: none;
-}
-
 #text_input {
     font-family: Courier, fixed;
 }
