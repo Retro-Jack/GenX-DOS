@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Missile Command — Atari 2600 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Console · Atari 2600</div>
+      <h1>Missile Command</h1>
+      <p class="sub">Atari, 1981 — Rob Fulop's 2600 port of Dave Theurer's 1980 arcade. Cold War paranoia in cartridge form.</p>
+    </div>
+
+    <p class="intro">Six cities are under ICBM attack. You have three anti-missile batteries with limited ammo. Aim a cursor at incoming missiles' projected paths and fire — missiles explode in a small blast that destroys anything inside it. Save the cities, ration ammo, survive waves of increasing density.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>V</kbd> (Select) to cycle game variant.</li>
+      <li>Press <kbd>Enter</kbd> (Reset) to start.</li>
+      <li>Move the cursor with the joystick; <kbd>Space</kbd> fires a missile at the cursor's location.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Keyboard</th><th>Gamepad</th><th>Action</th></tr>
+      <tr><td>Arrows</td><td>Joystick</td><td>Move the cross-hair cursor</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Fire</td><td>Launch a missile from the central battery to the cursor</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>Reset</td><td>start game</td></tr>
+      <tr><td><kbd>V</kbd></td><td>Select</td><td>cycle game variant</td></tr>
+    </table>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Target</th><th>Points</th></tr>
+      <tr><td>Incoming missile</td><td>25</td></tr>
+      <tr><td>Smart bomb (later waves)</td><td>125</td></tr>
+      <tr><td>Bomber plane</td><td>100</td></tr>
+      <tr><td>Saved city (end of wave)</td><td>100 × wave-multiplier</td></tr>
+      <tr><td>Unused missile (end of wave)</td><td>5 × wave-multiplier</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Lead the missile.</strong> ICBMs travel in straight lines from top of screen to a city. Aim ahead of the missile head, not at it.</li>
+      <li><strong>Stack blasts.</strong> A single explosion can take multiple missiles if their projected paths cross at the blast point. Watch the trail-splits — branching ICBMs near the apex are best caught at the split.</li>
+      <li><strong>Defend the centre.</strong> Cities cluster around the central battery. Sacrifice an outer city if it saves the centre.</li>
+      <li><strong>Smart bombs need close kills.</strong> They dodge your explosions, so detonate as close to them as possible — their dodge logic only triggers within a small radius.</li>
+      <li><strong>End-of-wave bonus.</strong> Unused ammo and surviving cities are worth multiples; if you can clear the wave with rockets to spare, you bank serious score.</li>
+    </ul>
+
+    <h2>Atari 2600 controls</h2>
+    <p>The 2600 port replaces the arcade trackball with a joystick — slower, less precise. Practice anticipation; you'll lose to single ICBMs at first.</p>
+  </div>
+</body>
+</html>

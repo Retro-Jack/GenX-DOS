@@ -55,7 +55,7 @@ All six VICE-family + 800XL bundles route through a small `empty.prg` for the BA
 
 Every emulator directory has a `controls.html` documenting its keyboard / joystick mapping. Same dark-amber DOS-flavoured style across all pages; the page-level CSS lives in `systems/_shared/styles/genx-controls.css`.
 
-**Per-game instruction pages** at `gamedocs/<platform>/<key>.html` replace `controls.html` when a game has researched gameplay instructions. The `genx-controls-link.js` script reads `?game=`, `?tape=`, or `?rom=` from the URL and routes to the matching gamedocs page, falling back to `controls.html` when no game param is present (prompt/BASIC entries).
+**Per-game instruction pages** at `docs/games/<platform>/<key>.html` replace `controls.html` when a game has researched gameplay instructions. The `genx-controls-link.js` script reads `?game=`, `?tape=`, or `?rom=` from the URL and routes to the matching gamedocs page, falling back to `controls.html` when no game param is present (prompt/BASIC entries).
 
 Every emulator's main entry HTML carries a small bottom-right `controls` link (fixed position, semi-transparent, Wikipedia-style external-link SVG icon). The link sits in the entry HTML itself — `play.html` for the wrapped emulators, the upstream `index.html` for the URL-driven ones (`bbcmicro`, `bbcmaster`, `msx1`, `msx2`). It's **not** in the virtual filesystem; the DOS prompt's `dir` output shows only `.bat` launchers and menu scripts, never raw `.html` files.
 

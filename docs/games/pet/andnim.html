@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Android NIM — Commodore PET — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore PET</div>
+      <h1>Android NIM</h1>
+      <p class="sub">Commodore, 1979 — one of the original PET bundle games. Three rows of androids on a battlefield; you and the PET take turns removing them. Last one to remove an android loses.</p>
+    </div>
+
+    <p class="intro">Classic Nim with PETSCII androids in three rows of seven, five, and three. On each turn, choose a row and how many androids to remove from it (must be at least one). You and the PET alternate. The player forced to take the last android loses.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Click the game area to enable sound and controls.</li>
+      <li>Press any key past the title to start. Pick "Easy" or "Hard" for the PET's play strength.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported.</p>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></td><td>Pick row (top / middle / bottom)</td></tr>
+      <tr><td>Digit</td><td>Number of androids to remove from that row</td></tr>
+      <tr><td><kbd>Return</kbd></td><td>Confirm</td></tr>
+    </table>
+
+    <h2>Strategy (optimal Nim)</h2>
+    <ul>
+      <li><strong>Misère Nim with three heaps.</strong> Unlike standard Nim, last-takes-loses inverts the endgame: leave your opponent with an odd number of single-android rows.</li>
+      <li><strong>XOR-sum.</strong> Compute the bitwise XOR of all three pile sizes; if non-zero you're in a winning position. Make a move that reduces the XOR to zero.</li>
+      <li><strong>Endgame inversion.</strong> When two rows are empty, take from the remaining row to leave exactly 1 — forcing the opponent to take the last.</li>
+      <li><strong>The "Hard" PET plays optimally.</strong> Your only chance is forcing a win from move 1; otherwise the opening was symmetric and you lose.</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -29,7 +29,7 @@ Arrows = d-pad, **X** = A, **Z** = B, **Shift** = Option 1, **Ctrl** = Option 2,
 
 ## Library
 
-A showcase set leaning on the Lynx's colour and scaling, year-sorted: California Games (the pack-in), Chip's Challenge (a Lynx *original* — it predates the Windows version), Electrocop, Blue Lightning, Warbirds (all 1989 launch titles), Zarlor Mercenary, Klax, Todd's Adventures in Slime World, S.T.U.N. Runner, Rampart. Gamedocs at `gamedocs/lynx/<key>.html`. ROMs are `.lnx` (64-byte-header format the core reads directly).
+A showcase set leaning on the Lynx's colour and scaling, year-sorted: California Games (the pack-in), Chip's Challenge (a Lynx *original* — it predates the Windows version), Electrocop, Blue Lightning, Warbirds (all 1989 launch titles), Zarlor Mercenary, Klax, Todd's Adventures in Slime World, S.T.U.N. Runner, Rampart. Gamedocs at `docs/games/lynx/<key>.html`. ROMs are `.lnx` (64-byte-header format the core reads directly).
 
 ## Bundle layout
 

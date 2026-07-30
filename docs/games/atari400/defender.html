@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Defender — Atari 400 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Atari 400</div>
+      <h1>Defender</h1>
+      <p class="sub">Atari, 1981 — home port of Eugene Jarvis's 1980 Williams arcade. The arcade was infamous for its 5-button + 2-axis control panel; the Atari 8-bit version remaps it all to a joystick + a few keys, becoming infinitely more approachable.</p>
+    </div>
+
+    <p class="intro">Patrol a horizontally-scrolling alien planet, defending the humanoids on the ground from waves of Landers, Mutants, Bombers, Pods, and Swarmers. Landers grab humanoids and try to mutate them — rescue every humanoid before the planet's surface is destroyed, then the wave ends.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>F4</kbd> Start.</li>
+      <li>Watch the radar at the top for incoming Landers (yellow).</li>
+      <li>Fly toward them, shoot before they touch the ground.</li>
+      <li>If a Lander grabs a humanoid, shoot the Lander mid-air and catch the falling humanoid by flying under them.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> / <kbd>↓</kbd></td><td>Move ship up / down</td></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Thrust forward in facing direction / flip direction (push stick opposite to facing)</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>Fire</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Smart bomb — destroys all enemies on screen</td></tr>
+      <tr><td><kbd>H</kbd></td><td>Hyperspace — random teleport (small risk)</td></tr>
+      <tr><td><kbd>F4</kbd></td><td>START</td></tr>
+      <tr><td><kbd>F3</kbd></td><td>SELECT</td></tr>
+      <tr><td><kbd>P</kbd></td><td>Pause</td></tr>
+      <tr><td><kbd>F5</kbd></td><td>Reset</td></tr>
+    </table>
+
+    <h2>Enemies</h2>
+    <table>
+      <tr><th>Enemy</th><th>Behaviour</th><th>Points</th></tr>
+      <tr><td>Lander (yellow)</td><td>Drops to grab humanoids</td><td>150</td></tr>
+      <tr><td>Mutant</td><td>Lander that took a humanoid home — kamikaze attacker</td><td>150</td></tr>
+      <tr><td>Bomber (blue)</td><td>Lays static mines</td><td>250</td></tr>
+      <tr><td>Pod (green)</td><td>Releases Swarmers when shot</td><td>1000</td></tr>
+      <tr><td>Swarmer</td><td>Fast, erratic — released from Pods</td><td>150</td></tr>
+      <tr><td>Humanoid rescue</td><td>Catch a falling one</td><td>500 + 250 per delivery</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Watch the radar, not the screen.</strong> The mini-map is the whole game — your screen view is just a slice of it.</li>
+      <li><strong>Catch falling humanoids.</strong> Shoot the Lander, then fly underneath so the humanoid lands on your ship; carry it to the ground.</li>
+      <li><strong>Smart bomb the Pod cluster.</strong> Pods become 4–5 Swarmers — better to use a bomb than try to kill them all individually.</li>
+      <li><strong>Never let all humanoids die.</strong> If the planet's last humanoid is taken, the surface explodes and the screen fills with Mutants — game-over conditions.</li>
+      <li><strong>Reverse-thrust to ambush.</strong> Quick stick-flip lets you fire backward at a chasing enemy.</li>
+    </ul>
+
+    <h2>Atari 400 controls</h2>
+    <p>Cart-based — our bundle uses cartType 2 (CXL4006 8 KB cart). Joystick + Space (bomb) + H (hyperspace) covers the full original Williams panel.</p>
+  </div>
+</body>
+</html>

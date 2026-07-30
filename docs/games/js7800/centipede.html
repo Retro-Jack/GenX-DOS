@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Centipede — Atari 7800 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Console · Atari 7800 ProSystem</div>
+      <h1>Centipede</h1>
+      <p class="sub">Atari, 1986 (7800 launch lineup) — improved port of the 1981 Dona Bailey / Ed Logg arcade. Replaces the 2600's blocky mushrooms with sprites that look like the arcade.</p>
+    </div>
+
+    <p class="intro">A centipede zigzags down through a field of mushrooms. Hit a middle segment and it splits into two head-led chains. Spider hops, flea drops mushrooms, scorpion poisons. The 7800 ProSystem's MARIA chip handles dozens of sprites at once, so the game looks and runs like the arcade — and supports proper 8-way movement.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>Enter</kbd> to start.</li>
+      <li>Move with arrows (8-way), fire continuously with <kbd>Z</kbd>.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Keyboard</th><th>Gamepad</th><th>Action</th></tr>
+      <tr><td>Arrows</td><td>D-pad</td><td>Move within the bottom playfield band (8-way)</td></tr>
+      <tr><td><kbd>Z</kbd></td><td>Left fire</td><td>Fire (rapid auto-fire if held)</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>Reset</td><td>Start game</td></tr>
+      <tr><td><kbd>Shift</kbd></td><td>Select</td><td>Select — variant</td></tr>
+    </table>
+
+    <h2>Bestiary</h2>
+    <table>
+      <tr><th>Enemy</th><th>Points</th></tr>
+      <tr><td>Centipede head</td><td>100</td></tr>
+      <tr><td>Centipede body</td><td>10</td></tr>
+      <tr><td>Spider (close)</td><td>900 / 600 / 300</td></tr>
+      <tr><td>Flea</td><td>200</td></tr>
+      <tr><td>Scorpion</td><td>1000</td></tr>
+      <tr><td>Mushroom (normal/poisoned)</td><td>1 / 5</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Diagonal hits.</strong> The 8-way joystick lets you slide diagonally — the 7800 port rewards this over the 2600 version's 4-way limits.</li>
+      <li><strong>Mushroom culling.</strong> Each wave starts with the layout you left behind. Sparse field = wider centipede = easier shooting.</li>
+      <li><strong>Spider proximity scoring.</strong> Shoot it from one row away for 900 points. Tempting but lethal.</li>
+      <li><strong>Auto-fire only.</strong> Hold <kbd>Z</kbd> — single shots are wasted frames.</li>
+      <li><strong>Poisoned mushrooms.</strong> A centipede crossing one plunges straight down. Either eat it (4 hits) or position to intercept the drop.</li>
+    </ul>
+
+    <h2>Atari 7800 controls</h2>
+    <p>ProLine joystick with auto-fire works perfectly for Centipede. The MARIA chip's sprite count means no flicker, unlike the 2600 port. Press <kbd>Enter</kbd> at the title to start.</p>
+  </div>
+</body>
+</html>

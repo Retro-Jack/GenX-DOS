@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Omega Race — Commodore VIC-20 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore VIC-20</div>
+      <h1>Omega Race</h1>
+      <p class="sub">Commodore, 1982 — port of Midway's 1981 vector arcade. You orbit a closed rectangular arena; enemy ships orbit too, and you all share the same wraparound geometry. Inertia is the puzzle.</p>
+    </div>
+
+    <p class="intro">Your ship moves with Newtonian momentum around the inside of a rectangle. Thrust to accelerate, rotate to aim. Enemies (Drone Ships, Command Ships, Death Ships, Photon Mines) all behave differently and the arena edges bounce both you and shots. Survive a wave to advance.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Click the game area to enable sound and controls.</li>
+      <li>Press a key past the title to spawn.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Numpad 4</kbd> / <kbd>6</kbd></td><td>Rotate left / right</td></tr>
+      <tr><td><kbd>Numpad 8</kbd></td><td>Thrust</td></tr>
+      <tr><td><kbd>Numpad 0</kbd> / <kbd>5</kbd></td><td>Fire</td></tr>
+    </table>
+
+    <h2>Enemy types</h2>
+    <table>
+      <tr><th>Enemy</th><th>Behaviour</th></tr>
+      <tr><td>Drone Ship</td><td>Inert orbiter — easy points</td></tr>
+      <tr><td>Command Ship</td><td>Shoots back; promotes drones into more dangerous types</td></tr>
+      <tr><td>Death Ship</td><td>Spawned from killed commands; tracks you actively</td></tr>
+      <tr><td>Photon Mine</td><td>Drifts toward you; lethal on contact, scores big if shot</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Inertia kills more than enemies.</strong> Tap-thrust; never hold. A drift that crosses the arena is a drift you can't reverse in time.</li>
+      <li><strong>Use the edges.</strong> Your shots bounce off the rectangle once before dissipating — flank enemies orbiting opposite you.</li>
+      <li><strong>Kill commands first.</strong> Letting commands live escalates the wave from drones to death ships fast.</li>
+      <li><strong>Mines are bonus, not threat.</strong> They're slow; close in, kill the high-value mine, then deal with the orbiters.</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -64,7 +64,7 @@ With cart: title screen offers the cart name as option 2 — press <kbd>2</kbd>.
 </ul>
 <p>We used <code>.rpk</code> because that's what the public archive serves.</p>
 <h2 id="url-pattern">URL pattern</h2>
-<p><code>?game=&lt;key&gt;</code> is read directly by <code>play.html</code> and never rewritten, so the key is still in the URL when the deferred <code>genx-controls-link.js</code> runs and resolves <code>gamedocs/js99er/&lt;key&gt;.html</code> cleanly. Cart files live at <code>systems/js99er/carts/&lt;key&gt;.rpk</code> — rename on download to match the key.</p>
+<p><code>?game=&lt;key&gt;</code> is read directly by <code>play.html</code> and never rewritten, so the key is still in the URL when the deferred <code>genx-controls-link.js</code> runs and resolves <code>docs/games/js99er/&lt;key&gt;.html</code> cleanly. Cart files live at <code>systems/js99er/carts/&lt;key&gt;.rpk</code> — rename on download to match the key.</p>
 <h2 id="what-we-kept-vs-stripped">What we kept vs stripped</h2>
 <ul>
 <li><strong>Kept:</strong> <code>emu/</code>, <code>lib/</code>, <code>sound/</code>, <code>software/system.js</code>, <code>util.js</code>, <code>log.js</code>, <code>sound.js</code>, <code>settings.js</code>, <code>database.js</code>, <code>software.js</code></li>

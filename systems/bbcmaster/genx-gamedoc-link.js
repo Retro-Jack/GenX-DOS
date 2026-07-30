@@ -5,7 +5,7 @@
 // key, so the shared genx-controls-link.js can't resolve the per-game
 // gamedoc. Instead the page ships a hardcoded `<a class="gx-controls-link"
 // href="../controls.html">`; this script upgrades that href to the right
-// `gamedocs/bbcmaster/<key>.html` based on the disc that was loaded.
+// `docs/games/bbcmaster/<key>.html` based on the disc that was loaded.
 //
 // Map is keyed on the disc filename (without directory or extension). A disc
 // with no entry here (or the keyless blank-Master launch) falls through to
@@ -33,7 +33,7 @@
   var key = DISC_TO_KEY[name];
   if (!key) return;
   var a = document.querySelector('.gx-controls-link');
-  // dist/index.html lives at systems/bbcmaster/dist/, so gamedocs/ is three
+  // dist/index.html lives at systems/bbcmaster/dist/, so docs/games/ is three
   // levels up (dist -> bbcmaster -> systems -> repo root).
-  if (a) a.href = '../../../gamedocs/bbcmaster/' + key + '.html';
+  if (a) a.href = '../../../docs/games/bbcmaster/' + key + '.html';
 })();

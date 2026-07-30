@@ -40,7 +40,7 @@ The universal Game Boy keyboard layout: **arrows** = d-pad, **X** = A, **Z** = B
 
 ## Library
 
-A deliberate mix of GB classics and GBC colour showpieces, year-sorted: Tetris, Super Mario Land, Castlevania: The Adventure, Gargoyle's Quest, Kirby's Dream Land, Link's Awakening, Donkey Kong ('94), Pokémon Red, Final Fantasy Adventure (all GB), Shantae (GBC). Each has a per-game gamedoc at `gamedocs/gbc/<key>.html`.
+A deliberate mix of GB classics and GBC colour showpieces, year-sorted: Tetris, Super Mario Land, Castlevania: The Adventure, Gargoyle's Quest, Kirby's Dream Land, Link's Awakening, Donkey Kong ('94), Pokémon Red, Final Fantasy Adventure (all GB), Shantae (GBC). Each has a per-game gamedoc at `docs/games/gbc/<key>.html`.
 
 ## Bundle layout
 

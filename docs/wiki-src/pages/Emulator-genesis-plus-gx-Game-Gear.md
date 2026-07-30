@@ -33,7 +33,7 @@ Arrows = d-pad, **Z** = Button 1, **X** = Button 2, **Enter** = Start. Most game
 
 ## Library
 
-A Sega showcase, year-sorted: Columns (the pack-in), Sonic the Hedgehog (the 8-bit GG game, distinct from the Mega Drive one), Shinobi, Aerial Assault, Streets of Rage, Defenders of Oasis (a full RPG), Land of Illusion (Mickey), Mortal Kombat (Sega kept the gore), Dr. Robotnik's Mean Bean Machine, Tails Adventure. Gamedocs at `gamedocs/gamegear/<key>.html`. ROMs are `.gg`.
+A Sega showcase, year-sorted: Columns (the pack-in), Sonic the Hedgehog (the 8-bit GG game, distinct from the Mega Drive one), Shinobi, Aerial Assault, Streets of Rage, Defenders of Oasis (a full RPG), Land of Illusion (Mickey), Mortal Kombat (Sega kept the gore), Dr. Robotnik's Mean Bean Machine, Tails Adventure. Gamedocs at `docs/games/gamegear/<key>.html`. ROMs are `.gg`.
 
 ## Bundle layout
 
@@ -70,7 +70,7 @@ Unlike the Game Gear's held-up-device bezel, the Master System wears the shared 
 
 ### Library
 
-Year-sorted, ten titles: Alex Kidd in Miracle World (1986, the de-facto pack-in), Fantasy Zone, Wonder Boy, Out Run (1987), Phantasy Star (1988, with a **battery save** that persists to IndexedDB), R-Type, Shinobi, Psycho Fox (1989), Castle of Illusion (1990), and the 8-bit Sonic the Hedgehog (1991). Gamedocs at `gamedocs/sms/<key>.html`; ROMs are `.sms`. Five save-state slots via the shared `_shared/genx-savestate.js`, plus native USB gamepad support.
+Year-sorted, ten titles: Alex Kidd in Miracle World (1986, the de-facto pack-in), Fantasy Zone, Wonder Boy, Out Run (1987), Phantasy Star (1988, with a **battery save** that persists to IndexedDB), R-Type, Shinobi, Psycho Fox (1989), Castle of Illusion (1990), and the 8-bit Sonic the Hedgehog (1991). Gamedocs at `docs/games/sms/<key>.html`; ROMs are `.sms`. Five save-state slots via the shared `_shared/genx-savestate.js`, plus native USB gamepad support.
 
 ## Related
 

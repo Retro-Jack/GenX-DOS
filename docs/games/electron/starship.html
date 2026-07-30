@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Starship Command — Acorn Electron — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body class="acorn">
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Acorn Electron</div>
+      <h1>Starship Command</h1>
+      <p class="sub">Acornsoft, 1983 — Peter Irvin's first commercial release (later co-author of <em>Exile</em>). Rotating-starfield space combat with active power-budget management; a quiet design landmark.</p>
+    </div>
+
+    <p class="intro">You command a single starship defending a sector against escalating waves of alien fighters. The starfield rotates around you (not the ship around the field) — you point a fixed-position cross-hair and the universe spins underneath. Energy is finite: thrusting, firing torpedoes and raising shields all draw on it, and shields and scanners share one circuit so you run one or the other. Balancing it all is the whole game.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>Space</kbd> at the title to start.</li>
+      <li>You're in the middle of the screen; aliens jump in from the edges. Rotate the universe with <kbd>Z</kbd>/<kbd>X</kbd> until your nose lines up.</li>
+      <li>Fire torpedoes with <kbd>N</kbd> and thrust with <kbd>M</kbd> — both draw energy, so don't hold them needlessly.</li>
+      <li>Press <kbd>B</kbd> for shields when under fire; shields switch your scanners off, so flip back to scanners with <kbd>V</kbd> when it's clear (or let <kbd>C</kbd> auto-changeover juggle them).</li>
+    </ol>
+
+    <h2>Flight controls</h2>
+    <p class="note-plain">This game supports a <strong>USB gamepad</strong> — left/right on the D-pad or stick rotates, up thrusts, down brakes, and any face button fires torpedoes. The command-console keys stay on the keyboard.</p>
+    <p>These can all be held at once.</p>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Z</kbd> / <kbd>X</kbd></td><td>Rotate left / right</td></tr>
+      <tr><td><kbd>N</kbd></td><td>Fire torpedoes</td></tr>
+      <tr><td><kbd>M</kbd></td><td>Thrust</td></tr>
+      <tr><td><kbd>,</kbd></td><td>Brake</td></tr>
+      <tr><td><kbd>F</kbd> / <kbd>G</kbd></td><td>Launch port / starboard escape capsule</td></tr>
+    </table>
+
+    <h2>System toggles</h2>
+    <p>Only one of these can be active at a time.</p>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>B</kbd></td><td>Shields on / scanners off</td></tr>
+      <tr><td><kbd>V</kbd></td><td>Scanners on / shields off</td></tr>
+      <tr><td><kbd>C</kbd></td><td>Auto-changeover (switch shields/scanners automatically)</td></tr>
+      <tr><td><kbd>2</kbd> / <kbd>Q</kbd></td><td>Rotation dampers on / off</td></tr>
+      <tr><td><kbd>3</kbd> / <kbd>W</kbd></td><td>Velocity dampers on / off</td></tr>
+      <tr><td><kbd>Home</kbd> / <kbd>Backspace</kbd></td><td>Freeze / unfreeze (BBC COPY / DELETE)</td></tr>
+    </table>
+
+    <h2>The energy budget</h2>
+    <ul>
+      <li><strong>Thrust / brake</strong> (<kbd>M</kbd> / <kbd>,</kbd>) — manoeuvring costs energy.</li>
+      <li><strong>Torpedoes</strong> (<kbd>N</kbd>) — every shot is a drain.</li>
+      <li><strong>Shields</strong> (<kbd>B</kbd>) — absorb hits, but raising them switches scanners off.</li>
+      <li><strong>Scanners</strong> (<kbd>V</kbd>) — long-range tracker so you can pre-aim where the next wave appears; shares the circuit with shields.</li>
+      <li><strong>Dampers</strong> (<kbd>2</kbd>/<kbd>Q</kbd> rotation, <kbd>3</kbd>/<kbd>W</kbd> velocity) — steady your handling; switch them off for sharper, twitchier control.</li>
+      <li>Sustained combat empties the energy fast — pick your moments.</li>
+    </ul>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Don't spray torpedoes.</strong> Fire <kbd>N</kbd> only with a target lined up — each shot costs energy.</li>
+      <li><strong>Shields vs scanners.</strong> <kbd>B</kbd> raises shields but blinds your scanners; <kbd>V</kbd> flips back. Let auto-changeover (<kbd>C</kbd>) handle the swap once the screen gets busy.</li>
+      <li><strong>Escape capsules are the last resort.</strong> <kbd>F</kbd>/<kbd>G</kbd> eject you (port/starboard) from a doomed ship — you live to fight on, but the starship's gone.</li>
+      <li><strong>Predict the rotation.</strong> The cross-hair never moves; you're flying the cosmos around it. Lead your rotation slightly past the target to compensate for delay.</li>
+    </ul>
+  </div>
+</body>
+</html>

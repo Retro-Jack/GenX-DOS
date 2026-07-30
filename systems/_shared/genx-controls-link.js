@@ -16,7 +16,7 @@
     .replace(/\/.*/, '');
   var a = document.createElement('a');
   a.href = key
-    ? '../../gamedocs/' + platform + '/' + key + '.html'
+    ? '../../docs/games/' + platform + '/' + key + '.html'
     : 'controls.html';
   a.target = '_blank';
   a.rel = 'noopener';

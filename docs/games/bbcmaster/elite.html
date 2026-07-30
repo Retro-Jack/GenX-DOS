@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elite (Master) — Acorn BBC Master — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body class="acorn">
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · BBC Master 128</div>
+      <h1>Elite (Master version)</h1>
+      <p class="sub">Acornsoft, 1986 — David Braben &amp; Ian Bell. Master-enhanced Elite: flicker-free ships, finer scoring and improved sound, with built-in missions on a double-sided disc.</p>
+    </div>
+
+    <p class="intro">The Master release is a refined 8-bit Elite. Same universe — 2,048 systems across 8 galaxies, same Cobra Mk III, same trading/combat loop — but it inherits the flicker-free ship-drawing algorithm from the Apple II version (released earlier the same year) and adds finer scoring, reworked sound and a volume control. This build is reconstructed from the documented source at bbcelite.com and ships as a double-sided disc image (`.dsd`); `*DRIVE 2` in the !BOOT loads side 1 of the disc.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>At the title press <kbd>Space</kbd>. At the <em>Load New Commander (Y/N)?</em> prompt, press <kbd>N</kbd> for the default Commander Jameson. (<kbd>Y</kbd> opens the disc-access menu, but disc saves don't persist in this build — use the load/save buttons at the bottom-left of the browser window.)</li>
+      <li>Launch from Lave station — match the rotation, fly out, <kbd>J</kbd> to in-system jump to the planet.</li>
+      <li>Buy Food (cheap on Lave); <kbd>F7</kbd> market, <kbd>F4</kbd>/<kbd>F5</kbd> charts to pick a destination, <kbd>H</kbd> hyperspace.</li>
+    </ol>
+
+    <p><strong>Saving your progress:</strong> the disc is read-only in the browser, so an in-game <em>Save Commander</em> won't survive closing the tab — use the GenX <strong>save / load</strong> buttons to keep your commander (ship, cash, rating) between sessions. Five save slots per game — pick 1–5 from the save or load menu.</p>
+
+    <h2>Flight controls</h2>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>S</kbd> / <kbd>X</kbd></td><td>Pitch — dive / climb</td></tr>
+      <tr><td><kbd>&lt;</kbd> / <kbd>&gt;</kbd></td><td>Roll left / right</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Accelerate</td></tr>
+      <tr><td><kbd>?</kbd></td><td>Decelerate</td></tr>
+      <tr><td><kbd>A</kbd></td><td>Fire laser</td></tr>
+      <tr><td><kbd>T</kbd></td><td>Target missile</td></tr>
+      <tr><td><kbd>M</kbd></td><td>Fire missile</td></tr>
+      <tr><td><kbd>U</kbd></td><td>Unarm missile</td></tr>
+      <tr><td><kbd>E</kbd></td><td>ECM</td></tr>
+      <tr><td><kbd>J</kbd></td><td>In-system jump</td></tr>
+      <tr><td><kbd>H</kbd></td><td>Hyperspace</td></tr>
+      <tr><td><kbd>C</kbd></td><td>Docking computer (if fitted)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Launch escape pod</td></tr>
+    </table>
+
+    <h2>Function keys — dual purpose</h2>
+    <p>In flight these switch cockpit views; when docked they trigger the station actions.</p>
+    <table>
+      <tr><th>Key</th><th>In flight</th><th>When docked</th></tr>
+      <tr><td><kbd>F10</kbd></td><td>Front view</td><td>Launch</td></tr>
+      <tr><td><kbd>F1</kbd></td><td>Rear view</td><td>Buy cargo</td></tr>
+      <tr><td><kbd>F2</kbd></td><td>Left view</td><td>Sell cargo</td></tr>
+      <tr><td><kbd>F3</kbd></td><td>Right view</td><td>Equip ship</td></tr>
+    </table>
+
+    <h2>Information screens</h2>
+    <table>
+      <tr><th>Key</th><th>Screen</th></tr>
+      <tr><td><kbd>F4</kbd></td><td>Long-range (galactic) chart</td></tr>
+      <tr><td><kbd>F5</kbd></td><td>Short-range chart</td></tr>
+      <tr><td><kbd>F6</kbd></td><td>System data</td></tr>
+      <tr><td><kbd>F7</kbd></td><td>Market</td></tr>
+      <tr><td><kbd>F8</kbd></td><td>Status</td></tr>
+      <tr><td><kbd>F9</kbd></td><td>Inventory</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>Energy bomb</td></tr>
+    </table>
+    <p class="note">These are the PC keys you press: this emulator maps BBC <kbd class="fkey">f<sub>1</sub></kbd>–<kbd class="fkey">f<sub>9</sub></kbd> to <kbd>F1</kbd>–<kbd>F9</kbd> 1:1, and BBC <kbd class="fkey">f<sub>0</sub></kbd> (front view) to <kbd>F10</kbd> — there's no <kbd>F0</kbd> on a PC keyboard.</p>
+
+    <h2>Master version differences</h2>
+    <ul>
+      <li><strong>Flicker-free ships.</strong> The Master uses the improved ship-drawing algorithm from the Apple II version (released earlier the same year) — far less flicker than the cassette/disc BBC builds.</li>
+      <li><strong>Finer kill scoring.</strong> Kills are scored by ship type and can be fractional, instead of the original's flat one-kill-per-ship.</li>
+      <li><strong>Coloured laser sights &amp; energy-bomb storm.</strong> The laser crosshairs change colour with the laser type, and the energy bomb sets off a lightning-storm effect.</li>
+      <li><strong>Updated sound + volume control.</strong> Reworked sound effects with an in-game volume control — a real bonus on original hardware.</li>
+      <li><strong>Trumble mission dropped.</strong> The Trumble code is still present but inactive; that mission was cut when the 6502 Second Processor and C64 versions were merged into the Master build (no sprite support). The Constrictor and Thargoid missions remain.</li>
+    </ul>
+
+    <h2>Strategy basics</h2>
+    <ul>
+      <li><strong>Agricultural → Industrial → back.</strong> Standard trade route.</li>
+      <li><strong>Don't go illegal early.</strong> Narcotics/Slaves get you fined; profitable only with police-evading kit.</li>
+      <li><strong>Fuel scoops</strong> for free star-skim fuel.</li>
+      <li><strong>Run from Thargoids</strong> until you're at "Dangerous" or better.</li>
+    </ul>
+  </div>
+</body>
+</html>

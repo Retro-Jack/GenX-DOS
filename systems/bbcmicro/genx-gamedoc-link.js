@@ -4,7 +4,7 @@
 // (`?disc1=<publisher>/<Title>.ssd`) — there is no `?game=` key, so the
 // shared genx-controls-link.js can't resolve the per-game gamedoc. Instead
 // the page ships a hardcoded `<a class="gx-controls-link" href="../controls.html">`;
-// this script upgrades that href to the right `gamedocs/bbcmicro/<key>.html`
+// this script upgrades that href to the right `docs/games/bbcmicro/<key>.html`
 // based on the disc that was loaded.
 //
 // Map is keyed on the disc filename (without directory or extension). A disc
@@ -33,7 +33,7 @@
   var key = DISC_TO_KEY[name];
   if (!key) return;
   var a = document.querySelector('.gx-controls-link');
-  // dist/index.html lives at systems/bbcmicro/dist/, so gamedocs/ is three
+  // dist/index.html lives at systems/bbcmicro/dist/, so docs/games/ is three
   // levels up (dist -> bbcmicro -> systems -> repo root).
-  if (a) a.href = '../../../gamedocs/bbcmicro/' + key + '.html';
+  if (a) a.href = '../../../docs/games/bbcmicro/' + key + '.html';
 })();

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repton — Acorn BBC Micro — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body class="acorn">
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · BBC Micro</div>
+      <h1>Repton</h1>
+      <p class="sub">Superior Software, 1985 — Tim Tyler. Boulder-Dash-inspired puzzle that became Superior's flagship; 12 screens, distinctive musical jingle on every diamond.</p>
+    </div>
+
+    <p class="intro">Repton burrows through dirt collecting diamonds and avoiding falling rocks, hostile creatures, and his own claustrophobic geometry. Each of the 12 screens has a fixed layout: dig the right tunnels in the right order to reach every diamond without trapping yourself or letting a boulder hit you.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>Space</kbd> at the title to start playing (you begin on Screen A).</li>
+      <li>To resume further in, press <kbd>P</kbd> and enter a screen password — the title/status screen shows the current screen's password.</li>
+      <li>Eat all the diamonds on a screen to open the exit. Time bonus depends on how fast you do it.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <p>Repton's up/down are the BBC <kbd>*</kbd> and <kbd>?</kbd> keys, which aren't where a PC keyboard puts them — this emulator maps the BBC <kbd class="dual"><span>*</span><span>:</span></kbd> key to your PC apostrophe <kbd>'</kbd> and the BBC <kbd>/</kbd>&thinsp;<kbd>?</kbd> key to <kbd>/</kbd>, so press those.</p>
+    <table>
+      <tr><th>PC key</th><th>BBC key</th><th>Action</th></tr>
+      <tr><td><kbd>Z</kbd></td><td>Z</td><td>Left</td></tr>
+      <tr><td><kbd>X</kbd></td><td>X</td><td>Right</td></tr>
+      <tr><td><kbd>'</kbd></td><td>*</td><td>Up</td></tr>
+      <tr><td><kbd>/</kbd></td><td>?</td><td>Down</td></tr>
+    </table>
+
+    <h2>Title screen &amp; options</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>Space</kbd></td><td>Start the game</td></tr>
+      <tr><td><kbd>P</kbd></td><td>Enter a password to resume at a later screen</td></tr>
+      <tr><td><kbd>M</kbd></td><td>Show the screen map</td></tr>
+      <tr><td><kbd>S</kbd> / <kbd>Q</kbd></td><td>Sound on / off</td></tr>
+      <tr><td><kbd>D</kbd> / <kbd>W</kbd></td><td>Music on / off</td></tr>
+      <tr><td><kbd>Return</kbd></td><td>Return to the title/status screen</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Kill yourself (lose a life)</td></tr>
+    </table>
+
+    <h2>Hazards</h2>
+    <table>
+      <tr><th>Object</th><th>Behaviour</th></tr>
+      <tr><td>Boulder</td><td>Falls when unsupported. Drops on Repton's head = death.</td></tr>
+      <tr><td>Earth</td><td>Dig through freely. Boulders sitting on earth stay put.</td></tr>
+      <tr><td>Diamond</td><td>Eat all of them to clear the screen.</td></tr>
+      <tr><td>Egg</td><td>Falls like a boulder. When it hits something it hatches into a monster.</td></tr>
+      <tr><td>Monster</td><td>Hunts Repton; can be crushed by dropping a boulder on it.</td></tr>
+      <tr><td>Cage / Crown</td><td>Pickups for bonus score.</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Plan the diamond order, not the route.</strong> The path you dig becomes permanent geometry — get a diamond order wrong and you can seal off the rest of the screen.</li>
+      <li><strong>Push boulders sideways only when grounded.</strong> Repton can push a single boulder horizontally if the square behind it is empty. Two stacked boulders pin you.</li>
+      <li><strong>Eggs are timed.</strong> Crack them on purpose by dropping a boulder before they hatch.</li>
+      <li><strong>Diagonal moves don't exist.</strong> Every step is one square — long diagonals across a screen mean a lot of dirt.</li>
+      <li><strong>Keep the screen password.</strong> Repton remembers progress by password, not a save file — each screen's password appears on the title/status screen, so jot it down and press <kbd>P</kbd> to jump straight back there next time.</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elite — Acorn Electron — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body class="acorn">
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Acorn Electron</div>
+      <h1>Elite</h1>
+      <p class="sub">Acornsoft, 1984 — David Braben &amp; Ian Bell. The Acorn Electron conversion, out within weeks of the BBC original: the same 2,048-planet, 8-galaxy universe squeezed onto the Electron's more limited hardware.</p>
+    </div>
+
+    <p class="intro">You start in Lave with 100 credits, a Cobra Mk III, a pulse laser, and a rating of "Harmless". Trade goods between systems, fight (or flee) the pirates that ambush you, dock at space stations, upgrade your ship. The Electron's hardware forced some cuts — no split-screen view, no suns, no Thargoids, fewer ship types and a noticeably slower frame rate (which arguably makes it easier) — but the trading-and-combat heart of Elite is intact.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>At the title, press <kbd>Space</kbd>, then <kbd>N</kbd> at the <em>Load New Commander (Y/N)?</em> prompt to fly the default Commander Jameson.</li>
+      <li>You launch from inside Lave station — match the rotation of the stars before flying out, then hit <kbd>J</kbd> to in-system jump.</li>
+      <li>Press <kbd>Alt</kbd>+<kbd>8</kbd> for the market (buy Food on Lave); <kbd>Alt</kbd>+<kbd>5</kbd>/<kbd>Alt</kbd>+<kbd>6</kbd> bring up the charts to choose a destination, then <kbd>H</kbd> to hyperspace.</li>
+      <li>On arrival the station orbits the planet — line up with the rotating slot to dock.</li>
+    </ol>
+
+    <p><strong>Saving:</strong> on a real Electron, Elite saves your commander to tape — but this bundle runs from a fixed, read-only snapshot with no writable storage (and this emulator has no save-state function that can be implemented here), so progress can't be kept between sessions. Every visit starts fresh as Commander Jameson; the startup <kbd>Y</kbd> (load commander) option has nothing to load.</p>
+
+    <h2>Flight controls</h2>
+    <p class="note-plain">This game supports a <strong>USB gamepad</strong> for flying: stick or D-pad up climbs, down dives, left/right roll. <kbd>A</kbd> fires the laser, <kbd>B</kbd> accelerates, <kbd>X</kbd> decelerates, <kbd>Y</kbd> targets a missile, <kbd>RB</kbd> fires it and <kbd>LB</kbd> triggers the ECM. Start the game with Space and answer the commander prompt on the keyboard; everything else stays there too.</p>
+    <table>
+      <tr><th>Input</th><th>Action</th></tr>
+      <tr><td><kbd>S</kbd> / <kbd>X</kbd></td><td>Pitch — dive / climb</td></tr>
+      <tr><td><kbd>&lt;</kbd> / <kbd>&gt;</kbd></td><td>Roll left / right</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Accelerate</td></tr>
+      <tr><td><kbd>?</kbd></td><td>Decelerate</td></tr>
+      <tr><td><kbd>A</kbd></td><td>Fire laser</td></tr>
+      <tr><td><kbd>T</kbd></td><td>Target missile</td></tr>
+      <tr><td><kbd>M</kbd></td><td>Fire missile</td></tr>
+      <tr><td><kbd>U</kbd></td><td>Unarm missile</td></tr>
+      <tr><td><kbd>E</kbd></td><td>ECM</td></tr>
+      <tr><td><kbd>J</kbd></td><td>In-system jump</td></tr>
+      <tr><td><kbd>H</kbd></td><td>Hyperspace</td></tr>
+      <tr><td><kbd>C</kbd></td><td>Docking computer (if fitted)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Launch escape pod</td></tr>
+    </table>
+
+    <h2>Function keys — dual purpose</h2>
+    <p>The Electron has no function-key row — its red function keys are FUNC + a number, and this emulator maps FUNC to <kbd>Alt</kbd>. In flight these switch cockpit views; when docked they trigger the station actions.</p>
+    <table>
+      <tr><th>Key</th><th>In flight</th><th>When docked</th></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>1</kbd></td><td>Front view</td><td>Launch</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>2</kbd></td><td>Rear view</td><td>Buy cargo</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>3</kbd></td><td>Left view</td><td>Sell cargo</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>4</kbd></td><td>Right view</td><td>Equip ship</td></tr>
+    </table>
+
+    <h2>Information screens</h2>
+    <table>
+      <tr><th>Key</th><th>Screen</th></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>5</kbd></td><td>Long-range (galactic) chart</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>6</kbd></td><td>Short-range chart</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>7</kbd></td><td>Data on system</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>8</kbd></td><td>Market prices</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>9</kbd></td><td>Status</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>0</kbd></td><td>Inventory</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>Energy bomb (one-shot — wipes nearby ships)</td></tr>
+    </table>
+
+    <h2>Trading basics</h2>
+    <ul>
+      <li><strong>Agricultural → Industrial → back.</strong> Food/Furs/Textiles on agricultural worlds, sell at industrial; Computers/Machinery on the return.</li>
+      <li><strong>Stay legal at first.</strong> Narcotics, Slaves, and Firearms get you fined; profitable only with police-evading kit.</li>
+      <li><strong>Fuel scoop is cargo-only here.</strong> The Electron has no suns, so you can't skim a star for fuel — the scoop only picks up cargo canisters left by destroyed ships.</li>
+      <li><strong>Slower pace, kinder dogfights.</strong> The Electron runs Elite noticeably slower than the BBC, giving you more reaction time when pirates jump you.</li>
+    </ul>
+
+    <h2>Electron vs BBC version</h2>
+    <p>The universe is the same — 2,048 planets, 8 galaxies, the trading-and-combat loop — but the Electron's hardware forced cuts. With no 6845 CRTC the BBC's memory-saving split-screen mode couldn't be reprogrammed, so the dashboard/space split, the suns and the Thargoids were all dropped, along with some ship types, and the whole game runs noticeably slower (which makes it a touch easier).</p>
+  </div>
+</body>
+</html>

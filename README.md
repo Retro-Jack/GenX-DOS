@@ -64,12 +64,12 @@ LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party exclud
 SECURITY.md               scope + private vulnerability reporting
 CONTRIBUTING.md           local setup + PR ground rules; CODE_OF_CONDUCT.md alongside
 package.json / index.js   the npm package; Dockerfile builds the ghcr container
-docs/                     tech article + landing/README screenshots + social preview + self-hosted fonts
+docs/                     feature article, self-hosted wiki, screenshots, social preview, fonts
+  games/                  per-game instruction pages (docs/games/<platform>/<key>.html)
 prompt/                   the DOS terminal (HTML + JS, no build)
   index.html
   javascript/             terminal logic + virtual filesystem (fs.js)
   img/                    bitmap font sprite sheets + AMIBIOS logo
-gamedocs/                 per-game instruction pages (gamedocs/<platform>/<key>.html)
 systems/
   _shared/                shared CSS + helpers (NumLock warn, VICE RUN/STOP key remap, BBC COPY button, save-state, ...)
   _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem

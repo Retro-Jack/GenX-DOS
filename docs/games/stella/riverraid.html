@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>River Raid — Atari 2600 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Console · Atari 2600</div>
+      <h1>River Raid</h1>
+      <p class="sub">Activision, 1982 — designed by Carol Shaw (the first woman to design a major commercial video game). Procedurally-generated infinite vertical shoot-em-up with fuel-management.</p>
+    </div>
+
+    <p class="intro">A jet flies up an endless river bombing enemy ships, helicopters, planes, balloons, and bridges. The river narrows into chokepoints; fly through fuel depots to refuel. Hit anything (riverbank, enemy, sky) — you lose a life. Each bridge cleared advances a "level" (the river ahead gets harder).</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Press <kbd>V</kbd> (Select) to pick game variant.</li>
+      <li>Press <kbd>Enter</kbd> (Reset) to start.</li>
+      <li>Steer the jet left/right; <kbd>↑</kbd> accelerates, <kbd>↓</kbd> slows; <kbd>Space</kbd> fires.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <table>
+      <tr><th>Keyboard</th><th>Gamepad</th><th>Action</th></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Joystick</td><td>Steer</td></tr>
+      <tr><td><kbd>↑</kbd></td><td>Joystick</td><td>Accelerate (more score per second, less reaction time)</td></tr>
+      <tr><td><kbd>↓</kbd></td><td>Joystick</td><td>Slow down (less score per second, easier dodging)</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>Fire</td><td>Fire (one bullet on-screen)</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>Reset</td><td>start game</td></tr>
+      <tr><td><kbd>V</kbd></td><td>Select</td><td>variant</td></tr>
+    </table>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Target</th><th>Points</th></tr>
+      <tr><td>Fuel depot (shot)</td><td>80</td></tr>
+      <tr><td>Helicopter</td><td>60</td></tr>
+      <tr><td>Tanker / ship</td><td>30</td></tr>
+      <tr><td>Plane (fast)</td><td>100</td></tr>
+      <tr><td>Hot-air balloon</td><td>60</td></tr>
+      <tr><td>Bridge</td><td>500</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Fuel discipline.</strong> Fly THROUGH depots, don't shoot them — touching a depot refuels you, shooting it scores 80 pts but no fuel. Mix as needed.</li>
+      <li><strong>Choke-points.</strong> Where the river narrows to one-jet-wide, slow with <kbd>↓</kbd> and don't fire — a missed bullet's pixel-cost-per-frame is your turning radius.</li>
+      <li><strong>Bridges = level boundary.</strong> Always destroyable, worth 500 pts, and they refill a sliver of fuel on some variants. Centre the bridge before bombing.</li>
+      <li><strong>Don't accelerate when in trouble.</strong> Speed-up is a multiplier on score per second, but reaction window shrinks. Pace yourself in dense lanes.</li>
+      <li><strong>Bratislava cap.</strong> The score counter is 32-bit (8 hex digits) — effectively infinite for human players. Activision sent patches to anyone scoring 15K+.</li>
+    </ul>
+
+    <h2>Atari 2600 controls</h2>
+    <p>Single-stick + fire. The 2600 stick's 4-way digital nature limits diagonal precision — pre-align rather than mid-flight correct.</p>
+  </div>
+</body>
+</html>

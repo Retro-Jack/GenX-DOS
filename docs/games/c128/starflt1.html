@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Star Fleet I — Commodore 128 — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore 128 (VDC 80-col)</div>
+      <h1>Star Fleet I: The War Begins!</h1>
+      <p class="sub">Interstel / Cygnus, 1987 — Trevor C. Sorensen's text-and-graphics space combat strategy. Command a Federation-style battlecruiser hunting Krellan and Zaldron ships across a 192-quadrant galaxy. Rank up from Cadet to Fleet Admiral by completing missions of increasing scale.</p>
+    </div>
+
+    <p class="intro">An <em>80-column</em> Commodore 128 title — boots into the C128's VDC chip (8563), giving crisp wide screen for the densely typed tactical readouts. Turn-based commands typed at a parser prompt; combat resolves in short real-time bursts. Save your captain between sessions to carry rank forward (the <code>.d64</code> is read-only in the browser, so use the save / load buttons). Five save slots per game — pick 1–5 from the save or load menu.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Runs in VDC 80-column mode. Click the game area to enable sound and controls.</li>
+      <li>Type your captain name when prompted, pick a mission difficulty, hit <kbd>Enter</kbd>.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <p>Text parser — every action is a typed command at the <code>Command?</code> prompt. The common ones:</p>
+    <table>
+      <tr><th>Command</th><th>Effect</th></tr>
+      <tr><td><code>LRS</code></td><td>Long-Range Sensors — show 9-quadrant region</td></tr>
+      <tr><td><code>SRS</code></td><td>Short-Range Sensors — show current quadrant</td></tr>
+      <tr><td><code>NAV &lt;course&gt; &lt;warp&gt;</code></td><td>Navigate to a quadrant (course 0-360, warp 0-12)</td></tr>
+      <tr><td><code>PHA &lt;energy&gt;</code></td><td>Fire phasers at the highlighted target</td></tr>
+      <tr><td><code>TOR &lt;course&gt;</code></td><td>Fire torpedoes</td></tr>
+      <tr><td><code>SHI U</code> / <code>SHI D</code></td><td>Raise / lower shields</td></tr>
+      <tr><td><code>DOC</code></td><td>Dock with a starbase (must be adjacent)</td></tr>
+      <tr><td><code>HELP</code></td><td>Show the full command list</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Dock between fights.</strong> Starbases refill energy, torpedoes, and repair damage. Plot the nearest base before every engagement.</li>
+      <li><strong>Manage shield energy.</strong> Shields drain energy reserves; keep them down between fights to conserve, raise the moment a contact appears on LRS.</li>
+      <li><strong>Phasers scale with energy.</strong> Dumping 1500 energy into a phaser shot one-shots most Krellans; conserve torpedoes for cloaked Zaldron destroyers.</li>
+      <li><strong>The galaxy is small but dense.</strong> 192 quadrants; the mission gives a star-date deadline — plot routes, don't wander.</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hangman — Commodore PET — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore PET</div>
+      <h1>Hangman</h1>
+      <p class="sub">Raymond Toy, 1980 — the canonical PET BASIC port of the schoolyard guessing game. PETSCII gallows, single-letter guesses, eight wrong before the figure is complete.</p>
+    </div>
+
+    <p class="intro">The PET picks a word from its internal list. You guess letters one at a time; correct letters appear in their positions; wrong letters add a piece to the gallows figure. Eight wrong guesses = game over. Solve the word before the final piece.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Click the game area to enable sound and controls.</li>
+      <li>Press a key past the title to start.</li>
+      <li>Type a letter (A–Z) and press <kbd>Return</kbd>. Repeat until you win or hang.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported.</p>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>A</kbd> – <kbd>Z</kbd></td><td>Guess that letter</td></tr>
+      <tr><td><kbd>Return</kbd></td><td>Submit the guess</td></tr>
+      <tr><td>Word guess (if prompted)</td><td>Type the whole word for one big risk/reward</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>ETAOIN SHRDLU.</strong> The 12 most common English letters — guess them roughly in order; almost every word has at least one in it.</li>
+      <li><strong>Vowels first.</strong> Three or four vowels narrow the word skeleton dramatically.</li>
+      <li><strong>Don't guess the same letter twice.</strong> The PET will accept it and waste a turn on most versions.</li>
+      <li><strong>Word lists are short.</strong> Re-playing the same build, you'll start to recognise words from 2-3 letters; that's the BASIC dictionary, not luck.</li>
+    </ul>
+  </div>
+</body>
+</html>

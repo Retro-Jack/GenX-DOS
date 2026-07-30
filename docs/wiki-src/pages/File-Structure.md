@@ -16,7 +16,13 @@ genx-dos/
 ├── Dockerfile                the ghcr.io container image (site served by nginx)
 ├── .github/                  publish-package workflow (release → ghcr + npm), Dependabot config, issue/PR templates
 │
-├── docs/                     tech article + README screenshots + social-preview image
+├── docs/                     front-facing documentation (served)
+│   ├── article/             the feature article (index.html)
+│   ├── wiki/                self-hosted wiki (generated from wiki-src/)
+│   ├── wiki-src/            wiki markdown source + build.py generator
+│   ├── badges/             local README badge copies (no runtime network)
+│   ├── games/              per-game instruction pages — <platform>/<key>.html
+│   └── *.png               landing/README screenshots + social-preview image
 │
 ├── prompt/                   the DOS terminal
 │   ├── index.html
@@ -34,9 +40,6 @@ genx-dos/
 │   │   └── init.js           entry point + AMIBIOS POST animation
 │   └── img/
 │       └── ami-logo.png      AMIBIOS POST logo   (f12.* sheets now live in systems/_shared/styles/VGA_font/)
-│
-├── gamedocs/                per-game instruction pages
-│   └── <platform>/          one HTML file per game, named by URL param key
 │
 └── systems/
     ├── _shared/             shared JS + CSS + assets for every gamedoc + controls.html (360 pages) + play.html

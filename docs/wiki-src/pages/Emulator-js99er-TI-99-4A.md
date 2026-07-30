@@ -52,7 +52,7 @@ We used `.rpk` because that's what the public archive serves.
 
 ## URL pattern
 
-`?game=<key>` is read directly by `play.html` and never rewritten, so the key is still in the URL when the deferred `genx-controls-link.js` runs and resolves `gamedocs/js99er/<key>.html` cleanly. Cart files live at `systems/js99er/carts/<key>.rpk` — rename on download to match the key.
+`?game=<key>` is read directly by `play.html` and never rewritten, so the key is still in the URL when the deferred `genx-controls-link.js` runs and resolves `docs/games/js99er/<key>.html` cleanly. Cart files live at `systems/js99er/carts/<key>.rpk` — rename on download to match the key.
 
 ## What we kept vs stripped
 
