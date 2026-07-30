@@ -6,6 +6,9 @@
 - [Readme](README)
 - [Attribution](ATTRIBUTION)
 - [Changelog](CHANGELOG.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security](SECURITY.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
 - [License](LICENSE.TXT)
 
 **Internals**

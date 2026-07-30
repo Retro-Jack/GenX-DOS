@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security Policy — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="../../styles/genx.css">
+<link rel="stylesheet" href="../../styles/wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li><li><a href="README.html">Readme</a></li><li><a href="ATTRIBUTION.html">Attribution</a></li><li><a href="CHANGELOG.html">Changelog</a></li><li><a href="CONTRIBUTING.html">Contributing</a></li><li><a href="SECURITY.html" class="active">Security</a></li><li><a href="CODE_OF_CONDUCT.html">Code of Conduct</a></li><li><a href="LICENSE.html">License</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="security-policy">Security Policy</h1>
+<h2 id="scope">Scope</h2>
+<p>GenX-DOS is a static, client-side site — no server, no backend, no accounts,
+and no personal data is collected. Anything the site keeps (save-states, the
+Model 100's battery RAM, emulator settings) lives only in your own browser and
+never leaves your machine — see
+<a href="Your-Data.html">Your Data</a> for the full
+list and when each is written. The realistic security surface is:</p>
+<ul>
+<li>client-side issues in the hand-written terminal code under <code>prompt/</code> — e.g. a
+  way to inject or execute unintended script through the simulated DOS prompt;</li>
+<li>vulnerabilities in the bundled third-party emulators and libraries (listed in
+  <a href="ATTRIBUTION.html">ATTRIBUTION.md</a>).</li>
+</ul>
+<h2 id="supported-versions">Supported versions</h2>
+<p>Only the latest GitHub release and the live site
+(<a href="../../">https://retro-jack.github.io/GenX-DOS/</a>) receive fixes. Older tags are not
+patched.</p>
+<h2 id="reporting-a-vulnerability">Reporting a vulnerability</h2>
+<p>Please report privately rather than opening a public issue:</p>
+<ul>
+<li><strong>Preferred:</strong> GitHub's private vulnerability reporting — the
+  <strong>Report a vulnerability</strong> button on the repository's <strong>Security → Advisories</strong>
+  page (<a href="https://github.com/Retro-Jack/GenX-DOS/security/advisories">https://github.com/Retro-Jack/GenX-DOS/security/advisories</a>). It sits
+  one level in from the Security tab, not on its landing page.</li>
+<li><strong>Email:</strong> retrojack68@gmail.com</li>
+</ul>
+<p>Include what you found, where, and how to reproduce it. This is a one-person
+hobby project, so responses are best-effort — but genuine reports will be
+looked at, and credited if you'd like.</p>
+<h2 id="not-a-security-issue">Not a security issue</h2>
+<p>Bundled game ROMs and system BIOS images are a copyright/preservation matter,
+not a security one. For takedown requests, use the issue tracker as described
+in <a href="README.html">README.md</a> and <a href="ATTRIBUTION.html">ATTRIBUTION.md</a>.</p>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

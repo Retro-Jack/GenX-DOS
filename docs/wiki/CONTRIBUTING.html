@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contributing — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="../../styles/genx.css">
+<link rel="stylesheet" href="../../styles/wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li><li><a href="README.html">Readme</a></li><li><a href="ATTRIBUTION.html">Attribution</a></li><li><a href="CHANGELOG.html">Changelog</a></li><li><a href="CONTRIBUTING.html" class="active">Contributing</a></li><li><a href="SECURITY.html">Security</a></li><li><a href="CODE_OF_CONDUCT.html">Code of Conduct</a></li><li><a href="LICENSE.html">License</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="contributing">Contributing</h1>
+<p>GenX-DOS is a one-person preservation hobby project, but bug reports, doc
+fixes, and small improvements are very welcome.</p>
+<h2 id="reporting-problems">Reporting problems</h2>
+<ul>
+<li><strong>Something's broken</strong> (a game won't boot, keys are wrong, display glitches):
+  open an issue with the bug-report template. The system, game, browser, and
+  the exact URL from the address bar are the four things that make it
+  reproducible.</li>
+<li><strong>Security concerns:</strong> see <a href="SECURITY.html">SECURITY.md</a> — please report
+  privately.</li>
+<li><strong>Rights holders:</strong> if you want a bundled title removed, open an issue —
+  see the takedown note in <a href="ATTRIBUTION.html">ATTRIBUTION.md</a>. Removal requests
+  are honoured.</li>
+</ul>
+<h2 id="running-it-locally">Running it locally</h2>
+<pre><code class="language-sh">./serve.sh          # or: python3 -m http.server 8765
+</code></pre>
+<p>Open <a href="http://127.0.0.1:8765/prompt/">http://127.0.0.1:8765/prompt/</a>. There is no build step — edit, refresh,
+done. One gotcha: browsers cache <code>prompt/javascript/fs.js</code> aggressively, so
+hard-refresh (Ctrl+Shift+R) after editing the virtual filesystem.</p>
+<h2 id="ground-rules-for-pull-requests">Ground rules for pull requests</h2>
+<p>Keep PRs small and focused. A few project conventions:</p>
+<ol>
+<li><strong>Every change gets a CHANGELOG bullet</strong> under <code>## [Unreleased]</code> in
+   <a href="CHANGELOG.html">CHANGELOG.md</a>.</li>
+<li><strong>Never modify vendored emulator runtime</strong> (the upstream JS/WASM inside
+   <code>systems/&lt;name&gt;/</code>). Hand-written GenX-DOS code lives in
+   <code>prompt/javascript/</code>, <code>systems/_shared/</code>, <code>systems/_shared-ejs/genx-*.js</code>,
+   and each bundle's <code>play.html</code> — that's the code that's open to change.</li>
+<li><strong>Third-party additions need an <a href="ATTRIBUTION.html">ATTRIBUTION.md</a> entry</strong>
+   (source, author, licence) — see the "How to add a new attribution entry"
+   section there.</li>
+<li><strong>Don't submit game ROMs, BIOSes, or disk images</strong> in PRs.</li>
+<li>Authored JS/JSON is Prettier-formatted; vendored code is left byte-faithful.</li>
+<li>Error rendering in wrappers uses <code>textContent</code> (never <code>innerHTML</code>
+   concatenation) — CodeQL scans every push.</li>
+</ol>
+<h2 id="proposing-a-new-system">Proposing a new system</h2>
+<p>The scope rule is <strong>8-bit feel</strong> — sprite-based, chiptune, low-res; the
+aesthetic decides, not the calendar. Check the
+<a href="Roadmap.html">Roadmap</a> first: it lists
+what's shipped, what's plausible, and what's been ruled out (and why). The
+integration recipe is on the
+<a href="Emulators.html">Emulators</a> wiki page.</p>
+<h2 id="licensing">Licensing</h2>
+<p>By contributing you agree your contribution is licensed under the repo's
+terms: <strong>CC BY-NC 4.0</strong> for the original GenX-DOS work, with the LGR terminal
+base and all bundled third-party components keeping their upstream licences —
+see <a href="LICENSE.html">LICENSE.TXT</a> and <a href="ATTRIBUTION.html">ATTRIBUTION.md</a>.</p>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

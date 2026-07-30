@@ -15,10 +15,13 @@ PAGES = sorted(f[:-3] for f in os.listdir(SRC) if f.endswith('.md'))
 ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
 # Root docs imported into the wiki as pages — single source, read from the repo root.
 # slug -> (path, kind); kind 'md' renders through markdown, 'text' is preformatted.
-EXTRA = {'README':      (os.path.join(ROOT, 'README.md'),      'md'),
-         'ATTRIBUTION': (os.path.join(ROOT, 'ATTRIBUTION.md'), 'md'),
-         'CHANGELOG':   (os.path.join(ROOT, 'CHANGELOG.md'),   'md'),
-         'LICENSE':     (os.path.join(ROOT, 'LICENSE.TXT'),    'license')}
+EXTRA = {'README':          (os.path.join(ROOT, 'README.md'),          'md'),
+         'ATTRIBUTION':     (os.path.join(ROOT, 'ATTRIBUTION.md'),     'md'),
+         'CHANGELOG':       (os.path.join(ROOT, 'CHANGELOG.md'),       'md'),
+         'CONTRIBUTING':    (os.path.join(ROOT, 'CONTRIBUTING.md'),    'md'),
+         'SECURITY':        (os.path.join(ROOT, 'SECURITY.md'),        'md'),
+         'CODE_OF_CONDUCT': (os.path.join(ROOT, 'CODE_OF_CONDUCT.md'), 'md'),
+         'LICENSE':         (os.path.join(ROOT, 'LICENSE.TXT'),        'license')}
 # Map a repo-root filename to its imported slug (LICENSE.TXT -> LICENSE, X.md -> X).
 FILE2SLUG = {'LICENSE.TXT': 'LICENSE'}
 def file2slug(fname):
