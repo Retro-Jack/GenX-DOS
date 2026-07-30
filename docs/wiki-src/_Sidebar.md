@@ -5,6 +5,8 @@
 - [Roadmap](Roadmap)
 - [Readme](README)
 - [Attribution](ATTRIBUTION)
+- [Changelog](CHANGELOG.md)
+- [License](LICENSE.TXT)
 
 **Internals**
 

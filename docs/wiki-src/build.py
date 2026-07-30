@@ -12,9 +12,17 @@ OUT  = os.path.normpath(os.path.join(HERE, '..', 'wiki'))
 os.makedirs(OUT, exist_ok=True)
 
 PAGES = sorted(f[:-3] for f in os.listdir(SRC) if f.endswith('.md'))
+ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
 # Root docs imported into the wiki as pages — single source, read from the repo root.
-EXTRA = {'README': os.path.normpath(os.path.join(HERE, '..', '..', 'README.md')),
-         'ATTRIBUTION': os.path.normpath(os.path.join(HERE, '..', '..', 'ATTRIBUTION.md'))}
+# slug -> (path, kind); kind 'md' renders through markdown, 'text' is preformatted.
+EXTRA = {'README':      (os.path.join(ROOT, 'README.md'),      'md'),
+         'ATTRIBUTION': (os.path.join(ROOT, 'ATTRIBUTION.md'), 'md'),
+         'CHANGELOG':   (os.path.join(ROOT, 'CHANGELOG.md'),   'md'),
+         'LICENSE':     (os.path.join(ROOT, 'LICENSE.TXT'),    'text')}
+# Map a repo-root filename to its imported slug (LICENSE.TXT -> LICENSE, X.md -> X).
+FILE2SLUG = {'LICENSE.TXT': 'LICENSE'}
+def file2slug(fname):
+    return FILE2SLUG.get(fname, fname[:-3] if fname.endswith('.md') else fname)
 KNOWN = set(PAGES) | set(EXTRA)          # valid link targets (slugs)
 PAGES_BASE = 'https://retro-jack.github.io/GenX-DOS/'   # -> ../../ (repo root)
 GH = 'https://github.com/Retro-Jack/GenX-DOS/'          # github repo/wiki base
@@ -41,13 +49,13 @@ def resolve(target):
     # GitHub blob of an imported doc -> local page; other repo files -> repo-root
     if t.startswith(GH + 'blob/'):
         rest = t.split('/blob/', 1)[1].split('/', 1)[1]
-        stem = rest[:-3] if rest.endswith('.md') else rest
+        stem = file2slug(rest)
         return (stem + '.html', False) if stem in EXTRA else ('../../' + rest, False)
     if t.startswith(PAGES_BASE):
         return '../../' + t[len(PAGES_BASE):], False
     # bare repo-root files (README.md / ATTRIBUTION.md / CHANGELOG.md / LICENSE.TXT)
     if '/' not in t and (t.endswith('.md') or t == 'LICENSE.TXT'):
-        stem = t[:-3] if t.endswith('.md') else t
+        stem = file2slug(t)
         if stem in EXTRA: return stem + '.html', False
         if stem in KNOWN: return out_name(stem), False
         return '../../' + t, False
@@ -158,16 +166,20 @@ TEMPLATE = '''<!doctype html>
 
 def main():
     dead_all = {}
-    jobs = [(slug, os.path.join(SRC, slug + '.md')) for slug in PAGES]
-    jobs += sorted(EXTRA.items())
-    for slug, path in jobs:
-        md_text = open(path).read()
-        title = first_h1(md_text) or slug.replace('-', ' ')
-        md = make_md()
-        body = md.convert(pre_wikilinks(md_text))
+    jobs = [(slug, os.path.join(SRC, slug + '.md'), 'md') for slug in PAGES]
+    jobs += [(slug, path, kind) for slug, (path, kind) in sorted(EXTRA.items())]
+    for slug, path, kind in jobs:
+        raw = open(path).read()
         dead = set()
-        body = rewrite_imgs(body)
-        body = rewrite_hrefs(body, dead)
+        if kind == 'text':                         # plain-text doc (LICENSE) -> preformatted
+            title = slug.title()
+            body = '<h1>%s</h1>\n<pre class="plain">%s</pre>' % (title, html.escape(raw))
+        else:
+            title = first_h1(raw) or slug.replace('-', ' ')
+            md = make_md()
+            body = md.convert(pre_wikilinks(raw))
+            body = rewrite_imgs(body)
+            body = rewrite_hrefs(body, dead)
         if dead: dead_all[slug] = dead
         page = TEMPLATE.format(title=html.escape(title),
                                nav=build_nav(slug),
@@ -242,6 +254,8 @@ code{font-family:'IBM Plex Mono',monospace;font-size:.85em;color:var(--amber);
 pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;
   padding:1rem 1.1rem;margin:0 0 1.25rem;overflow-x:auto}
 pre code{color:var(--paper);background:none;padding:0;font-size:.8rem;line-height:1.55;word-break:normal}
+pre.plain{font-family:'IBM Plex Mono',monospace;color:var(--paper);font-size:.76rem;line-height:1.5;
+  white-space:pre;word-break:normal}
 
 .content table{border-collapse:collapse;width:100%;margin:0 0 1.3rem;font-size:.88rem;
   border:1px solid var(--line);display:block;overflow-x:auto}
