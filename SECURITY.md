@@ -22,12 +22,8 @@ patched.
 
 ## Reporting a vulnerability
 
-Please report privately rather than opening a public issue:
+Please report privately by email rather than in public:
 
-- **Preferred:** GitHub's private vulnerability reporting — the
-  **Report a vulnerability** button on the repository's **Security → Advisories**
-  page (<https://github.com/Retro-Jack/GenX-DOS/security/advisories>). It sits
-  one level in from the Security tab, not on its landing page.
 - **Email:** retrojack68@gmail.com
 
 Include what you found, where, and how to reproduce it. This is a one-person
