@@ -3893,7 +3893,7 @@ var fs = [
           },
           {
             name: 'wiki.bat',
-            link: 'https://github.com/Retro-Jack/GenX-DOS/wiki',
+            link: '../docs/wiki/',
           },
           {
             name: '0.bat',

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sdltrs — Tandy TRS-80 Model I — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="sdltrs--tandy-trs-80-model-i">sdltrs — Tandy TRS-80 Model I</h1>
+<p>The TRS-80 Model I is the second GenX-DOS bundle compiled from source to WASM (after <a href="Emulator-atari800.html">Emulator-atari800</a>). It runs <strong>sdltrs</strong> (Mark Grebe / Jens Guenther) — the SDL2 TRS-80 emulator, BSD-2-Clause, still actively maintained.</p>
+<h2 id="why-sdltrs">Why sdltrs</h2>
+<p>The shortlist:</p>
+<ol>
+<li><strong>lkesteloot/trs80</strong> — a clean TypeScript/ESM emulator, easy to embed. It works, but renders the screen with a baked-in green-phosphor padding border (an overscan frame around the text) that fought the CRT bezel, and exposes no save-state. It was the starting point but got replaced.</li>
+<li><strong>No libretro TRS-80 core</strong> ships in the EmulatorJS-flavoured set, so the EJS route was out (unlike most recent additions — see <a href="Emulator-VICE-family.html">Emulator-VICE-family</a> for that path).</li>
+<li><strong>sdltrs</strong> — accurate, maintained, renders a plain 512×384 text area with no phosphor padding (so the canvas just fills the bezel cutout), and has a built-in save-state in C (<code>trs_state_save</code> / <code>trs_state_load</code>). Worth building.</li>
+</ol>
+<p>Source: <strong><code>https://gitlab.com/jengun/sdltrs</code></strong> — the matching <code>jengun</code> GitHub repo 404s; GitLab is the live one.</p>
+<h2 id="the-build">The build</h2>
+<p>emscripten via emsdk (lives at <code>~/emsdk/</code>), same toolchain as atari800. sdltrs is a flat <code>src/*.c</code> SDL2 program, so the recipe is a single <code>emcc</code> of all the sources — no autotools:</p>
+<pre><code class="language-sh">emcc $SRCS -O2 -DSDL2 -DROM_PATH='&quot;&quot;' -sUSE_SDL=2 -sASYNCIFY \
+  -sALLOW_MEMORY_GROWTH=1 -sINITIAL_MEMORY=32MB -sFORCE_FILESYSTEM=1 \
+  -sMODULARIZE=1 -sEXPORT_NAME=createSDLTRS \
+  -sEXPORTED_RUNTIME_METHODS=&quot;['FS','callMain','ccall','cwrap']&quot; \
+  -sEXPORTED_FUNCTIONS=&quot;['_main']&quot; \
+  --embed-file ../../level2.rom@/level2.rom -o ../out/sdltrs.js
+</code></pre>
+<p><code>$SRCS</code> is every <code>src/*.c</code> including <code>PasteManager.c</code> — its X11 clipboard paths are <code>#ifdef</code>-guarded out under <code>-DSDL2</code>. Output: <code>sdltrs.js</code> (~190 KB) + <code>sdltrs.wasm</code> (~1.3 MB).</p>
+<h3 id="-sasyncify-and-two-yield-patches"><code>-sASYNCIFY</code> and two yield patches</h3>
+<p>Like atari800, sdltrs runs a blocking continuous loop (<code>z80_run(1)</code>, <code>main()</code> never returns), so <code>-sASYNCIFY</code> is non-optional. But ASYNCIFY only helps if the loop actually <em>yields</em>. sdltrs's throttle uses <code>SDL_Delay</code>, which busy-waits under emscripten and freezes the page. Two <code>#ifdef __EMSCRIPTEN__</code> patches fix it:</p>
+<ul>
+<li><code>trs_interrupt.c</code>, <code>trs_timer_sync_with_host()</code> — replace the <code>SDL_Delay(...)</code> throttle with <code>emscripten_sleep(...)</code>, and call <code>emscripten_sleep(0)</code> even when no delay is due, so the loop yields <strong>once per timer tick</strong> no matter what.</li>
+<li><code>trs_sdl_interface.c</code>, <code>trs_get_event()</code> — the paused-machine <code>SDL_WaitEvent</code> path busy-waits too; swap it for <code>while (!SDL_PollEvent(&amp;event)) emscripten_sleep(10);</code>.</li>
+</ul>
+<p>With those, <code>emscripten_sleep</code> unwinds the stack each tick, the browser paints, and the <code>createSDLTRS</code> factory promise resolves.</p>
+<h3 id="-smodularize-load-order"><code>-sMODULARIZE</code> load order</h3>
+<p>The build emits a <code>createSDLTRS(moduleOverrides)</code> factory. <code>sdltrs.js</code> <strong>must</strong> load before the inline boot code that calls it — a load-order slip gives "createSDLTRS is not defined", silently swallowed inside the boot's async IIFE.</p>
+<h2 id="the-rom">The ROM</h2>
+<p><code>play.html</code> boots with the <strong>Model I Level II BASIC ROM</strong> (12 288 bytes, md5 <code>ca74822ebc2803c6635a55116ecd9539</code>), embedded into the WASM at <code>/level2.rom</code> via <code>--embed-file</code>. It was extracted from the <code>trs80-emulator</code> npm package (<code>dist/Model1Level2Rom.js</code>) — note that <code>model1Level2Rom</code> is a <strong>latin1 binary string</strong>: <code>Buffer.from(str, 'latin1')</code>, not utf-8, or you get 17 210 corrupt bytes. © Tandy / Microsoft; bundled for emulator-only use (recorded in ATTRIBUTION).</p>
+<h2 id="the-playhtml-contract">The <code>play.html</code> contract</h2>
+<pre><code class="language-js">createSDLTRS({
+  canvas,
+  arguments: ['-m1', '-romfile1', '/level2.rom', '-noled', '-borderwidth', '0', '-scale', '2', '/game.cmd'],
+  preRun: [m =&gt; m.FS.writeFile('/game.cmd', cmdBytes)],
+});
+</code></pre>
+<p><code>-m1</code> = Model I, <code>-noled -borderwidth 0</code> = a clean 512×384 (4:3) text area with no chrome (1024×768 at <code>-scale 2</code>). The <code>.cmd</code> is written to MEMFS and passed as a <strong>positional arg</strong>; sdltrs's <code>trs_load_cmd</code> runs it after reset and jumps straight into the program — no disk boot.</p>
+<h3 id="the-canvas-backing-store-gotcha-cost-an-hour">The canvas backing-store gotcha (cost an hour)</h3>
+<p>sdltrs uses the <strong>software</strong> video path (<code>SDL_GetWindowSurface</code> / <code>SDL_UpdateWindowSurface</code> = a raw <code>putImageData</code> into the canvas). Emscripten does <strong>not</strong> resize the canvas backing store on this path — it stays at the HTML default 300×150 — and <code>width:100%</code> CSS only sets the <em>display</em> size. So the 1024×768 surface lands in a 300×150 buffer and <strong>only the top-left corner draws</strong>. Fix: hard-set the backing store via HTML attributes — <code>&lt;canvas width="1024" height="768"&gt;</code> (= the scale-2 surface size); CSS then scales the display into the bezel cutout.</p>
+<h2 id="why-cmd-not-disk-images">Why <code>.cmd</code>, not disk images</h2>
+<p>The lineup is 10 self-contained <code>.cmd</code> arcade games (Big Five Software / Adventure International). Disk boot was investigated and dropped: the RetroStore <code>disk_0.*</code> images aren't bootable system disks (the games ship as <code>command.CMD</code> to run on a bare machine), and a bare Model I with a non-bootable disk hangs on the black FDC boot-wait. The <code>.cmd</code>-as-positional-arg path sidesteps boot entirely.</p>
+<blockquote>
+<p>Sourcing note: RetroStore's RPC (<code>retrostore.org/rpc?m=pubapplist</code> → <code>downloadapp?appId=…</code>) yields a ZIP with the self-contained <code>command.CMD</code> plus a disk image; we keep the <code>.cmd</code>.</p>
+</blockquote>
+<h2 id="clear-softkey">CLEAR softkey</h2>
+<p>Most TRS-80 arcade games start with the <strong>CLEAR</strong> key, which has no obvious modern-keyboard equivalent. sdltrs maps CLEAR to PC <strong>Home</strong> (or Delete), so <code>systems/_shared/genx-trs80-softkeys.js</code> adds a top-left <strong>CLEAR</strong> button that dispatches a synthetic <code>Home</code> keydown/keyup to document/window/body/canvas — emscripten SDL2 doesn't check <code>isTrusted</code>, so the synthetic key reaches the emulator. <code>Esc</code> is the TRS-80 BREAK key.</p>
+<h2 id="save--load-state">Save / load state</h2>
+<p>sdltrs has a working save-state in C (<code>trs_state_save.c</code>), but it isn't wired to the page's save/load menus yet — so the TRS-80 bundle ships without them for now. The hooks are there for a future pass.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/trs80/
+├── play.html
+├── sdltrs.js
+├── sdltrs.wasm          ← Level II ROM embedded here
+├── games.json
+├── controls.html
+└── games/               ← 10 .cmd programs
+</code></pre>
+<p>The build tree is ephemeral (<code>/tmp</code>); only a <em>rebuild</em> needs the recipe above — re-clone, re-apply the two patches, run the <code>emcc</code> line.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulators.html">Emulators</a> — index of all engines</li>
+<li><a href="Emulator-atari800.html">Emulator-atari800</a> — the other from-source ASYNCIFY emscripten build</li>
+<li><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a> — the other Tandy machine</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

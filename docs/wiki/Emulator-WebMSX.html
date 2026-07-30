@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebMSX — MSX — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="webmsx--msx">WebMSX — MSX</h1>
+<p>WebMSX is Paulo Peccin's MSX emulator (MIT). It covers MSX, MSX2, MSX2+, MSX turbo R. We shipped it twice: an early all-in-one integration that proved fragile, then a clean rebuild (16/06/2026) that's the current bundle.</p>
+<h2 id="why-we-rebuilt-it">Why we rebuilt it</h2>
+<p>The first integration edited the upstream single-file <code>index.html</code> directly — stripping Google Analytics, neutering the donation modal, keeping the PWA wiring — all inside one ~5 MB file with the engine inlined. Editing a minified all-in-one is exactly as brittle as it sounds: an injected closing <code>&lt;/script&gt;</code> tag once leaked into the inlined engine and broke the whole page.</p>
+<p>The rebuild splits engine from wrapper:</p>
+<ul>
+<li><strong><code>wmsx.js</code></strong> — the stock WebMSX 6.0 <em>embedded</em> build, ~5 MB, <strong>never edited</strong>. Because we don't touch it, there's nothing to re-scrub on an upstream re-sync and no risk of breaking the engine with a stray edit.</li>
+<li><strong><code>index.html</code></strong> — <em>our</em> wrapper. It sets the WebMSX config object, loads <code>wmsx.js</code>, then adds the GenX controls link as a normal element <em>after</em> the engine (so no <code>&lt;/script&gt;</code> can leak in).</li>
+</ul>
+<h2 id="the-wrapper-config">The wrapper config</h2>
+<p>WebMSX reads URL params when <code>ALLOW_URL_PARAMETERS</code> is on, so the menu's <code>?ROM=</code> / <code>?M=</code> / <code>?ANY=</code> map straight to the engine's own abbreviations (<code>ROM</code>→<code>CARTRIDGE1_URL</code>, <code>M</code>→<code>MACHINE</code>, <code>ANY</code>→<code>AUTODETECT_URL</code>). The extra <code>?game=</code> param is ignored by the engine and consumed by <code>genx-controls-link.js</code>.</p>
+<pre><code class="language-js">window.WMSX = {
+  SCREEN_ELEMENT_ID: 'wmsx-screen',
+  ALLOW_URL_PARAMETERS: true,
+  SCREEN_CONTROL_BAR: 0          // 0 = auto-hide on hover
+};
+</code></pre>
+<p>The WebMSX control bar (<code>#wmsx-bar</code>) is hidden site-wide — GenX bundles don't show emulator chrome. WebMSX also pops <strong>on-screen OSD toasts</strong> ("AUTO: NTSC 60Hz", media/state notices); chasing the monitor's <code>showOSD</code> through <code>WMSX.room.screen</code> is a dead end, but the toasts turn out to be a plain <strong>DOM overlay <code>#wmsx-osd</code></strong>, so a one-line <code>#wmsx-osd { display: none !important }</code> kills them cleanly — no timing games.</p>
+<h2 id="save--load-state">Save / load state</h2>
+<p>WebMSX exposes the running machine as <code>WMSX.room.machine</code>, with <code>saveState(true)</code> / <code>loadState(state)</code> — the same complete state API its netplay uses. The wrapper registers a <code>GenXStateAdapter</code> around those two calls and <code>_shared/genx-savestate-std.js</code> turns it into the bottom-left <strong>save</strong> / <strong>load</strong> menus. The state is a plain object graph (typed arrays included), so the shared core's <code>structuredClone</code> + typed-array-tagged JSON handle the in-memory slots, which persist to IndexedDB (five per game).</p>
+<h2 id="the-crt-bezel">The CRT bezel</h2>
+<p>WebMSX (<code>SCREEN_RESIZE_DISABLED: false</code>) sizes <code>#wmsx-screen-canvas</code> to fit its container, so the MSX takes the shared <strong><code>Sinclair.png</code></strong> vintage-TV bezel like the Spectrum/CoCo: <code>#wmsx</code> is pinned into the screen hole and the canvas is forced to fill it (<code>transform: translate(8px, -10px) scale(0.842)</code>). No barrel/fisheye — the MSX picture reads better flat.</p>
+<h2 id="cart-loading">Cart loading</h2>
+<p>Carts auto-load by URL — every MSX game in this build is a cartridge that boots straight to play (no disk titles). The menu links pass <code>?ROM=games/&lt;name&gt;.zip&amp;M=MSX1</code> (or <code>&amp;M=MSX2</code>).</p>
+<h2 id="two-bundles-one-engine">Two bundles, one engine</h2>
+<p>WebMSX ships as <strong>two self-contained bundles</strong> — <code>systems/msx1/</code> (boots <code>M=MSX1</code>) and <code>systems/msx2/</code> (boots <code>M=MSX2</code>) — so the URL path names the machine instead of an ambiguous shared <code>systems/webmsx/</code>. Each is a full copy of the same <code>wmsx.js</code>; the MSX2 menu passes an explicit <code>M=MSX2</code> rather than relying on WebMSX's implicit default.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/msx1/   (and an identical systems/msx2/)
+├── wmsx.js              ← stock WebMSX 6.0 embedded engine (never edited)
+├── index.html           ← OUR wrapper (config + engine + controls link)
+├── controls.html
+└── games/*.zip
+</code></pre>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a> — same <code>Sinclair.png</code> bezel</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

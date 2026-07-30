@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ElkJS — Acorn Electron — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="elkjs--acorn-electron">ElkJS — Acorn Electron</h1>
+<p>The Acorn Electron bundle is one of the older browser emulators on the site. ElkJS (Darren Coles) is solid 6502 emulation built on top of an even older Elkulator core, and the integration work was mostly about backing out upstream's full app and fixing the one display bug that survived.</p>
+<h2 id="where-we-started">Where we started</h2>
+<p><a href="https://github.com/dorpsgek/elkjs">ElkJS</a> is Darren Coles's port of Tom Walker's Elkulator. Pure JavaScript, no WASM, no build step — drop the source into a directory, point a <code>&lt;script&gt;</code> tag at <code>elkjs.js</code>, and it runs. License-wise it's "© Darren Coles 2013" with no SPDX header; the underlying Elkulator core is GPL-2.</p>
+<h2 id="the-first-observation-the-display-had-scanlines">The first observation: the display had scanlines</h2>
+<p>Upstream's <code>display.js</code> draws each emulated row to one canvas line and skips the next (blacked out), creating a CRT-style scanline effect baked into the display path. In a bezel-first site, that effect collides with whatever shading the bezel itself applies, and on modern high-DPI panels it just looks like the emulator is missing half the picture.</p>
+<p>The fix was one <code>data.copyWithin()</code> call per row to duplicate each drawn row to the line below. Text modes (3/6/7) also have blank inter-character gap rows that need doubling to maintain geometry on the 640x512 canvas. After the patch the picture fills the canvas at native aspect, and the bezel handles whatever scanline aesthetic the user wants.</p>
+<h2 id="the-jquery-dependency-that-wouldnt-die">The jQuery dependency that wouldn't die</h2>
+<p><code>elkjs.js</code> has one <code>$()</code> call — <code>refreshTapeDialog</code> in the tape-loading flow. It's the <em>only</em> jQuery use in the active code path, and it's in a function we can't avoid calling. So <code>play.html</code> loads jQuery 1.9.1 + jQuery UI for that single call.</p>
+<p>Upstream actually shipped two jQueries (1.7.2 and 1.9.1) for legacy reasons. We removed 1.7.2 (the duplicate was unused) and kept 1.9.1.</p>
+<h2 id="the-upstream-chrome-cleanup">The upstream chrome cleanup</h2>
+<p>The original ElkJS <code>index.html</code> is a full app: accordion sidebar, webring, in-page games dialog, tape dialog, browse button for local files. None of it suits a launcher page that's already chosen a specific game. Replaced wholesale by <code>play.html</code>. The casualties:</p>
+<ul>
+<li><code>index.html</code> (upstream)</li>
+<li><code>main.js</code></li>
+<li><code>gamesdialog.html</code>, <code>tapedialog.html</code></li>
+<li><code>css/elkjs.css</code></li>
+<li><code>css/jquery-ui-1.10.3.custom.min.css</code></li>
+<li><code>css/images/*</code> (jQuery UI theme sprites)</li>
+<li><code>jquery/jquery-1.7.2.min.js</code> (the duplicate)</li>
+</ul>
+<h2 id="how-games-launch">How games launch</h2>
+<p>Games map to a <code>games</code> object in <code>play.html</code>. <code>?game=KEY</code> triggers <code>elkjs.openFile(games[key])</code> after a 3-second delay (OS ROM init time on a cold boot). UEF files are snapshots — they load instantly, no tape wait.</p>
+<h2 id="the-autoplay-policy-workaround">The autoplay-policy workaround</h2>
+<p>Browser autoplay policy starts the AudioContext suspended. ElkJS's <code>soundToggle()</code> resumes it only on its <em>first</em> call, so games could be left silent if nothing ever resumed the context. GenX adds an idempotent <code>elkjs.resumeAudio()</code> (resume + enable, no toggle) and <code>play.html</code> calls it on <strong>every</strong> real user gesture (<code>keydown</code> / <code>pointerdown</code> / <code>touchstart</code>), plus a staggered window.open-activation attempt on load. So sound starts the moment the user interacts. Output is mixed to <strong>25%</strong> in <code>sound.js</code>'s <code>fillBuffer</code> (<code>* 0.25</code>) — the raw ±1 square wave is otherwise painfully loud.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/electron/
+├── play.html            ← minimal wrapper
+├── elkjs.js             ← core (+ display.js row-doubling &amp; sound.js audio patches)
+├── processor.js / display.js / sound.js / keyboard.js / sheila.js / memory.js / tape.js / uef_file.js / …
+├── jquery/              ← jquery-1.9.1.js + jquery-ui-1.10.3.custom.min.js
+├── basic.rom, os.rom    ← Electron ROMs
+├── controls.html
+└── *_snap.uef           ← 6 memory-snapshot UEFs (from the set ElkJS ships; Repton 2 dropped)
+</code></pre>
+<h2 id="the-positional-keyboard-gotcha">The positional keyboard gotcha</h2>
+<p>ElkJS's <code>keyboard.js</code> maps PC keys to the Electron matrix <strong>by position</strong>, so — exactly like jsbeeb — a few keys aren't where a PC user would reach for them. The values are the <code>keyCode → { row, mask }</code> table in <code>keyboard.js</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Electron key</th>
+<th>Press on PC</th>
+<th>keyCode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:</code> <code>*</code></td>
+<td>apostrophe <code>'</code></td>
+<td>222</td>
+</tr>
+<tr>
+<td><code>/</code> <code>?</code></td>
+<td><code>/</code></td>
+<td>191</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td><code>Home</code></td>
+<td>36 (<code>/* copy = home */</code>)</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>Backspace</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td>ESCAPE</td>
+<td><code>Esc</code></td>
+<td>27</td>
+</tr>
+</tbody>
+</table>
+<p>Note COPY is <strong>Home</strong> here, not <code>End</code> as on jsbeeb, and there is <strong>no</strong> on-screen COPY button on the Electron bundle. Games scan by matrix position, so e.g. Snapper's "up" is the <code>:</code> <code>*</code> key = <code>'</code>. The gamedocs list the PC key for each affected title.</p>
+<h2 id="usb-gamepad-support-04072026">USB gamepad support (04/07/2026)</h2>
+<p>Per-game <code>window.GenXGamepadMap</code>s in <code>play.html</code> on the shared <code>genx-gamepad-keys.js</code> shim. ElkJS reads <code>evt.keyCode</code> from <code>document.onkeydown</code>/<code>onkeyup</code>, exactly what the shim synthesizes — the one engine that needed no adaptation at all. Every game maps <strong>Start</strong> to its own title-screen key (Boxer and Starship Command were otherwise unstartable from a pad), and Elite gets the full six-button flight set with the vertical axis inverted (stick up climbs) — the house convention for flightsim-style games.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-jsbeeb.html">Emulator-jsbeeb</a> — sibling Acorn machine, different emulator</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jsbeeb — BBC Micro — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="jsbeeb--bbc-micro">jsbeeb — BBC Micro</h1>
+<p>jsbeeb is Matt Godbolt's BBC Micro emulator. GenX-DOS ships it as <strong>two self-contained bundles</strong> — <code>systems/bbcmicro/</code> (Model B) and <code>systems/bbcmaster/</code> (Master 128, <code>?model=Master</code>) — so each game's URL names the machine it runs on rather than hiding the model behind a shared <code>systems/jsbeeb/</code> path. They're full copies of the same Vite build — since rebuilt from our own <a href="https://github.com/Retro-Jack/jsbeeb"><code>Retro-Jack/jsbeeb</code></a> fork (jsbeeb 1.13.1) for a d-pad gamepad remap and a monitor-frame tweak. The core integration was hands-off (jsbeeb is a polished web product in its own right), but each bundle is among the largest in the suite and has some scary-looking orphan situations that are actually load-bearing.</p>
+<h2 id="where-we-started">Where we started</h2>
+<p><a href="https://github.com/mattgodbolt/jsbeeb">jsbeeb</a> is a Vite-built TypeScript bundle, GPL-3.0-or-later. Drop in the <code>dist/</code> directory verbatim, point <code>play.html</code> at <code>dist/index.html?disc=&lt;url&gt;</code>, done. There wasn't really an integration step — jsbeeb already supports per-machine URL parameters and direct disc loading. We just hosted the build. (We've since moved to a light fork for the d-pad gamepad remap — see the gamepad section below.)</p>
+<h2 id="the-bundle-is-25-mb-and-most-of-it-isnt-orphan">The bundle is 25 MB and most of it isn't orphan</h2>
+<p>A quick <code>du -sh</code> shows ~25 MB, which raises eyebrows on a static site. Two-thirds of that is intentional. Worth documenting because every audit pass re-discovers these:</p>
+<ul>
+<li>
+<p><strong><code>dist/teletext/</code> is 21 MB.</strong> Four <code>txt0..3.dat</code> files, referenced by <code>dist/assets/index-*.js</code> via the URL pattern <code>teletext/txt${n}</code>. No GenX-DOS menu path triggers teletext mode. The data is there because upstream jsbeeb keeps Ceefax viewer alive (F12 menu inside jsbeeb). Removing it is safe iff no one ever hits the teletext button. Defensible for our use, but it counts as a feature regression, not a cleanup.</p>
+</li>
+<li>
+<p><strong><code>dist/roms/{atom,tube,compact,b1770,a01,us,b,bp}/</code></strong> — system ROMs for BBC variants we don't expose (Acorn Atom, Tube co-processors, Master Compact, 1770 disc controller, BBC A01 / B early-OS / B+, US BBC). All referenced by <code>assets/index-*.js</code>'s model picker, so they're technically not orphans even though we only ever launch Model B and Master 128. ~150 KB total.</p>
+</li>
+</ul>
+<p>The teletext blob is the only one that would meaningfully shrink the bundle if removed.</p>
+<h2 id="how-the-two-bundles-work">How the two bundles work</h2>
+<p>Each bundle is a full copy of the jsbeeb <code>dist/</code>. The BBC Micro menu launches <code>systems/bbcmicro/dist/?disc1=&lt;Title&gt;.ssd&amp;autoboot</code> (jsbeeb defaults to Model B); the BBC Master menu launches <code>systems/bbcmaster/dist/?model=Master&amp;disc1=&lt;Title&gt;.dsd&amp;autoboot</code>. Same engine, two honest paths — the only functional difference is the <code>?model=Master</code> param the Master menu adds.</p>
+<h2 id="save--load-state">Save / load state</h2>
+<p>jsbeeb exposes the running machine as <code>window.processor</code>, and its own rewind feature uses <code>processor.snapshotState()</code> / <code>restoreState()</code> — a complete machine snapshot. We ride that exact API: the adapter (injected into the Vite <code>dist/index.html</code> alongside the other genx links) registers <code>getState</code>/<code>setState</code> around those two calls, and <code>_shared/genx-savestate-std.js</code> draws the bottom-left <strong>save</strong> / <strong>load</strong> menus. Because it's a full snapshot it works mid-game in titles with no save of their own — <strong>Elite</strong> being the obvious one.</p>
+<h2 id="the-copy-soft-button">The COPY soft button</h2>
+<p>The BBC's COPY key has no obvious PC equivalent — jsbeeb maps it to <code>End</code> (also Right-Ctrl / F11). Several BBC titles use it (as an in-game "continue" or action key; the BBC's Delete = freeze), so <code>_shared/genx-bbc-copykey.js</code> adds a clickable <strong>COPY</strong> button (top-left, in the GenX button style) that dispatches a synthetic <code>End</code>. jsbeeb listens for keydown on <code>document</code> and reads <code>event.which</code>/<code>keyCode</code> (no <code>isTrusted</code> check), so the synthetic key maps cleanly to COPY — the same synthetic-event trick the VICE RUN/STOP keyboard remap uses. Included in both <code>bbcmicro/</code> and <code>bbcmaster/</code> dist pages.</p>
+<h2 id="usb-gamepad-support-the-fork">USB gamepad support (the fork)</h2>
+<p>Standard-scheme games need nothing extra: jsbeeb natively maps a pad's d-pad to the BBC's <code>Z</code>/<code>X</code>/<code>'</code>/<code>/</code> steering keys, so titles like <strong>Snapper</strong> are pad-playable out of the box. The problem is digital games that use <em>other</em> keys — upstream jsbeeb hardwires the d-pad to those four keys with no remap hook, so a game with different controls couldn't drive the pad at all.</p>
+<p>The <a href="https://github.com/Retro-Jack/jsbeeb"><code>Retro-Jack/jsbeeb</code></a> fork (jsbeeb 1.13.1) adds four <code>GP.D12</code>–<code>GP.D15</code> cases, so a launch URL can bind the d-pad buttons to any BBC key. First wired: <strong>Chuckie Egg</strong> (<code>GP.FIRE=SPACE&amp;GP.D12=A&amp;GP.D13=Z&amp;GP.D14=COMMA&amp;GP.D15=PERIOD</code> — d-pad runs and climbs, any button jumps). The remap is a general improvement, offered back upstream on the fork's clean <code>gamepad-dpad-remap</code> branch; the only GenX-local fork change is the <strong>CUB-monitor inset</strong> (68→120px, for wallpaper breathing room), kept on the fork's build branch. Snapper (native scheme) and Elite (analogue stick) were verified unchanged by the rebuild. Local changes are logged in the fork's <code>GENX-CHANGES.md</code> and credited in <a href="https://github.com/Retro-Jack/GenX-DOS/blob/master/ATTRIBUTION.md">ATTRIBUTION.md</a>.</p>
+<h2 id="the-positional-keyboard-gotcha">The positional keyboard gotcha (<code>:</code> <code>*</code> <code>@</code>)</h2>
+<p>jsbeeb's default layout (<code>keyLayout='physical'</code>) maps PC keys to BBC keys <strong>by physical position, not by character</strong>. So several BBC keys land somewhere a PC user wouldn't guess, and pressing the PC key that <em>prints</em> the same glyph gives the wrong BBC key:</p>
+<table>
+<thead>
+<tr>
+<th>BBC key</th>
+<th>Press on PC</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:</code> <code>*</code></td>
+<td>apostrophe <code>'</code></td>
+<td><code>i(k.APOSTROPHE, O.COLON_STAR)</code> — PC <code>:</code> (Shift+<code>;</code>) gives BBC <code>+</code> instead</td>
+</tr>
+<tr>
+<td><code>/</code> <code>?</code></td>
+<td><code>/</code></td>
+<td>positional match, no surprise</td>
+</tr>
+<tr>
+<td><code>@</code></td>
+<td><code>[</code></td>
+<td><code>i(k.LEFT_SQUARE_BRACKET, O.AT)</code></td>
+</tr>
+<tr>
+<td>COPY</td>
+<td><code>End</code> (or the COPY button)</td>
+<td>also Right-Ctrl / F11</td>
+</tr>
+<tr>
+<td><code>f0</code></td>
+<td><code>F10</code></td>
+<td><code>f1</code>–<code>f9</code> are <code>F1</code>–<code>F9</code></td>
+</tr>
+</tbody>
+</table>
+<p>Games scan the key matrix by position, so Shift state doesn't matter — e.g. Citadel/Repton "up" is the <code>:</code> <code>*</code> key, which you press as <code>'</code>. The gamedocs spell out the PC key for every affected title.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/bbcmicro/   (and an identical systems/bbcmaster/)
+├── dist/
+│   ├── index.html              ← jsbeeb entry, used directly
+│   ├── assets/                 ← Vite-built bundle (this is most of jsbeeb)
+│   ├── discs/                  ← bundled disc images (each bundle carries only its own menu's discs)
+│   ├── images/, sounds/        ← jsbeeb chrome
+│   ├── roms/                   ← BBC variant system ROMs (most unused)
+│   ├── teletext/               ← 21 MB Ceefax data, kept for completeness
+│   └── tapes/
+├── controls.html               ← thin wrapper page (retitled per machine)
+├── genx-gamedoc-link.js         ← rewrites the corner link to the per-game gamedoc
+└── COPYING                     ← GPL-3.0
+</code></pre>
+<p><code>play.html</code> for each is just <code>dist/index.html</code>. The <code>controls.html</code> next to it is GenX-specific, not from upstream.</p>
+<p>Because jsbeeb launches with keyless disc URLs (<code>?disc1=&lt;Title&gt;.ssd</code>), the shared <code>genx-controls-link.js</code> can't resolve a per-game gamedoc. <code>dist/index.html</code> ships a hardcoded <code>&lt;a class="gx-controls-link" href="../controls.html"&gt;</code> plus a deferred <code>genx-gamedoc-link.js</code> that maps the disc filename → gamedoc key and upgrades the link's <code>href</code> on load. Each bundle's script targets its own gamedoc dir — <code>bbcmicro/</code> → <code>gamedocs/bbcmicro/</code> (e.g. <code>Elite</code> → <code>elite</code>), <code>bbcmaster/</code> → <code>gamedocs/bbcmaster/</code> (e.g. <code>EliteMaster</code> → <code>elite</code>, the old <code>master-</code> prefix dropped now each machine has its own dir). Keyless BASIC / blank-Master launches keep the generic <code>controls.html</code>.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-elkjs-Electron.html">Emulator-elkjs-Electron</a> — sibling Acorn machine</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

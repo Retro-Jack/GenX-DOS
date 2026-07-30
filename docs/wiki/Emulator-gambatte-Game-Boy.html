@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gambatte — Nintendo Game Boy / Game Boy Color — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="gambatte--nintendo-game-boy--game-boy-color">gambatte — Nintendo Game Boy / Game Boy Color</h1>
+<p>The Game Boy line runs on <strong>EmulatorJS + gambatte</strong> (the accuracy-focused GB/GBC libretro core), the 10th bundle to share the framework at <code>systems/_shared-ejs/</code>. It's the first entry in the new <strong>Handheld Consoles</strong> menu category (alongside the still-to-build Atari Lynx and Sega Game Gear).</p>
+<h2 id="a-new-bezel-style--the-device-in-your-hands-in-class">A new bezel style — the device in your hands, in class</h2>
+<p>Every other bundle frames its display as a <strong>CRT on the 70s wallpaper</strong>. The handhelds flip that: the device is held up in the <strong>foreground over a full-bleed photo</strong>. The Game Boy Color sits bottom-anchored over a <strong>classroom photo</strong> — the look of sneaking a handheld under the desk in class.</p>
+<pre><code>body { background: classroom.jpg cover; align-items: flex-end; }   /* held up from your lap */
+  .bezel-wrap                  (aspect of gbc.png, height-capped)
+    .screen-bg  (black backdrop, slightly larger than the hole)
+    #game       (EJS player at the screen hole)
+    .bezel-img  (gbc.png — grape GBC, screen keyed to a transparent hole)
+</code></pre>
+<p><code>#game canvas { height: 100% !important; transform: scale(0.95); }</code> seats the picture inside the screen. The device PNG is maintainer-keyed (re-cropped so the device bottom = image bottom, for the bottom-anchor). This is the template for the upcoming Lynx + Game Gear.</p>
+<h2 id="two-gotchas">Two gotchas</h2>
+<p><strong>The <code>stable</code> gambatte core is broken</strong> — it renders a blank white panel, no ROM ever displays (verified with a dead-simple ROM-only test cart). Same broken-<code>stable</code> story as <code>vice_x128</code>. We mirror the <strong><code>nightly</code></strong> build (<code>cdn.emulatorjs.org/nightly/data/cores/gambatte-legacy-wasm.data</code>), which works.</p>
+<p><strong>Boot in GBC mode</strong> so the bundle plays both generations:</p>
+<pre><code class="language-js">genxBootEJS({
+  title: 'Game Boy Color',
+  coreName: 'gb',
+  defaultOptions: { 'gambatte_gb_hwmode': 'GBC' },   // else CGB-only carts show white
+  defaultControls: { 0: { 0:{value:'z'}, 8:{value:'x'}, 2:{value:'shift'}, 3:{value:'enter'},
+                          4:{value:'up arrow'},5:{value:'down arrow'},6:{value:'left arrow'},7:{value:'right arrow'} } }
+});
+</code></pre>
+<p>In GBC mode, the colour-only cart (Shantae) runs, and the mono games get gambatte's auto-colourisation so they pop against the bright classroom.</p>
+<h2 id="controls">Controls</h2>
+<p>The universal Game Boy keyboard layout: <strong>arrows</strong> = d-pad, <strong>X</strong> = A, <strong>Z</strong> = B, <strong>Enter</strong> = Start, <strong>Shift</strong> = Select.</p>
+<h2 id="library">Library</h2>
+<p>A deliberate mix of GB classics and GBC colour showpieces, year-sorted: Tetris, Super Mario Land, Castlevania: The Adventure, Gargoyle's Quest, Kirby's Dream Land, Link's Awakening, Donkey Kong ('94), Pokémon Red, Final Fantasy Adventure (all GB), Shantae (GBC). Each has a per-game gamedoc at <code>gamedocs/gbc/&lt;key&gt;.html</code>.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/gbc/
+├── play.html            ← genxBootEJS wrapper (coreName: 'gb', GBC hwmode)
+├── controls.html
+├── games.json
+└── roms/
+    └── *.gb / *.gbc
+</code></pre>
+<p>The gambatte core lives once in <code>systems/_shared-ejs/ejs/data/cores/gambatte-legacy-wasm.data</code>.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-VICE-family.html">Emulator-VICE-family</a> — the shared EmulatorJS gotchas (and the other broken-<code>stable</code>→<code>nightly</code> core, x128)</li>
+<li><a href="Emulator-Stella.html">Emulator-Stella</a> — sibling EJS bundle (the first CRT bezel on EJS)</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

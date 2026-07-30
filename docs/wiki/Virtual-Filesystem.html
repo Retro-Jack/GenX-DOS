@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Virtual Filesystem — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html" class="active">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<p>The simulated <code>C:</code> drive lives in <code>prompt/javascript/fs.js</code> as a JS object tree. Every directory and file the user can <code>dir</code> is defined there. It's editable: change the file, hard-refresh, the prompt sees the new tree.</p>
+<h2 id="top-level-layout">Top-level layout</h2>
+<pre><code>C:\
+├── AUTOEXEC.BAT          runs on boot — calls `menu`
+├── menu.bat              `cd systems\nmenu` (drops straight into the EMULATOR LAUNCHER)
+└── SYSTEMS\              EMULATOR LAUNCHER: 1 HOMECOMP / 2 CONSOLE / 3 HANDHELD / 4 WIKI / 0 Exit
+    ├── HOMECOMP\         ACORN (BBC / ELECTRON / MASTER) / AMSTRAD (CPC) /
+    │                     APPLE (APPLE1 / APPLEII) / ATARI (400 / 800XL) /
+    │                     COMMODRE (PET / VIC20 / MAX / C64 / C16 / PLUS4 / C128) /
+    │                     MSX (MSX1 / MSX2) / SINCLAIR (SPECTRUM / ZX81) /
+    │                     TANDY (TRS80 / COCO) / TI99
+    ├── CONSOLE\          ATARI (2600 / 7800) / CVISION / INTV / NES /
+    │                     ODYSSEY2 / SMS
+    └── HANDHELD\         GAMEBOY (Game Boy / Color) / LYNX / GAMEGEAR
+</code></pre>
+<h2 id="which-menus-map-to-which-emulators">Which menus map to which emulators</h2>
+<p>All 32 bundled sub-systems run their games locally — every byte of game data is on the same origin.</p>
+<table>
+<thead>
+<tr>
+<th>Menu path</th>
+<th>Backing emulator</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CONSOLE → NES</td>
+<td>EmulatorJS + FCEUmm</td>
+<td>dir name is <code>jsnes/</code> for legacy reasons</td>
+</tr>
+<tr>
+<td>CONSOLE → ATARI → 2600</td>
+<td>EmulatorJS + Stella</td>
+<td></td>
+</tr>
+<tr>
+<td>CONSOLE → ATARI → 7800</td>
+<td>EmulatorJS + ProSystem</td>
+<td>dir name is <code>js7800/</code> for legacy reasons</td>
+</tr>
+<tr>
+<td>CONSOLE → SMS</td>
+<td>EmulatorJS + genesis_plus_gx</td>
+<td>Sega Master System</td>
+</tr>
+<tr>
+<td>CONSOLE → CVISION</td>
+<td>EmulatorJS + gearcoleco</td>
+<td>colecovision.rom BIOS bundled</td>
+</tr>
+<tr>
+<td>CONSOLE → INTV</td>
+<td>jzIntv WASM</td>
+<td>exec.bin + grom.bin BIOS bundled</td>
+</tr>
+<tr>
+<td>CONSOLE → ODYSSEY2</td>
+<td>libretro-o2em → WASM + custom SDL2 frontend</td>
+<td>o2rom.bin BIOS bundled</td>
+</tr>
+<tr>
+<td>HANDHELD → GAMEBOY</td>
+<td>EmulatorJS + gambatte (nightly)</td>
+<td>Game Boy + Game Boy Color, one <code>gbc/</code> menu</td>
+</tr>
+<tr>
+<td>HANDHELD → LYNX</td>
+<td>EmulatorJS + handy</td>
+<td>lynxboot.img bundled</td>
+</tr>
+<tr>
+<td>HANDHELD → GAMEGEAR</td>
+<td>EmulatorJS + genesis_plus_gx</td>
+<td></td>
+</tr>
+<tr>
+<td>HOMECOMP → ACORN → BBC</td>
+<td>jsbeeb</td>
+<td></td>
+</tr>
+<tr>
+<td>HOMECOMP → ACORN → ELECTRON</td>
+<td>ElkJS</td>
+<td>UEF snapshots</td>
+</tr>
+<tr>
+<td>HOMECOMP → ACORN → MASTER</td>
+<td>jsbeeb (<code>?model=Master</code>)</td>
+<td>Elite uses DSD for drive 2</td>
+</tr>
+<tr>
+<td>HOMECOMP → AMSTRAD → CPC</td>
+<td>floooh tiny8bit CPC WASM</td>
+<td>sokol_args URL params</td>
+</tr>
+<tr>
+<td>HOMECOMP → APPLE → APPLE1</td>
+<td>apple1js</td>
+<td>tapes + Woz Monitor</td>
+</tr>
+<tr>
+<td>HOMECOMP → APPLE → APPLEII</td>
+<td>apple2js</td>
+<td><code>.dsk</code> images converted to JSON</td>
+</tr>
+<tr>
+<td>HOMECOMP → ATARI → 400</td>
+<td><code>atari400/</code> bundle — atari800 WASM (OS-B / AltirraOS-800)</td>
+<td></td>
+</tr>
+<tr>
+<td>HOMECOMP → ATARI → 800XL</td>
+<td><code>atari800/</code> bundle — atari800 WASM (OS-XL / AltirraOS-XL)</td>
+<td>full copy of the same build</td>
+</tr>
+<tr>
+<td>HOMECOMP → COMMODRE → PET</td>
+<td>Thomas Skibo's pet2001 (vanilla JS)</td>
+<td>PET 2001 / BASIC 2 / 32 K</td>
+</tr>
+<tr>
+<td>HOMECOMP → COMMODRE → VIC20</td>
+<td>EmulatorJS + VICE xvic</td>
+<td><code>memory_expansions='all'</code></td>
+</tr>
+<tr>
+<td>HOMECOMP → COMMODRE → MAX</td>
+<td>EmulatorJS + VICE x64 (Ultimax mode)</td>
+<td>Japan-only 1982 console</td>
+</tr>
+<tr>
+<td>HOMECOMP → COMMODRE → C64</td>
+<td>EmulatorJS + VICE x64</td>
+<td>real-time IEC loading</td>
+</tr>
+<tr>
+<td>HOMECOMP → COMMODRE → C16</td>
+<td>EmulatorJS + VICE xplus4 (C16 mode)</td>
+<td></td>
+</tr>
+<tr>
+<td>HOMECOMP → COMMODRE → PLUS4</td>
+<td>EmulatorJS + VICE xplus4</td>
+<td></td>
+</tr>
+<tr>
+<td>HOMECOMP → COMMODRE → C128</td>
+<td>EmulatorJS + VICE x128 (native mode)</td>
+<td>per-game VICII/VDC switch</td>
+</tr>
+<tr>
+<td>HOMECOMP → MSX → MSX1 / MSX2</td>
+<td>WebMSX — <code>msx1/</code> (<code>?M=MSX1</code>) + <code>msx2/</code> (<code>?M=MSX2</code>) bundles</td>
+<td>full copy of the engine in each</td>
+</tr>
+<tr>
+<td>HOMECOMP → SINCLAIR → SPECTRUM</td>
+<td>JSSpeccy 3</td>
+<td></td>
+</tr>
+<tr>
+<td>HOMECOMP → SINCLAIR → ZX81</td>
+<td>JtyOne</td>
+<td></td>
+</tr>
+<tr>
+<td>HOMECOMP → TANDY → TRS80</td>
+<td>sdltrs (our own WASM build)</td>
+<td>Model I; Level II BASIC ROM embedded</td>
+</tr>
+<tr>
+<td>HOMECOMP → TANDY → M100</td>
+<td>VirtualT (our core-only WASM build)</td>
+<td>Model 100; live clock + battery-backed RAM</td>
+</tr>
+<tr>
+<td>HOMECOMP → TANDY → COCO</td>
+<td>XRoar</td>
+<td>Tandy Color Computer</td>
+</tr>
+<tr>
+<td>HOMECOMP → TI99</td>
+<td>js99er (vanilla JS build)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Each system menu lists 10 games (the Acorn Electron is the exception, with 6 — from the set ElkJS ships). Command-line machines add an 11th entry that boots a clean <code>PROMPT</code> / <code>BASIC</code>. MSX has 10 + 10 (MSX1 + MSX2 sub-menus). On the ZX81, the <strong>1K Chess</strong> slot opens a small sub-menu to pick the computer's opening — king's pawn or queen's pawn — the first per-game sub-menu in the tree.</p>
+<p>For the integration stories per emulator, see <a href="Emulators.html">Emulators</a>.</p>
+<h2 id="the-per-system-menu-pattern">The per-system menu pattern</h2>
+<p>A typical <code>&lt;SYSTEM&gt;\GAMES\</code> directory looks like:</p>
+<pre><code>GAMES\
+├── menu.bat              numbered title list (45-char wide box-drawn menu)
+├── 0.bat                 cd .. / cd .. / menu (back two levels)
+├── 1.bat .. N.bat        each runs a named .bat
+└── &lt;key&gt;.bat             one per title, with link: → emulator URL
+</code></pre>
+<p>How a user gets from the prompt to a game (NES example):</p>
+<pre><code>1   → cd systems / menu        (EMULATOR LAUNCHER → CONSOLE / HOMECOMP)
+2   → cd console / menu          (CONSOLE SYSTEMS)
+2   → cd nes / menu              (NES GAMES — auto-cd into games)
+3   → contra                     (opens systems/jsnes/play.html?game=contra)
+0   → cd .. / cd .. / menu       (back to CONSOLE menu)
+</code></pre>
+<h2 id="the-file-object-schema">The file-object schema</h2>
+<p>A node in <code>fs.js</code> is <code>{ name, directories?, files? }</code> for directories, or one of these for files:</p>
+<table>
+<thead>
+<tr>
+<th>Field on a file</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data: '&lt;batch&gt;'</code></td>
+<td>Treats the "file" as a batch script — each <code>\n</code>-separated line is dispatched as a command</td>
+</tr>
+<tr>
+<td><code>link: '&lt;url&gt;'</code></td>
+<td>Treats the file as a launcher — <code>window.open(link, "_blank")</code></td>
+</tr>
+<tr>
+<td><code>hidden: true</code></td>
+<td>Hidden from <code>dir</code> output (still navigable via <code>cd</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Game <code>.bat</code> files use <code>link:</code>. <code>menu.bat</code> and numbered launchers use <code>data:</code>.</p>
+<h2 id="the-no-html-files-rule">The no-<code>.html</code>-files rule</h2>
+<p>The virtual filesystem only lists <code>.bat</code> files — game launchers, menu scripts, and the numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's <code>controls.html</code>, future bezels, etc.) live on disk under <code>systems/&lt;name&gt;/</code> but are reached from inside the emulator's entry HTML via a corner link, not from the DOS prompt.</p>
+<p>This is period-correct: a DOS user typing <code>dir</code> shouldn't see <code>.html</code>.</p>
+<p>See <a href="Customising-the-Filesystem.html">Customising the Filesystem</a> for worked examples of adding entries.</p>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

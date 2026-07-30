@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GenX-DOS Wiki — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html" class="active">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="genx-dos-wiki">GenX-DOS Wiki</h1>
+<p>GenX-DOS is a browser DOS prompt that boots emulators from numbered menus. We ship 19 emulator engines locally — 33 sub-systems between them — and nothing is fetched at runtime. Every byte lives on the same origin.</p>
+<p>This wiki is the long-form companion to the repo. The <a href="https://github.com/Retro-Jack/GenX-DOS/blob/master/README.md">README</a> is the quick tour; these pages are the field notes.</p>
+<h2 id="pages">Pages</h2>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>What's inside</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="Project-Overview.html">Project Overview</a></td>
+<td>What the site does, how it boots, what's on screen</td>
+</tr>
+<tr>
+<td><a href="File-Structure.html">File Structure</a></td>
+<td>Where things live in the repo</td>
+</tr>
+<tr>
+<td><a href="Virtual-Filesystem.html">Virtual Filesystem</a></td>
+<td>The simulated <code>C:</code> drive</td>
+</tr>
+<tr>
+<td><a href="Commands.html">Commands</a></td>
+<td>DOS commands the prompt understands</td>
+</tr>
+<tr>
+<td><a href="Font-System.html">Font System</a></td>
+<td>How we draw 12×12 CP437 glyphs in HTML</td>
+</tr>
+<tr>
+<td><a href="Emulators.html">Emulators</a></td>
+<td>Index of every engine, each with its own page</td>
+</tr>
+<tr>
+<td><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></td>
+<td>Adding directories, files, menus</td>
+</tr>
+<tr>
+<td><a href="Roadmap.html">Roadmap</a></td>
+<td>What's shipped, what's next, what won't be</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-the-repo">In the repo</h2>
+<ul>
+<li><a href="https://github.com/Retro-Jack/GenX-DOS/blob/master/README.md">README.md</a> — quick start + layout summary</li>
+<li><a href="../../docs/article/">Booting a Museum in a Browser Tab</a> — the feature article. <em>"A museum that boots in a tab — and you're allowed to touch everything."</em></li>
+<li><a href="https://github.com/Retro-Jack/GenX-DOS/blob/master/CHANGELOG.md">CHANGELOG.md</a> — release notes</li>
+<li><a href="https://github.com/Retro-Jack/GenX-DOS/blob/master/ATTRIBUTION.md">ATTRIBUTION.md</a> — canonical record of every bundled third-party emulator, BIOS, ROM, bezel, and dependency</li>
+<li><a href="https://github.com/Retro-Jack/GenX-DOS/packages">Packages</a> — the whole site published on each release as a container image (<code>ghcr.io/retro-jack/genx-dos</code>) and an npm package (<code>@retro-jack/genx-dos</code>)</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>libretro-o2em — Magnavox Odyssey² — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="libretro-o2em--magnavox-odyssey2">libretro-o2em — Magnavox Odyssey²</h1>
+<p>The Odyssey² bundle came with an instructive false start: we assumed EmulatorJS would Just Work for any libretro core, and learned the hard way that it doesn't.</p>
+<h2 id="where-we-started--the-ejs-dead-end">Where we started — the EJS dead end</h2>
+<p>The plan was the obvious one: drop <code>o2em-legacy-wasm.data</code> into <code>_shared-ejs/ejs/data/cores/</code>, set <code>EJS_core = 'o2em'</code>, write a <code>play.html</code> that mirrors the VICE/Coleco shape. Loaded the core, called <code>GameManager.cwrap(...)</code>, immediate runtime error: <code>system_restart</code> is <code>undefined</code>.</p>
+<p>The reason: <strong>vanilla libretro cores are not drop-in for EJS.</strong> EJS forks each libretro core to add EJS-specific extension functions (<code>system_restart</code>, <code>simulate_input</code>, <code>toggleMainLoop</code>, <code>cmd_take_screenshot</code>, <code>ejs_set_variable</code>, <code>get_core_options</code>, etc.) that <code>EJS_GameManager</code> wraps via <code>cwrap</code>. A vanilla libretro core lacks those exports; <code>GameManager.cwrap("system_restart", …)</code> resolves to <code>undefined</code> and EJS gives up.</p>
+<p>Polyfilling cwrap doesn't help — the EJS-specific symbols aren't <em>in</em> the core, no amount of JS wrapping can conjure them. Don't try this again for any platform whose libretro core EJS hasn't already forked. Either build the EJS-flavoured fork yourself or take a different path.</p>
+<p>We took a different path: build vanilla libretro-o2em to WASM, then write a small SDL2/emscripten frontend.</p>
+<h2 id="the-build-pipeline">The build pipeline</h2>
+<p><code>systems/odyssey2/build.sh</code> does the whole thing end-to-end. The skeleton:</p>
+<pre><code class="language-sh">source ~/emsdk/emsdk_env.sh
+git clone https://github.com/libretro/libretro-o2em
+cd libretro-o2em
+emmake make platform=emscripten -j$(nproc)
+</code></pre>
+<p>That produces <code>o2em_libretro_emscripten.bc</code>. First trap: despite the <code>.bc</code> extension, <strong>that file is an <code>ar</code> archive, not LLVM bitcode.</strong> Rename it to <code>.a</code> so emcc accepts it.</p>
+<p>Second trap: <code>STATIC_LINKING=1</code> skips the libretro-common helpers in the core's own Makefile. They have to be compiled explicitly from <code>libretro-o2em/libretro-common/</code>:</p>
+<pre><code>compat_snprintf, compat_strcasestr, compat_strl, fopen_utf8,
+encoding_crc32, encoding_utf, file_path, file_path_io,
+file_stream, file_stream_transforms, stdstring, rtime,
+vfs_implementation
+</code></pre>
+<p>Final link flags:</p>
+<pre><code>-s USE_SDL=2
+-s MODULARIZE=1
+-s EXPORT_NAME=createO2EM
+-s EXPORTED_RUNTIME_METHODS=FS,callMain,HEAPU8
+-s INITIAL_MEMORY=33554432
+-s ALLOW_MEMORY_GROWTH=1
+</code></pre>
+<p><code>MODULARIZE=1</code> matters for the next gotcha.</p>
+<h2 id="the-frontend-200-lines-of-frontendc">The frontend: ~200 lines of <code>frontend.c</code></h2>
+<p>A libretro core can't drive itself. It needs a frontend that calls <code>retro_init</code>, <code>retro_run</code>, and supplies video/audio/input callbacks. <code>frontend.c</code> implements those: RGB565 → ARGB8888 video conversion, 16-bit stereo audio queued through <code>SDL_QueueAudio</code>, <code>RETRO_DEVICE_KEYBOARD</code> polled from SDL key state via <code>SDL_PollEvent</code> (mapped 1:1 to <code>RETROK_*</code>).</p>
+<p>Two gotchas in the frontend code:</p>
+<ol>
+<li>
+<p><strong>Don't allocate the framebuffer on the stack.</strong> emscripten's default stack is 64 KB. A 384×269×4-byte ARGB scratch buffer blows it. Make it <code>static</code>. The stack overflow shows up as a clean <code>___handle_stack_overflow</code> abort in dev builds — easy to diagnose, easy to fix, but worth flagging.</p>
+</li>
+<li>
+<p><strong>Modularised builds pass the <code>Module</code> instance as the first arg to each <code>preRun</code> callback.</strong> <code>this</code> is not reliably the Module. Write <code>function (mod) { mod.FS.writeFile(...) }</code>, not <code>function () { this.FS.writeFile(...) }</code>. The latter fails silently — the file isn't written and the BIOS lookup later fails with an unhelpful error.</p>
+</li>
+</ol>
+<h2 id="how-a-game-launches">How a game launches</h2>
+<p><code>play.html</code> uses the shared <code>genxLoadGame()</code> from <code>_shared/genx-game-loader.js</code> (the same helper Intellivision, CPC, and apple2 use). It fetches <code>o2rom.bin</code> + the chosen cart in parallel, queues them as <code>preRun</code> writes (<code>/o2rom.bin</code> and <code>/game.bin</code> in MEMFS), then calls <code>createO2EM(Module)</code> to start the runtime. The frontend opens both via standard <code>fopen</code>.</p>
+<h2 id="save--load-state--exposing-retro_serialize">Save / load state — exposing <code>retro_serialize</code></h2>
+<p>The Odyssey² was, briefly, the one platform we'd written off as un-save-stateable — then realised the fix was ours to make. Every libretro core implements <code>retro_serialize</code> / <code>retro_unserialize</code>, and o2em is no exception (they wrap <code>savestate_to_mem</code> / <code>savestate_size</code>). The catch: <strong>our <code>frontend.c</code> never called them</strong>, so with <code>STATIC_LINKING</code> the linker dead-code-eliminated them — <code>o2em.wasm</code> had no <code>retro_serialize</code> symbol at all.</p>
+<p>Since we own the frontend, the feature was a rebuild away. <code>frontend.c</code> gained four <code>EMSCRIPTEN_KEEPALIVE</code> wrappers:</p>
+<pre><code class="language-c">int gx_state_save(void);      // retro_serialize into gx_buf → returns HEAP ptr
+int gx_state_size(void);      // length of the last save
+int gx_state_buffer(int n);   // realloc gx_buf to n, return ptr for JS to fill
+int gx_state_load(int n);     // retro_unserialize from gx_buf
+</code></pre>
+<p>The serialized blob is owned by a static <code>gx_buf</code> in C, so JS never needs <code>_malloc</code>/<code>_free</code> exported — it just reads/writes <code>HEAPU8</code> at the returned pointer. <strong>One gotcha that cost a rebuild:</strong> <code>HEAPU8</code> isn't on the Module unless it's in <code>EXPORTED_RUNTIME_METHODS</code>. Without it the adapter's <code>ready()</code> check fails silently and no buttons ever appear — easy to miss because nothing errors. (That's why the flag list above reads <code>FS,callMain,HEAPU8</code>.)</p>
+<p><code>play.html</code> captures the instance from <code>createO2EM(Module).then(m =&gt; …)</code> and registers a <code>GenXStateAdapter</code> (<code>getState</code> = <code>_gx_state_save</code> → slice <code>HEAPU8</code>; <code>setState</code> = <code>_gx_state_buffer</code> → fill → <code>_gx_state_load</code>), which <code>_shared/genx-savestate-std.js</code> turns into the bottom-left <strong>save</strong> / <strong>load</strong> menus. This is the reusable pattern for any libretro-core-on-custom-frontend bundle.</p>
+<h2 id="bios">BIOS</h2>
+<p><code>o2rom.bin</code>, 1024 bytes, MD5 <code>562d5ebf9e030a40d6fabfc2f33139fd</code>. Bundled under the same emulator-only-use precedent as the ColecoVision and Intellivision BIOSes. G7400/C52/JOPAC variants exist (<code>O2_G7400_bios.bin</code>, <code>O2_PhillipsC52.bin</code>) if multi-region support is wanted later.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/odyssey2/
+├── play.html
+├── games.json
+├── build.sh           ← reproducible build recipe
+├── frontend.c         ← ~240 LOC SDL2 frontend (+ gx_state_* wrappers)
+├── controls.html      ← keyboard reference (added 17/06/2026)
+├── o2em.js            ← emscripten glue
+├── o2em.wasm          ← 860 KB
+├── o2rom.bin          ← BIOS, 1 KB
+└── games/
+    └── *.bin          ← 10 cart images, ~36 KB total
+</code></pre>
+<p>It now ships a <code>controls.html</code> like the rest of the bundles (added 17/06/2026, completing the set). When a launch carries <code>?game=&lt;key&gt;</code> the corner link resolves to the gamedocs page; the controls page is the fallback for a keyless launch.</p>
+<p>Total bundle ~1.05 MB. Comparable to Intellivision.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-jzIntv-Intellivision.html">Emulator-jzIntv-Intellivision</a> — same "no EJS core" situation, different solution (jzIntv already had a WASM build)</li>
+<li><a href="Emulator-atari800.html">Emulator-atari800</a> — same emscripten build pipeline</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

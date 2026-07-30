@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>floooh/tiny8bit — Amstrad CPC — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="flooohtiny8bit--amstrad-cpc">floooh/tiny8bit — Amstrad CPC</h1>
+<p>The Amstrad CPC bundle took three failed core swaps before landing on tiny8bit. The reasons each previous candidate fell out are worth keeping on record so we don't tread the path again.</p>
+<h2 id="where-we-started--three-dead-ends">Where we started — three dead ends</h2>
+<ol>
+<li>
+<p><strong>EmulatorJS + cap32.</strong> The CDN's <code>cap32-legacy-wasm.data</code> exports are incomplete; the core aborts with <code>getControllerPortInfo undefined</code> on <code>GameManager.cwrap()</code>. Same pattern as the Odyssey² EJS dead-end — the vanilla libretro core wasn't EJS-forked. Out.</p>
+</li>
+<li>
+<p><strong>crocods.</strong> Boots cleanly. Then stops at a catalog menu. The source has a literal <code>// TODO: ID_AUTORUN</code> so there's no API to skip the menu and go straight to the loaded image. Out.</p>
+</li>
+<li>
+<p><strong>cpcbox.</strong> Minified and obfuscated. Rejects our <code>.dsk</code> images with <code>[SNA Parser] Error: Invalid SNA id</code> because internal vars are like <code>$Kyk3LdzJw</code>. Debugging surface area is zero. Out.</p>
+</li>
+</ol>
+<p>So we landed on Andre Weissflog's <a href="https://github.com/floooh/chips-test">tiny8bit</a> — a standalone WASM with a clean URL-param config API, no EJS dependency, MIT-licensed, CPC 6128 + Locomotive BASIC 1.1 default.</p>
+<h2 id="the-sokol_args-url-param-api">The sokol_args URL-param API</h2>
+<p>tiny8bit reads its configuration from <code>window.location.search</code> via its sokol_args library (function <code>Za()</code> in the minified WASM glue). Standard keys:</p>
+<ul>
+<li><code>file=&lt;url&gt;</code> — load <code>.dsk</code>/<code>.sna</code>/<code>.tap</code> on boot (relative path OK, resolves against document URL)</li>
+<li><code>input=&lt;keys&gt;</code> — type these keys after load (URL-encoded; <code>%0A</code> is Enter; usually <code>run"NAME%0A</code>)</li>
+<li><code>type=cpc464|cpc6128</code> — model override (default cpc6128)</li>
+<li><code>joystick=&lt;mode&gt;</code> — joystick mode</li>
+</ul>
+<p>The trick: sokol_args reads <code>location.search</code> <em>at startup</em>, so the URL has to be in the right shape <em>before</em> <code>cpc.js</code> runs. <code>play.html</code> reads our <code>?game=KEY</code>, looks up <code>{rom, input, type}</code> in <code>games.json</code>, then <strong>rewrites the URL via <code>history.replaceState()</code> to <code>?file=&lt;rom&gt;&amp;input=&lt;boot-cmd&gt;</code> BEFORE WASM init</strong>. Only then inject <code>cpc.js</code>.</p>
+<h2 id="the-autoboot-problem">The autoboot problem</h2>
+<p>CPC <code>.dsk</code> autoboot isn't built into the AMSDOS format. Each game needs its <code>run"&lt;file&gt;</code> command supplied via <code>input=</code>. Figuring out the right filename per disk means parsing the AMSDOS catalog: track 0 sectors 0xC1-0xC4, 256-byte header + per-track 0x100 track-info preface, then 64 catalog entries of 32 bytes each.</p>
+<p>For example, <em>Roland on the Run</em>'s autoboot file is <code>ONTHERUN.BAS</code>, not the obvious-looking <code>DISC.BAS</code>. Get it wrong and the disk loads but does nothing.</p>
+<h2 id="the-single-fire-button-problem">The single-fire-button problem</h2>
+<p>floooh's chips library only wires one fire button — BTN0 == BTN1, both mapped to Space. CPC games that expected two-button joysticks (PgUp/PgDn was the convention for second-button arcade ports) get nothing on PgUp/PgDn.</p>
+<p>The fix was a capture-phase keydown listener that intercepts PageUp/PageDown, calls <code>preventDefault</code> + <code>stopPropagation</code>, then dispatches a synthetic Space:</p>
+<pre><code class="language-js">document.dispatchEvent(new KeyboardEvent(e.type, {
+  key: ' ', code: 'Space', keyCode: 32, which: 32,
+  bubbles: true, cancelable: true
+}));
+</code></pre>
+<p>sokol's handler sees Space; the game sees a fire button. PgUp and PgDn become alternative fire keys without the user noticing.</p>
+<h2 id="rebuilding-the-wasm-to-drop-the-debug-overlays">Rebuilding the WASM to drop the debug overlays</h2>
+<p>The stock tiny8bit binary paints two things over the screen that you can't turn off at runtime: a sokol-debugtext <strong>status bar</strong> along the bottom (<code>JOYSTICK</code>/<code>DISC</code>/<code>MOTOR</code>/<code>TRACK</code> plus frame timing) and a <strong>muted-speaker icon</strong> that sits there until the first click. Inside our CRT bezel both look like bugs.</p>
+<p>We first tried hiding the status bar with a black CSS strip over the bottom of the cutout. It worked, but it was a fudge — the bar is drawn into the framebuffer, so the strip also masked a slice of any game that drew there. The cleaner answer was to rebuild the binary without the overlays, and it turned out to be a two-line patch.</p>
+<p>In <code>floooh/chips-test</code>'s <code>examples/emus/cpc.c</code>:</p>
+<ul>
+<li>comment out <code>draw_status_bar();</code> in <code>frame()</code> — no more status bar;</li>
+<li>hardcode <code>.disable_speaker_icon = true</code> in the <code>gfx_init</code> descriptor — the icon never shows (audio still resumes on load via the same auto-unlock burst jsbeeb and Electron use).</li>
+</ul>
+<p>(The forward declaration of <code>draw_status_bar</code> then gets <code>__attribute__((unused))</code> so the dead function doesn't trip <code>-Werror</code>.)</p>
+<p>Building it is its own small adventure: floooh has moved chips-test onto <strong>fibs</strong>, his Deno/TypeScript successor to fips, so there's no plain CMakeLists to point <code>emcc</code> at. The dance is — install Deno, symlink an existing emsdk in where fibs expects its own (<code>ln -sfn $HOME/emsdk .fibs/sdks/emsdk</code>), then <code>fibs config emsc-ninja-release</code> and <code>fibs build cpc</code>. The two artifacts drop into <code>.fibs/dist/emsc-ninja-release/</code> and we copy <code>cpc.js</code> + <code>cpc.wasm</code> over the bundle's. The full recipe lives in the repo at <code>systems/cpc/BUILDING-WASM.md</code>.</p>
+<h2 id="save--load-state--exporting-the-chips-snapshot">Save / load state — exporting the chips snapshot</h2>
+<p>chips already has the hard part done: <code>cpc_save_snapshot(sys, dst)</code> and <code>cpc_load_snapshot(sys, version, src)</code> (declared in <code>chips/systems/cpc.h</code>) take a full machine snapshot as a self-contained <code>cpc_t</code> struct copy. The stock build just never exported them. Since we already rebuild the WASM for the overlay removal, exposing them was cheap — <code>examples/emus/cpc.c</code> (right after the <code>} state;</code> global) gets four <code>EMSCRIPTEN_KEEPALIVE</code> wrappers around a static <code>cpc_t gx_snap</code>:</p>
+<pre><code class="language-c">EMSCRIPTEN_KEEPALIVE int   gx_state_size(void) { return (int)sizeof(cpc_t); }
+EMSCRIPTEN_KEEPALIVE void* gx_state_ptr(void)  { return (void*)&amp;gx_snap; }
+EMSCRIPTEN_KEEPALIVE int   gx_state_save(void) { cpc_save_snapshot(&amp;state.cpc, &amp;gx_snap); return (int)sizeof(cpc_t); }
+EMSCRIPTEN_KEEPALIVE int   gx_state_load(void) { return cpc_load_snapshot(&amp;state.cpc, CPC_SNAPSHOT_VERSION, &amp;gx_snap) ? 1 : 0; }
+</code></pre>
+<p>The key contrast with <a href="Emulator-atari800.html">Emulator-atari800</a>: the chips snapshot is a plain struct copy with <strong>no <code>emscripten_sleep</code></strong> anywhere in it, so there's no ASYNCIFY clash — the adapter calls <code>gx_state_save</code>/<code>load</code> straight from the button, no frame-loop deferral. <code>play.html</code>'s <code>GenXStateAdapter</code> is synchronous: <code>getState</code> = <code>_gx_state_save()</code> size + <code>HEAPU8.slice(_gx_state_ptr(), +n)</code>; <code>setState</code> = <code>HEAPU8.set(bytes, ptr)</code> + <code>_gx_state_load()</code>.</p>
+<p><strong>The HEAPU8 gotcha (same one o2em hit):</strong> the stock fibs <code>emscripten.ts</code> sets no <code>EXPORTED_RUNTIME_METHODS</code> <em>and</em> <code>NO_FILESYSTEM=1</code>, so <code>Module.HEAPU8</code> doesn't exist and there's no MEMFS file fallback either. The fix is one line added to the imported <code>fibs-extras/emscripten.ts</code> <code>build()</code> hook — <code>-sEXPORTED_RUNTIME_METHODS=['HEAPU8','ccall','cwrap']</code> — then re-run <code>config</code> before <code>build</code> so it's baked into the ninja files. (The build sets <code>INITIAL_MEMORY=32MB</code> with growth, so <code>Module.HEAPU8</code> could go stale after a memory grow, but the CPC's footprint never triggers one.)</p>
+<h2 id="the-no-game-basic-branch">The no-game (BASIC) branch</h2>
+<p>If no <code>?game=</code> URL param, skip <code>genxLoadGame()</code> (which fails on missing key by design), set <code>document.title = 'Amstrad CPC'</code>, clear the search via <code>history.replaceState(null, '', location.pathname)</code>, and let <code>cpc.js</code> init with empty sokol_args. The WASM defaults to CPC 6128 + Locomotive BASIC. User gets <code>Ready</code> and a blinking cursor.</p>
+<h2 id="a-game-sourcing-note">A game-sourcing note</h2>
+<p><code>.dsk</code> is the preferred format — period-correct for the 3-inch floppy CPC era. <code>.sna</code> snapshots boot faster but feel inauthentic. ("I prefer .dsk — this isn't a cartridge system.")</p>
+<p>French-only releases are a recurring trap. 1985's <em>Sorcery</em> (Virgin) was dropped for it early on, and <em>Get Dexter</em> went the same way later: the only dump that would boot turned out to be the French <em>Crafton &amp; Xunk</em>, whose keys differ from the English release, so rather than ship a game under a name and a key table it doesn't use, we replaced it outright.</p>
+<p>Four screens now run over a candidate disc before anyone bothers launching it, each learned the hard way:</p>
+<ul>
+<li><strong>Trainers.</strong> <em>Bomb Jack</em>'s disc boots to "Trainer From T.H.C. — Unlimited Lives (Y/N)?" and holds no clean copy of the game. <code>strings</code> catches the ones that announce themselves in plain text; it cannot see a trainer drawn as bitmap text, so playing it is still the only proof.</li>
+<li><strong>Read the catalogue properly.</strong> Do <em>not</em> grep a <code>.dsk</code> for filename-shaped strings — it invents names that aren't there (it had us chasing <code>LOADER</code> and <code>RUN-ME</code> on a disc whose only files are <code>DISC</code> and <code>EIDOLON</code>) and silently drops any 8-character name, because those leave no space before the extension. Parse the AMSDOS directory instead: track 0 sectors <code>&amp;C1</code>–<code>&amp;C4</code> (or track 2 <code>&amp;41</code>–<code>&amp;44</code>), 32-byte entries, mask each character with <code>&amp;7F</code>.</li>
+<li><strong>An empty catalogue means it won't run.</strong> Twice now — <em>Gauntlet</em> and <em>Way of the Tiger</em> — a disc whose directory reads empty and which loads via <code>|CPM</code> has its loader on custom tracks, and dies at boot. A readable catalogue is the better predictor than the <code>PROTECTED</code> flag: <em>Tau Ceti</em> is Speedlock-protected and perfectly happy.</li>
+<li><strong>Single disc only.</strong> The launcher mounts one image with no way to swap, so a game whose data spans two discs is out — <em>The Guild of Thieves</em> boots and then asks for the other side, and at ~300K of data it cannot be merged onto one 178K disc either. Tape is no escape route: <code>input=</code> doesn't auto-type for tapes and there's no virtual PLAY, so a <code>.cdt</code> stalls at "Press PLAY then any key".</li>
+</ul>
+<h2 id="what-this-taught-us">What this taught us</h2>
+<p>When evaluating a new platform's WASM emulator:</p>
+<ol>
+<li>Check the source for exposed URL-param / JS API hooks (sokol_args, location.search consumers, init callbacks). If it's all baked-in defaults, you'll need source patching.</li>
+<li>Check the source for <code>// TODO: AUTORUN</code> or similar incomplete features that block headless usage.</li>
+<li>Avoid minified + obfuscated standalone JS — debug surface area is zero.</li>
+</ol>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/cpc/
+├── play.html            ← URL rewrite + PgUp/PgDn remap
+├── cpc.js               ← tiny8bit emscripten glue (locally rebuilt)
+├── cpc.wasm             ← emulator (locally rebuilt — overlays patched out + gx_state_* save-state)
+├── BUILDING-WASM.md     ← rebuild recipe (source patch + fibs build)
+├── controls.html
+├── games.json
+└── games/
+    └── *.dsk            ← floppy images, with per-game boot command
+</code></pre>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a> — same emscripten Module pattern</li>
+<li><a href="Emulator-jzIntv-Intellivision.html">Emulator-jzIntv-Intellivision</a> — also custom loader, no EJS</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+<h2 id="usb-gamepad-support-04072026">USB gamepad support (04/07/2026)</h2>
+<p>The engine reads only keyboard/mouse, so pads come via our wrapper: <code>play.html</code> sets a <code>window.GenXGamepadMap</code> (arrows + Space) and loads the shared <code>systems/_shared/genx-gamepad-keys.js</code>, which polls pad 0 each frame and synthesizes the mapped KeyboardEvents on edges (idle pads emit nothing, so keyboard-driven games are unaffected). Games whose CPC original had a joystick option carry a <code>"joystick": true</code> flag in <code>games.json</code>; <code>play.html</code> forwards it as the sokol <code>joystick=true</code> arg so tiny8bit's emulated 9-pin port consumes the synthesized arrows/Space. First wired title: 3D Starstrike; <em>The Eidolon</em> and <em>Prince of Persia</em> followed, both joystick-native by design (their manuals document a joystick alongside the keyboard), so the pad drives the emulated port rather than faking keystrokes at the game. The shim has since gone multi-engine — the Acorn Electron, ZX Spectrum and ZX81 bundles all drive it with per-game maps (see their pages), and it gained a lazily-resolved dispatch target, press/release hysteresis on the stick axes (on at 0.5, off at 0.3) and a <code>?paddebug</code> on-screen event log along the way. On the CPC the map now loads only when a <code>?game=</code> is present, so a pad can't type into the bare Locomotive BASIC prompt, and <code>play.html</code> builds its corner controls link inline (the sokol_args URL rewrite raced the deferred shared link script).</p>
+<p>Also from the same session: the bezel now fills the full viewport height (the 120px wallpaper margin in the <code>.bezel-wrap</code> width cap was dropped — <code>calc(100dvh * 1502 / 992 * 1.05)</code>), which made the canvas noticeably more legible.</p>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

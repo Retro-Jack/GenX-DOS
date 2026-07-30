@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Data — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html" class="active">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<p>GenX-DOS is a <strong>static site with no backend</strong> — no accounts, no cookies, no analytics, and nothing you do is ever sent anywhere. A few things, though, are written to your browser's own <strong>semi-permanent storage</strong> (<code>localStorage</code> / IndexedDB) so they survive a reload or a return visit. This page is the complete list of what those are and when they're written.</p>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Where it's stored</th>
+<th>When it's written</th>
+<th>Which bundles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Save-state slots</strong> — five per game; an instant snapshot of the running machine</td>
+<td><strong>IndexedDB</strong> — database <code>gx-savestate</code>, store <code>slots</code>, keyed <code>platform:game:slot</code></td>
+<td><strong>Manually</strong> — only when you click a <strong>Save</strong> slot</td>
+<td>Any bundle showing the Save / Load buttons: the EmulatorJS cores via <code>genx-savestate.js</code>, and the standalone engines that expose a reachable state API via <code>genx-savestate-std.js</code></td>
+</tr>
+<tr>
+<td><strong>Model 100 battery-backed RAM</strong> — the 32 KB base RAM behind the Startup Menu (your TEXT / ADRS / SCHEDL data and files)</td>
+<td><strong>localStorage</strong> — key <code>genx-m100-ram</code> (base64)</td>
+<td><strong>Automatically</strong> — every 10 seconds <em>and</em> on tab close; bare-boot Model 100 only (loaded games stay ephemeral)</td>
+<td>Tandy TRS-80 Model 100 (<code>m100</code>)</td>
+</tr>
+<tr>
+<td><strong>In-game cartridge saves</strong> — a game's own SRAM / battery save (e.g. <em>Phantasy Star</em>)</td>
+<td><strong>IndexedDB</strong> — EmulatorJS's IDBFS save database (synced with <code>syncfs</code>)</td>
+<td><strong>Automatically</strong> — when the game itself writes its save RAM</td>
+<td>EmulatorJS bundles <em>(handled by the bundled engine)</em></td>
+</tr>
+<tr>
+<td><strong>Emulator settings</strong> — control mappings, volume, video / shader options</td>
+<td><strong>localStorage</strong> — <code>ejs-settings…</code></td>
+<td><strong>Automatically</strong> — when you change a setting in the EmulatorJS menu</td>
+<td>EmulatorJS bundles <em>(handled by the bundled engine)</em></td>
+</tr>
+</tbody>
+</table>
+<p>The first two rows are GenX-DOS's own code (<code>genx-savestate.js</code> / <code>genx-savestate-std.js</code>, and the Model 100 page wrapper); the last two are the bundled <strong>EmulatorJS</strong> engine doing what it normally does.</p>
+<h2 id="what-isnt-stored">What isn't stored</h2>
+<p>No cookies, no login, no personal data, no telemetry — the site has no server to send any of it to. Everything in the table lives only in your browser, scoped to the GenX-DOS origin, and never leaves your machine.</p>
+<h2 id="clearing-it">Clearing it</h2>
+<p>All of it is wiped by your browser's <strong>"clear site data"</strong> (or by clearing history / cookies + site data) for the GenX-DOS origin. Clearing it removes your save-state slots, Model 100 memory, in-game cartridge saves and emulator settings — there is no copy anywhere else, so export anything you want to keep first.</p>
+<hr />
+<p>See also the <a href="Project-Overview.html#save--load-state">Save / load state</a> section of the Project Overview, and the repository's <code>SECURITY.md</code>.</p>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

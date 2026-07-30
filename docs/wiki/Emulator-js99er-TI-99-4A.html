@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>js99er — TI-99/4A — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="js99er--ti-994a">js99er — TI-99/4A</h1>
+<p>The TI-99/4A bundle was uneventful by GenX-DOS standards — one script-load-order gotcha, no broken cores. Worth recording precisely <em>because</em> it was clean.</p>
+<h2 id="where-we-started--picking-the-right-upstream">Where we started — picking the right upstream</h2>
+<p>js99er has two upstreams:</p>
+<ul>
+<li><strong>Vanilla JS</strong> at <a href="https://github.com/Rasmus-M/js99er">github.com/Rasmus-M/js99er</a>, mirrored at <code>http://old.js99er.net</code>. Simple <code>&lt;script&gt;</code> tags, no build step, works as a plain copy of <code>src/</code>.</li>
+<li><strong>Angular</strong> at <a href="https://github.com/Rasmus-M/js99er-angular">github.com/Rasmus-M/js99er-angular</a>, at the active <code>https://js99er.net</code>. Heavier, harder to embed.</li>
+</ul>
+<p>We took the vanilla JS one. No benefit to an Angular build for a single-cart launcher page, and the deploy is just a copy.</p>
+<h2 id="the-script-load-order--the-one-easy-mistake">The script load order — the one easy mistake</h2>
+<p><code>minimal.html</code> (upstream template) loads 25 scripts in a specific order. The easy mistake is to forget the last three: <code>sound.js</code>, <code>settings.js</code>, <code>database.js</code>. Symptom: page sticks on "Loading…" with <code>Settings is not defined</code> in console. We hit this exactly once; fix was to add the three trailing scripts.</p>
+<p>The full load order, for the record:</p>
+<pre><code>util.js, log.js
+lib/jquery-1.11.0.min.js, lib/zip/zip.js, lib/zip/zip-ext.js
+software/system.js, software.js
+emu/{tape, disk, decoder, tms9900, tms9918a, f18a, f18agpu,
+     f18aflash, sn76489, tms9919, tms5220, memory, cru,
+     keyboard, joystick, ti994a}.js
+sound.js, settings.js, database.js
+</code></pre>
+<h2 id="the-boot-pattern">The boot pattern</h2>
+<pre><code class="language-js">var settings = new Settings(false);
+settings.setF18AEnabled(false);
+var ti994a = new TI994A(canvas, {FLOPPY1: new DiskImage(&quot;FLOPPY1&quot;)}, settings);
+var sound = new Sound(settings.isSoundEnabled(), ti994a.tms9919, ti994a.tms5220);
+ti994a.start();
+</code></pre>
+<p>With no cart: boots to the TI-99/4A title screen — press <kbd>1</kbd> for TI BASIC.
+With cart: title screen offers the cart name as option 2 — press <kbd>2</kbd>.</p>
+<h2 id="the-cart-format">The cart format</h2>
+<p>js99er can load three formats:</p>
+<ul>
+<li><code>.rpk</code> — zipped <code>layout.xml</code> + raw ROM/GROM/inverted-ROM segments. Canonical format; loaded via <code>software.loadRPKModuleFromURL(url, onSuccess, onError)</code>. Needs <code>zip.js</code> (loaded).</li>
+<li><code>.bin</code> — raw ROM/GROM. Loaded via <code>software.loadBinModuleFromURL</code>. Suffix matters: <code>…g.bin</code> = GROM, <code>…3.bin</code> = inverted ROM (paged379i), otherwise regular ROM.</li>
+<li><code>.json</code> — js99er's own descriptor: <code>{"name": "...", "rom": ["AABB..."]}</code> hex-string array. Loaded via <code>software.loadProgram</code> (the generic fallback).</li>
+</ul>
+<p>We used <code>.rpk</code> because that's what the public archive serves.</p>
+<h2 id="url-pattern">URL pattern</h2>
+<p><code>?game=&lt;key&gt;</code> is read directly by <code>play.html</code> and never rewritten, so the key is still in the URL when the deferred <code>genx-controls-link.js</code> runs and resolves <code>gamedocs/js99er/&lt;key&gt;.html</code> cleanly. Cart files live at <code>systems/js99er/carts/&lt;key&gt;.rpk</code> — rename on download to match the key.</p>
+<h2 id="what-we-kept-vs-stripped">What we kept vs stripped</h2>
+<ul>
+<li><strong>Kept:</strong> <code>emu/</code>, <code>lib/</code>, <code>sound/</code>, <code>software/system.js</code>, <code>util.js</code>, <code>log.js</code>, <code>sound.js</code>, <code>settings.js</code>, <code>database.js</code>, <code>software.js</code></li>
+<li><strong>Stripped:</strong> <code>index.html</code>, <code>fullscreen.html</code>, <code>js99er.js</code>, <code>disassembler.js</code>, <code>objLoader.js</code>, <code>css/</code>, <code>fonts/</code>, <code>images/</code>, <code>manifest.json</code>, <code>icon.png</code>, and every cart/disk/.json under <code>software/</code> except <code>system.js</code></li>
+</ul>
+<p>Bundle size: ~1.5 MB without carts, +~141 KB for our 10 carts.</p>
+<h2 id="a-note-on-f18a">A note on F18A</h2>
+<p>The F18A is an enhanced VDP — a community-developed FPGA replacement for the original 9918a. js99er can emulate it via <code>settings.setF18AEnabled(true)</code>. None of our 10 carts use it, and enabling it changes the display chip emulation in ways that could affect period-correct rendering. So we explicitly disable it.</p>
+<h2 id="a-post-bundle-add-orphan-pass">A post-bundle-add orphan pass</h2>
+<p>When we added this bundle we ran the standard orphan-prune pass and pruned 11 files (~200 KB) that <code>play.html</code> doesn't load: <code>emu/ams.js</code>, <code>emu/googledrive.js</code>, <code>lib/audioBufferToWav.js</code>, <code>lib/bootstrap*.min.js</code> (4 variants), <code>lib/fileSaver.js</code>, <code>lib/imageMapResizer.js</code>, <code>lib/zip/mime-types.js</code>, <code>lib/zip/zip-fs.js</code>. <strong>Kept <code>lib/zip/inflate.js</code></strong> — it's the worker for the <code>.rpk</code> pipeline. AMS + GoogleDrive were safe to delete because <code>settings</code> disables both at boot (constructors never instantiated).</p>
+<h2 id="save--load-state">Save / load state</h2>
+<p>js99er's <code>TI994A</code> instance exposes <code>getState()</code> (a JSON-serializable snapshot) / <code>restoreState()</code>, so <code>play.html</code> exposes the instance and registers a <code>GenXStateAdapter</code> around them; <code>_shared/genx-savestate-std.js</code> draws the bottom-left <strong>save</strong> / <strong>load</strong> menus. <strong>The gotcha that drove the shared core's design:</strong> <code>memory.getState()</code> returns <code>this.ram</code> <em>by reference</em>, so a naive saved slot keeps mutating with the running machine (load looked like a no-op). The std core therefore deep-clones state on both save and load — <code>structuredClone</code> in memory (typed-array-tagged JSON as a fallback); the five per-game slots persist to IndexedDB.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/js99er/
+├── play.html
+├── controls.html
+├── games.json
+├── util.js, log.js, sound.js, settings.js, database.js, software.js
+├── lib/    (jquery, zip)
+├── emu/    (tms9900, tms9918a, ti994a, etc.)
+├── software/system.js
+└── carts/  (10 .rpk files)
+</code></pre>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

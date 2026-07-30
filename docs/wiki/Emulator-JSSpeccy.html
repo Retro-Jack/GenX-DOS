@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSSpeccy — ZX Spectrum — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="jsspeccy--zx-spectrum">JSSpeccy — ZX Spectrum</h1>
+<p>JSSpeccy 3.2 (Matt Westcott / gasman) is the ZX Spectrum bundle. The integration was small — JSSpeccy ships a clean JS API with a documented options object, so the wrapper is mostly just calling it correctly.</p>
+<h2 id="where-we-started">Where we started</h2>
+<p><a href="https://github.com/gasman/jsspeccy3">JSSpeccy 3.2</a> is GPL-3.0. The version 3 series is a from-scratch WebAssembly rewrite of an earlier pure-JS emulator. The runtime takes a config object (<code>{zoom, sandbox, uiEnabled, machine}</code>) and a <code>JSSpeccy()</code> constructor that wires up to a target div.</p>
+<h2 id="the-launch-flow">The launch flow</h2>
+<p><code>play.html</code> reads <code>?game=&lt;key&gt;</code> from the URL, looks it up in <code>games.json</code>, and constructs JSSpeccy with:</p>
+<pre><code class="language-js">const opts = { zoom: 2, sandbox: false, uiEnabled: false, machine: 48 };
+const speccy = JSSpeccy(document.getElementById('jsspeccy'), opts);
+speccy.openTAPFile(game.rom);
+</code></pre>
+<p>Three of the four options matter:</p>
+<ul>
+<li><code>uiEnabled: false</code> — hides JSSpeccy's own toolbar (file picker, machine picker, joystick selector). We're a launcher, not a sandbox.</li>
+<li><code>sandbox: false</code> — allows the emulator to make real network requests (loading the tape file from the server). With <code>sandbox: true</code> it would only accept tapes uploaded via the file picker.</li>
+<li><code>machine: 48</code> — boots the Spectrum 48K by default. JSSpeccy supports 48 / 128 / +2 / +2A / +3; if a future entry needs a specific model, the games.json record can carry the field and <code>play.html</code> reads it.</li>
+</ul>
+<h2 id="layout">Layout</h2>
+<p>JSSpeccy renders to its own canvas inside the <code>#jsspeccy</code> div. CSS pins the canvas with a shadow and pixelated rendering:</p>
+<pre><code class="language-css">#jsspeccy { box-shadow: 2px 2px 10px rgba(0, 0, 0, .7); }
+#jsspeccy canvas { image-rendering: pixelated; display: block; }
+</code></pre>
+<h2 id="file-formats">File formats</h2>
+<p>JSSpeccy handles <code>.tap</code>, <code>.tzx</code>, <code>.sna</code>, <code>.z80</code>. Most of our entries are <code>.tap</code> (raw tape image) since that's what the contemporary preservation archives serve. <code>.tzx</code> is preferred where copy protection is involved — the format preserves loader timing — but JSSpeccy abstracts the difference, so the wrapper code doesn't care.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/jsspeccy/
+├── play.html
+├── jsspeccy/            ← upstream JS + WASM
+├── controls.html
+├── games.json
+└── games/
+    └── *.tap / *.tzx
+</code></pre>
+<h2 id="usb-gamepad-support-04072026">USB gamepad support (04/07/2026)</h2>
+<p>Per-game <code>window.GenXGamepadMap</code>s in <code>play.html</code> drive the shared <code>systems/_shared/genx-gamepad-keys.js</code> shim (pad 0 polled per frame, mapped keys synthesized on edges). Two engine quirks cost real debugging time:</p>
+<ul>
+<li><strong>JSSpeccy re-binds its key listeners.</strong> At machine start it calls <code>setKeyboardEventRoot()</code> onto the focusable app-container div it injects into <code>#jsspeccy</code> — synthetic events dispatched at <code>document</code> never reach a descendant's listeners, so the shim's <code>target</code> is a lazy function returning <code>document.querySelector('#jsspeccy &gt; div')</code> (the div doesn't exist until the engine boots). This is also why the real keyboard only responds after a first click: focus.</li>
+<li><strong>No public audio handle.</strong> JSSpeccy creates its AudioContext internally with no resume-on-gesture, so direct-URL opens (no <code>window.open</code> activation) stayed silent. <code>play.html</code> patches the <code>AudioContext</code> constructor before the engine loads, captures every context, and resumes suspended ones on load and on real user gestures.</li>
+</ul>
+<p>Key decoding is <code>Tr[e.keyCode]</code> with an <code>e.key</code> string fallback (the fallback resolves <code>,</code>/<code>.</code> as Symbol Shift combos). The engine emulates <strong>no joystick hardware</strong> — no Kempston; PC arrows land on CAPS SHIFT+5/6/7/8, i.e. the cursor-joystick convention.</p>
+<p>All ten games were pad-verified in play (04/07/2026), which doubled as the bundle's first hands-on key audit: Chuckie Egg's documented <code>,</code>/<code>.</code>/A/Z were another platform's keys (real defaults 9/0/2/W, jump Z or M — Space does nothing), and Pssst / Sabre Wulf had up/down swapped relative to each other's docs. Jet Set Willy and Underwurlde also had their snapshots replaced (the old JSW stopped at a code-entry screen and reset; the old Underwurlde booted into a lives-cheat offer).</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-JtyOne.html">Emulator-JtyOne</a> — sibling Sinclair machine</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skibo&#x27;s pet2001 — Commodore PET — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="skibos-pet2001--commodore-pet">Skibo's pet2001 — Commodore PET</h1>
+<p>The PET originally shipped as the seventh member of the <a href="Emulator-VICE-family.html">VICE-family bundle</a> under EmulatorJS. Every other VICE machine worked fine, but the PET sub-system's keyboard was unusable — pressing <code>Enter</code> produced <code>P</code>, letters scrambled, keys stuck, and there was a noticeable input delay. We migrated to Thomas Skibo's standalone <a href="http://www.skibo.net/6502/">pet2001</a> emulator in June 2026 and the keyboard became boring (in a good way).</p>
+<h2 id="why-we-abandoned-vice_xpet">Why we abandoned vice_xpet</h2>
+<p>libretro-vice's <code>vice_xpet</code> build has a fundamentally broken keyboard layer. VICE proper supports five PET keymap variants (<code>buuk</code>, <code>buus</code>, <code>bude</code>, <code>bujp</code>, <code>grus</code>) selectable via the <code>KeyboardMapping</code> resource, and a separate <code>KeymapIndex</code> toggling between positional and symbolic mapping. Both resources are read on every boot — except the libretro wrapper hard-codes Business UK (<code>buuk</code>) regardless of what's set in <code>vicerc</code> or what <code>vice_pet_model</code> selects.</p>
+<p>We proved this conclusively before abandoning ship. After two days of debugging:</p>
+<ol>
+<li>Wrote a <code>vicerc</code> to the Emscripten FS with every relevant resource set (<code>KeymapIndex=0</code>, <code>KeyboardType=4</code>, <code>KeyboardMapping=4</code>, plus all four <code>Keymap*File</code> paths pointing at <code>sdl_grus_*.vkm</code>).</li>
+<li>Confirmed via the libretro debug log that VICE read every line: <code>Read resource: KeymapIndex =&gt; 0</code>, etc.</li>
+<li>Confirmed via <code>vicerc-dump-PET</code> that the resources stuck — <code>KeyboardMapping=4</code> was in the dump.</li>
+<li>Pressed <code>Enter</code>. Got <code>P</code>.</li>
+</ol>
+<p>The keymap files aren't even bundled in the WASM data segment; they're hardcoded inside the libretro mapper as a single table that assumes Business UK. No amount of resource tweaking reaches that table. Other VICE machines (<code>vice_x64</code>, <code>vice_xvic</code>, etc.) use the same libretro mapper but their hardcoded keysym→matrix table happens to be correct — only <code>vice_xpet</code> ships with the wrong assumption.</p>
+<p>The fix would be either to recompile the libretro core (multi-hour rabbit hole with toolchain setup, build flags, and no guarantee the upstream issue is reproducible) or replace the emulator. We replaced.</p>
+<h2 id="what-skibo-gives-us">What Skibo gives us</h2>
+<p>Thomas Skibo published a vanilla JS PET 2001 emulator in 2012, BSD-2-Clause licensed. Pure JavaScript — no WASM, no libretro, no EmulatorJS. Nine files, 285 KB total (215 KB of which is ROM data baked into a JS array). The emulator targets the original PET 2001, not the 3032/4032 — but the 2001 hardware is a strict subset of the 3032 (same 6502, same 40-column screen, same Graphics keyboard), and the only thing we lose is BASIC 4 (which only matters for <code>DLOAD</code> / <code>DIRECTORY</code> shortcuts that no game in the bundle uses).</p>
+<p>The integration shape is unrecognisable next to EmulatorJS:</p>
+<pre><code class="language-js">const ctx = document.getElementById('petscreen').getContext('2d');
+const pet2001 = new Pet2001(ctx);
+pet2001.setRamSize(32 * 1024);
+setInterval(() =&gt; pet2001.cycle(50000), 50);
+window.onkeydown = petkeyOnKeyDown;
+window.onkeypress = petkeyOnKeyPress;
+</code></pre>
+<p>Five lines for the whole runtime. Compare to the seventy lines of <code>EJS_*</code> globals + framework boot we needed under EmulatorJS.</p>
+<h2 id="the-32-k-bump">The 32 K bump</h2>
+<p><code>Pet2001</code> defaults to an 8 KB PET 2001 — what the very first 1977 units shipped with. Adventureland, Frogger, and most other titles in our bundle were authored against 32 KB 3032s and overrun BASIC's zero-page pointers when LOADed into 8 KB. The symptom is silent — <code>LOAD</code> completes, <code>READY.</code> appears, then the cursor stops blinking and the keyboard is dead. There's no error, just a wedged CPU.</p>
+<p>The fix is one line:</p>
+<pre><code class="language-js">pet2001.setRamSize(32 * 1024);
+</code></pre>
+<p>This must run <em>before</em> the PRG is queued onto the IEEE bus, because <code>setRamSize</code> triggers a reset that wipes RAM. The bundle calls it immediately after construction.</p>
+<h2 id="the-undeclared-via_t2ll-bug">The undeclared <code>via_t2ll</code> bug</h2>
+<p>Frogger hangs on boot with:</p>
+<pre><code>Uncaught ReferenceError: via_t2ll is not defined
+    at PetIO.cycle (pet2001io.js:679:13)
+</code></pre>
+<p>The VIA chip's Timer 2 latch low register (<code>via_t2ll</code>) is read at line 679 of <code>pet2001io.js</code> and written at line 552, but never declared with <code>var</code>. In sloppy mode the write at 552 would create an implicit global on first execution — but Frogger reads the register <em>before</em> writing to it, so the read crashes. None of the other titles in the bundle exercise this code path early enough to trigger the bug.</p>
+<p>We patched the upstream file in place:</p>
+<pre><code class="language-js">var via_t1ll = 0xff;
+var via_t1lh = 0xff;
+var via_t2ll = 0xff;   // ← added
+var via_t2cl = 0xff;
+var via_t2ch = 0xff;
+</code></pre>
+<p>Plus the matching line in the reset routine. Two lines total, fixes Frogger and any future title that reads T2 before writing.</p>
+<h2 id="the-lowercase-letters-gotcha">The lowercase-letters gotcha</h2>
+<p>The PET keyboard has no shift-lock equivalent for ASCII case — pressing the key labelled <code>L</code> always produces character code 76 ("L"). Skibo's keyboard table in <code>petkeys-600.js</code> only maps PC ASCII codes 97–122 (<code>a</code>–<code>z</code>) to PET key matrix positions; codes 65–90 (<code>A</code>–<code>Z</code>) all map to <code>-1</code> and are silently dropped.</p>
+<p>This caught us when we wrote the autostart sequence as <code>LOAD"*",8\r RUN\r</code> and the PET showed only <code>"*",8</code> — the four uppercase letters of <code>LOAD</code> got dropped, the punctuation went through, and BASIC threw <code>?SYNTAX ERROR</code>. Fix is to lowercase the autostart strings: <code>load"*",8\r run\r</code>. The PET still displays them as uppercase because the chargen has no lowercase glyphs in graphics mode.</p>
+<h2 id="autostart-pattern">Autostart pattern</h2>
+<p>After the PRG fetches and queues, the bundle schedules two synthesised keystroke sequences via <code>petkeyKeyQueue</code>:</p>
+<pre><code class="language-js">var BOOT_MS = 1500;
+var LOAD_WAIT_MS = 6000;
+setTimeout(() =&gt; queueChars('load&quot;*&quot;,8\r'), BOOT_MS);
+setTimeout(() =&gt; queueChars(game.autostart || 'run\r'), BOOT_MS + LOAD_WAIT_MS);
+</code></pre>
+<p>The 1.5 s boot wait covers PET RAM-clear and the BASIC banner; the 6 s LOAD wait covers an 18 KB PRG injection (the largest title in the bundle is Adventureland at 18 136 bytes). Per-game <code>autostart</code> overrides in <code>games.json</code> allow machine-code titles to use <code>sys768\r</code> or similar in place of <code>run\r</code>.</p>
+<h2 id="why-petscii-robots-isnt-included">Why PETSCII Robots isn't included</h2>
+<p><a href="https://www.the8bitguy.com/product/petscii-robots/">PETSCII Robots</a> is the 2022 survival/strategy title by Dave Murray ("The 8-Bit Guy") — a remarkable demonstration that the 32 K PET still attracts commercial-grade game development 45 years after launch. We carried it as the headline modern title in the original VICE-family PET bundle. After the migration to Skibo, we had to drop it. Three hard blockers stack:</p>
+<ol>
+<li><strong><code>.d64</code> disk image, not PRG.</strong> Skibo's emulator only handles single-PRG injection through a simulated IEEE-488 bus. There's no 1541 drive emulation at all — no track/sector reads, no disk catalog, no file system. The official PETSCII Robots release ships as a 175 KB <code>.d64</code>, and no PRG extract exists because…</li>
+<li><strong>PETSCII Robots targets BASIC 4 / PET 4032.</strong> Skibo only ships BASIC 1 and BASIC 2 ROMs (the original 1977 / 1978 PET 2001 firmware). The 4032's BASIC 4 Editor ROM with 40-column / Business-keyboard layout isn't present and isn't trivially droppable in.</li>
+<li><strong>Multi-file runtime loader.</strong> Even if we extracted just the boot PRG from the disk image, the game LOADs tile assets, level data, and music drivers off the disk during play. With no disk emulation, those LOAD calls hit empty IEEE and the game wedges on the first level transition.</li>
+</ol>
+<p>None of these are solvable in the Skibo emulator without writing significant new emulator code (a full 1541 drive, a BASIC 4 ROM, a multi-file IEEE handler). The combined work is comparable to porting a separate emulator from scratch.</p>
+<p>The trade-off felt worth it: we lose the one modern PET title in exchange for a working keyboard on every other game. PETSCII Robots also has a C64 build, so adding it to the C64 bundle is a possible future move — but we don't ship it on any sub-system today.</p>
+<p>If anyone ports PETSCII Robots back to PET 2001 (BASIC 2, 32 K, single PRG, no disk), we'll add it.</p>
+<h2 id="what-the-bundle-ships">What the bundle ships</h2>
+<p>10 PRG titles spanning 1977–1982, plus an empty stub for the BASIC prompt:</p>
+<ul>
+<li>Star Trek (1977) — Mike Mayfield's BASIC original, the defining game of the era</li>
+<li>Android NIM (1979) — Leo Christopherson's animated NIM with shifting LED faces</li>
+<li>Lunar Lander (1979)</li>
+<li>Adventureland (1979) — Scott Adams' first text adventure</li>
+<li>Hangman (1980), Space Invaders (1980)</li>
+<li>Crazy Balloon (1981), ComputerSpace 2001 (1981), Frogger (1981)</li>
+<li>Pac-Man (1982)</li>
+</ul>
+<p>All eleven entries auto-LOAD and auto-RUN from BASIC. Total bundle size including the emulator is under 400 KB.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/pet/
+├── play.html          ← ~90 lines; constructs Pet2001, drives keys + cycle loop
+├── controls.html
+├── games.json         ← 11 entries, optional autostart override
+├── games/             ← *.prg files
+└── pet2001/           ← Skibo's 9-file emulator (BSD-2-Clause)
+    ├── cpu6502.js
+    ├── petkeys-600.js
+    ├── pet2001roms.js
+    ├── pet2001hw.js
+    ├── pet2001ieee.js
+    ├── pet2001io.js
+    ├── pet2001video-mod.js
+    ├── pet2001.js
+    └── pet2001main.js (unused — replaced by play.html boot logic)
+</code></pre>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-VICE-family.html">Emulator-VICE-family</a> — six sub-systems still on EmulatorJS (PET migrated out)</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

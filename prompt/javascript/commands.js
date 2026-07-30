@@ -146,7 +146,7 @@ registerCmd('setcol', function (cmd) {
 
 // ============================================================
 // FULL HELP (F1) — text imported from the wiki Commands page
-// (github.com/Retro-Jack/GenX-DOS/wiki/Commands).
+// (the wiki — docs/wiki/Commands.html).
 // ============================================================
 var HELP_TEXT = [
   'GENX-DOS COMMAND REFERENCE',

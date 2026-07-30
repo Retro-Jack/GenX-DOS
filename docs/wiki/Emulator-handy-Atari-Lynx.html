@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>handy — Atari Lynx — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="handy--atari-lynx">handy — Atari Lynx</h1>
+<p>The Atari Lynx — the world's first colour handheld (1989), with hardware sprite-scaling and rotation — runs on <strong>EmulatorJS + handy</strong> (the Lynx libretro core), the second platform in the <strong>Handheld Consoles</strong> category after the <a href="Emulator-gambatte-Game-Boy.html">Game Boy</a>.</p>
+<h2 id="same-bezel-style--held-up-in-class">Same bezel style — held up in class</h2>
+<p>The Lynx reuses the handheld bezel style: the device is held up in the <strong>foreground over the classroom photo</strong> (<code>classroom.jpg</code>), not a CRT on the wallpaper. The Lynx is a wide landscape unit (<code>lynx.png</code>, 2097×853, screen keyed to a transparent hole), bottom-anchored and sized to 75%. EJS draws into the screen hole; <code>#game canvas { height: 100% !important; transform: scale(0.95); }</code>. See <a href="Emulator-gambatte-Game-Boy.html">Emulator-gambatte-Game-Boy</a> for the full layer recipe — only the device image and the screen-hole coordinates differ.</p>
+<h2 id="the-boot-rom">The boot ROM</h2>
+<p>Unlike most of the EJS bundles, <strong>handy needs the Lynx boot ROM</strong> (<code>lynxboot.img</code>, 512 bytes) to start games — without it, nothing loads. It ships in the bundle and is handed to the core via <code>genxBootEJS</code>'s <code>biosUrl</code>:</p>
+<pre><code class="language-js">genxBootEJS({
+  title: 'Atari Lynx',
+  coreName: 'lynx',          // EJS resolves 'lynx' → handy
+  biosUrl: 'lynxboot.img',
+  defaultControls: { 0: { 0:{value:'z'}, 8:{value:'x'}, 3:{value:'enter'},
+                          10:{value:'shift'}, 11:{value:'ctrl'},
+                          4:{value:'up arrow'},5:{value:'down arrow'},6:{value:'left arrow'},7:{value:'right arrow'} } }
+});
+</code></pre>
+<p>The <code>handy</code> <strong>stable</strong> core works fine — no nightly swap needed (unlike <code>gambatte</code> and <code>vice_x128</code>).</p>
+<h2 id="controls">Controls</h2>
+<p>Arrows = d-pad, <strong>X</strong> = A, <strong>Z</strong> = B, <strong>Shift</strong> = Option 1, <strong>Ctrl</strong> = Option 2, <strong>Enter</strong> = Pause. The Lynx had no fixed orientation and games used A/B/Option however they liked, so each gamedoc spells out the per-game meaning. (handy also has a <code>handy_rot</code> option for the games meant to be played rotated — none of the bundled 10 are.)</p>
+<h2 id="library">Library</h2>
+<p>A showcase set leaning on the Lynx's colour and scaling, year-sorted: California Games (the pack-in), Chip's Challenge (a Lynx <em>original</em> — it predates the Windows version), Electrocop, Blue Lightning, Warbirds (all 1989 launch titles), Zarlor Mercenary, Klax, Todd's Adventures in Slime World, S.T.U.N. Runner, Rampart. Gamedocs at <code>gamedocs/lynx/&lt;key&gt;.html</code>. ROMs are <code>.lnx</code> (64-byte-header format the core reads directly).</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/lynx/
+├── play.html            ← genxBootEJS wrapper (coreName: 'lynx', biosUrl)
+├── controls.html
+├── games.json
+├── lynxboot.img         ← 512-byte Lynx boot ROM (required)
+└── roms/
+    └── *.lnx
+</code></pre>
+<p>The handy core lives once in <code>systems/_shared-ejs/ejs/data/cores/handy-legacy-wasm.data</code>.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-gambatte-Game-Boy.html">Emulator-gambatte-Game-Boy</a> — sibling handheld, same bezel style</li>
+<li><a href="Emulator-VICE-family.html">Emulator-VICE-family</a> — the shared EmulatorJS gotchas</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

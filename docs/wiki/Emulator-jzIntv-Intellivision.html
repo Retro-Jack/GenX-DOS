@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jzIntv — Intellivision — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="jzintv--intellivision">jzIntv — Intellivision</h1>
+<p>The Intellivision bundle was where the shared-EJS pattern ran out: EmulatorJS doesn't ship an Intellivision core, full stop. So the Intellivision bundle is on its own — a custom emscripten loader with no EJS at all.</p>
+<h2 id="where-we-started--and-why-we-left-ejs">Where we started — and why we left EJS</h2>
+<p>The first check was whether EmulatorJS supports Intellivision. Verified 2026-05-20 against <code>cdn.emulatorjs.org/stable/data/cores/</code>: no <code>freeintv</code>, no <code>intellivision</code>, no <code>intv</code> files; the official supported-systems list confirms it. No EJS-flavoured Intellivision core exists at all. The shared-EJS pattern the VICE family + Coleco use doesn't apply here.</p>
+<p>So we needed a standalone WASM emulator with its own loader. Joe Zbiciak's <a href="http://spatula-city.org/~im14u2c/intv/">jzIntv</a> is <em>the</em> Intellivision emulator, but it's distributed as a C source tree, not a browser build.</p>
+<h2 id="the-wasm-source">The WASM source</h2>
+<p>The jzIntv WASM build came from <a href="https://github.com/mholzinger/intellivision-overlay-editor">mholzinger/intellivision-overlay-editor</a> — an overlay-design tool that happened to bundle a fully-working jzIntv WASM at <code>static/wasm/</code>. The repo has no published <code>LICENSE</code> file but README badges MIT for the wrapper code; the underlying jzIntv source is free-for-personal-use. We mirrored just three files: <code>jzintv.js</code> (127 KB), <code>jzintv.wasm</code> (364 KB), and <code>jzintv.data</code> (1.2 KB).</p>
+<p>No separate <code>jzintv-wasm</code> repo exists. If the overlay-editor stops being maintained, the fallback would be building jzIntv to WASM from <code>libretro/jzintv</code> source via emsdk — a couple of hours of work, but not pleasant.</p>
+<h2 id="the-launch-api">The launch API</h2>
+<p><code>jzintv.js</code> exposes one function, <code>Module.launchJzintv()</code>, that does everything we need:</p>
+<pre><code>Module.launchJzintv(execBuffer, gromBuffer, romBuffer, cfgBuffer,
+                    extraArgs, ecsBuffer, jlpData, romExt, ivoiceBuffer)
+</code></pre>
+<p>Internally it writes <code>exec.bin</code>, <code>grom.bin</code>, <code>game.&lt;ext&gt;</code> (and optional <code>game.cfg</code>, <code>ecs.bin</code>, <code>ivoice.bin</code>, <code>game.jlp</code>) into the WASM FS via <code>Module.FS.writeFile</code>, builds argv as <code>["-e", "exec.bin", "-g", "grom.bin", "-v1", "-z1", "--kbdhackfile=desk.kbd"]</code> + <code>extraArgs</code> + <code>[romFile]</code>, then calls <code>Module.callMain(args)</code>.</p>
+<p><code>play.html</code> fetches BIOS + cart in parallel and hands the buffers off:</p>
+<pre><code class="language-js">const [execBuf, gromBuf, romBuf] = await Promise.all([
+  fetch('exec.bin').then(r =&gt; r.arrayBuffer()),
+  fetch('grom.bin').then(r =&gt; r.arrayBuffer()),
+  fetch(game.rom).then(r =&gt; r.arrayBuffer())
+]);
+window.Module = {
+  canvas: document.getElementById('canvas'),
+  noInitialRun: true,
+  onRuntimeInitialized: function() {
+    Module.launchJzintv(execBuf, gromBuf, romBuf, null, [], null, null, 'int', null);
+  }
+};
+</code></pre>
+<p><code>noInitialRun: true</code> is mandatory. Without it, Module calls <code>main()</code> with no args before our <code>launchJzintv</code> gets a chance to set up the FS, and the emulator runs with no ROM loaded.</p>
+<h2 id="the-deskkbd-parser-landmines">The <code>desk.kbd</code> parser landmines</h2>
+<p>jzIntv reads its keyboard map from a <code>--kbdhackfile</code>. The default <code>desk.kbd</code> shipped with mholzinger's build only has keypad and action-button mappings — no disc/D-pad bindings at all. Without disc input, no Intellivision game is playable. We had to write our own.</p>
+<p>The parser turned out to be sensitive in three non-obvious ways:</p>
+<ol>
+<li><strong>No UTF-8 in comments.</strong> A <code>→</code> (U+2192) or <code>—</code> (U+2014) breaks parsing — the multi-byte sequence throws off tokenisation and the error surfaces as <code>Unknown command '7'</code> (or whatever digit appears next). ASCII-only mandatory.</li>
+<li><strong>No apostrophes in comments.</strong> A line like <code>; Names must match jzintv's SDL key tokens</code> errors with <code>Too many arguments in kbdhackfile</code>. The <code>'</code> is presumably being parsed as a string delimiter even inside a comment.</li>
+<li><strong>Disc bindings must come last.</strong> Putting <code>UP/DOWN/LEFT/RIGHT → PD0L_D_*</code> lines <em>before</em> <code>LSHIFT/LCTRL/LALT → PD0L_A_*</code> in the same MAP block causes the action-button names to be rejected with <code>Unknown command 'LALT'</code>. Putting the disc lines at the end (after all keypad and action-button bindings) works cleanly. Mechanism unclear — possibly a buffer-size or state-machine quirk in jzintv's binding-table allocator. Just keep disc bindings at the bottom.</li>
+</ol>
+<h2 id="the-deskkbd-we-ship">The <code>desk.kbd</code> we ship</h2>
+<p><code>jzintv.data</code> is an emscripten <code>--preload-file</code> package containing <code>desk.kbd</code> at the WASM FS root. Our expanded version (~1.2 KB, plain ASCII) adds:</p>
+<ul>
+<li>Arrow keys → disc N/S/W/E (jzintv synthesises diagonals when you hold two arrows)</li>
+<li>Numpad → keypad (period-correct shape: a numpad <em>is</em> a 12-key keypad)</li>
+<li>Space → top action button (alias of LShift) for one-handed play</li>
+</ul>
+<p>jzintv's code-name table for the relevant subset:</p>
+<ul>
+<li>Disc: <code>PD0L_D_N</code>, <code>_S</code>, <code>_E</code>, <code>_W</code> (and <code>_NE</code>, <code>_SE</code>, <code>_NW</code>, <code>_SW</code>, plus 8 in-between)</li>
+<li>Action buttons: <code>PD0L_A_T</code> (top), <code>PD0L_A_L</code> (bottom-left), <code>PD0L_A_R</code> (bottom-right)</li>
+<li>Keypad: <code>PD0L_KP1</code> … <code>PD0L_KP9</code>, <code>PD0L_KP0</code>, <code>PD0L_KPC</code> (CLR), <code>PD0L_KPE</code> (ENT)</li>
+<li>Player 2: same names with <code>PD0R_</code> prefix</li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p><code>exec.bin</code> (8 KB, MD5 <code>62e761035cb657903761800f4437b8af</code>) + <code>grom.bin</code> (2 KB, MD5 <code>0cd5946c6473e42e8e4c2137785e427f</code>). Both Mattel copyright, bundled for emulator-only use — same legal posture as the Coleco BIOS we already ship.</p>
+<h2 id="reuse-caveats">Reuse caveats</h2>
+<p>This recipe — emscripten <code>Module</code> loader + <code>launchJzintv</code> API — does <em>not</em> generalise to other libretro WASM cores. It's specific to jzIntv's API shape. Future WASM-but-not-EJS emulators (a hypothetical px68k X68000 WASM, or a NINTV-DS port) will each have their own Module + arg conventions and need their own bespoke <code>play.html</code>.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/intv/
+├── play.html       ← ~80 lines, custom Module loader
+├── controls.html
+├── games.json
+├── exec.bin        ← BIOS
+├── grom.bin        ← BIOS
+├── jzintv.js       ← emscripten glue, 127 KB
+├── jzintv.wasm     ← emulator, 364 KB
+├── jzintv.data     ← preload: custom desk.kbd
+└── games/
+    └── *.int       ← 10 cart images
+</code></pre>
+<p>Total bundle ~625 KB.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a> — different emscripten-loader gotchas</li>
+<li><a href="Emulator-libretro-o2em-Odyssey2.html">Emulator-libretro-o2em-Odyssey2</a> — same "no EJS core exists" pattern, different solution</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

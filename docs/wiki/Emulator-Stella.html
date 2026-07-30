@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stella — Atari 2600 — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="stella--atari-2600">Stella — Atari 2600</h1>
+<p>The Atari 2600 runs on <strong>EmulatorJS + Stella</strong> (the <code>stella2014</code> libretro core), sharing the same framework as the VICE family, ColecoVision and the NES. It got here the hard way — we shipped it on <strong>Javatari</strong> first, then migrated.</p>
+<h2 id="why-we-left-javatari">Why we left Javatari</h2>
+<p>Javatari.js (Paulo Peccin, AGPL-3.0) is a lovely self-contained 2600 emulator and the original integration was a one-liner. Two things eventually pushed us off it:</p>
+<ol>
+<li><strong>It sizes its own canvas to the window.</strong> Every other bundle lets <em>us</em> size the canvas, which is what makes a CRT bezel possible — shrink the picture into the bezel's screen hole. Javatari ignores any container we give it and fills the viewport, so it's the one engine we couldn't bezel. (We tested it: a hard-capped <code>#javatari-screen</code> was completely ignored.)</li>
+<li><strong>GAME SELECT / RESET were on F11 / F12</strong> — browser-reserved (fullscreen / devtools). The only reliable way to hit them was Javatari's on-screen console faceplate, which is itself chrome we'd otherwise want to hide. Reset <em>starts</em> most 2600 games, so this wasn't optional.</li>
+</ol>
+<p>EmulatorJS solves both: we control the canvas (bezel-ready), and the console switches map to plain keys.</p>
+<h2 id="the-launch-flow">The launch flow</h2>
+<p><code>stella/play.html</code> is the standard <code>genxBootEJS</code> wrapper. EmulatorJS knows the 2600 as system <code>atari2600</code>, which it resolves to the <code>stella2014</code> core:</p>
+<pre><code class="language-js">genxBootEJS({
+  title: 'Atari 2600',
+  coreName: 'atari2600',
+  defaultControls: {
+    0: {
+      0: { value: 'space' },        // FIRE
+      2: { value: 'v' },            // GAME SELECT
+      3: { value: 'enter' },        // GAME RESET
+      4: { value: 'up arrow' }, 5: { value: 'down arrow' },
+      6: { value: 'left arrow' }, 7: { value: 'right arrow' }
+    }
+  }
+});
+</code></pre>
+<p>The existing <code>.a26</code> cart images carried straight over — Stella reads them unchanged.</p>
+<h2 id="controls">Controls</h2>
+<p>EmulatorJS has a dedicated <code>atari2600</code> control scheme (<code>emulator.js</code>, button-label block): <strong>id 0 = FIRE, 2 = SELECT, 3 = RESET</strong>, 4–7 = the joystick, and 10–15 = the difficulty A/B and Color/B-W switches (these stay on the EJS defaults <code>Q</code>/<code>E</code>/<code>Tab</code>/<code>R</code>, rarely needed). So on the keyboard:</p>
+<ul>
+<li><strong>Arrows</strong> — joystick · <strong>Space</strong> — fire</li>
+<li><strong>Enter</strong> — GAME RESET (starts/restarts most games)</li>
+<li><strong>V</strong> — GAME SELECT (cycles the game variant)</li>
+</ul>
+<p>A 2600 wrinkle worth documenting per-game: <strong>Reset starts the game, but FIRE serves the ball</strong> in paddle/serve games. Breakout, for instance, needs <code>Enter</code> to start and then <code>Space</code> to serve each ball.</p>
+<h2 id="ejs-chrome">EJS chrome</h2>
+<p>Like the other EJS bundles, Stella inherits the shared <code>.ejs_menu_bar, .ejs_context_menu { display: none }</code> rule in <code>genx-frame.css</code>, so EmulatorJS's control bar doesn't pop up on mouse-move — only the screen shows.</p>
+<h2 id="crt-bezel--the-first-on-an-ejs-bundle-12062026">CRT bezel — the first on an EJS bundle (12/06/2026)</h2>
+<p>Bezeling Stella was the <em>whole point</em> of leaving Javatari, and it's the first time we've wrapped an EmulatorJS bundle in a CRT frame. The bezel is <code>70s.png</code> — a wood-cabinet console TV with legs, keyed out of its photo (background removed, screen alpha'd to a transparent hole) so the set floats on the 70s wallpaper. The trick is that EJS owns the canvas, so instead of sizing a <code>#canvas</code> ourselves (as the standalone-engine bezels do), we drop the EJS player div (<code>#game</code>) into the bezel's screen hole and let EJS draw into it:</p>
+<pre><code>.bezel-wrap  (1240x855, aspect of 70s.png)
+  .screen-bg (black backdrop, slightly LARGER than the hole — stops the
+              wallpaper bleeding through the cutout's soft edge)
+  #game      (the EJS player at the measured hole: 27.6% / 13.1% / 45.4% × 51.6%)
+  .bezel-img (70s.png on top, transparent screen hole)
+</code></pre>
+<p>EJS fits the canvas to <code>#game</code> preserving aspect, which leaves a top/bottom letterbox inside the hole. One CSS line on the canvas closes and sizes it:</p>
+<pre><code class="language-css">#game canvas { height: 100% !important; transform: translateX(-18px) scale(0.85); }
+</code></pre>
+<p><code>height: 100%</code> stretches only the height (the width already filled the hole — forcing <em>both</em> dimensions overshot, because the EJS canvas's parent is wider than the hole). <code>translateX(-18px)</code> nudges the picture left so a black margin shows on the right, and <code>scale(0.85)</code> shrinks it to sit comfortably inside the glass rather than running edge-to-edge. This same pattern (player-in-hole + height-stretch) is the template for eventually bezeling the VICE family, ColecoVision and NES. <em>(The −18px and 0.85 are tuned to a desktop window — worth revisiting if they drift at very different sizes.)</em></p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/stella/
+├── play.html            ← genxBootEJS wrapper (coreName: 'atari2600')
+├── controls.html
+├── games.json
+└── roms/
+    └── *.a26            ← 2600 cart images (reused from the Javatari bundle)
+</code></pre>
+<p>The Stella core itself lives once in <code>systems/_shared-ejs/ejs/data/cores/stella2014-legacy-wasm.data</code>, shared with the rest of the EJS family.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-EmulatorJS-NES-FCEUmm.html">Emulator-EmulatorJS-NES-FCEUmm</a> — sibling EJS bundle</li>
+<li><a href="Emulator-gearcoleco-ColecoVision.html">Emulator-gearcoleco-ColecoVision</a> — sibling EJS bundle</li>
+<li><a href="Emulator-EmulatorJS-7800-ProSystem.html">Emulator-EmulatorJS-7800-ProSystem</a> — sibling Atari console (same Javatari/JS7800 → EmulatorJS migration)</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

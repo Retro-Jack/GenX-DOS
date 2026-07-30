@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XRoar — Tandy Color Computer — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="xroar--tandy-color-computer">XRoar — Tandy Color Computer</h1>
+<p>XRoar was the first emulator in GenX-DOS where the upstream's HTML wrapper turned out to be doing a lot more than it looked. It became the cautionary tale that every emscripten-based emulator after it got measured against.</p>
+<h2 id="where-we-started">Where we started</h2>
+<p>Upstream: <a href="http://www.6809.org.uk/xroar/online/">6809.org.uk/xroar/online/</a> — Ciaran Anscomb's XRoar, a long-running Dragon/Tandy CoCo emulator written in C. Ciaran ships an emscripten-WASM build alongside the native binaries, served from his own site. It's GPL-2, covers the whole Dragon/CoCo family, and runs cleanly in a browser. There wasn't really a competitor worth evaluating — XRoar is <em>the</em> CoCo emulator.</p>
+<h2 id="the-first-attempt-blank-screen">The first attempt: blank screen</h2>
+<p>We dropped <code>xroar.js</code> and <code>xroar.wasm</code> into <code>systems/xroar/</code>, wrote a thin <code>play.html</code> with a <code>&lt;canvas&gt;</code> and a <code>&lt;script&gt;</code> tag, and… nothing. Black screen. No errors on the page. Just a dead canvas.</p>
+<p>DevTools told the real story: <code>Uncaught ReferenceError: ui_menu_clear is not defined</code>. The WASM was halting mid-init because it expected a pile of JS functions to exist for things like menu population and status updates — things the upstream HTML wraps a real UI around, but which we'd thrown away when we stripped the page down to the essentials.</p>
+<p>The fix was to grep upstream's HTML for every <code>function ui_</code> definition and stub each one as a no-op. For XRoar v1.10 that's fifteen of them:</p>
+<pre><code class="language-js">function ui_done_initialising() {}
+function ui_menu_clear() {}
+function ui_menu_add() {}
+function ui_menu_add_str() {}
+function ui_menu_select() {}
+function ui_menu_select_str() {}
+function ui_set_checkbox() {}
+function ui_set_fullscreen() {}
+function ui_set_html() {}
+function ui_set_value() {}
+function ui_update_ccr() {}
+function ui_update_disk_info() {}
+function ui_update_hd_filename() {}
+function ui_update_tape_input_filename() {}
+function ui_update_tape_playing() {}
+</code></pre>
+<p>We refreshed. Still a black screen.</p>
+<h2 id="the-second-attempt-invalid-roms">The second attempt: invalid ROMs</h2>
+<p>This time the console had a different complaint: <code>(unpopulated) CRC32 INVALID</code> repeating for several ROM names. XRoar's docs mention "free open-source replacement ROMs built in" — easy to read as "no ROMs needed." That's not quite what they meant. The replacement ROMs <em>exist</em>, but they're not baked into the WASM; they're served alongside it from the upstream deploy directory.</p>
+<p>A quick probe of upstream confirmed it:</p>
+<pre><code class="language-bash">curl -sIo /dev/null -w &quot;%{http_code}\n&quot; https://www.6809.org.uk/xroar/online/bas13.rom
+</code></pre>
+<p>200 OK. We mirrored the lot — <code>bas13.rom</code>, <code>extbas11.rom</code>, <code>d64_1.rom</code>, <code>d64_2.rom</code>, <code>dplus49b.rom</code>, <code>coco3.rom</code>, <code>coco3p.rom</code>, <code>disk11.rom</code>, <code>mc10.rom</code> — into the bundle directory.</p>
+<p>Refreshed. Still black screen.</p>
+<h2 id="the-third-attempt-absolute-paths">The third attempt: absolute paths</h2>
+<p>Now the console showed <code>WARNING: Error fetching '/d64_1.rom'</code>. Note the leading slash. XRoar was requesting ROMs by absolute path, which under emscripten's default <code>locateFile</code> resolved to the web root — and our web root had no ROMs, only <code>index.html</code>. The files were sitting right next to <code>xroar.js</code>, but the runtime was looking for them three directories up.</p>
+<p>The fix was a one-liner:</p>
+<pre><code class="language-js">Module.locateFile = function(path) { return path.replace(/^\/+/, ''); };
+</code></pre>
+<p>That strips the leading slash so requests become page-relative. After this, the boot log went green and the CoCo prompt appeared.</p>
+<h2 id="one-more-sharp-edge">One more sharp edge</h2>
+<p><code>wasm_set_machine_cart('coco', …)</code> called from <code>onRuntimeInitialized</code> doesn't reliably switch from the default <code>dragon64</code> machine. By the time the callback fires, init has already locked in the wrong target. We worked around it by passing <code>-machine coco</code> in <code>Module.arguments</code> at the very start, so XRoar picks the right machine during its own init pass instead of being switched after the fact.</p>
+<h2 id="how-games-launch-now">How games launch now</h2>
+<p>Each game is a row in <code>games.json</code> describing the cartridge / tape / disk file and the machine variant. <code>play.html</code> reads <code>?game=&lt;key&gt;</code> from the URL, looks the entry up, and calls <code>wasm_set_machine_cart</code> + <code>wasm_load_file</code> with the right arguments. Cartridge games autorun instantly; tape games wait 2 seconds so the BASIC prompt finishes drawing before <code>CLOAD</code> fires.</p>
+<h2 id="the-diagnostic-workflow-that-came-out-of-this">The diagnostic workflow that came out of this</h2>
+<p>Every new emscripten emulator now runs through the same loop before we declare it working:</p>
+<pre><code class="language-bash">chromium --headless --no-sandbox --enable-logging=stderr \
+  --log-level=0 --virtual-time-budget=10000 \
+  http://127.0.0.1:8765/systems/xroar/play.html?game=foo \
+  2&gt;&amp;1 | grep CONSOLE
+</code></pre>
+<p>If the log shows valid CRC32 lines and the expected machine banner (<code>[part:coco] Tandy | Colour Computer</code>), it'll render. Headless can't verify pixels without a GPU, but a clean boot log is a strong proxy.</p>
+<h2 id="save--load-state">Save / load state</h2>
+<p>XRoar exports <code>Module._write_snapshot(filename)</code>, which writes a full-machine <code>.sna</code> to the emscripten FS. The adapter cwraps it, writes to <code>/gx-state.sna</code>, and reads the bytes straight back out with <code>Module.FS.readFile()</code> — that <code>Uint8Array</code> is the state. Restore is the mirror: write the bytes to the FS, then call <code>wasm_load_file('/gx-state.sna', 0, 0)</code> — the <strong>same</strong> cwrapped loader <code>play.html</code> already uses to load games (XRoar auto-detects the <code>.sna</code> and restores the machine). So no new core surface was needed; the existing load path does the heavy lifting. <code>_shared/genx-savestate-std.js</code> draws the buttons.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/xroar/
+├── play.html
+├── xroar.js
+├── xroar.wasm
+├── games.json
+├── controls.html
+├── bas13.rom, extbas11.rom, d64_1.rom, d64_2.rom,
+│   dplus49b.rom, coco3.rom, coco3p.rom, disk11.rom, mc10.rom
+└── roms/        ← cartridge / tape / disk images
+</code></pre>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulators.html">Emulators</a> — index of all engines</li>
+<li><a href="File-Structure.html">File-Structure</a> — where bundles sit in the repo</li>
+<li><a href="Virtual-Filesystem.html">Virtual-Filesystem</a> — how <code>.bat</code> launchers reach <code>play.html</code></li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

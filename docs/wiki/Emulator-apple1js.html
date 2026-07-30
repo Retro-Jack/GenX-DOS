@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>apple1js — Apple I — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="apple1js--apple-i">apple1js — Apple I</h1>
+<p>The Apple I bundle is Will Scullin's <a href="https://github.com/whscullin/apple1js">apple1js</a> — same author as the Apple ][+ bundle, written in the same style. Smaller machine, smaller bundle, smaller surface for things to go wrong.</p>
+<h2 id="where-we-started">Where we started</h2>
+<p>apple1js is pure JavaScript, no WASM, BSD-2-clause-style permissive licence (the actual SPDX header is a custom Will Scullin notice — see ATTRIBUTION). Boots to the Woz Monitor prompt, optionally drops into Integer BASIC, Applesoft, or VolksForth depending on what tape is loaded.</p>
+<h2 id="the-runtime-tape-design">The runtime-tape design</h2>
+<p>apple1js's <code>tapes/</code> directory holds 14 <code>.js</code> files. Ten of them are games; the other four — <code>applesoft.js</code>, <code>basic.js</code>, <code>monitor.js</code>, <code>volksforth.js</code> — are runtime dependencies (Integer BASIC, Applesoft BASIC, Woz Monitor, VolksForth) that <code>play.html</code> loads even in prompt mode. They look like orphan tapes if you only count games. They aren't.</p>
+<p>This is the one situation where a file-count audit needs context. The post-bundle audit memory flags this explicitly so future passes don't try to "clean up" the BASIC implementations.</p>
+<h2 id="the-chrome-cleanup">The chrome cleanup</h2>
+<p>Like apple2js, upstream <code>apple1js.html</code> ships a full app: keyboard buttons, modal dialogs, status panels. Same approach as the Apple ][+ bundle — keep the DOM intact (the bundle queries it at boot and throws if anything's missing), hide it with CSS:</p>
+<pre><code class="language-css">h1, h2, .inset, .modal, #keyboard { display: none !important; }
+td &gt; div:not(.overscan) { display: none !important; }
+.overscan {
+  width: min(100vw, calc(100dvh * 4 / 3));
+  height: min(100dvh, calc(100vw * 3 / 4));
+}
+</code></pre>
+<p>Result: just the text display, scaled to 4:3.</p>
+<h2 id="how-tapes-launch">How tapes launch</h2>
+<p><code>?game=&lt;key&gt;</code> maps to a tape descriptor in the <code>tapes</code> object. apple1js's load API handles the rest — the tape script defines <code>tapes[key]</code> with the bytes inline, and the emulator's tape input mode reads them at the speed real cassette tape did. Most games take a few seconds to load.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/apple1/
+├── play.html         ← chrome hider + tape loader
+├── controls.html     ← Woz Monitor / Integer BASIC reference
+├── apple1.js         ← upstream entry
+├── css/apple1.css
+├── tapes/
+│   ├── basic.js, applesoft.js, monitor.js, volksforth.js  ← runtime deps
+│   └── &lt;10 game tape .js files&gt;
+</code></pre>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-apple2js.html">Emulator-apple2js</a> — same author, sibling bundle</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

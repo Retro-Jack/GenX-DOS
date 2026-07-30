@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>atari800 — Atari 400 + 800XL — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="atari800--atari-400--800xl">atari800 — Atari 400 + 800XL</h1>
+<p>The atari800 build is the only one in GenX-DOS where we ended up compiling the emulator from source, because nothing else fit. It now ships as <strong>two self-contained bundles</strong> — <code>systems/atari400/</code> (boots OS-B, the cartridge-era Atari 400) and <code>systems/atari800/</code> (boots OS-XL, the Atari 800XL) — full copies of the same WASM, so each game's URL names the machine instead of hiding it behind a <code>?machine=</code> param on one shared dir. The build story below is the same for both.</p>
+<h2 id="where-we-started--and-got-blocked">Where we started — and got blocked</h2>
+<p>The shortlist was three projects. All three fell out, in order:</p>
+<ol>
+<li><strong>jsA8E</strong> (<code>AnimaInCorpore/A8E</code>) — looked promising; a real WASM build of A8E, working in a browser. No <code>LICENSE</code> file in the repo, though. Under default copyright we can't legally redistribute, so it was out.</li>
+<li><strong>EmulatorJS</strong> — covers a lot of ground but the upstream supported-systems list does not include Atari 800; the closest core is <code>a5200</code>. No good.</li>
+<li><strong>libretro-atari800 in the official RetroArch emscripten nightly</strong> — plausible because the same nightly ships ~90 other cores. We downloaded the full 760 MB <code>RetroArch.7z</code> from <code>buildbot.libretro.com/nightly/emscripten/RetroArch.7z</code> to verify. atari800 is not one of the cores in the web build. (Useful side-effect: that audit confirmed VICE, gearcoleco, and o2em <em>are</em> in there, which seeded the C64 / Coleco / Odyssey² bundles we did later.)</li>
+</ol>
+<p>So we built atari800 from source.</p>
+<h2 id="the-toolchain">The toolchain</h2>
+<p>emscripten via emsdk, fetched into <code>/tmp</code> because the build needs to be reproducible and that's the path the recipe encodes:</p>
+<pre><code class="language-sh">cd /tmp &amp;&amp; git clone --depth 1 https://github.com/emscripten-core/emsdk.git
+cd /tmp/emsdk &amp;&amp; ./emsdk install latest &amp;&amp; ./emsdk activate latest
+source /tmp/emsdk/emsdk_env.sh
+</code></pre>
+<p>emsdk lives at <code>~/emsdk/</code> on this machine for persistence between sessions.</p>
+<h2 id="the-fake-sdl2-config-problem">The fake <code>sdl2-config</code> problem</h2>
+<p>atari800's autoconf uses <code>AM_PATH_SDL2</code>, which shells out to <code>sdl2-config</code>. emscripten ships SDL2 as a port (it's pulled in automatically by <code>-sUSE_SDL=2</code>) but doesn't ship the <code>sdl2-config</code> binary. The build dies on detection before it even gets to the C files.</p>
+<p>The fix was a six-line shim that pretends to be <code>sdl2-config</code> and tells autoconf whatever it wants to hear:</p>
+<pre><code class="language-sh">cat &gt; /tmp/fake-sdl2-config &lt;&lt;'EOF'
+#!/bin/sh
+case &quot;$1&quot; in
+  --cflags|--cflags-only-I|--libs|--libs-only-l|--static-libs|--prefix) echo &quot;&quot; ;;
+  --version) echo &quot;2.30.0&quot; ;;
+esac
+EOF
+chmod +x /tmp/fake-sdl2-config
+</code></pre>
+<p>Then <code>SDL2_CONFIG=/tmp/fake-sdl2-config emconfigure ./configure …</code> runs cleanly.</p>
+<h2 id="configure-flags-each-one-earned-by-a-real-failure">Configure flags, each one earned by a real failure</h2>
+<pre><code class="language-sh">SDL2_CONFIG=/tmp/fake-sdl2-config emconfigure ./configure \
+  --target=default \
+  --with-video=sdl2 \
+  --with-sound=sdl2 \
+  --without-opengl \
+  --disable-netsio \
+  --disable-riodevice --disable-rserial --disable-rnetwork \
+  --disable-audiorecording --disable-videorecording \
+  --enable-altirra_bios \
+  CFLAGS=&quot;-O2 -sUSE_SDL=2&quot; LIBS=&quot;-sUSE_SDL=2&quot;
+</code></pre>
+<p>Why each flag is there:</p>
+<ul>
+<li><code>--without-opengl</code> — atari800's SDL+GL path calls <code>eglCreateContext</code>, which fails in emscripten and leaves the canvas black. The software SDL renderer works fine.</li>
+<li><code>--disable-netsio</code> / <code>--disable-riodevice</code> / <code>--disable-rserial</code> / <code>--disable-rnetwork</code> — these all need <code>clock_gettime</code> or a real host TTY/serial port, both of which trip emcc's strict implicit-declaration check. Nothing about them works in a browser anyway.</li>
+<li><code>--disable-audiorecording</code> / <code>--disable-videorecording</code> — strips RLE/ZMBV/WAV/ADPCM/μ-law codecs we don't need.</li>
+<li><code>--enable-altirra_bios</code> — this is the big one. It bakes Avery Lee's AltirraOS-XL 3.41 directly into the WASM. No copyrighted Atari OS ROM needs to ship alongside the bundle; the emulator falls back to AltirraOS automatically when no real ROM is found. This is also why <code>systems/atari800/</code> has no <code>roms/</code> directory full of <code>.bin</code> files — the OS lives inside <code>atari800.wasm</code>.</li>
+<li><code>-sUSE_SDL=2</code> — pulls emscripten's SDL2 port for canvas, keyboard, and WebAudio.</li>
+</ul>
+<h2 id="the-relink-step">The relink step</h2>
+<p>The plain <code>emmake make</code> builds a Node-style <code>src/atari800</code> script, not a browser-loadable bundle. To get the browser artefacts:</p>
+<pre><code class="language-sh">cd src
+OBJS=$(ls atari800-*.o sdl/atari800-*.o roms/atari800-*.o codecs/atari800-*.o atari_ntsc/atari800-*.o 2&gt;/dev/null | grep -v video_gl)
+emcc -O2 -sUSE_SDL=2 -sASYNCIFY -sALLOW_MEMORY_GROWTH=1 -sINITIAL_MEMORY=64MB \
+  -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,FS -sEXIT_RUNTIME=0 \
+  -o atari800.html $OBJS -lm
+</code></pre>
+<p><code>-sASYNCIFY</code> is non-optional. atari800's <code>for(;;)</code> main loop in <code>sdl/main.c</code> would hang the browser without it. ASYNCIFY suspends and resumes at <code>SDL_Delay</code> so the page can paint between frames.</p>
+<p>This is the verbatim relink from the fork's <code>build-wasm.sh</code> — note there's <strong>no <code>-sEXPORTED_FUNCTIONS</code> list</strong>: the <code>gx_state_*</code> / <code>gx_request_*</code> save-state entry points (see the section above) export themselves via <code>EMSCRIPTEN_KEEPALIVE</code> in <code>src/atari.c</code>, so they survive DCE without being named here. And <code>FS</code> is in <code>-sEXPORTED_RUNTIME_METHODS</code> for double duty — <code>play.html</code>'s <code>preRun</code> uses it to preload the ROM, and the save-state adapter uses it to read/write the MEMFS <code>/gx-state.a8s</code> snapshot file.</p>
+<p>Output: <code>atari800.js</code> (186 KB) + <code>atari800.wasm</code> (1.7 MB). The default emcc shell HTML gets thrown away — <code>play.html</code> replaces it.</p>
+<h2 id="save--load-state--and-the-asyncify-trap">Save / load state — and the ASYNCIFY trap</h2>
+<p>atari800 has a real save-state system in C (<code>StateSav_SaveAtariState</code> / <code>StateSav_ReadAtariState</code>, file-based), so the fork's <code>build-wasm.sh</code> exports <code>gx_state_*</code> <code>EMSCRIPTEN_KEEPALIVE</code> wrappers around it. The catch is the same <code>-sASYNCIFY</code> that keeps the main loop alive in the first place.</p>
+<p>The naïve version — a button that calls <code>StateSav_ReadAtariState</code> directly — corrupts the wasm heap instantly (<code>memory access out of bounds</code> flood). Here's why: <code>StateSav</code> reaches <code>emscripten_sleep</code> (machine reinit on load), so it's an asyncify operation. But the <code>for(;;)</code> main loop is <em>already</em> a suspended asyncify operation. Calling a second one from a JS event handler while the first is mid-suspend means two concurrent unwinds sharing one asyncify stack — they stomp each other.</p>
+<p>The fix is to <strong>defer the work onto the main loop's own asyncify context</strong> instead of starting a competing one. JS never calls <code>StateSav</code> directly; it only sets a flag:</p>
+<pre><code class="language-c">// in sdl/main.c's for(;;) loop, each frame:
+gx_state_poll();   // runs the actual StateSav_* iff a request flag is set
+</code></pre>
+<ul>
+<li><code>gx_request_save()</code> / <code>gx_request_load()</code> — set a flag, no sleep, return immediately (safe from a button).</li>
+<li><code>gx_state_poll()</code> — called once per frame from the main loop, <em>on the loop's asyncify stack</em>, so the nested <code>emscripten_sleep</code> inside <code>StateSav</code> is safe. It runs the real save/load and writes a status code.</li>
+<li><code>gx_state_status()</code> — JS polls this; <code>0</code> busy, <code>1</code> ok, <code>-1</code> fail.</li>
+</ul>
+<p>The state itself moves through a MEMFS file (<code>/gx-state.a8s</code>) that JS reads/writes with <code>Module.FS</code>. Because the round-trip is asynchronous, <code>play.html</code>'s <code>GenXStateAdapter</code> is <strong>async</strong> (<code>getState</code>/<code>setState</code> return Promises that resolve when <code>gx_state_status</code> flips) — <code>_shared/genx-savestate-std.js</code> <code>await</code>s the adapter, which is a no-op for the synchronous engines. Any blocking-ASYNCIFY-main-loop emulator needs this deferral pattern, not a direct call. (Contrast <a href="Emulator-tiny8bit-CPC.html">Emulator-tiny8bit-CPC</a>, whose chips snapshot has no <code>emscripten_sleep</code> and so calls straight from the button.)</p>
+<h2 id="the-playhtml-contract">The <code>play.html</code> contract</h2>
+<p><code>play.html</code> sets up <code>window.Module</code> <em>before</em> injecting <code>atari800.js</code>:</p>
+<ul>
+<li><code>canvas</code> — the <code>&lt;canvas&gt;</code> element</li>
+<li><code>arguments</code> — <code>['/game.atr']</code> for disks, <code>['-cart', '/game.rom']</code> for cartridges, optionally <code>['-cart-type', N, '-cart', '/game.rom']</code> for headerless cart dumps (Star Raiders needs <code>cartType:1</code> = Standard 8KB)</li>
+<li><code>preRun</code> — calls <code>Module.FS.createPreloadedFile('/', vfsName, romUrl, true, false)</code> to fetch the ROM into the WASM virtual FS before <code>main()</code> runs</li>
+</ul>
+<h2 id="one-game-source-gotcha">One game-source gotcha</h2>
+<p>The Star Raiders <code>.atr</code> shipped as <code>a8b_Star_Raiders_1979_Atari_US_k_file</code> is a cart-binary-in-disk-wrapper — it boots straight into a 6502 CIM at <code>$A184</code>. The right source is the 8 KB <code>.rom</code> from <code>a8b_cart_Star_Raiders_1979_Atari_US</code>, launched with <code>-cart-type 1</code>.</p>
+<h2 id="a-note-on-headless-verification">A note on headless verification</h2>
+<p>Headless chromium screenshots of SDL2/WASM canvases look black even when frames are being drawn — SwiftShader/compositor timing makes them unreliable. Verify in a real browser, or read pixels via <code>getImageData</code> from a probe page.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/atari400/   (and systems/atari800/, a full copy of the same build)
+├── play.html           ← atari400/ defaults to OS-B; atari800/ to OS-XL
+├── atari800.js
+├── atari800.wasm        ← AltirraOS baked in here
+├── games.json          ← 400 carts/disks in atari400/, 800XL titles in atari800/
+├── controls.html
+├── COPYING
+└── roms/                ← cart / disk / cassette images
+</code></pre>
+<p>The reproducible build script lives in the <a href="https://github.com/Retro-Jack/atari800">Retro-Jack/atari800</a> fork — upstream source untouched, just <code>build-wasm.sh</code> + <code>BUILDING-WASM.md</code> on top. (It is <em>not</em> copied into the bundle.)</p>
+<h2 id="crt-bezel-11062026">CRT bezel (11/06/2026)</h2>
+<p>The Atari 400/800 page wraps the canvas in the <code>80s.png</code> wood-cabinet TV bezel (a floating set on the 70s wallpaper, screen keyed to a transparent hole). The interesting part was making the picture fill the screen cutout corner-to-corner.</p>
+<p>The obvious approach — scale the canvas past 100% with CSS and clip the overscan — fought atari800's video pipeline. atari800 sizes its framebuffer from the canvas's <em>pixel</em> dimensions and renders with near-integer scaling, so the visible-picture size jumps in coarse, viewport-dependent steps as you nudge the CSS percentage. A value tuned to fill one window doesn't hold on another.</p>
+<p>The fix is to let the emulator do the filling. atari800's SDL build exposes its VIDEOMODE system on the command line, passed straight through <code>Module.arguments</code>:</p>
+<pre><code>-stretch full        # stretch the visible area to the whole canvas (no integer-scale letterbox)
+-fit-screen both     # fit both axes
+-image-aspect none   # don't preserve 4:3 — allow a non-uniform fill
+-horiz-area tv       # trim the overscan border to the TV-safe area
+-vert-area tv
+</code></pre>
+<p>With those, the canvas sits at a plain <code>width/height: 100%</code> of the cutout and the picture meets all four corners on every game, at any window size — deterministic, no calibration. (Aside: the argument builder had to be reworked to <em>append</em> cart/disk args rather than reassigning the array, or the video args got clobbered.)</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulators.html">Emulators</a> — index of all engines</li>
+<li><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a> — the other from-source emscripten build</li>
+<li><a href="Emulator-sdltrs-TRS-80.html">Emulator-sdltrs-TRS-80</a> — the TRS-80 build; same ASYNCIFY pattern</li>
+<li><a href="File-Structure.html">File-Structure</a> — where bundles sit in the repo</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

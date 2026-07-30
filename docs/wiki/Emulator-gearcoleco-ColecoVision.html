@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gearcoleco — ColecoVision — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="gearcoleco--colecovision">gearcoleco — ColecoVision</h1>
+<p>The ColecoVision bundle was our first add-on to the shared EmulatorJS framework after the VICE family — the engine was a known quantity, but the controller wasn't.</p>
+<h2 id="where-we-started">Where we started</h2>
+<p>EmulatorJS supports ColecoVision through Drhelius's <a href="https://github.com/drhelius/Gearcoleco">gearcoleco</a> libretro core. Mirror <code>gearcoleco-legacy-wasm.data</code> into <code>_shared-ejs/ejs/data/cores/</code>, set <code>EJS_core = 'coleco'</code> (EJS aliases that internally to <code>gearcoleco</code>), wire <code>EJS_biosUrl</code> at <code>colecovision.rom</code>, and the cart boots. That bit was easy.</p>
+<h2 id="the-keypad-problem">The keypad problem</h2>
+<p>The ColecoVision controller has a 12-key keypad on it. Most launch-era Coleco games gate startup on <strong>"PRESS NUMBER FOR SKILL LEVEL"</strong>. Without a keypad, the game is unreachable. So how do you map a 12-key keypad onto a PC?</p>
+<p>gearcoleco scatters the keypad across the RetroPad face and shoulder buttons:</p>
+<table>
+<thead>
+<tr>
+<th>RetroPad button</th>
+<th>ColecoVision keypad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Y</td>
+<td>keypad 1</td>
+</tr>
+<tr>
+<td>X</td>
+<td>keypad 2</td>
+</tr>
+<tr>
+<td>L, R, L2, R2, L3, R3</td>
+<td>keypad 3–8</td>
+</tr>
+<tr>
+<td>START</td>
+<td>keypad *</td>
+</tr>
+<tr>
+<td>SELECT</td>
+<td>keypad #</td>
+</tr>
+<tr>
+<td>LeftStick X-axis</td>
+<td>keypad 9 / keypad 0</td>
+</tr>
+</tbody>
+</table>
+<p>That mapping was the right call — every keypad button is reachable from a generic RetroPad. But EJS's default keyboard map turns those into <code>s / a / q / e / tab / r / &lt;empty&gt; / &lt;empty&gt;</code> — keypad 7 and 8 aren't bound to any key at all, and there's no period-correct number-key mapping.</p>
+<h2 id="the-fix-drive-the-whole-keypad-off-the-pc-numpad">The fix: drive the whole keypad off the PC numpad</h2>
+<p>A PC numpad <em>is</em> a 12-key keypad. Period-correct shape, leaves the number row free, and means muscle memory transfers directly to the ColecoVision keypad layout:</p>
+<pre><code class="language-js">window.EJS_defaultControls = {
+  0: {
+    1:  { value: 'numpad 1' },   // Y      → keypad 1
+    9:  { value: 'numpad 2' },   // X      → keypad 2
+    10: { value: 'numpad 3' },   // L      → keypad 3
+    11: { value: 'numpad 4' },   // R      → keypad 4
+    12: { value: 'numpad 5' },   // L2     → keypad 5
+    13: { value: 'numpad 6' },   // R2     → keypad 6
+    14: { value: 'numpad 7' },   // L3     → keypad 7
+    15: { value: 'numpad 8' },   // R3     → keypad 8
+    3:  { value: 'multiply' },   // START  → keypad * (numpad *)
+    2:  { value: 'subtract' },   // SELECT → keypad # (numpad -)
+    16: { value: 'numpad 9' },   // LStickX+ → keypad 9
+    17: { value: 'numpad 0' }    // LStickX- → keypad 0
+  }
+};
+</code></pre>
+<h2 id="a-pleasant-surprise-vs-the-vice-family">A pleasant surprise vs. the VICE family</h2>
+<p>Unlike <code>EJS_defaultOptions</code> — which is overridden by <code>localStorage</code> on subsequent visits, requiring the <code>localStorage.clear()</code> dance during iteration — <code>EJS_defaultControls</code> is consumed fresh on every load. <code>this.controls = JSON.parse(JSON.stringify(this.defaultControllers))</code> at <code>emulator.js:2781</code> re-initialises from defaults on every emulator construction. Control overrides take effect immediately, no incantation required.</p>
+<h2 id="numlock-as-a-load-bearing-key">NumLock as a load-bearing key</h2>
+<p>The numpad is doing all the work here. If a user has NumLock off, the keypad is dead. We wire <code>_shared/genx-numlock-warn.js</code> into <code>play.html</code> — the same defensive banner the VICE bundles use for numpad-as-joystick. Banner pops, user toggles NumLock, game works.</p>
+<h2 id="the-ejs-button-id-cheat-sheet">The EJS button-ID cheat sheet</h2>
+<p>Useful for any future override on any other EmulatorJS bundle. From <code>emulator.js:3539</code>:</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Button</th>
+<th>Default</th>
+<th>ID</th>
+<th>Button</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>B</td>
+<td>x</td>
+<td>12</td>
+<td>L2</td>
+<td>tab</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Y</td>
+<td>s</td>
+<td>13</td>
+<td>R2</td>
+<td>r</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SELECT</td>
+<td>v</td>
+<td>14</td>
+<td>L3</td>
+<td>(none)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>START</td>
+<td>enter</td>
+<td>15</td>
+<td>R3</td>
+<td>(none)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DPAD_UP</td>
+<td>up</td>
+<td>16</td>
+<td>LStickX+</td>
+<td>h</td>
+</tr>
+<tr>
+<td>5</td>
+<td>DPAD_DOWN</td>
+<td>down</td>
+<td>17</td>
+<td>LStickX-</td>
+<td>f</td>
+</tr>
+<tr>
+<td>6</td>
+<td>DPAD_LEFT</td>
+<td>left</td>
+<td>18</td>
+<td>LStickY+</td>
+<td>g</td>
+</tr>
+<tr>
+<td>7</td>
+<td>DPAD_RIGHT</td>
+<td>right</td>
+<td>19</td>
+<td>LStickY-</td>
+<td>t</td>
+</tr>
+<tr>
+<td>8</td>
+<td>A</td>
+<td>z</td>
+<td>20-23</td>
+<td>RStick X/Y +/-</td>
+<td>l/j/k/i</td>
+</tr>
+<tr>
+<td>9</td>
+<td>X</td>
+<td>a</td>
+<td>24-26</td>
+<td>Hotkeys 1/2/3</td>
+<td>varies</td>
+</tr>
+<tr>
+<td>10</td>
+<td>L</td>
+<td>q</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>R</td>
+<td>e</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>value2</code> is the gamepad mapping name (BUTTON_2, START, DPAD_UP, etc.) — leave it alone when overriding <code>value</code>. The merge at <code>emulator.js:248</code> does <code>{ ...existing, ...override }</code> per button, so partial <code>{ value: ... }</code> overrides preserve <code>value2</code>.</p>
+<p>The global name is <code>EJS_defaultControls</code> (singular <code>Control</code>); internally it's passed to the config as <code>defaultControllers</code> (plural with double <code>l</code>). Easy typo trap.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/coleco/
+├── play.html              ← ~85 lines, sets EJS_defaultControls
+├── controls.html
+├── games.json
+├── colecovision.rom       ← BIOS, MD5 2c66f5911e5b42b8ebe113403548eee7
+└── games/
+    └── *.col              ← 10 cart images
+</code></pre>
+<p>The gearcoleco core lives at <code>systems/_shared-ejs/ejs/data/cores/gearcoleco-legacy-wasm.data</code> alongside the VICE cores.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-VICE-family.html">Emulator-VICE-family</a> — same EmulatorJS framework, different cores</li>
+<li><a href="Emulator-EmulatorJS-NES-FCEUmm.html">Emulator-EmulatorJS-NES-FCEUmm</a> — same EJS framework, NES</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

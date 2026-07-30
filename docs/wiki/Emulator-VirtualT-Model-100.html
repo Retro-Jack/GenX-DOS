@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VirtualT — Tandy TRS-80 Model 100 — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="virtualt--tandy-trs-80-model-100">VirtualT — Tandy TRS-80 Model 100</h1>
+<p>The Model 100 is the fourth GenX-DOS bundle compiled from source to WASM (after <a href="Emulator-atari800.html">Emulator-atari800</a>, <a href="Emulator-sdltrs-TRS-80.html">Emulator-sdltrs-TRS-80</a> and <a href="Emulator-libretro-o2em-Odyssey2.html">Emulator-libretro-o2em-Odyssey2</a>), and the first driven by <strong>VirtualT</strong> — Stephen Hurd &amp; Ken Pettit's Model 100 / 102 / 200 emulator, BSD-2-Clause, on SourceForge since 2004.</p>
+<p>It exists because a user, <strong>dplassgit</strong>, opened <a href="https://github.com/Retro-Jack/GenX-DOS/discussions/2">discussion #2, "Tandy 100?"</a>: <em>"Based on the Intel 8085 CPU, it was one of the early portable/laptops. It definitely has the 8-bit feel."</em> The reply set the bar — <em>"I'd need 10 easily accessible software titles before continuing"</em> — which is why the lineup ships exactly ten games.</p>
+<h2 id="an-extraction-not-a-fork">An extraction, not a fork</h2>
+<p>VirtualT isn't a small emulator — it's a full <strong>FLTK desktop application</strong>: the machine, plus an IDE, a disassembler, a debugger, memory editors, a peripheral monitor. Forking all of that to strip it back would be dishonest about how little we kept. So the Model 100 bundle is an <strong>acknowledgement, not a fork</strong>: we compile only VirtualT's FLTK-free portable core — the 8085 CPU, memory + banking, the HD44102 LCD controllers, the keyboard scan, the ROM images, sound and serial — and never compile the ~40 FLTK GUI/IDE/debugger files at all.</p>
+<p>What the core still <em>calls into</em> from that dropped layer, five small headless units supply. They live in <code>systems/m100/src/</code> with a reproducible <code>build.sh</code> and <code>BUILDING-WASM.md</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Unit</th>
+<th>Stands in for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>frontend_sdl.c</code></td>
+<td>display.cpp's window + event loop — our browser front end</td>
+</tr>
+<tr>
+<td><code>display_headless.c</code></td>
+<td>display.cpp's LCD drawing — the 240×64 framebuffer</td>
+</tr>
+<tr>
+<td><code>file_headless.c</code></td>
+<td>file.cpp's loader (FLTK file-chooser → host filenames)</td>
+</tr>
+<tr>
+<td><code>clock_headless.c</code></td>
+<td>clock.cpp's uPD1990AC RTC (config UI + prefs dropped)</td>
+</tr>
+<tr>
+<td><code>stubs.c</code></td>
+<td>no-op peripherals (T200 RTC, printer, TPDD dock, remote debug)</td>
+</tr>
+</tbody>
+</table>
+<p><code>frontend_sdl.c</code> hooks a single <code>gx_frame()</code> into the core's <code>maint()</code> (one added call in <code>m100emu.c</code>); every frame it blits the LCD to an SDL2 texture, pumps keys into io.c, and <code>emscripten_sleep()</code>s to yield.</p>
+<h2 id="-sasyncify-and-the-throttle-deadlock"><code>-sASYNCIFY</code> and the throttle deadlock</h2>
+<p>VirtualT's <code>emulate()</code> is a blocking <code>while (!gExitApp)</code> loop, so <code>-sASYNCIFY</code> is non-optional — the same shape as atari800 and sdltrs. But the first builds <strong>hung after ~30,000 instructions</strong>, stone dead.</p>
+<p>The culprit wasn't ASYNCIFY. VirtualT's <code>throttle()</code> calls <code>sem_wait(&amp;gThrottleEvent)</code>, waiting on a background timer thread that doesn't exist in single-threaded WASM — so it blocks forever. The fix is one line in <code>gx_frame</code>: <strong><code>fullspeed = 3</code></strong>, VirtualT's own "run unthrottled" mode, which still counts cycles but skips the blocking <code>while</code>/<code>sem_wait</code> entirely. Pacing is done instead by <code>emscripten_sleep(16)</code> once per frame.</p>
+<h2 id="the-traps-that-arent-link-errors">The traps that aren't link errors</h2>
+<p>Two classes of bug cost real time here, both because emscripten turns C sloppiness into <em>runtime</em> wasm traps:</p>
+<ul>
+<li><strong>Signature mismatches.</strong> An implicitly-declared function is assumed <code>int()</code>; if the real definition is <code>void()</code>, the indirect call traps at runtime — it is <strong>not</strong> a link error. clang even phrases it "call to undeclared function", not "implicit declaration". Every stub in <code>stubs.c</code> had to match its header's signature exactly (e.g. <code>get_model_time</code> is <code>void</code>, not <code>long</code>; <code>tdock_read</code> is <code>unsigned char(void)</code>).</li>
+<li><strong>Data symbols stubbed as functions.</strong> <code>setup</code>, <code>mem_setup</code>, <code>clock_serial_out</code> are <em>variables</em>, not functions — stubbing them as functions gives a wasm-ld "symbol type mismatch". They're defined as zero-init variables via <code>#include "setup.h"</code>.</li>
+</ul>
+<h2 id="the-rom-is-a-file">The ROM is a file</h2>
+<p>The core opens the Model 100 ROM as <code>ROMs/M100rom.bin</code> (32 KB) — VirtualT tracks it in its own repo — so it's <code>--embed-file</code>'d into MEMFS rather than linked, even though <code>m100rom.c</code> (the ROM as a C array) is also compiled in. The early "No ROM file for m100" errors were exactly this: the ROM is loaded as a file, not from the array.</p>
+<h2 id="the-clock--live-and-y2k-fine">The clock — live, and Y2K-fine</h2>
+<p>The RTC was first stubbed to a no-op, and that quietly broke more than clocks: <code>TIME$</code> sat at <code>00:00:00</code>, which kills game timers <strong>and</strong> the ubiquitous <code>FOR N=1 TO VAL(RIGHT$(TIME$,2))</code> RND-seeding idiom — so every launch dealt the same cards and drew the same maze.</p>
+<p><code>clock_headless.c</code> extracts the uPD1990AC chip (<code>pd1990ac_chip_cmd</code> / <code>pd1990ac_clk_pulse</code>) from clock.cpp, FLTK-free, and reports the <strong>real host wall-clock time</strong> so <code>TIME$</code> advances. The year is separate: the chip has no year register (the M100 keeps the year in RAM), so we poke today's year into <code>gStdRomDesc-&gt;sYear</code> once. The 1983 ROM handles it gracefully — the menu reads <strong><code>Jly 07,2026</code></strong> ("Jly" is the ROM's own abbreviation for July, not a bug).</p>
+<h2 id="peek-collisions-and-the-screen-mirror">PEEK collisions and the screen mirror</h2>
+<p>Several BASIC games detect collisions by <strong><code>PEEK</code>ing the LCD's RAM mirror</strong> — locations 32959–33279, which the ROM keeps in sync with the display. Because we run the real ROM and emulate that RAM, the mirror is maintained exactly, so PEEK-based games (Road Rally, Skydiver, Worm Hole) work. This was an open question until Road Rally's crash-detection fired correctly.</p>
+<h2 id="the-keyboard--and-caps-lock">The keyboard — and Caps Lock</h2>
+<p>Only <strong>two</strong> keys differ from a PC keyboard: <strong>GRPH → Left Alt</strong> and <strong>CODE → Right Alt</strong>. Everything else (Enter, Shift, Ctrl, Tab, Esc, Backspace, arrows, F1–F8) maps 1:1. The FLTK build rebuilt io.c's <code>keyscan[]</code> from its own key handler; headless, <code>pump_input</code> calls <code>update_keys()</code>.</p>
+<p>The command keys io.c actually reads — <strong>PASTE</strong> (Insert), <strong>LABEL</strong> (F9), <strong>BREAK</strong> (Shift+Pause) — are momentary and wire up normally. <strong>Caps Lock does not.</strong> It's <code>MT_CAP_LOCK</code>, bit <code>0x20</code>, and io.c reads it — but it's a <strong>toggle</strong>: desktop VirtualT does <code>gSpecialKeys ^= MT_CAP_LOCK</code> on key-down, whereas a naïve frontend treats it as a held key, so it flips on and instantly off ("no effect"). Porting the toggle into <code>pump_input</code> — flip on key-down, ignore key-up — fixed it. It's the <em>only</em> toggle key in VirtualT's handler; NUM (<code>0x10</code>) is marked "Not used" upstream.</p>
+<h2 id="the-games--a-book-not-a-fork">The games — a book, not a fork</h2>
+<p>The lineup is ten <strong>type-in BASIC games</strong>, and getting them clean was its own saga.</p>
+<p>The pre-book source was <strong>club100</strong>: its pre-tokenized <code>.BA</code> files load fine (Four Seasons Solitaire, ELIZA — both kept), but its ASCII listings are word-wrapped at ~40 columns with <code>\r\r\n</code> separators, so the emulator's load-time tokeniser corrupts them. A custom un-wrapper (rejoin any physical line that doesn't start with an ascending line number) got <em>close</em> but stayed flaky on bigger listings.</p>
+<p>The fix was to change <strong>source</strong>, not tooling: <strong>David Busch's <em>25 Games for your TRS-80 Model 100</em></strong> (TAB Books, 1984). Eight games are <strong>hand-transcribed</strong> from its scanned listings into clean single-CR-line <code>.ba</code> files we fully control — which load reliably, with no wrapping roulette, and the book's chapters double as the gamedocs. Games that quit to the BASIC <code>Ok</code> prompt are adapted to call <code>MENU</code> instead so you land back on the machine's own menu.</p>
+<h2 id="battery-backup--persistence-done-authentically">Battery backup — persistence, done authentically</h2>
+<p>Rather than a full CPU/IO save-state, the Model 100 gets what the real machine has: <strong>battery-backed RAM</strong>. <code>save_ram</code> shows the whole persistent state is just the 32 KB of base RAM (<code>gBaseMemory+RAMSTART</code>), so <code>play.html</code> persists exactly that to <code>localStorage</code> for the bare <strong>Startup Menu</strong> and restores it on load (<code>HEAPU8.set</code> over <code>gx_ram_ptr()</code>, then <code>gx_warm_reset()</code> = <code>jump_to_zero()</code>, a warm reboot that keeps RAM so the restored directory re-scans). Your files, notes and typed-in programs survive between visits — browser-contingent, and games stay ephemeral.</p>
+<p>On a first, blank-RAM boot, empty <code>ADRS.DO</code> / <code>NOTE.DO</code> are seeded so <strong>ADDRSS</strong> and <strong>SCHEDL</strong> open instead of erroring.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/m100/
+├── play.html
+├── controls.html          ← sourced from the owner's manual
+├── virtualt.js
+├── virtualt.wasm          ← M100 ROM embedded here
+├── adrs.do, note.do       ← empty seeds for ADDRSS/SCHEDL
+├── games/                 ← 10 .ba games
+└── src/                   ← the 5 headless units + build.sh + LICENSE
+</code></pre>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulators.html">Emulators</a> — index of all engines</li>
+<li><a href="Emulator-sdltrs-TRS-80.html">Emulator-sdltrs-TRS-80</a> — the other from-source Tandy build (Model I)</li>
+<li><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a> — the third Tandy machine</li>
+<li><a href="Emulator-atari800.html">Emulator-atari800</a> — the other 8-bit ASYNCIFY emscripten build</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

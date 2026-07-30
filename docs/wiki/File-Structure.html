@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>File Structure — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html" class="active">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<p>A tour of where things live in the repo. The shape is deliberately flat — no <code>src/</code> vs <code>dist/</code> distinction, no build outputs, no node_modules. Everything you see is what gets served.</p>
+<pre><code>genx-dos/
+├── README.md                 one-page entry point
+├── CHANGELOG.md
+├── ATTRIBUTION.md            canonical record of every bundled third-party asset
+├── LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)
+├── SECURITY.md               scope + private vulnerability reporting
+├── CONTRIBUTING.md           local setup + PR ground rules
+├── CODE_OF_CONDUCT.md        Contributor Covenant 2.1
+├── serve.sh                  starts local http.server, opens browser
+├── index.html                landing page (intro, spec sheet, links) → prompt/
+├── favicon.ico
+├── make_fonts.py             generates f12.N.png palette variants
+├── package.json / index.js   the npm package (@retro-jack/genx-dos)
+├── Dockerfile                the ghcr.io container image (site served by nginx)
+├── .github/                  publish-package workflow (release → ghcr + npm), Dependabot config, issue/PR templates
+│
+├── docs/                     tech article + README screenshots + social-preview image
+│
+├── prompt/                   the DOS terminal
+│   ├── index.html
+│   ├── favicon.ico
+│   ├── animated_favicon1.gif
+│   ├── javascript/
+│   │   ├── globals.js        shared state (palette, paths, flags)
+│   │   ├── goFontGo.js       builds the 256 CSS rules
+│   │   ├── classUtils.js     add/remove/test class helpers
+│   │   ├── keyboard.js       keypress / keydown handlers
+│   │   ├── terminal.js       echo, executeBatch, prompt rendering
+│   │   ├── fs.js             the virtual C: drive
+│   │   ├── commands-core.js  dir, cd, type, find, attemptExec, handleCmd
+│   │   ├── commands.js       echo, cls, setcol, help
+│   │   └── init.js           entry point + AMIBIOS POST animation
+│   └── img/
+│       ├── ami-logo.png      AMIBIOS POST logo
+│       ├── f12.7.png         master sprite sheet (light grey)
+│       └── f12.&lt;0-15&gt;.png    CGA palette variants
+│
+├── gamedocs/                per-game instruction pages
+│   └── &lt;platform&gt;/          one HTML file per game, named by URL param key
+│
+└── systems/
+    ├── _shared/             shared CSS used by every gamedoc + controls.html (360 pages)
+    │                        + corner controls-link CSS/JS
+    │                        + genx-frame.css (universal play.html page reset + .err/.loading)
+    │                        + genx-noscript.css (no-JS overlay)
+    │                        + genx-game-loader.js (?game=KEY → games.json lookup helper)
+    │                        + genx-numlock-warn.js (NumLock-off banner for VICE bundles)
+    │                        + genx-vice-softkeys.js (RUN/STOP remap to Scroll Lock/Pause)
+    │                        + genx-savestate.js / genx-savestate-std.js (save/load slots → IndexedDB)
+    │                        + genx-bbc-copykey.js / genx-trs80-softkeys.js (COPY / CLEAR soft buttons)
+    │                        + genx-gamepad-keys.js (USB pad → key events, per-bundle map)
+    │                        + favicon.ico / animated_favicon1.gif (site favicon, linked by every page)
+    │                        + bezels/   PNG monitor frames (every platform now bezeled)
+    │                        + textures/ 70s wallpaper tile (sitewide body background)
+    ├── _shared-ejs/         shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem cores
+    │                        (14 bundles share; saves ~25 MB vs per-bundle copies)
+    ├── apple1/              Apple I            (copied from scullin/apple1js)
+    ├── apple2/              Apple ][+          (copied from whscullin/apple2js)
+    ├── bbcmicro/            BBC Micro          (jsbeeb, Model B — copied from mattgodbolt/jsbeeb)
+    ├── bbcmaster/           BBC Master 128     (jsbeeb, model=Master — full copy of the same build)
+    ├── electron/            Acorn Electron     (copied from dmcoles/elkjs)
+    ├── jsnes/               NES                (EmulatorJS + FCEUmm libretro core)
+    ├── stella/              Atari 2600         (EmulatorJS + Stella, stella2014 core)
+    ├── js7800/              Atari 7800         (EmulatorJS + ProSystem, shared _shared-ejs/)
+    ├── gbc/                 Game Boy / Color   (EmulatorJS + gambatte — handheld)
+    ├── lynx/                Atari Lynx         (EmulatorJS + handy + boot ROM — handheld)
+    ├── gamegear/            Sega Game Gear     (EmulatorJS + genesis_plus_gx — handheld)
+    ├── msx1/                MSX1               (mirror of ppeccin/WebMSX, boots M=MSX1)
+    ├── msx2/                MSX2               (full copy of the same WebMSX engine, boots M=MSX2)
+    ├── sms/                 Sega Master System (EmulatorJS + genesis_plus_gx)
+    ├── jsspeccy/            Sinclair Spectrum  (copied from gasman/JSSpeccy 3)
+    ├── jtyone/              Sinclair ZX81      (copied from JtyOne)
+    ├── xroar/               Tandy CoCo         (copied from 6809.org.uk/xroar)
+    ├── trs80/               Tandy TRS-80 Model I (sdltrs, built from source to WASM)
+    ├── m100/                Tandy TRS-80 Model 100 (VirtualT core-only build → WASM)
+    ├── js99er/              TI-99/4A           (copied from Rasmus-M/js99er — vanilla-JS build)
+    ├── atari400/            Atari 400          (atari800 WASM, boots OS-B)
+    ├── atari800/            Atari 800XL        (atari800 WASM, boots OS-XL — same build)
+    ├── pet/                 Commodore PET      (Thomas Skibo's pet2001 — vanilla JS)
+    ├── vic20/               Commodore VIC-20   (EmulatorJS + VICE xvic)
+    ├── max/                 Commodore MAX      (EmulatorJS + VICE x64 in Ultimax mode)
+    ├── c64/                 Commodore 64       (EmulatorJS + VICE x64)
+    ├── c16/                 Commodore 16       (EmulatorJS + VICE xplus4 in c16pal mode)
+    ├── plus4/               Commodore Plus/4   (EmulatorJS + VICE xplus4)
+    ├── c128/                Commodore 128      (EmulatorJS + VICE x128 native mode)
+    ├── coleco/              ColecoVision       (EmulatorJS + gearcoleco + BIOS)
+    ├── intv/                Intellivision      (jzIntv WASM + custom loader + BIOS)
+    ├── odyssey2/            Magnavox Odyssey²  (libretro-o2em + custom SDL2 frontend + BIOS)
+    └── cpc/                 Amstrad CPC        (floooh/chips-test tiny8bit CPC WASM)
+</code></pre>
+<h2 id="per-emulator-layout">Per-emulator layout</h2>
+<p>Every emulator-specific page can be told in one row. Where there's an integration story behind the layout, the engine article on the <a href="Emulators.html">Emulators</a> index goes into the detail.</p>
+<table>
+<thead>
+<tr>
+<th>Emulator</th>
+<th>Runtime</th>
+<th>Wrapper</th>
+<th>Game files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bbcmicro/</code>, <code>bbcmaster/</code></td>
+<td><code>dist/</code> (Vite build; a full copy in each)</td>
+<td>the dist's own <code>index.html</code> (URL-driven; Master adds <code>?model=Master</code>)</td>
+<td><code>dist/discs/&lt;publisher&gt;/*.ssd</code></td>
+</tr>
+<tr>
+<td><code>electron/</code></td>
+<td>ElkJS pure-JS + jQuery</td>
+<td><code>play.html</code> (<code>?game=&lt;key&gt;</code>)</td>
+<td>6× <code>.uef</code> snapshots (from the set ElkJS ships)</td>
+</tr>
+<tr>
+<td><code>apple1/</code></td>
+<td>apple1js pure-JS</td>
+<td><code>play.html</code> (<code>?game=&lt;key&gt;</code>)</td>
+<td><code>tapes/*.js</code></td>
+</tr>
+<tr>
+<td><code>apple2/</code></td>
+<td>apple2js webpack dist</td>
+<td><code>play.html</code> (rewrites <code>?game=</code> → apple2js <code>?disk=</code>)</td>
+<td><code>json/disks/*.json</code></td>
+</tr>
+<tr>
+<td><code>jsnes/</code></td>
+<td>EmulatorJS + FCEUmm libretro core</td>
+<td><code>play.html</code> (<code>?game=&lt;key&gt;</code>)</td>
+<td><code>roms/*.nes</code></td>
+</tr>
+<tr>
+<td><code>stella/</code></td>
+<td>EmulatorJS (shared <code>_shared-ejs/</code>)</td>
+<td><code>play.html</code></td>
+<td><code>roms/*.a26</code></td>
+</tr>
+<tr>
+<td><code>js7800/</code></td>
+<td>EmulatorJS (shared <code>_shared-ejs/</code>)</td>
+<td><code>play.html</code></td>
+<td><code>roms/*.a78</code></td>
+</tr>
+<tr>
+<td><code>gbc/</code></td>
+<td>EmulatorJS + gambatte (shared <code>_shared-ejs/</code>)</td>
+<td><code>play.html</code></td>
+<td><code>roms/*.gb</code>/<code>*.gbc</code></td>
+</tr>
+<tr>
+<td><code>lynx/</code></td>
+<td>EmulatorJS + handy + <code>lynxboot.img</code></td>
+<td><code>play.html</code></td>
+<td><code>roms/*.lnx</code></td>
+</tr>
+<tr>
+<td><code>gamegear/</code></td>
+<td>EmulatorJS + genesis_plus_gx</td>
+<td><code>play.html</code></td>
+<td><code>roms/*.gg</code></td>
+</tr>
+<tr>
+<td><code>msx1/</code>, <code>msx2/</code></td>
+<td>stock <code>wmsx.js</code> engine + our wrapper <code>index.html</code> (a full copy in each)</td>
+<td>the bundle's own <code>index.html</code> (URL-driven; <code>&amp;M=MSX1</code> / <code>&amp;M=MSX2</code>)</td>
+<td><code>games/*.zip</code></td>
+</tr>
+<tr>
+<td><code>sms/</code></td>
+<td>EmulatorJS + genesis_plus_gx</td>
+<td><code>play.html</code> (<code>?game=&lt;key&gt;</code>)</td>
+<td><code>roms/*.sms</code></td>
+</tr>
+<tr>
+<td><code>jsspeccy/</code></td>
+<td><code>jsspeccy/jsspeccy.js</code> + WASM Z80 in Web Worker</td>
+<td><code>play.html</code></td>
+<td><code>games/*.z80</code>/<code>*.tap</code></td>
+</tr>
+<tr>
+<td><code>jtyone/</code></td>
+<td><code>zx81_emu.js</code> + <code>roms/zx81.rom</code></td>
+<td><code>play.html</code></td>
+<td><code>tapes/*.p</code></td>
+</tr>
+<tr>
+<td><code>xroar/</code></td>
+<td><code>xroar.js</code> + <code>xroar.wasm</code> + 9 system ROMs</td>
+<td><code>play.html</code></td>
+<td><code>roms/*.ccc</code></td>
+</tr>
+<tr>
+<td><code>trs80/</code></td>
+<td><code>sdltrs.js</code> + <code>sdltrs.wasm</code> (Level II ROM embedded)</td>
+<td><code>play.html</code></td>
+<td><code>games/*.cmd</code></td>
+</tr>
+<tr>
+<td><code>m100/</code></td>
+<td><code>virtualt.js</code> + <code>virtualt.wasm</code> (M100 ROM embedded) + <code>src/</code> (build source)</td>
+<td><code>play.html</code></td>
+<td><code>games/*.ba</code></td>
+</tr>
+<tr>
+<td><code>js99er/</code></td>
+<td>vanilla-JS modules + <code>lib/</code> (jQuery + zip.js)</td>
+<td><code>play.html</code> (<code>.rpk</code> first, <code>.bin</code> fallback)</td>
+<td><code>carts/*.rpk</code></td>
+</tr>
+<tr>
+<td><code>atari400/</code>, <code>atari800/</code></td>
+<td><code>atari800.js</code> + <code>atari800.wasm</code> (AltirraOS baked in; a full copy in each)</td>
+<td><code>play.html</code> (<code>?game=&lt;key&gt;</code>; 400 boots OS-B, 800XL boots OS-XL)</td>
+<td><code>roms/*.atr</code> + <code>*.rom</code></td>
+</tr>
+<tr>
+<td><code>pet/</code></td>
+<td>Thomas Skibo's pet2001 (vanilla JS, <code>pet2001/</code> modules)</td>
+<td><code>play.html</code> (<code>?game=&lt;key&gt;</code>, IEEE-488 PRG injection)</td>
+<td><code>games/*.prg</code></td>
+</tr>
+<tr>
+<td><code>vic20</code>, <code>max</code>, <code>c64</code>, <code>c16</code>, <code>plus4</code>, <code>c128</code></td>
+<td>EmulatorJS framework + VICE libretro core (shared)</td>
+<td><code>play.html</code> (per-game <code>model</code>/<code>video</code> overrides)</td>
+<td><code>games/*.prg</code>/<code>*.d64</code>/<code>*.crt</code></td>
+</tr>
+<tr>
+<td><code>coleco/</code></td>
+<td>EmulatorJS + gearcoleco + <code>colecovision.rom</code> BIOS</td>
+<td><code>play.html</code> (<code>EJS_defaultControls</code> numpad remap)</td>
+<td><code>games/*.col</code></td>
+</tr>
+<tr>
+<td><code>cpc/</code></td>
+<td>floooh/tiny8bit CPC WASM</td>
+<td><code>play.html</code> (URL rewrite to sokol_args <code>?file=&amp;input=</code>)</td>
+<td><code>games/*.dsk</code></td>
+</tr>
+<tr>
+<td><code>intv/</code></td>
+<td>jzIntv WASM + <code>exec.bin</code> + <code>grom.bin</code> BIOS</td>
+<td><code>play.html</code> (calls <code>Module.launchJzintv()</code>)</td>
+<td><code>games/*.int</code></td>
+</tr>
+<tr>
+<td><code>odyssey2/</code></td>
+<td>libretro-o2em + custom SDL2 frontend + <code>o2rom.bin</code> BIOS</td>
+<td><code>play.html</code> (uses shared <code>genxLoadGame()</code>)</td>
+<td><code>games/*.bin</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each <code>play.html</code>-based emulator has a <code>games.json</code> mapping <code>&lt;key&gt;</code> → <code>{title, rom}</code> (or <code>{title, bundle}</code>). The URL-driven emulators (bbcmicro, bbcmaster, msx1, msx2) take all their config via query string or hash and need no per-site wrapper.</p>
+<h2 id="notes-on-individual-files">Notes on individual files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>index.html</code> (repo root)</td>
+<td>the landing page — intro, CP437 spec sheet, screenshots and links, with the way into <code>prompt/</code>; touch devices get a keyboard-required graphic instead</td>
+</tr>
+<tr>
+<td><code>prompt/index.html</code></td>
+<td>Loads the JS modules in order, hosts the terminal <code>&lt;div&gt;</code></td>
+</tr>
+<tr>
+<td><code>prompt/img/ami-logo.png</code></td>
+<td>AMIBIOS POST splash logo</td>
+</tr>
+<tr>
+<td><code>prompt/img/f12.7.png</code></td>
+<td>192×192 px, 16×16 grid of 12×12 px CP437 glyphs (light grey)</td>
+</tr>
+<tr>
+<td><code>prompt/img/f12.&lt;N&gt;.png</code></td>
+<td>Pre-tinted variant for CGA palette index N</td>
+</tr>
+<tr>
+<td><code>make_fonts.py</code></td>
+<td>One-shot PIL script that tints <code>f12.7.png</code> into the other variants</td>
+</tr>
+<tr>
+<td><code>serve.sh</code></td>
+<td><code>python3 -m http.server 8765</code> wrapper that also opens the browser</td>
+</tr>
+</tbody>
+</table>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

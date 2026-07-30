@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emulators — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html" class="active">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<p>19 emulator engines ship with GenX-DOS, driving 33 sub-systems between them. Some of the integrations were one-liners; others took a week of trial and failure. Every engine — plus each libretro core the shared EmulatorJS framework hosts — has its own integration story, so the index below runs to more rows than the engine count: one row per story page.</p>
+<h2 id="the-engines">The engines</h2>
+<table>
+<thead>
+<tr>
+<th>Article</th>
+<th>Sub-systems</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a></td>
+<td>Tandy Color Computer</td>
+</tr>
+<tr>
+<td><a href="Emulator-sdltrs-TRS-80.html">Emulator-sdltrs-TRS-80</a></td>
+<td>Tandy TRS-80 Model I</td>
+</tr>
+<tr>
+<td><a href="Emulator-VirtualT-Model-100.html">Emulator-VirtualT-Model-100</a></td>
+<td>Tandy TRS-80 Model 100</td>
+</tr>
+<tr>
+<td><a href="Emulator-atari800.html">Emulator-atari800</a></td>
+<td>Atari 400, Atari 800XL</td>
+</tr>
+<tr>
+<td><a href="Emulator-VICE-family.html">Emulator-VICE-family</a></td>
+<td>VIC-20, MAX, C64, C16, Plus/4, C128</td>
+</tr>
+<tr>
+<td><a href="Emulator-pet2001-Skibo.html">Emulator-pet2001-Skibo</a></td>
+<td>Commodore PET 2001</td>
+</tr>
+<tr>
+<td><a href="Emulator-gearcoleco-ColecoVision.html">Emulator-gearcoleco-ColecoVision</a></td>
+<td>ColecoVision</td>
+</tr>
+<tr>
+<td><a href="Emulator-jzIntv-Intellivision.html">Emulator-jzIntv-Intellivision</a></td>
+<td>Mattel Intellivision</td>
+</tr>
+<tr>
+<td><a href="Emulator-libretro-o2em-Odyssey2.html">Emulator-libretro-o2em-Odyssey2</a></td>
+<td>Magnavox Odyssey²</td>
+</tr>
+<tr>
+<td><a href="Emulator-apple2js.html">Emulator-apple2js</a></td>
+<td>Apple ][+</td>
+</tr>
+<tr>
+<td><a href="Emulator-tiny8bit-CPC.html">Emulator-tiny8bit-CPC</a></td>
+<td>Amstrad CPC</td>
+</tr>
+<tr>
+<td><a href="Emulator-elkjs-Electron.html">Emulator-elkjs-Electron</a></td>
+<td>Acorn Electron</td>
+</tr>
+<tr>
+<td><a href="Emulator-js99er-TI-99-4A.html">Emulator-js99er-TI-99-4A</a></td>
+<td>TI-99/4A</td>
+</tr>
+<tr>
+<td><a href="Emulator-apple1js.html">Emulator-apple1js</a></td>
+<td>Apple I</td>
+</tr>
+<tr>
+<td><a href="Emulator-jsbeeb.html">Emulator-jsbeeb</a></td>
+<td>BBC Micro, BBC Master 128</td>
+</tr>
+<tr>
+<td><a href="Emulator-EmulatorJS-NES-FCEUmm.html">Emulator-EmulatorJS-NES-FCEUmm</a></td>
+<td>NES</td>
+</tr>
+<tr>
+<td><a href="Emulator-Stella.html">Emulator-Stella</a></td>
+<td>Atari 2600</td>
+</tr>
+<tr>
+<td><a href="Emulator-gambatte-Game-Boy.html">Emulator-gambatte-Game-Boy</a></td>
+<td>Game Boy, Game Boy Color</td>
+</tr>
+<tr>
+<td><a href="Emulator-handy-Atari-Lynx.html">Emulator-handy-Atari-Lynx</a></td>
+<td>Atari Lynx</td>
+</tr>
+<tr>
+<td><a href="Emulator-genesis-plus-gx-Game-Gear.html">Emulator-genesis-plus-gx-Game-Gear</a></td>
+<td>Sega Master System + Game Gear (one genesis_plus_gx core)</td>
+</tr>
+<tr>
+<td><a href="Emulator-EmulatorJS-7800-ProSystem.html">Emulator-EmulatorJS-7800-ProSystem</a></td>
+<td>Atari 7800</td>
+</tr>
+<tr>
+<td><a href="Emulator-WebMSX.html">Emulator-WebMSX</a></td>
+<td>MSX, MSX2</td>
+</tr>
+<tr>
+<td><a href="Emulator-JSSpeccy.html">Emulator-JSSpeccy</a></td>
+<td>ZX Spectrum</td>
+</tr>
+<tr>
+<td><a href="Emulator-JtyOne.html">Emulator-JtyOne</a></td>
+<td>ZX81</td>
+</tr>
+</tbody>
+</table>
+<p>Fourteen of these share one copy of the EmulatorJS framework at <code>systems/_shared-ejs/</code> — the six VICE bundles, the Coleco bundle, the NES bundle, the Atari 2600 (Stella) bundle, the Atari 7800 (ProSystem) bundle, the Game Boy / GBC (gambatte) bundle, the Atari Lynx (handy) bundle, and the two Sega bundles — Master System and Game Gear — both on genesis_plus_gx. All the EJS-specific gotchas live in <a href="Emulator-VICE-family.html">Emulator-VICE-family</a>; the Coleco and NES articles assume that context and only document what's different.</p>
+<h2 id="how-a-game-launches">How a game launches</h2>
+<p>The same flow across every emulator:</p>
+<ol>
+<li>The user picks a number in a <code>GAMES</code> menu.</li>
+<li><code>N.bat</code> runs the named launcher (e.g. <code>sonic1</code>).</li>
+<li><code>sonic1.bat</code> is a <code>link:</code> entry pointing at the emulator's URL.</li>
+<li>The terminal opens that URL in a new tab via <code>window.open(link, "_blank")</code>.</li>
+</ol>
+<p>URL patterns vary per emulator. Each engine article documents its own.</p>
+<h2 id="prompt-vs-basic-entries">PROMPT vs BASIC entries</h2>
+<p>Every emulator's GAMES menu has a "boot a clean machine" entry as item N+1. Labels match what the user actually sees on boot:</p>
+<ul>
+<li><strong>PROMPT</strong> for <code>&gt;</code> / <code>Ok</code> style command-line systems</li>
+<li><strong>BASIC</strong> for systems whose BASIC banner is the boot screen (<code>READY</code>, <code>Ready</code>, <code>READY.</code>)</li>
+</ul>
+<p>All six VICE-family + 800XL bundles route through a small <code>empty.prg</code> for the BASIC entry; the PET (now under Skibo) uses the same <code>empty.prg</code> pattern via its own runtime; Spectrum, ZX81, and CPC pass no query at all (their emulators already drop to ROM BASIC with no software inserted).</p>
+<h2 id="controls-reference-pages">Controls reference pages</h2>
+<p>Every emulator directory has a <code>controls.html</code> documenting its keyboard / joystick mapping. Same dark-amber DOS-flavoured style across all pages; the page-level CSS lives in <code>systems/_shared/genx-controls.css</code>.</p>
+<p><strong>Per-game instruction pages</strong> at <code>gamedocs/&lt;platform&gt;/&lt;key&gt;.html</code> replace <code>controls.html</code> when a game has researched gameplay instructions. The <code>genx-controls-link.js</code> script reads <code>?game=</code>, <code>?tape=</code>, or <code>?rom=</code> from the URL and routes to the matching gamedocs page, falling back to <code>controls.html</code> when no game param is present (prompt/BASIC entries).</p>
+<p>Every emulator's main entry HTML carries a small bottom-right <code>controls</code> link (fixed position, semi-transparent, Wikipedia-style external-link SVG icon). The link sits in the entry HTML itself — <code>play.html</code> for the wrapped emulators, the upstream <code>index.html</code> for the URL-driven ones (<code>bbcmicro</code>, <code>bbcmaster</code>, <code>msx1</code>, <code>msx2</code>). It's <strong>not</strong> in the virtual filesystem; the DOS prompt's <code>dir</code> output shows only <code>.bat</code> launchers and menu scripts, never raw <code>.html</code> files.</p>
+<h2 id="adding-a-new-emulator">Adding a new emulator</h2>
+<p>Same recipe each time:</p>
+<ol>
+<li><strong>Copy</strong> the deployed bundle into <code>systems/&lt;name&gt;/</code>. Mirror with <code>wget</code> if it's hosted, or build from source if you must. Drop the upstream <code>node_modules</code>, the inner <code>.git</code>, any <code>.gitignore</code> that excludes deploy artefacts, and any upstream <code>README.md</code> / dev tooling.</li>
+<li><strong>Strip telemetry and external runtime fetches</strong> from the source's HTML and bundled JS/CSS <em>before</em> deploying. Each of these patterns has bitten us at least once:
+   - Inline analytics (<code>gtag(</code>, <code>umami</code>, etc.) — jsbeeb and webmsx both shipped Google Analytics; removed both.
+   - Framework-version checks like <code>fetch("https://cdn.&lt;framework&gt;.org/.../version.json")</code> — EmulatorJS does this on every bootstrap. Patched <code>checkForUpdates()</code> to a no-op <code>return;</code>.
+   - Hardcoded NetPlay / multiplayer relay servers — the former Javatari bundle had <code>SERVER_ADDRESS: "webmsx.azurewebsites.net/"</code> for keep-alive + WebSocket. Set the address to <code>""</code> so any guarded <code>address &amp;&amp; …</code> short-circuits and the wss:// URL becomes invalid.
+   - CSS web-font <code>@import</code> rules pointing at <code>fonts.googleapis.com</code> — jsbeeb's Vite-built CSS had a Lato import. Strip it; fall through to the system-font fallback unless the visual difference matters.</li>
+<li><strong>Add the standard <code>&lt;noscript&gt;</code> overlay</strong> to every new HTML entry point — copy verbatim from any existing emulator page.</li>
+<li><strong>Write <code>play.html</code></strong> if the emulator needs a key-based launcher. Skip if the emulator's own page already accepts URL params (BBC and WebMSX patterns). The wrapper reads <code>?game=&lt;key&gt;</code>, fetches <code>games.json</code>, looks up <code>{title, rom}</code>, and boots the emulator with that ROM.</li>
+<li><strong>Bundle the ROMs</strong> under <code>systems/&lt;name&gt;/&lt;roms-dir&gt;/</code>. External ROM sites generally don't set CORS for direct browser fetch, so wrappers can't pull at runtime — every byte must be on the same origin.</li>
+<li><strong>Wire <code>fs.js</code></strong>: each game's <code>.bat</code> gets a <code>link:</code> field pointing at the URL pattern above. Per-system <code>GAMES</code> menu follows the 45-char box format (see <a href="Customising-the-Filesystem.html">Customising the Filesystem</a>) with 10 titles + a PROMPT or BASIC entry.</li>
+</ol>
+<h2 id="multi-model-platforms">Multi-model platforms</h2>
+<p>Some platforms host multiple machines under the same vendor — ATARI has 2600 / 7800 as siblings under CONSOLE and 400 / 800XL as siblings under HOMECOMP; MSX has MSX1 and MSX2; SINCLAIR has SPECTRUM and ZX81. The hierarchical pattern: a parent menu with <code>1.&lt;MODEL1&gt;</code> / <code>2.&lt;MODEL2&gt;</code> rows, each pointing into its own GAMES dir. See <code>prompt/javascript/fs.js</code> for the exact tree.</p>
+<p>Single-platform manufacturers (NES, INTV, CVISION, ODYSSEY2, SMS, COCO) sit directly under their CONSOLE or HOMECOMP parent — no manufacturer middle level.</p>
+<p>Note: Atari 400 + 800XL run the <strong>same atari800 engine</strong> but ship as two self-contained bundles — <code>systems/atari400/</code> (boots OS-B) and <code>systems/atari800/</code> (boots OS-XL) — so each game's URL names the machine. MSX and BBC are split the same way: <code>msx1/</code>+<code>msx2/</code> and <code>bbcmicro/</code>+<code>bbcmaster/</code>.</p>
+<h2 id="testing-changes">Testing changes</h2>
+<pre><code class="language-sh">./serve.sh        # or: python3 -m http.server 8765
+</code></pre>
+<p>After editing <code>fs.js</code> or any emulator wrapper, hard-refresh the prompt page (Ctrl+Shift+R). Browsers aggressively cache <code>fs.js</code> between visits.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Project-Overview.html">Project Overview</a> — what the site does</li>
+<li><a href="Virtual-Filesystem.html">Virtual Filesystem</a> — how <code>.bat</code> launchers reach <code>play.html</code></li>
+<li><a href="File-Structure.html">File Structure</a> — where bundles sit in the repo</li>
+<li><a href="Roadmap.html">Roadmap</a> — what's shipped, what's next</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

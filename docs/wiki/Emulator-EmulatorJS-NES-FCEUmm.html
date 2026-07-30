@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FCEUmm — NES — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="fceumm--nes">FCEUmm — NES</h1>
+<p>The NES bundle lives at <code>systems/jsnes/</code>. The directory name is a legacy artefact — the bundle migrated from bfirsh/jsnes to EmulatorJS + FCEUmm a while ago. The dir was kept to avoid forcing every <code>fs.js</code> link to change. If you're looking at the directory and wondering why an EmulatorJS bundle is named <code>jsnes/</code>, that's why.</p>
+<h2 id="where-we-started">Where we started</h2>
+<p>The first NES bundle used <a href="https://github.com/bfirsh/jsnes">bfirsh/jsnes</a> v2.1.0, a pure-JS NES emulator. It worked, but its audio pipeline used the deprecated <code>ScriptProcessorNode</code> path, which is glitchy in modern browsers — clicks, dropouts, frame-locked audio drift. Long-term that path is going away entirely.</p>
+<p>EmulatorJS + the <a href="https://github.com/libretro/libretro-fceumm">FCEUmm</a> libretro core has a clean AudioWorklet pipeline. Same gain in audio quality the rest of the EmulatorJS bundles got.</p>
+<h2 id="the-migration">The migration</h2>
+<p>The shape is the same as every other EJS bundle. From the C64 recipe:</p>
+<ul>
+<li><code>EJS_core = 'nes'</code></li>
+<li><code>EJS_pathtodata</code> computed from URL relative to <code>_shared-ejs/ejs/data/</code></li>
+<li><code>EJS_startOnLoaded = true</code></li>
+<li><code>EJS_DEBUG_XX = true</code></li>
+<li>FCEUmm core lives at <code>_shared-ejs/ejs/data/cores/fceumm-legacy-wasm.data</code></li>
+</ul>
+<p>Same <code>localStorage</code> ambush, same <code>-legacy-</code> core variant gotcha, same <code>EJS_DEBUG_XX</code> workaround as the VICE family. Refer to <a href="Emulator-VICE-family.html">Emulator-VICE-family</a> for the long-form explanation of each — they apply identically.</p>
+<h2 id="the-ba-swap-that-came-along-for-the-ride">The B/A swap that came along for the ride</h2>
+<p>bfirsh/jsnes mapped X = A, Z = B — period-correct (A on right, B on left, X is the right-hand key, Z is the left-hand key). EmulatorJS's RetroPad default is the inverse: B (button 0) on <code>x</code>, A (button 8) on <code>z</code>. Period-correct to the physical NES is the opposite <em>direction</em>: A is the right button, so it should be the right-hand key.</p>
+<p>Either side has a defensible reading. The deciding factor: users who'd already learned the bfirsh layout. Swap the defaults to preserve muscle memory:</p>
+<pre><code class="language-js">window.EJS_defaultControls = {
+  0: {
+    0: { value: 'z' },  // B
+    8: { value: 'x' }   // A
+  }
+};
+</code></pre>
+<p>X stays A, Z stays B. Anyone who learned the old build doesn't have to relearn.</p>
+<h2 id="a-documentation-gotcha">A documentation gotcha</h2>
+<p>When adding new emulator-list claims to README / ATTRIBUTION / Roadmap / File-Structure, the current set of EmulatorJS libretro cores is: <strong>FCEUmm + gearcoleco + 4 VICE cores (x64, x128, xvic, xplus4)</strong>. FCEUmm is easy to forget when listing them — the dir name "jsnes" doesn't suggest a libretro core lives behind it. The PET used to ride along on <code>vice_xpet</code> but was migrated out in June 2026; see <a href="Emulator-pet2001-Skibo.html">Emulator-pet2001-Skibo</a>.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/jsnes/      ← name is legacy; runtime is EJS+FCEUmm
+├── play.html         ← B/A swap + standard EJS bootstrap
+├── controls.html
+├── games.json
+└── games/
+    └── *.nes
+</code></pre>
+<p>The FCEUmm core lives at <code>systems/_shared-ejs/ejs/data/cores/fceumm-legacy-wasm.data</code>.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-VICE-family.html">Emulator-VICE-family</a> — same EJS bootstrap pattern, all the EJS gotchas explained in full</li>
+<li><a href="Emulator-gearcoleco-ColecoVision.html">Emulator-gearcoleco-ColecoVision</a> — sibling EJS bundle with controller overrides</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commands — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html" class="active">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<p>The prompt understands a small subset of DOS commands. Commands are case-insensitive. Multiple commands can be chained with <code>&amp;&amp;</code> (e.g. <code>cd\emulators &amp;&amp; dir</code>).</p>
+<h2 id="navigation">Navigation</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dir</code></td>
+<td>List the current directory</td>
+</tr>
+<tr>
+<td><code>dir /w</code></td>
+<td>Wide view</td>
+</tr>
+<tr>
+<td><code>dir /o</code></td>
+<td>Alphabetical order</td>
+</tr>
+<tr>
+<td><code>dir /w /o</code></td>
+<td>Wide + sorted</td>
+</tr>
+<tr>
+<td><code>cd &lt;dir&gt;</code></td>
+<td>Change directory</td>
+</tr>
+<tr>
+<td><code>cd ..</code></td>
+<td>Go up one level</td>
+</tr>
+<tr>
+<td><code>cd \</code></td>
+<td>Jump to drive root</td>
+</tr>
+<tr>
+<td><code>cls</code></td>
+<td>Clear the screen</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files">Files</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;filename&gt;</code></td>
+<td>Execute. <code>link:</code> opens the URL in a new tab; <code>data:</code> runs as a batch script</td>
+</tr>
+<tr>
+<td><code>type &lt;file&gt;</code></td>
+<td>Print the file's <code>data</code> (or <code>link</code>) to the screen</td>
+</tr>
+<tr>
+<td><code>find &lt;word&gt;</code></td>
+<td>Search the whole virtual FS for games (<code>.bat</code> launchers) and emulator menus (sub-directories) whose name or short code matches the query at a word boundary. Reports two sections — <code>GAMES</code> and <code>MENUS</code> — each with code + title + full path. Cross-references numbered <code>.bat</code> shortcuts, so launchers like <code>mario.bat</code> are findable by their menu-displayed title (<code>Super Mario Bros.</code>).</td>
+</tr>
+<tr>
+<td><code>find "&lt;phrase&gt;"</code></td>
+<td>Multi-word queries must be wrapped in double quotes. Bare-spaced input is rejected with a hint that re-quotes the input.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-find-looks-like-in-practice">What <code>find</code> looks like in practice</h3>
+<pre><code>C:\&gt;find attack
+
+Searching for &quot;attack&quot;...
+5 matches found.
+
+GAMES (5)
+  DEMON      Demon Attack (1982)
+             C:\SYSTEMS\CONSOLE\ODYSSEY2\GAMES
+  DEMONATK   Demon Attack (1983)
+             C:\SYSTEMS\HOMECOMP\COMMODRE\VIC20\GAMES
+  MOLATAK    Mole Attack (1982)
+             C:\SYSTEMS\HOMECOMP\COMMODRE\MAX\GAMES
+  DEMON      Demon Attack (1982)
+             C:\SYSTEMS\HOMECOMP\COCO\GAMES
+  GALACTIC   Galactic Attack (1983)
+             C:\SYSTEMS\HOMECOMP\COCO\GAMES
+</code></pre>
+<h2 id="display">Display</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>echo &lt;text&gt;</code></td>
+<td>Print text</td>
+</tr>
+<tr>
+<td><code>echo off</code></td>
+<td>Suppress the <code>C:\&gt;</code> prompt re-render until the end of the current batch (or until <code>echo.</code>)</td>
+</tr>
+<tr>
+<td><code>echo.</code></td>
+<td>Print a blank line <strong>and</strong> restore prompt re-render — used at the end of menu batches so the <code>C:\&gt;</code> appears under the menu</td>
+</tr>
+<tr>
+<td><code>setcol &lt;BF&gt;</code></td>
+<td>Set background + foreground colour by two hex digits (e.g. <code>07</code> = black bg, white fg)</td>
+</tr>
+</tbody>
+</table>
+<p><code>help</code> prints the full command reference (the text on this wiki page, baked into <code>commands.js</code>).</p>
+<p>Source: <code>prompt/javascript/commands.js</code>.</p>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter</td>
+<td>Submit</td>
+</tr>
+<tr>
+<td>Backspace</td>
+<td>Delete last character</td>
+</tr>
+<tr>
+<td>↑ / ↓</td>
+<td>Step through command history</td>
+</tr>
+</tbody>
+</table>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

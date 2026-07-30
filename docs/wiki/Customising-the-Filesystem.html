@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customising the Filesystem — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html" class="active">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<p>The virtual filesystem lives in <code>prompt/javascript/fs.js</code> as a JS array called <code>fs</code>. Every directory and every file is an object in that tree. No server, no database — edit the file, hard-refresh, the prompt picks up the change.</p>
+<h2 id="what-a-node-looks-like">What a node looks like</h2>
+<pre><code class="language-js">var fs = [{
+  name: 'C',
+  directories: [ ... ],
+  files: [ ... ]
+}];
+</code></pre>
+<p>A node is one of:</p>
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{ name, directories, files }</code></td>
+<td>a directory</td>
+</tr>
+<tr>
+<td><code>{ name, link }</code></td>
+<td>a "file" that opens a URL when executed</td>
+</tr>
+<tr>
+<td><code>{ name, data }</code></td>
+<td>a "file" whose <code>data</code> is run as a batch script when executed</td>
+</tr>
+</tbody>
+</table>
+<p><code>hidden: true</code> on a node hides it from <code>dir</code> output (still navigable via <code>cd</code>).</p>
+<hr />
+<h2 id="adding-a-link-file">Adding a link file</h2>
+<pre><code class="language-js">{ name: 'GITHUB.COM', link: 'https://github.com/yourname' }
+</code></pre>
+<p>Drop it into any directory's <code>files</code> array. The user can <code>cd</code> into the directory and type <code>github.com</code> to open it.</p>
+<hr />
+<h2 id="adding-a-batch-file">Adding a batch file</h2>
+<pre><code class="language-js">{ name: 'HELLO.BAT',
+  data: 'echo off\nsetcol 2e\necho Hello, world!\nsetcol 07\necho.' }
+</code></pre>
+<p>Lines are separated by <code>\n</code>. Supported batch commands: anything in <a href="Commands.html">Commands</a> plus any filename present in the current directory.</p>
+<hr />
+<h2 id="adding-a-directory">Adding a directory</h2>
+<pre><code class="language-js">{ name: 'MUSIC',
+  directories: [],
+  files: [
+    { name: 'BANDCAMP.COM', link: 'https://yourname.bandcamp.com' }
+  ]
+}
+</code></pre>
+<hr />
+<h2 id="adding-a-system-menu-numbered-list">Adding a system menu (numbered list)</h2>
+<p>The standard pattern for a system with several titles is a directory whose <code>menu.bat</code> prints a box-drawn menu, plus numbered launcher <code>.bat</code> files that each run a named link <code>.bat</code>.</p>
+<pre><code class="language-js">{ name: 'GAMES', directories: [], files: [
+    { name: 'menu.bat', data: 'echo off\ncls\necho ╔═══...╗\n...echo.\n' },
+    { name: '0.bat',    data: 'echo off\ncd ..\ncd ..\nmenu\n' },
+    { name: '1.bat',    data: 'mario\n' },
+    { name: '2.bat',    data: 'contra\n' },
+    { name: 'mario.bat',  link: '../systems/jsnes/play.html?game=mario' },
+    { name: 'contra.bat', link: '../systems/jsnes/play.html?game=contra' },
+] }
+</code></pre>
+<p>The <code>menu.bat</code> data string renders rows like <code>║   1.  Super Mario Bros.    (1985)  MARIO    ║</code> — <strong>title first, year column, code last</strong> is the project convention (see Menu box format below).</p>
+<p>The flow: the user types a number → it runs the matching <code>N.bat</code> → which runs <code>&lt;key&gt;</code> → which resolves to <code>&lt;key&gt;.bat</code> (the <code>link:</code> entry) → which opens the emulator URL.</p>
+<p>For a real example see the NES or C64 blocks in <code>fs.js</code>.</p>
+<hr />
+<h2 id="menu-box-format">Menu box format</h2>
+<p>Standard menus use double-rule CP437 borders with a <strong>45-char inner width</strong>.</p>
+<pre><code> ╔═════════════════════════════════════════════╗
+ ║              CENTERED HEADER                ║ ◄── header (45 chars between ║)
+ ╠─────────────────────────────────────────────╣
+ ║                                             ║ ◄── blank spacer row
+ ║   1.  Some Title           (1985)  CMDNAME  ║ ◄── 4-column: # Title (Year) CODE
+ ║   2.  Another Title        (1986)  CMD2     ║
+ ║                                             ║
+ ║  11.  BASIC system prompt          BASIC    ║ ◄── BASIC/prompt rows skip the year column
+ ║                                             ║
+ ║   0.  Back                                  ║ ◄── always last
+ ║                                             ║
+ ╠─────────────────────────────────────────────╣
+ ║        Type a number and press ENTER        ║
+ ╚═════════════════════════════════════════════╝
+</code></pre>
+<p>Entry row layout (45 chars between borders): <strong>4 columns — number, title, year, code.</strong> Games sorted by year ascending, alphabetical within year.</p>
+<pre><code> ║   N.  Title field          (YYYY)  CMDNAME  ║
+ ├──┤├──┤├─────────────────┤├──────┤├─┤├──────┤
+  3   2.       21 chars        6     2    9
+  spc &quot;. &quot;   title (left)    year   sp  code (left)
+</code></pre>
+<ul>
+<li>Title field 21 chars left-justified; year column 6 chars <code>(YYYY)</code> or <code>(home)</code>-style marker; 2-char separator; code field 9 chars left-justified.</li>
+<li>BASIC / system-prompt rows have no year — title field extends through the year + separator slot.</li>
+<li>Double-digit numbers shift left one space: <code>NN.</code> vs <code>N.</code> — same 7-char prefix width.</li>
+<li>Blank line before the last entry in a group = visual separator (e.g. games vs system prompt).</li>
+</ul>
+<p>Two things to remember:</p>
+<ul>
+<li>Apostrophes in titles must be escaped: <code>K.C.\'s Krazy Chase!</code> inside a <code>'...'</code> JS string.</li>
+<li>The on-screen rendering uses CP437 box-drawing glyphs (<code>É</code>, <code>═</code>, <code>║</code>, etc.) via the font sprite system — the Unicode equivalents shown above are for documentation readability only.</li>
+</ul>
+<hr />
+<h2 id="boot-behaviour">Boot behaviour</h2>
+<p><code>autoexec.bat</code> runs automatically on load. Its default <code>data</code> is just <code>menu\n</code> — which runs the root <code>menu.bat</code>. The root <code>menu.bat</code> in turn does <code>cd systems\nmenu\n</code>, dropping the user straight into the EMULATOR LAUNCHER.</p>
+<p>To boot to a different starting place, override <code>menu.bat</code> (or <code>autoexec.bat</code>):</p>
+<pre><code class="language-js">{ name: 'autoexec.bat', data: 'cd systems\\console\\nes\\games\ncls\ndir/w/o\n' }
+</code></pre>
+<p>To set colours at boot, prepend <code>setcol</code>:</p>
+<pre><code class="language-js">{ name: 'autoexec.bat', data: 'echo off\nsetcol 02\nc:\ncls\nmenu\n' }
+</code></pre>
+<p>Common combos:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>bg / fg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>07</code></td>
+<td>black / light grey (default)</td>
+</tr>
+<tr>
+<td><code>0f</code></td>
+<td>black / white</td>
+</tr>
+<tr>
+<td><code>17</code></td>
+<td>dark blue / light grey</td>
+</tr>
+<tr>
+<td><code>02</code></td>
+<td>black / dark green</td>
+</tr>
+<tr>
+<td><code>0a</code></td>
+<td>black / green</td>
+</tr>
+<tr>
+<td><code>0e</code></td>
+<td>black / yellow</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="Font-System.html">Font System</a> for the 16-colour palette.</p>
+<hr />
+<h2 id="a-few-things-weve-learned-the-hard-way">A few things we've learned the hard way</h2>
+<ul>
+<li>Use absolute paths (<code>cd\\games\\action</code>) inside <code>.bat</code> files; relative <code>cd</code> only works if the target is a direct child.</li>
+<li>Files can only be executed from the directory they live in — there is no <code>PATH</code>.</li>
+<li>For menu generation it's much easier to write a small Python helper that emits the <code>echo</code> lines than to hand-craft the box-drawing characters.</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

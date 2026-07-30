@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Overview — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html" class="active">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<p>GenX-DOS is a static page that recreates a 1990s DOS prompt in the browser. Visitors land on a fake AMIBIOS POST screen, get dropped into a <code>C:\&gt;</code> prompt, and navigate numbered menus to launch emulated games — all running locally in the page.</p>
+<p>There's no server, no build step, no framework. The whole thing is HTML and JavaScript that runs straight out of GitHub Pages.</p>
+<h2 id="the-boot-flow">The boot flow</h2>
+<p>When the page loads:</p>
+<ol>
+<li><code>index.html</code> is the landing page — an intro, a CP437 spec sheet, the screenshots and links, and an <strong>Enter the museum</strong> button into <code>prompt/</code> (touch devices get a keyboard-required graphic instead). The POST animation lives inside the prompt page.</li>
+<li><code>prompt/index.html</code> is the DOS terminal. On load, <code>init()</code>:
+   - renders the AMIBIOS POST — AMI logo, AMIBIOS header, CPU/coprocessor/memory test with animated 0000 → 8064 KB count, six device-detection lines streamed at 500 ms each, footer with BIOS ID
+   - pauses 5 seconds with the full POST on screen. The <code>Hit &lt;DEL&gt; if you want to run SETUP</code> line is period set dressing — nothing is wired to it.
+   - clears, renders the System Configuration table
+   - prints <code>Starting GenX-DOS . . .</code> and <code>Type "help" &lt;enter&gt; for assistance.</code>
+   - calls <code>initTerminal()</code> which wires up the keyboard and runs <code>AUTOEXEC.BAT</code></li>
+<li><code>AUTOEXEC.BAT</code> runs <code>menu</code>. The root <code>menu.bat</code> does <code>cd systems\menu</code>, dropping the user straight into the EMULATOR LAUNCHER.</li>
+<li>The user types a number (or a command name) to navigate.</li>
+<li>Selecting a game opens the emulator in a new tab via <code>window.open</code>.</li>
+</ol>
+<h2 id="how-its-built">How it's built</h2>
+<p>Pure HTML + JavaScript. No build step, no frameworks, no dependencies.</p>
+<p>Every visible character is its own <code>&lt;div&gt;</code>, styled with a CSS background-position into a 12×12 CP437 sprite sheet. The virtual filesystem is a JS object tree in <code>prompt/javascript/fs.js</code>. When the user types <code>dir</code>, the prompt walks that tree and renders the result through the sprite font.</p>
+<h2 id="save--load-state">Save / load state</h2>
+<p>Most bundles carry <strong>save</strong> / <strong>load</strong> controls (bottom-left); each opens a drop-up menu of <strong>five save slots per game</strong> — an instant in-browser snapshot of the running machine, held in memory and persisted to <strong>IndexedDB</strong> (keyed <code>platform:game:slot</code>) so the slots survive a reload, and different games are kept independent. The 14 EmulatorJS bundles drive the libretro cores' state API via <code>_shared/genx-savestate.js</code>; the standalone engines that expose a reachable save-state — TI-99/4A, BBC Micro/Master (mid-game, even Elite), MSX, CoCo, Odyssey², Atari 8-bit and Amstrad CPC — register a per-bundle <code>GenXStateAdapter</code> that <code>_shared/genx-savestate-std.js</code> wires to the same menus. Each engine reaches it differently (<code>processor.snapshotState()</code>, <code>WMSX.room.machine.saveState()</code>, XRoar's <code>write_snapshot</code>, the o2em <code>retro_serialize</code> rebuild, atari800's deferred <code>StateSav_*</code>, the cpc <code>cpc_save_snapshot</code> rebuild…), documented per page. Three (Odyssey², Atari 8-bit, Amstrad CPC) needed a WASM rebuild to expose state the stock build hid. The engines with no reachable state API (Apple, Electron, Spectrum, ZX81, Intellivision, PET) — plus the TRS-80, whose sdltrs has a built-in but unwired save-state, and the Model 100, which persists its battery-backed RAM to browser storage instead — have no buttons.</p>
+<p>See <strong><a href="Your-Data.html">Your Data</a></strong> for the complete list of what GenX-DOS writes to your browser's local storage — save-states, the Model 100's battery RAM, in-game cartridge saves and emulator settings — and exactly when.</p>
+<h2 id="the-scope-rule-8-bit-feel">The scope rule: 8-bit feel</h2>
+<p>Every shipped system has the <em>feel</em> of an 8-bit machine — sprite-based, chiptune, low-res. The test is the aesthetic, not the calendar year or strict CPU bit-width. (Updated 14/06/2026 from the earlier "8-bit era, ~1975-1990" framing.) Intellivision (CP1610, 16-bit ALU) is in because it plays like an 8-bit-era console. The 8-bit-feel handhelds — Game Boy / GBC, Game Gear, Lynx — are in even where they run into the late 90s (a colour GBC game from 2002 still feels 8-bit). Sega Genesis (1988) is out: it defined the 16-bit look-and-sound leap, even though the calendar year overlaps.</p>
+<p>DOS is the prompt host. See <a href="Roadmap.html">Roadmap</a> for the full in/out list and what's still on the slate.</p>
+<h2 id="the-lineup">The lineup</h2>
+<p>19 emulators ship under <code>systems/</code>, driving 33 sub-systems:</p>
+<ul>
+<li>Consoles: Atari 2600, Atari 7800, ColecoVision, Intellivision, NES, Magnavox Odyssey², Sega Master System</li>
+<li>Handheld: Game Boy / Game Boy Color, Atari Lynx, Sega Game Gear</li>
+<li>Apple: Apple I, Apple ][+</li>
+<li>Acorn: BBC Micro, BBC Master 128 (same jsbeeb engine, shipped as two bundles — <code>bbcmicro/</code> boots Model B, <code>bbcmaster/</code> boots <code>?model=Master</code>), Electron</li>
+<li>Atari home: Atari 400, Atari 800XL (same atari800 engine, shipped as two bundles — <code>atari400/</code> boots OS-B, <code>atari800/</code> boots OS-XL)</li>
+<li>Commodore: VIC-20, MAX, C64, C16, Plus/4, C128 (six sub-systems off four VICE libretro cores); PET on its own (Thomas Skibo's pet2001, vanilla JS)</li>
+<li>Sinclair: ZX81, ZX Spectrum</li>
+<li>Amstrad: CPC</li>
+<li>Tandy: CoCo, TRS-80 Model I, TRS-80 Model 100</li>
+<li>Texas Instruments: TI-99/4A</li>
+<li>MSX: MSX1, MSX2</li>
+</ul>
+<p>Fourteen of these (the six VICE bundles, ColecoVision, NES, the Atari 2600, the Atari 7800, the Sega Master System, and the three handhelds — Game Boy/GBC, Lynx, Game Gear) share one copy of the EmulatorJS framework via <code>systems/_shared-ejs/</code>. Intellivision, Electron, Odyssey², and the PET stand alone — jzIntv, ElkJS, libretro-o2em, and Skibo's pet2001 respectively, each with its own custom loader.</p>
+<p>See <a href="Emulators.html">Emulators</a> for the index and individual integration stories.</p>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

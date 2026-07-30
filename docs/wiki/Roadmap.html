@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roadmap — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html" class="active">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<p>What we've shipped, what's next, and what we've ruled out. This page is the project's running ledger — when a candidate comes up, the answer is here.</p>
+<h2 id="the-scope-rule-8-bit-feel">The scope rule: 8-bit feel</h2>
+<p>Every shipped system has the <em>feel</em> of an 8-bit machine — sprite-based, chiptune, low-res. The test is the aesthetic, not the calendar year or strict CPU bit-width. (Updated 14/06/2026 from the earlier "8-bit era, ~1975-1990" framing.)</p>
+<p><strong>In:</strong> the classic 8-bit machines — Apple I/II, Atari 2600 / 400 / 800XL / 7800, BBC Micro / Master / Electron, Commodore PET / VIC-20 / MAX / 64 / 16 / Plus/4 / 128, MSX1 / MSX2, NES, Sega Master System, ColecoVision, Intellivision, ZX81 / Spectrum, Amstrad CPC, Tandy CoCo / TRS-80 / Model 100, TI-99/4A — plus the 8-bit-feel handhelds: Game Boy / Game Boy Color, Sega Game Gear, Atari Lynx.</p>
+<p><strong>Out:</strong> systems that defined the 16-bit GUI/console leap (Atari ST, Amiga, Macintosh, Archimedes, Sega Genesis, SNES, PC-Engine), and anything 32-bit+ (Saturn, N64, PlayStation, Neo Geo). The rule is about <em>feel</em>, not the calendar year — Genesis (1988) doesn't have the 8-bit feel and is out, while a late GBC game (2002) does and is in.</p>
+<p><strong>Intellivision</strong> (CP1610, 16-bit ALU) is the technical edge case the feel framing handles cleanly: Mattel marketed it as "the first 16-bit console", but it's universally grouped with 8-bit-era consoles (1979 launch, Atari 2600 contemporary). In.</p>
+<hr />
+<h2 id="shipped-19-emulator-engines-33-sub-systems">✅ Shipped (19 emulator engines, 33 sub-systems)</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Platform</th>
+<th>Year</th>
+<th>Dir</th>
+<th>Engine</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Console</td>
+<td>Atari 2600</td>
+<td>1977</td>
+<td><code>stella/</code></td>
+<td>EmulatorJS + Stella (stella2014)</td>
+<td></td>
+</tr>
+<tr>
+<td>Console</td>
+<td>Magnavox Odyssey²</td>
+<td>1978</td>
+<td><code>odyssey2/</code></td>
+<td>libretro-o2em → WASM + custom SDL2 frontend</td>
+<td>EJS path dead; o2rom.bin BIOS bundled</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>Intellivision</td>
+<td>1979</td>
+<td><code>intv/</code></td>
+<td>jzIntv WASM (custom loader)</td>
+<td>exec.bin + grom.bin BIOS bundled</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>ColecoVision</td>
+<td>1982</td>
+<td><code>coleco/</code></td>
+<td>EmulatorJS + gearcoleco</td>
+<td>RetroPad → numpad keypad remap</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>Sega Master System</td>
+<td>1986</td>
+<td><code>sms/</code></td>
+<td>EmulatorJS + genesis_plus_gx</td>
+<td>replaced the Vectrex 04/07/2026</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>NES</td>
+<td>1983</td>
+<td><code>jsnes/</code></td>
+<td>EmulatorJS + FCEUmm libretro</td>
+<td>dir name predates migration</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>Atari 7800</td>
+<td>1986</td>
+<td><code>js7800/</code></td>
+<td>EmulatorJS + ProSystem</td>
+<td>migrated from JS7800 for the bezel</td>
+</tr>
+<tr>
+<td>Apple</td>
+<td>Apple I</td>
+<td>1976</td>
+<td><code>apple1/</code></td>
+<td>scullin/apple1js</td>
+<td>10 tapes (Integer BASIC + 6502 asm)</td>
+</tr>
+<tr>
+<td>Apple</td>
+<td>Apple ][+</td>
+<td>1977</td>
+<td><code>apple2/</code></td>
+<td>whscullin/apple2js (webpack)</td>
+<td>URL rewrite <code>?game=</code> → <code>?disk=</code></td>
+</tr>
+<tr>
+<td>Acorn</td>
+<td>BBC Micro</td>
+<td>1981</td>
+<td><code>bbcmicro/</code></td>
+<td>mattgodbolt/jsbeeb (Retro-Jack fork)</td>
+<td>Model B; fork adds d-pad remap + monitor inset</td>
+</tr>
+<tr>
+<td>Acorn</td>
+<td>Acorn Electron</td>
+<td>1983</td>
+<td><code>electron/</code></td>
+<td>dmcoles/elkjs</td>
+<td>row-doubling display fix</td>
+</tr>
+<tr>
+<td>Acorn</td>
+<td>BBC Master 128</td>
+<td>1986</td>
+<td><code>bbcmaster/</code></td>
+<td>jsbeeb (Retro-Jack fork) <code>?model=Master</code></td>
+<td>full copy of the fork build</td>
+</tr>
+<tr>
+<td>Atari</td>
+<td>Atari 400</td>
+<td>1979</td>
+<td><code>atari400/</code></td>
+<td>atari800 WASM (self-built)</td>
+<td>boots OS-B</td>
+</tr>
+<tr>
+<td>Atari</td>
+<td>Atari 800XL</td>
+<td>1983</td>
+<td><code>atari800/</code></td>
+<td>atari800 WASM (self-built)</td>
+<td>boots OS-XL; full copy of the same build</td>
+</tr>
+<tr>
+<td>Commodore</td>
+<td>PET</td>
+<td>1977</td>
+<td><code>pet/</code></td>
+<td>Thomas Skibo's pet2001 (vanilla JS)</td>
+<td>PET 2001 / BASIC 2 / 32 K</td>
+</tr>
+<tr>
+<td>Commodore</td>
+<td>VIC-20</td>
+<td>1980</td>
+<td><code>vic20/</code></td>
+<td>EmulatorJS + VICE xvic</td>
+<td><code>memory_expansions='all'</code></td>
+</tr>
+<tr>
+<td>Commodore</td>
+<td>MAX Machine</td>
+<td>1982</td>
+<td><code>max/</code></td>
+<td>EmulatorJS + VICE x64 (Ultimax mode)</td>
+<td>Japan-only</td>
+</tr>
+<tr>
+<td>Commodore</td>
+<td>C64</td>
+<td>1982</td>
+<td><code>c64/</code></td>
+<td>EmulatorJS + VICE x64</td>
+<td></td>
+</tr>
+<tr>
+<td>Commodore</td>
+<td>C16</td>
+<td>1984</td>
+<td><code>c16/</code></td>
+<td>EmulatorJS + VICE xplus4 (<code>c16pal</code> mode)</td>
+<td>shares xplus4 core</td>
+</tr>
+<tr>
+<td>Commodore</td>
+<td>Plus/4</td>
+<td>1984</td>
+<td><code>plus4/</code></td>
+<td>EmulatorJS + VICE xplus4</td>
+<td></td>
+</tr>
+<tr>
+<td>Commodore</td>
+<td>C128</td>
+<td>1985</td>
+<td><code>c128/</code></td>
+<td>EmulatorJS + VICE x128 (native mode, <strong>nightly</strong> core)</td>
+<td>per-game VICII/VDC</td>
+</tr>
+<tr>
+<td>MSX</td>
+<td>MSX1</td>
+<td>1983</td>
+<td><code>msx1/</code></td>
+<td>ppeccin/WebMSX</td>
+<td>boots <code>?M=MSX1</code></td>
+</tr>
+<tr>
+<td>MSX</td>
+<td>MSX2</td>
+<td>1986</td>
+<td><code>msx2/</code></td>
+<td>ppeccin/WebMSX</td>
+<td>full copy; boots <code>?M=MSX2</code></td>
+</tr>
+<tr>
+<td>Sinclair</td>
+<td>ZX81</td>
+<td>1981</td>
+<td><code>jtyone/</code></td>
+<td>Simon Holdsworth/JtyOne</td>
+<td></td>
+</tr>
+<tr>
+<td>Sinclair</td>
+<td>ZX Spectrum</td>
+<td>1982</td>
+<td><code>jsspeccy/</code></td>
+<td>gasman/JSSpeccy 3</td>
+<td>WASM Z80</td>
+</tr>
+<tr>
+<td>Amstrad</td>
+<td>CPC</td>
+<td>1984</td>
+<td><code>cpc/</code></td>
+<td>floooh/chips-test tiny8bit</td>
+<td>sokol_args URL params</td>
+</tr>
+<tr>
+<td>Tandy</td>
+<td>Color Computer (CoCo)</td>
+<td>1980</td>
+<td><code>xroar/</code></td>
+<td>Ciaran Anscomb/XRoar</td>
+<td></td>
+</tr>
+<tr>
+<td>Tandy</td>
+<td>TRS-80 Model I</td>
+<td>1977</td>
+<td><code>trs80/</code></td>
+<td>jengun/sdltrs (our WASM build)</td>
+<td>10 <code>.cmd</code> games</td>
+</tr>
+<tr>
+<td>Tandy</td>
+<td>TRS-80 Model 100</td>
+<td>1983</td>
+<td><code>m100/</code></td>
+<td>Hurd &amp; Pettit/VirtualT (our core-only WASM build)</td>
+<td>10 <code>.ba</code> games; live clock + battery-backed RAM</td>
+</tr>
+<tr>
+<td>TI</td>
+<td>TI-99/4A</td>
+<td>1981</td>
+<td><code>js99er/</code></td>
+<td>Rasmus-M/js99er (vanilla JS)</td>
+<td><code>.rpk</code> carts</td>
+</tr>
+<tr>
+<td>Handheld</td>
+<td>Game Boy / GBC</td>
+<td>1989</td>
+<td><code>gbc/</code></td>
+<td>EmulatorJS + gambatte (<strong>nightly</strong> core)</td>
+<td>GBC mode; classroom bezel</td>
+</tr>
+<tr>
+<td>Handheld</td>
+<td>Atari Lynx</td>
+<td>1989</td>
+<td><code>lynx/</code></td>
+<td>EmulatorJS + handy</td>
+<td><code>lynxboot.img</code> BIOS bundled</td>
+</tr>
+<tr>
+<td>Handheld</td>
+<td>Sega Game Gear</td>
+<td>1990</td>
+<td><code>gamegear/</code></td>
+<td>EmulatorJS + genesis_plus_gx</td>
+<td><code>EJS_volume</code> 1.5 (quiet PSG)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Shared infrastructure:</strong>
+- <code>_shared/</code> — controls.css, frame.css, NumLock JS, VICE softkeys, gamedocs link JS
+- <code>_shared-ejs/</code> — one EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem cores (14 bundles share; ~25 MB saved vs per-bundle copies)</p>
+<p>See <a href="Emulators.html">Emulators</a> for the per-platform integration stories.</p>
+<hr />
+<h2 id="still-to-go">⏳ Still to go</h2>
+<h3 id="out-of-scope-under-the-8-bit-feel-rule">Out of scope under the 8-bit-feel rule</h3>
+<p>Listed for clarity — these are the 16-bit/32-bit transition and beyond.</p>
+<ul>
+<li><strong>NEC PC-Engine / TurboGrafx-16</strong> — 16-bit-era console</li>
+<li><strong>Nintendo SNES</strong> — 16-bit-era console</li>
+<li><strong>Sega Saturn / Nintendo 64 / PlayStation / Neo Geo AES</strong> — 32-bit and beyond</li>
+</ul>
+<hr />
+<h2 id="rejected-dont-re-investigate-without-new-information">❌ Rejected (don't re-investigate without new information)</h2>
+<h3 id="quality--hosting--library-size">Quality / hosting / library size</h3>
+<ul>
+<li><strong>Research Machines RM 380Z</strong> (1977) — surveyed 14/07/2026. RM's first machine and one of the first built for UK schools, predating the BBC Micro: a £7,000 card-cage CP/M box (~£56,000 in today's money) — S100-style IEEE bus, 2 MHz Z80 (not a Z80A), 64 K max, COS ROM monitor booting CP/M and RML Extended BASIC. <strong>No games library exists</strong> — the CBM-II rule, only harder. The fullest inventory anywhere (<a href="https://vt100.net/rm/software/">vt100.net</a>) lists six games — Adventure, Startrek, Games Package, Wordsquare, Hike, Fives and Threes — all text, none held. MAME ships no software list for <code>rm380z</code> or <code>rm480z</code>, so nothing has ever been dumped. The dedicated archive at <code>rml380z.org</code> was abandoned in July 2012 with every section left an empty stub (its Games page is one line plus a system-disk image), and the domain is now dead. A collector with a school 380Z and its complete original software haul confirms he has no games for it. Emulation is MAME-only with no browser build, but the library settles it before that matters. Reopens only if a genuinely dumped games library surfaces.</li>
+<li><strong>GCE / Milton Bradley Vectrex</strong> (1982) — <strong>shipped, then removed 04/07/2026</strong> (replaced by the Sega Master System). The only browser core, jsvecx, has AY-3-8912 sound emulation that overruns tones and can't voice Spike's speech; confirmed against upstream jsvecx and the libretro <code>vecx</code> core, so it's the emulation lineage rather than a bundle bug, with no practical browser alternative. Fails the site's accuracy bar. Door reopens only if a browser Vectrex emulator with correct AY sound appears.</li>
+<li><strong>Sinclair ZX80</strong> (1980) — re-investigated 07/06/2026. ROMs OK. JtyOne ZX80 mode is broken (display-sync state machine never fires the keyboard scan). zame-dev's <code>js-zx8x</code> works correctly but ships without an SPDX licence header. Door stays open if either gets fixed.</li>
+<li><strong>Acorn Atom</strong> — removed 26/05/2026. Investigated as jsbeeb's Atom mode + tape files; didn't meet the quality bar, JS patch reverted.</li>
+</ul>
+<p><em>Undated below: never shipped, so no commit dates them — all were recorded when this page was written (05/06/2026).</em>
+- <strong>Sinclair QL</strong> (1984) — no turn-key bundle; sQLux build is ~4h project
+- <strong>Cambridge Z88</strong> (1988) — OZvm is Java/C++ desktop only
+- <strong>Sinclair NewBrain</strong> (1982) — MAME driver broken (VFD doesn't get data)
+- <strong>Sinclair MK14</strong> (1977) — MAME-only, very obscure (256-byte RAM kit)
+- <strong>Microvision</strong> (1979) — split-CPU emulators don't pair with available ROMs
+- <strong>Commodore CBM-II / B-series</strong> (1982-84) — VICE cores exist but the library is ~5 commercial games + business productivity. Not enough content for a 10-entry bundle.</p>
+<h3 id="out-of-scope-16-bit-removed">Out of scope (16-bit, removed)</h3>
+<ul>
+<li><strong>Sega Genesis</strong> (<code>genesis/</code>) — removed 05/06/2026; Motorola 68000 16-bit</li>
+<li><strong>Macintosh Plus</strong> (<code>macplus/</code>) — removed 25/05/2026</li>
+<li><strong>Acorn Archimedes</strong> (<code>archimedes-live/</code>) — removed 25/05/2026</li>
+<li><strong>Atari ST</strong> (<code>estyjs/</code>) — removed 25/05/2026</li>
+<li><strong>Commodore Amiga 500</strong> (<code>amiga/</code>) — removed 25/05/2026</li>
+<li><strong>Atari 5200</strong> — removed 11/05/2026 from the menu tree (an external-links platform, stripped in the self-hosting push)</li>
+</ul>
+<hr />
+<h2 id="maintenance-threads-shipped-systems-open-follow-ups">Maintenance threads (shipped systems, open follow-ups)</h2>
+<ul>
+<li><strong>Menu reformat sweep</strong> — ✅ done 05/06/2026. Every game menu is a 4-column <code># Title (Year) CODE</code> layout, year-sorted ascending, alphabetical within year. Every echo row across <code>fs.js</code> verifies at exactly 45 chars.</li>
+<li><strong>Per-game gamedocs pages</strong> — ✅ done 09/06/2026. 327 pages across all 33 sub-systems (Vectrex's 11 out, Master System's 10 in, 04/07/2026; the ZX81's Chess replaced by 1K Chess in its two openings, +1, 06/07/2026; the Tandy Model 100's 10 in, +1 sub-system, 07/07/2026). The 20 <code>gamedocs/jsbeeb/*.html</code> (BBC Micro + Master) were briefly runtime orphans (jsbeeb launches keyless <code>?disc1=</code> URLs and its Vite <code>dist/index.html</code> hardcodes the corner link to <code>../controls.html</code>) — <strong>wired 11/06/2026</strong> via a <code>genx-gamedoc-link.js</code> that maps the disc filename → gamedoc key and rewrites the link <code>href</code> on load. Keyless BASIC / blank-Master launches still fall through to <code>controls.html</code>. (The shared <code>jsbeeb/</code> bundle was later split into <code>bbcmicro/</code> + <code>bbcmaster/</code>, 25/06/2026, each with its own copy of that script and gamedoc dir.) <strong>All gamedoc controls re-verified against the original manuals / disassemblies (23/06/2026)</strong> and corrected platform-by-platform where keys had been guessed — every standalone-emulator bundle had errors, the EmulatorJS bundles were already accurate; see the CHANGELOG for the per-platform detail.</li>
+<li><strong>Controls-link URL wiring</strong> — <code>genx-controls-link.js</code> reads the game key from the live URL params (<code>?game=</code> / <code>?tape=</code> / <code>?rom=</code>) when the deferred script runs. amstradcpc and jtyone rewrite their URL on load (stripping <code>?game=</code>), but the rewrite sits behind an awaited <code>fetch('games.json')</code>, so the deferred link script reads the key <em>before</em> the rewrite lands — no extra plumbing needed. (There is <strong>no</strong> <code>window._genxGameKey</code> stash; earlier drafts of this page described one that was never implemented.) jsbeeb is the exception that doesn't fit this URL-param model — it has no game key in its URL at all, so it ships its own <code>genx-gamedoc-link.js</code> that maps the disc filename to the gamedoc key instead (see the gamedocs thread above).</li>
+<li><strong>C128 indie dates</strong> — 4 of 7 homebrews (Phazer, Rockfall 128, Wumpus 2.0, World at War) have no internal version stamp anywhere; fall back to zimmers.net file mtimes (one definitive, one fuzzy).</li>
+<li><strong>MAX Multimax-extracted carts</strong> — 7 games extracted from the MultiMax EasyFlash compilation. Remaining unknown banks (Sea Wolf, Le Mans, Avenger, etc.) lack identifiable strings; would need empirical VICE testing or menu-table decode to extract.</li>
+<li><strong>PET: 3 games skipped</strong> — the PET runs Skibo's pet2001 now (it moved off VICE). Microchess 2.0 hits an illegal opcode on that core; 3D Star Trek and Cosmiads load at non-standard addresses the loader doesn't auto-start. Recoverable with manual cleanup.</li>
+<li><strong>CRT 4:3 bezels</strong> — every platform is now bezeled (completed 16/06/2026). The first seven wired by 13/06/2026: <code>PC.png</code> (DOS prompt, 09/06), <code>Acorn.png</code> (Electron, 10/06), <code>Pet.png</code> (PET, 10/06), <code>Amstrad.png</code> (CPC, 10/06), <code>80s.png</code> (Atari 400/800, 11/06), <code>70s.png</code> (Atari 2600 / Stella, 12/06 — the <strong>first bezel on an EmulatorJS bundle</strong>), and <code>Commodore.png</code> (the 1084S, across the whole VICE family — <code>c64</code>/<code>c128</code>/<code>c16</code>/<code>plus4</code>/<code>vic20</code>/<code>max</code>, one monitor + one hole, 13/06). The core recipe is a layered stack inside <code>.bezel-wrap</code> — black backdrop behind, canvas in the middle, the transparent-hole PNG on top — but the canvas-fill method varies by engine: the PC bezel uses non-uniform <code>transform: scale</code> on the canvas; the atari800 bezel tells the emulator itself to fill via <code>-stretch full -fit-screen both -image-aspect none</code> (its integer scaling made a CSS scale quantised and viewport-fragile); the <strong>EJS bundles</strong> put the EJS player (<code>#game</code>) in the hole and stretch the canvas to fill — Stella uses <code>#game canvas { height: 100% !important; transform: translateX(-18px) scale(0.85) }</code> and the VICE family (all six, C128 included) uses <code>#game canvas { height: 100% !important; transform: scale(1.01) }</code>. The rest were wired through 16/06/2026: <code>Apple.png</code> (Apple ][/I), the keyed <code>nes.png</code> (NES), <code>70s.png</code> reused for ColecoVision / Intellivision / Odyssey², <code>80s.png</code> for the Atari 7800, and <code>Sinclair.png</code> for the MSX, CoCo and TI-99/4A — so every platform now sits in a bezel. (The two later arrivals were bezeled on landing: the Sega Master System, 04/07/2026, reuses the CRT treatment; the Tandy Model 100, 07/07/2026, sits in a device-over-photo bezel rather than a CRT one.) Source-verification note: the maintainer has adopted a no-graphic-provenance-tracking policy for bezels/wallpapers/textures, so wired bezels no longer carry per-image credit comments (the earlier PC/Acorn/Pet "open an issue" comments predate that policy; <code>Amstrad.png</code> keeps a real CC-BY-SA credit because it is genuinely source-cleared).</li>
+<li><strong>Sitewide 70s wallpaper</strong> — ✅ landed 09/06/2026. <code>systems/_shared/textures/70s-bg.png</code> (seamless arrow-arch pattern) tiled at 220 px via the shared body rule. Suppressed on per-platform <code>controls.html</code> pages via a <code>body.controls-page</code> opt-out.</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

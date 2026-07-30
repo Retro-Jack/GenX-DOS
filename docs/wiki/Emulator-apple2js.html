@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>apple2js — Apple ][+ — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="apple2js--apple">apple2js — Apple ][+</h1>
+<p>The Apple ][+ bundle was a contrast to the emscripten emulators around it: pure JavaScript, no WASM, no Emscripten — but its own kind of integration work because the upstream emulator ships a full app with chrome we needed to hide.</p>
+<h2 id="where-we-started">Where we started</h2>
+<p>Will Scullin's <a href="https://github.com/whscullin/apple2js">apple2js</a> — MIT-licensed, the mature browser Apple ][ option, period-correct ][+ with 48 KB / Applesoft / Disk II. Pure JavaScript. The "browser" in the name isn't a wrapper around a C emulator; the 6502 is implemented in JS. Built with webpack 5.</p>
+<h2 id="the-build">The build</h2>
+<pre><code class="language-sh">git clone --depth 1 https://github.com/whscullin/apple2js.git
+cd apple2js &amp;&amp; git submodule update --init
+npm install &amp;&amp; npm run build   # → dist/*.bundle.js (~1.3 MB total)
+</code></pre>
+<p>We mirrored into <code>systems/apple2/</code>:</p>
+<ul>
+<li><code>dist/*.bundle.js</code> (no <code>.map</code>) — and crucially, <strong>all</strong> dynamic chunks (the numbered <code>&lt;id&gt;.bundle.js</code> files, ~16 of them). webpack loads them lazily; missing chunks fail at runtime.</li>
+<li><code>dist/*.png</code> and <code>dist/*.woff*</code> — fonts and glyphs for chrome. Technically unused since we hide chrome, but cheap.</li>
+<li><code>css/apple2.css</code> — bundle references it for positioning.</li>
+<li><code>img/*.png</code> — same reason.</li>
+<li><code>json/disks/index.js</code> — <strong>required</strong>. The bundle loads this at boot; needs a minimal <code>disk_index = [...]</code> array listing each bundled disk.</li>
+</ul>
+<h2 id="the-chrome-problem">The chrome problem</h2>
+<p>Upstream <code>apple2js.html</code> is a full app: header, exit-fullscreen button, modal dialogs, status panels. None of it suits GenX-DOS's bezel-first aesthetic.</p>
+<p>The mistake would be deleting those DOM elements. The bundle queries them at boot — <code>document.getElementById('exit-fullscreen')</code> etc. — and throws if anything's missing. Keep the DOM intact; hide it with CSS:</p>
+<pre><code class="language-html">&lt;style&gt;
+  #header, #exit-fullscreen, .inset, .modal { display: none !important; }
+&lt;/style&gt;
+</code></pre>
+<p>Then resize <code>#display</code>, <code>.overscan</code>, and <code>#screen</code> to fit the viewport at 4:3 (Apple ][+ NTSC native is 280×192, the apple2js canvas is 592×416). Result: just the canvas, full-bleed.</p>
+<h2 id="the-url-param-rewrite">The URL-param rewrite</h2>
+<p>GenX-DOS's convention is <code>?game=&lt;key&gt;</code>; apple2js's convention is <code>?disk=&lt;key&gt;</code>. Rather than fork the URL handling, we rewrite the param before the main bundle reads it:</p>
+<pre><code class="language-js">const params = new URLSearchParams(location.search);
+const key = params.get('game');
+if (key) {
+  params.delete('game');
+  params.set('disk', key);
+  history.replaceState(null, '', '?' + params.toString());
+}
+</code></pre>
+<p>apple2js's <code>processHash</code> then loads <code>json/disks/&lt;key&gt;.json</code> like normal.</p>
+<p>No-game-param launches drop straight into the BASIC prompt — period-correct ][+ behaviour, no menu needed.</p>
+<h2 id="the-disk-conversion-pipeline">The disk-conversion pipeline</h2>
+<p>apple2js doesn't take <code>.dsk</code> files directly. It needs disks in its own JSON format (base64-encoded sectors). Upstream ships the conversion tool:</p>
+<pre><code class="language-sh">./bin/dsk2json -c &lt;Category&gt; -n &quot;&lt;Name&gt;&quot; &lt;input.dsk&gt; &gt; json/disks/&lt;key&gt;.json
+</code></pre>
+<p>A standard DOS 3.3 disk is 35 tracks × 16 sectors × 256 bytes = 143,360 bytes raw, which expands to ~200 KB JSON. Each game key has to appear in:</p>
+<ul>
+<li><code>json/disks/&lt;key&gt;.json</code> (the disk itself)</li>
+<li><code>json/disks/index.js</code> (the local-catalog declaration)</li>
+<li>The menu's <code>&lt;key&gt;.bat</code> link</li>
+</ul>
+<p>Any one of those missing and the disk silently fails to load.</p>
+<h2 id="menu-codes">Menu codes</h2>
+<p>Code names cap at 8 chars (this is a DOS terminal). Long titles get trimmed: CHOPLIFTR → CHOPLIFT, LODERUNR → LODERUN. The file key, the displayed code, and the link path's <code>?game=</code> value all have to match.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/apple2/
+├── play.html             ← chrome hider + ?game→?disk rewrite
+├── apple2js.html         ← upstream entry, mostly unused
+├── *.bundle.js           ← main2 + numbered chunks
+├── css/, img/, *.png, *.woff*
+└── json/disks/
+    ├── index.js          ← local catalog
+    └── *.json            ← per-game disks
+</code></pre>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-apple1js.html">Emulator-apple1js</a> — same author, different machine</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

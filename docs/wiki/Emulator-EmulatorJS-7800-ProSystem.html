@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProSystem — Atari 7800 — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="prosystem--atari-7800">ProSystem — Atari 7800</h1>
+<p>The Atari 7800 runs on <strong>EmulatorJS + ProSystem</strong> (the <code>prosystem</code> libretro core), sharing the same framework as the VICE family, ColecoVision, the NES and the 2600. Like the 2600, it got here the hard way — we shipped it on <strong>JS7800</strong> first, then migrated for the bezel.</p>
+<h2 id="why-we-left-js7800">Why we left JS7800</h2>
+<p><a href="https://github.com/raz0red/js7800">JS7800</a> (raz0red, GPL-2.0) is a solid 7800 core and the original integration just meant backing out its demo-style UI (header, cart-picker, leaderboard/snackbar toasts, controls toolbar). What it couldn't do was take a CRT bezel:</p>
+<ul>
+<li><strong>It drives its own <code>requestAnimationFrame</code> loop and sizes its own canvas.</strong> Pinned into a bezel's screen hole it stalled on the 7800 BIOS splash — the cart loaded (the headless console confirmed the cartridge header) but the render loop never advanced. Constrained to the hole, the picture wouldn't come up. Every other bundle lets <em>us</em> size the canvas, which is what makes the bezel possible.</li>
+</ul>
+<p>EmulatorJS solves it the same way it did for the 2600: we control the canvas (bezel-ready), and the console switches map to plain keys. The <code>80s.png</code> wood-cabinet TV bezel — shared with the Atari 800XL — went on at the same time.</p>
+<h2 id="the-launch-flow">The launch flow</h2>
+<p><code>js7800/play.html</code> is the standard EmulatorJS wrapper. EmulatorJS knows the 7800 as system <code>atari7800</code>, which it resolves to the <code>prosystem</code> core:</p>
+<pre><code class="language-js">window.EJS_core = 'atari7800';
+window.EJS_defaultControls = {
+  0: {
+    0: { value: 'z' },      // BUTTON 1 (left fire)
+    8: { value: 'x' },      // BUTTON 2 (right fire)
+    9: { value: 'enter' },  // RESET  → starts the game from the title
+    2: { value: 'shift' },  // SELECT → cycles game variations
+    3: { value: 'p' }       // PAUSE
+  }
+};
+</code></pre>
+<p>The existing <code>.a78</code> cart images and <code>games.json</code> carried straight over — ProSystem reads them unchanged.</p>
+<h2 id="controls--the-reset-gotcha">Controls — the RESET gotcha</h2>
+<p>The one trap: on the EmulatorJS <code>atari7800</code> scheme, <strong>RESET is button id 9, not START (id 3)</strong> — and on the 7800, RESET is what <em>starts</em> a game from the title screen. Mapping START there left every game stuck on its title. So <code>Enter</code> is wired to id 9 (RESET → start), <code>Shift</code> to id 2 (SELECT → variations), <code>P</code> to PAUSE. The two fire buttons are <code>Z</code> (left) / <code>X</code> (right); arrows are the d-pad.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/js7800/
+├── play.html            ← EmulatorJS wrapper (EJS_core: 'atari7800')
+├── controls.html
+├── games.json
+└── roms/
+    └── *.a78            ← 7800 cart images (reused unchanged)
+</code></pre>
+<p>The core itself lives in the shared framework at <code>systems/_shared-ejs/ejs/data/cores/prosystem-legacy-wasm.data</code>; the old <code>js7800/js/</code> engine (JS7800 + bupboop) is gone. Save / load state work through the GenX save/load menus like the other EmulatorJS bundles.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulator-Stella.html">Emulator-Stella</a> — sibling Atari console, same Javatari→EmulatorJS migration story</li>
+<li><a href="Emulator-VICE-family.html">Emulator-VICE-family</a> — the shared EmulatorJS gotchas</li>
+<li><a href="Emulators.html">Emulators</a> — index</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>
