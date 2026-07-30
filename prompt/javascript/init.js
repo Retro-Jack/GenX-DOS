@@ -19,7 +19,7 @@ var AMIBIOS_TABLE = [
 // Render text into #prompt directly using the bitmap font sprite
 // sheet. Used only during the pre-terminal boot animation.
 // ============================================================
-var BOOT_WHITE = 'img/f12.15.png';
+var BOOT_WHITE = '../systems/_shared/styles/VGA_font/f12.15.png';
 
 function bootChars(container, str, imgOverride) {
   for (var i = 0; i < str.length; i++) {

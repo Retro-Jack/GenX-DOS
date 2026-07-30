@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attribution — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="../../styles/genx.css">
+<link rel="stylesheet" href="../../styles/wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li><li><a href="README.html">Readme</a></li><li><a href="ATTRIBUTION.html" class="active">Attribution</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="attribution">Attribution</h1>
+<p>GenX-DOS bundles third-party emulators, libraries, system ROMs, and visual
+assets. This file is the canonical record of those components and the terms
+under which they are redistributed.</p>
+<p>It is maintained alongside <a href="../../CHANGELOG.md">CHANGELOG.md</a>: whenever a new
+emulator, BIOS, ROM, bezel, font, or other asset is added or replaced, an
+entry is added here.</p>
+<p>The summary list in <a href="README.html">README.md</a> is a quick-reference; this file is
+the authoritative version.</p>
+<hr />
+<h2 id="site-code">Site code</h2>
+<ul>
+<li><strong>DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system</strong>
+  — by Mike, who wrote it informally for <strong>LGR — Lazy Game Reviews</strong>
+  (Clint Basinger, <a href="https://www.lazygamereviews.com">https://www.lazygamereviews.com</a>). LGR's own site
+  metadata credits Mike — <code>&lt;meta name="Generator" content="Mike"&gt;</code> and
+  <code>&lt;meta name="Originator" content="Mike's brain -- thanks, Mike!"&gt;</code>.
+  The interactive prompt under <code>prompt/</code>, the <code>fs.js</code> virtual <code>C:</code> drive
+  layout, the command dispatcher, and the CP437 sprite font and renderer
+  originate from <strong>LGR-DOS</strong> (the "LGR-DOS Command Prompt"), LGR's
+  in-browser DOS-prompt project. GenX-DOS extends that base.</li>
+<li><strong>AMIBIOS POST animation, emulator integration wrappers, menu tree,
+  and all bundled-emulator-specific code</strong> — © Retro-Jack. Original work
+  added on top of the LGR terminal base.</li>
+<li>Retro-Jack's original work (above) is licensed <strong>CC BY-NC 4.0</strong> — see
+  <code>LICENSE.TXT</code>. The LGR terminal base is explicitly <strong>excluded</strong> from
+  that licence and stays under LGR's own terms: source-available, with a
+  clear credit to the LGR base required in any derivative work.</li>
+</ul>
+<hr />
+<h2 id="emulators">Emulators</h2>
+<p>Each bundle directory contains the upstream <code>LICENSE</code> or <code>COPYING</code> file where
+one was provided. Build recipes for self-compiled WASM bundles live with their
+bundle (<code>systems/odyssey2/build.sh</code>, <code>systems/cpc/BUILDING-WASM.md</code>); atari800's
+<code>build-wasm.sh</code> lives in the <a href="https://github.com/Retro-Jack/atari800"><code>Retro-Jack/atari800</code></a>
+fork rather than the bundle.</p>
+<table>
+<thead>
+<tr>
+<th>Bundle directory</th>
+<th>Upstream project</th>
+<th>Author(s)</th>
+<th>Licence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>systems/apple1/</code></td>
+<td>apple1js</td>
+<td>whscullin</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td><code>systems/apple2/</code></td>
+<td>apple2js</td>
+<td>whscullin</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td><code>systems/bbcmicro/</code>, <code>systems/bbcmaster/</code></td>
+<td>jsbeeb, built from the <a href="https://github.com/Retro-Jack/jsbeeb"><code>Retro-Jack/jsbeeb</code></a> fork (same engine in two bundles — the Micro bundle boots Model B, the Master bundle boots <code>model=Master</code>; local changes in the fork's <code>GENX-CHANGES.md</code>)</td>
+<td>Matt Godbolt</td>
+<td>GPL-3.0-or-later</td>
+</tr>
+<tr>
+<td><code>systems/electron/</code></td>
+<td>ElkJS</td>
+<td>Darren Coles (6502 core ported from Tom Walker's Elkulator)</td>
+<td>© Darren Coles 2013 (no SPDX header in source)</td>
+</tr>
+<tr>
+<td><code>systems/jsnes/</code></td>
+<td>EmulatorJS + FCEUmm libretro core</td>
+<td>EmulatorJS team; libretro/libretro-fceumm</td>
+<td>GPL-3.0 (EmulatorJS), GPL-2.0 (FCEUmm)</td>
+</tr>
+<tr>
+<td><code>systems/stella/</code></td>
+<td>EmulatorJS + Stella (<code>stella2014</code>) libretro core</td>
+<td>EmulatorJS team; stella-emu / libretro</td>
+<td>GPL-3.0 (EmulatorJS), GPL-2.0 (Stella)</td>
+</tr>
+<tr>
+<td><code>systems/js7800/</code></td>
+<td>EmulatorJS + ProSystem (<code>prosystem</code>) libretro core</td>
+<td>EmulatorJS team; libretro/prosystem</td>
+<td>GPL-3.0 (EmulatorJS), GPL-2.0 (ProSystem)</td>
+</tr>
+<tr>
+<td><code>systems/msx1/</code>, <code>systems/msx2/</code></td>
+<td>WebMSX (same engine in two bundles — the MSX1 bundle boots <code>M=MSX1</code>, the MSX2 bundle boots <code>M=MSX2</code>)</td>
+<td>Paulo Peccin</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td><code>systems/jsspeccy/</code></td>
+<td>JSSpeccy 3.2</td>
+<td>Matt Westcott (gasman)</td>
+<td>GPL-3.0</td>
+</tr>
+<tr>
+<td><code>systems/jtyone/</code></td>
+<td>JtyOne (port of Mike Wynne's EightyOne)</td>
+<td>Simon Holdsworth</td>
+<td>GPL-2.0</td>
+</tr>
+<tr>
+<td><code>systems/xroar/</code></td>
+<td>XRoar (WASM)</td>
+<td>Ciaran Anscomb</td>
+<td>GPL-3.0-or-later</td>
+</tr>
+<tr>
+<td><code>systems/trs80/</code></td>
+<td>sdltrs (SDL2 TRS-80 emulator), built from source to WASM</td>
+<td>Mark Grebe / Jens Guenther (gitlab.com/jengun/sdltrs)</td>
+<td>BSD-2-Clause</td>
+</tr>
+<tr>
+<td><code>systems/trs80/sdltrs.wasm</code> (embedded)</td>
+<td>TRS-80 Model I Level II BASIC ROM (12 KB)</td>
+<td>© Tandy / Microsoft</td>
+<td>Bundled for emulator-only use; embedded into the WASM at build time via <code>--embed-file</code> (no separate ROM file ships)</td>
+</tr>
+<tr>
+<td><code>systems/js99er/</code></td>
+<td>Js99'er (vanilla-JS build)</td>
+<td>Rasmus Moustgaard</td>
+<td>GPL-2.0</td>
+</tr>
+<tr>
+<td><code>systems/js99er/carts/*.rpk</code></td>
+<td>TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983)</td>
+<td>Texas Instruments / Imagic / Sega — original publishers</td>
+<td>Distributed for retro-preservation; carts are 40+ years out of commerce.</td>
+</tr>
+<tr>
+<td><code>systems/atari800/</code>, <code>systems/atari400/</code></td>
+<td>atari800 v5.2.0, built from source to WASM (same core shipped in two bundles — the 400 bundle boots OS-B, the 800XL bundle boots OS-XL)</td>
+<td>atari800 project</td>
+<td>GPL-2.0+</td>
+</tr>
+<tr>
+<td><code>systems/atari800/atari800.wasm</code>, <code>systems/atari400/atari800.wasm</code> (embedded)</td>
+<td>AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC</td>
+<td>Avery Lee</td>
+<td>Freely-redistributable open-source OS replacement, compiled into the WASM via <code>--enable-altirra_bios</code> (no separate ROM file ships)</td>
+</tr>
+<tr>
+<td><code>systems/intv/</code></td>
+<td>jzIntv (WASM build)</td>
+<td>Joe Zbiciak</td>
+<td>Free for personal/non-commercial use. WASM build mirrored from <a href="https://github.com/mholzinger/intellivision-overlay-editor">mholzinger/intellivision-overlay-editor</a></td>
+</tr>
+<tr>
+<td><code>systems/odyssey2/</code></td>
+<td>libretro-o2em, custom SDL2/emscripten frontend</td>
+<td>original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack</td>
+<td>GPL-2.0+ (libretro-o2em); frontend bundled under repo terms</td>
+</tr>
+<tr>
+<td><code>systems/cpc/</code></td>
+<td>floooh's tiny8bit CPC WASM — locally rebuilt from <code>floooh/chips-test</code> (status bar + muted-speaker icon patched out, plus <code>gx_state_*</code> save-state wrappers; see <code>systems/cpc/BUILDING-WASM.md</code>)</td>
+<td>Andre Weissflog</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td><code>systems/pet/pet2001/</code></td>
+<td>pet2001 (vanilla-JS PET 2001 emulator)</td>
+<td>Thomas Skibo</td>
+<td>BSD-2-Clause</td>
+</tr>
+<tr>
+<td><code>systems/_shared-ejs/</code></td>
+<td>EmulatorJS framework</td>
+<td>EmulatorJS team</td>
+<td>GPL-3.0</td>
+</tr>
+<tr>
+<td><code>systems/_shared-ejs/ejs/data/cores/</code></td>
+<td>VICE libretro cores (<code>x64</code>, <code>x128</code>, <code>xvic</code>, <code>xplus4</code>)</td>
+<td>vice-emu.sourceforge.net</td>
+<td>GPL-2.0</td>
+</tr>
+<tr>
+<td><code>systems/_shared-ejs/ejs/data/cores/</code></td>
+<td>gearcoleco libretro core (ColecoVision)</td>
+<td>Drhelius</td>
+<td>GPL-3.0</td>
+</tr>
+<tr>
+<td><code>systems/_shared-ejs/ejs/data/cores/</code></td>
+<td>FCEUmm libretro core (NES)</td>
+<td>libretro/libretro-fceumm</td>
+<td>GPL-2.0</td>
+</tr>
+<tr>
+<td><code>systems/_shared-ejs/ejs/data/cores/</code></td>
+<td>Stella libretro core (<code>stella2014</code>, Atari 2600)</td>
+<td>stella-emu / libretro</td>
+<td>GPL-2.0</td>
+</tr>
+<tr>
+<td><code>systems/_shared-ejs/ejs/data/cores/</code></td>
+<td>gambatte libretro core (Game Boy / Game Boy Color)</td>
+<td>libretro/gambatte (sinamas)</td>
+<td>GPL-2.0</td>
+</tr>
+<tr>
+<td><code>systems/_shared-ejs/ejs/data/cores/</code></td>
+<td>handy libretro core (Atari Lynx)</td>
+<td>libretro/libretro-handy (K. Wilkins)</td>
+<td>zlib / GPL-compatible</td>
+</tr>
+<tr>
+<td><code>systems/_shared-ejs/ejs/data/cores/</code></td>
+<td>genesis_plus_gx libretro core (Sega Game Gear / Master System / Mega Drive)</td>
+<td>libretro/Genesis-Plus-GX (Eke-Eke)</td>
+<td>non-commercial redistribution licence (see core)</td>
+</tr>
+<tr>
+<td><code>systems/_shared-ejs/ejs/data/cores/</code></td>
+<td>prosystem libretro core (Atari 7800)</td>
+<td>libretro/prosystem (Greg Stanton, libretro port)</td>
+<td>GPL-2.0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-the-cores-are-mirrored">How the cores are mirrored</h3>
+<p>EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco, Stella,
+gambatte, handy, genesis_plus_gx, prosystem) are mirrored from <code>cdn.emulatorjs.org/stable/</code> rather than rebuilt
+locally. The upstream CDN serves the same <code>.data</code> archives EmulatorJS itself
+loads from.</p>
+<p><strong>Exception — <code>vice_x128</code> (C128) and <code>gambatte</code> (Game Boy):</strong> the current
+<code>stable</code> builds are broken — <code>vice_x128</code> cold-boots to uninitialised-RAM
+garbage, and <code>gambatte</code> renders a blank white panel (no ROM ever displays).
+Both verified June 2026. We mirror the <code>nightly</code> builds of these two instead
+(<code>cdn.emulatorjs.org/nightly/</code>), which work. All other cores stay on <code>stable</code>.</p>
+<h3 id="self-compiled-wasm-builds">Self-compiled WASM builds</h3>
+<ul>
+<li><strong>atari800</strong> — built from <code>atari800/atari800</code> v5.2.0 source via
+  <a href="https://github.com/Retro-Jack/atari800"><code>Retro-Jack/atari800</code></a> fork
+  (adds <code>build-wasm.sh</code> + <code>BUILDING-WASM.md</code> on top of upstream). The
+  pre-built <code>.js</code> + <code>.wasm</code> in this repo correspond to that build script.
+  The fork also adds <code>gx_state_*</code> <code>EMSCRIPTEN_KEEPALIVE</code> wrappers around
+  atari800's <code>StateSav_*AtariState</code>, run from a <code>gx_state_poll()</code> in the
+  <code>sdl/main.c</code> frame loop so the file-based save/load is deferred onto the
+  main-loop ASYNCIFY stack (a direct call would be a second concurrent
+  asyncify op and corrupt the heap) — that's what drives the page's
+  save/load buttons.</li>
+<li><strong>cpc (tiny8bit)</strong> — rebuilt from <code>floooh/chips-test</code> via fibs (Deno +
+  emsdk), recipe in <code>systems/cpc/BUILDING-WASM.md</code>. Beyond the overlay
+  removal, <code>examples/emus/cpc.c</code> gains <code>gx_state_*</code> <code>EMSCRIPTEN_KEEPALIVE</code>
+  wrappers around chips' <code>cpc_save_snapshot</code>/<code>cpc_load_snapshot</code>, with
+  <code>HEAPU8</code> added to <code>EXPORTED_RUNTIME_METHODS</code> in the fibs <code>emscripten.ts</code>.
+  The chips snapshot is a self-contained struct copy (no <code>emscripten_sleep</code>),
+  so unlike atari800 the adapter calls it straight from the button — no
+  frame-loop deferral.</li>
+<li><strong>jsbeeb (BBC Micro / Master)</strong> — built from the
+  <a href="https://github.com/Retro-Jack/jsbeeb"><code>Retro-Jack/jsbeeb</code></a> fork (a pure-JS
+  Vite build; the pre-built <code>dist/assets/</code> engine files in both bundles come
+  from <code>npm run build</code> on the fork's <code>main</code> branch). Two local changes, both
+  documented in the fork's <code>GENX-CHANGES.md</code>: (1) <strong>d-pad gamepad remap</strong> —
+  four <code>GP.D12</code>–<code>GP.D15</code> cases in <code>src/gamepads.js</code> so a launch URL can map the
+  d-pad buttons to any BBC key (jsbeeb hardwires them to Z/X/:/? with no remap
+  hook); this is a general improvement offered upstream on the fork's clean
+  <code>gamepad-dpad-remap</code> branch. (2) <strong>monitor inset</strong> — <code>src/main.js</code>
+  <code>bottomReservedSize</code> widened 68→120 for the sitewide-wallpaper breathing room
+  (GenX-local, not upstreamed).</li>
+<li><strong>libretro-o2em</strong> — built from upstream libretro/libretro-o2em via
+  <code>systems/odyssey2/build.sh</code>. Custom SDL2/emscripten frontend
+  (<code>frontend.c</code>) statically linked with the libretro core; reproducible
+  with emsdk. <code>frontend.c</code> also adds <code>gx_state_*</code> <code>EMSCRIPTEN_KEEPALIVE</code>
+  wrappers around the core's <code>retro_serialize</code>/<code>retro_unserialize</code> to
+  expose save/load state to the page (with <code>HEAPU8</code> in
+  <code>EXPORTED_RUNTIME_METHODS</code>).</li>
+<li><strong>sdltrs (TRS-80 Model I)</strong> — built from <code>jengun/sdltrs</code>
+  (gitlab.com/jengun/sdltrs) to WASM via emscripten (<code>build-wasm.sh</code>,
+  <code>-sASYNCIFY</code> + <code>-sUSE_SDL=2</code>, <code>-sMODULARIZE</code>). Two <code>#ifdef __EMSCRIPTEN__</code>
+  patches swap sdltrs's blocking <code>SDL_Delay</code> throttle (<code>trs_interrupt.c</code>) and
+  <code>SDL_WaitEvent</code> (<code>trs_sdl_interface.c</code>) for <code>emscripten_sleep</code>, so the
+  continuous Z80 loop yields once per timer tick and the page stays
+  responsive. The Model I Level II BASIC ROM is embedded via <code>--embed-file</code>.
+  sdltrs ships a built-in save-state (<code>trs_state_save</code>/<code>trs_state_load</code>) that
+  isn't wired to the page yet.</li>
+<li><strong>VirtualT (Tandy TRS-80 Model 100)</strong> — Stephen Hurd &amp; Ken Pettit's VirtualT
+  (BSD, © 2004; <a href="https://sourceforge.net/projects/virtualt/">sourceforge.net/projects/virtualt</a>)
+  is a full FLTK desktop emulator; this bundle is built from its <strong>core only</strong>.
+  The FLTK-free 8085 CPU, memory, HD44102 LCD and keyboard-matrix sources are
+  compiled to WASM with emscripten (<code>-sASYNCIFY</code> + <code>-sUSE_SDL=2</code>) behind a small
+  headless SDL2 frontend (<code>frontend_sdl.c</code>) plus headless display / file / clock /
+  stub units written for this project; the ~40 FLTK GUI/IDE/debugger files are
+  dropped. Because so much of the original is stripped away this is an
+  <strong>acknowledgement, not a fork</strong> — VirtualT's BSD licence and the original
+  copyright are preserved in the retained sources. The 32 KB Model 100 ROM is
+  embedded via <code>--embed-file</code>. The five headless units (<code>frontend_sdl.c</code> plus the
+  display / file / clock / stub replacements), a reproducible <code>build.sh</code>,
+  <code>BUILDING-WASM.md</code> and VirtualT's BSD licence are in <code>systems/m100/src/</code>.</li>
+</ul>
+<hr />
+<h2 id="bios-and-system-roms">BIOS and system ROMs</h2>
+<p>Bundled for emulator-only use. These remain the property of their
+copyright holders.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>System</th>
+<th>Copyright</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>systems/coleco/colecovision.rom</code></td>
+<td>ColecoVision</td>
+<td>© 1982 Coleco Industries</td>
+</tr>
+<tr>
+<td><code>systems/lynx/lynxboot.img</code></td>
+<td>Atari Lynx boot ROM (512 bytes)</td>
+<td>© 1989 Atari Corp. (required by the handy core to start games)</td>
+</tr>
+<tr>
+<td><code>systems/intv/exec.bin</code>, <code>grom.bin</code></td>
+<td>Intellivision EXEC + GROM</td>
+<td>© 1979 Mattel Electronics</td>
+</tr>
+<tr>
+<td><code>systems/odyssey2/o2rom.bin</code></td>
+<td>Magnavox Odyssey² (MD5 562d5ebf…)</td>
+<td>© 1978 Magnavox/Philips.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="game-roms">Game ROMs</h2>
+<p>The repo bundles several hundred 8-bit-era game ROMs across all platforms.
+These remain the copyright of their original publishers and are included
+for historical preservation, emulator integration, and educational use.</p>
+<p>Notable inclusions where the rights holder has explicitly released the
+software under permissive terms:</p>
+<ul>
+<li><strong>Apple I cassette tapes</strong> — Integer BASIC era homebrew + Apple's own
+  30th Anniversary demo by Brian Wiser. Sourced from the
+  <a href="https://www.applefritter.com/apple1">Apple I Project</a> archive.</li>
+<li><strong>AltirraOS-800 / -XL</strong> (counted under BIOS, above) — Avery Lee's
+  free re-implementation of Atari OS-B / OS-XL.</li>
+<li><strong>3D Construction Kit demos and indie homebrew</strong> across various
+  platforms — license varies; check the per-bundle <code>games.json</code> or
+  source archive when in doubt.</li>
+<li><strong>Attack of the PETSCII Robots</strong> (C64, <code>systems/c64/games/petrobot.d64</code>) —
+  David Murray ("The 8-Bit Guy") / 8-Bit Productions, 2021. The official
+  free <strong>shareware</strong> build (2 of the full game's 13 levels) is explicitly
+  redistributable — "You are free to distribute this archive." Downloaded
+  from <a href="https://www.the8bitguy.com/25753/petscii-robot-shareware-available/">the8bitguy.com</a>;
+  the full game is for sale. Bundled disk only — the manual PDF and notes
+  in the original archive are not shipped.</li>
+</ul>
+<p>For every other commercial title, redistribution within this repo is on a
+preservation / personal-use basis. If you are a rights holder and want a
+title removed, open an issue at
+<a href="https://github.com/Retro-Jack/GenX-DOS/issues">https://github.com/Retro-Jack/GenX-DOS/issues</a>.</p>
+<hr />
+<h2 id="research-and-reference-sources">Research and reference sources</h2>
+<p>Reference works — not bundled code — consulted to get the per-game gamedocs
+right (control schemes and in-game behaviour). The project leans on them and is
+glad to say so.</p>
+<ul>
+<li>
+<p><strong>Paul Farrow — ZX81 disassemblies</strong> (<a href="http://www.fruitcake.plus.com">www.fruitcake.plus.com</a>).
+  Paul's meticulous, fully-commented disassembly of <em>3D Monster Maze</em> (Malcolm
+  Evans, New Generation Software, 1981) is the authority behind that ZX81
+  gamedoc — the verified in-game keys and menu details we would otherwise have
+  had to guess at. Painstaking preservation work, freely shared decades on.
+  Thank you.</p>
+</li>
+<li>
+<p><strong>Mark Moxon — bbcelite.com</strong> (<a href="https://www.bbcelite.com">www.bbcelite.com</a>).
+  Mark's fully-commented, line-by-line disassembly of <em>Elite</em> (Ian Bell &amp; David
+  Braben, Acornsoft 1984) across its 8-bit versions is the authority behind our
+  Elite gamedocs — the correct publisher and year, the real flight and chart
+  keys, and which features each port actually has (no Thargoids or suns on the
+  Electron, the Master's fractional scoring). A monumental preservation effort,
+  freely shared. Thank you.</p>
+</li>
+<li>
+<p><strong>David D. Busch — <em>25 Games for your TRS-80 Model 100</em></strong> (TAB Books, 1984).
+  The Model 100 bundle's games are hand-transcribed BASIC type-in listings from
+  this book, and its per-game chapters are the authority behind those gamedocs —
+  the controls, scoring and how-to-play. A lovely artefact of the type-in era,
+  leaned on here with thanks. As with the other bundled game code, these listings
+  are included on a preservation / personal-use basis; a rights holder who wants
+  them removed can open an issue.</p>
+</li>
+<li>
+<p><strong>Tandy — <em>TRS-80 Model 100 Owner's Manual</em></strong> (Radio Shack, 1983;
+  <a href="https://archive.org/details/trs-80-m-100-user-guide">archive.org</a>). The authority
+  behind the Model 100 controls page — the exact TEXT / ADDRSS / SCHEDL usage and
+  function-key labels (Find, Load, Save, Sel, Copy, Cut, Menu; and that ADDRSS and
+  SCHEDL <em>find</em> records you enter in TEXT) come straight from it rather than memory.</p>
+</li>
+<li>
+<p><strong>dplassgit</strong> — proposed the Tandy Model 100 as a GenX-DOS platform in
+  <a href="https://github.com/Retro-Jack/GenX-DOS/discussions/2">discussion #2, "Tandy 100?"</a>
+  (<em>"Based on the Intel 8085 CPU… it definitely has the 8-bit feel"</em>). The whole
+  platform exists because of that suggestion — and thanks to the above book, we
+  were able to ship the usual amount of games, even when the primary source
+  failed. Thanks for the nudge.</p>
+</li>
+</ul>
+<hr />
+<h2 id="bezel-artwork">Bezel artwork</h2>
+<p><code>systems/_shared/bezels/</code> holds the transparent PNG monitor/console frames used by the CRT-bezel overlays. <strong>Every platform is now wired to a bezel</strong> (the per-emulator integration pass is complete).</p>
+<p>Per maintainer policy, bezel / wallpaper / texture artwork is <strong>not provenance-tracked</strong> — these are anonymous hardware shots or generic CRT frames sourced from public web archives where the original photographer is no longer reachable, then processed locally (alpha-keying, screen cutout) in GIMP. Source-code dependencies stay fully tracked (above). Wired bezels ship without credit comments.</p>
+<p><strong>Exception — <code>Amstrad.png</code></strong> is properly source-cleared and carries a binding obligation: cropped from <a href="https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg">File:Amstrad_CPC464.jpg</a> (Wikimedia Commons) by Bill Bertram (username Pixel8), 7 May 2005, <strong>CC-BY-SA 2.5</strong>. Modifications inherit share-alike; <code>systems/cpc/play.html</code> carries the author + licence as an attribution comment.</p>
+<p>(Note: jsbeeb's CUB monitor frame lives inside <code>systems/bbcmicro/dist/</code> and <code>systems/bbcmaster/dist/</code> as part of the upstream build, not this shared set.)</p>
+<hr />
+<h2 id="fonts">Fonts</h2>
+<ul>
+<li>
+<p><code>prompt/img/f12.*.png</code> — 12×12 CP437 bitmap font sprites. Generated
+  locally by <code>make_fonts.py</code> from Unicode CP437 mappings; the rendered
+  glyph shapes derive from public-domain VGA CP437 reference data.</p>
+</li>
+<li>
+<p><code>docs/fonts/web437-vga.woff</code> — <strong>Web437 IBM VGA 9×16</strong>, from the Ultimate
+    Oldschool PC Font Pack by <strong>VileR</strong> (<a href="https://int10h.org/oldschool-pc-fonts/">https://int10h.org/oldschool-pc-fonts/</a>),
+    © 2016–2020 VileR. Licensed <strong>CC BY-SA 4.0</strong>
+    (<a href="https://creativecommons.org/licenses/by-sa/4.0/">https://creativecommons.org/licenses/by-sa/4.0/</a>). A genuine IBM VGA
+    text-mode CP437 font; used on the landing page (<code>index.html</code>) for the spec
+    sheet and the "Enter the museum" button. Unmodified.</p>
+</li>
+<li>
+<p><code>docs/fonts/michroma-400.woff2</code> — <strong>Michroma</strong> by Vernon Adams. Licensed
+    <strong>SIL Open Font License 1.1</strong>. Display face on the landing page and the
+    feature article (<code>docs/article/index.html</code>).</p>
+</li>
+<li>
+<p><code>docs/fonts/ibm-plex-mono-*.woff2</code>, <code>docs/fonts/ibm-plex-serif-*.woff2</code> —
+    <strong>IBM Plex Mono</strong> and <strong>IBM Plex Serif</strong> by Mike Abbink &amp; Bold Monday for
+    IBM. Licensed <strong>SIL Open Font License 1.1</strong>. Body / UI faces on the landing
+    page and the feature article. Subsetted to the Latin range.</p>
+</li>
+</ul>
+<hr />
+<h2 id="css--js-dependencies-bundled-per-emulator">CSS / JS dependencies bundled per-emulator</h2>
+<ul>
+<li><code>systems/electron/jquery/jquery-1.9.1.js</code> + <code>jquery-ui-1.10.3.custom.min.js</code> —
+  jQuery 1.9.1 and jQuery UI 1.10.3 custom build, MIT — required by ElkJS
+  upstream. Kept as-is to avoid divergence from the ElkJS source.</li>
+<li><code>systems/electron/</code> — ElkJS (© Darren Coles 2013) is <strong>locally patched</strong> from
+  the upstream source: <code>display.js</code> row-doubling (removes upstream's baked-in
+  scanlines), <code>sound.js</code> (adds the <code>soundInit()</code> AudioContext resume the upstream
+  <code>soundToggle()</code> referenced but never defined, plus a 25% output mix), and
+  <code>elkjs.js</code> (<code>resumeAudio()</code>, to start sound on a user gesture). The upstream
+  duplicate jQuery 1.7.2 was removed. See CHANGELOG / wiki for the why.</li>
+</ul>
+<p>Other emulator bundles vendor their upstream dependencies; where a bundle's
+runtime is locally modified (e.g. ElkJS above, the atari800 / CPC / o2em WASM
+rebuilds) the change is recorded here or in the CHANGELOG. The upstream
+<code>LICENSE</code> / <code>COPYING</code> files in each bundle directory cover the originals.</p>
+<hr />
+<h2 id="how-to-add-a-new-attribution-entry">How to add a new attribution entry</h2>
+<p>When adding code or assets to the repo:</p>
+<ol>
+<li>Identify the upstream source and licence. If the licence is unclear,
+   ask before bundling.</li>
+<li>Place the upstream <code>LICENSE</code> / <code>COPYING</code> file in the bundle directory
+   alongside the binary or source it covers.</li>
+<li>Add a row to the relevant table above.</li>
+<li>Add a parallel entry in <code>CHANGELOG.md</code> under <code>## [Unreleased]</code>.</li>
+<li>If the licence is one of the BY-SA family, note in the table that
+   modifications inherit share-alike — this affects what we can do with
+   derived work.</li>
+</ol>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

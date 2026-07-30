@@ -202,7 +202,7 @@ The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.m
 - libretro-o2em: GPL-2.0+ (libretro/libretro-o2em, original o2em by Daniel Boris / Andre de la Rocha) — compiled from upstream source via `systems/odyssey2/build.sh`
 - Magnavox Odyssey² BIOS (`o2rom.bin`): ©1978 Magnavox/Philips, bundled for emulator-only use
 
-[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![License: CC BY-NC 4.0](docs/badges/license-cc-by-nc-4.0.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 The original orchestration code, menu trees, and AMIBIOS POST animations authored by Jack Horton are licensed under **Creative Commons Attribution-NonCommercial 4.0 International** — see **[LICENSE.TXT](LICENSE.TXT)** for the full terms.
 

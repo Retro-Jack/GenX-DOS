@@ -27,9 +27,9 @@
     #wmsx-osd { display: none !important; }
     .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
   </style>
-  <link rel="stylesheet" href="../_shared/genx-frame.css">
-  <link rel="stylesheet" href="../_shared/genx-noscript.css">
-  <link rel="stylesheet" href="../_shared/genx-controls-link.css">
+  <link rel="stylesheet" href="../_shared/styles/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
   <script>
     /* Clean WebMSX integration (rebuilt 16/06/2026 from the official 6.0
        *embedded* build: wmsx.js is the engine, this file is OUR wrapper, so
@@ -80,7 +80,7 @@
 
   <!-- save / load state: WebMSX exposes WMSX.room.machine with saveState()/
        loadState() (the same API its netplay uses). -->
-  <link rel="stylesheet" href="../_shared/genx-savestate.css">
+  <link rel="stylesheet" href="../_shared/styles/genx-savestate.css">
   <script>
     window.GenXStateAdapter = {
       ready:    function () { return !!(window.WMSX && WMSX.room && WMSX.room.machine && typeof WMSX.room.machine.saveState === 'function'); },

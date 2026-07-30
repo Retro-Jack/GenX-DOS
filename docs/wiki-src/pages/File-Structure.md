@@ -133,7 +133,7 @@ Each `play.html`-based emulator has a `games.json` mapping `<key>` → `{title, 
 | `index.html` (repo root) | the landing page — intro, CP437 spec sheet, screenshots and links, with the way into `prompt/`; touch devices get a keyboard-required graphic instead |
 | `prompt/index.html` | Loads the JS modules in order, hosts the terminal `<div>` |
 | `prompt/img/ami-logo.png` | AMIBIOS POST splash logo |
-| `prompt/img/f12.7.png` | 192×192 px, 16×16 grid of 12×12 px CP437 glyphs (light grey) |
-| `prompt/img/f12.<N>.png` | Pre-tinted variant for CGA palette index N |
+| `systems/_shared/styles/VGA_font/f12.7.png` | 192×192 px, 16×16 grid of 12×12 px CP437 glyphs (light grey) |
+| `systems/_shared/styles/VGA_font/f12.<N>.png` | Pre-tinted variant for CGA palette index N |
 | `make_fonts.py` | One-shot PIL script that tints `f12.7.png` into the other variants |
 | `serve.sh` | `python3 -m http.server 8765` wrapper that also opens the browser |

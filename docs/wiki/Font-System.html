@@ -17,7 +17,7 @@
 <div class="layout">
   <nav class="side">
 <div class="grp">GenX-DOS</div>
-<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li></ul>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li><li><a href="README.html">Readme</a></li><li><a href="ATTRIBUTION.html">Attribution</a></li></ul>
 <div class="grp">Internals</div>
 <ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html" class="active">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
 <div class="grp">Emulators</div>
@@ -28,8 +28,8 @@
   <main class="content">
 <p>We don't use a webfont. Every character on screen is its own <code>&lt;div&gt;</code>, and CSS picks a 12×12 region of a sprite sheet to show the right glyph. This is more work than a single <code>&lt;canvas&gt;</code> would be, but it means each character can carry its own attributes (palette index, original value for command-line scanning, classnames for blinking cursor offset), which makes the terminal logic far simpler.</p>
 <h2 id="the-sprite-sheets">The sprite sheets</h2>
-<pre><code>prompt/img/f12.7.png         master  (light grey on transparent)
-prompt/img/f12.&lt;0..15&gt;.png   per-CGA-colour variants
+<pre><code>systems/_shared/styles/VGA_font/f12.7.png         master  (light grey on transparent)
+systems/_shared/styles/VGA_font/f12.&lt;0..15&gt;.png   per-CGA-colour variants
 </code></pre>
 <p>Each sheet is 192×192 px — a 16×16 grid of 12×12 px CP437 glyphs, indexed by character code 0–255.</p>
 <h2 id="how-the-css-gets-generated">How the CSS gets generated</h2>

@@ -1,4 +1,4 @@
-@import url('../../styles/genx.css');
+@import url('../../../styles/genx.css');
 /* controls.html + gamedocs — the GenX-DOS design language (dark CRT terminal).
    Self-hosted faces + palette come from genx.css. */
 *{box-sizing:border-box}

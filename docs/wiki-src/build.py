@@ -12,8 +12,12 @@ OUT  = os.path.normpath(os.path.join(HERE, '..', 'wiki'))
 os.makedirs(OUT, exist_ok=True)
 
 PAGES = sorted(f[:-3] for f in os.listdir(SRC) if f.endswith('.md'))
-KNOWN = set(PAGES)                       # valid link targets (slugs)
+# Root docs imported into the wiki as pages — single source, read from the repo root.
+EXTRA = {'README': os.path.normpath(os.path.join(HERE, '..', '..', 'README.md')),
+         'ATTRIBUTION': os.path.normpath(os.path.join(HERE, '..', '..', 'ATTRIBUTION.md'))}
+KNOWN = set(PAGES) | set(EXTRA)          # valid link targets (slugs)
 PAGES_BASE = 'https://retro-jack.github.io/GenX-DOS/'   # -> ../../ (repo root)
+GH = 'https://github.com/Retro-Jack/GenX-DOS/'          # github repo/wiki base
 
 def out_name(slug):                       # slug -> output filename
     return 'index.html' if slug == 'Home' else slug + '.html'
@@ -23,18 +27,36 @@ def gh_slugify(value, sep):               # GitHub-compatible heading anchors
     v = re.sub(r'[^\w\s-]', '', v).strip()
     return re.sub(r'\s', '-', v)
 
+def _local(page, frag):
+    return out_name(page) + (('#' + gh_slugify(frag, '-')) if frag else '')
 def resolve(target):
     """Rewrite a link target to a relative wiki/site URL. Returns (url, dead?)."""
     t = target.strip()
+    # GitHub wiki links -> local wiki pages
+    if t in (GH + 'wiki', GH + 'wiki/'):
+        return 'index.html', False
+    if t.startswith(GH + 'wiki/'):
+        page, _, frag = t[len(GH + 'wiki/'):].partition('#')
+        return _local(page, frag), False
+    # GitHub blob of an imported doc -> local page; other repo files -> repo-root
+    if t.startswith(GH + 'blob/'):
+        rest = t.split('/blob/', 1)[1].split('/', 1)[1]
+        stem = rest[:-3] if rest.endswith('.md') else rest
+        return (stem + '.html', False) if stem in EXTRA else ('../../' + rest, False)
     if t.startswith(PAGES_BASE):
         return '../../' + t[len(PAGES_BASE):], False
+    # bare repo-root files (README.md / ATTRIBUTION.md / CHANGELOG.md / LICENSE.TXT)
+    if '/' not in t and (t.endswith('.md') or t == 'LICENSE.TXT'):
+        stem = t[:-3] if t.endswith('.md') else t
+        if stem in EXTRA: return stem + '.html', False
+        if stem in KNOWN: return out_name(stem), False
+        return '../../' + t, False
     if re.match(r'^(https?:)?//', t) or t.startswith('mailto:') or t.startswith('/') \
        or t.startswith('../') or t.startswith('#'):
         return t, False
     page, _, frag = t.partition('#')
     dead = page not in KNOWN and page != 'Home'
-    url = out_name(page) + (('#' + gh_slugify(frag, '-')) if frag else '')
-    return url, dead
+    return _local(page, frag), dead
 
 # ---- markdown engine (GitHub-style heading ids so #anchors resolve) ----
 def make_md():
@@ -60,6 +82,18 @@ def rewrite_hrefs(htmltext, dead_sink):
             dead_sink.add(m.group(1))
         return 'href="%s"' % url
     return HREF.sub(sub, htmltext)
+
+IMG = re.compile(r'<img\b[^>]*>')
+def rewrite_imgs(h):
+    def sub(m):
+        tag = m.group(0); sm = re.search(r'src="([^"]+)"', tag)
+        if not sm: return tag
+        src = sm.group(1)
+        if re.match(r'https?:', src):                 # external (badges) -> no-network: use alt text
+            am = re.search(r'alt="([^"]*)"', tag); return am.group(1) if am else ''
+        new = '../' + src[len('docs/'):] if src.startswith('docs/') else src
+        return tag.replace('src="%s"' % src, 'src="%s"' % new)
+    return IMG.sub(sub, h)
 
 def first_h1(md_text):
     for line in md_text.splitlines():
@@ -124,12 +158,15 @@ TEMPLATE = '''<!doctype html>
 
 def main():
     dead_all = {}
-    for slug in PAGES:
-        md_text = open(os.path.join(SRC, slug + '.md')).read()
+    jobs = [(slug, os.path.join(SRC, slug + '.md')) for slug in PAGES]
+    jobs += sorted(EXTRA.items())
+    for slug, path in jobs:
+        md_text = open(path).read()
         title = first_h1(md_text) or slug.replace('-', ' ')
         md = make_md()
         body = md.convert(pre_wikilinks(md_text))
         dead = set()
+        body = rewrite_imgs(body)
         body = rewrite_hrefs(body, dead)
         if dead: dead_all[slug] = dead
         page = TEMPLATE.format(title=html.escape(title),
@@ -137,7 +174,7 @@ def main():
                                content=body)
         open(os.path.join(OUT, out_name(slug)), 'w').write(page)
     open(os.path.normpath(os.path.join(HERE, '..', '..', 'styles', 'wiki.css')), 'w').write(CSS)
-    print('wrote %d html pages + wiki.css to %s' % (len(PAGES), OUT))
+    print('wrote %d html pages + wiki.css to %s' % (len(jobs), OUT))
     if dead_all:
         print('DEAD LINKS:')
         for s, d in dead_all.items(): print('  ', s, '->', sorted(d))

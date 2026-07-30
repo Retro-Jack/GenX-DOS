@@ -33,7 +33,7 @@ function goFontGo() {
   var fontsDiv = document.getElementById('fonts');
   for (var i = 0; i < pal.length; i++) {
     var img = document.createElement('img');
-    img.src = 'img/f12.' + i + '.png';
+    img.src = '../systems/_shared/styles/VGA_font/f12.' + i + '.png';
     fontSrc[i] = img.src;
     img.id = 'font-' + i;
     fontsDiv.appendChild(img);

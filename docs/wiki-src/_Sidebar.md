@@ -3,6 +3,8 @@
 - [Home](Home)
 - [Project Overview](Project-Overview)
 - [Roadmap](Roadmap)
+- [Readme](README)
+- [Attribution](ATTRIBUTION)
 
 **Internals**
 

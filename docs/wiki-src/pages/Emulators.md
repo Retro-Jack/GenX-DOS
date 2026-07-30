@@ -53,7 +53,7 @@ All six VICE-family + 800XL bundles route through a small `empty.prg` for the BA
 
 ## Controls reference pages
 
-Every emulator directory has a `controls.html` documenting its keyboard / joystick mapping. Same dark-amber DOS-flavoured style across all pages; the page-level CSS lives in `systems/_shared/genx-controls.css`.
+Every emulator directory has a `controls.html` documenting its keyboard / joystick mapping. Same dark-amber DOS-flavoured style across all pages; the page-level CSS lives in `systems/_shared/styles/genx-controls.css`.
 
 **Per-game instruction pages** at `gamedocs/<platform>/<key>.html` replace `controls.html` when a game has researched gameplay instructions. The `genx-controls-link.js` script reads `?game=`, `?tape=`, or `?rom=` from the URL and routes to the matching gamedocs page, falling back to `controls.html` when no game param is present (prompt/BASIC entries).
 

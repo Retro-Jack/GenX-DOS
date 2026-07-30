@@ -3,8 +3,8 @@ We don't use a webfont. Every character on screen is its own `<div>`, and CSS pi
 ## The sprite sheets
 
 ```
-prompt/img/f12.7.png         master  (light grey on transparent)
-prompt/img/f12.<0..15>.png   per-CGA-colour variants
+systems/_shared/styles/VGA_font/f12.7.png         master  (light grey on transparent)
+systems/_shared/styles/VGA_font/f12.<0..15>.png   per-CGA-colour variants
 ```
 
 Each sheet is 192×192 px — a 16×16 grid of 12×12 px CP437 glyphs, indexed by character code 0–255.

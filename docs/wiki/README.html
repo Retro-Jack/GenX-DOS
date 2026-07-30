@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GenX-DOS — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="../../styles/genx.css">
+<link rel="stylesheet" href="../../styles/wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li><li><a href="README.html" class="active">Readme</a></li><li><a href="ATTRIBUTION.html">Attribution</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="genx-dos">GenX-DOS</h1>
+<p>A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a <code>C:\&gt;</code> cursor, type a number, play a game. Everything runs on the page — no server, no network calls at runtime. Try it <a href="../../">here</a>.</p>
+<p align="center">
+  <img src="../screenshot-menu.png" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
+  <img src="../screenshot.png" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
+</p>
+
+<p>We bundle 19 emulator engines covering 33 sub-systems between them, from the Apple I to the Sega Master System.</p>
+<p><strong>Scope:</strong> 8-bit <em>feel</em> — anything with the look and sound of an 8-bit machine (sprite-based, chiptune, low-res), including the 8-bit-feel handhelds (Game Boy/GBC, Game Gear, Lynx) even where they run into the late 90s. The cutoff is the <em>aesthetic</em>, not the calendar or strict CPU width; 16-bit home consoles/computers (Genesis, SNES, Amiga, ST) stay out. See the <a href="Roadmap.html">Roadmap</a> for what's shipped, planned, and rejected.</p>
+<h2 id="quick-start">Quick start</h2>
+<pre><code class="language-sh">./serve.sh
+</code></pre>
+<p>Or directly:</p>
+<pre><code class="language-sh">python3 -m http.server 8765
+</code></pre>
+<p>Open <a href="http://127.0.0.1:8765/prompt/">http://127.0.0.1:8765/prompt/</a>.</p>
+<h2 id="run-it-as-a-package">Run it as a package</h2>
+<p>GenX-DOS is also published as <a href="https://github.com/Retro-Jack/GenX-DOS/packages">GitHub Packages</a> — the whole site bundled with its dependencies, no clone required.</p>
+<p><strong>Container image</strong> (the site served by nginx):</p>
+<pre><code class="language-sh">docker run --rm -p 8080:80 ghcr.io/retro-jack/genx-dos:latest
+</code></pre>
+<p>Then open <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a>.</p>
+<p><strong>npm package</strong> (the static site as files, to self-host or embed):</p>
+<pre><code class="language-sh">npm install @retro-jack/genx-dos --registry=https://npm.pkg.github.com
+</code></pre>
+<pre><code class="language-js">const express = require('express');
+const genxdos = require('@retro-jack/genx-dos');
+
+express().use(express.static(genxdos.path)).listen(8080);
+// open http://127.0.0.1:8080/
+</code></pre>
+<p>Both are rebuilt and published automatically on every GitHub Release (see <code>.github/workflows/publish-package.yml</code>).</p>
+<h2 id="what-youll-find-in-the-repo">What you'll find in the repo</h2>
+<pre><code>index.html                landing page — intro, spec sheet, links, and the way into prompt/
+serve.sh                  starts the local server
+CHANGELOG.md              release notes
+ATTRIBUTION.md            canonical record of every bundled third-party asset
+LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)
+SECURITY.md               scope + private vulnerability reporting
+CONTRIBUTING.md           local setup + PR ground rules; CODE_OF_CONDUCT.md alongside
+package.json / index.js   the npm package; Dockerfile builds the ghcr container
+docs/                     tech article + landing/README screenshots + social preview + self-hosted fonts
+prompt/                   the DOS terminal (HTML + JS, no build)
+  index.html
+  javascript/             terminal logic + virtual filesystem (fs.js)
+  img/                    bitmap font sprite sheets + AMIBIOS logo
+gamedocs/                 per-game instruction pages (gamedocs/&lt;platform&gt;/&lt;key&gt;.html)
+systems/
+  _shared/                shared CSS + helpers (NumLock warn, VICE RUN/STOP key remap, BBC COPY button, save-state, ...)
+  _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem
+                          (14 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
+  apple1/                 Apple I             — apple1js + 10 cassette tapes
+  bbcmicro/               BBC Micro           — jsbeeb Vite dist (Model B) + BBC disks
+  bbcmaster/              BBC Master 128      — jsbeeb Vite dist (model=Master) + Master-enhanced disks
+  electron/               Acorn Electron      — ElkJS + 6 UEF snapshots
+  apple2/                 Apple ][+           — apple2js webpack dist + 10 .dsk images
+  jsnes/                  NES                 — EmulatorJS + FCEUmm + 10 .nes ROMs
+  stella/                 Atari 2600          — EmulatorJS + Stella (stella2014) + 10 .a26 ROMs
+  gbc/                    Game Boy / GBC      — EmulatorJS + gambatte + 10 GB/GBC ROMs (handheld)
+  lynx/                   Atari Lynx          — EmulatorJS + handy + boot ROM + 10 .lnx ROMs (handheld)
+  gamegear/               Sega Game Gear      — EmulatorJS + genesis_plus_gx + 10 .gg ROMs (handheld)
+  js7800/                 Atari 7800          — EmulatorJS + ProSystem + 10 .a78 carts
+  msx1/                   MSX1                — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 titles
+  msx2/                   MSX2                — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 titles
+  sms/                    Sega Master System  — EmulatorJS + genesis_plus_gx + 10 .sms carts
+  jsspeccy/               Sinclair Spectrum   — JSSpeccy 3.2 + 10 .z80 snapshots
+  jtyone/                 Sinclair ZX81       — JtyOne + 10 .p tapes
+  xroar/                  Tandy CoCo          — XRoar WASM + 10 .ccc carts
+  trs80/                  Tandy TRS-80 Model I — sdltrs built from source to WASM + 10 .cmd games
+  m100/                   Tandy Model 100     — VirtualT core extracted to WASM + 10 .ba games (portable)
+  js99er/                 TI-99/4A            — vanilla-JS js99er + 10 .rpk carts
+  atari400/               Atari 400           — atari800 WASM, boots OS-B
+  atari800/               Atari 800XL         — atari800 WASM, boots OS-XL
+  pet/                    Commodore PET       — Thomas Skibo's pet2001 (vanilla JS) + 10 .prg
+  vic20/                  Commodore VIC-20    — EmulatorJS + VICE xvic + 10 cart .prg
+  max/                    Commodore MAX       — EmulatorJS + VICE x64 in Ultimax mode + 10 .crt
+  c64/                    Commodore 64        — EmulatorJS + VICE x64 + 10 .d64
+  c16/                    Commodore 16        — EmulatorJS + VICE xplus4 C16 mode + 10 .prg
+  plus4/                  Commodore Plus/4    — EmulatorJS + VICE xplus4 + 10 .prg
+  c128/                   Commodore 128       — EmulatorJS + VICE x128 native mode + 10 titles
+  coleco/                 ColecoVision        — EmulatorJS + gearcoleco + 10 launch-era .col carts
+  intv/                   Mattel Intellivision — jzIntv WASM (custom loader) + 10 carts
+  cpc/                    Amstrad CPC         — floooh tiny8bit CPC WASM + 10 .dsk titles
+  odyssey2/               Magnavox Odyssey²   — libretro-o2em + custom SDL2 frontend + 10 carts
+</code></pre>
+<h2 id="where-the-readable-source-is">Where the readable source is</h2>
+<p>The hand-written GenX-DOS code lives in <code>prompt/javascript/</code>, <code>systems/_shared/</code>, <code>systems/_shared-ejs/</code>, each emulator's <code>play.html</code> wrapper, and <code>systems/m100/src/</code> (the Model 100's headless VirtualT build units + recipe) — all formatted for reading.</p>
+<p>Everything else under <code>systems/&lt;name&gt;/</code> is upstream: emscripten WASM glue (<code>xroar.js</code>, <code>atari800.js</code>, <code>o2em.js</code>, <code>jzintv.js</code>), webpack production bundles (<code>apple1.js</code>, <code>apple2/dist/*.bundle.js</code>, <code>jsspeccy.js</code>), the stock WebMSX engine (<code>msx1/wmsx.js</code>, <code>msx2/wmsx.js</code>), or hand-written JS from the upstream project (ElkJS, js99er's <code>emu/</code>). For the readable source of those, follow the upstream link in <a href="ATTRIBUTION.html">ATTRIBUTION.md</a> or the per-engine integration story on the <a href="Emulators.html">wiki</a>.</p>
+<h2 id="the-emulator-lineup">The emulator lineup</h2>
+<p>Each engine has its own story page on the wiki — the gotchas we hit, the workarounds we shipped, the dead ends we ruled out. The table below is the quick-reference; click through to <a href="Emulators.html">Emulators</a> for the index.</p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Copied from</th>
+<th>URL pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Apple I</td>
+<td>scullin/apple1js</td>
+<td><code>play.html?tape=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>BBC Micro</td>
+<td>mattgodbolt/jsbeeb</td>
+<td><code>?disc1=&lt;path&gt;.ssd&amp;autoboot</code></td>
+</tr>
+<tr>
+<td>BBC Master</td>
+<td>mattgodbolt/jsbeeb (same build)</td>
+<td><code>?model=Master&amp;disc1=&lt;path&gt;.ssd&amp;autoboot</code></td>
+</tr>
+<tr>
+<td>Acorn Electron</td>
+<td>dmcoles/elkjs</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>Apple ][+</td>
+<td>whscullin/apple2js</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>NES</td>
+<td>EmulatorJS + FCEUmm libretro core</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>2600</td>
+<td>EmulatorJS + Stella (stella2014 core)</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>7800</td>
+<td>EmulatorJS + ProSystem (prosystem core)</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>MSX1 / MSX2</td>
+<td>ppeccin/WebMSX (split into <code>msx1/</code> + <code>msx2/</code> bundles)</td>
+<td><code>?ROM=games/&lt;name&gt;.zip&amp;M=MSX1</code> | <code>&amp;M=MSX2</code></td>
+</tr>
+<tr>
+<td>Spectrum</td>
+<td>gasman/JSSpeccy 3</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>ZX81</td>
+<td>JtyOne</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>Tandy CoCo</td>
+<td>Ciaran Anscomb/XRoar</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>TRS-80 Model I</td>
+<td>jengun/sdltrs (our own WASM build)</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>Model 100</td>
+<td>Hurd &amp; Pettit/VirtualT (our own core-only WASM build)</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>TI-99/4A</td>
+<td>Rasmus-M/js99er (vanilla-JS build)</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>Atari 400 / 800XL</td>
+<td>atari800/atari800 (our own WASM build; split into <code>atari400/</code> + <code>atari800/</code> bundles)</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>VIC-20 / MAX / C64 / C16 / Plus/4 / C128</td>
+<td>EmulatorJS + VICE libretro family</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>PET</td>
+<td>Thomas Skibo's pet2001 (vanilla JS)</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>ColecoVision</td>
+<td>EmulatorJS + gearcoleco (Drhelius) libretro</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>Intellivision</td>
+<td>jzIntv (Joe Zbiciak) WASM, custom emscripten loader</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>Amstrad CPC</td>
+<td>floooh/chips-test tiny8bit CPC WASM (Andre Weissflog)</td>
+<td><code>play.html?game=&lt;key&gt;</code> (rewrites to <code>?file=&amp;input=</code> for sokol_args)</td>
+</tr>
+<tr>
+<td>Magnavox Odyssey²</td>
+<td>libretro/libretro-o2em + custom SDL2/emscripten frontend</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>ROMs are bundled locally — nothing is fetched at runtime.</p>
+<p>The six VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4, C128) share a unified input config (<code>keyboardInput</code> enabled + <code>vice_joyport_type='1'</code> Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to <strong>Scroll Lock</strong> + <strong>Pause/Break</strong> via <code>systems/_shared/genx-vice-softkeys.js</code> (RESTORE stays on the libretro default Page Up). The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing; see the wiki for the migration story.</p>
+<p>The BBC bundles (jsbeeb) add a top-left <strong>COPY</strong> button via <code>systems/_shared/genx-bbc-copykey.js</code> — the BBC COPY key maps to the PC End key, which isn't obvious, so titles that use it (as an in-game "continue" or action key) get a click target. The TRS-80 Model I (sdltrs) likewise adds a <strong>CLEAR</strong> button via <code>systems/_shared/genx-trs80-softkeys.js</code>.</p>
+<h2 id="usb-gamepads">USB gamepads</h2>
+<p>The EmulatorJS bundles read pads natively through the libretro cores. For standalone engines with no Gamepad API of their own, <code>systems/_shared/genx-gamepad-keys.js</code> polls pad 0 and synthesizes the keyboard events the engine already understands, driven by a per-game <code>window.GenXGamepadMap</code> (axes + button-index → key) defined in the bundle's play page — so each game's pad layout presses that game's own verified keys. The pad is gameplay-only — a game's title/start stays on the keyboard. Currently wired: Amstrad CPC, Acorn Electron, ZX Spectrum and the ZX81's action games (the ZX81 pages also filter out keys with no in-game function, since a stray Space is BREAK on that machine). Axis presses use hysteresis (on at 0.5, off at 0.3) so a hovering stick can't machine-gun key events, an idle pad sends nothing, and <code>?paddebug</code> on any wired play page shows a live log of what the shim is sending.</p>
+<h2 id="save--load-state">Save / load state</h2>
+<p>Most bundles carry <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner — each opens a drop-up menu of <strong>five save slots per game</strong>, an instant in-browser snapshot of the running machine kept in memory and persisted to <strong>IndexedDB</strong> (<code>gx-savestate</code>, keyed <code>platform:game:slot</code>) so the slots survive a reload. Because they're keyed per game, different games keep independent saves. The 14 EmulatorJS bundles use the libretro cores' own state API (<code>systems/_shared/genx-savestate.js</code>); the standalone engines that expose a reachable save-state — TI-99/4A, BBC Micro/Master (mid-game, even Elite), MSX, Tandy CoCo, Odyssey², Atari 400/800XL and Amstrad CPC — ride each emulator's native API through <code>systems/_shared/genx-savestate-std.js</code> + a small per-bundle <code>GenXStateAdapter</code>. Three needed a WASM rebuild to expose state the stock build hid: the <strong>Odyssey²</strong> (o2em — call libretro's dead-code-eliminated <code>retro_serialize</code>/<code>retro_unserialize</code>), the <strong>Atari 400/800XL</strong> (atari800 fork — <code>StateSav_*</code>, deferred through the frame loop to dodge an ASYNCIFY clash) and the <strong>Amstrad CPC</strong> (tiny8bit — export chips' <code>cpc_save_snapshot</code>/<code>cpc_load_snapshot</code>). The remaining engines (Apple, Electron, Spectrum, ZX81, Intellivision, PET) expose no reachable state API, so those bundles have no buttons. The TRS-80 Model I (sdltrs) ships a built-in save-state (<code>trs_state_save</code>/<code>trs_state_load</code>) that isn't wired to buttons yet — so no buttons there either, for now.</p>
+<h2 id="documentation">Documentation</h2>
+<p>See the <a href="index.html">wiki</a> for the long form. Each engine's integration story is its own page.</p>
+<p>Prefer a narrative read? <strong><a href="../../docs/article/">Booting a Museum in a Browser Tab</a></strong> is a magazine-style feature on the project — the concept, the static/no-build constraint, the emulator war stories, and the curation philosophy.</p>
+<ul>
+<li><strong><a href="Project-Overview.html">Project Overview</a></strong> — what the site does and how it's structured</li>
+<li><strong><a href="Virtual-Filesystem.html">Virtual Filesystem</a></strong> — the simulated <code>C:</code> drive and menu layout</li>
+<li><strong><a href="Commands.html">Commands</a></strong> — the DOS commands the prompt understands</li>
+<li><strong><a href="Font-System.html">Font System</a></strong> — how we draw the 12×12 CP437 glyphs</li>
+<li><strong><a href="Emulators.html">Emulators</a></strong> — index of every engine, each with its own page</li>
+<li><strong><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></strong> — adding entries, batches, menus</li>
+<li><strong><a href="Your-Data.html">Your Data</a></strong> — exactly what GenX-DOS keeps in your browser's local storage, and when (nothing leaves your machine)</li>
+</ul>
+<h2 id="license">License</h2>
+<p>The full licence text is in <strong><a href="../../LICENSE.TXT">LICENSE.TXT</a></strong>, and <strong><a href="ATTRIBUTION.html">ATTRIBUTION.md</a></strong> is the canonical record of every bundled third-party component (source URLs, authors, BIOS/ROM provenance, bezel artwork licences, and BY-SA share-alike obligations). Summary below.</p>
+<ul>
+<li>DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system by Mike, written informally for <strong>LGR — Lazy Game Reviews</strong> (Clint Basinger, <a href="https://www.lazygamereviews.com">https://www.lazygamereviews.com</a>)</li>
+<li>AMIBIOS POST animation, emulator integration wrappers, menu tree, and bundled-emulator-specific code by Retro-Jack</li>
+<li>jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb)</li>
+<li>ElkJS: (c) Darren Coles 2013 (dmcoles/elkjs) — 6502 core ported from Elkulator by Tom Walker</li>
+<li>apple2js: MIT (whscullin/apple2js)</li>
+<li>FCEUmm: GPL-2.0 (libretro NES core) — mirrored from <code>cdn.emulatorjs.org/stable/</code></li>
+<li>Stella: GPL-2.0 (<code>stella2014</code> libretro core, stella-emu) — Atari 2600; mirrored from <code>cdn.emulatorjs.org/stable/</code></li>
+<li>ProSystem: GPL-2.0 (<code>prosystem</code> libretro core, stella-emu/libretro — Atari 7800) — mirrored from <code>cdn.emulatorjs.org/stable/</code></li>
+<li>WebMSX: MIT (ppeccin/WebMSX, Paulo Peccin)</li>
+<li>JSSpeccy 3: GPL-3.0 (Matt Westcott / gasman)</li>
+<li>JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)</li>
+<li>XRoar: GPL-3.0+ (Ciaran Anscomb)</li>
+<li>sdltrs: BSD-2-Clause (Mark Grebe / Jens Guenther, gitlab.com/jengun/sdltrs) — TRS-80 Model I, built from source to WASM; Model I Level II BASIC ROM (©Tandy/Microsoft) embedded for emulation</li>
+<li>Js99'er: GPL-2.0 (Rasmus Moustgaard) — vanilla-JS build</li>
+<li>atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL/800/BASIC (Avery Lee, freely redistributable open-source OS replacement) embedded inside <code>atari800.wasm</code> at build time via <code>--enable-altirra_bios</code> — no separate ROM file ships</li>
+<li>EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 14 bundles via <code>systems/_shared-ejs/</code> — the six VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, Sega Master System, and the three handhelds (Game Boy/GBC, Lynx, Game Gear)</li>
+<li>VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (<code>x64</code>, <code>x128</code>, <code>xvic</code>, <code>xplus4</code>) mirrored from <code>cdn.emulatorjs.org/stable/</code></li>
+<li>pet2001: BSD-2-Clause (Thomas Skibo) — vanilla-JS PET 2001 emulator at <code>systems/pet/pet2001/</code></li>
+<li>gearcoleco: GPL-3.0 (Drhelius) — libretro ColecoVision core mirrored from <code>cdn.emulatorjs.org/stable/</code></li>
+<li>ColecoVision BIOS: ©1982 Coleco, bundled for emulator-only use</li>
+<li>jzIntv: Joe Zbiciak (free-for-personal-use terms) — WASM build mirrored from <a href="https://github.com/mholzinger/intellivision-overlay-editor">mholzinger/intellivision-overlay-editor</a></li>
+<li>Intellivision EXEC + GROM BIOS: ©1979 Mattel Electronics, bundled for emulator-only use</li>
+<li>floooh/chips-test tiny8bit CPC WASM: MIT (Andre Weissflog) — locally rebuilt from source (overlays patched out + save-state wrappers; see <code>systems/cpc/BUILDING-WASM.md</code>)</li>
+<li>libretro-o2em: GPL-2.0+ (libretro/libretro-o2em, original o2em by Daniel Boris / Andre de la Rocha) — compiled from upstream source via <code>systems/odyssey2/build.sh</code></li>
+<li>Magnavox Odyssey² BIOS (<code>o2rom.bin</code>): ©1978 Magnavox/Philips, bundled for emulator-only use</li>
+</ul>
+<p><a href="https://creativecommons.org/licenses/by-nc/4.0/"><img alt="License: CC BY-NC 4.0" src="../badges/license-cc-by-nc-4.0.svg" /></a></p>
+<p>The original orchestration code, menu trees, and AMIBIOS POST animations authored by Jack Horton are licensed under <strong>Creative Commons Attribution-NonCommercial 4.0 International</strong> — see <strong><a href="../../LICENSE.TXT">LICENSE.TXT</a></strong> for the full terms.</p>
+<p>Please note that GenX-DOS is a composite project containing bundled emulators, assets, and the LGR terminal base framework. These components are explicitly excluded from the CC license and remain bound by their original upstream terms. See <a href="ATTRIBUTION.html">ATTRIBUTION.md</a> for full compliance details.</p>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>
