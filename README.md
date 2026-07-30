@@ -3,8 +3,8 @@
 A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs on the page — no server, no network calls at runtime. Try it [here](https://retro-jack.github.io/GenX-DOS/).
 
 <p align="center">
-  <img src="docs/screenshot-menu.png" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
-  <img src="docs/screenshot.png" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
+  <img src="docs/images/screenshot-menu.png" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
+  <img src="docs/images/screenshot.png" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
 </p>
 
 We bundle 19 emulator engines covering 33 sub-systems between them, from the Apple I to the Sega Master System.
