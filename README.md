@@ -23,7 +23,7 @@ Or directly:
 python3 -m http.server 8765
 ```
 
-Open <http://127.0.0.1:8765/prompt/>.
+Open <http://127.0.0.1:8765/>.
 
 GenX-DOS has no backend, but it **must be hosted over HTTP** — the commands above do that. Don't open the files straight from disk (`file:///…/index.html`): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for `file://` pages. Any static file host does the job — `serve.sh`, `python3 -m http.server`, nginx, or whatever your host provides.
 

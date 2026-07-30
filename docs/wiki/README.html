@@ -41,7 +41,7 @@
 <p>Or directly:</p>
 <pre><code class="language-sh">python3 -m http.server 8765
 </code></pre>
-<p>Open <a href="http://127.0.0.1:8765/prompt/">http://127.0.0.1:8765/prompt/</a>.</p>
+<p>Open <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>.</p>
 <p>GenX-DOS has no backend, but it <strong>must be hosted over HTTP</strong> — the commands above do that. Don't open the files straight from disk (<code>file:///…/index.html</code>): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for <code>file://</code> pages. Any static file host does the job — <code>serve.sh</code>, <code>python3 -m http.server</code>, nginx, or whatever your host provides.</p>
 <h2 id="run-it-as-a-package">Run it as a package</h2>
 <p>GenX-DOS is also published as <a href="https://github.com/Retro-Jack/GenX-DOS/packages">GitHub Packages</a> — the whole site bundled with its dependencies, no clone required.</p>
