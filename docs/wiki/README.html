@@ -12,7 +12,7 @@
 <body>
 <header class="top">
   <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
-  <span class="out"><a href="../../prompt/index.html">Prompt</a><a href="../article/index.html">Article</a><a href="../../index.html">&#8617;&nbsp;Site</a></span>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
 </header>
 <div class="layout">
   <nav class="side">
@@ -23,11 +23,11 @@
 <div class="grp">Emulators</div>
 <ul><li><a href="Emulators.html">Emulators index</a></li></ul>
 <div class="grp">Read more</div>
-<ul><li><a href="../../docs/article/index.html">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
   </nav>
   <main class="content">
 <h1 id="genx-dos">GenX-DOS</h1>
-<p>A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a <code>C:\&gt;</code> cursor, type a number, play a game. Everything runs client-side — no backend, no external network calls at runtime. Try it <a href="../../index.html">here</a>.</p>
+<p>A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a <code>C:\&gt;</code> cursor, type a number, play a game. Everything runs client-side — no backend, no external network calls at runtime. Try it <a href="../../">here</a>.</p>
 <p align="center">
   <img src="../images/screenshot-menu.png" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
   <img src="../images/screenshot.png" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
@@ -41,7 +41,7 @@
 <p>Or directly:</p>
 <pre><code class="language-sh">python3 -m http.server 8765
 </code></pre>
-<p>Open <a href="http://127.0.0.1:8765/prompt/index.html">http://127.0.0.1:8765/prompt/index.html</a>.</p>
+<p>Open <a href="http://127.0.0.1:8765/prompt/">http://127.0.0.1:8765/prompt/</a>.</p>
 <p>GenX-DOS has no backend, but it <strong>must be served over HTTP</strong> — the commands above do that. Don't open the files straight from disk (<code>file:///…/index.html</code>): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for <code>file://</code> pages. Any static file server does the job — <code>serve.sh</code>, <code>python3 -m http.server</code>, nginx, or whatever your host provides.</p>
 <h2 id="run-it-as-a-package">Run it as a package</h2>
 <p>GenX-DOS is also published as <a href="https://github.com/Retro-Jack/GenX-DOS/packages">GitHub Packages</a> — the whole site bundled with its dependencies, no clone required.</p>
@@ -247,7 +247,7 @@ systems/
 <p>Most bundles carry <strong>save</strong> / <strong>load</strong> controls in the bottom-left corner — each opens a drop-up menu of <strong>five save slots per game</strong>, an instant in-browser snapshot of the running machine kept in memory and persisted to <strong>IndexedDB</strong> (<code>gx-savestate</code>, keyed <code>platform:game:slot</code>) so the slots survive a reload. Because they're keyed per game, different games keep independent saves. The 14 EmulatorJS bundles use the libretro cores' own state API (<code>systems/_shared/genx-savestate.js</code>); the standalone engines that expose a reachable save-state — TI-99/4A, BBC Micro/Master (mid-game, even Elite), MSX, Tandy CoCo, Odyssey², Atari 400/800XL and Amstrad CPC — ride each emulator's native API through <code>systems/_shared/genx-savestate-std.js</code> + a small per-bundle <code>GenXStateAdapter</code>. Three needed a WASM rebuild to expose state the stock build hid: the <strong>Odyssey²</strong> (o2em — call libretro's dead-code-eliminated <code>retro_serialize</code>/<code>retro_unserialize</code>), the <strong>Atari 400/800XL</strong> (atari800 fork — <code>StateSav_*</code>, deferred through the frame loop to dodge an ASYNCIFY clash) and the <strong>Amstrad CPC</strong> (tiny8bit — export chips' <code>cpc_save_snapshot</code>/<code>cpc_load_snapshot</code>). The remaining engines (Apple, Electron, Spectrum, ZX81, Intellivision, PET) expose no reachable state API, so those bundles have no buttons. The TRS-80 Model I (sdltrs) ships a built-in save-state (<code>trs_state_save</code>/<code>trs_state_load</code>) that isn't wired to buttons yet — so no buttons there either, for now.</p>
 <h2 id="documentation">Documentation</h2>
 <p>See the <a href="index.html">wiki</a> for the long form. Each engine's integration story is its own page.</p>
-<p>Prefer a narrative read? <strong><a href="../../docs/article/index.html">Booting a Museum in a Browser Tab</a></strong> is a magazine-style feature on the project — the concept, the static/no-build constraint, the emulator war stories, and the curation philosophy.</p>
+<p>Prefer a narrative read? <strong><a href="../../docs/article/">Booting a Museum in a Browser Tab</a></strong> is a magazine-style feature on the project — the concept, the static/no-build constraint, the emulator war stories, and the curation philosophy.</p>
 <ul>
 <li><strong><a href="Project-Overview.html">Project Overview</a></strong> — what the site does and how it's structured</li>
 <li><strong><a href="Virtual-Filesystem.html">Virtual Filesystem</a></strong> — the simulated <code>C:</code> drive and menu layout</li>
@@ -292,7 +292,7 @@ systems/
   </main>
 </div>
 <footer class="foot">
-  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../index.html">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
 </footer>
 </body>
 </html>
