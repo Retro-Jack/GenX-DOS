@@ -22,7 +22,7 @@ genx-dos/
 │   ├── wiki-src/            wiki markdown source + build.py generator
 │   ├── badges/             local README badge copies (no runtime network)
 │   ├── games/              per-game instruction pages — <platform>/<key>.html
-│   └── images/             landing/README screenshots + social-preview image
+│   └── images/             landing/README screenshots + social card (genx-social.png)
 │
 ├── prompt/                   the DOS terminal
 │   ├── index.html

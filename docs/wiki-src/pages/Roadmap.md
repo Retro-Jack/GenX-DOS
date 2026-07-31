@@ -12,7 +12,7 @@ Every shipped system has the *feel* of an 8-bit machine — sprite-based, chiptu
 
 ---
 
-## ✅ Shipped (19 emulator engines, 33 sub-systems)
+## ✅ Shipped (18 emulator engines, 33 sub-systems)
 
 | Category | Platform | Year | Dir | Engine | Notes |
 |----------|----------|------|-----|--------|-------|
