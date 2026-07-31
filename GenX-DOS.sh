@@ -2,7 +2,7 @@
 # Launch a local web server in the repo root and open the landing page in a browser.
 # Closing the browser window stops the server (Chromium-family browsers); otherwise
 # stop it with Ctrl+C.
-# Usage: ./Launch.sh [port]
+# Usage: ./GenX-DOS.sh [port]
 set -euo pipefail
 
 PORT="${1:-8765}"

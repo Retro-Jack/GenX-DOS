@@ -2,7 +2,7 @@
 setlocal EnableDelayedExpansion
 REM Launch a local web server in the repo root and open the landing page in a browser.
 REM Closing the browser window stops the server (Edge/Chrome); otherwise press a key.
-REM Usage: Launch.bat [port]
+REM Usage: GenX-DOS.bat [port]
 
 set "PORT=%~1"
 if "%PORT%"=="" set "PORT=8765"
