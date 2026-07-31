@@ -16,3 +16,7 @@ Icon?
 # Local Claude Code worktrees/settings and dev-only probe
 .claude/
 _paddiag.html
+
+# portable-site build staging
+/dist/
+/npm-pkg/

@@ -29,33 +29,14 @@ Open <http://127.0.0.1:8765/>.
 
 GenX-DOS has no backend, but it **must be hosted over HTTP** — the commands above do that. Don't open the files straight from disk (`file:///…/index.html`): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for `file://` pages. Any static file host does the job — `GenX-DOS.sh`, `python3 -m http.server`, nginx, or whatever your host provides.
 
-## Run it as a package
+## Download
 
-GenX-DOS is also published as [GitHub Packages](https://github.com/Retro-Jack/GenX-DOS/packages) — the whole site bundled with its dependencies, no clone required.
+Every release ships a **[zip of the whole site](https://github.com/Retro-Jack/GenX-DOS/releases/latest)** — no clone, no build. Unzip it and run it:
 
-**Container image** (the site served by nginx):
+- **Linux / macOS:** `./GenX-DOS.sh`
+- **Windows:** double-click `GenX-DOS.bat`
 
-```sh
-docker run --rm -p 8080:80 ghcr.io/retro-jack/genx-dos:latest
-```
-
-Then open <http://127.0.0.1:8080/>.
-
-**npm package** (the static site as files, to self-host or embed):
-
-```sh
-npm install @retro-jack/genx-dos --registry=https://npm.pkg.github.com
-```
-
-```js
-const express = require('express');
-const genxdos = require('@retro-jack/genx-dos');
-
-express().use(express.static(genxdos.path)).listen(8080);
-// open http://127.0.0.1:8080/
-```
-
-Both are rebuilt and published automatically on every GitHub Release (see `.github/workflows/publish-package.yml`).
+Both start a local server and open the landing page. (See **Quick start** above for why it has to be hosted over HTTP rather than opened from disk.)
 
 ## What you'll find in the repo
 
@@ -67,7 +48,6 @@ ATTRIBUTION.md            canonical record of every bundled third-party asset
 LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)
 SECURITY.md               scope + private vulnerability reporting
 CONTRIBUTING.md           local setup + PR ground rules; CODE_OF_CONDUCT.md alongside
-package.json / index.js   the npm package; Dockerfile builds the ghcr container
 docs/                     feature article, self-hosted wiki, screenshots, social preview, fonts
   games/                  per-game instruction pages (docs/games/<platform>/<key>.html)
 prompt/                   the DOS terminal (HTML + JS, no build)

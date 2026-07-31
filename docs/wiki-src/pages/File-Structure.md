@@ -12,9 +12,8 @@ genx-dos/
 ├── GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the landing page
 ├── index.html                landing page (intro, spec sheet, links) → prompt/
 ├── favicon.ico
-├── package.json / index.js   the npm package (@retro-jack/genx-dos)
-├── Dockerfile                the ghcr.io container image (site served by nginx)
-├── .github/                  publish-package workflow (release → ghcr + npm), Dependabot config, issue/PR templates
+├── build-portable.sh         builds the portable site (what the release zip + export contain)
+├── .github/                  issue/PR templates
 │
 ├── docs/                     front-facing documentation (served)
 │   ├── article/             the feature article (index.html)

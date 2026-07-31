@@ -44,22 +44,13 @@
 </code></pre>
 <p>Open <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>.</p>
 <p>GenX-DOS has no backend, but it <strong>must be hosted over HTTP</strong> — the commands above do that. Don't open the files straight from disk (<code>file:///…/index.html</code>): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for <code>file://</code> pages. Any static file host does the job — <code>GenX-DOS.sh</code>, <code>python3 -m http.server</code>, nginx, or whatever your host provides.</p>
-<h2 id="run-it-as-a-package">Run it as a package</h2>
-<p>GenX-DOS is also published as <a href="https://github.com/Retro-Jack/GenX-DOS/packages">GitHub Packages</a> — the whole site bundled with its dependencies, no clone required.</p>
-<p><strong>Container image</strong> (the site served by nginx):</p>
-<pre><code class="language-sh">docker run --rm -p 8080:80 ghcr.io/retro-jack/genx-dos:latest
-</code></pre>
-<p>Then open <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a>.</p>
-<p><strong>npm package</strong> (the static site as files, to self-host or embed):</p>
-<pre><code class="language-sh">npm install @retro-jack/genx-dos --registry=https://npm.pkg.github.com
-</code></pre>
-<pre><code class="language-js">const express = require('express');
-const genxdos = require('@retro-jack/genx-dos');
-
-express().use(express.static(genxdos.path)).listen(8080);
-// open http://127.0.0.1:8080/
-</code></pre>
-<p>Both are rebuilt and published automatically on every GitHub Release (see <code>.github/workflows/publish-package.yml</code>).</p>
+<h2 id="download">Download</h2>
+<p>Every release ships a <strong><a href="https://github.com/Retro-Jack/GenX-DOS/releases/latest">zip of the whole site</a></strong> — no clone, no build. Unzip it and run it:</p>
+<ul>
+<li><strong>Linux / macOS:</strong> <code>./GenX-DOS.sh</code></li>
+<li><strong>Windows:</strong> double-click <code>GenX-DOS.bat</code></li>
+</ul>
+<p>Both start a local server and open the landing page. (See <strong>Quick start</strong> above for why it has to be hosted over HTTP rather than opened from disk.)</p>
 <h2 id="what-youll-find-in-the-repo">What you'll find in the repo</h2>
 <pre><code>index.html                landing page — intro, spec sheet, links, and the way into prompt/
 GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the landing page
@@ -68,7 +59,6 @@ ATTRIBUTION.md            canonical record of every bundled third-party asset
 LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)
 SECURITY.md               scope + private vulnerability reporting
 CONTRIBUTING.md           local setup + PR ground rules; CODE_OF_CONDUCT.md alongside
-package.json / index.js   the npm package; Dockerfile builds the ghcr container
 docs/                     feature article, self-hosted wiki, screenshots, social preview, fonts
   games/                  per-game instruction pages (docs/games/&lt;platform&gt;/&lt;key&gt;.html)
 prompt/                   the DOS terminal (HTML + JS, no build)
