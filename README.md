@@ -17,6 +17,8 @@ We bundle 19 emulator engines covering 33 sub-systems between them, from the App
 ./GenX-DOS.sh
 ```
 
+On Windows, double-click `GenX-DOS.bat` (or run it from a terminal).
+
 Or directly:
 
 ```sh
