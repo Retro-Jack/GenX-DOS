@@ -174,7 +174,7 @@
 <p>Single-platform manufacturers (NES, INTV, CVISION, ODYSSEY2, SMS, COCO) sit directly under their CONSOLE or HOMECOMP parent — no manufacturer middle level.</p>
 <p>Note: Atari 400 + 800XL run the <strong>same atari800 engine</strong> but ship as two self-contained bundles — <code>systems/atari400/</code> (boots OS-B) and <code>systems/atari800/</code> (boots OS-XL) — so each game's URL names the machine. MSX and BBC are split the same way: <code>msx1/</code>+<code>msx2/</code> and <code>bbcmicro/</code>+<code>bbcmaster/</code>.</p>
 <h2 id="testing-changes">Testing changes</h2>
-<pre><code class="language-sh">./serve.sh        # or: python3 -m http.server 8765
+<pre><code class="language-sh">./Launch.sh        # or: python3 -m http.server 8765
 </code></pre>
 <p>After editing <code>fs.js</code> or any emulator wrapper, hard-refresh the prompt page (Ctrl+Shift+R). Browsers aggressively cache <code>fs.js</code> between visits.</p>
 <h2 id="related">Related</h2>

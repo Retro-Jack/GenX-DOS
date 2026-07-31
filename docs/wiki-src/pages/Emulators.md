@@ -85,7 +85,7 @@ Note: Atari 400 + 800XL run the **same atari800 engine** but ship as two self-co
 ## Testing changes
 
 ```sh
-./serve.sh        # or: python3 -m http.server 8765
+./Launch.sh        # or: python3 -m http.server 8765
 ```
 
 After editing `fs.js` or any emulator wrapper, hard-refresh the prompt page (Ctrl+Shift+R). Browsers aggressively cache `fs.js` between visits.

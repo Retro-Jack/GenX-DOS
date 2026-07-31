@@ -35,7 +35,7 @@
 ├── SECURITY.md               scope + private vulnerability reporting
 ├── CONTRIBUTING.md           local setup + PR ground rules
 ├── CODE_OF_CONDUCT.md        Contributor Covenant 2.1
-├── serve.sh                  starts local http.server, opens browser
+├── Launch.sh / Launch.bat    local dev server (Linux / Windows), opens the landing page
 ├── index.html                landing page (intro, spec sheet, links) → prompt/
 ├── favicon.ico
 ├── package.json / index.js   the npm package (@retro-jack/genx-dos)
@@ -311,8 +311,8 @@
 <td>One-shot PIL script that tints <code>f12.7.png</code> into the other variants (run it from beside the sheets)</td>
 </tr>
 <tr>
-<td><code>serve.sh</code></td>
-<td><code>python3 -m http.server 8765</code> wrapper that also opens the browser</td>
+<td><code>Launch.sh</code> / <code>Launch.bat</code></td>
+<td>Local dev server for Linux / Windows — <code>python3 -m http.server</code> wrapper that finds a free port, opens the landing page, and stops when the browser window closes</td>
 </tr>
 </tbody>
 </table>

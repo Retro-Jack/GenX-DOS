@@ -14,7 +14,7 @@ We bundle 19 emulator engines covering 33 sub-systems between them, from the App
 ## Quick start
 
 ```sh
-./serve.sh
+./Launch.sh
 ```
 
 Or directly:
@@ -25,7 +25,7 @@ python3 -m http.server 8765
 
 Open <http://127.0.0.1:8765/>.
 
-GenX-DOS has no backend, but it **must be hosted over HTTP** — the commands above do that. Don't open the files straight from disk (`file:///…/index.html`): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for `file://` pages. Any static file host does the job — `serve.sh`, `python3 -m http.server`, nginx, or whatever your host provides.
+GenX-DOS has no backend, but it **must be hosted over HTTP** — the commands above do that. Don't open the files straight from disk (`file:///…/index.html`): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for `file://` pages. Any static file host does the job — `Launch.sh`, `python3 -m http.server`, nginx, or whatever your host provides.
 
 ## Run it as a package
 
@@ -59,7 +59,7 @@ Both are rebuilt and published automatically on every GitHub Release (see `.gith
 
 ```
 index.html                landing page — intro, spec sheet, links, and the way into prompt/
-serve.sh                  starts the local server
+Launch.sh / Launch.bat    local dev server (Linux / Windows), opens the landing page
 CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset
 LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)

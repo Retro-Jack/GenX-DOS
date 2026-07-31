@@ -18,7 +18,7 @@ fixes, and small improvements are very welcome.
 ## Running it locally
 
 ```sh
-./serve.sh          # or: python3 -m http.server 8765
+./Launch.sh          # or: python3 -m http.server 8765
 ```
 
 Open <http://127.0.0.1:8765/prompt/>. There is no build step — edit, refresh,

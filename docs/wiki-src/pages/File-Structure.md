@@ -9,7 +9,7 @@ genx-dos/
 ├── SECURITY.md               scope + private vulnerability reporting
 ├── CONTRIBUTING.md           local setup + PR ground rules
 ├── CODE_OF_CONDUCT.md        Contributor Covenant 2.1
-├── serve.sh                  starts local http.server, opens browser
+├── Launch.sh / Launch.bat    local dev server (Linux / Windows), opens the landing page
 ├── index.html                landing page (intro, spec sheet, links) → prompt/
 ├── favicon.ico
 ├── package.json / index.js   the npm package (@retro-jack/genx-dos)
@@ -131,4 +131,4 @@ Each `play.html`-based emulator has a `games.json` mapping `<key>` → `{title, 
 | `systems/_shared/styles/VGA_font/f12.7.png` | 192×192 px, 16×16 grid of 12×12 px CP437 glyphs (light grey) |
 | `systems/_shared/styles/VGA_font/f12.<N>.png` | Pre-tinted variant for CGA palette index N |
 | `systems/_shared/styles/VGA_font/make_fonts.py` | One-shot PIL script that tints `f12.7.png` into the other variants (run it from beside the sheets) |
-| `serve.sh` | `python3 -m http.server 8765` wrapper that also opens the browser |
+| `Launch.sh` / `Launch.bat` | Local dev server for Linux / Windows — `python3 -m http.server` wrapper that finds a free port, opens the landing page, and stops when the browser window closes |

@@ -36,13 +36,13 @@
 <p>We bundle 19 emulator engines covering 33 sub-systems between them, from the Apple I to the Sega Master System.</p>
 <p><strong>Scope:</strong> 8-bit <em>feel</em> — anything with the look and sound of an 8-bit machine (sprite-based, chiptune, low-res), including the 8-bit-feel handhelds (Game Boy/GBC, Game Gear, Lynx) even where they run into the late 90s. The cutoff is the <em>aesthetic</em>, not the calendar or strict CPU width; 16-bit home consoles/computers (Genesis, SNES, Amiga, ST) stay out. See the <a href="Roadmap.html">Roadmap</a> for what's shipped, planned, and rejected.</p>
 <h2 id="quick-start">Quick start</h2>
-<pre><code class="language-sh">./serve.sh
+<pre><code class="language-sh">./Launch.sh
 </code></pre>
 <p>Or directly:</p>
 <pre><code class="language-sh">python3 -m http.server 8765
 </code></pre>
 <p>Open <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>.</p>
-<p>GenX-DOS has no backend, but it <strong>must be hosted over HTTP</strong> — the commands above do that. Don't open the files straight from disk (<code>file:///…/index.html</code>): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for <code>file://</code> pages. Any static file host does the job — <code>serve.sh</code>, <code>python3 -m http.server</code>, nginx, or whatever your host provides.</p>
+<p>GenX-DOS has no backend, but it <strong>must be hosted over HTTP</strong> — the commands above do that. Don't open the files straight from disk (<code>file:///…/index.html</code>): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for <code>file://</code> pages. Any static file host does the job — <code>Launch.sh</code>, <code>python3 -m http.server</code>, nginx, or whatever your host provides.</p>
 <h2 id="run-it-as-a-package">Run it as a package</h2>
 <p>GenX-DOS is also published as <a href="https://github.com/Retro-Jack/GenX-DOS/packages">GitHub Packages</a> — the whole site bundled with its dependencies, no clone required.</p>
 <p><strong>Container image</strong> (the site served by nginx):</p>
@@ -61,7 +61,7 @@ express().use(express.static(genxdos.path)).listen(8080);
 <p>Both are rebuilt and published automatically on every GitHub Release (see <code>.github/workflows/publish-package.yml</code>).</p>
 <h2 id="what-youll-find-in-the-repo">What you'll find in the repo</h2>
 <pre><code>index.html                landing page — intro, spec sheet, links, and the way into prompt/
-serve.sh                  starts the local server
+Launch.sh / Launch.bat    local dev server (Linux / Windows), opens the landing page
 CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset
 LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)
