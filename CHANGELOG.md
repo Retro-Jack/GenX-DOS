@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **BBC Micro & Master no longer freeze on Chrome.** Both bundles are rebuilt on **jsbeeb 1.14.0**, which carries the upstream workaround ([#704](https://github.com/mattgodbolt/jsbeeb/pull/704)) for a **Chrome 150 V8 bug** that wedged the emulator a few seconds into a game — Chrome-only (Firefox was fine), no gamepad needed, all BBC games affected (Elite was the reproducer). Diagnosed the hard way — gamepad, audio-context and CSP all turned out to be red herrings; the tell was that upstream's live jsbeeb ran Elite fine. Our `Retro-Jack/jsbeeb` fork was rebased onto 1.14.0 (keeping the d-pad remap and monitor inset); 1.14.0's new `#restart-pending` config element is now in both bundles so the newer engine doesn't null-deref on it. With thanks to Matt Godbolt for shipping the upstream fix within a day.
+
 ## [1.4.0] - 2026-07-31
 
 ### Added
