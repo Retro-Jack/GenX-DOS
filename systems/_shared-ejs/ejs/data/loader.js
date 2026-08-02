@@ -58,10 +58,7 @@ async function filesMissing(file) {
     console.error("Failed to load " + file);
     let minifiedFailed = file.includes("min");
     const errorMessage = `Failed to load ${file} because it's likely that the minified files are missing.
-To fix this you have 3 options:
-  1. You can download the zip from the latest release here: https://github.com/EmulatorJS/EmulatorJS/releases/latest - Recommended
-  2. You can download the zip from here: https://cdn.emulatorjs.org/stable/data/emulator.min.zip and extract it to the data/ folder
-  3. You can build the files by running "npm i && npm run build" in the data/minify folder.`;
+GenX-DOS ships its own copy of the EmulatorJS data/ folder; re-mirror it if these files are missing.`;
     console[minifiedFailed ? "warn" : "error"](errorMessage);
     if (minifiedFailed) {
         console.log("Attempting to load non-minified files");

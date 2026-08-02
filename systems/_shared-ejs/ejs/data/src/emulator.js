@@ -196,10 +196,10 @@ class EmulatorJS {
     }
     checkForUpdates() {
         // Disabled to keep GenX-DOS completely self-contained — no
-        // network calls at runtime. The upstream version-check fetched
-        // https://cdn.emulatorjs.org/stable/data/version.json and just
-        // logged a "newer version exists" message. Updates here happen
-        // by re-mirroring the framework deliberately, not at runtime.
+        // network calls at runtime. The upstream version-check fetched a
+        // version manifest from the EmulatorJS CDN and just logged a
+        // "newer version exists" message. Updates here happen by
+        // re-mirroring the framework deliberately, not at runtime.
         return;
     }
     versionAsInt(ver) {
@@ -731,7 +731,7 @@ class EmulatorJS {
                 console.log("File not found, attemping to fetch from emulatorjs cdn.");
                 console.error("**THIS METHOD IS A FAILSAFE, AND NOT OFFICIALLY SUPPORTED. USE AT YOUR OWN RISK**");
                 let version = this.ejs_version.endsWith("-beta") ? "nightly" : this.ejs_version;
-                res = await this.downloadFile(`https://cdn.emulatorjs.org/${version}/data/${corePath}`, this.downloadType.core.name, (progress) => {
+                res = await this.downloadFile(corePath, this.downloadType.core.name, (progress) => {
                     this.textElem.innerText = this.localization("Download Game Core") + progress;
                 }, true, { responseType: "arraybuffer", method: "GET" }, true, this.downloadType.core.dontCache);
                 if (res === -1) {
@@ -742,7 +742,7 @@ class EmulatorJS {
                     }
                     return;
                 }
-                console.warn("File was not found locally, but was found on the emulatorjs cdn.\nIt is recommended to download the stable release from here: https://cdn.emulatorjs.org/releases/");
+                console.warn("File was not found locally.");
             }
 
             // Core download and caching handled by EJS_Download
@@ -1383,9 +1383,8 @@ class EmulatorJS {
         }
     }
     createLink(elem, link, text, useP) {
-        const elm = this.createElement("a");
-        elm.href = link;
-        elm.target = "_blank";
+        // GenX-DOS: no external click-out links — render as inert text.
+        const elm = this.createElement("span");
         elm.innerText = this.localization(text);
         if (useP) {
             const p = this.createElement("p");
@@ -1772,16 +1771,16 @@ class EmulatorJS {
             retroarch.classList.add("ejs_context_menu_tab");
             coreLicense.classList.add("ejs_context_menu_tab");
 
-            this.createLink(home, "https://github.com/EmulatorJS/EmulatorJS", "View on GitHub", true);
+            this.createLink(home, "", "View on GitHub", true);
 
-            this.createLink(home, "https://discord.gg/6akryGkETU", "Join the discord", true);
+            this.createLink(home, "", "Join the discord", true);
 
             const info = this.createElement("div");
 
-            this.createLink(info, "https://emulatorjs.org", "EmulatorJS");
+            this.createLink(info, "", "EmulatorJS");
             // I do not like using innerHTML, though this should be "safe"
             info.innerHTML += " is powered by ";
-            this.createLink(info, "https://github.com/libretro/RetroArch/", "RetroArch");
+            this.createLink(info, "", "RetroArch");
             if (this.repository && this.coreName) {
                 info.innerHTML += ". This core is powered by ";
                 this.createLink(info, this.repository, this.coreName);
