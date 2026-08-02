@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **Elite gamedoc: document star-chart navigation and correct the arrow-key note.** The quick-start now says how to actually pick a hyperspace target — on the F4/F5 charts, move the crosshair onto the star's dot with the cursor keys (F6 confirms the system), then H. The "BBC keyboard quirks" note previously claimed Elite doesn't use the arrow keys at all; corrected — that's true in flight (roll/pitch is `<`/`>` and `S`/`X`), but the cursor keys *do* move the chart crosshair. Verified in-game (selecting Diso from Lave).
+
 ## [1.5.0] - 2026-08-02
 
 ### Security
