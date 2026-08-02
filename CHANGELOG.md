@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- **Per-game content moved off the system-level controls pages.** Those pages describe the machine and emulator, not individual titles — the per-game details belong on each game's own page (as `m100/controls.html` already states). Fixed: **Apple ][+** — dropped the per-game "starting hints" table (Lemonade Stand, Castle Wolfenstein, Choplifter, Aztec, Lode Runner, Sammy Lightfoot, Hard Hat Mack, Karateka, Oregon Trail); every entry was already covered in full on the game's own page, so it now points there (the Applesoft-BASIC prompt note, the one non-game row, moved into the BASIC section). **TRS-80** — the "playing the games" note no longer names specific titles/keys (Super Nova, Armored Patrol, Defense Command, Sea Dragon, Eliminator — all verified present in their gamedocs); it keeps the general guidance. **PET** — the annotated ten-game lineup (already duplicated in each gamedoc) reduced to a pointer, and the "Why no PETSCII Robots?" note removed (an unshipped title with no game page).
+
 ### Fixed
 - **Elite gamedoc: document star-chart navigation and correct the arrow-key note.** The quick-start now says how to actually pick a hyperspace target — on the F4/F5 charts, move the crosshair onto the star's dot with the cursor keys (F6 confirms the system), then H. The "BBC keyboard quirks" note previously claimed Elite doesn't use the arrow keys at all; corrected — that's true in flight (roll/pitch is `<`/`>` and `S`/`X`), but the cursor keys *do* move the chart crosshair. Verified in-game (selecting Diso from Lave).
 
