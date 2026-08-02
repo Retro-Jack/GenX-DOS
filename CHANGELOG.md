@@ -8,7 +8,6 @@
   - **jsbeeb** (BBC Micro / Master): the `Retro-Jack/jsbeeb` fork now strips Google Analytics (`gtag`), the Google Drive startup + OAuth loads, and the Stairway to Hell disc-archive fetches (fork Change 3 in its `GENX-CHANGES.md`); both BBC bundles re-vendored off the telemetry-free build.
   - **A strict Content-Security-Policy on all 438 served pages** (`default-src 'self'`, `connect-src 'self'`, tuned for WASM/workers/`blob:`/`data:`) makes any off-site request physically impossible — DevTools shows zero external requests. Re-tested across the engine families — EmulatorJS (SMB, WASM + workers), jsbeeb (Chuckie Egg, AudioWorklet), atari800 (Star Raiders, emscripten WASM) and apple1 (vanilla JS) — every emulator still boots and runs under the policy.
   - Deliberately kept, because they are not network calls: the SVG/XML namespace identifiers (`w3.org/2000/svg`) that the icon markup needs, and the GPL/MIT/FontAwesome licence notices embedded in the vendored engines (removing those would breach the licences).
-  - **Third-party click-out links removed from the interactive pages.** The emulator, controls and gamedoc pages no longer carry outbound links to third-party sites (20 across 18 pages — mostly the "Emulator: X under Y" upstream-source credit line); the credit text stays, the hyperlink goes, and the source is shipped locally regardless. Our own repo/site links stay. The **wiki keeps its upstream-project attribution links** — that is the designated place to credit the open-source emulators GenX is built on.
 
 ## [1.4.1] - 2026-07-31
 
