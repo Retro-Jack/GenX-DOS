@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-08-02
+
 ### Security
 - **Zero external calls at runtime — audited across every bundle, vendored code included, and now enforced.** The site's premise is zero telemetry and fully self-hosted; this makes it verifiable. Every served bundle was checked for third-party network calls, which were removed. Attribution links and legally-required licence links are kept throughout — the goal is no runtime *calls*, not stripping credit:
   - **EmulatorJS** (every EJS bundle): dropped the startup version-check fetch to the EmulatorJS CDN, blanked the netplay default endpoint, and pointed the core-download CDN failsafe back at the local `data/` folder. Applied to both the production `emulator.min.js` and the debug `src/` runtime (jsnes, js7800). The About panel's EmulatorJS / RetroArch / core-repo credit links are **kept** — they are attribution, not runtime calls.
