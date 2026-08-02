@@ -295,7 +295,12 @@ Both verified June 2026. We mirror the <code>nightly</code> builds of these two 
   hook); this is a general improvement offered upstream on the fork's clean
   <code>gamepad-dpad-remap</code> branch. (2) <strong>monitor inset</strong> — <code>src/main.js</code>
   <code>bottomReservedSize</code> widened 68→120 for the sitewide-wallpaper breathing room
-  (GenX-local, not upstreamed).</li>
+  (GenX-local, not upstreamed). The fork tracks upstream releases — currently <strong>rebased onto jsbeeb
+  1.14.0</strong> (July 2026). Hats off to Matt Godbolt for being on the ball: 1.14.0
+  shipped the <a href="https://github.com/mattgodbolt/jsbeeb/pull/704">#704</a> workaround
+  for a Chrome 150 V8 bug that had been wedging the emulator, within a day of it
+  surfacing — rebasing this fork onto it cleared the BBC freeze on GenX-DOS with
+  nothing more to do on our side.</li>
 <li><strong>libretro-o2em</strong> — built from upstream libretro/libretro-o2em via
   <code>systems/odyssey2/build.sh</code>. Custom SDL2/emscripten frontend
   (<code>frontend.c</code>) statically linked with the libretro core; reproducible

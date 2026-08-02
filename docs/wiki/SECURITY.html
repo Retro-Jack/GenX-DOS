@@ -41,6 +41,16 @@ list and when each is written. The realistic security surface is:</p>
 <li>vulnerabilities in the bundled third-party emulators and libraries (listed in
   <a href="ATTRIBUTION.html">ATTRIBUTION.md</a>).</li>
 </ul>
+<h2 id="no-external-calls-at-runtime">No external calls at runtime</h2>
+<p>Every emulator, core, ROM, font and asset is self-hosted — the site makes no
+third-party network requests, and there is no analytics or telemetry of any
+kind. This is enforced, not merely intended: every served page carries a strict
+<strong>Content-Security-Policy</strong> — <code>default-src 'self'</code> and <code>connect-src 'self'</code>,
+with <code>blob:</code> / <code>data:</code> and <code>'unsafe-eval'</code> allowed only where WebAssembly, Web
+Workers and audio worklets require them — so the browser blocks any off-site
+request at the source. With the policy in place the DevTools Network panel shows
+zero external requests. A served page that can reach an external origin is
+itself a security issue worth reporting.</p>
 <h2 id="supported-versions">Supported versions</h2>
 <p>Only the latest GitHub release and the live site
 (<a href="../../">https://retro-jack.github.io/GenX-DOS/</a>) receive fixes. Older tags are not

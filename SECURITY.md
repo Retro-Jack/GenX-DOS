@@ -14,6 +14,18 @@ list and when each is written. The realistic security surface is:
 - vulnerabilities in the bundled third-party emulators and libraries (listed in
   [ATTRIBUTION.md](ATTRIBUTION.md)).
 
+## No external calls at runtime
+
+Every emulator, core, ROM, font and asset is self-hosted — the site makes no
+third-party network requests, and there is no analytics or telemetry of any
+kind. This is enforced, not merely intended: every served page carries a strict
+**Content-Security-Policy** — `default-src 'self'` and `connect-src 'self'`,
+with `blob:` / `data:` and `'unsafe-eval'` allowed only where WebAssembly, Web
+Workers and audio worklets require them — so the browser blocks any off-site
+request at the source. With the policy in place the DevTools Network panel shows
+zero external requests. A served page that can reach an external origin is
+itself a security issue worth reporting.
+
 ## Supported versions
 
 Only the latest GitHub release and the live site
