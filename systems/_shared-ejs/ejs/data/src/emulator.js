@@ -196,10 +196,10 @@ class EmulatorJS {
     }
     checkForUpdates() {
         // Disabled to keep GenX-DOS completely self-contained — no
-        // network calls at runtime. The upstream version-check fetched a
-        // version manifest from the EmulatorJS CDN and just logged a
-        // "newer version exists" message. Updates here happen by
-        // re-mirroring the framework deliberately, not at runtime.
+        // network calls at runtime. The upstream version-check fetched
+        // https://cdn.emulatorjs.org/stable/data/version.json and just
+        // logged a "newer version exists" message. Updates here happen
+        // by re-mirroring the framework deliberately, not at runtime.
         return;
     }
     versionAsInt(ver) {
@@ -1383,8 +1383,9 @@ class EmulatorJS {
         }
     }
     createLink(elem, link, text, useP) {
-        // GenX-DOS: no external click-out links — render as inert text.
-        const elm = this.createElement("span");
+        const elm = this.createElement("a");
+        elm.href = link;
+        elm.target = "_blank";
         elm.innerText = this.localization(text);
         if (useP) {
             const p = this.createElement("p");
@@ -1771,16 +1772,16 @@ class EmulatorJS {
             retroarch.classList.add("ejs_context_menu_tab");
             coreLicense.classList.add("ejs_context_menu_tab");
 
-            this.createLink(home, "", "View on GitHub", true);
+            this.createLink(home, "https://github.com/EmulatorJS/EmulatorJS", "View on GitHub", true);
 
-            this.createLink(home, "", "Join the discord", true);
+            this.createLink(home, "https://discord.gg/6akryGkETU", "Join the discord", true);
 
             const info = this.createElement("div");
 
-            this.createLink(info, "", "EmulatorJS");
+            this.createLink(info, "https://emulatorjs.org", "EmulatorJS");
             // I do not like using innerHTML, though this should be "safe"
             info.innerHTML += " is powered by ";
-            this.createLink(info, "", "RetroArch");
+            this.createLink(info, "https://github.com/libretro/RetroArch/", "RetroArch");
             if (this.repository && this.coreName) {
                 info.innerHTML += ". This core is powered by ";
                 this.createLink(info, this.repository, this.coreName);
