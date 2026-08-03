@@ -76,20 +76,27 @@
   <script>
     // Sega Master System — EmulatorJS + genesis_plus_gx (system 'segaMS').
     // Two face buttons + console Pause: Z = button 1, X = button 2,
-    // Enter = Pause (the console button), arrows = D-pad.
-    // coreName is the concrete core: EJS would resolve the 'segaMS' system
-    // alias to smsplus, which we don't bundle — genesis_plus_gx (already
-    // shipped for Game Gear) runs the SMS natively. controlScheme keeps the
-    // Master System input layout.
+    // arrows = D-pad. coreName is the concrete core: EJS would resolve the
+    // 'segaMS' system alias to smsplus, which we don't bundle —
+    // genesis_plus_gx (already shipped for Game Gear) runs the SMS natively.
+    // controlScheme keeps the Master System input layout.
+    //
+    // Gamepad: EJS reads the pad natively — face buttons fire Button 1/2 and
+    // the d-pad steers. The Master System has no Start button (its Pause is on
+    // the console), so a pad's Start would otherwise do nothing at a title
+    // screen; two tweaks fix that: Pause moves to the pad's Back button
+    // (index 3's value2 = SELECT), and the small shim below maps the pad's
+    // physical Start button to Button 1 — the "1 / START" button that begins
+    // every SMS game — so Start starts the game like players expect.
     genxBootEJS({
       title: 'Sega Master System',
       coreName: 'genesis_plus_gx',
       controlScheme: 'segaMS',
       defaultControls: {
         0: {
-          0: { value: 'z' },            // Button 1
-          8: { value: 'x' },            // Button 2
-          3: { value: 'enter' },        // Pause (console button)
+          0: { value: 'z', value2: 'BUTTON_1' },    // Button 1 → pad A (bottom face)
+          8: { value: 'x', value2: 'BUTTON_2' },    // Button 2 → pad B (right face)
+          3: { value: 'enter', value2: 'SELECT' }, // Pause → pad Back button
           4: { value: 'up arrow' },
           5: { value: 'down arrow' },
           6: { value: 'left arrow' },
@@ -98,5 +105,15 @@
       }
     });
   </script>
+  <script>
+    // Physical Start → SMS Button 1. EJS handles the rest of the pad natively;
+    // this only adds Start, dispatching the Button-1 key ('z') to the emulator
+    // canvas, which bubbles up to EJS's own keyboard handler.
+    window.GenXGamepadMap = {
+      buttons: { 9: { key: 'z', code: 'KeyZ', keyCode: 90 } },
+      target: function () { return document.querySelector('#game canvas') || document; }
+    };
+  </script>
+  <script src="../_shared/genx-gamepad-keys.js"></script>
 </body>
 </html>
