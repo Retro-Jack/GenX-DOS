@@ -13,11 +13,11 @@
 (function () {
   var DISC_TO_KEY = {
     Elite: 'elite',
+    Frak: 'frak',
     ChuckieEgg: 'chuckegg',
     Repton: 'repton',
     Revs: 'revs',
     JetSetWilly: 'jetwilly',
-    Citadel: 'citadel',
     Exile: 'exile',
     Thrust: 'thrust',
     'Snapper-v1-alt': 'snapper',
