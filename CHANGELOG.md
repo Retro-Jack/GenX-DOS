@@ -9,6 +9,7 @@
 ### Fixed
 - **Wiki generator now emits the strict CSP.** `docs/wiki-src/build.py`'s page template was missing the Content-Security-Policy `<meta>` added to every served page in v1.5.0, so rebuilding the wiki silently stripped the CSP from all 41 generated pages. The template now includes it (and the wiki was rebuilt — also catching the CHANGELOG and ATTRIBUTION wiki pages up to their current sources).
 - **Elite gamedoc: document star-chart navigation and correct the arrow-key note.** The quick-start now says how to actually pick a hyperspace target — on the F4/F5 charts, move the crosshair onto the star's dot with the cursor keys (F6 confirms the system), then H. The "BBC keyboard quirks" note previously claimed Elite doesn't use the arrow keys at all; corrected — that's true in flight (roll/pitch is `<`/`>` and `S`/`X`), but the cursor keys *do* move the chart crosshair. Verified in-game (selecting Diso from Lave).
+- **BBC Micro Chuckie Egg gamedoc: add the missing Hold and Abort keys.** The game's own KEYS screen lists **Hold `H`** (pause) and **Abort `Esc`+`H`** alongside the movement/jump keys; both were absent from the gamedoc. Directional/jump keys and the pad remap re-verified correct against that screen.
 
 ## [1.5.0] - 2026-08-02
 
