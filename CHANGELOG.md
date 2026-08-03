@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- **BBC Micro Elite: USB gamepad flight (digital).** The launch line gains a `GP.*` remap — d-pad rolls (`,`/`.`) and pitches (up=dive `S`, down=climb `X`, inverted), **A** fires the laser, **RB** accelerates (`Space`), **LB** decelerates (`?`); trading/chart keys stay on the keyboard. jsbeeb's analogue stick doesn't reach Elite (it boots keyboard-controlled), so this is a digital pad — fly-tested and signed off. Gamedoc gained a matching pad note.
 - **Consistent "audio suspended" banner on every system.** A shared `genx-audio-banner.js` gives all the other bundles the same fixed top banner jsbeeb ships — *"Your browser has suspended audio — mouse click or key press for sound."* It wraps the `AudioContext` constructor to track the engine's context, shows the banner whenever audio is suspended, and clears it (resuming the context) on the first click/keypress. Wired into all 31 non-jsbeeb entry pages (each `play.html` plus WebMSX's `index.html`); jsbeeb keeps its own native banner. Verified the show/hide cycle on EmulatorJS, and the AudioContext hook catching contexts on emscripten-SDL (atari800) and sokol (CPC).
 
 ### Changed
