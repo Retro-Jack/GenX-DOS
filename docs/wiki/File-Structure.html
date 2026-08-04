@@ -40,6 +40,7 @@
 ├── index.html                landing page (intro, spec sheet, links) → prompt/
 ├── favicon.ico
 ├── build-portable.sh         builds the portable site (what the release zip + export contain)
+├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree
 ├── .github/                  issue/PR templates
 │
 ├── docs/                     front-facing documentation (served)
@@ -313,6 +314,10 @@
 <tr>
 <td><code>GenX-DOS.sh</code> / <code>GenX-DOS.bat</code></td>
 <td>Local dev server for Linux / Windows — <code>python3 -m http.server</code> wrapper that finds a free port, opens the landing page, and stops when the browser window closes</td>
+</tr>
+<tr>
+<td><code>check-doc-counts.sh</code></td>
+<td>Guards against doc drift. Measures the real counts (gamedocs, sub-systems, <code>controls.html</code>, size on disk) and checks every place they're quoted — README, the wiki pages and the feature article's <em>THE NUMBERS</em> block. The engine count can't be derived (EmulatorJS is one engine hosting many cores), so instead all sources must agree with each other. Exits non-zero on drift; run it after any platform, engine or gamedoc change</td>
 </tr>
 </tbody>
 </table>
