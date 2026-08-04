@@ -912,7 +912,7 @@ var fs = [
                           },
                           {
                             name: 'thrust.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Superior/Thrust.ssd&autoboot',
+                            link: '../systems/bbcmicro/dist/?disc1=Superior/Thrust.ssd&autoboot&GP.D14=CAPSLOCK&GP.D15=CTRL&GP.D12=SHIFT&GP.B=SPACE',
                           },
                           {
                             name: 'snapper.bat',
