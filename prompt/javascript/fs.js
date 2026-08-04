@@ -832,7 +832,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              BBC  MICRO  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Snapper              (1982)  SNAPPER  º\necho                 º   2.  Chuckie Egg          (1983)  CHUCKEGG º\necho                 º   3.  Elite                (1984)  ELITE    º\necho                 º   4.  Frak!                (1984)  FRAK     º\necho                 º   5.  Repton               (1985)  REPTON   º\necho                 º   6.  Castle Quest         (1985)  CASTLEQ  º\necho                 º   7.  Jet Set Willy        (1986)  JETWILLY º\necho                 º   8.  Thrust               (1986)  THRUST   º\necho                 º   9.  Uridium              (1987)  URIDIUM  º\necho                 º  10.  Exile                (1988)  EXILE    º\necho                 º                                             º\necho                 º  11.  BASIC system prompt          PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              BBC  MICRO  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Snapper              (1982)  SNAPPER  º\necho                 º   2.  Chuckie Egg          (1983)  CHUCKEGG º\necho                 º   3.  Elite                (1984)  ELITE    º\necho                 º   4.  Frak!                (1984)  FRAK     º\necho                 º   5.  Repton               (1985)  REPTON   º\necho                 º   6.  Castle Quest         (1985)  CASTLEQ  º\necho                 º   7.  Jet Set Willy        (1986)  JETWILLY º\necho                 º   8.  Thrust               (1986)  THRUST   º\necho                 º   9.  Firetrack            (1987)  FIRETRAK º\necho                 º  10.  Exile                (1988)  EXILE    º\necho                 º                                             º\necho                 º  11.  BASIC system prompt          PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -872,7 +872,7 @@ var fs = [
                           },
                           {
                             name: '9.bat',
-                            data: 'uridium\n',
+                            data: 'firetrak\n',
                           },
                           {
                             name: '10.bat',
@@ -919,8 +919,8 @@ var fs = [
                             link: '../systems/bbcmicro/dist/?disc1=Acornsoft/Snapper-v1-alt.ssd&autoboot',
                           },
                           {
-                            name: 'uridium.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Hewson/Uridium.ssd&autoboot',
+                            name: 'firetrak.bat',
+                            link: '../systems/bbcmicro/dist/?disc1=ElectricDreams/Firetrack.ssd&autoboot',
                           },
                           {
                             name: 'prompt.bat',

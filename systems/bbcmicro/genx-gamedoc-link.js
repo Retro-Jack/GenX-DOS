@@ -21,7 +21,7 @@
     Exile: 'exile',
     Thrust: 'thrust',
     'Snapper-v1-alt': 'snapper',
-    Uridium: 'uridium',
+    Firetrack: 'firetrak',
   };
 
   var disc = new URLSearchParams(location.search).get('disc1');
