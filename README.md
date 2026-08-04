@@ -43,6 +43,7 @@ Both start a local server and open the landing page. (See **Quick start** above 
 ```
 index.html                landing page — intro, spec sheet, links, and the way into prompt/
 GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the landing page
+check-doc-counts.sh       checks the counts quoted in the docs still match the tree
 CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset
 LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)

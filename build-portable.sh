@@ -26,6 +26,7 @@ rsync -a --delete \
   --exclude='/docs/wiki-src' \
   --exclude='/_paddiag.html' \
   --exclude='/build-portable.sh' \
+  --exclude='/check-doc-counts.sh' \
   --exclude='/systems/_shared/styles/VGA_font/make_fonts.py' \
   --exclude='/dist' --exclude='/npm-pkg' --exclude='node_modules' \
   ./ "$TARGET"/
