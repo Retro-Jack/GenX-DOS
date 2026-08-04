@@ -16,7 +16,7 @@
     Frak: 'frak',
     ChuckieEgg: 'chuckegg',
     Repton: 'repton',
-    Revs: 'revs',
+    CastleQuest: 'castlequest',
     JetSetWilly: 'jetwilly',
     Exile: 'exile',
     Thrust: 'thrust',

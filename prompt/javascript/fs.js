@@ -832,7 +832,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              BBC  MICRO  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Snapper              (1982)  SNAPPER  º\necho                 º   2.  Chuckie Egg          (1983)  CHUCKEGG º\necho                 º   3.  Elite                (1984)  ELITE    º\necho                 º   4.  Frak!                (1984)  FRAK     º\necho                 º   5.  Repton               (1985)  REPTON   º\necho                 º   6.  Revs                 (1985)  REVS     º\necho                 º   7.  Jet Set Willy        (1986)  JETWILLY º\necho                 º   8.  Thrust               (1986)  THRUST   º\necho                 º   9.  Uridium              (1987)  URIDIUM  º\necho                 º  10.  Exile                (1988)  EXILE    º\necho                 º                                             º\necho                 º  11.  BASIC system prompt          PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              BBC  MICRO  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Snapper              (1982)  SNAPPER  º\necho                 º   2.  Chuckie Egg          (1983)  CHUCKEGG º\necho                 º   3.  Elite                (1984)  ELITE    º\necho                 º   4.  Frak!                (1984)  FRAK     º\necho                 º   5.  Repton               (1985)  REPTON   º\necho                 º   6.  Castle Quest         (1985)  CASTLEQ  º\necho                 º   7.  Jet Set Willy        (1986)  JETWILLY º\necho                 º   8.  Thrust               (1986)  THRUST   º\necho                 º   9.  Uridium              (1987)  URIDIUM  º\necho                 º  10.  Exile                (1988)  EXILE    º\necho                 º                                             º\necho                 º  11.  BASIC system prompt          PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -860,7 +860,7 @@ var fs = [
                           },
                           {
                             name: '6.bat',
-                            data: 'revs\n',
+                            data: 'castleq\n',
                           },
                           {
                             name: '7.bat',
@@ -895,8 +895,8 @@ var fs = [
                             link: '../systems/bbcmicro/dist/?disc1=Superior/Repton.ssd&autoboot',
                           },
                           {
-                            name: 'revs.bat',
-                            link: '../systems/bbcmicro/dist/?disc1=Acornsoft/Revs.ssd&autoboot',
+                            name: 'castleq.bat',
+                            link: '../systems/bbcmicro/dist/?disc1=Micropower/CastleQuest.ssd&autoboot',
                           },
                           {
                             name: 'jetwilly.bat',
