@@ -1,6 +1,6 @@
 # jsbeeb — BBC Micro
 
-jsbeeb is Matt Godbolt's BBC Micro emulator. GenX-DOS ships it as **two self-contained bundles** — `systems/bbcmicro/` (Model B) and `systems/bbcmaster/` (Master 128, `?model=Master`) — so each game's URL names the machine it runs on rather than hiding the model behind a shared `systems/jsbeeb/` path. They're full copies of the same Vite build — since rebuilt from our own [`Retro-Jack/jsbeeb`](https://github.com/Retro-Jack/jsbeeb) fork (jsbeeb 1.13.1) for a d-pad gamepad remap and a monitor-frame tweak. The core integration was hands-off (jsbeeb is a polished web product in its own right), but each bundle is among the largest in the suite and has some scary-looking orphan situations that are actually load-bearing.
+jsbeeb is Matt Godbolt's BBC Micro emulator. GenX-DOS ships it as **two self-contained bundles** — `systems/bbcmicro/` (Model B) and `systems/bbcmaster/` (Master 128, `?model=Master`) — so each game's URL names the machine it runs on rather than hiding the model behind a shared `systems/jsbeeb/` path. They're full copies of the same Vite build — since rebuilt from our own [`Retro-Jack/jsbeeb`](https://github.com/Retro-Jack/jsbeeb) fork (jsbeeb 1.14.0) for a d-pad gamepad remap and a monitor-frame tweak. The core integration was hands-off (jsbeeb is a polished web product in its own right), but each bundle is among the largest in the suite and has some scary-looking orphan situations that are actually load-bearing.
 
 ## Where we started
 
@@ -32,7 +32,9 @@ The BBC's COPY key has no obvious PC equivalent — jsbeeb maps it to `End` (als
 
 Standard-scheme games need nothing extra: jsbeeb natively maps a pad's d-pad to the BBC's `Z`/`X`/`'`/`/` steering keys, so titles like **Snapper** are pad-playable out of the box. The problem is digital games that use *other* keys — upstream jsbeeb hardwires the d-pad to those four keys with no remap hook, so a game with different controls couldn't drive the pad at all.
 
-The [`Retro-Jack/jsbeeb`](https://github.com/Retro-Jack/jsbeeb) fork (jsbeeb 1.13.1) adds four `GP.D12`–`GP.D15` cases, so a launch URL can bind the d-pad buttons to any BBC key. First wired: **Chuckie Egg** (`GP.FIRE=SPACE&GP.D12=A&GP.D13=Z&GP.D14=COMMA&GP.D15=PERIOD` — d-pad runs and climbs, any button jumps). The remap is a general improvement, offered back upstream on the fork's clean `gamepad-dpad-remap` branch; the only GenX-local fork change is the **CUB-monitor inset** (68→120px, for wallpaper breathing room), kept on the fork's build branch. Snapper (native scheme) and Elite (analogue stick) were verified unchanged by the rebuild. Local changes are logged in the fork's `GENX-CHANGES.md` and credited in [ATTRIBUTION.md](https://github.com/Retro-Jack/GenX-DOS/blob/master/ATTRIBUTION.md).
+The [`Retro-Jack/jsbeeb`](https://github.com/Retro-Jack/jsbeeb) fork (jsbeeb 1.14.0) adds four `GP.D12`–`GP.D15` cases, so a launch URL can bind the d-pad buttons to any BBC key. First wired: **Chuckie Egg** (`GP.FIRE=SPACE&GP.D12=A&GP.D13=Z&GP.D14=COMMA&GP.D15=PERIOD` — d-pad runs and climbs, any button jumps); **Elite** and **Thrust** followed, each binding the d-pad and face buttons to its own scheme. Some games need nothing at all — **Frak!**, **Jet Set Willy** and **Firetrack** happen to use exactly the keys the pad already sends. The remap is a general improvement, offered back upstream on the fork's clean `gamepad-dpad-remap` branch; the only GenX-local fork change is the **CUB-monitor inset** (68→120px, for wallpaper breathing room), kept on the fork's build branch. Local changes are logged in the fork's `GENX-CHANGES.md` and credited in [ATTRIBUTION.md](https://github.com/Retro-Jack/GenX-DOS/blob/master/ATTRIBUTION.md).
+
+Worth knowing, because it isn't obvious from the `GP.*` machinery: jsbeeb *also* drives the BBC's **real analogue joystick**, on a completely separate path from the key-faking above. `GamepadSource` feeds the pad's axes into the emulated ADC (all four channels default to it), and the system VIA reads the pad directly for the joystick fire buttons — but those are Gamepad-API buttons **10 and 11**, which on a standard pad are the **stick-click buttons L3 and R3**, not the face buttons. So a game offering its own joystick option answers to *left stick to steer, click the left stick to fire* — pressing **A** at such a prompt does nothing, which makes the feature look broken when it isn't.
 
 ## The positional keyboard gotcha (`:` `*` `@`)
 
@@ -46,7 +48,7 @@ jsbeeb's default layout (`keyLayout='physical'`) maps PC keys to BBC keys **by p
 | COPY    | `End` (or the COPY button) | also Right-Ctrl / F11 |
 | `f0`    | `F10` | `f1`–`f9` are `F1`–`F9` |
 
-Games scan the key matrix by position, so Shift state doesn't matter — e.g. Citadel/Repton "up" is the `:` `*` key, which you press as `'`. The gamedocs spell out the PC key for every affected title.
+Games scan the key matrix by position, so Shift state doesn't matter — e.g. Repton/Firetrack "up" is the `:` `*` key, which you press as `'`. The gamedocs spell out the PC key for every affected title.
 
 ## Bundle layout
 
