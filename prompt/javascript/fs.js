@@ -924,7 +924,7 @@ var fs = [
                           },
                           {
                             name: 'prompt.bat',
-                            link: '../systems/bbcmicro/dist/',
+                            link: '../systems/bbcmicro/dist/?disc1=blank.ssd',
                           },
                         ],
                       },
@@ -1118,7 +1118,7 @@ var fs = [
                           },
                           {
                             name: 'prompt.bat',
-                            link: '../systems/bbcmaster/dist/?model=Master',
+                            link: '../systems/bbcmaster/dist/?model=Master&disc1=blank.ssd',
                           },
                         ],
                       },
