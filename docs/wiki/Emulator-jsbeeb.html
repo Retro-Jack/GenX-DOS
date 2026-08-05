@@ -90,7 +90,8 @@
 </tr>
 </tbody>
 </table>
-<p>Games scan the key matrix by position, so Shift state doesn't matter — e.g. Repton/Firetrack "up" is the <code>:</code> <code>*</code> key, which you press as <code>'</code>. The gamedocs spell out the PC key for every affected title.</p>
+<p><strong>Which physical key that is depends on the keyboard layout, and jsbeeb has to guess it.</strong> It reads <code>navigator.language</code>: <code>en-us</code> → US, <code>en-gb</code> → UK, and <em>everything else falls back to UK</em>. That fallback is wrong for the many people on US keyboards whose locale is neither — <code>en-NZ</code>, <code>en-AU</code>, <code>en-CA</code>, <code>de-DE</code> and so on — because under a UK assumption the BBC <code>:</code> <code>*</code> key moves to the backtick key, not the apostrophe. They'd follow a gamedoc saying "press <code>'</code>" and get <code>→</code>. So both bundles' <code>dist/index.html</code> set <code>localStorage.keyboardLayout = 'US'</code> before the engine loads, unless the browser genuinely reports <code>en-GB</code> (which keeps UK) or the visitor has already chosen a layout (which is left alone). US is the most common layout worldwide, and on a UK board the <code>:</code> <code>*</code> key is the apostrophe key too — so the gamedocs' "press <code>'</code>" is now right either way.</p>
+<p>Games scan the key matrix by position, so Shift state doesn't matter — e.g. Repton/Firetrack "up" is the <code>:</code> <code>*</code> key, which you press as <code>'</code>. <code>*</code> itself — needed for <code>*CAT</code>, <code>*RUN</code> and the rest — is <strong>Shift + <code>'</code></strong>. The gamedocs spell out the PC key for every affected title.</p>
 <h2 id="bundle-layout">Bundle layout</h2>
 <pre><code>systems/bbcmicro/   (and an identical systems/bbcmaster/)
 ├── dist/

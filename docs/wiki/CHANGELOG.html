@@ -45,16 +45,20 @@
 <li><strong>SECURITY.md now documents the zero-external-calls posture.</strong> New "No external calls at runtime" section describing the self-hosting and the strict Content-Security-Policy that enforces it (browser-blocked off-site requests; zero external requests in DevTools).</li>
 <li><strong>Per-game content moved off the system-level controls pages.</strong> Those pages describe the machine and emulator, not individual titles — the per-game details belong on each game's own page (as <code>m100/controls.html</code> already states). Fixed: <strong>Apple ][+</strong> — dropped the per-game "starting hints" table (Lemonade Stand, Castle Wolfenstein, Choplifter, Aztec, Lode Runner, Sammy Lightfoot, Hard Hat Mack, Karateka, Oregon Trail); every entry was already covered in full on the game's own page, so it now points there (the Applesoft-BASIC prompt note, the one non-game row, moved into the BASIC section). <strong>TRS-80</strong> — the "playing the games" note no longer names specific titles/keys (Super Nova, Armored Patrol, Defense Command, Sea Dragon, Eliminator — all verified present in their gamedocs); it keeps the general guidance. <strong>PET</strong> — the annotated ten-game lineup (already duplicated in each gamedoc) reduced to a pointer, and the "Why no PETSCII Robots?" note removed (an unshipped title with no game page).</li>
 </ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li><strong>Snapper gamedocs corrected against each machine's own instructions — and they differ.</strong> The BBC and Electron ports document different keys, so the two pages were verified separately. <strong>BBC:</strong> the game opens with a <em>"Do you want instructions?"</em> prompt that wasn't mentioned at all, then starts on any key; and ending the game is <strong>Shift + BREAK</strong> (<code>Shift</code>+<code>F12</code> here), not <code>Esc</code> as the page claimed. <strong>Electron:</strong> its key screen also lists <code>S</code>/<code>Q</code> sound, <strong>COPY</strong> pause and <strong>DELETE</strong> restart — all three missing — while the <code>Esc</code> row it claimed appears nowhere and has been dropped.</li>
+<li><strong>Electron gamedocs: stop labelling Electron keys as BBC ones.</strong> Boxer and Starship Command described their freeze/continue keys as "BBC COPY"/"BBC DELETE"; the Electron has its own COPY and DELETE keys, and this bundle maps them to <code>Home</code>/<code>Backspace</code> (jsbeeb's <code>End</code> for COPY is a BBC-only detail). Checked the whole Electron set for the same class of error — no gamedoc references function keys, which the Electron doesn't have (it uses FUNC + number, <code>Alt</code> + number here).</li>
+<li><strong>Acorn Electron Cybertron Mission: a gamepad could not start the game.</strong> Its title reads <em>"PRESS SPACE TO START OR FIRE BUTTON"</em>, but the game's fire is the <code>M</code> key and the title itself only answers to <code>Space</code> (or a real joystick's fire line, which this emulator doesn't drive) — so with all four face buttons mapped to <code>M</code>, a pad player was stranded on the title screen. <strong>Start</strong> now sends <code>Space</code>. Controls re-verified against the game's own KEYS screen — <code>A</code>/<code>Z</code>, <code>&lt;</code>/<code>&gt;</code>, <code>M</code>, plus <code>S</code>/<code>Q</code> sound and <code>P</code>/<code>R</code> pause, all as documented; gamedoc gained the pad note and the eight-direction/diagonal detail.</li>
+</ul>
 <h3 id="added_1">Added</h3>
 <ul>
 <li><strong><code>check-doc-counts.sh</code> — a guard against documentation drift.</strong> Several counts are repeated across README, the wiki, the feature article and the social card, and platform changes update some while missing others (the article's engine count sat stale from the Vectrex retirement until an audit caught it months later). The script measures the real numbers from the tree — gamedocs, sub-systems, <code>controls.html</code>, size on disk — and checks every place they're quoted, exiting non-zero on any mismatch. The engine count can't be derived (EmulatorJS is one engine hosting many libretro cores), so instead every document stating it must agree with the others. It also prints the line the social card should read, since a PNG can't be checked automatically. Excluded from the portable build.</li>
 </ul>
-<h3 id="removed">Removed</h3>
+<h3 id="fixed_1">Fixed</h3>
 <ul>
-<li><strong>Two orphan <code>blank.ssd</code> disc images</strong> (200 KB) — one in each BBC bundle, inherited from the original jsbeeb copy at the bundle split. Nothing referenced them: no menu URL names them, the BBC BASIC entry launches keyless, jsbeeb builds blank discs in memory rather than fetching one, and upstream ships no such file.</li>
-</ul>
-<h3 id="fixed">Fixed</h3>
-<ul>
+<li><strong>BBC bundles now assume a US keyboard, so the <code>:</code> <code>*</code> key is where the docs say it is.</strong> jsbeeb guesses the layout from <code>navigator.language</code> — <code>en-us</code> → US, <code>en-gb</code> → UK, and <em>everything else falls back to UK</em>. That fallback silently mis-maps the BBC <kbd>:</kbd> <kbd><em></kbd> key for anyone on a US keyboard whose locale is neither (<code>en-NZ</code>, <code>en-AU</code>, <code>en-CA</code>, <code>de-DE</code>…): it moves to the backtick key, so following a gamedoc's "press <code>'</code>" typed <code>→</code> instead. Both bundles now set <code>localStorage.keyboardLayout = 'US'</code> before the engine loads — unless the browser really reports <code>en-GB</code> (keeps UK), or the visitor already chose a layout (left alone). US is the most common layout worldwide, and a UK board has that key on the apostrophe too, so "press <code>'</code>" is now correct either way. Both <code>controls.html</code> pages also spell out that a literal <kbd></em></kbd> — for <code>*CAT</code>, <code>*RUN</code> and friends — is <kbd>Shift</kbd>+<kbd>'</kbd>.</li>
+<li><strong>The BBC BASIC prompt was throwing an error instead of booting.</strong> Both BBC bundles' <em>BASIC system prompt</em> entries launched jsbeeb with no disc parameter, and jsbeeb then falls back to its built-in default of <code>discs/elite.ssd</code> — a file dropped long ago along with the other upstream test discs, so the page opened on <em>"An error occurred — sorry! … Unable to load discs/elite.ssd, http code 404"</em>. Both entries now load the bundled <code>blank.ssd</code>, which boots to a clean <code>BBC Computer 32K / Acorn DFS / BASIC &gt;</code> <strong>and</strong> leaves a writable disc in drive 0, so <code>*CAT</code> and <code>SAVE</code> work from the prompt. (That disc turned out to be exactly what <code>blank.ssd</code> was for — it had simply never been wired up, and a passing orphan sweep had removed it as unreferenced.)</li>
 <li><strong>Feature article stats brought up to date.</strong> "Emulator engines" still read 19 — it was missed when the Vectrex/jsvecx bundle was retired in favour of the Sega Master System (EmulatorJS counts as one engine, so the retirement took the total to 18, as README and the wiki already said). Size on disk 138 → 139 MB. Systems (33) and games (327) were already correct, as is the social card.</li>
 <li><strong>Wiki jsbeeb page: three stale claims.</strong> The fork version still read 1.13.1 in two places (it was rebased onto <strong>1.14.0</strong> for the Chrome-150 fix, as ATTRIBUTION already recorded); the positional-keyboard example cited <em>Citadel</em>, which no longer ships on the BBC Micro (now <em>Repton</em>/<em>Firetrack</em>); and Elite was described as running on the analogue stick, when its pad is a digital <code>GP.*</code> mapping. The gamepad section also now records the games wired since (Elite, Thrust) and the ones needing no remap at all (Frak!, Jet Set Willy, Firetrack).</li>
 <li><strong>Wiki: jsbeeb's native BBC joystick documented for the first time.</strong> Separately from the <code>GP.*</code> key-faking, jsbeeb feeds pad axes to the emulated ADC and reads the joystick fire buttons off the system VIA — but from Gamepad-API buttons <strong>10 and 11</strong>, which are the <strong>stick-click</strong> buttons (L3/R3), not the face buttons. A game's own joystick option therefore answers to <em>left stick to steer, click the stick to fire</em>; pressing A does nothing, which makes the feature look broken when it isn't.</li>
@@ -74,7 +78,7 @@
 <li>Deliberately kept, because they are not network calls: the SVG/XML namespace identifiers (<code>w3.org/2000/svg</code>) that the icon markup needs, and the GPL/MIT/FontAwesome licence notices embedded in the vendored engines (removing those would breach the licences).</li>
 </ul>
 <h2 id="141---2026-07-31">[1.4.1] - 2026-07-31</h2>
-<h3 id="fixed_1">Fixed</h3>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li><strong>BBC Micro &amp; Master no longer freeze on Chrome.</strong> Both bundles are rebuilt on <strong>jsbeeb 1.14.0</strong>, which carries the upstream workaround (<a href="https://github.com/mattgodbolt/jsbeeb/pull/704">#704</a>) for a <strong>Chrome 150 V8 bug</strong> that wedged the emulator a few seconds into a game — Chrome-only (Firefox was fine), no gamepad needed, all BBC games affected (Elite was the reproducer). Diagnosed the hard way — gamepad, audio-context and CSP all turned out to be red herrings; the tell was that upstream's live jsbeeb ran Elite fine. Our <code>Retro-Jack/jsbeeb</code> fork was rebased onto 1.14.0 (keeping the d-pad remap and monitor inset); 1.14.0's new <code>#restart-pending</code> config element is now in both bundles so the newer engine doesn't null-deref on it. With thanks to Matt Godbolt for shipping the upstream fix within a day.</li>
 </ul>
@@ -98,7 +102,7 @@
 <li><strong>USB gamepad support on the Amstrad CPC bundle.</strong> The engine has no Gamepad API support, so <code>play.html</code> now polls pad 0 and synthesizes the arrow/Space key events it already understands, while a per-game <code>joystick</code> flag in <code>games.json</code> launches tiny8bit's emulated 9-pin joystick mode. D-pad or left stick steers, any face button fires; idle pads send nothing so keyboard games are unaffected. First game wired: 3D Starstrike.</li>
 <li><strong>Community-profile files.</strong> <code>CONTRIBUTING.md</code> (local setup, PR ground rules, scope rule, licensing), <code>CODE_OF_CONDUCT.md</code> (Contributor Covenant 2.1), issue templates (bug report + rights-holder takedown request, with a config pointing security reports at private advisories) and a PR checklist template. Completes the GitHub community-profile checklist.</li>
 </ul>
-<h3 id="fixed_2">Fixed</h3>
+<h3 id="fixed_3">Fixed</h3>
 <ul>
 <li>
 <p><strong>Menu codes now obey DOS 8.3 naming — 13 overflowing codes shortened.</strong> Nine-character codes (GALAFORCE, ASTEROIDS, CENTIPEDE, ADVENTURE, RIVERRAID, FOODFIGHT, CHOPLIFTR, KIDICARUS, LASTNINJA, LOCKCHASE, ALIENPLUS) filled the menu's code column flush against the border with no gap. All shortened to ≤8 characters with DOS-style truncation (ADVENTUR, CENTIPED, FOODFGHT…), with the numbered pointers and launcher <code>.bat</code> files renamed in lockstep. Also caught two launchers whose names never matched their advertised codes — typing <code>CASTLEV</code> or <code>FINALFNT</code> at the prompt didn't work because the files were <code>castlvnia.bat</code>/<code>finalfnts.bat</code>; both renamed to match. The whole virtual filesystem now passes an 8.3 scan, and staying within 8.3 is policy from here on. CodeQL flagged the <code>?game=</code> key flowing into <code>innerHTML</code> when a wrapper renders its "Unknown game key" / "no game" error. Real but low-impact (static site, no cookies/sessions to steal) — still, all error rendering now builds the message with <code>textContent</code> instead of <code>innerHTML</code>: the shared <code>genx-game-loader.js</code> and <code>genx-ejs-boot.js</code> helpers plus the inline <code>fail()</code>/error blocks in ten <code>play.html</code> wrappers (Atari 400/800XL, 7800, NES, Spectrum, ZX81, PET, TRS-80, CoCo, CPC). The <code>games.json</code> fetch-error messages got the same treatment for uniformity. Also removed a dead no-op <code>replace(' \&amp; ')</code> in <code>commands-core.js</code> (CodeQL js/identity-replacement; real <code>&amp;&amp;</code> chaining is handled separately).</p>
@@ -145,12 +149,12 @@
 <li><strong>BBC Master: Firetrack → Bonecruncher.</strong> Firetrack's documented controls couldn't be reconciled with observed behaviour (the inlay's Return "fast fire" made no difference in play, and firing turned out to be automatic) — with the primary source and the running game disagreeing, the doc couldn't meet the site's accuracy bar, so the title was swapped out. In its place: Superior's <em>Bonecruncher</em> (1987, Andreas Kemnitz &amp; Martyn Howard), the Boulder Dash-style skeleton-soap puzzler — same year, so the menu sort is untouched. Disc, menu, launcher, gamedoc-link map and gamedoc all updated; the gamedoc is written from the inlay and verified against the game's own controls screen (including the D/W music keys the inlay omits), with the 22-chamber password system left for players to earn. The old page described a side-scrolling lane-dodger with wheelies, credited to the wrong author — the real game is Kevin Edwards' behind-the-bike 3D championship racer on real-world circuits (the Master version adds circuits, graphics and Martin Galway music). Now documents the true keys (Z/X steer, BBC <kbd>*</kbd>/<kbd>?</kbd> accelerate/decelerate in the PC-vs-BBC three-column layout, P pause, S sound, K keyboard/joystick), the green-light start (jump it and the bike stalls), top-six qualification across the sixty-rider field, and the 200-point knock-off bonus with the side-swipe vs rear-end collision rules.</li>
 <li><strong>Doc sync + orphan audit (July pass).</strong> Orphan scan found no authored orphans — every flagged candidate is a dynamic-path mechanism (js99er builds <code>carts/&lt;key&gt;.rpk</code>, JtyOne's loader appends <code>.hex</code> to <code>tapes/&lt;name&gt;.p</code>, jsvecx's <code>roms/</code> library is upstream-vendored). Synced the repo trees in the README and the wiki File-Structure page with the root files that post-date them (LICENSE.TXT, SECURITY.md, <code>docs/</code>, the npm/container packaging trio, <code>.github/</code>), fixed the wiki's per-emulator table still listing the PET under VICE (it runs Skibo's pet2001), and added the shared save-state / soft-button helpers to the wiki's <code>_shared/</code> listing.</li>
 </ul>
-<h3 id="removed_1">Removed</h3>
+<h3 id="removed">Removed</h3>
 <ul>
 <li><strong>GitHub Packages (container + npm) retired for a plain download.</strong> The ghcr container image and the <code>@retro-jack/genx-dos</code> npm package are gone — needless machinery for a static site that now runs from a one-command launcher or any static host. Each release ships a <strong>zip of the whole site</strong> instead; unzip and run <code>GenX-DOS.sh</code> (Linux/macOS) or <code>GenX-DOS.bat</code> (Windows). <code>Dockerfile</code>, <code>index.js</code>, <code>package.json</code>, the publish workflow and the placeholder Dependabot config are removed; <code>build-portable.sh</code> now builds the shipped site (identical to the portable export).</li>
 </ul>
 <h2 id="132---2026-07-16">[1.3.2] - 2026-07-16</h2>
-<h3 id="fixed_3">Fixed</h3>
+<h3 id="fixed_4">Fixed</h3>
 <ul>
 <li><strong>BBC controls pages named a URL parameter that doesn't exist.</strong> The auto-boot hyphenation pass reached inside a <code>&lt;code&gt;</code> span and rewrote the literal <code>?autoboot</code> launch param to <code>?auto-boot</code> on both BBC pages — so anyone following the instruction got a disc that didn't boot. The prose verb hyphenates; the parameter must not. Caught by an audit cross-checking the docs against <code>fs.js</code>, which is the runtime truth. The same pass also missed one <code>Autoboots.</code> (capitalised at a sentence start, in the Apple ][+ page's Castle Wolfenstein row); it's dropped rather than hyphenated, per the auto-boot preamble rule.</li>
 </ul>
@@ -224,13 +228,13 @@
 <li><strong>Acorn Electron canvas shrunk 5%.</strong> The ElkJS canvas now sits at 78.69%×76.69% of the bezel (down from 82.83%×80.73%), re-centred (left/top nudged to 10.96%/10.97%) so it shrinks toward the same point inside the Acorn monitor cutout.</li>
 <li><strong>BBC Micro menu: Jet Set Willy re-dated to 1986 and re-sorted.</strong> The menu listed Jet Set Willy as 1985; the Tynesoft BBC release is 1986, matching the corrected gamedoc. With the year-ascending order, Repton (1985) moves up to #6 and Jet Set Willy (1986) drops to #7; the number→game launchers were swapped to match. Uridium re-dated 1986 → 1987 to match its title screen (A.I.M.'s BBC conversion; the Graftgold original is 1986) — it stays at #9 between Thrust (1986) and Exile (1988), so no reorder.</li>
 </ul>
-<h3 id="removed_2">Removed</h3>
+<h3 id="removed_1">Removed</h3>
 <ul>
 <li><strong>Orphan disc cleanup — BBC bundles.</strong> The BBC Micro and BBC Master jsbeeb bundles are separate <code>dist/</code> trees that had each accumulated the <em>full</em> 20-disc library, while each menu only loads its own 10. Removed the 18 cross-bundle discs (9 per bundle) that no menu references — no functional change; each bundle now carries exactly the discs its menu links.</li>
 <li><strong>Acorn Electron trimmed to the 7 games ElkJS ships.</strong> Dropped <strong>Hopper, Chuckie Egg and Frak</strong> — they were extras added beyond upstream ElkJS's bundled set, and the only versions available for them were cassette tapes (no snapshots exist, upstream or anywhere). Rather than mix instant-snapshot and real-time-tape loading, the Electron now carries exactly the 7 upstream snapshot games: Snapper, Starship Command, Boxer, Cybertron Mission, Citadel, Elite, Repton 2. Removed their tape UEFs, gamedocs, menu entries and number→game launchers, renumbered the menu (BASIC prompt now #8), and corrected the counts in the README, tech article and wiki (Electron is the one system with 7, not 10).</li>
 <li><strong>VICE RUN/STOP / RESTORE on-screen buttons.</strong> Dropped the C64-family soft buttons — RUN/STOP and RESTORE aren't in-game keys (their real uses are breaking a program at the BASIC prompt and the RUN/STOP+RESTORE reset), so they were UI clutter. The keyboard routes stay: Scroll Lock / Pause → RUN/STOP, and Page Up → RESTORE (libretro default).</li>
 </ul>
-<h3 id="fixed_4">Fixed</h3>
+<h3 id="fixed_5">Fixed</h3>
 <ul>
 <li><strong>DOS prompt Backspace.</strong> The command line couldn't delete typed characters. The old handler sniffed the browser — simulating a <code>keypress</code> on non-Firefox and relying on Firefox to fire <code>keypress</code> for Backspace — but modern browsers no longer fire <code>keypress</code> for non-printable keys, so on Firefox nothing happened. Backspace now deletes directly in <code>keydown</code> (which fires everywhere), still guarding the <code>'p'</code>-classed prompt prefix / printed output so only typed input is erased.</li>
 <li><strong>Acorn Electron sound.</strong> ElkJS's <code>soundToggle()</code> resumes the AudioContext only on its first call, so games could end up silent (the context never resumed without a real user gesture). Added an idempotent <code>elkjs.resumeAudio()</code> and had <code>play.html</code> retry it on every user gesture (keydown / pointer / touch) alongside the window.open activation, so sound reliably starts. Output is mixed down to 25% in <code>sound.js</code> (the raw ±1 square wave was painfully loud).</li>
@@ -282,7 +286,7 @@
 <li><strong>Split the shared WebMSX bundle into <code>systems/msx1/</code> + <code>systems/msx2/</code></strong> so the URL path names the actual machine instead of the ambiguous <code>systems/webmsx/</code>. Each bundle ships the WebMSX engine and its own <code>games/</code> + gamedocs (<code>gamedocs/msx1/</code>, <code>gamedocs/msx2/</code>); the MSX2 menu links now pass an explicit <code>M=MSX2</code> rather than relying on the engine default.</li>
 <li><strong>Split the shared jsbeeb bundle into <code>systems/bbcmicro/</code> + <code>systems/bbcmaster/</code></strong> so the URL path names the machine instead of the ambiguous <code>systems/jsbeeb/</code>. Each is a full self-contained jsbeeb copy (the Micro bundle boots Model B, the Master bundle <code>model=Master</code>); gamedocs split to <code>gamedocs/bbcmicro/</code> and <code>gamedocs/bbcmaster/</code> (the <code>master-</code> filename prefix dropped, now that each machine has its own dir), and each bundle's corner-link script points at its own gamedoc dir.</li>
 </ul>
-<h3 id="fixed_5">Fixed</h3>
+<h3 id="fixed_6">Fixed</h3>
 <ul>
 <li><strong>Atari 400 games were silently booting as an 800XL.</strong> The 400 menu launched every game with <code>?machine=atari</code>, but <code>play.html</code>'s machine-flag table had no <code>atari</code> key, so no machine flag was applied and atari800 fell back to its default machine — the 800XL. Fixed the flag table (added an <code>atari</code> alias) and split the bundles (above) so a 400 game boots OS-B from <code>systems/atari400/</code>. The tab title and the per-game gamedoc titles/subheads now name the actual machine (<strong>Atari 400</strong> for the OS-B set, <strong>Atari 800XL</strong> for the XL set) instead of a blanket "Atari 800".</li>
 </ul>
@@ -292,7 +296,7 @@
 <li><strong>Prominent "accuracy not guaranteed" caveat</strong> on the three obscure gamedocs that couldn't be manual-verified in the re-audit (C128 Invaders, C128 Phazer, MAX Speed/Bingo Math). New reusable <code>.caveat</code> callout class in <code>genx-controls.css</code> (amber left-bar warning box), placed directly under the header description.</li>
 </ul>
 <h2 id="105---2026-06-25">[1.0.5] - 2026-06-25</h2>
-<h3 id="fixed_6">Fixed</h3>
+<h3 id="fixed_7">Fixed</h3>
 <ul>
 <li><strong>Gamedoc accuracy re-audit of the EmulatorJS console/handheld bundles (post-quota pass).</strong> The original 12a audit verified the standalone emulators against manuals but only gave the EJS bundles a gamedoc↔controls.html <em>consistency</em> check (the WebSearch quota had run out). Re-verifying each game's specific keys against manuals:</li>
 <li><strong>NES (4/10 fixed):</strong> Mega Man 2 — weapon menu opens with <strong>START</strong>, not Select (Select just moves the menu cursor). Final Fantasy — main menu opens with <strong>START</strong>; Select changes marching order (was attributed to Select / "Start unused"). Super Mario Bros. 3 — the world-map item box opens with <strong>B</strong> (A uses the chosen item); Select is unused (was "Select uses inventory"). Castlevania — stairs climb with <strong>Up / Down</strong> at a staircase, not a held diagonal (a CV3 mechanic).</li>
@@ -315,7 +319,7 @@
 <li><strong>README License section now links <code>LICENSE.TXT</code> prominently</strong>, alongside the existing <code>ATTRIBUTION.md</code> link (the full licence text was previously only reachable via the CC badge).</li>
 <li><strong>ZX Spectrum (jsspeccy) bezel no longer fisheye-distorted and sits flatter in the glass.</strong> Removed the <code>#crtbulge</code> barrel-distortion filter (and its now-unused SVG/displacement-map) and dropped the fixed <code>translate()</code> nudge it needed. The screen now overscans the bezel cutout at <code>scale(1.09)</code>.</li>
 </ul>
-<h3 id="fixed_7">Fixed</h3>
+<h3 id="fixed_8">Fixed</h3>
 <ul>
 <li><strong>Atari 2600 (stella) canvas no longer drifts between games.</strong> <em>(community-reported)</em> Replaced the fixed <code>translateX(-18px)</code> nudge with proper centre anchoring (<code>top/left:50%</code> + <code>translate(-50%,-50%)</code>), so the canvas centre pins to the bezel-hole centre regardless of the width the core emits per game.</li>
 <li><strong>ZX Spectrum (jsspeccy) screen now tracks the window size.</strong> <em>(community-reported)</em> JSSpeccy (<code>uiEnabled:false</code>) injects its own <code>appContainer</code> div with a fixed inline pixel width (<code>320 × zoom</code>), which pinned the whole stack to that size so the canvas ignored the percentage-sized bezel cutout. Forcing the injected div to fill the hole (<code>inset:0; width/height:100%</code>) lets the canvas scale with the bezel like the ZX81 (jtyone) canvas does — fixing both the broken resize and the resulting black band at the top of the screen.</li>
@@ -330,7 +334,7 @@
 <li><strong><code>source · licence</code> credit on the DOS prompt page too.</strong> The same self-contained <code>genx-repo-link.js</code> pill that sits on every emulator page is now included on <code>prompt/index.html</code>, so the menu/prompt surface carries the bottom-centre <code>GenX-DOS · source · licence</code> credit as well.</li>
 <li><strong><code>echo on</code> command.</strong> The prompt now understands <code>echo on</code> (mirroring <code>echo off</code>): it re-enables echo and drops to a fresh <code>C:\&gt;</code> prompt. A batch can end with <code>echo on</code> to return the user to a live prompt without the trailing blank line that <code>echo.</code> leaves.</li>
 </ul>
-<h3 id="fixed_8">Fixed</h3>
+<h3 id="fixed_9">Fixed</h3>
 <ul>
 <li><strong>"0. Exit" now drops to a <code>C:\&gt;</code> prompt again.</strong> Trimming the <code>echo.</code> lines from <code>SYSTEMS\0.bat</code> (above) removed the side effect that re-enabled echo and redrew the prompt — so the sign-off screen sat there with no cursor. The batch now ends with the new <code>echo on</code>, restoring the live prompt with no extra blank line.</li>
 </ul>
@@ -348,7 +352,7 @@
 <ul>
 <li><strong>Subtle "source · licence" credit on every emulator page.</strong> A new self-contained <code>systems/_shared/genx-repo-link.js</code> injects a bottom-centre note — <code>GenX-DOS · source · licence</code> — linking to the GitHub repo and <code>LICENSE.TXT</code>. It sits in a small dark pill so it reads over the wallpaper (bare amber text vanished into the busy pattern, the same reason the controls / save-load links carry their own background). Included on all 29 launch pages (26 <code>play.html</code> + the jsbeeb/jsvecx/webmsx wrappers). The text is <code>pointer-events:none</code> so only the two links are clickable and it never steals a click from the emulator; it sits clear of the controls link (bottom-right) and save/load buttons (bottom-left).</li>
 </ul>
-<h3 id="fixed_9">Fixed</h3>
+<h3 id="fixed_10">Fixed</h3>
 <ul>
 <li><strong>DOS prompt — reduced Firefox horizontal text hairlines.</strong> The prompt grid is fitted to the bezel cutout with a non-uniform <code>transform: scale</code>, which left every 12px row edge on a sub-pixel device position; Firefox antialiased those clip edges into a faint hairline across each text row. <code>fitPrompt()</code> now snaps each cell to a whole number of device pixels (floor <code>12·scale·dpr</code>, so the grid never overflows — <code>.prompt-fit</code>'s black fill covers the small slack), and <code>.font</code>/<code>.prompt</code> carry <code>image-rendering: pixelated</code> (nearest-neighbour sampling). The residual is now consistent with CRT scanline character rather than a rendering artifact. (A font-PNG cell-scaling rewrite was tried and reverted — the snapped transform looked better.)</li>
 <li><strong>BBC Micro wallpaper seam at the bezel's top edge.</strong> jsbeeb paints the 70s wallpaper on both <code>html</code> and <code>body</code> (it needs both — body's upstream background is black), and <code>#cub-monitor { margin-top: 60px }</code> collapsed through the block body, offsetting the body copy by 60px and seaming the tiled pattern right where the bezel meets the wallpaper. Fixed by adding <code>background-attachment: fixed</code> so both copies anchor to the viewport and tile from the same origin regardless of the margin offset. jsbeeb-specific — the other pages have no such margin offset.</li>
@@ -424,7 +428,7 @@ save/load state.</p>
 <li><strong>C128 game sweep — replaced two non-launching titles.</strong> <code>kquest</code> (Knight's Quest) and <code>tetris</code> (Tetris 128) are ML-first homebrews: the disk's first file is machine code at <code>$4001</code> with no BASIC autostart loader, so VICE's <code>LOAD"*",8,1:RUN</code> can't start them (RUN only runs BASIC; they drop to <code>READY.</code>). Swapped both for cleanly-bootable 80-col VDC titles whose first file is a <code>$1C01</code> BASIC loader: <strong>Invaders</strong> (homebrew Space Invaders — <code>F</code> fire, <code>1</code>/<code>2</code> move, <code>P</code> pause) and <strong>Uniquest</strong> (homebrew fantasy RPG — seven cities, dungeons, 88 weapons/armour, 110 monsters; typed-command parser). Both confirmed to autostart and play. Menu, <code>games.json</code>, ROMs (<code>.d64</code> → <code>.prg</code>) and gamedocs updated; the other nine C128 titles all verified launching. <em>(The other ML-first checks: all eight remaining disk/<code>.prg</code> titles have BASIC-loader first files, so they autostart fine.)</em></li>
 <li><strong>C128 per-video-mode canvas scale.</strong> The 80-col VDC picture sits smaller in the 1084S glass than the 40-col VIC-II one, so <code>perGame</code> now tags <code>&lt;html&gt;</code> (<code>gx-vdc</code> / <code>gx-vicii</code>) and CSS picks the fill scale: VIC-II keeps the family <code>scale(1.01)</code>, VDC gets <code>scale(1.26)</code>.</li>
 </ul>
-<h3 id="fixed_10">Fixed</h3>
+<h3 id="fixed_11">Fixed</h3>
 <ul>
 <li><strong>MSX (webmsx) rebuilt from scratch — was completely broken.</strong> The old bundle was WebMSX's 5.26 MB <em>standalone</em> all-in-one with the GenX controls-link <code>&lt;script&gt;</code> injected <strong>inside</strong> the inline engine's body-HTML string with a raw <code>&lt;/script&gt;</code>; the browser read that as closing the inline engine ~120 KB in, dumping the rest as plain text — the emulator never ran (pre-existing; unrelated to the <code>emulators/</code>→<code>systems/</code> rename, which only touched two <code>&lt;meta&gt;</code> URLs). Rebuilt from the official WebMSX 6.0 <strong>embedded</strong> build: <code>wmsx.js</code> is the stock engine (a separate file, never edited) and <code>index.html</code> is a small GenX wrapper. Auto-load works via <code>WMSX.ALLOW_URL_PARAMETERS</code> (the engine reads the menu's <code>?ROM=</code>/<code>?M=</code>/<code>?ANY=</code> and maps them itself: <code>ROM</code>→<code>CARTRIDGE1_URL</code>, <code>M</code>→<code>MACHINE</code>, <code>ANY</code>→<code>AUTODETECT_URL</code>); the controls link is a normal <code>&lt;script&gt;</code> element <em>after</em> the engine (nothing can leak into it); WebMSX's control bar is hidden (<code>#wmsx-bar { display:none }</code>). Menu links, ROM library, and controls page unchanged. <em>(Self-inflicted footgun avoided: a <code>&lt;/script&gt;</code> literal in the wrapper's own JS comment will close the wrapper script too — keep closing-script-tags out of inline <code>&lt;script&gt;</code> comments.)</em></li>
 <li><strong>C128 boots again</strong> — the <code>stable</code> <code>vice_x128</code> libretro core cold-boots to uninitialised-RAM garbage (was live; the other VICE cores are unaffected). Swapped <code>systems/_shared-ejs/ejs/data/cores/vice_x128-legacy-wasm.data</code> to the <code>nightly</code> EmulatorJS build, which boots to BASIC 7.0 cleanly. Both video modes work — 40-col VIC-II and 80-col VDC (<code>vice_c128_video_output</code> values stay the bare keys <code>VICII</code>/<code>VDC</code>; the core's <code>"VIC-II (40 cols)"</code>/<code>"VDC (80 cols)"</code> strings are display labels, not settable values). Commercial 80-col titles (Star Fleet I) play through. Also <strong>dropped the C128 <code>scaleY</code> framebuffer hack</strong> — it compensated for the stable core's odd 856×288 buffer; the nightly core renders a normal framebuffer, so C128 now uses the same <code>#game canvas { height: 100% !important; transform: scale(1.01) }</code> fit as the rest of the family. <em>(Known per-game quirk, not the core: ML-direct homebrew like <code>kquest</code> loads via <code>LOAD"*",8,1</code> but the autostart's <code>RUN</code> can't start a non-BASIC image, so it drops to <code>READY.</code>)</em></li>
@@ -449,13 +453,13 @@ save/load state.</p>
 <li><strong>Star Trek (1977)</strong> added to the PET bundle as the replacement headline title — Mike Mayfield's defining BASIC space game, sourced from zimmers.net.</li>
 <li><strong><code>gamedocs/pet/startrek.html</code></strong> — per-game instructions for the new headline title (the <code>?game=startrek</code> controls link was 404ing without it). Gamedocs sweep stays complete at 281 pages.</li>
 </ul>
-<h3 id="removed_3">Removed</h3>
+<h3 id="removed_2">Removed</h3>
 <ul>
 <li><strong><code>gamedocs/pet/petrobot.html</code></strong> — orphaned PETSCII Robots gamedoc, left behind when the title was dropped from the PET bundle. No launcher or <code>games.json</code> key referenced it.</li>
 <li><strong>PETSCII Robots Shareware (2022)</strong> dropped from the PET bundle. Skibo's emulator has no 1541 disk-image support, no BASIC 4 / PET 4032 ROM, and no multi-file disk loader — three hard blockers that all three of PETSCII Robots' boot requirements need. The title is no longer shipped on any sub-system; its ATTRIBUTION/README credits were removed accordingly. Documented in detail at <code>wiki/Emulator-pet2001-Skibo</code>.</li>
 <li><strong><code>systems/_shared-ejs/ejs/data/cores/vice_xpet-legacy-wasm.data</code></strong> (1.3 MB) — the libretro VICE PET core, no longer referenced by any bundle. VICE-family shared dir drops from 5 cores to 4.</li>
 </ul>
-<h3 id="fixed_11">Fixed</h3>
+<h3 id="fixed_12">Fixed</h3>
 <ul>
 <li><strong>jsbeeb per-game gamedocs wired</strong> — the 20 <code>gamedocs/jsbeeb/*.html</code> (BBC Micro + Master) were runtime orphans: the Vite <code>dist/index.html</code> hardcodes the corner link to <code>../controls.html</code> and the menu launches keyless <code>?disc1=</code> URLs, so the per-game gamedoc never resolved. Added <code>systems/jsbeeb/genx-gamedoc-link.js</code> — maps the disc filename (e.g. <code>EliteMaster</code> → <code>master-elite</code>) to the gamedoc key and rewrites the corner link's <code>href</code> on load; keyless BASIC / blank-Master launches fall through to <code>controls.html</code>. Wired into <code>dist/index.html</code> via a deferred <code>&lt;script&gt;</code>. All 20 keys verified to map to existing files and serve 200.</li>
 <li><strong>BBC Elite gamedocs — front-view key relabelled to PC <code>F10</code></strong> — <code>gamedocs/jsbeeb/elite.html</code> and <code>master-elite.html</code> showed the front view as <code>F0</code>, which has no PC-keyboard equivalent. Verified jsbeeb's keymap (<code>i(k.F10,O.F0),i(k.F1,O.F1)…</code>): BBC <code>f1</code>–<code>f9</code> map to PC <code>F1</code>–<code>F9</code> 1:1, BBC <code>f0</code> maps to PC <code>F10</code>. Relabelled <code>F0</code>→<code>F10</code> and corrected elite.html's keyboard note (it had implied an <code>f0</code>–<code>f9</code> → <code>F1</code>–<code>F10</code> block shift).</li>
@@ -483,7 +487,7 @@ save/load state.</p>
 <li><strong>Three explicit layers behind the bezel</strong> — <code>.screen-bg</code> (back, 90% of the bezel-wrap, solid black) → <code>.prompt-fit</code> (canvas, sized to the cutout, the prompt grid lives here) → <code>.bezel-img</code> (front, PC.png on top). The black backdrop blocks the wallpaper from bleeding through the PNG's anti-aliased cutout boundary.</li>
 <li><strong>AMI Megatrends logo proportions match the stretched grid</strong> — sized to 205×51 (½ width, ⅜ height of the source 409×136) so it doesn't appear elongated when the rest of the screen is non-uniformly scaled.</li>
 </ul>
-<h3 id="removed_4">Removed</h3>
+<h3 id="removed_3">Removed</h3>
 <ul>
 <li><strong>Tseng ET4000 video BIOS POST lines</strong> from the boot sequence — <code>init.js</code> now goes straight from the AMI logo to the AMIBIOS system POST.</li>
 </ul>
@@ -491,7 +495,7 @@ save/load state.</p>
 <ul>
 <li><strong>Wallpaper dropped from all doc pages</strong> — <code>_shared/genx-controls.css</code> body rule no longer paints the 70s tile. Removes the wallpaper from all 24 <code>controls.html</code> pages <strong>and</strong> all 281 <code>gamedocs/*/*.html</code> pages in one shot; keyboard tables and game instructions now sit on a flat <code>#0a0a0a</code> background, which keeps the dense table content legible. The earlier <code>body.controls-page</code> override + class on each controls.html body is now redundant — both removed. Wallpaper still tiles on the DOS prompt, jsbeeb dist, and Electron play.html.</li>
 </ul>
-<h3 id="fixed_12">Fixed</h3>
+<h3 id="fixed_13">Fixed</h3>
 <ul>
 <li><strong>Electron function-key references in <code>gamedocs/electron/elite.html</code></strong> — the BBC Elite manual's <kbd>f0</kbd>–<kbd>f9</kbd> labels were carried over wholesale, but the Electron has no F-keys at all. ElkJS already maps PC <kbd>Alt</kbd> → Electron FUNC (the orange key), which is how Electron software reaches f0–f9 in practice. Rewrote all 9 references in Elite to use <kbd>Alt</kbd>+<kbd>N</kbd> directly. controls.html keyboard table now spells out the Alt → FUNC mapping with the BBC <kbd>f7</kbd> → <kbd>Alt</kbd>+<kbd>7</kbd> example.</li>
 <li><strong>Electron sound (upstream <code>sound.soundInit</code> missing)</strong> — <code>elkjs.js:143</code> calls <code>sound.soundInit()</code> on first <code>soundToggle()</code>, but the method was never defined in <code>sound.js</code> — upstream's keydown path threw <code>TypeError</code> and audio never enabled for anyone. Added <code>self.soundInit = function () { if (audioContext.state === 'suspended') audioContext.resume(); }</code> to <code>sound.js</code>. Combined with the <code>_autoUnlockSound</code> burst from DOMContentLoaded, audio now starts on tab open via the prompt's <code>window.open</code> user-activation propagation.</li>
@@ -503,7 +507,7 @@ save/load state.</p>
 <ul>
 <li><strong>Site JS beautified</strong> — <code>prompt/javascript/*.js</code>, <code>systems/_shared/*.js</code>, <code>systems/_shared-ejs/genx-ejs-boot.js</code>, and the inline controls-link injector in <code>apple2/play.html</code>. Run through <code>js-beautify</code> (4-space indent). No behaviour changes; same modules, same exports.</li>
 </ul>
-<h3 id="fixed_13">Fixed</h3>
+<h3 id="fixed_14">Fixed</h3>
 <ul>
 <li><strong>Vectrex focus-loss auto-resume</strong> — synthetic Escape <code>keyup</code> dispatched on <code>window.focus</code> triggers the runtime's existing <code>Mu()</code> handler, which closes the (internally-open) menu and calls <code>start()</code> after 300 ms. No more manual ESC press needed after clicking away.</li>
 <li><strong>JS7800 F-key reference</strong> — platform <code>controls.html</code> + 10 gamedoc pages had F3 and F4 swapped. F3 is the Reset switch (= start the game on most carts); F4 is Pause. Corrected throughout.</li>
@@ -518,11 +522,11 @@ save/load state.</p>
 <li><strong>Mobile-device block</strong> — touch-only devices see a full-screen "Desktop Only" overlay via <code>@media (pointer: coarse), (hover: none)</code> + <code>body::before</code>. 24 emulator pages inherit it from <code>_shared/genx-noscript.css</code>; three outliers (root + prompt + jsbeeb dist index) get an inline copy. z-index 999999 sits above the corner controls link.</li>
 <li>Loosened to comma (OR) shortly after first commit — iPadOS reports <code>pointer: coarse</code> + <code>hover: hover</code> so the <code>and</code> form was skipping iPads.</li>
 </ul>
-<h3 id="removed_5">Removed</h3>
+<h3 id="removed_4">Removed</h3>
 <ul>
 <li><strong>js99er upstream-UI orphans (11 files, ~200 KB)</strong> at <code>systems/js99er/</code> — <code>ams.js</code>, <code>googledrive.js</code>, four bootstrap variants, <code>fileSaver.js</code>, <code>imageMapResizer.js</code>, two unused zip features. Kept <code>lib/zip/inflate.js</code> (it's the <code>.rpk</code> worker).</li>
 </ul>
-<h3 id="fixed_14">Fixed</h3>
+<h3 id="fixed_15">Fixed</h3>
 <ul>
 <li><strong>Fourth doc-sync audit (08/06/2026)</strong> — README MSX line still mentioned MSX2+; bumped Virtual-Filesystem sub-system count 27 → 28; dropped TI-99/4A from Roadmap "Plausible" (now shipped).</li>
 </ul>
@@ -560,7 +564,7 @@ save/load state.</p>
 <li><strong>Commodore 128 gamedocs (10 pages)</strong> at <code>gamedocs/c128/</code>. Each page indicates VICII (40-col) vs VDC (80-col), matching the <code>video</code> field in <code>games.json</code>.</li>
 <li><strong>Commodore Plus/4 gamedocs (10 pages)</strong> at <code>gamedocs/plus4/</code>. Auto-linked from each game's controls badge.</li>
 </ul>
-<h3 id="removed_6">Removed</h3>
+<h3 id="removed_5">Removed</h3>
 <ul>
 <li><strong>jsvecx upstream alternate entry points</strong> at <code>systems/jsvecx/</code> — <code>rtm.html</code>, <code>seamless.html</code>, <code>vectrex.html</code>, two overlays + 7 JS/CSS dependents (~127 KB). Kept <code>js/rtm.js</code> + <code>css/rtm.css</code> (Show Chips), full <code>bios/</code>/<code>img/</code>/<code>roms/</code>. HTTP 200 on <code>index.html</code> + all menu URLs confirmed post-delete.</li>
 </ul>
@@ -568,7 +572,7 @@ save/load state.</p>
 <ul>
 <li><strong><code>systems/apple1/controls.html</code></strong> — Apple I keyboard / Woz Monitor / Integer BASIC reference. Resolves the 404 in the Woz Monitor prompt corner link.</li>
 </ul>
-<h3 id="fixed_15">Fixed</h3>
+<h3 id="fixed_16">Fixed</h3>
 <ul>
 <li><strong>Third doc-sync audit (08/06/2026)</strong> — ATTRIBUTION ElkJS jQuery row had wrong path + version; README Vectrex URL pattern missing <code>&amp;game=&lt;key&gt;</code>; wiki MSX list still mentioned MSX2+; MAX cart count, jsvecx ROM count, gamedocs progress numbers refreshed.</li>
 <li><strong>Second doc-sync audit (07/06/2026)</strong> — README atari800 "10 disk/cart titles" was 11 (Choplifter added); MAX line "8 .crt carts" → 10 carts (Mole Attack + Money Wars); atari800 AltirraOS clarified as embedded in WASM not separate ROM; EmulatorJS sharing line missing FCEUmm; ATTRIBUTION rows for the two nonexistent AltirraOS <code>.rom</code> paths removed.</li>
@@ -595,7 +599,7 @@ save/load state.</p>
 <li><strong>Commodore 16, C64, MAX, VIC-20, PET gamedocs (10 each)</strong> — same template as the other platforms. C64 notable: Impossible Mission's "Stay a while" digitised sample puzzle, Elite's full Cobra Mk III keymap, Wizball's colour-mix mechanic, Last Ninja walk/combat toggle. PET notable: PETSCII Robots' per-game <code>model: 4032</code> override and ~30 s authentic 1541 boot sound.</li>
 <li><strong>Amstrad CPC gamedocs (10 pages)</strong> at <code>gamedocs/cpc/</code>. Each documents the autoboot behaviour (tiny8bit's sokol_args <code>input=run"…</code> pre-types the boot command). <code>_genxGameKey</code> stash not yet wired; corner link still resolves because original <code>?game=</code> is read before the rewrite.</li>
 </ul>
-<h3 id="removed_7">Removed</h3>
+<h3 id="removed_6">Removed</h3>
 <ul>
 <li><strong>Orphan upstream doc files</strong> — <code>_shared-ejs/ejs/data/compression/README.md</code>, <code>localization/README.md</code>, <code>jsbeeb/dist/roms/README</code>. Per the no-docs-in-bundles rule.</li>
 <li><strong>Half-done JtyOne ZX80 wiring</strong> — reverted. JtyOne's ZX80 mode has a display-sync bug (the <code>d</code> state machine is gated on <code>0 != zx81opts.machine</code>, so machine==0 never updates). zame-dev's <code>js-zx8x</code> works but lacks an SPDX header.</li>
@@ -717,7 +721,7 @@ save/load state.</p>
 <li><strong><code>systems/jsbeeb/</code> optimised: 71 MB → 27 MB.</strong> Removed upstream dev infrastructure (<code>src/</code>, <code>public/</code>, <code>tests/</code>, <code>tools/</code>, <code>docs/</code>, <code>docker/</code>, <code>Dockerfile</code>, <code>Makefile</code>, dot-folders) and 18 sample/test discs not referenced.</li>
 <li><strong>README rewritten</strong> to reflect all emulators. Wiki refreshed end-to-end.</li>
 </ul>
-<h3 id="removed_8">Removed</h3>
+<h3 id="removed_7">Removed</h3>
 <ul>
 <li><strong>Sega Genesis</strong> (<code>systems/genesis/</code> + GENESIS submenu) — 16-bit (68000), outside 8-bit focus. ~20 MB.</li>
 <li><strong>Prince of Persia from CPC bundle</strong> — replaced by 3D Construction Kit (1991 Freescape).</li>
@@ -737,7 +741,7 @@ save/load state.</p>
 <li><strong>Stale <code>c:\changes.bat</code></strong> — never referenced; superseded by this file.</li>
 <li><strong><code>systems/jsbeeb/index.html</code></strong> Google Analytics — <code>gtag</code> snippet for <code>G-Z9ZN3S7XRE</code> stripped; CSP tightened. <code>dist/</code> rebuilt.</li>
 </ul>
-<h3 id="fixed_16">Fixed</h3>
+<h3 id="fixed_17">Fixed</h3>
 <ul>
 <li><strong>C64 Elite stuck on Lenslok purple-screen loop</strong> — bundled <code>elite.d64</code> was the original 1985 Firebird release, which hangs on its Lenslok protection screen. Swapped for a protection-free, flicker-free build.</li>
 <li><strong>5 disk-swap-requiring games swapped</strong> for single-disk alternatives. Surfaced by user reporting Trinity (C128 D71 dual-sided) prompted for disk B mid-session.</li>

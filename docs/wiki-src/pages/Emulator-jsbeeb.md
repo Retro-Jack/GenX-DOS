@@ -48,7 +48,9 @@ jsbeeb's default layout (`keyLayout='physical'`) maps PC keys to BBC keys **by p
 | COPY    | `End` (or the COPY button) | also Right-Ctrl / F11 |
 | `f0`    | `F10` | `f1`–`f9` are `F1`–`F9` |
 
-Games scan the key matrix by position, so Shift state doesn't matter — e.g. Repton/Firetrack "up" is the `:` `*` key, which you press as `'`. The gamedocs spell out the PC key for every affected title.
+**Which physical key that is depends on the keyboard layout, and jsbeeb has to guess it.** It reads `navigator.language`: `en-us` → US, `en-gb` → UK, and *everything else falls back to UK*. That fallback is wrong for the many people on US keyboards whose locale is neither — `en-NZ`, `en-AU`, `en-CA`, `de-DE` and so on — because under a UK assumption the BBC `:` `*` key moves to the backtick key, not the apostrophe. They'd follow a gamedoc saying "press `'`" and get `→`. So both bundles' `dist/index.html` set `localStorage.keyboardLayout = 'US'` before the engine loads, unless the browser genuinely reports `en-GB` (which keeps UK) or the visitor has already chosen a layout (which is left alone). US is the most common layout worldwide, and on a UK board the `:` `*` key is the apostrophe key too — so the gamedocs' "press `'`" is now right either way.
+
+Games scan the key matrix by position, so Shift state doesn't matter — e.g. Repton/Firetrack "up" is the `:` `*` key, which you press as `'`. `*` itself — needed for `*CAT`, `*RUN` and the rest — is **Shift + `'`**. The gamedocs spell out the PC key for every affected title.
 
 ## Bundle layout
 
