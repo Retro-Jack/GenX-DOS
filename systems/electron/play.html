@@ -120,8 +120,13 @@
   };
   var zxud = { left: K.Z, right: K.X, up: K.quote, down: K.slash };
   var pads = {
-    // Face buttons 0=A 1=B 2=X 3=Y. The pad is gameplay only — no Start
-    // button is mapped (use the keyboard for a game's title/start).
+    // Face buttons 0=A 1=B 2=X 3=Y; 9=Start. Start is mapped only where a
+    // game's title screen needs a key the gameplay buttons don't already
+    // send — Cybertron Mission says "PRESS SPACE TO START OR FIRE BUTTON",
+    // but its fire is the M key and the title only answers to Space (or a
+    // real joystick's fire line, which this emulator has no support for),
+    // so without Start a pad player is stuck on the title. Games whose face
+    // buttons already send Space (Snapper, Citadel, Elite) need nothing.
     snapper:   { axes: zxud,
                  buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space } },
     citadel:   { axes: zxud,
@@ -129,7 +134,7 @@
     boxer:     { axes: zxud,
                  buttons: { 0: K.enter, 1: K.shift } },
     cybertron: { axes: { left: K.comma, right: K.period, up: K.A, down: K.Z },
-                 buttons: { 0: K.M, 1: K.M, 2: K.M, 3: K.M } },
+                 buttons: { 0: K.M, 1: K.M, 2: K.M, 3: K.M, 9: K.space } },
     starship:  { axes: { left: K.Z, right: K.X, up: K.M, down: K.comma },
                  buttons: { 0: K.N, 1: K.N, 2: K.N, 3: K.N } },
     // Flightsim-style games get the vertical axis inverted: up climbs.
