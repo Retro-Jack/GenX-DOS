@@ -25,7 +25,10 @@ GAMES=$(find docs/games -name '*.html' | wc -l)
 SUBSYS=$(find docs/games -mindepth 1 -maxdepth 1 -type d | wc -l)
 CONTROLS=$(find systems -name 'controls.html' | wc -l)
 SHARED=$((GAMES + CONTROLS))
-SIZE=$(du -sm --exclude=.git . 2>/dev/null | cut -f1)
+# Anchored to ./ on purpose: a bare --exclude=dist matches by basename at any
+# depth and would drop systems/*/dist (the jsbeeb bundles), understating the
+# site by ~50 MB. These four are the repo-root build/staging dirs only.
+SIZE=$(du -sm --exclude=./.git --exclude=./_Portable --exclude=./dist --exclude=./npm-pkg . 2>/dev/null | cut -f1)
 
 echo "Measured from the tree:"
 note "gamedocs (games)"        "$GAMES"

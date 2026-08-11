@@ -20,3 +20,8 @@ _paddiag.html
 # portable-site build staging
 /dist/
 /npm-pkg/
+
+# The working portable copy, kept refreshed alongside the repo (moved here
+# from the Desktop 07/08/2026). It is a full duplicate of the served site —
+# never commit it, never let a build recurse into it.
+/_Portable/
