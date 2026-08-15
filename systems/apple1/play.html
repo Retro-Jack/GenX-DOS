@@ -30,37 +30,38 @@
 <script defer src="../_shared/genx-controls-link.js"></script>
 <script defer src="../_shared/genx-repo-link.js"></script>
 <style>
-  /* CRT bezel — surplus security/CCTV monitor (Apple1.png, 731x757, screen
-     hole keyed transparent at left 6.16% top 8.59% width 87.96% height
-     63.28%). The Apple 1 shipped without a monitor; in period it was almost
-     always paired with a cheap surplus B&W security monitor (no RF/home-TV
-     option), so this replaces the shared Apple Monitor /// for apple1 only.
-     apple1js's chrome (title, tape player, soft keyboard, modals) is hidden;
-     the upstream wrapper <div style="margin:auto; width:604px"> is repurposed
-     as the bezel frame, the text canvas sits in the screen hole behind
-     Apple1.png, set floats on the 70s wallpaper. */
+  /* CRT bezel — the Apple 1 in its wooden case with integrated keyboard
+     (Apple1.png, 1249x1088, screen hole keyed transparent at left 24.42%
+     top 6.07% width 51.32% height 43.84%; the hole is 1.344 wide-to-tall,
+     near enough 4:3 for the 40x24 display). A system portrait rather than a
+     monitor shot, as the Amstrad CPC already is. apple1js's chrome (title,
+     tape player, soft keyboard, modals) is hidden and its wrapper carries
+     .bezel-wrap — the same sizing mechanism every other bundle uses — with
+     the text canvas in the screen hole behind Apple1.png on the wallpaper. */
   html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; }
   body { display: flex; align-items: center; justify-content: center; }
   h1, h2, .inset, .modal, #keyboard { display: none !important; }
   td > div:not(.overscan) { display: none !important; }
-  /* The upstream wrapper has no class or id, so it can only be reached by its
-     style attribute — but a bare body > div[style] also caught the shared
-     audio banner, which is likewise a body-level div with inline styles: it
-     took on the bezel's aspect-ratio and rendered as a huge orange square,
-     and display:block !important meant the banner's own script could never
-     hide it again. Identifying the wrapper by what it contains matches it
-     alone, and cannot catch anything else added to the body later. */
-  body > div[style]:has(.screen-bg) {
-    display: block !important;
+  /* apple1js's wrapper now carries .bezel-wrap and has had its inline
+     width/margin removed, so this is the ordinary bezel rule the other
+     bundles use rather than a selector hunting for a style attribute. That
+     also retires the old body > div[style] match, which caught the shared
+     audio banner as well and gave it the bezel's aspect-ratio. */
+  .bezel-wrap {
+    display: block;
     position: relative;
-    width: min(100vw, calc((100dvh - 120px) * 731 / 757)) !important;
-    aspect-ratio: 731 / 757;
-    margin: 0 !important;
+    width: min(100vw, calc((100dvh - 120px) * 1249 / 1088));
+    aspect-ratio: 1249 / 1088;
+    margin: 0;
   }
   #display, #display tbody, #display tr, #display td { display: contents; }
-  .screen-bg { position: absolute; left: 4.7%; top: 7.1%; width: 90.9%; height: 66.3%; background: #000; z-index: 1; }
-  .overscan { position: absolute; left: 6.16%; top: 8.59%; width: 87.96%; height: 63.28%; padding: 0; margin: 0; border: 0; overflow: hidden; z-index: 2; }
-  #text { position: static; width: 100% !important; height: 100% !important; image-rendering: pixelated; transform: scale(0.855); }
+  .screen-bg { position: absolute; left: 23.56%; top: 5.03%; width: 53.04%; height: 45.92%; background: #000; z-index: 1; }
+  .overscan { position: absolute; left: 24.42%; top: 6.07%; width: 51.32%; height: 43.84%; padding: 0; margin: 0; border: 0; overflow: hidden; z-index: 2; }
+  /* Fills the aperture exactly. The old 0.855 overscan inset suited the
+     previous bezel's generous hole; on this one it threw away 15% of a
+     smaller screen for no gain, and the bezel's rounded corners already
+     frame the picture while .screen-bg covers any hairline behind it. */
+  #text { position: static; width: 100% !important; height: 100% !important; image-rendering: pixelated; }
   .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
 </style>
 
@@ -100,7 +101,7 @@ var tapes = {};
     <div>It needs JavaScript to run.</div>
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
-  <div style="margin: auto; width: 604px">
+  <div class="bezel-wrap">
     <div class="screen-bg"></div>
     <h1 style="font-size: 24px" class="motter">Apple 1js</h1>
     <h2 id="subtitle">An Apple 1 Emulator in JavaScript</h2>
