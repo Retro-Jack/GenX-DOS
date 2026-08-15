@@ -57,11 +57,7 @@
   #display, #display tbody, #display tr, #display td { display: contents; }
   .screen-bg { position: absolute; left: 23.56%; top: 5.03%; width: 53.04%; height: 45.92%; background: #000; z-index: 1; }
   .overscan { position: absolute; left: 24.42%; top: 6.07%; width: 51.32%; height: 43.84%; padding: 0; margin: 0; border: 0; overflow: hidden; z-index: 2; }
-  /* Fills the aperture exactly. The old 0.855 overscan inset suited the
-     previous bezel's generous hole; on this one it threw away 15% of a
-     smaller screen for no gain, and the bezel's rounded corners already
-     frame the picture while .screen-bg covers any hairline behind it. */
-  #text { position: static; width: 100% !important; height: 100% !important; image-rendering: pixelated; }
+  #text { position: static; width: 100% !important; height: 100% !important; image-rendering: pixelated; transform: scale(0.855); }
   .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
 </style>
 
