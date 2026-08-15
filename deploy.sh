@@ -69,6 +69,11 @@ echo "Building the shipping file set..."
 # publicly downloadable, so they ship in the zip but not to the web.
 rm -f "$STAGE_DIR/GenX-DOS.sh" "$STAGE_DIR/GenX-DOS.bat"
 
+# The mirror image of the line above: .htaccess is host configuration, so it is
+# excluded from the release zip (which is served by python3 -m http.server and
+# would ignore it) but must reach the web host.
+cp .htaccess "$STAGE_DIR/.htaccess"
+
 echo "  $(find "$STAGE_DIR" -type f | wc -l) files, $(du -sh "$STAGE_DIR" | cut -f1)"
 
 # ---- deploy -------------------------------------------------------------

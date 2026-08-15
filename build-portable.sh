@@ -28,6 +28,7 @@ rsync -a --delete \
   --exclude='/build-portable.sh' \
   --exclude='/check-doc-counts.sh' \
   --exclude='/deploy.sh' \
+  --exclude='/.htaccess' \
   --exclude='/systems/_shared/styles/VGA_font/make_fonts.py' \
   --exclude='/dist' --exclude='/npm-pkg' --exclude='/_Portable' --exclude='node_modules' \
   ./ "$TARGET"/

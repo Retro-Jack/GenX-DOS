@@ -1,0 +1,76 @@
+# Server configuration for the genx-dos.fun host (LiteSpeed, which reads
+# .htaccess). Deployed by deploy.sh; deliberately NOT part of the release zip,
+# which is served by `python3 -m http.server` and ignores this file entirely.
+#
+# That split is why the site's Content-Security-Policy lives in a <meta> tag
+# rather than here: the meta travels with the files, so the zip gets the same
+# policy as the website. Anything below is what a meta tag cannot express.
+# The two compose by INTERSECTION — a header can only narrow what the meta
+# already allows, never widen it.
+
+# ---------------------------------------------------------------------------
+# Response headers
+# ---------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    # 'always' so these are attached to error responses too, not just 200s.
+
+    # frame-ancestors cannot be set from a meta tag — it is ignored there — so
+    # this is the only place the site can say who may frame it. A policy
+    # containing just this one directive narrows framing without touching
+    # anything the meta policy permits.
+    Header always set Content-Security-Policy "frame-ancestors 'self'"
+
+    # Serve every file as the type it was declared, never as something guessed
+    # from its contents. The site serves a lot of unusual extensions (.ssd,
+    # .d64, .atr, .prg, .rom) whose bytes a sniffer could mistake for markup.
+    Header always set X-Content-Type-Options "nosniff"
+
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # fullscreen and gamepad MUST stay enabled — the emulators need fullscreen
+    # and genx-gamepad-keys.js needs the Gamepad API. Everything else the site
+    # never uses is switched off.
+    Header always set Permissions-Policy "accelerometer=(), autoplay=(self), camera=(), display-capture=(), encrypted-media=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), xr-spatial-tracking=(), fullscreen=(self), gamepad=(self)"
+
+    # Deliberately short. This plan has no AutoSSL (uapi reports the feature is
+    # absent), so certificate renewal is Namecheap's to do rather than
+    # something the account can trigger — and if a cert ever lapsed, a long
+    # max-age would leave returning visitors unable to reach the site at all,
+    # with no way to click through. Raise to 15552000 (180 days) once a renewal
+    # has been observed to happen cleanly.
+    Header always set Strict-Transport-Security "max-age=86400"
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Directory listings
+# ---------------------------------------------------------------------------
+# The host has autoindex on by default, which turns every directory without an
+# index file into a browsable listing — /systems/<machine>/games/ handed out the
+# whole library, and /styles/fonts/ the whole font set.
+Options -Indexes
+
+# ---------------------------------------------------------------------------
+# Compression
+# ---------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+    AddOutputFilterByType DEFLATE application/javascript application/json
+    AddOutputFilterByType DEFLATE image/svg+xml application/wasm
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Content types
+# ---------------------------------------------------------------------------
+# application/wasm is already a system MIME type on this host, but stating it
+# here means a move to a host where it isn't cannot silently stop every
+# emulator from starting.
+<IfModule mod_mime.c>
+    AddType application/wasm .wasm
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Dotfiles
+# ---------------------------------------------------------------------------
+# Nothing beginning with a dot is ever meant to be fetched, with the single
+# exception of .well-known, which certificate validation uses.
+RedirectMatch 404 ^/\.(?!well-known)
