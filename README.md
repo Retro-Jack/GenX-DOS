@@ -7,6 +7,8 @@ A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs
   <img src="docs/images/screenshot.png" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
 </p>
 
+Live at **[genx-dos.fun](https://genx-dos.fun/)** (also mirrored at [retro-jack.github.io/GenX-DOS](https://retro-jack.github.io/GenX-DOS/)).
+
 We bundle 18 emulator engines covering 33 sub-systems between them, from the Apple I to the Sega Master System.
 
 **Scope:** 8-bit *feel* — anything with the look and sound of an 8-bit machine (sprite-based, chiptune, low-res), including the 8-bit-feel handhelds (Game Boy/GBC, Game Gear, Lynx) even where they run into the late 90s. The cutoff is the *aesthetic*, not the calendar or strict CPU width; 16-bit home consoles/computers (Genesis, SNES, Amiga, ST) stay out. See the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected.
