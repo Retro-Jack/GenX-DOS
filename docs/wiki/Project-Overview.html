@@ -32,7 +32,7 @@
 <h2 id="the-boot-flow">The boot flow</h2>
 <p>When the page loads:</p>
 <ol>
-<li><code>index.html</code> is the landing page — an intro, a CP437 spec sheet, the screenshots and links, and an <strong>Enter the museum</strong> button into <code>prompt/</code> (touch devices get a keyboard-required graphic instead). The POST animation lives inside the prompt page.</li>
+<li><code>index.html</code> is the home page — an intro, a CP437 spec sheet, the screenshots and links, and an <strong>Enter the museum</strong> button into <code>prompt/</code> (touch devices get a keyboard-required graphic instead). The POST animation lives inside the prompt page.</li>
 <li><code>prompt/index.html</code> is the DOS terminal. On load, <code>init()</code>:
    - renders the AMIBIOS POST — AMI logo, AMIBIOS header, CPU/coprocessor/memory test with animated 0000 → 8064 KB count, six device-detection lines streamed at 500 ms each, footer with BIOS ID
    - pauses 5 seconds with the full POST on screen. The <code>Hit &lt;DEL&gt; if you want to run SETUP</code> line is period set dressing — nothing is wired to it.

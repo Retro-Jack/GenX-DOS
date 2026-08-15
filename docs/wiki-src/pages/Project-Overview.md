@@ -6,7 +6,7 @@ There's no backend, no build step, no framework — just HTML and JavaScript hos
 
 When the page loads:
 
-1. `index.html` is the landing page — an intro, a CP437 spec sheet, the screenshots and links, and an **Enter the museum** button into `prompt/` (touch devices get a keyboard-required graphic instead). The POST animation lives inside the prompt page.
+1. `index.html` is the home page — an intro, a CP437 spec sheet, the screenshots and links, and an **Enter the museum** button into `prompt/` (touch devices get a keyboard-required graphic instead). The POST animation lives inside the prompt page.
 2. `prompt/index.html` is the DOS terminal. On load, `init()`:
    - renders the AMIBIOS POST — AMI logo, AMIBIOS header, CPU/coprocessor/memory test with animated 0000 → 8064 KB count, six device-detection lines streamed at 500 ms each, footer with BIOS ID
    - pauses 5 seconds with the full POST on screen. The `Hit <DEL> if you want to run SETUP` line is period set dressing — nothing is wired to it.

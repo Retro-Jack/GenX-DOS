@@ -1,6 +1,6 @@
 @echo off
 setlocal EnableDelayedExpansion
-REM Launch a local web server in the repo root and open the landing page in a browser.
+REM Launch a local web server in the repo root and open the home page in a browser.
 REM Closing the browser window stops the server (Edge/Chrome); otherwise press a key.
 REM Usage: GenX-DOS.bat [port]
 

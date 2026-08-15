@@ -9,8 +9,8 @@ genx-dos/
 ├── SECURITY.md               scope + private vulnerability reporting
 ├── CONTRIBUTING.md           local setup + PR ground rules
 ├── CODE_OF_CONDUCT.md        Contributor Covenant 2.1
-├── GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the landing page
-├── index.html                landing page (intro, spec sheet, links) → prompt/
+├── GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the home page
+├── index.html                home page (intro, spec sheet, links) → prompt/
 ├── favicon.ico
 ├── build-portable.sh         builds the portable site (what the release zip + export contain)
 ├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree
@@ -131,11 +131,11 @@ Each `play.html`-based emulator has a `games.json` mapping `<key>` → `{title, 
 
 | File | Purpose |
 |------|---------|
-| `index.html` (repo root) | the landing page — intro, CP437 spec sheet, screenshots and links, with the way into `prompt/`; touch devices get a keyboard-required graphic instead |
+| `index.html` (repo root) | the home page — intro, CP437 spec sheet, screenshots and links, with the way into `prompt/`; touch devices get a keyboard-required graphic instead |
 | `prompt/index.html` | Loads the JS modules in order, hosts the terminal `<div>` |
 | `prompt/img/ami-logo.png` | AMIBIOS POST splash logo |
 | `systems/_shared/styles/VGA_font/f12.7.png` | 192×192 px, 16×16 grid of 12×12 px CP437 glyphs (light grey) |
 | `systems/_shared/styles/VGA_font/f12.<N>.png` | Pre-tinted variant for CGA palette index N |
 | `systems/_shared/styles/VGA_font/make_fonts.py` | One-shot PIL script that tints `f12.7.png` into the other variants (run it from beside the sheets) |
-| `GenX-DOS.sh` / `GenX-DOS.bat` | Local dev server for Linux / Windows — `python3 -m http.server` wrapper that finds a free port, opens the landing page, and stops when the browser window closes |
+| `GenX-DOS.sh` / `GenX-DOS.bat` | Local dev server for Linux / Windows — `python3 -m http.server` wrapper that finds a free port, opens the home page, and stops when the browser window closes |
 | `check-doc-counts.sh` | Guards against doc drift. Measures the real counts (gamedocs, sub-systems, `controls.html`, size on disk) and checks every place they're quoted — README, the wiki pages and the feature article's *THE NUMBERS* block. The engine count can't be derived (EmulatorJS is one engine hosting many cores), so instead all sources must agree with each other. Exits non-zero on drift; run it after any platform, engine or gamedoc change |

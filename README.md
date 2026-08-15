@@ -38,13 +38,13 @@ Every release ships a **[zip of the whole site](https://github.com/Retro-Jack/Ge
 - **Linux / macOS:** `./GenX-DOS.sh`
 - **Windows:** double-click `GenX-DOS.bat`
 
-Both start a local server and open the landing page. (See **Quick start** above for why it has to be hosted over HTTP rather than opened from disk.)
+Both start a local server and open the home page. (See **Quick start** above for why it has to be hosted over HTTP rather than opened from disk.)
 
 ## What you'll find in the repo
 
 ```
-index.html                landing page — intro, spec sheet, links, and the way into prompt/
-GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the landing page
+index.html                home page — intro, spec sheet, links, and the way into prompt/
+GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the home page
 check-doc-counts.sh       checks the counts quoted in the docs still match the tree
 CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset

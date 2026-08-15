@@ -1,4 +1,4 @@
-/* Error pages (404 / 403 / 500) — the landing page's design language.
+/* Error pages (404 / 403 / 500) — the home page's design language.
    Layout lives here rather than inline in each page so the three cannot drift
    apart, and so they need no 'unsafe-inline' in their content policy.
    Tokens and @font-face come from genx.css, which each page links first. */

@@ -36,8 +36,8 @@
 ├── SECURITY.md               scope + private vulnerability reporting
 ├── CONTRIBUTING.md           local setup + PR ground rules
 ├── CODE_OF_CONDUCT.md        Contributor Covenant 2.1
-├── GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the landing page
-├── index.html                landing page (intro, spec sheet, links) → prompt/
+├── GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the home page
+├── index.html                home page (intro, spec sheet, links) → prompt/
 ├── favicon.ico
 ├── build-portable.sh         builds the portable site (what the release zip + export contain)
 ├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree
@@ -295,7 +295,7 @@
 <tbody>
 <tr>
 <td><code>index.html</code> (repo root)</td>
-<td>the landing page — intro, CP437 spec sheet, screenshots and links, with the way into <code>prompt/</code>; touch devices get a keyboard-required graphic instead</td>
+<td>the home page — intro, CP437 spec sheet, screenshots and links, with the way into <code>prompt/</code>; touch devices get a keyboard-required graphic instead</td>
 </tr>
 <tr>
 <td><code>prompt/index.html</code></td>
@@ -319,7 +319,7 @@
 </tr>
 <tr>
 <td><code>GenX-DOS.sh</code> / <code>GenX-DOS.bat</code></td>
-<td>Local dev server for Linux / Windows — <code>python3 -m http.server</code> wrapper that finds a free port, opens the landing page, and stops when the browser window closes</td>
+<td>Local dev server for Linux / Windows — <code>python3 -m http.server</code> wrapper that finds a free port, opens the home page, and stops when the browser window closes</td>
 </tr>
 <tr>
 <td><code>check-doc-counts.sh</code></td>

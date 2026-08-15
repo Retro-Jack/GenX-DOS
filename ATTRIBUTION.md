@@ -268,11 +268,11 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
     Oldschool PC Font Pack by **VileR** (<https://int10h.org/oldschool-pc-fonts/>),
     © 2016–2020 VileR. Licensed **CC BY-SA 4.0**
     (<https://creativecommons.org/licenses/by-sa/4.0/>). A genuine IBM VGA
-    text-mode CP437 font; used on the landing page (`index.html`) for the spec
+    text-mode CP437 font; used on the home page (`index.html`) for the spec
     sheet and the "Enter the museum" button. Unmodified.
 
 - `styles/fonts/michroma-400.woff2` — **Michroma** by Vernon Adams. Licensed
-    **SIL Open Font License 1.1**. Display face on the landing page and the
+    **SIL Open Font License 1.1**. Display face on the home page and the
     feature article (`docs/article/index.html`).
 
 - `styles/fonts/ibm-plex-mono-*.woff2`, `styles/fonts/ibm-plex-serif-*.woff2` —
