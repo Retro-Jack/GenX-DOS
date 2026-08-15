@@ -62,6 +62,13 @@ trap 'rm -rf "$STAGE_DIR"' EXIT
 
 echo "Building the shipping file set..."
 ./build-portable.sh "$STAGE_DIR" >/dev/null
+
+# The one place a web deploy legitimately differs from the portable build:
+# GenX-DOS.sh/.bat start a local web server for a downloaded copy of the site.
+# On a host that already serves the site they do nothing except sit there
+# publicly downloadable, so they ship in the zip but not to the web.
+rm -f "$STAGE_DIR/GenX-DOS.sh" "$STAGE_DIR/GenX-DOS.bat"
+
 echo "  $(find "$STAGE_DIR" -type f | wc -l) files, $(du -sh "$STAGE_DIR" | cut -f1)"
 
 # ---- deploy -------------------------------------------------------------
