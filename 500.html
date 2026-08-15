@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>500 Server Error — GenX-DOS</title>
+    <meta name="robots" content="noindex" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/gif" href="/prompt/animated_favicon1.gif" />
+    <!-- Absolute paths: an error page can be served for a URL at any depth,
+       so nothing here may be relative. -->
+    <link rel="stylesheet" href="/styles/genx.css" />
+    <link rel="stylesheet" href="/styles/error.css" />
+  </head>
+  <body>
+    <p class="mark"><a href="/">GenX-DOS</a></p>
+
+    <main class="card">
+      <p class="code">500</p>
+      <p class="dos">General failure reading drive C:</p>
+      <hr class="rule" />
+      <p class="say">
+        Something went wrong at our end, not yours. The site is a pile of static
+        files, so this is unusual and almost certainly temporary.
+      </p>
+      <p class="say">
+        Try again in a moment. If it persists, it's worth reporting.
+      </p>
+
+      <nav class="ways">
+        <a class="way primary" href="/prompt/">Back to the prompt</a>
+        <a class="way" href="/">Landing page</a>
+      </nav>
+      <p class="foot">
+        Your save states are held in this browser and are unaffected.
+      </p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+/* Error pages (404 / 403 / 500) — the landing page's design language.
+   Layout lives here rather than inline in each page so the three cannot drift
+   apart, and so they need no 'unsafe-inline' in their content policy.
+   Tokens and @font-face come from genx.css, which each page links first. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--crt);
+  color: var(--paper);
+  font:
+    16px/1.65 'IBM Plex Mono',
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* dvh, and padding that gives way on short windows: the card is tall enough
+     that a fixed 6vh produced a scrollbar for the sake of ~30px. */
+  min-height: 100dvh;
+  padding: clamp(14px, 3.5vh, 48px) 5vw;
+  text-align: center;
+}
+
+/* Small wordmark above the card, same face as the landing hero. */
+.mark {
+  font-family: 'Michroma', 'IBM Plex Mono', monospace;
+  font-size: clamp(13px, 2.2vw, 16px);
+  letter-spacing: 0.18em;
+  color: var(--amber);
+  text-shadow: 0 0 18px rgba(255, 176, 0, 0.35);
+  margin: 0 0 clamp(18px, 4vh, 34px);
+}
+.mark a {
+  color: inherit;
+  text-decoration: none;
+}
+.mark a:hover,
+.mark a:focus-visible {
+  color: #ffc23d;
+}
+
+.card {
+  width: min(660px, 100%);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: clamp(26px, 5vw, 46px) clamp(20px, 5vw, 48px);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.55);
+}
+
+/* The code itself — the one big amber note on the page. */
+.code {
+  font-family: 'Michroma', 'IBM Plex Mono', monospace;
+  font-size: clamp(52px, 13vw, 104px);
+  line-height: 1;
+  color: var(--amber);
+  text-shadow: 0 0 28px rgba(255, 176, 0, 0.3);
+  margin: 0;
+}
+
+/* The period DOS wording, in the terminal face. */
+.dos {
+  font-family: 'VGA437', 'IBM Plex Mono', monospace;
+  font-size: clamp(15px, 2.6vw, 19px);
+  color: var(--green);
+  margin: clamp(14px, 3vh, 22px) 0 0;
+}
+
+.rule {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin: clamp(20px, 4vh, 30px) 0;
+}
+
+.say {
+  margin: 0;
+  color: var(--paper);
+}
+.say + .say {
+  margin-top: 0.9em;
+}
+.say b {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+.ways {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: clamp(24px, 5vh, 34px) 0 0;
+}
+
+.way {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+.way:hover,
+.way:focus-visible {
+  color: #8fe3ef;
+  border-color: rgba(75, 196, 214, 0.5);
+  background: rgba(75, 196, 214, 0.07);
+}
+.way.primary {
+  color: var(--green);
+  border-color: rgba(53, 255, 109, 0.35);
+}
+.way.primary:hover,
+.way.primary:focus-visible {
+  color: #7dffa4;
+  border-color: rgba(53, 255, 109, 0.6);
+  background: rgba(53, 255, 109, 0.07);
+}
+
+.foot {
+  margin: clamp(22px, 4vh, 32px) 0 0;
+  color: var(--dim);
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    animation: rise 0.35s ease-out both;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

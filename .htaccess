@@ -42,6 +42,16 @@
 </IfModule>
 
 # ---------------------------------------------------------------------------
+# Error pages
+# ---------------------------------------------------------------------------
+# Leading slash = server-relative, so these resolve from any depth. 403 earns
+# its keep here: with listings off, every directory without an index answers
+# 403 rather than 404.
+ErrorDocument 404 /404.html
+ErrorDocument 403 /403.html
+ErrorDocument 500 /500.html
+
+# ---------------------------------------------------------------------------
 # Directory listings
 # ---------------------------------------------------------------------------
 # The host has autoindex on by default, which turns every directory without an
