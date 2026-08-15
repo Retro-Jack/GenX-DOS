@@ -6,7 +6,7 @@ The Amstrad CPC bundle took three failed core swaps before landing on tiny8bit. 
 
 1. **EmulatorJS + cap32.** The CDN's `cap32-legacy-wasm.data` exports are incomplete; the core aborts with `getControllerPortInfo undefined` on `GameManager.cwrap()`. Same pattern as the Odyssey² EJS dead-end — the vanilla libretro core wasn't EJS-forked. Out.
 
-2. **crocods.** Boots cleanly. Then stops at a catalog menu. The source has a literal `// TODO: ID_AUTORUN` so there's no API to skip the menu and go straight to the loaded image. Out.
+2. **crocods.** Boots cleanly. Then stops at a catalogue menu. The source has a literal `// TODO: ID_AUTORUN` so there's no API to skip the menu and go straight to the loaded image. Out.
 
 3. **cpcbox.** Minified and obfuscated. Rejects our `.dsk` images with `[SNA Parser] Error: Invalid SNA id` because internal vars are like `$Kyk3LdzJw`. Debugging surface area is zero. Out.
 
@@ -25,7 +25,7 @@ The trick: sokol_args reads `location.search` *at startup*, so the URL has to be
 
 ## The autoboot problem
 
-CPC `.dsk` autoboot isn't built into the AMSDOS format. Each game needs its `run"<file>` command supplied via `input=`. Figuring out the right filename per disk means parsing the AMSDOS catalog: track 0 sectors 0xC1-0xC4, 256-byte header + per-track 0x100 track-info preface, then 64 catalog entries of 32 bytes each.
+CPC `.dsk` autoboot isn't built into the AMSDOS format. Each game needs its `run"<file>` command supplied via `input=`. Figuring out the right filename per disk means parsing the AMSDOS catalogue: track 0 sectors 0xC1-0xC4, 256-byte header + per-track 0x100 track-info preface, then 64 catalogue entries of 32 bytes each.
 
 For example, *Roland on the Run*'s autoboot file is `ONTHERUN.BAS`, not the obvious-looking `DISC.BAS`. Get it wrong and the disk loads but does nothing.
 

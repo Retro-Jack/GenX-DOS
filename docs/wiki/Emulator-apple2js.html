@@ -71,7 +71,7 @@ if (key) {
 <p>A standard DOS 3.3 disk is 35 tracks × 16 sectors × 256 bytes = 143,360 bytes raw, which expands to ~200 KB JSON. Each game key has to appear in:</p>
 <ul>
 <li><code>json/disks/&lt;key&gt;.json</code> (the disk itself)</li>
-<li><code>json/disks/index.js</code> (the local-catalog declaration)</li>
+<li><code>json/disks/index.js</code> (the local-catalogue declaration)</li>
 <li>The menu's <code>&lt;key&gt;.bat</code> link</li>
 </ul>
 <p>Any one of those missing and the disk silently fails to load.</p>
@@ -84,7 +84,7 @@ if (key) {
 ├── *.bundle.js           ← main2 + numbered chunks
 ├── css/, img/, *.png, *.woff*
 └── json/disks/
-    ├── index.js          ← local catalog
+    ├── index.js          ← local catalogue
     └── *.json            ← per-game disks
 </code></pre>
 <h2 id="related">Related</h2>

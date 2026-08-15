@@ -65,7 +65,7 @@ apple2js doesn't take `.dsk` files directly. It needs disks in its own JSON form
 A standard DOS 3.3 disk is 35 tracks × 16 sectors × 256 bytes = 143,360 bytes raw, which expands to ~200 KB JSON. Each game key has to appear in:
 
 - `json/disks/<key>.json` (the disk itself)
-- `json/disks/index.js` (the local-catalog declaration)
+- `json/disks/index.js` (the local-catalogue declaration)
 - The menu's `<key>.bat` link
 
 Any one of those missing and the disk silently fails to load.
@@ -83,7 +83,7 @@ systems/apple2/
 ├── *.bundle.js           ← main2 + numbered chunks
 ├── css/, img/, *.png, *.woff*
 └── json/disks/
-    ├── index.js          ← local catalog
+    ├── index.js          ← local catalogue
     └── *.json            ← per-game disks
 ```
 

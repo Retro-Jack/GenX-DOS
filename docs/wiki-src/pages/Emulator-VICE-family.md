@@ -99,7 +99,7 @@ This also **retired a long-standing CSS hack.** The stable x128 core reported a 
 Two gotchas paid for along the way:
 
 - **`vice_c128_video_output` values are the bare keys `VICII` / `VDC`.** The core *also* carries the strings `"VIC-II (40 cols)"` / `"VDC (80 cols)"` — but those are the dropdown **labels**, not settable values. Passing a label makes the core silently reject it and fall back to 40-col VIC-II. (Confirmed by extracting the core `.data` and reading the WASM strings.)
-- **The 80-col VDC screen is black-background**, the 40-col VIC-II screen is gray with a green border — easy to mistake the black VDC boot for "nothing happened". 40-col and 80-col both work; titles with a BASIC autostart loader play through (e.g. Star Fleet I).
+- **The 80-col VDC screen is black-background**, the 40-col VIC-II screen is grey with a green border — easy to mistake the black VDC boot for "nothing happened". 40-col and 80-col both work; titles with a BASIC autostart loader play through (e.g. Star Fleet I).
 - **ML-first gotcha (resolved by swapping titles).** A few homebrews ship the machine-language game as the disk's *first* file (load address `$4001`, no BASIC loader), so VICE's `LOAD"*",8,1:RUN` can't start them — RUN only runs BASIC, so they drop to `READY.`. Knight's Quest and Tetris 128 hit this and were swapped for `invaders` + `uniquest`, whose first file is a `$1C01` BASIC loader (autostarts cleanly). Injecting a BASIC `BOOT` loader onto the disk works mechanically but needs the real entry point per title (the load address is only a guess), so it doesn't generalise into an automatic pass — swapping the title is the reliable fix.
 
 ## The per-game model override pattern

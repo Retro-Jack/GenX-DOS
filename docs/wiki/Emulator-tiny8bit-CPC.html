@@ -35,7 +35,7 @@
 <p><strong>EmulatorJS + cap32.</strong> The CDN's <code>cap32-legacy-wasm.data</code> exports are incomplete; the core aborts with <code>getControllerPortInfo undefined</code> on <code>GameManager.cwrap()</code>. Same pattern as the Odyssey² EJS dead-end — the vanilla libretro core wasn't EJS-forked. Out.</p>
 </li>
 <li>
-<p><strong>crocods.</strong> Boots cleanly. Then stops at a catalog menu. The source has a literal <code>// TODO: ID_AUTORUN</code> so there's no API to skip the menu and go straight to the loaded image. Out.</p>
+<p><strong>crocods.</strong> Boots cleanly. Then stops at a catalogue menu. The source has a literal <code>// TODO: ID_AUTORUN</code> so there's no API to skip the menu and go straight to the loaded image. Out.</p>
 </li>
 <li>
 <p><strong>cpcbox.</strong> Minified and obfuscated. Rejects our <code>.dsk</code> images with <code>[SNA Parser] Error: Invalid SNA id</code> because internal vars are like <code>$Kyk3LdzJw</code>. Debugging surface area is zero. Out.</p>
@@ -52,7 +52,7 @@
 </ul>
 <p>The trick: sokol_args reads <code>location.search</code> <em>at startup</em>, so the URL has to be in the right shape <em>before</em> <code>cpc.js</code> runs. <code>play.html</code> reads our <code>?game=KEY</code>, looks up <code>{rom, input, type}</code> in <code>games.json</code>, then <strong>rewrites the URL via <code>history.replaceState()</code> to <code>?file=&lt;rom&gt;&amp;input=&lt;boot-cmd&gt;</code> BEFORE WASM init</strong>. Only then inject <code>cpc.js</code>.</p>
 <h2 id="the-autoboot-problem">The autoboot problem</h2>
-<p>CPC <code>.dsk</code> autoboot isn't built into the AMSDOS format. Each game needs its <code>run"&lt;file&gt;</code> command supplied via <code>input=</code>. Figuring out the right filename per disk means parsing the AMSDOS catalog: track 0 sectors 0xC1-0xC4, 256-byte header + per-track 0x100 track-info preface, then 64 catalog entries of 32 bytes each.</p>
+<p>CPC <code>.dsk</code> autoboot isn't built into the AMSDOS format. Each game needs its <code>run"&lt;file&gt;</code> command supplied via <code>input=</code>. Figuring out the right filename per disk means parsing the AMSDOS catalogue: track 0 sectors 0xC1-0xC4, 256-byte header + per-track 0x100 track-info preface, then 64 catalogue entries of 32 bytes each.</p>
 <p>For example, <em>Roland on the Run</em>'s autoboot file is <code>ONTHERUN.BAS</code>, not the obvious-looking <code>DISC.BAS</code>. Get it wrong and the disk loads but does nothing.</p>
 <h2 id="the-single-fire-button-problem">The single-fire-button problem</h2>
 <p>floooh's chips library only wires one fire button — BTN0 == BTN1, both mapped to Space. CPC games that expected two-button joysticks (PgUp/PgDn was the convention for second-button arcade ports) get nothing on PgUp/PgDn.</p>
