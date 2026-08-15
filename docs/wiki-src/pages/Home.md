@@ -1,5 +1,7 @@
 # GenX-DOS Wiki
 
+The site is live at **[genx-dos.fun](https://genx-dos.fun/)**, and mirrored on GitHub Pages at [retro-jack.github.io/GenX-DOS](https://retro-jack.github.io/GenX-DOS/).
+
 GenX-DOS is a browser DOS prompt that boots emulators from numbered menus. We ship 18 emulator engines locally — 33 sub-systems between them — and nothing is fetched at runtime. Every byte lives on the same origin.
 
 This wiki is the long-form companion to the repo. The [README](https://github.com/Retro-Jack/GenX-DOS/blob/master/README.md) is the quick tour; these pages are the field notes.

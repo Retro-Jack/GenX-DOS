@@ -41,6 +41,9 @@
 ├── favicon.ico
 ├── build-portable.sh         builds the portable site (what the release zip + export contain)
 ├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree
+├── deploy.sh                 publishes the site to the web host (staging or live)
+├── .htaccess                 web-host config — headers, compression, no directory listings
+│                             (deployed by deploy.sh; excluded from the release zip)
 ├── .github/                  issue/PR templates
 │
 ├── docs/                     front-facing documentation (served)
@@ -71,13 +74,16 @@
 └── systems/
     ├── _shared/             shared JS + CSS + assets for every gamedoc + controls.html (360 pages) + play.html
     │   ├── genx-*.js        controls-link, game-loader, numlock-warn, vice-softkeys,
-    │   │                    savestate(-std), bbc-copykey, trs80-softkeys, gamepad-keys, repo-link
+    │   │                    savestate(-std), savestate-transfer (export/restore),
+    │   │                    bezel-ready (holds the screen until the bezel lands),
+    │   │                    audio-banner, bbc-copykey, trs80-softkeys, gamepad-keys, repo-link
     │   ├── styles/          all shared CSS (genx-controls/frame/noscript/savestate/controls-link.css)
     │   │   └── VGA_font/    DOS-prompt CP437 sheets f12.&lt;0-15&gt;.png + make_fonts.py generator
     │   ├── bezels/          PNG monitor frames (every platform now bezeled)
     │   ├── textures/        70s wallpaper tile (sitewide body background)
     │   └── favicon.ico / animated_favicon1.gif   site favicon, linked by every page
-    ├── _shared-ejs/         shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem cores
+    ├── _shared-ejs/         genx-ejs-boot.js + genx-ejs-lang.js (our glue), then the
+    │                        shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem cores
     │                        (14 bundles share; saves ~25 MB vs per-bundle copies)
     ├── apple1/              Apple I            (copied from scullin/apple1js)
     ├── apple2/              Apple ][+          (copied from whscullin/apple2js)

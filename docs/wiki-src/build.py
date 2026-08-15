@@ -28,6 +28,7 @@ def file2slug(fname):
     return FILE2SLUG.get(fname, fname[:-3] if fname.endswith('.md') else fname)
 KNOWN = set(PAGES) | set(EXTRA)          # valid link targets (slugs)
 PAGES_BASE = 'https://retro-jack.github.io/GenX-DOS/'   # -> ../../ (repo root)
+SITE_BASE  = 'https://genx-dos.fun/'                    # the site's own domain, same rewrite
 GH = 'https://github.com/Retro-Jack/GenX-DOS/'          # github repo/wiki base
 
 def out_name(slug):                       # slug -> output filename
@@ -54,8 +55,9 @@ def resolve(target):
         rest = t.split('/blob/', 1)[1].split('/', 1)[1]
         stem = file2slug(rest)
         return (stem + '.html', False) if stem in EXTRA else ('../../' + rest, False)
-    if t.startswith(PAGES_BASE):
-        return '../../' + t[len(PAGES_BASE):], False
+    for base in (PAGES_BASE, SITE_BASE):
+        if t.startswith(base):
+            return '../../' + t[len(base):], False
     # bare repo-root files (README.md / ATTRIBUTION.md / CHANGELOG.md / LICENSE.TXT)
     if '/' not in t and (t.endswith('.md') or t == 'LICENSE.TXT'):
         stem = file2slug(t)
