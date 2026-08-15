@@ -64,11 +64,21 @@
 </tr>
 </tbody>
 </table>
-<p>The first two rows are GenX-DOS's own code (<code>genx-savestate.js</code> / <code>genx-savestate-std.js</code>, and the Model 100 page wrapper); the last two are the bundled <strong>EmulatorJS</strong> engine doing what it normally does.</p>
+<p>The first two rows are GenX-DOS's own code (<code>genx-savestate.js</code> / <code>genx-savestate-std.js</code>, and the Model 100 page wrapper); the last two are the bundled <strong>EmulatorJS</strong> engine doing what it normally does. Save-state slots — the first row — can be exported to a file and restored; see <a href="#backing-up-your-saves--and-moving-them-between-addresses">below</a>.</p>
 <h2 id="what-isnt-stored">What isn't stored</h2>
 <p>No cookies, no login, no personal data, no telemetry — the site has no server to send any of it to. Everything in the table lives only in your browser, scoped to the GenX-DOS origin, and never leaves your machine.</p>
+<h2 id="backing-up-your-saves--and-moving-them-between-addresses">Backing up your saves — and moving them between addresses</h2>
+<p>Any bundle with the Save / Load buttons also has a <strong>backup</strong> button beside them, holding two things:</p>
+<ul>
+<li><strong>export all saves</strong> — writes every save-state slot on the whole site (not just the game you're looking at) to a single <code>genx-dos-saves-YYYY-MM-DD.json</code> file. The count in brackets tells you how many slots that is before you click.</li>
+<li><strong>restore from file</strong> — reads one of those files back.</li>
+</ul>
+<p>Restoring is <strong>not destructive</strong>. If a slot already holds a save, the one in the file is skipped rather than written over, so restoring an old backup can never overwrite newer progress. The button reports what happened — <code>restored 12, kept 3</code> means twelve slots were empty and filled, and three already had something in them and were left alone. If you <em>want</em> the file's version, delete or overwrite that slot first.</p>
+<h3 id="why-this-matters-if-the-address-changes">Why this matters if the address changes</h3>
+<p>Browsers scope storage to the <strong>origin</strong> — the exact address in the bar. IndexedDB cannot be read across origins by design, so saves made at one address are simply not visible from another. They aren't deleted; they're unreachable, and they stay that way.</p>
+<p>So if you've been playing at one address and the site moves to another, <strong>export before you switch and restore afterwards</strong>, or your slots stay behind at the old one. (The old address keeps working for as long as it exists, so there's no rush — but nothing carries across on its own.)</p>
 <h2 id="clearing-it">Clearing it</h2>
-<p>All of it is wiped by your browser's <strong>"clear site data"</strong> (or by clearing history / cookies + site data) for the GenX-DOS origin. Clearing it removes your save-state slots, Model 100 memory, in-game cartridge saves and emulator settings — there is no copy anywhere else, so export anything you want to keep first.</p>
+<p>All of it is wiped by your browser's <strong>"clear site data"</strong> (or by clearing history / cookies + site data) for the GenX-DOS origin. Clearing it removes your save-state slots, Model 100 memory, in-game cartridge saves and emulator settings — there is no copy anywhere else, so use <strong>backup → export all saves</strong> first if you want to keep them.</p>
 <hr />
 <p>See also the <a href="Project-Overview.html#save--load-state">Save / load state</a> section of the Project Overview, and the repository's <code>SECURITY.md</code>.</p>
   </main>
