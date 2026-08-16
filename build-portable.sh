@@ -14,6 +14,17 @@ mkdir -p "$TARGET"
 # Everything NOT listed here ships. Excluded = dev tooling, build/meta, repo
 # docs (their content is served via the self-hosted wiki), and staging dirs.
 # The user-facing launchers (GenX-DOS.sh/.bat) DO ship; the build tooling does not.
+#
+# The root shell scripts are excluded by PATTERN, not one by one. Naming each
+# one meant a newly added maintainer script shipped by default, which is how
+# sync-wiki.sh briefly ended up in the release zip. The pattern fails the other
+# way: a new root script is out unless someone deliberately lets it in.
+#
+# The exclude is anchored to the root and the launcher is admitted ahead of it
+# (rsync takes the first matching rule), because a bare '*.sh' would also strip
+# systems/odyssey2/build.sh and systems/m100/src/build.sh — the reproducible
+# WASM build recipes that sit beside the binaries they produced. o2em is
+# GPL-2.0+, so shipping the recipe with it is the point, not an oversight.
 rsync -a --delete \
   --exclude='/.git' --exclude='/.github' --exclude='/.claude' \
   --exclude='/.gitignore' --exclude='/.gitattributes' \
@@ -25,10 +36,8 @@ rsync -a --delete \
   --exclude='/CODE_OF_CONDUCT.md' \
   --exclude='/docs/wiki-src' \
   --exclude='/_paddiag.html' \
-  --exclude='/build-portable.sh' \
-  --exclude='/check-doc-counts.sh' \
-  --exclude='/deploy.sh' \
-  --exclude='/sync-wiki.sh' \
+  --include='/GenX-DOS.sh' \
+  --exclude='/*.sh' \
   --exclude='/.htaccess' \
   --exclude='/GenX-DOS-v*.zip' \
   --exclude='/systems/_shared/styles/VGA_font/make_fonts.py' \
