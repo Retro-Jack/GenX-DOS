@@ -83,7 +83,12 @@ echo "  $(find "$STAGE_DIR" -type f | wc -l) files, $(du -sh "$STAGE_DIR" | cut 
 #   nc_assets, parking-page.shtml.old   Namecheap leftovers (live only)
 #   robots.txt     staging's noindex guard; the repo has no robots.txt, so
 #                  without this the first staging deploy makes it indexable
-RSYNC_OPTS=(-az --delete --human-readable
+# --chmod normalises permissions on the receiving side. Without it, -a
+# preserves whatever the local file happens to carry: prompt/img/ami-logo.png
+# sat at 600 locally, which git does not track and GitHub Pages ignores, so it
+# only surfaced here as a 403 on the AMIBIOS logo. Serving is not a place where
+# local modes should matter.
+RSYNC_OPTS=(-az --delete --human-readable --chmod=D755,F644
     --filter='protect .well-known/'
     --filter='protect cgi-bin/'
     --filter='protect nc_assets/'
@@ -121,7 +126,7 @@ rsync "${RSYNC_OPTS[@]}" --info=stats2 -e "$SSH_CMD" \
 echo
 echo "Verifying..."
 fail=0
-for path in / /prompt/ /styles/genx.css /docs/wiki/ /systems/bbcmicro/dist/index.html; do
+for path in / /prompt/ /prompt/img/ami-logo.png /styles/genx.css /docs/wiki/ /systems/bbcmicro/dist/index.html; do
     # curl exits non-zero AND prints 000 on a resolve failure, so a `|| echo 000`
     # fallback would concatenate into "000000". Capture, then default if empty.
     code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 25 "$URL$path" 2>/dev/null) || true
