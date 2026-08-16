@@ -39,6 +39,8 @@
 ├── GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the home page
 ├── index.html                home page (intro, spec sheet, links) → prompt/
 ├── favicon.ico
+├── 404.html / 403.html / 500.html    error pages (mapped by .htaccess; 403 is
+│                             reachable because directory listings are off)
 ├── build-portable.sh         builds the portable site (what the release zip + export contain)
 ├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree
 ├── deploy.sh                 publishes the site to the web host (staging or live)
@@ -53,6 +55,13 @@
 │   ├── badges/             local README badge copies (no runtime network)
 │   ├── games/              per-game instruction pages — &lt;platform&gt;/&lt;key&gt;.html
 │   └── images/             landing/README screenshots + social card (genx-social.png)
+│
+├── styles/                   the front-facing design system
+│   ├── genx.css             the one @font-face set + the :root colour tokens
+│   ├── wiki.css             wiki page styling
+│   ├── error.css            404/403/500 layout — kept out of the pages so the
+│   │                        three cannot drift, and so they need no inline styles
+│   └── fonts/               self-hosted woff2 — Michroma, IBM Plex Mono/Serif, VGA437
 │
 ├── prompt/                   the DOS terminal
 │   ├── index.html
