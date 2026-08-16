@@ -33,7 +33,7 @@ rsync -a --delete \
   --exclude='/Dockerfile' --exclude='/package.json' --exclude='/index.js' \
   --exclude='/README.md' --exclude='/CHANGELOG.md' --exclude='/ATTRIBUTION.md' \
   --exclude='/LICENSE.TXT' --exclude='/CONTRIBUTING.md' --exclude='/SECURITY.md' \
-  --exclude='/CODE_OF_CONDUCT.md' \
+  --exclude='/CODE_OF_CONDUCT.md' --exclude='/AI-DISCLAIMER.md' \
   --exclude='/docs/wiki-src' \
   --exclude='/_paddiag.html' \
   --include='/GenX-DOS.sh' \

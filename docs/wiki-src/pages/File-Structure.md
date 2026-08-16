@@ -9,6 +9,7 @@ genx-dos/
 ├── SECURITY.md               scope + private vulnerability reporting
 ├── CONTRIBUTING.md           local setup + PR ground rules
 ├── CODE_OF_CONDUCT.md        Contributor Covenant 2.1
+├── AI-DISCLAIMER.md          how AI was used building this, and what it did not decide
 ├── GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the home page
 ├── index.html                home page (intro, spec sheet, links) → prompt/
 ├── favicon.ico
