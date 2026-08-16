@@ -74,6 +74,38 @@ rm -f "$STAGE_DIR/GenX-DOS.sh" "$STAGE_DIR/GenX-DOS.bat"
 # would ignore it) but must reach the web host.
 cp .htaccess "$STAGE_DIR/.htaccess"
 
+# Optional local-only overlay. Anything in this file is appended to the deployed
+# copy of genx-repo-link.js, so it reaches the live site but is in neither the
+# repo nor the release zip. Appended rather than patched in, so the repo's own
+# copy of that script can change without the overlay going stale. Absent on a
+# fresh clone, where nothing happens and the site is simply the repo.
+PILL_EXTRA="${HOME}/.config/genx-dos/pill-extra.js"
+if [[ -f "$PILL_EXTRA" ]]; then
+    printf '\n' >> "$STAGE_DIR/systems/_shared/genx-repo-link.js"
+    cat "$PILL_EXTRA" >> "$STAGE_DIR/systems/_shared/genx-repo-link.js"
+    echo "  + local pill overlay applied (not in the repo)"
+fi
+
+# Same idea for the home page, but as markup rather than script: index.html
+# carries default-src 'none' and loads no JavaScript at all, so an injected
+# <script> would be blocked by its own policy. The fragment is spliced into the
+# "Go further" card list instead.
+HOME_EXTRA="${HOME}/.config/genx-dos/home-extra.html"
+if [[ -f "$HOME_EXTRA" ]]; then
+    python3 - "$STAGE_DIR/index.html" "$HOME_EXTRA" <<'PYEOF'
+import sys, pathlib
+page, frag = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2]).read_text()
+s = page.read_text()
+# Anchor on the card list itself, then its FIRST closing div. Anchoring on
+# '</div></section>' alone matched four places and put the card in the wrong
+# section entirely.
+start = s.index('<div class="links">')
+i = s.index('\n    </div>', start) + 1
+page.write_text(s[:i] + frag + s[i:])
+PYEOF
+    echo "  + local home-page overlay applied (not in the repo)"
+fi
+
 echo "  $(find "$STAGE_DIR" -type f | wc -l) files, $(du -sh "$STAGE_DIR" | cut -f1)"
 
 # ---- deploy -------------------------------------------------------------
