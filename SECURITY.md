@@ -29,7 +29,7 @@ itself a security issue worth reporting.
 ## Supported versions
 
 Only the latest GitHub release and the live site
-(<https://retro-jack.github.io/GenX-DOS/>) receive fixes. Older tags are not
+(<https://genx-dos.fun/>) receive fixes. Older tags are not
 patched.
 
 ## Reporting a vulnerability

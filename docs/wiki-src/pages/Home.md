@@ -1,6 +1,6 @@
 # GenX-DOS Wiki
 
-The site is live at **[genx-dos.fun](https://genx-dos.fun/)**, and mirrored on GitHub Pages at [retro-jack.github.io/GenX-DOS](https://retro-jack.github.io/GenX-DOS/).
+The site is live at **[genx-dos.fun](https://genx-dos.fun/)**.
 
 GenX-DOS is a browser DOS prompt that boots emulators from numbered menus. We ship 18 emulator engines locally — 33 sub-systems between them — and nothing is fetched at runtime. Every byte lives on the same origin.
 
@@ -22,7 +22,7 @@ This wiki is the long-form companion to the repo. The [README](https://github.co
 ## In the repo
 
 - [README.md](https://github.com/Retro-Jack/GenX-DOS/blob/master/README.md) — quick start + layout summary
-- [Booting a Museum in a Browser Tab](https://retro-jack.github.io/GenX-DOS/docs/article/) — the feature article. *"A museum that boots in a tab — and you're allowed to touch everything."*
+- [Booting a Museum in a Browser Tab](https://genx-dos.fun/docs/article/) — the feature article. *"A museum that boots in a tab — and you're allowed to touch everything."*
 - [CHANGELOG.md](https://github.com/Retro-Jack/GenX-DOS/blob/master/CHANGELOG.md) — release notes
 - [ATTRIBUTION.md](https://github.com/Retro-Jack/GenX-DOS/blob/master/ATTRIBUTION.md) — canonical record of every bundled third-party emulator, BIOS, ROM, bezel, and dependency
 - [Releases](https://github.com/Retro-Jack/GenX-DOS/releases) — each release ships a downloadable zip of the whole site, ready to unzip and run

@@ -1,13 +1,13 @@
 # GenX-DOS
 
-A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs client-side — no backend, no external network calls at runtime. Try it [here](https://retro-jack.github.io/GenX-DOS/).
+A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs client-side — no backend, no external network calls at runtime. Try it [here](https://genx-dos.fun/).
 
 <p align="center">
   <img src="docs/images/screenshot-menu.png" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
   <img src="docs/images/screenshot.png" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
 </p>
 
-Live at **[genx-dos.fun](https://genx-dos.fun/)** (also mirrored at [retro-jack.github.io/GenX-DOS](https://retro-jack.github.io/GenX-DOS/)).
+Live at **[genx-dos.fun](https://genx-dos.fun/)**.
 
 We bundle 18 emulator engines covering 33 sub-systems between them, from the Apple I to the Sega Master System.
 
@@ -149,7 +149,7 @@ Most bundles carry **save** / **load** controls in the bottom-left corner — ea
 
 See the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki) for the long form. Each engine's integration story is its own page.
 
-Prefer a narrative read? **[Booting a Museum in a Browser Tab](https://retro-jack.github.io/GenX-DOS/docs/article/)** is a magazine-style feature on the project — the concept, the static/no-build constraint, the emulator war stories, and the curation philosophy.
+Prefer a narrative read? **[Booting a Museum in a Browser Tab](https://genx-dos.fun/docs/article/)** is a magazine-style feature on the project — the concept, the static/no-build constraint, the emulator war stories, and the curation philosophy.
 
 - **[Project Overview](https://github.com/Retro-Jack/GenX-DOS/wiki/Project-Overview)** — what the site does and how it's structured
 - **[Virtual Filesystem](https://github.com/Retro-Jack/GenX-DOS/wiki/Virtual-Filesystem)** — the simulated `C:` drive and menu layout

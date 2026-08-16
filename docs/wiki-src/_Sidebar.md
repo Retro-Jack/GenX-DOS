@@ -26,5 +26,5 @@
 
 **Read more**
 
-- [Feature article: Booting a Museum in a Browser Tab](https://retro-jack.github.io/GenX-DOS/docs/article/)
+- [Feature article: Booting a Museum in a Browser Tab](https://genx-dos.fun/docs/article/)
   — *"A museum that boots in a tab — and you're allowed to touch everything."*
