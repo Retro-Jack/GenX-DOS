@@ -25,3 +25,6 @@ _paddiag.html
 # from the Desktop 07/08/2026). It is a full duplicate of the served site —
 # never commit it, never let a build recurse into it.
 /_Portable/
+
+# release artefacts — built at a cut, attached to the GitHub release
+GenX-DOS-v*.zip

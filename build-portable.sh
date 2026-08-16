@@ -29,6 +29,7 @@ rsync -a --delete \
   --exclude='/check-doc-counts.sh' \
   --exclude='/deploy.sh' \
   --exclude='/.htaccess' \
+  --exclude='/GenX-DOS-v*.zip' \
   --exclude='/systems/_shared/styles/VGA_font/make_fonts.py' \
   --exclude='/dist' --exclude='/npm-pkg' --exclude='/_Portable' --exclude='node_modules' \
   ./ "$TARGET"/
