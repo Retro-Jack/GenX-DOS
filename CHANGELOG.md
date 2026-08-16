@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Changed
+- **The wordmark in the bottom pill is now the way home.** `GenX-DOS` was plain text beside the licence / source / readme links; it is a link to the site root. Emulator pages are opened with `window.open` from the prompt, so clicking it points the window that opened this one at the home page and closes this one — otherwise you are left with a spent emulator tab and the prompt sitting behind it. A direct visit has no opener, so the click is left alone and the `href` navigates normally, which also keeps it working if the listener never runs.
+- **GitHub Pages retired.** `retro-jack.github.io/GenX-DOS/` is deleted; genx-dos.fun is the only address. Every reference was repointed — 37 files, most of them the 33 controls pages, whose "part of GenX-DOS" credit carried the old URL, plus `SECURITY.md` and the feature article. README and the wiki Home lost their "also mirrored on GitHub Pages" clause outright: there is no mirror now.
+- **`deploy.sh` gained optional local-only overlays.** Two hooks, both no-ops unless the file exists, so a fresh clone builds exactly the repo and the release zip is unaffected: `~/.config/genx-dos/pill-extra.js` is appended to the deployed copy of `genx-repo-link.js`, and `~/.config/genx-dos/home-extra.html` is spliced into `index.html`'s card list. Appending rather than patching means the repo's own copy of the pill script can change without the overlay going stale.
+
 ## [1.6.0] - 2026-08-16
 
 ### Removed
