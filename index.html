@@ -1,191 +1,307 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'"
-    />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>GenX-DOS</title>
-    <meta
-      name="description"
-      content="A browser DOS prompt that boots 33 classic computers and consoles. Nothing to install."
-    />
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="icon" type="image/gif" href="prompt/animated_favicon1.gif" />
-    <link rel="stylesheet" href="styles/genx.css" />
-    <style>
-      /* The front door for a downloaded copy. GenX-DOS.sh opens the server root
-     and 360 pages link home to "/", so this file has to exist and work with no
-     network at all — local fonts, no images, nothing fetched. Deliberately
-     plain: the designed page is served on the live site only and is swapped in
-     by deploy.sh, so it is in neither this repo nor the release zip.
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GenX-DOS — boot a museum of classic machines in a browser tab</title>
+<meta name="description" content="GenX-DOS runs 33 classic computers and consoles from a life-like DOS prompt in your browser. Nothing to install, nothing tracked.">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/gif" href="prompt/animated_favicon1.gif">
+<link rel="stylesheet" href="styles/genx.css">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{
+    background:var(--crt);
+    color:var(--paper);
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:16px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(75,196,214,.4)}
+  a:hover{color:#8fe3ef;border-bottom-color:var(--cyan)}
+  a:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 
-     The touch gate below is NOT optional. The whole site is driven from a
-     physical keyboard, so a phone or tablet opening this package has to be
-     told that before it gets as far as the prompt. */
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        min-height: 100%;
-        background: var(--crt);
-        color: var(--paper);
-        font:
-          16px/1.7 'IBM Plex Mono',
-          ui-monospace,
-          Menlo,
-          monospace;
-      }
-      .desk {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100dvh;
-        padding: clamp(16px, 4vh, 48px) 6vw;
-        text-align: center;
-      }
-      h1 {
-        font-family: 'Michroma', 'IBM Plex Mono', monospace;
-        font-size: clamp(26px, 6vw, 44px);
-        color: var(--amber);
-        text-shadow: 0 0 26px rgba(255, 176, 0, 0.3);
-        margin: 0 0 0.7em;
-      }
-      p {
-        margin: 0 0 1.1em;
-        max-width: 46ch;
-      }
-      .dim {
-        color: var(--dim);
-        font-size: 13px;
-      }
-      .boot {
-        display: inline-block;
-        margin: 0.5em 0 1.7em;
-        padding: 12px 26px;
-        border: 1px solid rgba(53, 255, 109, 0.35);
-        border-radius: 6px;
-        color: var(--green);
-        text-decoration: none;
-        letter-spacing: 0.06em;
-        transition:
-          color 0.15s ease,
-          border-color 0.15s ease,
-          background 0.15s ease;
-      }
-      .boot:hover,
-      .boot:focus-visible {
-        color: #7dffa4;
-        border-color: rgba(53, 255, 109, 0.6);
-        background: rgba(53, 255, 109, 0.07);
-      }
-      nav a {
-        color: var(--cyan);
-        text-decoration: none;
-        margin: 0 0.5em;
-      }
-      nav a:hover,
-      nav a:focus-visible {
-        color: #8fe3ef;
-      }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
-      /* ---------- touch / no-keyboard gate ---------- */
-      /* Comma (OR) form on purpose: iPadOS reports hover, so pointer:coarse is
-     what catches it. */
-      .touchblock {
-        display: none;
-      }
-      @media (pointer: coarse), (hover: none) {
-        body {
-          overflow: hidden;
-        }
-        .desk {
-          display: none !important;
-        }
-        .touchblock {
-          display: flex;
-          position: fixed;
-          inset: 0;
-          z-index: 100000;
-          background: var(--crt);
-          align-items: center;
-          justify-content: center;
-          padding: 28px;
-          text-align: center;
-        }
-      }
-      .tb-inner {
-        max-width: 32rem;
-      }
-      .tb-art {
-        font-family: 'VGA437', 'IBM Plex Mono', monospace;
-        color: var(--amber);
-        font-size: clamp(0.72rem, 4vw, 1.05rem);
-        line-height: 1.12;
-        letter-spacing: 0;
-        margin: 0 0 2rem;
-        text-shadow: 0 0 12px rgba(255, 176, 0, 0.3);
-        overflow-x: auto;
-      }
-      .tb-head {
-        font-family: 'VGA437', 'IBM Plex Mono', monospace;
-        font-weight: 400;
-        color: var(--green);
-        font-size: clamp(1.2rem, 6vw, 1.7rem);
-        letter-spacing: 0.02em;
-        text-transform: uppercase;
-        margin-bottom: 1.1rem;
-      }
-      .tb-body {
-        color: var(--paper);
-        font-size: 1rem;
-        line-height: 1.65;
-        margin: 0 auto;
-        max-width: 30ch;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="touchblock">
-      <div class="tb-inner">
-        <pre class="tb-art" aria-hidden="true">
-┌───┬───┬───┬───┬───┐
+  /* ---------- top bar ---------- */
+  .topbar{
+    border-bottom:1px solid var(--line);
+    font-size:12px;letter-spacing:.14em;color:var(--dim);
+    display:flex;justify-content:space-between;align-items:center;
+    padding:11px 24px;text-transform:uppercase;
+  }
+  .topbar .mark{color:var(--amber);font-weight:600;letter-spacing:.22em}
+
+  /* ---------- hero ---------- */
+  .hero{
+    text-align:center;padding:6vh 24px 4vh;position:relative;
+    background:radial-gradient(120% 90% at 50% 0%, rgba(255,176,0,.09), transparent 60%);
+  }
+  .eyebrow{
+    font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--green);
+    margin-bottom:1.5rem;
+  }
+  .wordmark{
+    font-family:'Michroma',sans-serif;
+    font-size:clamp(2.4rem, 8vw, 5.4rem);
+    line-height:1;letter-spacing:.02em;
+    color:var(--amber);
+    text-shadow:0 0 26px rgba(255,176,0,.45), 0 0 3px rgba(255,176,0,.6);
+    margin-bottom:1.4rem;
+    animation:poweron .9s ease-out both;
+  }
+  @keyframes poweron{from{opacity:0;filter:brightness(2.4) blur(3px)}to{opacity:1;filter:none}}
+  @media (prefers-reduced-motion: reduce){ .wordmark{animation:none} }
+  .tagline{
+    font-size:clamp(1rem,2.4vw,1.28rem);color:var(--paper);
+    margin:0 auto 2.4rem;line-height:1.55;
+  }
+  .tagline b{color:var(--amber);font-weight:600}
+
+  .boot{
+    display:inline-flex;align-items:center;gap:.7em;
+    font-family:'VGA437','IBM Plex Mono',monospace;font-weight:400;font-size:1.35rem;
+    letter-spacing:.04em;text-transform:uppercase;
+    color:var(--green);background:transparent;
+    border:2px solid var(--green);border-radius:2px;
+    padding:.85rem 2rem;text-decoration:none;
+    box-shadow:0 0 0 rgba(53,255,109,0);
+    transition:background .16s ease, color .16s ease, box-shadow .16s ease;
+  }
+  .boot .cur{
+    width:.55em;height:1.05em;background:var(--green);display:inline-block;
+    animation:blink 1.05s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion: reduce){ .boot .cur{animation:none} }
+  .boot:hover{background:var(--green);color:var(--crt);box-shadow:0 0 34px rgba(53,255,109,.45)}
+  .boot:hover .cur{background:var(--crt)}
+  .boot:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+  .boot-note{
+    font-size:12px;letter-spacing:.1em;color:var(--dim);margin-top:1rem;text-transform:uppercase;
+  }
+
+  /* the framed "screen" — social card as the front room */
+  .screen{
+    margin:3.4rem auto 0;max-width:640px;
+    border:3px solid #23262b;border-radius:8px;
+    box-shadow:0 0 0 1px #000, 0 0 60px rgba(255,176,0,.12), inset 0 0 40px rgba(0,0,0,.6);
+    background:#000;padding:10px;
+  }
+  .screen img{display:block;width:100%;height:auto;border-radius:3px}
+  .screen figcaption{
+    font-size:12px;color:var(--dim);text-align:center;padding:.7rem 0 .2rem;letter-spacing:.06em;
+  }
+
+  /* ---------- section scaffolding ---------- */
+  section.wrap{padding:2rem 24px}   /* vertical rhythm — needs section.wrap or .wrap's padding cancels it */
+  .sec-label{
+    font-family:'Michroma',sans-serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--amber);display:flex;align-items:center;gap:1rem;margin-bottom:2rem;
+  }
+  .sec-label::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  /* ---------- spec sheet (signature) ---------- */
+  .spec{
+    border:3px double var(--amber);
+    background:linear-gradient(rgba(255,176,0,.03), rgba(255,176,0,.03));
+    padding:1.6rem 1.8rem;max-width:620px;
+  }
+  .spec-row{
+    display:flex;align-items:baseline;gap:.7rem;
+    font-family:'VGA437','IBM Plex Mono',monospace;
+    font-size:clamp(1rem,2.6vw,1.35rem);letter-spacing:.02em;
+    padding:.5rem 0;
+  }
+  .spec-row .k{color:var(--paper);text-transform:uppercase;white-space:nowrap}
+  .spec-row .lead{flex:1;border-bottom:1px dotted var(--dim);transform:translateY(-.28em)}
+  .spec-row .v{color:var(--amber);font-weight:600;white-space:nowrap}
+  .spec-row .v.zero{color:var(--green)}
+  .spec-cap{color:var(--dim);font-size:12px;margin-top:1.1rem;letter-spacing:.04em}
+
+  /* ---------- what you're looking at ---------- */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:4px;
+    padding:1.5rem 1.4rem;
+  }
+  .card h3{
+    font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:1.02rem;
+    color:var(--amber);margin-bottom:.7rem;letter-spacing:.01em;
+  }
+  .card p{font-size:.92rem;line-height:1.6;color:#BEBBB0}
+
+  /* ---------- see it running ---------- */
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+  .shot{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#000}
+  .shot img{display:block;width:100%;height:auto}
+  .shot figcaption{font-size:12px;color:var(--dim);padding:.8rem 1rem;letter-spacing:.04em}
+  .shot figcaption b{color:var(--paper);font-weight:600}
+
+  /* ---------- go further ---------- */
+  .links{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .lk{
+    display:block;background:var(--panel);border:1px solid var(--line);border-radius:4px;
+    padding:1.3rem 1.4rem;text-decoration:none;color:var(--paper);
+    transition:border-color .16s ease, background .16s ease, transform .16s ease;
+  }
+  .lk:hover{border-color:var(--amber);background:#191d23;transform:translateY(-2px)}
+  .lk .tag{
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);
+    display:block;margin-bottom:.5rem;
+  }
+  .lk .name{font-family:'Michroma',sans-serif;font-size:.95rem;color:var(--amber);display:block;margin-bottom:.5rem}
+  .lk .desc{font-size:.82rem;color:var(--dim);line-height:1.5}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:3rem 0 3.5rem;text-align:center}
+  footer .close{font-size:1.05rem;color:var(--paper);max-width:44ch;margin:0 auto 1.4rem;line-height:1.6}
+  footer .lic{font-size:12px;color:var(--dim);letter-spacing:.04em}
+
+  /* ---------- responsive ---------- */
+  /* ---------- touch / no-keyboard gate ---------- */
+  /* This site is driven entirely by a physical keyboard, so touch devices get a
+     graphic instead of the landing. Comma (OR) form on purpose: iPadOS reports
+     hover, so pointer:coarse is what catches it. */
+  .touchblock{display:none}
+  @media (pointer: coarse), (hover: none){
+    body{overflow:hidden}
+    .topbar, .hero, main, footer{display:none !important}
+    .touchblock{
+      display:flex;position:fixed;inset:0;z-index:100000;
+      background:var(--crt);
+      align-items:center;justify-content:center;
+      padding:28px;text-align:center;
+    }
+  }
+  .tb-inner{max-width:32rem}
+  .tb-mark{
+    font-family:'Michroma',sans-serif;color:var(--amber);
+    font-size:1.35rem;letter-spacing:.06em;margin-bottom:2rem;
+    text-shadow:0 0 22px rgba(255,176,0,.42);
+  }
+  .tb-art{
+    font-family:'VGA437','IBM Plex Mono',monospace;color:var(--amber);
+    font-size:clamp(.72rem,4vw,1.05rem);line-height:1.12;letter-spacing:0;
+    margin:0 0 2rem;text-shadow:0 0 12px rgba(255,176,0,.3);overflow-x:auto;
+  }
+  .tb-head{
+    font-family:'VGA437','IBM Plex Mono',monospace;font-weight:400;
+    color:var(--green);font-size:clamp(1.2rem,6vw,1.7rem);letter-spacing:.02em;
+    text-transform:uppercase;margin-bottom:1.1rem;
+  }
+  .tb-body{color:var(--paper);font-size:1rem;line-height:1.65;margin:0 auto;max-width:30ch}
+</style>
+</head>
+<body>
+  <div class="touchblock">
+    <div class="tb-inner">
+      <div class="tb-mark">GenX-DOS</div>
+      <pre class="tb-art" aria-hidden="true">┌───┬───┬───┬───┬───┐
 │ Q │ W │ E │ R │ T │
 ├───┼───┼───┼───┼───┤
 │ A │ S │ D │ F │ G │
 ├───┴───┴───┴───┴───┤
 │       SPACE       │
 └───────────────────┘</pre>
-        <h2 class="tb-head">This one needs a keyboard</h2>
-        <p class="tb-body">
-          This is a desktop DOS terminal and 8-bit emulator suite — you drive
-          every machine from a physical keyboard, so a touchscreen can't run it.
-          Open it on a desktop or laptop and the whole museum is open to you.
-        </p>
+      <h2 class="tb-head">This one needs a keyboard</h2>
+      <p class="tb-body">GenX-DOS is a desktop DOS terminal and 8-bit emulator suite — you drive every machine from a physical keyboard, so a touchscreen can't run it. Open it on a desktop or laptop and the whole museum is open to you.</p>
+    </div>
+  </div>
+
+<div class="topbar">
+  <span class="mark">GenX-DOS</span>
+  <span>A museum in a browser tab</span>
+</div>
+
+<header class="hero">
+  <p class="eyebrow">Retro computing · self-hosted · desktop</p>
+  <h1 class="wordmark">GenX-DOS</h1>
+  <p class="tagline">Boot classic computers and consoles<br>from a life-like DOS prompt.<br><b>Nothing to install.<br>Zero telemetry.</b></p>
+  <a class="boot" href="prompt/">Enter the museum <span class="cur" aria-hidden="true"></span></a>
+  <p class="boot-note">Desktop · keyboard-driven · nothing to install</p>
+
+  <figure class="screen">
+    <img src="docs/images/genx-social.png" width="1280" height="640" alt="The GenX-DOS launcher: a SELECT A SYSTEM menu listing Commodore 64, BBC Micro, ZX Spectrum, Apple, Game Boy, MSX, Amstrad CPC, Atari 800, Sega Game Gear and more.">
+    <figcaption>The front room. Type a number, a machine boots.</figcaption>
+  </figure>
+</header>
+
+<main>
+  <section class="wrap" id="about">
+    <p class="sec-label">What you're looking at</p>
+    <div class="cards">
+      <div class="card">
+        <h3>A museum that boots</h3>
+        <p>Behind each number on the menu sits a working replica of the real machine — faithful enough that the games can't tell the difference. Forty-year-old software actually runs.</p>
+      </div>
+      <div class="card">
+        <h3>Nothing installed, nothing tracked</h3>
+        <p>The whole thing arrives in one go and runs from a single place. No downloads while you play, no accounts, no phoning home.</p>
+      </div>
+      <div class="card">
+        <h3>It has opinions</h3>
+        <p>Not "the 8-bit era" — the 8-bit <em>feel</em>. Ten games per system, sorted by year, every control checked against the original manuals. Curated, not dumped.</p>
       </div>
     </div>
+  </section>
 
-    <div class="desk">
-      <h1>GenX-DOS</h1>
-      <p>
-        Boot classic computers and consoles from a life-like DOS prompt. Type a
-        number, a machine starts.
-      </p>
-
-      <a class="boot" href="prompt/">Enter the museum</a>
-
-      <nav>
-        <a href="docs/wiki/">Wiki</a> · <a href="docs/article/">The story</a> ·
-        <a href="docs/wiki/README.html">Readme</a> ·
-        <a href="docs/wiki/LICENSE.html">Licence</a>
-      </nav>
-
-      <p class="dim">
-        Desktop · keyboard-driven · nothing to install · runs with no network
-      </p>
+  <section class="wrap" id="running">
+    <p class="sec-label">See it running</p>
+    <div class="shots">
+      <figure class="shot">
+        <img loading="lazy" src="docs/images/screenshot-menu.png" width="1465" height="915" alt="The GenX-DOS menu shown inside a photographed IBM 5153 CRT monitor on orange 70s wallpaper, in a browser tab.">
+        <figcaption><b>The launcher</b> — box-drawn menus inside a real IBM monitor.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img loading="lazy" src="docs/images/screenshot.png" width="1465" height="915" alt="California Games booting on a photographed Atari Lynx handheld, held up in a browser tab.">
+        <figcaption><b>California Games</b> — running on an Atari Lynx handheld.</figcaption>
+      </figure>
     </div>
-  </body>
+  </section>
+
+  <section class="wrap" id="specs">
+    <p class="sec-label">Spec sheet</p>
+    <div class="spec">
+      <div class="spec-row"><span class="k">Systems</span><span class="lead"></span><span class="v">33</span></div>
+      <div class="spec-row"><span class="k">Games</span><span class="lead"></span><span class="v">327</span></div>
+      <div class="spec-row"><span class="k">Emulators</span><span class="lead"></span><span class="v">19</span></div>
+      <div class="spec-row"><span class="k">To install</span><span class="lead"></span><span class="v zero">nothing</span></div>
+      <div class="spec-row"><span class="k">Tracking &amp; downloads</span><span class="lead"></span><span class="v zero">0</span></div>
+      <p class="spec-cap">Every machine, game and page ships in one clone and runs from a single origin.</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="more">
+    <p class="sec-label">Go further</p>
+    <div class="links">
+      <a class="lk" href="docs/article/">
+        <span class="tag">Read</span>
+        <span class="name">The story</span>
+        <span class="desc">How a life-like DOS prompt became a 33-system arcade — the feature article.</span>
+      </a>
+      <a class="lk" href="docs/wiki/">
+        <span class="tag">Browse</span>
+        <span class="name">The wiki</span>
+        <span class="desc">Every machine, how it's put together, and what's shipped or ruled out.</span>
+      </a>
+      <a class="lk" href="https://github.com/Retro-Jack/GenX-DOS">
+        <span class="tag">Open</span>
+        <span class="name">The source</span>
+        <span class="desc">All of it on GitHub — static HTML, no build step, CC BY-NC 4.0.</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p class="close">A museum that boots in a tab — and unlike most museums, you're allowed to touch everything.</p>
+  <p class="lic">The GenX-DOS work is CC BY-NC 4.0 · the bundled emulators keep their own licences.</p>
+</footer>
+
+</body>
 </html>
