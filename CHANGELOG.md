@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+### Changed
+- **`deploy.sh` now says why it cannot connect.** When the deploy key is held in an `ssh-agent` and the agent has not been unlocked for the session, the connection fails with `Permission denied (publickey)` — which reads as a rejected key and sends you looking at the server. A preflight check now names the real cause and the one command that fixes it, and runs before the build rather than after it, so a locked key costs a moment instead of a full staging build.
+
 ## [1.6.1] - 2026-08-16
 
 ### Added

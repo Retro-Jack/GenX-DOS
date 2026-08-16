@@ -50,6 +50,20 @@ esac
 
 [[ -f "$SSH_KEY" ]] || { echo "Deploy key missing: $SSH_KEY" >&2; exit 1; }
 
+# The key carries a passphrase, and BatchMode below means ssh will never prompt
+# for it — it just fails with "Permission denied (publickey)", which reads like
+# the key was revoked rather than merely locked. Say which it is, before a build
+# runs. `ssh-keygen -y -P ""` succeeds only on an unencrypted key.
+if ! ssh-keygen -y -P "" -f "$SSH_KEY" >/dev/null 2>&1; then
+    KEY_FP=$(ssh-keygen -lf "$SSH_KEY.pub" 2>/dev/null | awk '{print $2}')
+    if ! ssh-add -l 2>/dev/null | grep -qF "$KEY_FP"; then
+        echo "The deploy key is passphrase-protected and is not loaded in your ssh-agent." >&2
+        echo "Unlock it once for this session, then run this again:" >&2
+        echo "  ssh-add $SSH_KEY" >&2
+        exit 1
+    fi
+fi
+
 # LogLevel=ERROR suppresses the client's post-quantum key-exchange warning,
 # which fires on every connection and buries the transfer summary.
 SSH_CMD="ssh -i $SSH_KEY -p $SSH_PORT -o BatchMode=yes -o ConnectTimeout=15 -o LogLevel=ERROR"
