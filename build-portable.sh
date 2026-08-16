@@ -28,6 +28,7 @@ rsync -a --delete \
   --exclude='/build-portable.sh' \
   --exclude='/check-doc-counts.sh' \
   --exclude='/deploy.sh' \
+  --exclude='/sync-wiki.sh' \
   --exclude='/.htaccess' \
   --exclude='/GenX-DOS-v*.zip' \
   --exclude='/systems/_shared/styles/VGA_font/make_fonts.py' \

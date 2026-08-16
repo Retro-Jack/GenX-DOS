@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- **`sync-wiki.sh`** — pushes `docs/wiki-src/pages/*.md` to the GitHub wiki, which is a separate repo with its own remote. It fetches before it compares anything: a clone that has sat untouched looks perfectly healthy until you do, so diffing against one reports pages as out of date when they are current. It rebuilds the in-repo HTML wiki first (the root CHANGELOG, README and ATTRIBUTION are imported as pages, so editing one leaves `docs/wiki/` stale), leaves the wiki-only `_Sidebar.md` alone, and refuses to run when the clone holds unpushed commits rather than resetting over them. Excluded from the release zip and the web deploy, like the other maintainer scripts.
+
 ### Changed
 - **The wordmark in the bottom pill is now the way home.** `GenX-DOS` was plain text beside the licence / source / readme links; it is a link to the site root. Emulator pages are opened with `window.open` from the prompt, so clicking it points the window that opened this one at the home page and closes this one — otherwise you are left with a spent emulator tab and the prompt sitting behind it. A direct visit has no opener, so the click is left alone and the `href` navigates normally, which also keeps it working if the listener never runs.
 - **GitHub Pages retired.** `retro-jack.github.io/GenX-DOS/` is deleted; genx-dos.fun is the only address. Every reference was repointed — 37 files, most of them the 33 controls pages, whose "part of GenX-DOS" credit carried the old URL, plus `SECURITY.md` and the feature article. README and the wiki Home lost their "also mirrored on GitHub Pages" clause outright: there is no mirror now.
