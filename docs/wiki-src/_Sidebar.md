@@ -9,6 +9,7 @@
 - [Contributing](CONTRIBUTING.md)
 - [Security](SECURITY.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
+- [On the use of AI](AI-DISCLAIMER.md)
 - [License](LICENSE.TXT)
 
 **Internals**
