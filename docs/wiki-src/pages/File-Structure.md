@@ -17,6 +17,7 @@ genx-dos/
 ├── build-portable.sh         builds the portable site (what the release zip + export contain)
 ├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree
 ├── deploy.sh                 publishes the site to the web host (staging or live)
+├── sync-wiki.sh              pushes the wiki source to the GitHub wiki repo
 ├── .htaccess                 web-host config — headers, compression, no directory listings
 │                             (deployed by deploy.sh; excluded from the release zip)
 ├── .github/                  issue/PR templates
@@ -148,3 +149,4 @@ Each `play.html`-based emulator has a `games.json` mapping `<key>` → `{title, 
 | `systems/_shared/styles/VGA_font/make_fonts.py` | One-shot PIL script that tints `f12.7.png` into the other variants (run it from beside the sheets) |
 | `GenX-DOS.sh` / `GenX-DOS.bat` | Local dev server for Linux / Windows — `python3 -m http.server` wrapper that finds a free port, opens the home page, and stops when the browser window closes |
 | `check-doc-counts.sh` | Guards against doc drift. Measures the real counts (gamedocs, sub-systems, `controls.html`, size on disk) and checks every place they're quoted — README, the wiki pages and the feature article's *THE NUMBERS* block. The engine count can't be derived (EmulatorJS is one engine hosting many cores), so instead all sources must agree with each other. Exits non-zero on drift; run it after any platform, engine or gamedoc change |
+| `sync-wiki.sh` | Pushes `docs/wiki-src/pages/*.md` to the GitHub wiki, which is a separate repo with its own remote. It fetches before it compares anything — a local clone can sit a long way behind origin while looking perfectly healthy, and a diff against a stale clone reports pages as out of date when they are current. Rebuilds the in-repo HTML wiki first (root `CHANGELOG`/`README`/`ATTRIBUTION` are imported as pages, so editing one leaves `docs/wiki/` stale), leaves the wiki-only `_Sidebar.md` alone, and refuses to run if the clone holds unpushed commits. `-n` for a dry run |

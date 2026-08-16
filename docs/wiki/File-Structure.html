@@ -44,6 +44,7 @@
 ├── build-portable.sh         builds the portable site (what the release zip + export contain)
 ├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree
 ├── deploy.sh                 publishes the site to the web host (staging or live)
+├── sync-wiki.sh              pushes the wiki source to the GitHub wiki repo
 ├── .htaccess                 web-host config — headers, compression, no directory listings
 │                             (deployed by deploy.sh; excluded from the release zip)
 ├── .github/                  issue/PR templates
@@ -333,6 +334,10 @@
 <tr>
 <td><code>check-doc-counts.sh</code></td>
 <td>Guards against doc drift. Measures the real counts (gamedocs, sub-systems, <code>controls.html</code>, size on disk) and checks every place they're quoted — README, the wiki pages and the feature article's <em>THE NUMBERS</em> block. The engine count can't be derived (EmulatorJS is one engine hosting many cores), so instead all sources must agree with each other. Exits non-zero on drift; run it after any platform, engine or gamedoc change</td>
+</tr>
+<tr>
+<td><code>sync-wiki.sh</code></td>
+<td>Pushes <code>docs/wiki-src/pages/*.md</code> to the GitHub wiki, which is a separate repo with its own remote. It fetches before it compares anything — a local clone can sit a long way behind origin while looking perfectly healthy, and a diff against a stale clone reports pages as out of date when they are current. Rebuilds the in-repo HTML wiki first (root <code>CHANGELOG</code>/<code>README</code>/<code>ATTRIBUTION</code> are imported as pages, so editing one leaves <code>docs/wiki/</code> stale), leaves the wiki-only <code>_Sidebar.md</code> alone, and refuses to run if the clone holds unpushed commits. <code>-n</code> for a dry run</td>
 </tr>
 </tbody>
 </table>
