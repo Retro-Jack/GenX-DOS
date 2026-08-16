@@ -86,24 +86,15 @@ if [[ -f "$PILL_EXTRA" ]]; then
     echo "  + local pill overlay applied (not in the repo)"
 fi
 
-# Same idea for the home page, but as markup rather than script: index.html
-# carries default-src 'none' and loads no JavaScript at all, so an injected
-# <script> would be blocked by its own policy. The fragment is spliced into the
-# "Go further" card list instead.
-HOME_EXTRA="${HOME}/.config/genx-dos/home-extra.html"
-if [[ -f "$HOME_EXTRA" ]]; then
-    python3 - "$STAGE_DIR/index.html" "$HOME_EXTRA" <<'PYEOF'
-import sys, pathlib
-page, frag = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2]).read_text()
-s = page.read_text()
-# Anchor on the card list itself, then its FIRST closing div. Anchoring on
-# '</div></section>' alone matched four places and put the card in the wrong
-# section entirely.
-start = s.index('<div class="links">')
-i = s.index('\n    </div>', start) + 1
-page.write_text(s[:i] + frag + s[i:])
-PYEOF
-    echo "  + local home-page overlay applied (not in the repo)"
+# The designed home page is live-only. The repo ships a plain front door so a
+# downloaded copy still has one -- GenX-DOS.sh opens the server root and 360
+# pages link home to "/" -- and the full page is swapped in here. Markup rather
+# than script: index.html carries default-src 'none' and loads no JavaScript at
+# all, so an injected <script> would be blocked by its own policy.
+HOME_PAGE="${HOME}/.config/genx-dos/home-page.html"
+if [[ -f "$HOME_PAGE" ]]; then
+    cp "$HOME_PAGE" "$STAGE_DIR/index.html"
+    echo "  + designed home page swapped in (not in the repo)"
 fi
 
 echo "  $(find "$STAGE_DIR" -type f | wc -l) files, $(du -sh "$STAGE_DIR" | cut -f1)"
