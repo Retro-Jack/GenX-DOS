@@ -39,12 +39,33 @@
   var d = document.createElement('div');
   d.className = 'gx-repo-link';
   d.innerHTML =
-    'GenX-DOS · <a href="' +
+    '<a href="' +
+    ROOT +
+    '" class="gx-home-link">GenX-DOS</a> · <a href="' +
     LIC +
     '" target="_blank" rel="noopener">licence</a> · <a href="' +
     REPO +
     '" target="_blank" rel="noopener">source</a> · <a href="' +
     README +
     '" target="_blank" rel="noopener">readme</a>';
+  // The wordmark goes home. These pages are opened with window.open from the
+  // prompt, so the tidy exit is to point the window that opened us at the home
+  // page and close this one — otherwise the player is left with a spent
+  // emulator tab and the prompt sitting behind it. A direct visit has no
+  // opener, so the click is left alone and the href navigates as normal, which
+  // also keeps it working if the listener never runs.
+  d.querySelector('.gx-home-link').addEventListener('click', function (e) {
+    var opener = null;
+    try {
+      opener = window.opener && !window.opener.closed ? window.opener : null;
+    } catch (x) {}
+    if (!opener) return;
+    e.preventDefault();
+    try {
+      opener.location.href = ROOT;
+      opener.focus();
+    } catch (x) {}
+    window.close();
+  });
   document.body.appendChild(d);
 })();
