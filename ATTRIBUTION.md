@@ -13,21 +13,19 @@ the authoritative version.
 
 ---
 
-## Removal on request — read this first if you are a rights holder
+## Removal on request
 
-**If you hold rights in anything bundled here, or legally represent someone
-who does, and you raise an identified copyright or intellectual-property
-concern, the material in question is removed immediately.** Not debated, not
-defended, not delayed pending a formal process. "Identified" means only that
-the request says who is asking and on what basis — see below; it is not a
-hurdle, it is there so the collection cannot be stripped anonymously.
+**If you hold rights in anything bundled here, or legally represent someone who
+does, and you raise an identified copyright or intellectual-property concern,
+the material in question will be removed immediately.** Not debated, not defended,
+not delayed pending a formal process.
 
 This applies to everything in the repository, not only games: software titles,
 system ROMs and BIOS images, emulator code, artwork, fonts, documentation,
 trade marks and names.
 
-**What a request must contain.** Three things, so that material is not pulled
-on an anonymous say-so:
+**What a request must contain.** Three things, so that nothing is pulled on an
+anonymous say-so:
 
 1. **Who you are** — a name, and the company or firm if you act for one.
 2. **Your standing** — that you hold the rights, or who you represent and in
@@ -35,21 +33,16 @@ on an anonymous say-so:
 3. **What and why** — the specific title, file or asset, and the basis of the
    concern.
 
-No particular form of words is needed, and there is no notice format to follow.
-A few sentences covering those three points is enough. What cannot be acted on
-is an unsigned message asserting that something must go, with no indication of
-who is asking or on what footing — that would let anyone strip the collection.
-
-Nothing further is required. There is no need to produce registration
-certificates, chain-of-title documents or legal citations: a request that
-identifies its sender and its basis is taken in good faith and acted on.
+That is the whole bar. No notice format, no particular form of words, and no
+registration certificates, chain-of-title documents or legal citations — a few
+sentences covering those three points will be taken in good faith and acted on.
 
 **Where to send it**
 - Open an issue: <https://github.com/Retro-Jack/GenX-DOS/issues> (there is a
   "Content removal request" template, but a plain issue is fine)
-- Or, if you would rather it were not public: retrojack68@gmail.com
+- Or, if you would rather it were not public: admin@genx-dos.fun
 
-Removal happens as soon as such a request reaches me. GenX-DOS is a
+Removal will happen as soon as such a request reaches me. GenX-DOS is a
 non-commercial preservation project run by one person; nothing here is worth
 anyone's legal costs, mine included, and no title in it matters more than a
 rights holder's wishes about their own work.
@@ -271,8 +264,8 @@ software under permissive terms:
   in the original archive are not shipped.
 
 For every other commercial title, redistribution within this repo is on a
-preservation / personal-use basis, and is withdrawn the moment a rights holder
-asks — see **Removal on request** at the top of this file.
+preservation / personal-use basis, and will be withdrawn the moment a rights
+holder asks — see **Removal on request** at the top of this file.
 
 ---
 

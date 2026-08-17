@@ -36,7 +36,7 @@ patched.
 
 Please report privately by email rather than in public:
 
-- **Email:** retrojack68@gmail.com
+- **Email:** admin@genx-dos.fun
 
 Include what you found, where, and how to reproduce it. This is a one-person
 hobby project, so responses are best-effort — but genuine reports will be

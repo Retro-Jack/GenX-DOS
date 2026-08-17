@@ -9,7 +9,7 @@ assignees: ''
 GenX-DOS bundles historical software on a preservation / personal-use basis
 (see ATTRIBUTION.md). If you hold rights in anything here — a title, a ROM or
 BIOS image, code, artwork, a font, a name or mark — or you legally represent
-someone who does, it is removed immediately on request.
+someone who does, it will be removed immediately on request.
 
 So that nothing is pulled on an anonymous say-so, a request needs to say who is
 asking and on what basis. This template covers it — no registration
@@ -31,5 +31,5 @@ Briefly, what the issue is (copyright in the work, a trade mark, something
 else).
 
 **Contact** (optional)
-If you'd prefer this handled privately, email retrojack68@gmail.com instead of
+If you'd prefer this handled privately, email admin@genx-dos.fun instead of
 opening a public issue.
