@@ -507,13 +507,53 @@ glad to say so.</p>
 <p>Other emulator bundles vendor their upstream dependencies; where a bundle's
 runtime is locally modified (e.g. ElkJS above, the atari800 / CPC / o2em WASM
 rebuilds) the change is recorded here or in the CHANGELOG.</p>
-<p><strong>On upstream licence files.</strong> Only the bundles we compiled ourselves ship the
-original licence text alongside the binary — <code>atari400/</code>, <code>atari800/</code>,
-<code>bbcmicro/</code>, <code>bbcmaster/</code>, <code>odyssey2/</code> (all <code>COPYING</code>) and <code>m100/src/LICENSE</code>.
-The remaining bundles carry none, so the table above is the record of what each
-one is and what licence it falls under, and the upstream link in each row is the
-route to the full text. Do not read the absence of a <code>LICENSE</code> file in a bundle
-as an unlicensed component.</p>
+<p><strong>On upstream licence files.</strong> Every GPL binary we ship now has the licence text
+beside it, which is what the GPL asks for:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>systems/_shared-ejs/COPYING</code> (GPL-3.0)</td>
+<td>the EmulatorJS runtime, and with it all 14 bundles that share it — none of them carries its own core binary</td>
+</tr>
+<tr>
+<td><code>systems/_shared-ejs/ejs/data/cores/COPYING</code> (GPL-2.0)</td>
+<td>the libretro cores sitting in that directory</td>
+</tr>
+<tr>
+<td><code>systems/jsspeccy/COPYING</code>, <code>systems/xroar/COPYING</code> (GPL-3.0)</td>
+<td>those engines</td>
+</tr>
+<tr>
+<td><code>systems/jtyone/COPYING</code>, <code>systems/js99er/COPYING</code> (GPL-2.0)</td>
+<td>those engines</td>
+</tr>
+<tr>
+<td><code>atari400/</code>, <code>atari800/</code> (GPL-2.0), <code>bbcmicro/</code>, <code>bbcmaster/</code> (GPL-3.0), <code>odyssey2/</code></td>
+<td>shipped with the builds we compiled ourselves</td>
+</tr>
+<tr>
+<td><code>m100/src/LICENSE</code></td>
+<td>VirtualT, BSD</td>
+</tr>
+</tbody>
+</table>
+<p>The permissively-licensed bundles — <code>apple1/</code>, <code>apple2/</code>, <code>msx1/</code>, <code>msx2/</code>,
+<code>cpc/</code> (MIT), <code>pet/</code>, <code>trs80/</code> (BSD-2-Clause) — do <strong>not</strong> carry their notice
+files. Those licences do ask for the copyright notice to travel with the code,
+and the notice includes a per-project copyright line that cannot be
+reconstructed from here, so it has to come from upstream rather than be written
+locally. Until it does, the table above and its upstream links are the record.
+<code>electron/</code> is a separate case: the ElkJS source carries a copyright line
+(© Darren Coles 2013) but no licence grant at all, so there is nothing to
+reproduce.</p>
+<p>Do not read the absence of a licence file in a bundle as an unlicensed
+component — check the table first.</p>
 <hr />
 <h2 id="how-to-add-a-new-attribution-entry">How to add a new attribution entry</h2>
 <p>When adding code or assets to the repo:</p>

@@ -310,13 +310,30 @@ Other emulator bundles vendor their upstream dependencies; where a bundle's
 runtime is locally modified (e.g. ElkJS above, the atari800 / CPC / o2em WASM
 rebuilds) the change is recorded here or in the CHANGELOG.
 
-**On upstream licence files.** Only the bundles we compiled ourselves ship the
-original licence text alongside the binary — `atari400/`, `atari800/`,
-`bbcmicro/`, `bbcmaster/`, `odyssey2/` (all `COPYING`) and `m100/src/LICENSE`.
-The remaining bundles carry none, so the table above is the record of what each
-one is and what licence it falls under, and the upstream link in each row is the
-route to the full text. Do not read the absence of a `LICENSE` file in a bundle
-as an unlicensed component.
+**On upstream licence files.** Every GPL binary we ship now has the licence text
+beside it, which is what the GPL asks for:
+
+| File | Covers |
+|---|---|
+| `systems/_shared-ejs/COPYING` (GPL-3.0) | the EmulatorJS runtime, and with it all 14 bundles that share it — none of them carries its own core binary |
+| `systems/_shared-ejs/ejs/data/cores/COPYING` (GPL-2.0) | the libretro cores sitting in that directory |
+| `systems/jsspeccy/COPYING`, `systems/xroar/COPYING` (GPL-3.0) | those engines |
+| `systems/jtyone/COPYING`, `systems/js99er/COPYING` (GPL-2.0) | those engines |
+| `atari400/`, `atari800/` (GPL-2.0), `bbcmicro/`, `bbcmaster/` (GPL-3.0), `odyssey2/` | shipped with the builds we compiled ourselves |
+| `m100/src/LICENSE` | VirtualT, BSD |
+
+The permissively-licensed bundles — `apple1/`, `apple2/`, `msx1/`, `msx2/`,
+`cpc/` (MIT), `pet/`, `trs80/` (BSD-2-Clause) — do **not** carry their notice
+files. Those licences do ask for the copyright notice to travel with the code,
+and the notice includes a per-project copyright line that cannot be
+reconstructed from here, so it has to come from upstream rather than be written
+locally. Until it does, the table above and its upstream links are the record.
+`electron/` is a separate case: the ElkJS source carries a copyright line
+(© Darren Coles 2013) but no licence grant at all, so there is nothing to
+reproduce.
+
+Do not read the absence of a licence file in a bundle as an unlicensed
+component — check the table first.
 
 ---
 
