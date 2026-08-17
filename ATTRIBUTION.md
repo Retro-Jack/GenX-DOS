@@ -13,7 +13,7 @@ the authoritative version.
 
 ---
 
-## Removal on request
+## Removal upon request
 
 **If you hold rights in anything bundled here, or legally represent someone who
 does, and you raise an identified copyright or intellectual-property concern,
@@ -265,7 +265,7 @@ software under permissive terms:
 
 For every other commercial title, redistribution within this repo is on a
 preservation / personal-use basis, and will be withdrawn the moment a rights
-holder asks — see **Removal on request** at the top of this file.
+holder asks — see **Removal upon request** at the top of this file.
 
 ---
 

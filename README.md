@@ -160,9 +160,9 @@ Prefer a narrative read? **[Booting a Museum in a Browser Tab](https://genx-dos.
 - **[Customising the Filesystem](https://github.com/Retro-Jack/GenX-DOS/wiki/Customising-the-Filesystem)** — adding entries, batches, menus
 - **[Your Data](https://github.com/Retro-Jack/GenX-DOS/wiki/Your-Data)** — exactly what GenX-DOS keeps in your browser's local storage, and when (nothing leaves your machine)
 
-## Removal on request
+## Removal upon request
 
-**If you hold rights in anything bundled here — or legally represent someone who does — and you raise an identified copyright or IP concern, it will be removed immediately.** A request needs three things: who you are, your standing (rights holder, or who you represent and in what capacity), and what the material is with the basis of the concern. No notice format, registration certificate or legal citation is required — that is simply so nothing is pulled on an anonymous say-so. Open an issue at <https://github.com/Retro-Jack/GenX-DOS/issues>, or email admin@genx-dos.fun if you'd rather it weren't public. Applies to everything here, not just games: titles, ROMs and BIOS images, emulator code, artwork, fonts, docs, names and marks. Full statement in [ATTRIBUTION.md](ATTRIBUTION.md#removal-on-request).
+**If you hold rights in anything bundled here — or legally represent someone who does — and you raise an identified copyright or IP concern, it will be removed immediately.** A request needs three things: who you are, your standing (rights holder, or who you represent and in what capacity), and what the material is with the basis of the concern. No notice format, registration certificate or legal citation is required — that is simply so nothing is pulled on an anonymous say-so. Open an issue at <https://github.com/Retro-Jack/GenX-DOS/issues>, or email admin@genx-dos.fun if you'd rather it weren't public. Applies to everything here, not just games: titles, ROMs and BIOS images, emulator code, artwork, fonts, docs, names and marks. Full statement in [ATTRIBUTION.md](ATTRIBUTION.md#removal-upon-request).
 
 ## License
 

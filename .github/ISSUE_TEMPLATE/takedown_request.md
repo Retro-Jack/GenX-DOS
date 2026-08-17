@@ -9,7 +9,7 @@ assignees: ''
 GenX-DOS bundles historical software on a preservation / personal-use basis
 (see ATTRIBUTION.md). If you hold rights in anything here — a title, a ROM or
 BIOS image, code, artwork, a font, a name or mark — or you legally represent
-someone who does, it will be removed immediately on request.
+someone who does, it will be removed immediately upon request.
 
 So that nothing is pulled on an anonymous say-so, a request needs to say who is
 asking and on what basis. This template covers it — no registration
