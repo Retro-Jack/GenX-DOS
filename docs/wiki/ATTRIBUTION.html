@@ -185,7 +185,7 @@ fork rather than the bundle.</p>
 <td><code>systems/odyssey2/</code></td>
 <td>libretro-o2em, custom SDL2/emscripten frontend</td>
 <td>original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack</td>
-<td>GPL-2.0+ (libretro-o2em); frontend bundled under repo terms</td>
+<td>Artistic-2.0 (libretro-o2em, verified against upstream); frontend bundled under repo terms</td>
 </tr>
 <tr>
 <td><code>systems/cpc/</code></td>
@@ -255,8 +255,9 @@ fork rather than the bundle.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="corresponding-source-for-the-gpl-binaries">Corresponding source for the GPL binaries</h3>
-<p>The GPL asks whoever distributes a binary to also make its source available.
+<h3 id="corresponding-source-for-the-engine-binaries">Corresponding source for the engine binaries</h3>
+<p>The GPL asks whoever distributes a binary to also make its source available, and
+the Artistic License asks the same of modified versions.
 The engines below ship here as compiled binaries, so this is where their source
 lives. None of it is fetched at runtime — these are links for anyone wanting to
 rebuild or inspect what we ship.</p>
@@ -326,9 +327,12 @@ rebuild or inspect what we ship.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Unresolved:</strong> <code>systems/odyssey2/COPYING</code> is the Artistic License 2.0, while the
-table above records o2em as GPL-2.0+. The two disagree and the discrepancy has
-not been chased down; treat the upstream repository as authoritative until it is.</p>
+<p><strong>o2em is Artistic-2.0, not GPL</strong> (checked upstream 17/08/2026). This entry used
+to read GPL-2.0+, which looks to have been an assumption from most libretro
+cores being GPL. <code>libretro/libretro-o2em</code> carries a <code>COPYING</code> that is the
+Artistic License 2.0, our bundled copy is byte-identical to it, and no source
+file in the core carries a GPL header. The original O2EM was Artistic-licensed
+and the libretro port kept those terms.</p>
 <h3 id="how-the-cores-are-mirrored">How the cores are mirrored</h3>
 <p>EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco, Stella,
 gambatte, handy, genesis_plus_gx, prosystem) are mirrored from <code>cdn.emulatorjs.org/stable/</code> rather than rebuilt

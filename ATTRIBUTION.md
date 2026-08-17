@@ -62,7 +62,7 @@ fork rather than the bundle.
 | `systems/atari800/`, `systems/atari400/` | atari800 v5.2.0, built from source to WASM (same core shipped in two bundles — the 400 bundle boots OS-B, the 800XL bundle boots OS-XL) | atari800 project | GPL-2.0+ |
 | `systems/atari800/atari800.wasm`, `systems/atari400/atari800.wasm` (embedded) | AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC | Avery Lee | Freely-redistributable open-source OS replacement, compiled into the WASM via `--enable-altirra_bios` (no separate ROM file ships) |
 | `systems/intv/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
-| `systems/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | GPL-2.0+ (libretro-o2em); frontend bundled under repo terms |
+| `systems/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | Artistic-2.0 (libretro-o2em, verified against upstream); frontend bundled under repo terms |
 | `systems/cpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` (status bar + muted-speaker icon patched out, plus `gx_state_*` save-state wrappers; see `systems/cpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
 | `systems/pet/pet2001/` | pet2001 (vanilla-JS PET 2001 emulator) | Thomas Skibo | BSD-2-Clause |
 | `systems/_shared-ejs/` | EmulatorJS framework | EmulatorJS team | GPL-3.0 |
@@ -75,9 +75,10 @@ fork rather than the bundle.
 | `systems/_shared-ejs/ejs/data/cores/` | genesis_plus_gx libretro core (Sega Game Gear / Master System / Mega Drive) | libretro/Genesis-Plus-GX (Eke-Eke) | non-commercial redistribution licence (see core) |
 | `systems/_shared-ejs/ejs/data/cores/` | prosystem libretro core (Atari 7800) | libretro/prosystem (Greg Stanton, libretro port) | GPL-2.0 |
 
-### Corresponding source for the GPL binaries
+### Corresponding source for the engine binaries
 
-The GPL asks whoever distributes a binary to also make its source available.
+The GPL asks whoever distributes a binary to also make its source available, and
+the Artistic License asks the same of modified versions.
 The engines below ship here as compiled binaries, so this is where their source
 lives. None of it is fetched at runtime — these are links for anyone wanting to
 rebuild or inspect what we ship.
@@ -99,9 +100,12 @@ rebuild or inspect what we ship.
 | `m100/` — VirtualT (BSD) | `systems/m100/src/` in this repo |
 | `trs80/` — sdltrs (BSD-2-Clause) | https://gitlab.com/jengun/sdltrs |
 
-**Unresolved:** `systems/odyssey2/COPYING` is the Artistic License 2.0, while the
-table above records o2em as GPL-2.0+. The two disagree and the discrepancy has
-not been chased down; treat the upstream repository as authoritative until it is.
+**o2em is Artistic-2.0, not GPL** (checked upstream 17/08/2026). This entry used
+to read GPL-2.0+, which looks to have been an assumption from most libretro
+cores being GPL. `libretro/libretro-o2em` carries a `COPYING` that is the
+Artistic License 2.0, our bundled copy is byte-identical to it, and no source
+file in the core carries a GPL header. The original O2EM was Artistic-licensed
+and the libretro port kept those terms.
 
 ### How the cores are mirrored
 
