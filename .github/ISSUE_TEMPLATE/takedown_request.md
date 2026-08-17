@@ -9,14 +9,26 @@ assignees: ''
 GenX-DOS bundles historical software on a preservation / personal-use basis
 (see ATTRIBUTION.md). If you hold rights in anything here — a title, a ROM or
 BIOS image, code, artwork, a font, a name or mark — or you legally represent
-someone who does, it is removed immediately on request. You do not need this
-template or any particular form of words; it is only here to save a round trip:
+someone who does, it is removed immediately on request.
+
+So that nothing is pulled on an anonymous say-so, a request needs to say who is
+asking and on what basis. This template covers it — no registration
+certificates, chain-of-title documents or legal citations are wanted, and a few
+sentences in your own words are fine:
 
 **The title(s) and system(s)**
 e.g. "Example Game" on the ZX Spectrum.
 
-**Your relationship to the work**
-Publisher, author, current rights holder, or authorised representative.
+**Who you are**
+A name, and the company or firm if you are acting for one.
+
+**Your standing**
+Publisher, author, current rights holder, or authorised representative — and
+if you represent someone, who, and in what capacity.
+
+**The basis of the concern**
+Briefly, what the issue is (copyright in the work, a trade mark, something
+else).
 
 **Contact** (optional)
 If you'd prefer this handled privately, email retrojack68@gmail.com instead of
