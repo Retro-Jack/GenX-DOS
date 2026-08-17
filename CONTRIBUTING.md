@@ -11,7 +11,7 @@ fixes, and small improvements are very welcome.
   reproducible.
 - **Security concerns:** see [SECURITY.md](SECURITY.md) — please report
   privately.
-- **Rights holders:** if you want a bundled title removed, open an issue —
+- **Rights holders:** if you want anything of yours removed, open an issue —
   see the takedown note in [ATTRIBUTION.md](ATTRIBUTION.md). Removal requests
   are honoured.
 

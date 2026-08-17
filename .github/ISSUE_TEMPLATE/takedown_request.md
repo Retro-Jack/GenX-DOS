@@ -7,8 +7,10 @@ assignees: ''
 ---
 
 GenX-DOS bundles historical software on a preservation / personal-use basis
-(see ATTRIBUTION.md). If you hold the rights to a bundled title and want it
-removed, it will be — please provide:
+(see ATTRIBUTION.md). If you hold rights in anything here — a title, a ROM or
+BIOS image, code, artwork, a font, a name or mark — or you represent someone
+who does, it is removed immediately on request. You do not need this template
+or any particular form of words; it is only here to save you a round trip:
 
 **The title(s) and system(s)**
 e.g. "Example Game" on the ZX Spectrum.

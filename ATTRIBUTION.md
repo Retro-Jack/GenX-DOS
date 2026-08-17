@@ -13,6 +13,33 @@ the authoritative version.
 
 ---
 
+## Removal on request — read this first if you are a rights holder
+
+**If you hold rights in anything bundled here, or represent someone who does,
+and you raise a copyright or intellectual-property concern, the material in
+question is removed immediately.** Not debated, not defended, not delayed
+pending a formal process.
+
+This applies to everything in the repository, not only games: software titles,
+system ROMs and BIOS images, emulator code, artwork, fonts, documentation,
+trade marks and names.
+
+**What you need to do:** say what the material is and that you hold the rights
+in it, or act for whoever does. Nothing else is required — no notice format, no
+legal citation, no explanation of why. A one-line message is enough.
+
+**Where to send it**
+- Open an issue: <https://github.com/Retro-Jack/GenX-DOS/issues> (there is a
+  "Content removal request" template, but a plain issue is fine)
+- Or, if you would rather it were not public: retrojack68@gmail.com
+
+Removal happens as soon as the request reaches me. GenX-DOS is a
+non-commercial preservation project run by one person; nothing here is worth
+anyone's legal costs, mine included, and no title in it matters more than a
+rights holder's wishes about their own work.
+
+---
+
 ## Site code
 
 - **DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system**
@@ -228,9 +255,8 @@ software under permissive terms:
   in the original archive are not shipped.
 
 For every other commercial title, redistribution within this repo is on a
-preservation / personal-use basis. If you are a rights holder and want a
-title removed, open an issue at
-<https://github.com/Retro-Jack/GenX-DOS/issues>.
+preservation / personal-use basis, and is withdrawn the moment a rights holder
+asks — see **Removal on request** at the top of this file.
 
 ---
 
