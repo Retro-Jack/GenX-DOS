@@ -75,6 +75,34 @@ fork rather than the bundle.
 | `systems/_shared-ejs/ejs/data/cores/` | genesis_plus_gx libretro core (Sega Game Gear / Master System / Mega Drive) | libretro/Genesis-Plus-GX (Eke-Eke) | non-commercial redistribution licence (see core) |
 | `systems/_shared-ejs/ejs/data/cores/` | prosystem libretro core (Atari 7800) | libretro/prosystem (Greg Stanton, libretro port) | GPL-2.0 |
 
+### Corresponding source for the GPL binaries
+
+The GPL asks whoever distributes a binary to also make its source available.
+The engines below ship here as compiled binaries, so this is where their source
+lives. None of it is fetched at runtime — these are links for anyone wanting to
+rebuild or inspect what we ship.
+
+| Binary we ship | Corresponding source |
+|---|---|
+| `_shared-ejs/ejs/` — EmulatorJS runtime (GPL-3.0) | https://github.com/EmulatorJS/EmulatorJS |
+| `vice_x64`, `vice_x128`, `vice_xvic`, `vice_xplus4` (GPL-2.0) | https://sourceforge.net/projects/vice-emu/ — libretro packaging: https://github.com/libretro/vice-libretro |
+| `fceumm` (GPL-2.0) | https://github.com/libretro/libretro-fceumm |
+| `gearcoleco` (GPL-3.0) | https://github.com/drhelius/Gearcoleco |
+| `stella2014` (GPL-2.0) | https://github.com/libretro/stella2014-libretro |
+| `gambatte` (GPL-2.0) | https://github.com/libretro/gambatte-libretro |
+| `handy` (zlib) | https://github.com/libretro/libretro-handy |
+| `genesis_plus_gx` (non-commercial redistribution licence) | https://github.com/libretro/Genesis-Plus-GX |
+| `prosystem` (GPL-2.0) | https://github.com/libretro/prosystem-libretro |
+| `atari400/`, `atari800/` — `atari800.wasm` (GPL-2.0+) | built by us: https://github.com/Retro-Jack/atari800 (`build-wasm.sh`, `BUILDING-WASM.md`) |
+| `odyssey2/` — o2em core | built by us from https://github.com/libretro/libretro-o2em via `systems/odyssey2/build.sh`; our SDL2 frontend (`frontend.c`) sits beside it |
+| `bbcmicro/`, `bbcmaster/` — jsbeeb (GPL-3.0+) | our fork, changes in `GENX-CHANGES.md`: https://github.com/Retro-Jack/jsbeeb |
+| `m100/` — VirtualT (BSD) | `systems/m100/src/` in this repo |
+| `trs80/` — sdltrs (BSD-2-Clause) | https://gitlab.com/jengun/sdltrs |
+
+**Unresolved:** `systems/odyssey2/COPYING` is the Artistic License 2.0, while the
+table above records o2em as GPL-2.0+. The two disagree and the discrepancy has
+not been chased down; treat the upstream repository as authoritative until it is.
+
 ### How the cores are mirrored
 
 EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco, Stella,

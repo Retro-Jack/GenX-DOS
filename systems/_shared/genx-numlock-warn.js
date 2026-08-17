@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // NumLock-off warning for VICE-family bundles that set
 // `vice_joyport_type='1'` (Numpad) — the joystick is mapped to the
 // numeric keypad, which only emits digit keycodes when NumLock is on.

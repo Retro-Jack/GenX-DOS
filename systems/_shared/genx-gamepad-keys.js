@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // Shared USB-gamepad → keyboard shim for standalone engines that have no
 // Gamepad API support of their own (the SDL-based WASM builds and
 // EmulatorJS bundles read pads natively and don't need this).

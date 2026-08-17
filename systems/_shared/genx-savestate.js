@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // GenX-DOS save/load-state buttons for EmulatorJS bundles.
 // The EmulatorJS toolbar is hidden site-wide (genx-frame.css hides
 // .ejs_menu_bar / .ejs_context_menu), so this re-exposes Save/Load State as

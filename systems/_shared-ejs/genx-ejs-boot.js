@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // Shared bootstrap for 11 EmulatorJS bundles: the 6 VICE-family machines,
 // ColecoVision, the Atari 2600 (Stella), the Game Boy / GBC (gambatte), the
 // Atari Lynx (handy), and the Sega Game Gear (genesis_plus_gx). (NES/jsnes is

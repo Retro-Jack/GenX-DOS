@@ -39,11 +39,15 @@
 <p><strong>Year:</strong> 2026</p>
 </li>
 <li>
-<p><strong>Main License:</strong> Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) for original elements.</p>
+<p><strong>Main License:</strong> Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) for original elements, EXCEPT the emulator-facing glue, which is GPL-3.0-or-later. See SCOPE below.</p>
 </li>
 </ul>
 <h2 id="statement-of-intent--scope">STATEMENT OF INTENT &amp; SCOPE</h2>
-<p>This repository is a composite work. This License applies EXCLUSIVELY to the original integration wrappers, AMIBIOS POST animations, menu tree structures, and emulator orchestration code authored by Jack Horton (Retro-Jack).</p>
+<p>This repository is a composite work, and the original material in it is under TWO licences.</p>
+<p>CC BY-NC 4.0 ....... the DOS prompt and its filesystem, the AMIBIOS POST animation, the menu tree, the home page and feature article, the wiki, the game instruction pages, and the artwork and prose throughout.</p>
+<p>GPL-3.0-or-later ... the emulator-facing glue, being systems/_shared/genx-<em>.js systems/_shared-ejs/genx-</em>.js systems/*/play.html Every file above carries an SPDX header saying so, and the licence text is in COPYING at the repo root.</p>
+<p>WHY THE SPLIT: those glue files load and drive GPL-licensed emulator engines in the same browser context, so they are best treated as part of a combined work with those engines. The GPL does not permit further restrictions to be imposed on such a work, and NonCommercial is a further restriction. Putting the glue under GPL-3.0-or-later removes the conflict at the only place it arises. It costs nothing that matters: the glue is small and specific to this project, while the work worth protecting — the prompt, the writing, the artwork and the several hundred instruction pages — stays NonCommercial.</p>
+<p>This does NOT relicense any third-party component, and it does not make the whole repository GPL.</p>
 <p>All bundled third-party elements (including, but not limited to, the underlying LGR terminal framework, jQuery libraries, system ROMs, and vendored WASM emulators) are explicitly excluded from this License. You must consult ATTRIBUTION.md and individual bundle subdirectories for the authoritative upstream licensing terms governing those components.</p>
 <p>Licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (the "License"). You may not use the original files in this repository except in compliance with the License.</p>
 <p>You may obtain a copy of the License at: <a href="https://creativecommons.org/licenses/by-nc/4.0/legalcode">https://creativecommons.org/licenses/by-nc/4.0/legalcode</a></p>

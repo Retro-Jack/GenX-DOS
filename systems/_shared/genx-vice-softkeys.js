@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // VICE RUN/STOP keyboard remap.
 //
 // Browsers capture Esc before the libretro keyboard callback can see it (it

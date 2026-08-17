@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // GenX-DOS save/load-state buttons for the standalone (non-EmulatorJS) bundles.
 // The EmulatorJS bundles use genx-savestate.js (gated on window.EJS_emulator);
 // this is the parallel for engines that expose their own JS save-state API.

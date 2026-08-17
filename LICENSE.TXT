@@ -5,14 +5,38 @@ Project:      GenX-DOS
 Author:       Jack Horton (Retro-Jack)
 Year:         2026
 Main License: Creative Commons Attribution-NonCommercial 4.0 International
-              (CC BY-NC 4.0) for original elements.
+              (CC BY-NC 4.0) for original elements, EXCEPT the emulator-facing
+              glue, which is GPL-3.0-or-later. See SCOPE below.
 ===============================================================================
 
 STATEMENT OF INTENT & SCOPE
 
-This repository is a composite work. This License applies EXCLUSIVELY to the 
-original integration wrappers, AMIBIOS POST animations, menu tree structures, 
-and emulator orchestration code authored by Jack Horton (Retro-Jack). 
+This repository is a composite work, and the original material in it is under
+TWO licences.
+
+  CC BY-NC 4.0 ....... the DOS prompt and its filesystem, the AMIBIOS POST
+                       animation, the menu tree, the home page and feature
+                       article, the wiki, the game instruction pages, and the
+                       artwork and prose throughout.
+
+  GPL-3.0-or-later ... the emulator-facing glue, being
+                         systems/_shared/genx-*.js
+                         systems/_shared-ejs/genx-*.js
+                         systems/*/play.html
+                       Every file above carries an SPDX header saying so, and
+                       the licence text is in COPYING at the repo root.
+
+WHY THE SPLIT: those glue files load and drive GPL-licensed emulator engines in
+the same browser context, so they are best treated as part of a combined work
+with those engines. The GPL does not permit further restrictions to be imposed
+on such a work, and NonCommercial is a further restriction. Putting the glue
+under GPL-3.0-or-later removes the conflict at the only place it arises. It
+costs nothing that matters: the glue is small and specific to this project,
+while the work worth protecting — the prompt, the writing, the artwork and the
+several hundred instruction pages — stays NonCommercial.
+
+This does NOT relicense any third-party component, and it does not make the
+whole repository GPL. 
 
 All bundled third-party elements (including, but not limited to, the underlying 
 LGR terminal framework, jQuery libraries, system ROMs, and vendored WASM 

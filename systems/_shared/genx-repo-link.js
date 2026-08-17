@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // genx-repo-link.js — injects a subtle bottom-centre "licence · source · readme"
 // credit onto every emulator entry page. Self-contained: it creates its
 // own <style>, so a page only needs one `<script defer src=...>` include

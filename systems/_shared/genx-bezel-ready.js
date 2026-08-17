@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // Hold the emulator screen back until the bezel around it is in place.
 //
 // Every bundle draws a CRT/console bezel as an <img> layered over a screen

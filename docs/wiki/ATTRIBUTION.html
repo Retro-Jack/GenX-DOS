@@ -255,6 +255,80 @@ fork rather than the bundle.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="corresponding-source-for-the-gpl-binaries">Corresponding source for the GPL binaries</h3>
+<p>The GPL asks whoever distributes a binary to also make its source available.
+The engines below ship here as compiled binaries, so this is where their source
+lives. None of it is fetched at runtime — these are links for anyone wanting to
+rebuild or inspect what we ship.</p>
+<table>
+<thead>
+<tr>
+<th>Binary we ship</th>
+<th>Corresponding source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_shared-ejs/ejs/</code> — EmulatorJS runtime (GPL-3.0)</td>
+<td>https://github.com/EmulatorJS/EmulatorJS</td>
+</tr>
+<tr>
+<td><code>vice_x64</code>, <code>vice_x128</code>, <code>vice_xvic</code>, <code>vice_xplus4</code> (GPL-2.0)</td>
+<td>https://sourceforge.net/projects/vice-emu/ — libretro packaging: https://github.com/libretro/vice-libretro</td>
+</tr>
+<tr>
+<td><code>fceumm</code> (GPL-2.0)</td>
+<td>https://github.com/libretro/libretro-fceumm</td>
+</tr>
+<tr>
+<td><code>gearcoleco</code> (GPL-3.0)</td>
+<td>https://github.com/drhelius/Gearcoleco</td>
+</tr>
+<tr>
+<td><code>stella2014</code> (GPL-2.0)</td>
+<td>https://github.com/libretro/stella2014-libretro</td>
+</tr>
+<tr>
+<td><code>gambatte</code> (GPL-2.0)</td>
+<td>https://github.com/libretro/gambatte-libretro</td>
+</tr>
+<tr>
+<td><code>handy</code> (zlib)</td>
+<td>https://github.com/libretro/libretro-handy</td>
+</tr>
+<tr>
+<td><code>genesis_plus_gx</code> (non-commercial redistribution licence)</td>
+<td>https://github.com/libretro/Genesis-Plus-GX</td>
+</tr>
+<tr>
+<td><code>prosystem</code> (GPL-2.0)</td>
+<td>https://github.com/libretro/prosystem-libretro</td>
+</tr>
+<tr>
+<td><code>atari400/</code>, <code>atari800/</code> — <code>atari800.wasm</code> (GPL-2.0+)</td>
+<td>built by us: https://github.com/Retro-Jack/atari800 (<code>build-wasm.sh</code>, <code>BUILDING-WASM.md</code>)</td>
+</tr>
+<tr>
+<td><code>odyssey2/</code> — o2em core</td>
+<td>built by us from https://github.com/libretro/libretro-o2em via <code>systems/odyssey2/build.sh</code>; our SDL2 frontend (<code>frontend.c</code>) sits beside it</td>
+</tr>
+<tr>
+<td><code>bbcmicro/</code>, <code>bbcmaster/</code> — jsbeeb (GPL-3.0+)</td>
+<td>our fork, changes in <code>GENX-CHANGES.md</code>: https://github.com/Retro-Jack/jsbeeb</td>
+</tr>
+<tr>
+<td><code>m100/</code> — VirtualT (BSD)</td>
+<td><code>systems/m100/src/</code> in this repo</td>
+</tr>
+<tr>
+<td><code>trs80/</code> — sdltrs (BSD-2-Clause)</td>
+<td>https://gitlab.com/jengun/sdltrs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Unresolved:</strong> <code>systems/odyssey2/COPYING</code> is the Artistic License 2.0, while the
+table above records o2em as GPL-2.0+. The two disagree and the discrepancy has
+not been chased down; treat the upstream repository as authoritative until it is.</p>
 <h3 id="how-the-cores-are-mirrored">How the cores are mirrored</h3>
 <p>EmulatorJS-flavoured libretro cores (FCEUmm, VICE family, gearcoleco, Stella,
 gambatte, handy, genesis_plus_gx, prosystem) are mirrored from <code>cdn.emulatorjs.org/stable/</code> rather than rebuilt

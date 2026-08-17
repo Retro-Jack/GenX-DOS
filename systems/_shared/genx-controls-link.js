@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // Injects the bottom-right "controls" link into every emulator's entry
 // HTML. Each bundle has a controls.html alongside its play.html; this
 // script auto-creates the <a> + SVG icon at runtime so the HTML stays

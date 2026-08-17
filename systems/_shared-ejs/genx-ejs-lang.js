@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // Stop EmulatorJS chasing a regional English translation that was never there.
 //
 // EJS short-circuits only two locales without a fetch — "en" and "en-US"

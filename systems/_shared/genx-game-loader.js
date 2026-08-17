@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // Common "fetch games.json + look up game by ?game=KEY" helper used by
 // every play.html that follows the GenX-DOS pattern. Returns
 // {key, game} on success; on failure, renders an error message into

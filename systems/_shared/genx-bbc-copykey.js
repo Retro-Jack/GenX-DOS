@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // GenX-DOS COPY soft button for the jsbeeb (BBC Micro / Master) bundles.
 //
 // The BBC's COPY key has no obvious PC equivalent — jsbeeb maps it to the PC

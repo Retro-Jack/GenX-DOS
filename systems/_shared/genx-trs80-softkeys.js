@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Part of GenX-DOS. This file runs alongside GPL-licensed emulator
+// engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // TRS-80 CLEAR soft button.
 //
 // Most TRS-80 arcade games use the CLEAR key to start play (and CLEAR has no
