@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 ### Added
+- **A plain removal-on-request statement, at the top of ATTRIBUTION and in the README.** If a rights holder — or someone acting for one — raises a copyright or IP concern, the material goes immediately: no formal notice, no legal citation, no explanation required, and no argument. It covers everything here rather than only games: titles, system ROMs and BIOS images, emulator code, artwork, fonts, documentation, names and marks. The previous wording was scattered across four files, softer than intended, and read as though it applied to bundled titles alone; the issue template and CONTRIBUTING now say the same thing.
 - **`AI-DISCLAIMER.md`** — a short statement on the use of AI in building GenX-DOS: what it assisted with, and what it did not decide. Imported into the wiki like the other root documents, so it reads on the site as well as on GitHub. Linked from the foot of the home page, under the licence line — it belongs with the statements about the work rather than among the "Go further" cards, which are a fixed three.
 
 ### Changed
