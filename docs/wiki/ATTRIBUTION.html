@@ -482,17 +482,38 @@ glad to say so.</p>
 <li><code>systems/electron/jquery/jquery-1.9.1.js</code> + <code>jquery-ui-1.10.3.custom.min.js</code> —
   jQuery 1.9.1 and jQuery UI 1.10.3 custom build, MIT — required by ElkJS
   upstream. Kept as-is to avoid divergence from the ElkJS source.</li>
-<li><code>systems/electron/</code> — ElkJS (© Darren Coles 2013) is <strong>locally patched</strong> from
+<li>
+<p><code>systems/electron/</code> — ElkJS (© Darren Coles 2013) is <strong>locally patched</strong> from
   the upstream source: <code>display.js</code> row-doubling (removes upstream's baked-in
   scanlines), <code>sound.js</code> (adds the <code>soundInit()</code> AudioContext resume the upstream
   <code>soundToggle()</code> referenced but never defined, plus a 25% output mix), and
   <code>elkjs.js</code> (<code>resumeAudio()</code>, to start sound on a user gesture). The upstream
-  duplicate jQuery 1.7.2 was removed. See CHANGELOG / wiki for the why.</li>
+  duplicate jQuery 1.7.2 was removed. See CHANGELOG / wiki for the why.</p>
+</li>
+<li>
+<p><code>systems/js99er/lib/jquery-1.11.0.min.js</code> — jQuery 1.11.0, MIT — required by
+  js99er upstream. A second, separate copy from the ElkJS one above; the two
+  bundles are independent and neither shares the other's build.</p>
+</li>
+<li><code>systems/apple2/dist/39795c0b4513de014cf8.woff</code>,
+  <code>b7bcc075b395c14ce8c2.woff2</code> — <strong>Bootstrap Icons</strong> (MIT), pulled in by the
+  apple2js webpack build. The filenames are content hashes, so the font is only
+  identifiable from its internal name table — recorded here so it is not lost
+  the next time the bundle is refreshed.</li>
+<li><code>systems/_shared-ejs/ejs/data/emulator.min.js</code> — bundles <strong>Font Awesome Free
+  6.5.1</strong> (Fonticons, Inc.) for its UI icons: icons CC BY 4.0, fonts SIL OFL
+  1.1, code MIT. The upstream notice is retained in the minified file.</li>
 </ul>
 <p>Other emulator bundles vendor their upstream dependencies; where a bundle's
 runtime is locally modified (e.g. ElkJS above, the atari800 / CPC / o2em WASM
-rebuilds) the change is recorded here or in the CHANGELOG. The upstream
-<code>LICENSE</code> / <code>COPYING</code> files in each bundle directory cover the originals.</p>
+rebuilds) the change is recorded here or in the CHANGELOG.</p>
+<p><strong>On upstream licence files.</strong> Only the bundles we compiled ourselves ship the
+original licence text alongside the binary — <code>atari400/</code>, <code>atari800/</code>,
+<code>bbcmicro/</code>, <code>bbcmaster/</code>, <code>odyssey2/</code> (all <code>COPYING</code>) and <code>m100/src/LICENSE</code>.
+The remaining bundles carry none, so the table above is the record of what each
+one is and what licence it falls under, and the upstream link in each row is the
+route to the full text. Do not read the absence of a <code>LICENSE</code> file in a bundle
+as an unlicensed component.</p>
 <hr />
 <h2 id="how-to-add-a-new-attribution-entry">How to add a new attribution entry</h2>
 <p>When adding code or assets to the repo:</p>

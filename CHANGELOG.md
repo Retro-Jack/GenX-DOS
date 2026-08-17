@@ -4,6 +4,8 @@
 - **`AI-DISCLAIMER.md`** — a short statement on the use of AI in building GenX-DOS: what it assisted with, and what it did not decide. Imported into the wiki like the other root documents, so it reads on the site as well as on GitHub. Linked from the foot of the home page, under the licence line — it belongs with the statements about the work rather than among the "Go further" cards, which are a fixed three.
 
 ### Changed
+- **ATTRIBUTION gained three credits that had been shipping unnamed**, all found by walking the tree rather than the document: jQuery 1.11.0 in the TI-99/4A bundle (a separate copy from the Electron one already listed), **Bootstrap Icons** in the Apple ][+ bundle — its filenames are webpack content hashes, so it is only identifiable from the font's internal name table — and **Font Awesome Free 6.5.1** inside the EmulatorJS runtime.
+- **Corrected a claim in ATTRIBUTION about upstream licence files.** It said the `LICENSE` / `COPYING` file in each bundle covered that bundle's original. Only six carry one — the builds we compiled ourselves. The section now says which, and that for the rest the table and its upstream links are the record, so a missing file is not read as an unlicensed component.
 - **`deploy.sh` now says why it cannot connect.** When the deploy key is held in an `ssh-agent` and the agent has not been unlocked for the session, the connection fails with `Permission denied (publickey)` — which reads as a rejected key and sends you looking at the server. A preflight check now names the real cause and the one command that fixes it, and runs before the build rather than after it, so a locked key costs a moment instead of a full staging build.
 
 ## [1.6.1] - 2026-08-16

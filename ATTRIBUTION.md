@@ -294,10 +294,29 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
   `elkjs.js` (`resumeAudio()`, to start sound on a user gesture). The upstream
   duplicate jQuery 1.7.2 was removed. See CHANGELOG / wiki for the why.
 
+- `systems/js99er/lib/jquery-1.11.0.min.js` — jQuery 1.11.0, MIT — required by
+  js99er upstream. A second, separate copy from the ElkJS one above; the two
+  bundles are independent and neither shares the other's build.
+- `systems/apple2/dist/39795c0b4513de014cf8.woff`,
+  `b7bcc075b395c14ce8c2.woff2` — **Bootstrap Icons** (MIT), pulled in by the
+  apple2js webpack build. The filenames are content hashes, so the font is only
+  identifiable from its internal name table — recorded here so it is not lost
+  the next time the bundle is refreshed.
+- `systems/_shared-ejs/ejs/data/emulator.min.js` — bundles **Font Awesome Free
+  6.5.1** (Fonticons, Inc.) for its UI icons: icons CC BY 4.0, fonts SIL OFL
+  1.1, code MIT. The upstream notice is retained in the minified file.
+
 Other emulator bundles vendor their upstream dependencies; where a bundle's
 runtime is locally modified (e.g. ElkJS above, the atari800 / CPC / o2em WASM
-rebuilds) the change is recorded here or in the CHANGELOG. The upstream
-`LICENSE` / `COPYING` files in each bundle directory cover the originals.
+rebuilds) the change is recorded here or in the CHANGELOG.
+
+**On upstream licence files.** Only the bundles we compiled ourselves ship the
+original licence text alongside the binary — `atari400/`, `atari800/`,
+`bbcmicro/`, `bbcmaster/`, `odyssey2/` (all `COPYING`) and `m100/src/LICENSE`.
+The remaining bundles carry none, so the table above is the record of what each
+one is and what licence it falls under, and the upstream link in each row is the
+route to the full text. Do not read the absence of a `LICENSE` file in a bundle
+as an unlicensed component.
 
 ---
 
