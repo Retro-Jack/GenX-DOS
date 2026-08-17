@@ -15,9 +15,9 @@ the authoritative version.
 
 ## Removal on request — read this first if you are a rights holder
 
-**If you hold rights in anything bundled here, or represent someone who does,
-and you raise a copyright or intellectual-property concern, the material in
-question is removed immediately.** Not debated, not defended, not delayed
+**If you hold rights in anything bundled here, or legally represent someone
+who does, and you raise a copyright or intellectual-property concern, the
+material in question is removed immediately.** Not debated, not defended, not delayed
 pending a formal process.
 
 This applies to everything in the repository, not only games: software titles,

@@ -162,7 +162,7 @@ Prefer a narrative read? **[Booting a Museum in a Browser Tab](https://genx-dos.
 
 ## Removal on request
 
-**If you hold rights in anything bundled here — or represent someone who does — and you raise a copyright or IP concern, it is removed immediately.** No formal notice, legal citation or explanation is needed; say what it is and that it's yours. Open an issue at <https://github.com/Retro-Jack/GenX-DOS/issues>, or email retrojack68@gmail.com if you'd rather it weren't public. Applies to everything here, not just games: titles, ROMs and BIOS images, emulator code, artwork, fonts, docs, names and marks. Full statement in [ATTRIBUTION.md](ATTRIBUTION.md#removal-on-request--read-this-first-if-you-are-a-rights-holder).
+**If you hold rights in anything bundled here — or legally represent someone who does — and you raise a copyright or IP concern, it is removed immediately.** No formal notice, legal citation or explanation is needed; say what it is and that it's yours. Open an issue at <https://github.com/Retro-Jack/GenX-DOS/issues>, or email retrojack68@gmail.com if you'd rather it weren't public. Applies to everything here, not just games: titles, ROMs and BIOS images, emulator code, artwork, fonts, docs, names and marks. Full statement in [ATTRIBUTION.md](ATTRIBUTION.md#removal-on-request--read-this-first-if-you-are-a-rights-holder).
 
 ## License
 

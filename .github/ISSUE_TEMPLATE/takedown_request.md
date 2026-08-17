@@ -8,9 +8,9 @@ assignees: ''
 
 GenX-DOS bundles historical software on a preservation / personal-use basis
 (see ATTRIBUTION.md). If you hold rights in anything here — a title, a ROM or
-BIOS image, code, artwork, a font, a name or mark — or you represent someone
-who does, it is removed immediately on request. You do not need this template
-or any particular form of words; it is only here to save you a round trip:
+BIOS image, code, artwork, a font, a name or mark — or you legally represent
+someone who does, it is removed immediately on request. You do not need this
+template or any particular form of words; it is only here to save a round trip:
 
 **The title(s) and system(s)**
 e.g. "Example Game" on the ZX Spectrum.
