@@ -97,10 +97,11 @@
 </blockquote>
 <h2 id="clear-softkey">CLEAR softkey</h2>
 <p>Most TRS-80 arcade games start with the <strong>CLEAR</strong> key, which has no obvious modern-keyboard equivalent. sdltrs maps CLEAR to PC <strong>Home</strong> (or Delete), so <code>systems/_shared/genx-trs80-softkeys.js</code> adds a <strong>CLEAR</strong> button that dispatches a synthetic <code>Home</code> keydown/keyup — emscripten SDL2 doesn't check <code>isTrusted</code>, so the synthetic key reaches the emulator. <code>Esc</code> is the TRS-80 BREAK key.</p>
-<p>Two things about it changed in August 2026, both worth knowing if you write another soft key:</p>
+<p>Three things about it changed in August 2026, all worth knowing if you write another soft key:</p>
 <ul>
 <li><strong>It dispatches once, at <code>document</code>.</strong> It used to fire at document, window, body <em>and</em> canvas "to be safe". Those events bubble, so one click reached <code>window</code> four times over and the machine saw four CLEARs. The same shape in the Atari script crashed atari800 outright when a player clicked impatiently.</li>
 <li><strong>It sits under the machine, in the amber style</strong>, alongside the Atari console keys rather than alone in the top-left corner. It was previously grey-on-grey at 0.6 opacity, which read as a <em>disabled</em> control — the one button that starts most of the games, looking like it did nothing.</li>
+<li><strong>It only appears on the six games that use CLEAR.</strong> <code>_shared/genx-softkey-policy.js</code> consults <code>softkeys.json</code>, generated from the gamedocs' Controls tables by <code>tools/build-softkey-map.py</code>. Gating on the documentation meant the documentation had to be right, and it wasn't — only Defense Command named CLEAR, though Galaxy Invasion, Cosmic Fighter and Attack Force need it to start. Each game's own text was read out of its <code>.cmd</code> to settle it; <code>strings</code> on a TRS-80 binary gives you the title screen verbatim, which is a far better source than memory.</li>
 </ul>
 <h2 id="save--load-state">Save / load state</h2>
 <p>sdltrs has a working save-state in C (<code>trs_state_save.c</code>), but it isn't wired to the page's save/load menus yet — so the TRS-80 bundle ships without them for now. The hooks are there for a future pass.</p>

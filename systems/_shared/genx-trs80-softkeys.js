@@ -71,7 +71,7 @@
     btn.type = 'button';
     btn.textContent = 'CLEAR';
     btn.title =
-      'Sends the TRS-80 CLEAR key (keyboard shortcut: Home or Delete) — most games start with CLEAR';
+      'Sends the TRS-80 CLEAR key (keyboard shortcut: Home or Delete) — this game uses it';
     btn.addEventListener('click', () => {
       fireClear();
       btn.blur();
@@ -79,9 +79,22 @@
     document.body.appendChild(btn);
   };
 
+  // Only on the games that actually use CLEAR. Six of the ten do — the rest
+  // start on ENTER or a fire key, and a CLEAR button there is an instruction to
+  // press something the game ignores. See genx-softkey-policy.js; the map comes
+  // from the gamedocs, so this follows the documentation rather than a second
+  // list that would drift away from it.
+  var gate = function () {
+    var game = new URLSearchParams(location.search).get('game');
+    if (!window.GenXSoftKeys) return ready(); // policy script absent: fail open
+    window.GenXSoftKeys.allowed('trs80', game, 'CLEAR').then(function (ok) {
+      if (ok) ready();
+    });
+  };
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', ready);
+    document.addEventListener('DOMContentLoaded', gate);
   } else {
-    ready();
+    gate();
   }
 })();

@@ -1,0 +1,32 @@
+{
+  "bbcmaster/ballistx": [
+    "COPY"
+  ],
+  "bbcmaster/bonecrun": [
+    "COPY"
+  ],
+  "bbcmaster/palaceofmagic": [
+    "COPY"
+  ],
+  "bbcmicro/thrust": [
+    "COPY"
+  ],
+  "trs80/attack": [
+    "CLEAR"
+  ],
+  "trs80/castle": [
+    "CLEAR"
+  ],
+  "trs80/cosmic": [
+    "CLEAR"
+  ],
+  "trs80/crazypnt": [
+    "CLEAR"
+  ],
+  "trs80/defense": [
+    "CLEAR"
+  ],
+  "trs80/galaxy": [
+    "CLEAR"
+  ]
+}

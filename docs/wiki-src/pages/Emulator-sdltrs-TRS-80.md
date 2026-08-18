@@ -98,10 +98,11 @@ So the rule for adding a title here: a `.cmd` that loads **low**, below where a 
 
 Most TRS-80 arcade games start with the **CLEAR** key, which has no obvious modern-keyboard equivalent. sdltrs maps CLEAR to PC **Home** (or Delete), so `systems/_shared/genx-trs80-softkeys.js` adds a **CLEAR** button that dispatches a synthetic `Home` keydown/keyup — emscripten SDL2 doesn't check `isTrusted`, so the synthetic key reaches the emulator. `Esc` is the TRS-80 BREAK key.
 
-Two things about it changed in August 2026, both worth knowing if you write another soft key:
+Three things about it changed in August 2026, all worth knowing if you write another soft key:
 
 - **It dispatches once, at `document`.** It used to fire at document, window, body *and* canvas "to be safe". Those events bubble, so one click reached `window` four times over and the machine saw four CLEARs. The same shape in the Atari script crashed atari800 outright when a player clicked impatiently.
 - **It sits under the machine, in the amber style**, alongside the Atari console keys rather than alone in the top-left corner. It was previously grey-on-grey at 0.6 opacity, which read as a *disabled* control — the one button that starts most of the games, looking like it did nothing.
+- **It only appears on the six games that use CLEAR.** `_shared/genx-softkey-policy.js` consults `softkeys.json`, generated from the gamedocs' Controls tables by `tools/build-softkey-map.py`. Gating on the documentation meant the documentation had to be right, and it wasn't — only Defense Command named CLEAR, though Galaxy Invasion, Cosmic Fighter and Attack Force need it to start. Each game's own text was read out of its `.cmd` to settle it; `strings` on a TRS-80 binary gives you the title screen verbatim, which is a far better source than memory.
 
 ## Save / load state
 

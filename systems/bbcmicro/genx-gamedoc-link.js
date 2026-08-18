@@ -31,6 +31,10 @@
     .pop()
     .replace(/\.[^.]+$/, '');
   var key = DISC_TO_KEY[name];
+  // Published for the soft-key policy (genx-softkey-policy.js), which needs the
+  // same disc-to-gamedoc mapping and should not keep a second copy of it.
+  window.GENX_GAME_KEY = key || null;
+  window.GENX_SYSTEM = 'bbcmicro';
   if (!key) return;
   var a = document.querySelector('.gx-controls-link');
   // dist/index.html lives at systems/bbcmicro/dist/, so docs/games/ is three

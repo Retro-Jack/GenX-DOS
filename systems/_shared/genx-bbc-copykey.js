@@ -76,9 +76,22 @@
     document.body.appendChild(btn);
   };
 
+  // Only on the games that actually use COPY — four of the twenty across the
+  // two BBC bundles. The key is an in-game "continue"/action key in those and
+  // means nothing in the rest. The game key comes from genx-gamedoc-link.js,
+  // which already owns the disc-to-gamedoc map and runs before this script.
+  var gate = function () {
+    var system = window.GENX_SYSTEM;
+    var game = window.GENX_GAME_KEY;
+    if (!window.GenXSoftKeys) return ready(); // policy script absent: fail open
+    window.GenXSoftKeys.allowed(system, game, 'COPY').then(function (ok) {
+      if (ok) ready();
+    });
+  };
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', ready);
+    document.addEventListener('DOMContentLoaded', gate);
   } else {
-    ready();
+    gate();
   }
 })();

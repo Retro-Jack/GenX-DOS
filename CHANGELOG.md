@@ -1,6 +1,15 @@
 ## [Unreleased]
 
 ### Changed
+- **Soft keys now appear only on the games that use them.** A CLEAR button on a game that never asks for CLEAR is noise, and worse, it implies the game wants it — a player pressing it learns only that it does nothing. The button now shows where the game's own page says the key is used: **six of the ten TRS-80 games**, and **four of the twenty BBC games**, so twenty buttons that meant nothing have gone.
+  The map is generated from each gamedoc's *Controls* table by `tools/build-softkey-map.py`, so the button and the documentation cannot disagree — add a CLEAR row to a gamedoc and the button appears next build. It reads the Controls table only: the "Getting started" text used to hedge with "press the key it names to begin (often CLEAR)", which was true of nine TRS-80 pages and told a reader nothing. If the map can't be loaded the keys all show, because hiding the only discoverable way to start a game is far worse than one extra button.
+- **The TRS-80 picture is inset slightly** rather than running to the very edge of the glass, so a little of the CRT's black surround shows all round.
+
+### Fixed
+- **Six TRS-80 gamedocs didn't mention the key that starts the game.** Making the gamedocs decide which buttons appear meant checking they were right, and they weren't: only Defense Command named CLEAR in its controls, though Galaxy Invasion, Cosmic Fighter and Attack Force all need it to *start* — Cosmic Fighter's own title screen says so in as many words. Crazy Painter uses it in play, and Space Castle takes CLEAR with BREAK to restart. Each game's text was read out of its own binary rather than inferred.
+- **The TRS-80 controls page said CLEAR was "hyperspace in a few" games. It isn't.** Super Nova's hyperspace is the **spacebar**; no game in the lineup uses CLEAR for it. The page now names which games use CLEAR and what for.
+
+### Changed
 - **The BBC COPY button has joined the rest of the soft keys under the machine.** It was the last one still alone in the top-left, so the family disagreed with itself — TRS-80 CLEAR and the Atari console keys had already moved. Same amber style, same place. Being at the bottom it also clears the suspended-audio banner, which is fixed to the top at a very high z-index and had been burying it at exactly the moment a player goes looking for a control.
 
 ### Added
