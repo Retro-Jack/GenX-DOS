@@ -82,7 +82,11 @@
     const style = document.createElement('style');
     style.textContent = `
       #genx-atari-console {
-        position: fixed; top: calc(8px + var(--gx-banner-h, 0px)); left: 8px;
+        /* Under the set, matching the 2600 and 7800 panels — where a console
+             sat, rather than floating over the wallpaper. At the bottom it also
+             clears the suspended-audio banner without the --gx-banner-h offset
+             the top-left placement needed. */
+          position: fixed; bottom: 58px; left: 50%; transform: translateX(-50%);
         z-index: 100;
         display: flex; gap: 6px;
       }

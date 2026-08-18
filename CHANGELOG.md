@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 ### Changed
+- **All the Atari soft keys now sit under the set.** The 400 and 800XL keys were top-left while the 2600 panel and the 7800 keys sat between the TV's legs, so the family disagreed with itself. All four are centred beneath the screen now, where a console lived — and being at the bottom they clear the suspended-audio banner without needing the offset the top-left placement required.
 - **40 gamedocs now name the button, not just the key.** Every instruction that said "Press F4 Start" or "Press Enter (Reset)" now reads "Click START (or press F4)" — the button first, since it is the thing on screen, with the key kept as the alternative. 81 replacements across the Atari 400, 800XL, 2600 and 7800, applied from an explicit phrase map rather than a loose pattern, ordered longest-first so overlapping phrasings could not double-apply. The bold names match the on-screen legends exactly.
 
 ### Added
