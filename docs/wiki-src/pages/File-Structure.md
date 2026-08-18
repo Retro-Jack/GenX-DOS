@@ -58,6 +58,7 @@ genx-dos/
 └── systems/
     ├── _shared/             shared JS + CSS + assets for every gamedoc + controls.html (360 pages) + play.html
     │   ├── genx-*.js        controls-link, game-loader, numlock-warn, vice-softkeys,
+    │   │                    apple2-flipdisk (two-sided disks),
     │   │                    savestate(-std), savestate-transfer (export/restore),
     │   │                    bezel-ready (holds the screen until the bezel lands),
     │   │                    audio-banner, bbc-copykey, trs80-softkeys, gamepad-keys, repo-link
