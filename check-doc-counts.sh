@@ -95,6 +95,45 @@ else
 fi
 echo
 
+# ---- stale prose: terms that describe a state the tree left behind ------
+# Counts drift loudly and this script has always caught them. WORDING drifts
+# silently: when the soft keys moved out of the top-left corner, four documents
+# went on describing them there, and nothing here noticed — it was found by
+# eye, months later, the same way the article's engine count was.
+#
+# So: a blocklist of phrases that were true once. Each is a term plus the paths
+# it may legitimately still appear in — history is not drift, and the CHANGELOG
+# is nothing but history, so it is never searched. Add a line whenever you
+# change something the docs describe in prose rather than in numbers.
+#
+#   term <TAB> allowed-path-regex (empty = allowed nowhere)
+echo "Stale prose (terms describing a state the tree has left):"
+STALE_PROSE=$(cat <<'EOF'
+top-left	genx-bbc-copykey|genx-trs80-softkeys|genx-atari-console|Emulator-sdltrs-TRS-80.md
+TRS-80 Model I 	ATTRIBUTION.md|Emulator-sdltrs-TRS-80.md
+Level II	ATTRIBUTION.md|Emulator-sdltrs-TRS-80.md
+TRS80.png	
+elimintr	
+Eliminator	Emulator-sdltrs-TRS-80.md
+jsvecx	Roadmap.md
+EOF
+)
+prose_hits=0
+while IFS=$'\t' read -r term allow; do
+  [ -z "$term" ] && continue
+  hits=$(grep -rln -- "$term" README.md ATTRIBUTION.md AI-DISCLAIMER.md CONTRIBUTING.md \
+           SECURITY.md index.html docs/article/index.html docs/wiki-src/pages \
+           systems/*/controls.html systems/_shared/*.js 2>/dev/null)
+  if [ -n "$allow" ]; then hits=$(printf '%s\n' "$hits" | grep -vE "$allow"); fi
+  hits=$(printf '%s\n' "$hits" | grep -c . )
+  if [ "$hits" != 0 ]; then
+    bad "stale wording" "\"$term\" still in $hits file(s) outside its allowed places"
+    prose_hits=1
+  fi
+done <<< "$STALE_PROSE"
+[ "$prose_hits" = 0 ] && ok "stale wording" "no retired phrasing found"
+echo
+
 # ---- social card: an image, so just restate what it should read ---------
 echo "Social card (docs/images/genx-social.png) — cannot be parsed; its stats"
 echo "  line should read:  $GAMES games · $SUBSYS systems · 100% self-hosted"
