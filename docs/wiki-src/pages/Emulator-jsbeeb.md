@@ -26,7 +26,7 @@ jsbeeb exposes the running machine as `window.processor`, and its own rewind fea
 
 ## The COPY soft button
 
-The BBC's COPY key has no obvious PC equivalent — jsbeeb maps it to `End` (also Right-Ctrl / F11). Several BBC titles use it (as an in-game "continue" or action key; the BBC's Delete = freeze), so `_shared/genx-bbc-copykey.js` adds a clickable **COPY** button (top-left, in the GenX button style) that dispatches a synthetic `End`. jsbeeb listens for keydown on `document` and reads `event.which`/`keyCode` (no `isTrusted` check), so the synthetic key maps cleanly to COPY — the same synthetic-event trick the VICE RUN/STOP keyboard remap uses. Included in both `bbcmicro/` and `bbcmaster/` dist pages.
+The BBC's COPY key has no obvious PC equivalent — jsbeeb maps it to `End` (also Right-Ctrl / F11). Several BBC titles use it (as an in-game "continue" or action key; the BBC's Delete = freeze), so `_shared/genx-bbc-copykey.js` adds a clickable **COPY** button (under the machine, in the GenX button style) that dispatches a synthetic `End`. jsbeeb listens for keydown on `document` and reads `event.which`/`keyCode` (no `isTrusted` check), so the synthetic key maps cleanly to COPY — the same synthetic-event trick the VICE RUN/STOP keyboard remap uses. Included in both `bbcmicro/` and `bbcmaster/` dist pages.
 
 ## USB gamepad support (the fork)
 

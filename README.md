@@ -136,7 +136,7 @@ ROMs are bundled locally — nothing is fetched at runtime.
 
 The six VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4, C128) share a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to **Scroll Lock** + **Pause/Break** via `systems/_shared/genx-vice-softkeys.js` (RESTORE stays on the libretro default Page Up). The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing; see the wiki for the migration story.
 
-The BBC bundles (jsbeeb) add a top-left **COPY** button via `systems/_shared/genx-bbc-copykey.js` — the BBC COPY key maps to the PC End key, which isn't obvious, so titles that use it (as an in-game "continue" or action key) get a click target. The TRS-80 Model III (sdltrs) likewise adds a **CLEAR** button, under the machine, via `systems/_shared/genx-trs80-softkeys.js`.
+The BBC bundles (jsbeeb) add a **COPY** button under the machine via `systems/_shared/genx-bbc-copykey.js` — the BBC COPY key maps to the PC End key, which isn't obvious, so titles that use it (as an in-game "continue" or action key) get a click target. The TRS-80 Model III (sdltrs) likewise adds a **CLEAR** button, under the machine, via `systems/_shared/genx-trs80-softkeys.js`.
 
 ## USB gamepads
 

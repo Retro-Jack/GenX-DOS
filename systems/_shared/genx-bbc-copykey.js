@@ -5,10 +5,11 @@
 //
 // The BBC's COPY key has no obvious PC equivalent — jsbeeb maps it to the PC
 // End key (also Right-Ctrl / F11). Several BBC games use COPY (as an in-game
-// "continue" or action key), so this adds a clickable COPY button,
-// top-left, in the same style as the VICE RUN/STOP softkey. jsbeeb listens for
-// keydown on `document` and reads `event.which/keyCode` (no isTrusted check),
-// so a synthetic End event maps cleanly to COPY.
+// "continue" or action key), so this adds a clickable COPY button under the
+// machine, in the same amber style and the same place as the TRS-80 CLEAR and
+// the Atari console keys. jsbeeb listens for keydown on `document` and reads
+// `event.which/keyCode` (no isTrusted check), so a synthetic End event maps
+// cleanly to COPY.
 //
 // Include via one tag in each jsbeeb dist/index.html:
 //   <script defer src="../../_shared/genx-bbc-copykey.js"></script>
@@ -23,16 +24,18 @@
       bubbles: true,
       cancelable: true,
     };
-    const targets = [document, window, document.body];
-    const cv = document.querySelector('#screen, canvas');
-    if (cv) targets.push(cv);
-    for (const t of targets) {
-      try {
-        t.dispatchEvent(new KeyboardEvent('keydown', init));
-        setTimeout(() => t.dispatchEvent(new KeyboardEvent('keyup', init)), 80);
-      } catch (_) {
-        /* swallow */
-      }
+    // ONE dispatch, at document. Firing at document + window + body + canvas
+    // "to be safe" is not safe: those events bubble, so a single click reaches
+    // window four times over and the emulator sees four presses. The same
+    // shape crashed atari800 outright when a player clicked impatiently.
+    try {
+      document.dispatchEvent(new KeyboardEvent('keydown', init));
+      setTimeout(
+        () => document.dispatchEvent(new KeyboardEvent('keyup', init)),
+        80,
+      );
+    } catch (_) {
+      /* swallow */
     }
   };
 
@@ -40,8 +43,13 @@
     if (document.getElementById('genx-bbc-copy')) return;
     const style = document.createElement('style');
     style.textContent = `
+      /* Under the machine, matching the TRS-80 CLEAR and the Atari console
+         keys — the soft keys should read as one family across the site. At the
+         bottom it also clears the suspended-audio banner, which is fixed to the
+         top at a very high z-index and used to bury this button at exactly the
+         moment a player was hunting for a control. */
       #genx-bbc-copy {
-        position: fixed; top: 8px; left: 8px;
+        position: fixed; bottom: 58px; left: 50%; transform: translateX(-50%);
         z-index: 100;
         color: rgba(255, 176, 0, 0.75); background: #000;
         border: 1px solid rgba(255, 176, 0, 0.35); border-radius: 4px;
@@ -51,6 +59,7 @@
         transition: color 0.15s ease, border-color 0.15s ease;
       }
       #genx-bbc-copy:hover { color: #ff8800; border-color: #ff8800; }
+      #genx-bbc-copy:focus-visible { outline: 2px solid #ff8800; outline-offset: 2px; }
     `;
     document.head.appendChild(style);
 

@@ -1,5 +1,14 @@
 ## [Unreleased]
 
+### Changed
+- **The BBC COPY button has joined the rest of the soft keys under the machine.** It was the last one still alone in the top-left, so the family disagreed with itself — TRS-80 CLEAR and the Atari console keys had already moved. Same amber style, same place. Being at the bottom it also clears the suspended-audio banner, which is fixed to the top at a very high z-index and had been burying it at exactly the moment a player goes looking for a control.
+
+### Added
+- **`check-doc-counts.sh` now checks wording, not just numbers.** Counts have always drifted loudly and the script caught them; *prose* drifted silently — when the soft keys moved out of the top-left corner, several documents went on describing them there and nothing noticed. There is now a blocklist of phrases that were true once, each with the paths it may legitimately still appear in, since history is not drift and a comment explaining what a control used to do is not a stale claim. It found two pages on its first run — both BBC controls pages still told players the COPY button was top-left.
+
+### Fixed
+- **The BBC COPY key was being delivered four times per click.** The same bug already fixed in the Atari and TRS-80 scripts, and the last copy of it: the synthetic key was dispatched at `document`, `window`, `body` and the canvas, and those events bubble. One dispatch now, at `document`.
+
 ### Fixed
 - **The TRS-80 screen was dropping pixel rows, and taking the tops off letters with them.** "High Score" read as "-igh Score" and "Space" as "Scace". The canvas renders at 1024×768 and the bezel cutout is smaller, so the browser is always scaling it *down* — and it was told to scale with nearest-neighbour, which does not average pixels, it discards them. On a TRS-80 character twelve pixels tall that is enough to remove the top of the glyph. It now downscales smoothly, so every row survives. A leftover `transform: scale()` from the Model I bezel went at the same time — it was shrinking the picture inside its own hole and making the scale factor worse. Nearest-neighbour is still right everywhere else: every other bundle renders smaller than its cutout and scales *up*, which is the case it is good at.
 
