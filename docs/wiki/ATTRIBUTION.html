@@ -175,10 +175,16 @@ fork rather than the bundle.</p>
 <td>BSD-2-Clause</td>
 </tr>
 <tr>
+<td><code>systems/trs80/model3.rom</code></td>
+<td>TRS-80 Model III ROM (14 KB)</td>
+<td>© Tandy / Microsoft</td>
+<td>Bundled for emulator-only use; fetched by the page and written into the emulator's in-memory filesystem at boot</td>
+</tr>
+<tr>
 <td><code>systems/trs80/sdltrs.wasm</code> (embedded)</td>
 <td>TRS-80 Model I Level II BASIC ROM (12 KB)</td>
 <td>© Tandy / Microsoft</td>
-<td>Bundled for emulator-only use; embedded into the WASM at build time via <code>--embed-file</code> (no separate ROM file ships)</td>
+<td>Bundled for emulator-only use; embedded into the WASM at build time via <code>--embed-file</code>. Left in place from the Model I build; the bundle boots the Model III ROM above</td>
 </tr>
 <tr>
 <td><code>systems/js99er/</code></td>
@@ -415,15 +421,18 @@ Both verified June 2026. We mirror the <code>nightly</code> builds of these two 
   wrappers around the core's <code>retro_serialize</code>/<code>retro_unserialize</code> to
   expose save/load state to the page (with <code>HEAPU8</code> in
   <code>EXPORTED_RUNTIME_METHODS</code>).</li>
-<li><strong>sdltrs (TRS-80 Model I)</strong> — built from <code>jengun/sdltrs</code>
+<li><strong>sdltrs (TRS-80 Model III)</strong> — built from <code>jengun/sdltrs</code>
   (gitlab.com/jengun/sdltrs) to WASM via emscripten (<code>build-wasm.sh</code>,
   <code>-sASYNCIFY</code> + <code>-sUSE_SDL=2</code>, <code>-sMODULARIZE</code>). Two <code>#ifdef __EMSCRIPTEN__</code>
   patches swap sdltrs's blocking <code>SDL_Delay</code> throttle (<code>trs_interrupt.c</code>) and
   <code>SDL_WaitEvent</code> (<code>trs_sdl_interface.c</code>) for <code>emscripten_sleep</code>, so the
   continuous Z80 loop yields once per timer tick and the page stays
-  responsive. The Model I Level II BASIC ROM is embedded via <code>--embed-file</code>.
-  sdltrs ships a built-in save-state (<code>trs_state_save</code>/<code>trs_state_load</code>) that
-  isn't wired to the page yet.</li>
+  responsive. The bundle runs as a Model III (<code>-model 3</code>), whose ROM is
+  fetched by the page and written into MEMFS at boot rather than embedded, so
+  the machine can change without an emscripten rebuild; the Model I Level II
+  BASIC ROM the build embeds via <code>--embed-file</code> is simply unused. sdltrs ships
+  a built-in save-state (<code>trs_state_save</code>/<code>trs_state_load</code>) that isn't wired to
+  the page yet.</li>
 <li><strong>VirtualT (Tandy TRS-80 Model 100)</strong> — Stephen Hurd &amp; Ken Pettit's VirtualT
   (BSD, © 2004; <a href="https://sourceforge.net/projects/virtualt/">sourceforge.net/projects/virtualt</a>)
   is a full FLTK desktop emulator; this bundle is built from its <strong>core only</strong>.

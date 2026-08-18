@@ -27,10 +27,6 @@
     "title": "Armored Patrol (1981, Adventure Int'l)",
     "rom": "games/armored.cmd"
   },
-  "elimintr": {
-    "title": "Eliminator (1981, Adventure Int'l)",
-    "rom": "games/elimintr.cmd"
-  },
   "seadrgn": {
     "title": "Sea Dragon (1982, Adventure Int'l)",
     "rom": "games/seadrgn.cmd"
@@ -38,5 +34,9 @@
   "crazypnt": {
     "title": "Crazy Painter (1982, Cornsoft)",
     "rom": "games/crazypnt.cmd"
+  },
+  "castle": {
+    "title": "Space Castle (1982, Cornsoft)",
+    "rom": "games/castle.cmd"
   }
 }

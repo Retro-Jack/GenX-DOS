@@ -92,7 +92,8 @@ fork rather than the bundle.
 | `systems/jtyone/` | JtyOne (port of Mike Wynne's EightyOne) | Simon Holdsworth | GPL-2.0 |
 | `systems/xroar/` | XRoar (WASM) | Ciaran Anscomb | GPL-3.0-or-later |
 | `systems/trs80/` | sdltrs (SDL2 TRS-80 emulator), built from source to WASM | Mark Grebe / Jens Guenther (gitlab.com/jengun/sdltrs) | BSD-2-Clause |
-| `systems/trs80/sdltrs.wasm` (embedded) | TRS-80 Model I Level II BASIC ROM (12 KB) | © Tandy / Microsoft | Bundled for emulator-only use; embedded into the WASM at build time via `--embed-file` (no separate ROM file ships) |
+| `systems/trs80/model3.rom` | TRS-80 Model III ROM (14 KB) | © Tandy / Microsoft | Bundled for emulator-only use; fetched by the page and written into the emulator's in-memory filesystem at boot |
+| `systems/trs80/sdltrs.wasm` (embedded) | TRS-80 Model I Level II BASIC ROM (12 KB) | © Tandy / Microsoft | Bundled for emulator-only use; embedded into the WASM at build time via `--embed-file`. Left in place from the Model I build; the bundle boots the Model III ROM above |
 | `systems/js99er/` | Js99'er (vanilla-JS build) | Rasmus Moustgaard | GPL-2.0 |
 | `systems/js99er/carts/*.rpk` | TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983) | Texas Instruments / Imagic / Sega — original publishers | Distributed for retro-preservation; carts are 40+ years out of commerce. |
 | `systems/atari800/`, `systems/atari400/` | atari800 v5.2.0, built from source to WASM (same core shipped in two bundles — the 400 bundle boots OS-B, the 800XL bundle boots OS-XL) | atari800 project | GPL-2.0+ |
@@ -199,15 +200,18 @@ Both verified June 2026. We mirror the `nightly` builds of these two instead
   wrappers around the core's `retro_serialize`/`retro_unserialize` to
   expose save/load state to the page (with `HEAPU8` in
   `EXPORTED_RUNTIME_METHODS`).
-- **sdltrs (TRS-80 Model I)** — built from `jengun/sdltrs`
+- **sdltrs (TRS-80 Model III)** — built from `jengun/sdltrs`
   (gitlab.com/jengun/sdltrs) to WASM via emscripten (`build-wasm.sh`,
   `-sASYNCIFY` + `-sUSE_SDL=2`, `-sMODULARIZE`). Two `#ifdef __EMSCRIPTEN__`
   patches swap sdltrs's blocking `SDL_Delay` throttle (`trs_interrupt.c`) and
   `SDL_WaitEvent` (`trs_sdl_interface.c`) for `emscripten_sleep`, so the
   continuous Z80 loop yields once per timer tick and the page stays
-  responsive. The Model I Level II BASIC ROM is embedded via `--embed-file`.
-  sdltrs ships a built-in save-state (`trs_state_save`/`trs_state_load`) that
-  isn't wired to the page yet.
+  responsive. The bundle runs as a Model III (`-model 3`), whose ROM is
+  fetched by the page and written into MEMFS at boot rather than embedded, so
+  the machine can change without an emscripten rebuild; the Model I Level II
+  BASIC ROM the build embeds via `--embed-file` is simply unused. sdltrs ships
+  a built-in save-state (`trs_state_save`/`trs_state_load`) that isn't wired to
+  the page yet.
 - **VirtualT (Tandy TRS-80 Model 100)** — Stephen Hurd & Ken Pettit's VirtualT
   (BSD, © 2004; [sourceforge.net/projects/virtualt](https://sourceforge.net/projects/virtualt/))
   is a full FLTK desktop emulator; this bundle is built from its **core only**.

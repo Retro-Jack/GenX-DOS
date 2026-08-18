@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>sdltrs — Tandy TRS-80 Model I — GenX-DOS Wiki</title>
+<title>sdltrs — Tandy TRS-80 Model III — GenX-DOS Wiki</title>
 <link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
 <link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
 <link rel="stylesheet" href="../../styles/genx.css">
@@ -27,8 +27,11 @@
 <ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
   </nav>
   <main class="content">
-<h1 id="sdltrs--tandy-trs-80-model-i">sdltrs — Tandy TRS-80 Model I</h1>
-<p>The TRS-80 Model I is the second GenX-DOS bundle compiled from source to WASM (after <a href="Emulator-atari800.html">Emulator-atari800</a>). It runs <strong>sdltrs</strong> (Mark Grebe / Jens Guenther) — the SDL2 TRS-80 emulator, BSD-2-Clause, still actively maintained.</p>
+<h1 id="sdltrs--tandy-trs-80-model-iii">sdltrs — Tandy TRS-80 Model III</h1>
+<p>The TRS-80 is the second GenX-DOS bundle compiled from source to WASM (after <a href="Emulator-atari800.html">Emulator-atari800</a>). It runs <strong>sdltrs</strong> (Mark Grebe / Jens Guenther) — the SDL2 TRS-80 emulator, BSD-2-Clause, still actively maintained.</p>
+<blockquote>
+<p><strong>The bundle was a Model I until August 2026.</strong> The Model III runs the Model I library, and it is the better machine to put in front of a visitor: one case instead of a monitor, an expansion interface and a drive stack cabled together, a 2.03 MHz Z80 instead of 1.77, lower-case as standard, and a keyboard with a numeric keypad. Same games, tidier machine. Changing it was a two-line edit to <code>play.html</code> — see <a href="#the-rom">The ROM</a> for why no rebuild was needed.</p>
+</blockquote>
 <h2 id="why-sdltrs">Why sdltrs</h2>
 <p>The shortlist:</p>
 <ol>
@@ -57,31 +60,56 @@
 <h3 id="-smodularize-load-order"><code>-sMODULARIZE</code> load order</h3>
 <p>The build emits a <code>createSDLTRS(moduleOverrides)</code> factory. <code>sdltrs.js</code> <strong>must</strong> load before the inline boot code that calls it — a load-order slip gives "createSDLTRS is not defined", silently swallowed inside the boot's async IIFE.</p>
 <h2 id="the-rom">The ROM</h2>
-<p><code>play.html</code> boots with the <strong>Model I Level II BASIC ROM</strong> (12 288 bytes, md5 <code>ca74822ebc2803c6635a55116ecd9539</code>), embedded into the WASM at <code>/level2.rom</code> via <code>--embed-file</code>. It was extracted from the <code>trs80-emulator</code> npm package (<code>dist/Model1Level2Rom.js</code>) — note that <code>model1Level2Rom</code> is a <strong>latin1 binary string</strong>: <code>Buffer.from(str, 'latin1')</code>, not utf-8, or you get 17 210 corrupt bytes. © Tandy / Microsoft; bundled for emulator-only use (recorded in ATTRIBUTION).</p>
+<p><code>play.html</code> boots the <strong>Model III ROM</strong> (14 336 bytes, md5 <code>0e4c4b1638a23fd26796816cf2f83961</code>), which ships as <code>systems/trs80/model3.rom</code>. © Tandy / Microsoft; bundled for emulator-only use (recorded in ATTRIBUTION).</p>
+<p><strong>It is fetched at runtime, not embedded.</strong> The original build baked the Model I Level II ROM into the WASM at <code>/level2.rom</code> with <code>--embed-file</code>, which meant the machine was fixed at compile time — changing it would have meant a whole emsdk rebuild for the sake of a 14 KB file. Instead the page fetches the ROM alongside the game and writes both into MEMFS in <code>preRun</code>:</p>
+<pre><code class="language-js">preRun: [m =&gt; {
+  m.FS.writeFile('/game.cmd', cmdBytes);
+  m.FS.writeFile('/model3.rom', romBytes);
+}],
+</code></pre>
+<p>The embedded Level II ROM is still in the WASM — harmless, unreferenced, and not worth a rebuild to strip. If the bundle ever needs another TRS-80, it is now a change of two strings.</p>
 <h2 id="the-playhtml-contract">The <code>play.html</code> contract</h2>
 <pre><code class="language-js">createSDLTRS({
   canvas,
-  arguments: ['-m1', '-romfile1', '/level2.rom', '-noled', '-borderwidth', '0', '-scale', '2', '/game.cmd'],
-  preRun: [m =&gt; m.FS.writeFile('/game.cmd', cmdBytes)],
+  arguments: ['-model', '3', '-romfile3', '/model3.rom', '-noled', '-borderwidth', '0', '-scale', '2', '/game.cmd'],
+  preRun: [m =&gt; {
+    m.FS.writeFile('/game.cmd', cmdBytes);
+    m.FS.writeFile('/model3.rom', romBytes);
+  }],
 });
 </code></pre>
-<p><code>-m1</code> = Model I, <code>-noled -borderwidth 0</code> = a clean 512×384 (4:3) text area with no chrome (1024×768 at <code>-scale 2</code>). The <code>.cmd</code> is written to MEMFS and passed as a <strong>positional arg</strong>; sdltrs's <code>trs_load_cmd</code> runs it after reset and jumps straight into the program — no disk boot.</p>
+<p><code>-model 3</code> picks the machine and <code>-romfile3</code> names its ROM — note that each model has its own <code>-romfileN</code> switch, so <code>-romfile1</code> would be silently ignored here. <code>-noled -borderwidth 0</code> = a clean 512×384 (4:3) text area with no chrome (1024×768 at <code>-scale 2</code>). The <code>.cmd</code> is written to MEMFS and passed as a <strong>positional arg</strong>; sdltrs's <code>trs_load_cmd</code> runs it after reset and jumps straight into the program — no disk boot.</p>
 <h3 id="the-canvas-backing-store-gotcha-cost-an-hour">The canvas backing-store gotcha (cost an hour)</h3>
 <p>sdltrs uses the <strong>software</strong> video path (<code>SDL_GetWindowSurface</code> / <code>SDL_UpdateWindowSurface</code> = a raw <code>putImageData</code> into the canvas). Emscripten does <strong>not</strong> resize the canvas backing store on this path — it stays at the HTML default 300×150 — and <code>width:100%</code> CSS only sets the <em>display</em> size. So the 1024×768 surface lands in a 300×150 buffer and <strong>only the top-left corner draws</strong>. Fix: hard-set the backing store via HTML attributes — <code>&lt;canvas width="1024" height="768"&gt;</code> (= the scale-2 surface size); CSS then scales the display into the bezel cutout.</p>
 <h2 id="why-cmd-not-disk-images">Why <code>.cmd</code>, not disk images</h2>
-<p>The lineup is 10 self-contained <code>.cmd</code> arcade games (Big Five Software / Adventure International). Disk boot was investigated and dropped: the RetroStore <code>disk_0.*</code> images aren't bootable system disks (the games ship as <code>command.CMD</code> to run on a bare machine), and a bare Model I with a non-bootable disk hangs on the black FDC boot-wait. The <code>.cmd</code>-as-positional-arg path sidesteps boot entirely.</p>
+<p>The lineup is 10 self-contained <code>.cmd</code> arcade games (Big Five Software, Adventure International, Cornsoft Group). Disk boot was investigated and dropped: the RetroStore <code>disk_0.*</code> images aren't bootable system disks (the games ship as <code>command.CMD</code> to run on a bare machine), and a bare machine with a non-bootable disk hangs on the black FDC boot-wait. The <code>.cmd</code>-as-positional-arg path sidesteps boot entirely.</p>
+<h3 id="the-self-contained-build-is-the-thing-to-check">The self-contained build is the thing to check</h3>
+<p><strong>Eliminator was dropped in August 2026 and replaced with Space Castle</strong>, and the reason is worth recording because it will come up again.</p>
+<p>Eliminator had been shipping dead — a black screen, on the Model I before the Model III swap and after it. The file itself was fine: 56 contiguous load blocks, a sensible entry point, every byte accounted for. Chasing it turned up three things:</p>
+<ul>
+<li>Our copy is <strong>byte-identical to RetroStore's <code>command.CMD</code></strong> for that title, so the self-contained conversion is broken at source, not here.</li>
+<li>The <strong>genuine binary needs a DOS</strong>. Both public-domain discs — the Model I TRSDOS one and the Model III LDOS one — carry the identical 13 973-byte build, loading <code>83EC–B9A1</code>, above where the DOS sits. Extracted by hand and tried on a bare machine it loads, runs, and then fills the screen with garbage.</li>
+<li><strong>It is not a model-compatibility problem.</strong> That build was run as a Model I and as a Model III: same failure, byte for byte the same picture. There is no separate Model III build to find.</li>
+</ul>
+<p>So the rule for adding a title here: a <code>.cmd</code> that loads <strong>low</strong>, below where a DOS would be, is a bare-machine build and will work. One that loads high wants a DOS we do not provide, however clean its structure looks. Structural validity says nothing about it — the broken one parsed perfectly.</p>
 <blockquote>
 <p>Sourcing note: RetroStore's RPC (<code>retrostore.org/rpc?m=pubapplist</code> → <code>downloadapp?appId=…</code>) yields a ZIP with the self-contained <code>command.CMD</code> plus a disk image; we keep the <code>.cmd</code>.</p>
 </blockquote>
 <h2 id="clear-softkey">CLEAR softkey</h2>
-<p>Most TRS-80 arcade games start with the <strong>CLEAR</strong> key, which has no obvious modern-keyboard equivalent. sdltrs maps CLEAR to PC <strong>Home</strong> (or Delete), so <code>systems/_shared/genx-trs80-softkeys.js</code> adds a top-left <strong>CLEAR</strong> button that dispatches a synthetic <code>Home</code> keydown/keyup to document/window/body/canvas — emscripten SDL2 doesn't check <code>isTrusted</code>, so the synthetic key reaches the emulator. <code>Esc</code> is the TRS-80 BREAK key.</p>
+<p>Most TRS-80 arcade games start with the <strong>CLEAR</strong> key, which has no obvious modern-keyboard equivalent. sdltrs maps CLEAR to PC <strong>Home</strong> (or Delete), so <code>systems/_shared/genx-trs80-softkeys.js</code> adds a <strong>CLEAR</strong> button that dispatches a synthetic <code>Home</code> keydown/keyup — emscripten SDL2 doesn't check <code>isTrusted</code>, so the synthetic key reaches the emulator. <code>Esc</code> is the TRS-80 BREAK key.</p>
+<p>Two things about it changed in August 2026, both worth knowing if you write another soft key:</p>
+<ul>
+<li><strong>It dispatches once, at <code>document</code>.</strong> It used to fire at document, window, body <em>and</em> canvas "to be safe". Those events bubble, so one click reached <code>window</code> four times over and the machine saw four CLEARs. The same shape in the Atari script crashed atari800 outright when a player clicked impatiently.</li>
+<li><strong>It sits under the machine, in the amber style</strong>, alongside the Atari console keys rather than alone in the top-left corner. It was previously grey-on-grey at 0.6 opacity, which read as a <em>disabled</em> control — the one button that starts most of the games, looking like it did nothing.</li>
+</ul>
 <h2 id="save--load-state">Save / load state</h2>
 <p>sdltrs has a working save-state in C (<code>trs_state_save.c</code>), but it isn't wired to the page's save/load menus yet — so the TRS-80 bundle ships without them for now. The hooks are there for a future pass.</p>
 <h2 id="bundle-layout">Bundle layout</h2>
 <pre><code>systems/trs80/
 ├── play.html
 ├── sdltrs.js
-├── sdltrs.wasm          ← Level II ROM embedded here
+├── sdltrs.wasm          ← Level II ROM embedded here (unused)
+├── model3.rom           ← the ROM actually booted
 ├── games.json
 ├── controls.html
 └── games/               ← 10 .cmd programs
@@ -91,7 +119,8 @@
 <ul>
 <li><a href="Emulators.html">Emulators</a> — index of all engines</li>
 <li><a href="Emulator-atari800.html">Emulator-atari800</a> — the other from-source ASYNCIFY emscripten build</li>
-<li><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a> — the other Tandy machine</li>
+<li><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a> — another Tandy machine</li>
+<li><a href="Emulator-VirtualT-Model-100.html">Emulator-VirtualT-Model-100</a> — and the portable one</li>
 </ul>
   </main>
 </div>

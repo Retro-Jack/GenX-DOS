@@ -79,7 +79,7 @@ systems/
   jsspeccy/               Sinclair Spectrum   — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81       — JtyOne + 10 .p tapes
   xroar/                  Tandy CoCo          — XRoar WASM + 10 .ccc carts
-  trs80/                  Tandy TRS-80 Model I — sdltrs built from source to WASM + 10 .cmd games
+  trs80/                  Tandy TRS-80 Model III — sdltrs built from source to WASM + 10 .cmd games
   m100/                   Tandy Model 100     — VirtualT core extracted to WASM + 10 .ba games (portable)
   js99er/                 TI-99/4A            — vanilla-JS js99er + 10 .rpk carts
   atari400/               Atari 400           — atari800 WASM, boots OS-B
@@ -121,7 +121,7 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | Spectrum  | gasman/JSSpeccy 3                    | `play.html?game=<key>`                   |
 | ZX81      | JtyOne                               | `play.html?game=<key>`                   |
 | Tandy CoCo| Ciaran Anscomb/XRoar                 | `play.html?game=<key>`                   |
-| TRS-80 Model I | jengun/sdltrs (our own WASM build) | `play.html?game=<key>`                |
+| TRS-80 Model III | jengun/sdltrs (our own WASM build) | `play.html?game=<key>`              |
 | Model 100 | Hurd & Pettit/VirtualT (our own core-only WASM build) | `play.html?game=<key>`     |
 | TI-99/4A  | Rasmus-M/js99er (vanilla-JS build)   | `play.html?game=<key>`                   |
 | Atari 400 / 800XL | atari800/atari800 (our own WASM build; split into `atari400/` + `atari800/` bundles) | `play.html?game=<key>` |
@@ -136,7 +136,7 @@ ROMs are bundled locally — nothing is fetched at runtime.
 
 The six VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4, C128) share a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to **Scroll Lock** + **Pause/Break** via `systems/_shared/genx-vice-softkeys.js` (RESTORE stays on the libretro default Page Up). The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing; see the wiki for the migration story.
 
-The BBC bundles (jsbeeb) add a top-left **COPY** button via `systems/_shared/genx-bbc-copykey.js` — the BBC COPY key maps to the PC End key, which isn't obvious, so titles that use it (as an in-game "continue" or action key) get a click target. The TRS-80 Model I (sdltrs) likewise adds a **CLEAR** button via `systems/_shared/genx-trs80-softkeys.js`.
+The BBC bundles (jsbeeb) add a top-left **COPY** button via `systems/_shared/genx-bbc-copykey.js` — the BBC COPY key maps to the PC End key, which isn't obvious, so titles that use it (as an in-game "continue" or action key) get a click target. The TRS-80 Model III (sdltrs) likewise adds a **CLEAR** button, under the machine, via `systems/_shared/genx-trs80-softkeys.js`.
 
 ## USB gamepads
 
@@ -144,7 +144,7 @@ The EmulatorJS bundles read pads natively through the libretro cores. For standa
 
 ## Save / load state
 
-Most bundles carry **save** / **load** controls in the bottom-left corner — each opens a drop-up menu of **five save slots per game**, an instant in-browser snapshot of the running machine kept in memory and persisted to **IndexedDB** (`gx-savestate`, keyed `platform:game:slot`) so the slots survive a reload. Because they're keyed per game, different games keep independent saves. The 14 EmulatorJS bundles use the libretro cores' own state API (`systems/_shared/genx-savestate.js`); the standalone engines that expose a reachable save-state — TI-99/4A, BBC Micro/Master (mid-game, even Elite), MSX, Tandy CoCo, Odyssey², Atari 400/800XL and Amstrad CPC — ride each emulator's native API through `systems/_shared/genx-savestate-std.js` + a small per-bundle `GenXStateAdapter`. Three needed a WASM rebuild to expose state the stock build hid: the **Odyssey²** (o2em — call libretro's dead-code-eliminated `retro_serialize`/`retro_unserialize`), the **Atari 400/800XL** (atari800 fork — `StateSav_*`, deferred through the frame loop to dodge an ASYNCIFY clash) and the **Amstrad CPC** (tiny8bit — export chips' `cpc_save_snapshot`/`cpc_load_snapshot`). The remaining engines (Apple, Electron, Spectrum, ZX81, Intellivision, PET) expose no reachable state API, so those bundles have no buttons. The TRS-80 Model I (sdltrs) ships a built-in save-state (`trs_state_save`/`trs_state_load`) that isn't wired to buttons yet — so no buttons there either, for now.
+Most bundles carry **save** / **load** controls in the bottom-left corner — each opens a drop-up menu of **five save slots per game**, an instant in-browser snapshot of the running machine kept in memory and persisted to **IndexedDB** (`gx-savestate`, keyed `platform:game:slot`) so the slots survive a reload. Because they're keyed per game, different games keep independent saves. The 14 EmulatorJS bundles use the libretro cores' own state API (`systems/_shared/genx-savestate.js`); the standalone engines that expose a reachable save-state — TI-99/4A, BBC Micro/Master (mid-game, even Elite), MSX, Tandy CoCo, Odyssey², Atari 400/800XL and Amstrad CPC — ride each emulator's native API through `systems/_shared/genx-savestate-std.js` + a small per-bundle `GenXStateAdapter`. Three needed a WASM rebuild to expose state the stock build hid: the **Odyssey²** (o2em — call libretro's dead-code-eliminated `retro_serialize`/`retro_unserialize`), the **Atari 400/800XL** (atari800 fork — `StateSav_*`, deferred through the frame loop to dodge an ASYNCIFY clash) and the **Amstrad CPC** (tiny8bit — export chips' `cpc_save_snapshot`/`cpc_load_snapshot`). The remaining engines (Apple, Electron, Spectrum, ZX81, Intellivision, PET) expose no reachable state API, so those bundles have no buttons. The TRS-80 Model III (sdltrs) ships a built-in save-state (`trs_state_save`/`trs_state_load`) that isn't wired to buttons yet — so no buttons there either, for now.
 
 ## Documentation
 
@@ -180,7 +180,7 @@ The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.m
 - JSSpeccy 3: GPL-3.0 (Matt Westcott / gasman)
 - JtyOne: GPL-2.0 (Simon Holdsworth, port of Mike Wynne's EightyOne)
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
-- sdltrs: BSD-2-Clause (Mark Grebe / Jens Guenther, gitlab.com/jengun/sdltrs) — TRS-80 Model I, built from source to WASM; Model I Level II BASIC ROM (©Tandy/Microsoft) embedded for emulation
+- sdltrs: BSD-2-Clause (Mark Grebe / Jens Guenther, gitlab.com/jengun/sdltrs) — TRS-80 Model III, built from source to WASM; Model III ROM (©Tandy/Microsoft) bundled for emulation
 - Js99'er: GPL-2.0 (Rasmus Moustgaard) — vanilla-JS build
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL/800/BASIC (Avery Lee, freely redistributable open-source OS replacement) embedded inside `atari800.wasm` at build time via `--enable-altirra_bios` — no separate ROM file ships
 - EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 14 bundles via `systems/_shared-ejs/` — the six VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, Sega Master System, and the three handhelds (Game Boy/GBC, Lynx, Game Gear)

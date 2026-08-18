@@ -3012,7 +3012,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           TRS-80  MODEL I  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Galaxy Invasion      (1980)  GALAXY   º\necho                 º   2.  Cosmic Fighter       (1980)  COSMIC   º\necho                 º   3.  Attack Force         (1980)  ATTACK   º\necho                 º   4.  Super Nova           (1980)  SUPERNOV º\necho                 º   5.  Defense Command      (1981)  DEFENSE  º\necho                 º   6.  Robot Attack         (1981)  ROBOT    º\necho                 º   7.  Armored Patrol       (1981)  ARMORED  º\necho                 º   8.  Eliminator           (1981)  ELIMINTR º\necho                 º   9.  Sea Dragon           (1982)  SEADRGN  º\necho                 º  10.  Crazy Painter        (1982)  CRAZYPNT º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          TRS-80  MODEL III  GAMES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Galaxy Invasion      (1980)  GALAXY   º\necho                 º   2.  Cosmic Fighter       (1980)  COSMIC   º\necho                 º   3.  Attack Force         (1980)  ATTACK   º\necho                 º   4.  Super Nova           (1980)  SUPERNOV º\necho                 º   5.  Defense Command      (1981)  DEFENSE  º\necho                 º   6.  Robot Attack         (1981)  ROBOT    º\necho                 º   7.  Armored Patrol       (1981)  ARMORED  º\necho                 º   8.  Sea Dragon           (1982)  SEADRGN  º\necho                 º   9.  Crazy Painter        (1982)  CRAZYPNT º\necho                 º  10.  Space Castle         (1982)  CASTLE   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -3048,15 +3048,15 @@ var fs = [
                           },
                           {
                             name: '8.bat',
-                            data: 'elimintr\n',
-                          },
-                          {
-                            name: '9.bat',
                             data: 'seadrgn\n',
                           },
                           {
-                            name: '10.bat',
+                            name: '9.bat',
                             data: 'crazypnt\n',
+                          },
+                          {
+                            name: '10.bat',
+                            data: 'castle\n',
                           },
                           {
                             name: 'galaxy.bat',
@@ -3087,16 +3087,16 @@ var fs = [
                             link: '../systems/trs80/play.html?game=armored',
                           },
                           {
-                            name: 'elimintr.bat',
-                            link: '../systems/trs80/play.html?game=elimintr',
-                          },
-                          {
                             name: 'seadrgn.bat',
                             link: '../systems/trs80/play.html?game=seadrgn',
                           },
                           {
                             name: 'crazypnt.bat',
                             link: '../systems/trs80/play.html?game=crazypnt',
+                          },
+                          {
+                            name: 'castle.bat',
+                            link: '../systems/trs80/play.html?game=castle',
                           },
                         ],
                       },
@@ -3225,7 +3225,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              TANDY  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  TRS-80 Model I       (1977)  TRS80    º\necho                 º                                             º\necho                 º   2.  Color Computer       (1980)  COCO     º\necho                 º                                             º\necho                 º   3.  Model 100 (Portable) (1983)  M100     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              TANDY  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  TRS-80 Model III     (1980)  TRS80    º\necho                 º                                             º\necho                 º   2.  Color Computer       (1980)  COCO     º\necho                 º                                             º\necho                 º   3.  Model 100 (Portable) (1983)  M100     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -3615,7 +3615,7 @@ var fs = [
             files: [
               {
                 name: 'menu.bat',
-                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               HOME  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Acorn                (1981)  ACORN    º\necho                 º   2.  Amstrad              (1984)  CPC      º\necho                 º   3.  Apple                (1976)  APPLE    º\necho                 º   4.  Atari                (1979)  ATARI    º\necho                 º   5.  Commodore            (1977)  COMMODRE º\necho                 º   6.  MSX                  (1983)  MSX      º\necho                 º   7.  Sinclair             (1981)  SINCLAIR º\necho                 º   8.  Tandy                (1977)  TANDY    º\necho                 º   9.  Texas Instruments    (1979)  TI99     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               HOME  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Acorn                (1981)  ACORN    º\necho                 º   2.  Amstrad              (1984)  CPC      º\necho                 º   3.  Apple                (1976)  APPLE    º\necho                 º   4.  Atari                (1979)  ATARI    º\necho                 º   5.  Commodore            (1977)  COMMODRE º\necho                 º   6.  MSX                  (1983)  MSX      º\necho                 º   7.  Sinclair             (1981)  SINCLAIR º\necho                 º   8.  Tandy                (1980)  TANDY    º\necho                 º   9.  Texas Instruments    (1979)  TI99     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
               },
               {
                 name: '1.bat',

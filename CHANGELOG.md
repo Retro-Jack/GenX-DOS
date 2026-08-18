@@ -1,5 +1,15 @@
 ## [Unreleased]
 
+### Changed
+- **Eliminator is out; Space Castle is in.** Eliminator had been shipping dead — a black screen, and not because of the Model III: it did the same on the Model I. The file was structurally perfect, which is what made it worth chasing. It turns out our copy is byte-identical to the upstream self-contained conversion, so that conversion is broken at source; and the genuine binary — identical on both the Model I and Model III public-domain discs — loads above where the DOS sits and wants the DOS resident, so on a bare machine it loads, runs, and fills the screen with garbage. There is no Model III build to find. In its place, **Space Castle** (Cornsoft Group, 1982, Charles Guy): rotate, thrust and shoot through three spinning armour shields to the Castle at the centre — a different shape of game to the side-scrolling shooters that make up most of the lineup, and it carries its own rules screen on <kbd>?</kbd>. Ten games still, and the controls on its page are taken from that rules screen rather than inferred.
+
+### Changed
+- **The TRS-80 bundle is now a Model III, not a Model I.** The Model III runs the Model I library, so the ten games are unchanged — but it is a far better machine to put in front of a visitor: one case instead of a monitor, an expansion interface and a drive stack cabled together across the screen, a 2.03 MHz Z80 instead of 1.77, lower-case as standard, and a keyboard with a numeric keypad. New bezel to match. The switch cost two strings, because the ROM is now fetched and written into the emulator's filesystem at boot instead of being baked into the WASM — the old build fixed the machine at compile time, so changing it would have meant a full emscripten rebuild for a 14 KB file.
+- **The TRS-80 CLEAR button looked disabled.** Grey text on a grey border at 0.6 opacity, alone in the top-left corner — which is how a dead control looks, and CLEAR is the one button that starts most of these games. It is now in the amber style the rest of the site uses, sitting under the machine in front of the keyboard, alongside where the Atari console keys sit on their pages.
+
+### Fixed
+- **The TRS-80 CLEAR key was being delivered four times per click.** The same bug fixed in the Atari scripts, still present here: the synthetic key was dispatched at `document`, `window`, `body` and the canvas, and those events bubble. One dispatch now, at `document`.
+
 ### Fixed
 - **A hairline of wallpaper showed around the Atari 400 and 800XL screens.** The cutout in the bezel has a soft, anti-aliased edge, and with nothing behind it the wallpaper showed through that fringe. Every other bezeled bundle already carried a black `.screen-bg` layer for exactly this — the 7800 uses one with the very same bezel — and these two were the only ones without it.
 

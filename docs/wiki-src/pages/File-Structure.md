@@ -89,7 +89,7 @@ genx-dos/
     ├── jsspeccy/            Sinclair Spectrum  (copied from gasman/JSSpeccy 3)
     ├── jtyone/              Sinclair ZX81      (copied from JtyOne)
     ├── xroar/               Tandy CoCo         (copied from 6809.org.uk/xroar)
-    ├── trs80/               Tandy TRS-80 Model I (sdltrs, built from source to WASM)
+    ├── trs80/               Tandy TRS-80 Model III (sdltrs, built from source to WASM)
     ├── m100/                Tandy TRS-80 Model 100 (VirtualT core-only build → WASM)
     ├── js99er/              TI-99/4A           (copied from Rasmus-M/js99er — vanilla-JS build)
     ├── atari400/            Atari 400          (atari800 WASM, boots OS-B)
@@ -128,7 +128,7 @@ Every emulator-specific page can be told in one row. Where there's an integratio
 | `jsspeccy/` | `jsspeccy/jsspeccy.js` + WASM Z80 in Web Worker | `play.html` | `games/*.z80`/`*.tap` |
 | `jtyone/` | `zx81_emu.js` + `roms/zx81.rom` | `play.html` | `tapes/*.p` |
 | `xroar/` | `xroar.js` + `xroar.wasm` + 9 system ROMs | `play.html` | `roms/*.ccc` |
-| `trs80/` | `sdltrs.js` + `sdltrs.wasm` (Level II ROM embedded) | `play.html` | `games/*.cmd` |
+| `trs80/` | `sdltrs.js` + `sdltrs.wasm` + `model3.rom` | `play.html` | `games/*.cmd` |
 | `m100/` | `virtualt.js` + `virtualt.wasm` (M100 ROM embedded) + `src/` (build source) | `play.html` | `games/*.ba` |
 | `js99er/` | vanilla-JS modules + `lib/` (jQuery + zip.js) | `play.html` (`.rpk` first, `.bin` fallback) | `carts/*.rpk` |
 | `atari400/`, `atari800/` | `atari800.js` + `atari800.wasm` (AltirraOS baked in; a full copy in each) | `play.html` (`?game=<key>`; 400 boots OS-B, 800XL boots OS-XL) | `roms/*.atr` + `*.rom` |

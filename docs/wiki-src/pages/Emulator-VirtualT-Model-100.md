@@ -83,6 +83,6 @@ systems/m100/
 ## Related
 
 - [[Emulators]] — index of all engines
-- [[Emulator-sdltrs-TRS-80]] — the other from-source Tandy build (Model I)
+- [[Emulator-sdltrs-TRS-80]] — the other from-source Tandy build (Model III)
 - [[Emulator-XRoar-CoCo]] — the third Tandy machine
 - [[Emulator-atari800]] — the other 8-bit ASYNCIFY emscripten build

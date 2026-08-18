@@ -51,7 +51,7 @@ All 32 bundled sub-systems run their games locally — every byte of game data i
 | HOMECOMP → MSX → MSX1 / MSX2 | WebMSX — `msx1/` (`?M=MSX1`) + `msx2/` (`?M=MSX2`) bundles | full copy of the engine in each |
 | HOMECOMP → SINCLAIR → SPECTRUM | JSSpeccy 3 | |
 | HOMECOMP → SINCLAIR → ZX81 | JtyOne | |
-| HOMECOMP → TANDY → TRS80 | sdltrs (our own WASM build) | Model I; Level II BASIC ROM embedded |
+| HOMECOMP → TANDY → TRS80 | sdltrs (our own WASM build) | Model III; ROM fetched into MEMFS at boot |
 | HOMECOMP → TANDY → M100 | VirtualT (our core-only WASM build) | Model 100; live clock + battery-backed RAM |
 | HOMECOMP → TANDY → COCO | XRoar | Tandy Color Computer |
 | HOMECOMP → TI99 | js99er (vanilla JS build) | |

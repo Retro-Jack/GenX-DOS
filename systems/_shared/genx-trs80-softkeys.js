@@ -9,11 +9,10 @@
 // a labelled on-screen button makes it discoverable and covers touch/laptop
 // keyboards with no Home key.
 //
-// The button dispatches a synthetic Home keydown/keyup on document + window +
-// body + canvas. Emscripten's SDL2 keyboard handler reads event.code/keyCode
-// and doesn't require isTrusted, so the synthetic key reaches the emulator the
-// same as a real press. Modelled on genx-vice-softkeys.js (the C64-family
-// RUN/STOP button); kept TRS-80-specific so its label/key never drift.
+// The button dispatches a synthetic Home keydown/keyup. Emscripten's SDL2
+// keyboard handler reads event.code/keyCode and doesn't require isTrusted, so
+// the synthetic key reaches the emulator the same as a real press. Kept
+// TRS-80-specific so its label/key never drift.
 //
 // Include via one tag in systems/trs80/play.html:
 //   <script defer src="../_shared/genx-trs80-softkeys.js"></script>
@@ -27,33 +26,41 @@
       bubbles: true,
       cancelable: true,
     };
-    const targets = [document, window, document.body];
-    const cv = document.querySelector('canvas');
-    if (cv) targets.push(cv);
-    for (const t of targets) {
-      try {
-        t.dispatchEvent(new KeyboardEvent('keydown', init));
-        setTimeout(() => t.dispatchEvent(new KeyboardEvent('keyup', init)), 80);
-      } catch (_) {
-        /* swallow */
-      }
+    // ONE dispatch, at document. Firing at document + window + body + canvas
+    // "to be safe" is not safe: the events bubble, so a single click arrives at
+    // window four times over and the emulator sees four presses. That shape
+    // crashed atari800 outright when a player clicked impatiently; sdltrs is
+    // gentler about it, but four CLEARs where one was asked for is wrong
+    // regardless. One dispatch at document still reaches SDL2's handler.
+    try {
+      document.dispatchEvent(new KeyboardEvent('keydown', init));
+      setTimeout(
+        () => document.dispatchEvent(new KeyboardEvent('keyup', init)),
+        80,
+      );
+    } catch (_) {
+      /* swallow */
     }
   };
 
-  // Soft button — top-left corner, clear of the top-right controls link.
+  // Soft button — under the set, in the same amber style and the same place as
+  // the Atari console keys, so the machine keys look like one family across the
+  // site. It was previously grey-on-grey at 0.6 opacity in the top-left, which
+  // read as a disabled control rather than the one thing that starts the game.
   const ready = () => {
     const css = `
       #genx-trs80-clear {
-        position: fixed; top: calc(8px + var(--gx-banner-h, 0px)); left: 8px;
+        position: fixed; bottom: 58px; left: 50%; transform: translateX(-50%);
         z-index: 100;
-        background: rgba(0,0,0,0.72); color: #c0c0c0;
-        border: 1px solid #555; border-radius: 3px;
-        font: 12px/1 monospace; padding: 5px 10px;
-        cursor: pointer; opacity: 0.6;
-        transition: opacity 0.15s;
+        color: rgba(255, 176, 0, 0.75); background: #000;
+        border: 1px solid rgba(255, 176, 0, 0.35); border-radius: 4px;
+        font: 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        letter-spacing: 0.05em; padding: 5px 10px;
+        cursor: pointer;
+        transition: color 0.15s ease, border-color 0.15s ease;
       }
-      #genx-trs80-clear:hover { opacity: 1; background: rgba(60,60,60,0.95); color: #fff; border-color: #aaa; }
-      #genx-trs80-clear:active { background: #444; }
+      #genx-trs80-clear:hover { color: #ff8800; border-color: #ff8800; }
+      #genx-trs80-clear:focus-visible { outline: 2px solid #ff8800; outline-offset: 2px; }
     `;
     const style = document.createElement('style');
     style.textContent = css;
@@ -65,7 +72,10 @@
     btn.textContent = 'CLEAR';
     btn.title =
       'Sends the TRS-80 CLEAR key (keyboard shortcut: Home or Delete) — most games start with CLEAR';
-    btn.addEventListener('click', fireClear);
+    btn.addEventListener('click', () => {
+      fireClear();
+      btn.blur();
+    });
     document.body.appendChild(btn);
   };
 

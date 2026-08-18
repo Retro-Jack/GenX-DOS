@@ -43,7 +43,7 @@ Every shipped system has the *feel* of an 8-bit machine — sprite-based, chiptu
 | Sinclair | ZX Spectrum | 1982 | `jsspeccy/` | gasman/JSSpeccy 3 | WASM Z80 |
 | Amstrad | CPC | 1984 | `cpc/` | floooh/chips-test tiny8bit | sokol_args URL params |
 | Tandy | Color Computer (CoCo) | 1980 | `xroar/` | Ciaran Anscomb/XRoar | |
-| Tandy | TRS-80 Model I | 1977 | `trs80/` | jengun/sdltrs (our WASM build) | 10 `.cmd` games |
+| Tandy | TRS-80 Model III | 1980 | `trs80/` | jengun/sdltrs (our WASM build) | 10 `.cmd` games |
 | Tandy | TRS-80 Model 100 | 1983 | `m100/` | Hurd & Pettit/VirtualT (our core-only WASM build) | 10 `.ba` games; live clock + battery-backed RAM |
 | TI | TI-99/4A | 1981 | `js99er/` | Rasmus-M/js99er (vanilla JS) | `.rpk` carts |
 | Handheld | Game Boy / GBC | 1989 | `gbc/` | EmulatorJS + gambatte (**nightly** core) | GBC mode; classroom bezel |

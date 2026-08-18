@@ -1,6 +1,8 @@
-# sdltrs — Tandy TRS-80 Model I
+# sdltrs — Tandy TRS-80 Model III
 
-The TRS-80 Model I is the second GenX-DOS bundle compiled from source to WASM (after [[Emulator-atari800]]). It runs **sdltrs** (Mark Grebe / Jens Guenther) — the SDL2 TRS-80 emulator, BSD-2-Clause, still actively maintained.
+The TRS-80 is the second GenX-DOS bundle compiled from source to WASM (after [[Emulator-atari800]]). It runs **sdltrs** (Mark Grebe / Jens Guenther) — the SDL2 TRS-80 emulator, BSD-2-Clause, still actively maintained.
+
+> **The bundle was a Model I until August 2026.** The Model III runs the Model I library, and it is the better machine to put in front of a visitor: one case instead of a monitor, an expansion interface and a drive stack cabled together, a 2.03 MHz Z80 instead of 1.77, lower-case as standard, and a keyboard with a numeric keypad. Same games, tidier machine. Changing it was a two-line edit to `play.html` — see [The ROM](#the-rom) for why no rebuild was needed.
 
 ## Why sdltrs
 
@@ -42,19 +44,33 @@ The build emits a `createSDLTRS(moduleOverrides)` factory. `sdltrs.js` **must** 
 
 ## The ROM
 
-`play.html` boots with the **Model I Level II BASIC ROM** (12 288 bytes, md5 `ca74822ebc2803c6635a55116ecd9539`), embedded into the WASM at `/level2.rom` via `--embed-file`. It was extracted from the `trs80-emulator` npm package (`dist/Model1Level2Rom.js`) — note that `model1Level2Rom` is a **latin1 binary string**: `Buffer.from(str, 'latin1')`, not utf-8, or you get 17 210 corrupt bytes. © Tandy / Microsoft; bundled for emulator-only use (recorded in ATTRIBUTION).
+`play.html` boots the **Model III ROM** (14 336 bytes, md5 `0e4c4b1638a23fd26796816cf2f83961`), which ships as `systems/trs80/model3.rom`. © Tandy / Microsoft; bundled for emulator-only use (recorded in ATTRIBUTION).
+
+**It is fetched at runtime, not embedded.** The original build baked the Model I Level II ROM into the WASM at `/level2.rom` with `--embed-file`, which meant the machine was fixed at compile time — changing it would have meant a whole emsdk rebuild for the sake of a 14 KB file. Instead the page fetches the ROM alongside the game and writes both into MEMFS in `preRun`:
+
+```js
+preRun: [m => {
+  m.FS.writeFile('/game.cmd', cmdBytes);
+  m.FS.writeFile('/model3.rom', romBytes);
+}],
+```
+
+The embedded Level II ROM is still in the WASM — harmless, unreferenced, and not worth a rebuild to strip. If the bundle ever needs another TRS-80, it is now a change of two strings.
 
 ## The `play.html` contract
 
 ```js
 createSDLTRS({
   canvas,
-  arguments: ['-m1', '-romfile1', '/level2.rom', '-noled', '-borderwidth', '0', '-scale', '2', '/game.cmd'],
-  preRun: [m => m.FS.writeFile('/game.cmd', cmdBytes)],
+  arguments: ['-model', '3', '-romfile3', '/model3.rom', '-noled', '-borderwidth', '0', '-scale', '2', '/game.cmd'],
+  preRun: [m => {
+    m.FS.writeFile('/game.cmd', cmdBytes);
+    m.FS.writeFile('/model3.rom', romBytes);
+  }],
 });
 ```
 
-`-m1` = Model I, `-noled -borderwidth 0` = a clean 512×384 (4:3) text area with no chrome (1024×768 at `-scale 2`). The `.cmd` is written to MEMFS and passed as a **positional arg**; sdltrs's `trs_load_cmd` runs it after reset and jumps straight into the program — no disk boot.
+`-model 3` picks the machine and `-romfile3` names its ROM — note that each model has its own `-romfileN` switch, so `-romfile1` would be silently ignored here. `-noled -borderwidth 0` = a clean 512×384 (4:3) text area with no chrome (1024×768 at `-scale 2`). The `.cmd` is written to MEMFS and passed as a **positional arg**; sdltrs's `trs_load_cmd` runs it after reset and jumps straight into the program — no disk boot.
 
 ### The canvas backing-store gotcha (cost an hour)
 
@@ -62,13 +78,30 @@ sdltrs uses the **software** video path (`SDL_GetWindowSurface` / `SDL_UpdateWin
 
 ## Why `.cmd`, not disk images
 
-The lineup is 10 self-contained `.cmd` arcade games (Big Five Software / Adventure International). Disk boot was investigated and dropped: the RetroStore `disk_0.*` images aren't bootable system disks (the games ship as `command.CMD` to run on a bare machine), and a bare Model I with a non-bootable disk hangs on the black FDC boot-wait. The `.cmd`-as-positional-arg path sidesteps boot entirely.
+The lineup is 10 self-contained `.cmd` arcade games (Big Five Software, Adventure International, Cornsoft Group). Disk boot was investigated and dropped: the RetroStore `disk_0.*` images aren't bootable system disks (the games ship as `command.CMD` to run on a bare machine), and a bare machine with a non-bootable disk hangs on the black FDC boot-wait. The `.cmd`-as-positional-arg path sidesteps boot entirely.
+
+### The self-contained build is the thing to check
+
+**Eliminator was dropped in August 2026 and replaced with Space Castle**, and the reason is worth recording because it will come up again.
+
+Eliminator had been shipping dead — a black screen, on the Model I before the Model III swap and after it. The file itself was fine: 56 contiguous load blocks, a sensible entry point, every byte accounted for. Chasing it turned up three things:
+
+- Our copy is **byte-identical to RetroStore's `command.CMD`** for that title, so the self-contained conversion is broken at source, not here.
+- The **genuine binary needs a DOS**. Both public-domain discs — the Model I TRSDOS one and the Model III LDOS one — carry the identical 13 973-byte build, loading `83EC–B9A1`, above where the DOS sits. Extracted by hand and tried on a bare machine it loads, runs, and then fills the screen with garbage.
+- **It is not a model-compatibility problem.** That build was run as a Model I and as a Model III: same failure, byte for byte the same picture. There is no separate Model III build to find.
+
+So the rule for adding a title here: a `.cmd` that loads **low**, below where a DOS would be, is a bare-machine build and will work. One that loads high wants a DOS we do not provide, however clean its structure looks. Structural validity says nothing about it — the broken one parsed perfectly.
 
 > Sourcing note: RetroStore's RPC (`retrostore.org/rpc?m=pubapplist` → `downloadapp?appId=…`) yields a ZIP with the self-contained `command.CMD` plus a disk image; we keep the `.cmd`.
 
 ## CLEAR softkey
 
-Most TRS-80 arcade games start with the **CLEAR** key, which has no obvious modern-keyboard equivalent. sdltrs maps CLEAR to PC **Home** (or Delete), so `systems/_shared/genx-trs80-softkeys.js` adds a top-left **CLEAR** button that dispatches a synthetic `Home` keydown/keyup to document/window/body/canvas — emscripten SDL2 doesn't check `isTrusted`, so the synthetic key reaches the emulator. `Esc` is the TRS-80 BREAK key.
+Most TRS-80 arcade games start with the **CLEAR** key, which has no obvious modern-keyboard equivalent. sdltrs maps CLEAR to PC **Home** (or Delete), so `systems/_shared/genx-trs80-softkeys.js` adds a **CLEAR** button that dispatches a synthetic `Home` keydown/keyup — emscripten SDL2 doesn't check `isTrusted`, so the synthetic key reaches the emulator. `Esc` is the TRS-80 BREAK key.
+
+Two things about it changed in August 2026, both worth knowing if you write another soft key:
+
+- **It dispatches once, at `document`.** It used to fire at document, window, body *and* canvas "to be safe". Those events bubble, so one click reached `window` four times over and the machine saw four CLEARs. The same shape in the Atari script crashed atari800 outright when a player clicked impatiently.
+- **It sits under the machine, in the amber style**, alongside the Atari console keys rather than alone in the top-left corner. It was previously grey-on-grey at 0.6 opacity, which read as a *disabled* control — the one button that starts most of the games, looking like it did nothing.
 
 ## Save / load state
 
@@ -80,7 +113,8 @@ sdltrs has a working save-state in C (`trs_state_save.c`), but it isn't wired to
 systems/trs80/
 ├── play.html
 ├── sdltrs.js
-├── sdltrs.wasm          ← Level II ROM embedded here
+├── sdltrs.wasm          ← Level II ROM embedded here (unused)
+├── model3.rom           ← the ROM actually booted
 ├── games.json
 ├── controls.html
 └── games/               ← 10 .cmd programs
@@ -92,4 +126,5 @@ The build tree is ephemeral (`/tmp`); only a *rebuild* needs the recipe above �
 
 - [[Emulators]] — index of all engines
 - [[Emulator-atari800]] — the other from-source ASYNCIFY emscripten build
-- [[Emulator-XRoar-CoCo]] — the other Tandy machine
+- [[Emulator-XRoar-CoCo]] — another Tandy machine
+- [[Emulator-VirtualT-Model-100]] — and the portable one
