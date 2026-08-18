@@ -13,7 +13,8 @@
   "canyon": {
     "title": "Canyon Climber",
     "machine": "coco",
-    "autorun": "roms/canyonclimber.ccc"
+    "autorun": "roms/canyonclimber.ccc",
+    "tv": "cmp-rb"
   },
   "demon": {
     "title": "Demon Attack",
