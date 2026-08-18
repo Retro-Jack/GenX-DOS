@@ -33,6 +33,17 @@
       width: min(100vw, calc((100dvh - 120px) * 1.25 * 1680 / 1125));
       aspect-ratio: 1680 / 1125;
     }
+    .screen-bg {
+      /* The cutout in 80s.png has a soft, anti-aliased edge. With nothing
+         behind it the wallpaper shows through that fringe as a hairline gap
+         around the picture. This black layer sits ~1% proud of the hole on
+         every side and swallows it — the same trick the 7800 uses with this
+         same bezel. */
+      position: absolute;
+      left: 14.4%; top: 20.3%; width: 48.4%; height: 54.8%;
+      background: #000;
+      z-index: 0;
+    }
     .screen {
       position: absolute;
       left: 15.4%; top: 21.3%; width: 46.4%; height: 52.8%;
@@ -77,6 +88,7 @@
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
   <div class="bezel-wrap">
+    <div class="screen-bg"></div>
     <div class="screen">
       <canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
     </div>
