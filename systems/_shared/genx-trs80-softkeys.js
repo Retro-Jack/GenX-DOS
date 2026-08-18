@@ -44,7 +44,7 @@
   const ready = () => {
     const css = `
       #genx-trs80-clear {
-        position: fixed; top: 8px; left: 8px;
+        position: fixed; top: calc(8px + var(--gx-banner-h, 0px)); left: 8px;
         z-index: 100;
         background: rgba(0,0,0,0.72); color: #c0c0c0;
         border: 1px solid #555; border-radius: 3px;

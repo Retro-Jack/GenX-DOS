@@ -43,7 +43,7 @@
     const style = document.createElement('style');
     style.textContent = `
       #genx-apple2-flip {
-        position: fixed; top: 8px; left: 8px;
+        position: fixed; top: calc(8px + var(--gx-banner-h, 0px)); left: 8px;
         z-index: 100;
         color: rgba(255, 176, 0, 0.75); background: #000;
         border: 1px solid rgba(255, 176, 0, 0.35); border-radius: 4px;

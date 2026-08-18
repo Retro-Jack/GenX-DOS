@@ -79,7 +79,19 @@
 
   function update() {
     var b = makeBanner();
-    if (b) b.style.display = anySuspended() ? 'block' : 'none';
+    if (!b) return;
+    var show = anySuspended();
+    b.style.display = show ? 'block' : 'none';
+    // Publish the banner's height so anything pinned to the top of the screen
+    // can sit below it. The banner is fixed at top:0 with a very high z-index,
+    // so a soft-key button at top:8px is simply buried underneath while audio
+    // is suspended — which is exactly when a player is looking for it. Reading
+    // this variable is cheaper and less fragile than each script hunting for
+    // the banner element itself.
+    document.documentElement.style.setProperty(
+      '--gx-banner-h',
+      show ? b.offsetHeight + 'px' : '0px',
+    );
   }
 
   function resumeAll() {

@@ -35,6 +35,7 @@
 </ul>
 <h3 id="fixed">Fixed</h3>
 <ul>
+<li><strong>Soft-key buttons were hidden behind the audio banner.</strong> The "browser has suspended audio" banner is fixed to the top of the screen with a very high z-index, and the soft keys sit at <code>top: 8px</code> — so while audio was suspended, which is precisely when a player is hunting for a control, the button was buried underneath it. The TRS-80's CLEAR has been in that state since it shipped; the Apple ][+ Flip Disk button joined it. The banner now publishes its height as <code>--gx-banner-h</code> and the soft keys sit below it, dropping back flush when it clears.</li>
 <li><strong>Soft-key buttons were delivering each press four times over.</strong> The shared soft-key pattern dispatches its synthetic key at <code>document</code>, <code>window</code>, <code>body</code> and the canvas "to be safe" — but the events bubble, so one click arrived at <code>window</code> four times and the emulator saw the key pressed four times. A few clicks in quick succession flooded atari800 into <code>memory access out of bounds</code> and a black screen. Now one dispatch at <code>document</code>, measured at exactly one keydown per click, and fifteen rapid presses no longer disturb it.</li>
 </ul>
 <h3 id="added_1">Added</h3>

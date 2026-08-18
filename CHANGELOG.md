@@ -5,6 +5,7 @@
   The buttons appear straight away but stay greyed for a few seconds while the machine boots, because a console key delivered mid-boot crashes the emulator outright, and clicking START repeatedly at a silent screen is exactly what an impatient player does.
 
 ### Fixed
+- **Soft-key buttons were hidden behind the audio banner.** The "browser has suspended audio" banner is fixed to the top of the screen with a very high z-index, and the soft keys sit at `top: 8px` — so while audio was suspended, which is precisely when a player is hunting for a control, the button was buried underneath it. The TRS-80's CLEAR has been in that state since it shipped; the Apple ][+ Flip Disk button joined it. The banner now publishes its height as `--gx-banner-h` and the soft keys sit below it, dropping back flush when it clears.
 - **Soft-key buttons were delivering each press four times over.** The shared soft-key pattern dispatches its synthetic key at `document`, `window`, `body` and the canvas "to be safe" — but the events bubble, so one click arrived at `window` four times and the emulator saw the key pressed four times. A few clicks in quick succession flooded atari800 into `memory access out of bounds` and a black screen. Now one dispatch at `document`, measured at exactly one keydown per click, and fifteen rapid presses no longer disturb it.
 
 ### Added

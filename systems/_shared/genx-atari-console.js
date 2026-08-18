@@ -82,7 +82,7 @@
     const style = document.createElement('style');
     style.textContent = `
       #genx-atari-console {
-        position: fixed; top: 8px; left: 8px;
+        position: fixed; top: calc(8px + var(--gx-banner-h, 0px)); left: 8px;
         z-index: 100;
         display: flex; gap: 6px;
       }
