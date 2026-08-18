@@ -1,6 +1,13 @@
 ## [Unreleased]
 
 ### Added
+- **OPTION, SELECT and START are now buttons on the Atari 400 and 800XL.** The Atari 8-bits put those three on their own labelled keys beside the keyboard, and most games will not begin until you press START — but in a browser there is nothing to see, so a game sits on a silent title screen and a player has no way to guess the way in is a function key. Reported by a reader as "it's not obvious how to hit custom keys, like the Atari 8-bit OPTION key". They were always on F2/F3/F4 and always documented; what was missing was the labels the machine used to have. RESET is deliberately not among them — it is one mis-click from throwing a game away.
+  The buttons appear straight away but stay greyed for a few seconds while the machine boots, because a console key delivered mid-boot crashes the emulator outright, and clicking START repeatedly at a silent screen is exactly what an impatient player does.
+
+### Fixed
+- **Soft-key buttons were delivering each press four times over.** The shared soft-key pattern dispatches its synthetic key at `document`, `window`, `body` and the canvas "to be safe" — but the events bubble, so one click arrived at `window` four times and the emulator saw the key pressed four times. A few clicks in quick succession flooded atari800 into `memory access out of bounds` and a black screen. Now one dispatch at `document`, measured at exactly one keydown per click, and fifteen rapid presses no longer disturb it.
+
+### Added
 - **The Oregon Trail can now be finished.** It shipped on a two-sided floppy and stops partway through to ask you to turn the disk over — and side B was never bundled, so the game ended there. Reported by a reader of the Tweakers write-up, who got exactly that far. Both sides now ship as `.woz` (apple2js reads the format natively, so nothing is converted), and a **Flip Disk** button sits at the top left of the Apple ][+ screen for this game, swapping the disk in the running drive the way turning it over did. No single-disk release exists to fall back on: every candidate turns out to be side A, and the catalogue gives it away — there is a file on it called `FLIP.LIB`.
   The button is deliberately not labelled "flip to side B": the game can ask for either side, more than once, and turning the disk over is one action either way.
 
