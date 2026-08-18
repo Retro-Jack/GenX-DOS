@@ -3,160 +3,295 @@
      Part of GenX-DOS. This page loads a GPL-licensed emulator engine, so it is
      GPL-3.0-or-later rather than the repo's CC BY-NC. -->
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' data: blob:; media-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'">
-  <script src="../_shared/genx-bezel-ready.js"></script>
-  <script src="../_shared/genx-audio-banner.js"></script>
-  <meta charset="utf-8" /><link rel="shortcut icon" href="../_shared/favicon.ico"><link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tandy CoCo</title>
-  <style>
-    /* CRT bezel — shared vintage TV (Sinclair.png, 1362x914, screen hole at
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' data: blob:; media-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <script src="../_shared/genx-bezel-ready.js"></script>
+    <script src="../_shared/genx-audio-banner.js"></script>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../_shared/favicon.ico" />
+    <link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tandy CoCo</title>
+    <style>
+      /* CRT bezel — shared vintage TV (Sinclair.png, 1362x914, screen hole at
        8.08%/12.14%/65.35%×73.96%) on the 70s wallpaper, same player-in-hole
        recipe as the Spectrum/MSX. XRoar (SDL2) sizes #canvas itself, so we pin
        it into the hole and force it to fill; no barrel/fisheye (the CoCo
        picture reads better flat). Black .screen-bg behind hides the cutout
        edge. !important on the wallpaper because genx-frame.css loads AFTER. */
-    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; color: #fff; font-family: monospace; }
-    body { display: flex; align-items: center; justify-content: center; }
-    .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1362 / 914)); aspect-ratio: 1362 / 914; }
-    .screen-bg { position: absolute; left: 6.6%; top: 10.6%; width: 68.4%; height: 77.0%; background: #000; z-index: 1; }
-    #screen { position: absolute; left: 8.08%; top: 12.14%; width: 65.35%; height: 73.96%; overflow: hidden; z-index: 2; }
-    #canvas { width: 100% !important; height: 100% !important; display: block; image-rendering: pixelated; outline: none; transform: translate(8px, 0px) scale(0.888); }
-    .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
-    .err { padding: 20px; }
-  </style>
-  <link rel="stylesheet" href="../_shared/styles/genx-frame.css">
-</head>
-<body>
-  <noscript><div class="gx-noscript">
-    <div class="gx-noscript-title">JavaScript Required</div>
-    <div>This site is a client-side DOS terminal and emulator suite.</div>
-    <div>It needs JavaScript to run.</div>
-    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
-  </div></noscript>
-  <div class="bezel-wrap">
-    <div class="screen-bg"></div>
-    <div id="screen"><canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas></div>
-    <img class="bezel-img" src="../_shared/bezels/Sinclair.png" alt="">
-  </div>
-  <script>
-    var Module = {
-      canvas: document.getElementById('canvas'),
-      arguments: ['-no-vo-colour-killer', '-no-disk-auto-os9', '-ao-fragments', '3', '-machine', 'coco'],
-      // XRoar requests system ROMs via absolute paths like '/d64_1.rom'; strip
-      // the leading slash so they resolve relative to this directory.
-      locateFile: function(path) { return path.replace(/^\/+/, ''); }
-    };
-    var pendingGame = null;
-
-    // Stub callbacks XRoar's WASM invokes for UI updates we don't render.
-    function ui_done_initialising() {}
-    function ui_menu_clear() {}
-    function ui_menu_add() {}
-    function ui_menu_add_str() {}
-    function ui_menu_select() {}
-    function ui_menu_select_str() {}
-    function ui_set_checkbox() {}
-    function ui_set_fullscreen() {}
-    function ui_set_html() {}
-    function ui_set_value() {}
-    function ui_update_ccr() {}
-    function ui_update_disk_info() {}
-    function ui_update_hd_filename() {}
-    function ui_update_tape_input_filename() {}
-    function ui_update_tape_playing() {}
-
-    Module.onRuntimeInitialized = function() {
-      const wasm_load_file = Module.cwrap('wasm_load_file', null, ['string', 'number', 'number']);
-      const game = pendingGame || { machine: 'coco' };
-      Module.ccall('wasm_set_machine_cart', null, ['string','string','string','string'],
-                   [game.machine || 'coco', game.cart || null, game.cart_rom || null, game.cart_rom2 || null]);
-      if (game.autorun) {
-        const ext = game.autorun.split('.').pop().toLowerCase();
-        const delay = (ext === 'bin') ? 0 : 2000;
-        setTimeout(() => wasm_load_file(game.autorun, 1 /* run */, 0), delay);
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #000 url('../_shared/textures/70s-bg.png') repeat !important;
+        background-size: 220px !important;
+        overflow: hidden;
+        color: #fff;
+        font-family: monospace;
       }
-    };
-
-    function resumeAudio() {
-      if (typeof Module === 'undefined' || typeof Module.SDL2 === 'undefined' || typeof Module.SDL2.audioContext === 'undefined') return;
-      if (Module.SDL2.audioContext.state === 'suspended') Module.SDL2.audioContext.resume();
-    }
-    document.getElementById('canvas').addEventListener('click', resumeAudio);
-    document.addEventListener('keydown', resumeAudio);
-
-    (async function () {
-      const params = new URLSearchParams(location.search);
-      const key = params.get('game');
-      if (key) {
-        let games;
-        try {
-          games = await (await fetch('games.json')).json();
-        } catch (e) {
-          const d = document.createElement('div');
-          d.className = 'err';
-          d.textContent = 'Failed to load games.json: ' + e.message;
-          document.body.replaceChildren(d);
-          return;
-        }
-        const game = games[key];
-        if (!game) {
-          const d = document.createElement('div');
-          d.className = 'err';
-          d.textContent = 'Unknown game key: ' + key;
-          document.body.replaceChildren(d);
-          return;
-        }
-        document.title = 'Tandy CoCo';
-        pendingGame = game;
-      } else {
-        document.title = 'Tandy CoCo';
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-      const s = document.createElement('script');
-      s.src = 'xroar.js';
-      document.body.appendChild(s);
-    })();
-  </script>
-  <link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
-  <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
-  <script defer src="../_shared/genx-controls-link.js"></script>
-<script defer src="../_shared/genx-repo-link.js"></script>
+      .bezel-wrap {
+        position: relative;
+        width: min(100vw, calc((100dvh - 120px) * 1362 / 914));
+        aspect-ratio: 1362 / 914;
+      }
+      .screen-bg {
+        position: absolute;
+        left: 6.6%;
+        top: 10.6%;
+        width: 68.4%;
+        height: 77%;
+        background: #000;
+        z-index: 1;
+      }
+      #screen {
+        position: absolute;
+        left: 8.08%;
+        top: 12.14%;
+        width: 65.35%;
+        height: 73.96%;
+        overflow: hidden;
+        z-index: 2;
+      }
+      #canvas {
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
+        image-rendering: pixelated;
+        outline: none;
+        transform: translate(8px, 0px) scale(0.888);
+      }
+      .bezel-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        pointer-events: none;
+        z-index: 3;
+      }
+      .err {
+        padding: 20px;
+      }
+    </style>
+    <link rel="stylesheet" href="../_shared/styles/genx-frame.css" />
+  </head>
+  <body>
+    <noscript
+      ><div class="gx-noscript">
+        <div class="gx-noscript-title">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+      </div></noscript
+    >
+    <div class="bezel-wrap">
+      <div class="screen-bg"></div>
+      <div id="screen">
+        <canvas
+          id="canvas"
+          tabindex="0"
+          oncontextmenu="event.preventDefault()"
+        ></canvas>
+      </div>
+      <img class="bezel-img" src="../_shared/bezels/Sinclair.png" alt="" />
+    </div>
+    <script>
+      var Module = {
+        canvas: document.getElementById('canvas'),
+        arguments: [
+          '-no-vo-colour-killer',
+          '-no-disk-auto-os9',
+          '-ao-fragments',
+          '3',
+          '-machine',
+          'coco',
+        ],
+        // XRoar requests system ROMs via absolute paths like '/d64_1.rom'; strip
+        // the leading slash so they resolve relative to this directory.
+        locateFile: function (path) {
+          return path.replace(/^\/+/, '');
+        },
+      };
+      var pendingGame = null;
 
-  <!-- save / load state: XRoar exports write_snapshot (full-machine .sna to the
+      // Stub callbacks XRoar's WASM invokes for UI updates we don't render.
+      function ui_done_initialising() {}
+      function ui_menu_clear() {}
+      function ui_menu_add() {}
+      function ui_menu_add_str() {}
+      function ui_menu_select() {}
+      function ui_menu_select_str() {}
+      function ui_set_checkbox() {}
+      function ui_set_fullscreen() {}
+      function ui_set_html() {}
+      function ui_set_value() {}
+      function ui_update_ccr() {}
+      function ui_update_disk_info() {}
+      function ui_update_hd_filename() {}
+      function ui_update_tape_input_filename() {}
+      function ui_update_tape_playing() {}
+
+      // XRoar's SDL layer sets the window title once it starts, which puts the
+      // engine's name in the browser tab — the tab is supposed to read the
+      // machine, never the emulator. Put it back whenever that happens.
+      (function () {
+        var WANT = 'Tandy CoCo';
+        var t = document.querySelector('title');
+        if (!t) return;
+        new MutationObserver(function () {
+          if (document.title !== WANT) document.title = WANT;
+        }).observe(t, { childList: true });
+      })();
+
+      Module.onRuntimeInitialized = function () {
+        const wasm_load_file = Module.cwrap('wasm_load_file', null, [
+          'string',
+          'number',
+          'number',
+        ]);
+        const game = pendingGame || { machine: 'coco' };
+        Module.ccall(
+          'wasm_set_machine_cart',
+          null,
+          ['string', 'string', 'string', 'string'],
+          [
+            game.machine || 'coco',
+            game.cart || null,
+            game.cart_rom || null,
+            game.cart_rom2 || null,
+          ],
+        );
+        if (game.autorun) {
+          const ext = game.autorun.split('.').pop().toLowerCase();
+          const delay = ext === 'bin' ? 0 : 2000;
+          setTimeout(() => wasm_load_file(game.autorun, 1 /* run */, 0), delay);
+        }
+      };
+
+      function resumeAudio() {
+        if (
+          typeof Module === 'undefined' ||
+          typeof Module.SDL2 === 'undefined' ||
+          typeof Module.SDL2.audioContext === 'undefined'
+        )
+          return;
+        if (Module.SDL2.audioContext.state === 'suspended')
+          Module.SDL2.audioContext.resume();
+      }
+      document.getElementById('canvas').addEventListener('click', resumeAudio);
+      document.addEventListener('keydown', resumeAudio);
+
+      (async function () {
+        const params = new URLSearchParams(location.search);
+        const key = params.get('game');
+        if (key) {
+          let games;
+          try {
+            games = await (await fetch('games.json')).json();
+          } catch (e) {
+            const d = document.createElement('div');
+            d.className = 'err';
+            d.textContent = 'Failed to load games.json: ' + e.message;
+            document.body.replaceChildren(d);
+            return;
+          }
+          const game = games[key];
+          if (!game) {
+            const d = document.createElement('div');
+            d.className = 'err';
+            d.textContent = 'Unknown game key: ' + key;
+            document.body.replaceChildren(d);
+            return;
+          }
+          document.title = 'Tandy CoCo';
+          // Composite artifact colour, per game. On a real CoCo the hi-res
+          // two-colour modes were never really two-colour: NTSC composite turns
+          // alternating pixel columns into red and blue, and games were drawn
+          // FOR that — Demon Attack is black, white, red and blue on a TV set,
+          // and stark monochrome without it. XRoar models this with -tv-input;
+          // 'cmp-rb' and 'cmp-br' are the two artifact phases, which decide
+          // which colour lands on which pixel column.
+          //
+          // Per game rather than global: it only means anything for titles that
+          // relied on it, and the phase differs between them. Must be pushed
+          // before xroar.js loads, since these are argv.
+          if (game.tv) Module.arguments.push('-tv-input', game.tv);
+          pendingGame = game;
+        } else {
+          document.title = 'Tandy CoCo';
+        }
+        const s = document.createElement('script');
+        s.src = 'xroar.js';
+        document.body.appendChild(s);
+      })();
+    </script>
+    <link rel="stylesheet" href="../_shared/styles/genx-noscript.css" />
+    <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css" />
+    <script defer src="../_shared/genx-controls-link.js"></script>
+    <script defer src="../_shared/genx-repo-link.js"></script>
+
+    <!-- save / load state: XRoar exports write_snapshot (full-machine .sna to the
        WASM FS); we read those bytes back as the state, and restore by writing
        them to the FS and reloading via wasm_load_file (same path used to load
        games). -->
-  <link rel="stylesheet" href="../_shared/styles/genx-savestate.css">
-  <script>
-    (function () {
-      var SNAP = '/gx-state.sna';
-      function M() { return window.Module; }
-      window.GenXStateAdapter = {
-        ready: function () {
-          var m = M();
-          return !!(m && m.FS && m.cwrap && typeof m._write_snapshot === 'function');
-        },
-        getState: function () {
-          var m = M();
-          if (!m._gxWrite) m._gxWrite = m.cwrap('write_snapshot', 'number', ['string']);
-          try { m.FS.unlink(SNAP); } catch (e) {}
-          m._gxWrite(SNAP);
-          return m.FS.readFile(SNAP); // Uint8Array — the .sna machine snapshot
-        },
-        setState: function (bytes) {
-          var m = M();
-          if (!m._gxLoad) m._gxLoad = m.cwrap('wasm_load_file', null, ['string', 'number', 'number']);
-          try { m.FS.unlink(SNAP); } catch (e) {}
-          m.FS.writeFile(SNAP, bytes);
-          m._gxLoad(SNAP, 0, 0); // load the snapshot → restores machine state
-        },
-        refocus: function () { var c = document.getElementById('canvas'); if (c && c.focus) c.focus(); }
-      };
-    })();
-  </script>
-  <script defer src="../_shared/genx-savestate-std.js"></script>
+    <link rel="stylesheet" href="../_shared/styles/genx-savestate.css" />
+    <script>
+      (function () {
+        var SNAP = '/gx-state.sna';
+        function M() {
+          return window.Module;
+        }
+        window.GenXStateAdapter = {
+          ready: function () {
+            var m = M();
+            return !!(
+              m &&
+              m.FS &&
+              m.cwrap &&
+              typeof m._write_snapshot === 'function'
+            );
+          },
+          getState: function () {
+            var m = M();
+            if (!m._gxWrite)
+              m._gxWrite = m.cwrap('write_snapshot', 'number', ['string']);
+            try {
+              m.FS.unlink(SNAP);
+            } catch (e) {}
+            m._gxWrite(SNAP);
+            return m.FS.readFile(SNAP); // Uint8Array — the .sna machine snapshot
+          },
+          setState: function (bytes) {
+            var m = M();
+            if (!m._gxLoad)
+              m._gxLoad = m.cwrap('wasm_load_file', null, [
+                'string',
+                'number',
+                'number',
+              ]);
+            try {
+              m.FS.unlink(SNAP);
+            } catch (e) {}
+            m.FS.writeFile(SNAP, bytes);
+            m._gxLoad(SNAP, 0, 0); // load the snapshot → restores machine state
+          },
+          refocus: function () {
+            var c = document.getElementById('canvas');
+            if (c && c.focus) c.focus();
+          },
+        };
+      })();
+    </script>
+    <script defer src="../_shared/genx-savestate-std.js"></script>
     <script defer src="../_shared/genx-savestate-transfer.js"></script>
-
-</body>
+  </body>
 </html>

@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+### Added
+- **The CoCo now shows composite artifact colour, where the game was drawn for it.** The Dragon/CoCo's high-resolution modes were nominally two-colour, but on an NTSC television alternating pixel columns come out red and blue — and games were drawn *for* that. Demon Attack is meant to be black, white, red and blue; it was rendering in stark monochrome. XRoar models this with `-tv-input`, and the bundle now passes it per game (`"tv": "cmp-rb"` in `games.json`), because it only means anything for titles that relied on it and the artifact phase differs between them. Enabled for **Demon Attack** and **Downland** so far. Suggested by **jimbro1000**, who also identified the option.
+
+### Fixed
+- **The CoCo browser tab said "XRoar".** The tab is supposed to name the machine, never the emulator, and the page's own `<title>` was correct — but XRoar's SDL layer overwrites the window title once it starts, after the page has set it. It is now put back whenever that happens.
+
 ### Changed
 - **Soft keys now appear only on the games that use them.** A CLEAR button on a game that never asks for CLEAR is noise, and worse, it implies the game wants it — a player pressing it learns only that it does nothing. The button now shows where the game's own page says the key is used: **six of the ten TRS-80 games**, and **four of the twenty BBC games**, so twenty buttons that meant nothing have gone.
   The map is generated from each gamedoc's *Controls* table by `tools/build-softkey-map.py`, so the button and the documentation cannot disagree — add a CLEAR row to a gamedoc and the button appears next build. It reads the Controls table only: the "Getting started" text used to hedge with "press the key it names to begin (often CLEAR)", which was true of nine TRS-80 pages and told a reader nothing. If the map can't be loaded the keys all show, because hiding the only discoverable way to start a game is far worse than one extra button.

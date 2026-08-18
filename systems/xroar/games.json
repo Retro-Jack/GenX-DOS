@@ -7,7 +7,8 @@
   "downland": {
     "title": "Downland",
     "machine": "coco",
-    "autorun": "roms/downland.ccc"
+    "autorun": "roms/downland.ccc",
+    "tv": "cmp-rb"
   },
   "canyon": {
     "title": "Canyon Climber",
@@ -17,7 +18,8 @@
   "demon": {
     "title": "Demon Attack",
     "machine": "coco",
-    "autorun": "roms/demonattack.ccc"
+    "autorun": "roms/demonattack.ccc",
+    "tv": "cmp-rb"
   },
   "polaris": {
     "title": "Polaris",
