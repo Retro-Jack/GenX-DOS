@@ -20,8 +20,12 @@
        keyed-transparent background. It replaces the Model I's three-box
        sprawl of monitor, expansion interface and drive stack.
        Three layers, back to front:
-         1. .screen-bg — black backdrop, a touch larger than the cutout so the
-            wallpaper can't bleed through the PNG's anti-aliased hole edge.
+         1. .screen-bg — black backdrop. It covers the WHOLE cutout plus 1%
+            proud on every side, not just the area the picture occupies: the
+            picture is inset within the glass, and the rest of the glass has to
+            read as an unlit CRT face rather than as wallpaper showing through.
+            The 1% margin is what stops the wallpaper bleeding through the
+            PNG's anti-aliased hole edge.
          2. #screen    — holds the emulator's <canvas>, sized to the cutout.
          3. .bezel-img — TRS80-3.png on top; its transparent screen hole reveals
             the canvas, and the CRT's rounded corners trim the canvas corners.
@@ -41,13 +45,13 @@
     }
     .screen-bg {
       position: absolute;
-      left: 17.86%; top: 7.3%; width: 41.44%; height: 45.44%;
+      left: 16.82%; top: 6.16%; width: 43.52%; height: 47.73%;
       background: #000;
       z-index: 1;
     }
     #screen {
       position: absolute;
-      left: 18.86%; top: 8.3%; width: 39.44%; height: 43.44%;
+      left: 19.84%; top: 9.38%; width: 37.47%; height: 41.27%;
       z-index: 2;
       overflow: hidden;
     }
