@@ -74,7 +74,14 @@
       #screen {
         position: absolute;
         left: 20.77%;
-        top: 10.41%;
+        /* Nudged DOWN relative to the cutout on purpose. The picture is
+           512x384, but the games don't fill it evenly: Galaxy Invasion's
+           dotted frame occupies y 8..335, leaving 8 pixels above it and 48
+           below, so a canvas centred on the cutout puts the visible frame
+           high in the tube. Offsetting by half that difference — 20 canvas
+           px, about 1.9% of the bezel height — centres what you actually
+           see rather than what the surface technically contains. */
+        top: 12.32%;
         width: 35.6%;
         height: 39.21%;
         z-index: 2;
