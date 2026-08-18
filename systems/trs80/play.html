@@ -3,18 +3,23 @@
      Part of GenX-DOS. This page loads a GPL-licensed emulator engine, so it is
      GPL-3.0-or-later rather than the repo's CC BY-NC. -->
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' data: blob:; media-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'">
-  <script src="../_shared/genx-bezel-ready.js"></script>
-  <script src="../_shared/genx-audio-banner.js"></script>
-  <meta charset="utf-8"><link rel="shortcut icon" href="../_shared/favicon.ico"><link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tandy TRS-80</title>
-  <link rel="stylesheet" href="../_shared/styles/genx-frame.css">
-  <link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
-  <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
-  <style>
-    /* CRT bezel — Radio Shack TRS-80 Model III (TRS80-3.png, 1498x1089,
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' data: blob:; media-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <script src="../_shared/genx-bezel-ready.js"></script>
+    <script src="../_shared/genx-audio-banner.js"></script>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../_shared/favicon.ico" />
+    <link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tandy TRS-80</title>
+    <link rel="stylesheet" href="../_shared/styles/genx-frame.css" />
+    <link rel="stylesheet" href="../_shared/styles/genx-noscript.css" />
+    <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css" />
+    <style>
+      /* CRT bezel — Radio Shack TRS-80 Model III (TRS80-3.png, 1498x1089,
        aspect 1.376): the all-in-one case, screen top-left, twin Mini Disk
        drives beside it, keyboard and numeric keypad in front, on a
        keyed-transparent background. It replaces the Model I's three-box
@@ -35,116 +40,225 @@
        rather than the image running right to the edge of the glass. The sdltrs canvas is a clean 512x384 (4:3) text area
        — no phosphor padding to overscan-crop — so the canvas just fills the
        cutout. Wallpaper override must follow genx-frame.css (body black). */
-    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; color: #fff; font-family: monospace; overflow: hidden; }
-    body { display: flex; align-items: center; justify-content: center; }
-    .bezel-wrap {
-      position: relative;
-      height: 100vh;
-      aspect-ratio: 1498 / 1089;
-      max-width: 100vw;
-    }
-    .screen-bg {
-      position: absolute;
-      left: 16.82%; top: 6.16%; width: 43.52%; height: 47.73%;
-      background: #000;
-      z-index: 1;
-    }
-    #screen {
-      position: absolute;
-      left: 19.84%; top: 9.38%; width: 37.47%; height: 41.27%;
-      z-index: 2;
-      overflow: hidden;
-    }
-    /* Backing store is pinned to sdltrs's native surface (1024x768, via the
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #000 url('../_shared/textures/70s-bg.png') repeat;
+        background-size: 220px;
+        color: #fff;
+        font-family: monospace;
+        overflow: hidden;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .bezel-wrap {
+        position: relative;
+        height: 100vh;
+        aspect-ratio: 1498 / 1089;
+        max-width: 100vw;
+      }
+      .screen-bg {
+        position: absolute;
+        left: 16.82%;
+        top: 6.16%;
+        width: 43.52%;
+        height: 47.73%;
+        background: #000;
+        z-index: 1;
+      }
+      #screen {
+        position: absolute;
+        left: 20.77%;
+        top: 10.41%;
+        width: 35.6%;
+        height: 39.21%;
+        z-index: 2;
+        overflow: hidden;
+      }
+      /* Backing store is pinned to sdltrs's native surface (1024x768, via the
        canvas width/height attrs) so the software SDL_UpdateWindowSurface
        putImageData lands at full size; CSS then scales the display to fill the
        cutout. Don't set width/height attrs to anything but the surface size or
        only the top-left corner draws. */
-    /* No image-rendering: pixelated here, and no transform: scale().
-       The canvas backing store is 1024x768 and the cutout is smaller, so the
-       browser is always DOWNSCALING. Nearest-neighbour downscaling does not
-       average — it throws whole pixel rows away, and on a 12-pixel-tall TRS-80
-       character that takes the top off the glyph: "High Score" rendered as
-       "-igh Score". Smooth downscaling keeps every row and reads correctly.
-       The scale(0.858) was a fudge for the Model I bezel, whose hole the
-       canvas overflowed; #screen is measured to the Model III cutout, so the
-       canvas fills it directly. object-fit keeps the 4:3 ratio inside a hole
-       that is a little wider than 4:3, rather than squashing the text. */
-    #screen canvas { display: block; width: 100% !important; height: 100% !important; object-fit: contain; outline: none; border: none; }
-    #screen canvas:focus { outline: none; }
-    .bezel-img {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: contain;
-      pointer-events: none;
-      z-index: 3;
-    }
-    .err { padding: 20px; }
-  </style>
-  <script defer src="../_shared/genx-controls-link.js"></script>
-<script defer src="../_shared/genx-repo-link.js"></script>
-  <script defer src="../_shared/genx-softkey-policy.js"></script>
-  <script defer src="../_shared/genx-trs80-softkeys.js"></script>
-</head>
-<body>
-  <noscript><div class="gx-noscript">
-    <div class="gx-noscript-title">JavaScript Required</div>
-    <div>This site is a client-side DOS terminal and emulator suite.</div>
-    <div>It needs JavaScript to run.</div>
-    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
-  </div></noscript>
-  <div class="bezel-wrap">
-    <div class="screen-bg"></div>
-    <div id="screen"><canvas id="screen-canvas" width="1024" height="768" tabindex="0"></canvas></div>
-    <img class="bezel-img" src="../_shared/bezels/TRS80-3.png" alt="">
-  </div>
+      /* image-rendering is set from JS — see the note by the canvas. The picture
+       is rendered at the machine's own 512x384 and displayed at whatever the
+       bezel cutout gives, so it can land either side of 1:1 and neither CSS
+       value is right for both cases. */
+      #screen canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain;
+        outline: none;
+        border: none;
+      }
+      #screen canvas:focus {
+        outline: none;
+      }
+      .bezel-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        pointer-events: none;
+        z-index: 3;
+      }
+      .err {
+        padding: 20px;
+      }
+    </style>
+    <script defer src="../_shared/genx-controls-link.js"></script>
+    <script defer src="../_shared/genx-repo-link.js"></script>
+    <script defer src="../_shared/genx-softkey-policy.js"></script>
+    <script defer src="../_shared/genx-trs80-softkeys.js"></script>
+  </head>
+  <body>
+    <noscript
+      ><div class="gx-noscript">
+        <div class="gx-noscript-title">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+      </div></noscript
+    >
+    <div class="bezel-wrap">
+      <div class="screen-bg"></div>
+      <!-- 512x384 = the machine's own resolution, and exactly what sdltrs emits
+         at -scale 1. The backing store MUST equal the SDL surface size: the
+         software video path does a raw putImageData, and emscripten does not
+         resize the canvas for it, so a mismatch draws only the top-left corner.
 
-  <!-- sdltrs.js defines the createSDLTRS() factory; it MUST load before the
+         It used to be 1024x768 (-scale 2), which meant the picture was always
+         being scaled DOWN into the bezel cutout — and after the cutout was
+         inset, down by two thirds, which turns a 12-pixel-tall character into
+         mush whichever filtering you pick. Rendering at native resolution puts
+         the ratio near 1:1, where text is legible. -->
+      <div id="screen">
+        <canvas
+          id="screen-canvas"
+          width="512"
+          height="384"
+          tabindex="0"
+        ></canvas>
+      </div>
+      <img class="bezel-img" src="../_shared/bezels/TRS80-3.png" alt="" />
+    </div>
+
+    <!-- sdltrs.js defines the createSDLTRS() factory; it MUST load before the
        boot code below references it. -->
-  <script src="sdltrs.js"></script>
-  <script>
-    (async function () {
-      const fail = (msg) => {
-        const d = document.createElement('div');
-        d.className = 'err';
-        d.textContent = msg;
-        document.body.replaceChildren(d);
-      };
-      const canvas = document.getElementById('screen-canvas');
-      const params = new URLSearchParams(location.search);
-      const key = params.get('game');
-      if (!key) { document.title = 'Tandy TRS-80'; return; }
+    <script src="sdltrs.js"></script>
+    <script>
+      (async function () {
+        const fail = (msg) => {
+          const d = document.createElement('div');
+          d.className = 'err';
+          d.textContent = msg;
+          document.body.replaceChildren(d);
+        };
+        const canvas = document.getElementById('screen-canvas');
+        const params = new URLSearchParams(location.search);
+        const key = params.get('game');
+        if (!key) {
+          document.title = 'Tandy TRS-80';
+          return;
+        }
 
-      let games;
-      try { games = await (await fetch('games.json')).json(); }
-      catch (e) { fail('Failed to load games.json: ' + e.message); return; }
-      const game = games[key];
-      if (!game) { fail('Unknown game key: ' + key); return; }
-      document.title = 'Tandy TRS-80';
+        let games;
+        try {
+          games = await (await fetch('games.json')).json();
+        } catch (e) {
+          fail('Failed to load games.json: ' + e.message);
+          return;
+        }
+        const game = games[key];
+        if (!game) {
+          fail('Unknown game key: ' + key);
+          return;
+        }
+        document.title = 'Tandy TRS-80';
 
-      let cmdBytes;
-      try { cmdBytes = new Uint8Array(await (await fetch(game.rom)).arrayBuffer()); }
-      catch (e) { fail('Failed to load program: ' + e.message); return; }
-      let romBytes;
-      try { romBytes = new Uint8Array(await (await fetch('model3.rom')).arrayBuffer()); }
-      catch (e) { return fail('Could not load the Model III ROM.'); }
+        let cmdBytes;
+        try {
+          cmdBytes = new Uint8Array(
+            await (await fetch(game.rom)).arrayBuffer(),
+          );
+        } catch (e) {
+          fail('Failed to load program: ' + e.message);
+          return;
+        }
+        let romBytes;
+        try {
+          romBytes = new Uint8Array(
+            await (await fetch('model3.rom')).arrayBuffer(),
+          );
+        } catch (e) {
+          return fail('Could not load the Model III ROM.');
+        }
 
-      // Model III, 48K. The Model III ROM is fetched and written into MEMFS
-      // alongside the game rather than embedded in the wasm — the build bakes in
-      // the Model I ROM at /level2.rom, and swapping machines that way would mean
-      // a whole emscripten rebuild for a 14 KB file. -noled / -borderwidth 0
-      // give a clean 512x384 text area with nothing but the screen. The .cmd is
-      // written to MEMFS and passed as the positional arg; trs_load_cmd jumps
-      // straight into it (no disk boot needed). -scale 2 for crisp pixels.
-      createSDLTRS({
-        canvas: canvas,
-        arguments: ['-model', '3', '-romfile3', '/model3.rom', '-noled', '-borderwidth', '0', '-scale', '2', '/game.cmd'],
-        preRun: [function (m) { m.FS.writeFile('/game.cmd', cmdBytes); m.FS.writeFile('/model3.rom', romBytes); }],
-        print: function () {},
-        printErr: function () {},
-      }).catch(function (e) { fail('Emulator failed: ' + (e && e.message ? e.message : e)); });
-    })();
-  </script>
-</body>
+        // Model III, 48K. The Model III ROM is fetched and written into MEMFS
+        // alongside the game rather than embedded in the wasm — the build bakes in
+        // the Model I ROM at /level2.rom, and swapping machines that way would mean
+        // a whole emscripten rebuild for a 14 KB file. -noled / -borderwidth 0
+        // give a clean 512x384 text area with nothing but the screen. The .cmd is
+        // written to MEMFS and passed as the positional arg; trs_load_cmd jumps
+        // straight into it (no disk boot needed). -scale 2 for crisp pixels.
+        createSDLTRS({
+          canvas: canvas,
+          arguments: [
+            '-model',
+            '3',
+            '-romfile3',
+            '/model3.rom',
+            '-noled',
+            '-borderwidth',
+            '0',
+            '-scale',
+            '1',
+            '/game.cmd',
+          ],
+          preRun: [
+            function (m) {
+              m.FS.writeFile('/game.cmd', cmdBytes);
+              m.FS.writeFile('/model3.rom', romBytes);
+            },
+          ],
+          print: function () {},
+          printErr: function () {},
+        }).catch(function (e) {
+          fail('Emulator failed: ' + (e && e.message ? e.message : e));
+        });
+      })();
+
+      // Pick the scaling mode from the ratio actually on screen.
+      //
+      // Nearest-neighbour ("pixelated") is right when the picture is scaled UP:
+      // it keeps the TRS-80's chunky glyphs crisp and square, which is both more
+      // legible and more honest to the machine. It is wrong when scaled DOWN,
+      // because it discards pixel rows rather than averaging them, and a dropped
+      // row takes the top off a character — "High Score" rendered as "-igh Score"
+      // before this was understood.
+      //
+      // The cutout can sit either side of 512 wide depending on the viewport, so
+      // neither value is correct in CSS alone. Measure and choose.
+      (function () {
+        var canvas = document.getElementById('screen-canvas');
+        var apply = function () {
+          var shown = canvas.getBoundingClientRect().width;
+          if (!shown) return;
+          canvas.style.imageRendering =
+            shown >= canvas.width ? 'pixelated' : 'auto';
+        };
+        apply();
+        window.addEventListener('resize', apply);
+        // The bezel image settles the layout after it decodes.
+        window.addEventListener('load', apply);
+      })();
+    </script>
+  </body>
 </html>
