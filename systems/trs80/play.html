@@ -54,7 +54,17 @@
        putImageData lands at full size; CSS then scales the display to fill the
        cutout. Don't set width/height attrs to anything but the surface size or
        only the top-left corner draws. */
-    #screen canvas { display: block; width: 100% !important; height: 100% !important; image-rendering: pixelated; transform: scale(0.858); transform-origin: center; outline: none; border: none; }
+    /* No image-rendering: pixelated here, and no transform: scale().
+       The canvas backing store is 1024x768 and the cutout is smaller, so the
+       browser is always DOWNSCALING. Nearest-neighbour downscaling does not
+       average — it throws whole pixel rows away, and on a 12-pixel-tall TRS-80
+       character that takes the top off the glyph: "High Score" rendered as
+       "-igh Score". Smooth downscaling keeps every row and reads correctly.
+       The scale(0.858) was a fudge for the Model I bezel, whose hole the
+       canvas overflowed; #screen is measured to the Model III cutout, so the
+       canvas fills it directly. object-fit keeps the 4:3 ratio inside a hole
+       that is a little wider than 4:3, rather than squashing the text. */
+    #screen canvas { display: block; width: 100% !important; height: 100% !important; object-fit: contain; outline: none; border: none; }
     #screen canvas:focus { outline: none; }
     .bezel-img {
       position: absolute;
