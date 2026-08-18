@@ -26,7 +26,9 @@
          3. .bezel-img — TRS80-3.png on top; its transparent screen hole reveals
             the canvas, and the CRT's rounded corners trim the canvas corners.
        Screen hole measured (alpha flood-fill): left 17.82% top 7.16%
-       w 41.52% h 45.73%. The sdltrs canvas is a clean 512x384 (4:3) text area
+       w 41.52% h 45.73%; the picture is inset 5% from that, centred on the
+       same point, so a little of the CRT's black surround shows all round
+       rather than the image running right to the edge of the glass. The sdltrs canvas is a clean 512x384 (4:3) text area
        — no phosphor padding to overscan-crop — so the canvas just fills the
        cutout. Wallpaper override must follow genx-frame.css (body black). */
     html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; color: #fff; font-family: monospace; overflow: hidden; }
@@ -39,13 +41,13 @@
     }
     .screen-bg {
       position: absolute;
-      left: 16.82%; top: 6.16%; width: 43.52%; height: 47.73%;
+      left: 17.86%; top: 7.3%; width: 41.44%; height: 45.44%;
       background: #000;
       z-index: 1;
     }
     #screen {
       position: absolute;
-      left: 17.82%; top: 7.16%; width: 41.52%; height: 45.73%;
+      left: 18.86%; top: 8.3%; width: 39.44%; height: 43.44%;
       z-index: 2;
       overflow: hidden;
     }
@@ -78,6 +80,7 @@
   </style>
   <script defer src="../_shared/genx-controls-link.js"></script>
 <script defer src="../_shared/genx-repo-link.js"></script>
+  <script defer src="../_shared/genx-softkey-policy.js"></script>
   <script defer src="../_shared/genx-trs80-softkeys.js"></script>
 </head>
 <body>
