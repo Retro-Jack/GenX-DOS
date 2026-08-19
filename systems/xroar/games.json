@@ -25,12 +25,16 @@
   "polaris": {
     "title": "Polaris",
     "machine": "coco",
-    "autorun": "roms/polaris.ccc"
+    "autorun": "roms/polaris.ccc",
+    "joy": "kjoy0",
+    "joyport": "left"
   },
   "galactic": {
     "title": "Galactic Attack",
     "machine": "coco",
-    "autorun": "roms/galactic.ccc"
+    "autorun": "roms/galactic.ccc",
+    "joy": "kjoy0",
+    "joyport": "left"
   },
   "popcorn": {
     "title": "Popcorn",
@@ -46,7 +50,9 @@
   "poltrgst": {
     "title": "Poltergeist",
     "machine": "coco",
-    "autorun": "roms/poltergeist.ccc"
+    "autorun": "roms/poltergeist.ccc",
+    "joy": "kjoy0",
+    "joyport": "left"
   },
   "monstrmz": {
     "title": "Monster Maze",

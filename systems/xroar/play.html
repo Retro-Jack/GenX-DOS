@@ -225,6 +225,35 @@
           // relied on it, and the phase differs between them. Must be pushed
           // before xroar.js loads, since these are argv.
           if (game.tv) Module.arguments.push('-tv-input', game.tv);
+          // Joystick, per game. Many CoCo titles are joystick-only — Galactic
+          // Attack says "PRESS FIRE BUTTON TO BEGIN" and ignores the keyboard
+          // entirely — so without this they cannot be started at all.
+          //
+          // XRoar has its own joystick support, which is the right thing to use
+          // rather than faking key presses: a physical pad is picked up natively
+          // through SDL, and 'kjoy0' is XRoar's keyboard joystick (cursor keys
+          // plus Alt and the Windows key for the two buttons) for players
+          // without one. Named per game because a keyboard joystick swallows the
+          // cursor keys, which some of these games read directly.
+          //
+          // 'joy' names the profile, 'joyport' picks which of the CoCo's two
+          // ports it plugs into — right is the one games normally expect.
+          if (game.joy) {
+            // XRoar's own keyboard joystick: cursor keys to steer, Alt to
+            // fire. Defining a custom profile was tried and abandoned — the
+            // -joy-axis/-joy-button options did not attach to a profile named
+            // on the command line (the console reported the port bound to an
+            // empty profile while the virtual joystick kept its defaults), so
+            // the built-in one is what actually works.
+            //
+            // 'left' is the port these games expect, which is not the guess:
+            // -joy-right left Galactic Attack sitting on its title screen, and
+            // -joy-left started it immediately.
+            Module.arguments.push(
+              game.joyport === 'left' ? '-joy-left' : '-joy-right',
+              game.joy,
+            );
+          }
           pendingGame = game;
         } else {
           document.title = 'Tandy CoCo';
