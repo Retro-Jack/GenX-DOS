@@ -40,7 +40,8 @@
   "megabug": {
     "title": "Mega-Bug",
     "machine": "coco",
-    "autorun": "roms/megabug.ccc"
+    "autorun": "roms/megabug.ccc",
+    "tv": "cmp-rb"
   },
   "poltrgst": {
     "title": "Poltergeist",
