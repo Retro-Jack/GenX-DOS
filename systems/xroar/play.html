@@ -124,10 +124,93 @@
       var pendingGame = null;
 
       // Stub callbacks XRoar's WASM invokes for UI updates we don't render.
-      function ui_done_initialising() {}
-      function ui_menu_clear() {}
-      function ui_menu_add() {}
-      function ui_menu_add_str() {}
+      // XRoar calls this once it has finished initialising. Upstream's own
+      // online build hooks the gamepad here, and it has to be done this way
+      // round: XRoar enumerates joysticks at startup, the browser hides pads
+      // until a button is pressed on one, and that permission is per document
+      // — so there is never a pad present when SDL looks, and its log says
+      // "no devices found" even with one plugged in. Nothing re-scans, so a
+      // pad attached later is invisible for the life of the page.
+      //
+      // The fix is to tell XRoar directly when the browser announces a pad.
+      // Note this build's API is not the one the Color Computer Archive's
+      // older build uses: 'wasm_set_joystick' does not exist here, and calling
+      // it silently does nothing.
+      function ui_done_initialising() {
+        window.addEventListener('gamepadconnected', function (e) {
+          try {
+            Module.ccall(
+              'wasm_gamepad_connected',
+              null,
+              ['number'],
+              [e.gamepad.index],
+            );
+          } catch (err) {
+            /* older build without the export */
+          }
+          // Hand the pad to a joystick port. XRoar offers only two profiles
+          // per pad — "(L)" and "(R)", its two analogue sticks — so the left
+          // stick is the pick: it sits well away from the face buttons, where
+          // the right stick crowds them.
+          gxStartPad(e.gamepad.index);
+        });
+
+        window.addEventListener('gamepaddisconnected', function (e) {
+          try {
+            Module.ccall(
+              'wasm_gamepad_disconnected',
+              null,
+              ['number'],
+              [e.gamepad.index],
+            );
+          } catch (err) {
+            /* nothing to undo */
+          }
+        });
+      }
+      // XRoar drives its UI through these callbacks, passing string POINTERS
+      // that need UTF8ToString(). This page has no menus, so most stay stubs —
+      // but the joystick menu is the only place XRoar names a connected
+      // gamepad, and we need that name to plug it into a port. So capture it.
+      // Brief on-screen note when a pad attaches — the same courtesy XRoar's
+      // own online build shows, and the only feedback a player gets that the
+      // pad took, since there is no joystick menu on this page.
+      function gxToast(msg) {
+        var d = document.createElement('div');
+        d.textContent = msg;
+        d.style.cssText =
+          'position:fixed;left:50%;bottom:58px;transform:translateX(-50%);' +
+          'z-index:100;background:#000;color:rgba(255,176,0,0.85);' +
+          'border:1px solid rgba(255,176,0,0.35);border-radius:4px;' +
+          'font:12px/1 ui-monospace,Menlo,Consolas,monospace;padding:6px 12px;';
+        document.body.appendChild(d);
+        setTimeout(function () {
+          d.remove();
+        }, 4000);
+      }
+
+      var gxJoyMenu = [];
+      function gxStr(p) {
+        try {
+          return typeof UTF8ToString === 'function'
+            ? UTF8ToString(p)
+            : String(p);
+        } catch (e) {
+          return String(p);
+        }
+      }
+      function ui_menu_clear(menu) {
+        if (gxStr(menu) === 'left-joystick') gxJoyMenu = [];
+      }
+      function ui_menu_add(menu, label, value) {
+        if (gxStr(menu) === 'left-joystick')
+          gxJoyMenu.push({ label: gxStr(label), value: value });
+      }
+      function ui_menu_add_str(menu, label, value) {
+        if (gxStr(menu) === 'left-joystick')
+          gxJoyMenu.push({ label: gxStr(label), value: gxStr(value) });
+      }
+
       function ui_menu_select() {}
       function ui_menu_select_str() {}
       function ui_set_checkbox() {}
@@ -176,6 +259,93 @@
           setTimeout(() => wasm_load_file(game.autorun, 1 /* run */, 0), delay);
         }
       };
+
+      // Feed XRoar's WASM virtual joystick from the pad, once per frame.
+      //
+      // Axis values are 16-bit unsigned: 0 hard one way, 65535 the other,
+      // 32768 centred. The d-pad wins when pressed, otherwise the left stick
+      // is passed through, so either works without a setting.
+      //
+      // All four face buttons fire, which is the house convention for
+      // single-action games — the player should not have to find the one
+      // button that works.
+      var gxPadTries = 0;
+      function gxStartPad(index) {
+        var port = pendingGame && pendingGame.joyport === 'right' ? 0 : 1;
+
+        // Pick from the list XRoar actually reports rather than guessing a
+        // name — 'joy-wasm-virtual' looked like one in the binary and is not.
+        // Preference order:
+        //   1. the virtual joystick, which the d-pad poll below can drive;
+        //   2. the pad's left-stick profile;
+        //   3. whatever pad entry exists.
+        // Anything found beats nothing, so a miss degrades to the stick rather
+        // than to a dead pad.
+        var pick = null;
+        var byLabel = function (re) {
+          return gxJoyMenu.filter(function (o) {
+            return re.test(o.label);
+          })[0];
+        };
+        // Prefer the plain "0: Standard Gamepad" entry — no (L)/(R) suffix.
+        // XRoar lists three per pad: the bare one, which on SDL's standard
+        // mapping is the d-pad and face buttons, then one for each analogue
+        // stick. The d-pad is the right default for these games, and it keeps
+        // movement and fire well apart on the pad.
+        pick =
+          gxJoyMenu.filter(function (o) {
+            return (
+              /gamepad|joystick/i.test(o.label) &&
+              !/\(L\)|\(R\)|keyboard|mouse|none/i.test(o.label)
+            );
+          })[0] ||
+          byLabel(/gamepad.*\(L\)|joystick.*\(L\)/i) ||
+          gxJoyMenu
+            .filter(function (o) {
+              return (
+                /gamepad|joystick/i.test(o.label) &&
+                !/keyboard|mouse|none/i.test(o.label)
+              );
+            })
+            .pop();
+
+        if (!pick) {
+          // XRoar rebuilds its joystick menu in response to
+          // wasm_gamepad_connected, but not synchronously — read it too soon
+          // and the pad simply is not in the list yet. Wait for it rather than
+          // giving up on the first look.
+          if (gxPadTries++ < 20) {
+            setTimeout(function () {
+              gxStartPad(index);
+            }, 100);
+            return;
+          }
+          gxToast('Gamepad seen, but no joystick entry to bind');
+          return;
+        }
+        gxPadTries = 0;
+        try {
+          if (typeof pick.value === 'string') {
+            Module.ccall(
+              'wasm_set_joystick_by_name',
+              null,
+              ['number', 'string'],
+              [port, pick.value],
+            );
+          } else {
+            Module.ccall(
+              'wasm_set_joystick_port',
+              null,
+              ['number', 'number'],
+              [port, pick.value],
+            );
+          }
+        } catch (err) {
+          gxToast('Gamepad bind failed');
+          return;
+        }
+        gxToast('Pad \u2192 ' + pick.label);
+      }
 
       function resumeAudio() {
         if (
