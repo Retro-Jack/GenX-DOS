@@ -25,9 +25,7 @@
   "polaris": {
     "title": "Polaris",
     "machine": "coco",
-    "autorun": "roms/polaris.ccc",
-    "joy": "kjoy0",
-    "joyport": "left"
+    "autorun": "roms/polaris.ccc"
   },
   "galactic": {
     "title": "Galactic Attack",
@@ -50,9 +48,7 @@
   "poltrgst": {
     "title": "Poltergeist",
     "machine": "coco",
-    "autorun": "roms/poltergeist.ccc",
-    "joy": "kjoy0",
-    "joyport": "left"
+    "autorun": "roms/poltergeist.ccc"
   },
   "monstrmz": {
     "title": "Monster Maze",
