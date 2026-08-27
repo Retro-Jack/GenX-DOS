@@ -327,6 +327,11 @@
         gxPadTries = 0;
         try {
           if (typeof pick.value === 'string') {
+            // 'joyport' is the port as THIS STACK numbers it, which does not
+            // reliably match the port a game's manual names. Polaris's manual
+            // says "the right joystick is for one player"; setting it to right
+            // here gives a pad that does nothing, and left is what actually
+            // works. Set this field from testing, not from the documentation.
             Module.ccall(
               'wasm_set_joystick_by_name',
               null,

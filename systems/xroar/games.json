@@ -27,7 +27,7 @@
     "machine": "coco",
     "autorun": "roms/polaris.ccc",
     "joy": "kjoy0",
-    "joyport": "right"
+    "joyport": "left"
   },
   "galactic": {
     "title": "Galactic Attack",
