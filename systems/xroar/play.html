@@ -148,10 +148,11 @@
           } catch (err) {
             /* older build without the export */
           }
-          // Hand the pad to a joystick port. XRoar offers only two profiles
-          // per pad — "(L)" and "(R)", its two analogue sticks — so the left
-          // stick is the pick: it sits well away from the face buttons, where
-          // the right stick crowds them.
+          // Hand the pad to a joystick port. XRoar lists THREE entries per
+          // pad — a bare "0: Standard Gamepad" plus "(L)" and "(R)" — and in
+          // testing all three gave left-stick movement with A to fire; none
+          // is a d-pad. The picker below takes whichever it finds, by the name
+          // XRoar reports rather than a guessed one.
           gxStartPad(e.gamepad.index);
         });
 
