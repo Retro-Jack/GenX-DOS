@@ -13,31 +13,50 @@
     <div class="head">
       <div class="system">Home Computer · Tandy Color Computer</div>
       <h1>Polaris</h1>
-      <p class="sub">Tandy (Sega licensed port), 1983 — side-view submarine arcade port. Pilot a Polaris submarine: fire missiles upward at surface ships, dodge depth charges falling from above. Same Sega cabinet as the 1980 arcade original, recompiled for the CoCo's PMODE 4 graphics.</p>
+      <p class="sub">Device Oriented Games for Tandy, 1981 — six islands, three submarines and twenty-seven missiles against a sky that never stops falling. Aim the crosshairs, fire early, and hope your maths was right.</p>
     </div>
 
-    <p class="intro">Side-view, your sub on the left half of the screen, sea surface across the top, enemy ships and aircraft above the waterline. Missiles fire vertically; depth charges drop in patterns from passing ships. Multiple ship types: destroyers (drop in bursts), aircraft (fast horizontal pass with single bomb), helicopters (loiter and drop).</p>
+    <p class="intro">Enemy missiles rain on your six islands. You cannot move and you cannot hide — you have three submarines dug in along the sea floor, nine missiles apiece, and a pair of crosshairs you steer with the joystick. Your missile explodes where the sights are, so you aim at where the enemy is <em>going to be</em>, not where it is. Each level falls faster and thicker, and the screen changes colour as it goes to make the incoming harder to pick out.</p>
 
     <h2>Getting started</h2>
     <ol>
-      <li>Tape auto-loads; click the game area to enable sound and controls.</li>
-      <li>Press fire (<kbd>L&nbsp;Alt</kbd>) at the title.</li>
+      <li>The cartridge auto-starts; click the game area to enable sound and controls.</li>
+      <li>Press <kbd>1</kbd> or <kbd>2</kbd> to choose the number of players.</li>
+      <li>Steer the crosshairs with the joystick, then fire with <kbd>Z</kbd>, <kbd>X</kbd> or <kbd>C</kbd> — each key launches from a different submarine.</li>
     </ol>
 
     <h2>Controls</h2>
     <table>
-      <tr><th>Key</th><th>Action</th></tr>
-      <tr><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Move sub left / right</td></tr>
-      <tr><td><kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Dive / surface</td></tr>
-      <tr><td><kbd>L&nbsp;Alt</kbd></td><td>Fire missile (limited per-screen)</td></tr>
+      <tr><th>Control</th><th>Action</th></tr>
+      <tr><td>Joystick</td><td>Move the crosshairs — left, right, forward for up, back for down</td></tr>
+      <tr><td><kbd>Z</kbd></td><td>Fire from submarine 1</td></tr>
+      <tr><td><kbd>X</kbd></td><td>Fire from submarine 2</td></tr>
+      <tr><td><kbd>C</kbd></td><td>Fire from submarine 3</td></tr>
+      <tr><td><kbd>,</kbd> <kbd>.</kbd> <kbd>/</kbd></td><td>The same three submarines, second set of keys — a two-player game gives each player their own set</td></tr>
+      <tr><td><kbd>1</kbd> <kbd>2</kbd></td><td>Choose one or two players, at the title screen</td></tr>
+      <tr><td><kbd>R</kbd></td><td>Surrender and return to the title screen</td></tr>
     </table>
+
+    <p class="note">The aiming is on the joystick and the firing is on the keyboard, which is how the game was made — a gamepad steers the sights, but the launch keys stay under your other hand.</p>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Target</th><th>Points</th></tr>
+      <tr><td>Enemy missile</td><td>5</td></tr>
+      <tr><td>Each warhead of a missile that has split</td><td>5</td></tr>
+      <tr><td>Smart bomb — the <code>+</code> shapes</td><td>20</td></tr>
+      <tr><td>Each island still standing at the end of an attack</td><td>20 (120 for all six)</td></tr>
+      <tr><td>Each missile you did not use</td><td>1</td></tr>
+    </table>
+    <p class="note">Everything is multiplied by the level number shown at the top of the screen — 1X to begin with, then 2X, 3X and upward. At 2,000 points you are given a spare island, held in reserve until one of yours is destroyed.</p>
 
     <h2>Strategy</h2>
     <ul>
-      <li><strong>Strafe-fire on aircraft.</strong> Fast horizontal aircraft survive single shots if mis-led — fire as they enter the screen, not when overhead.</li>
-      <li><strong>Dive under depth-charge bursts.</strong> Destroyer depth charges drop in tight columns; slide laterally a sub-width to avoid each column.</li>
-      <li><strong>Helicopter timing.</strong> Helicopters hover before dropping — count to about a beat after they stop, then strafe.</li>
-      <li><strong>Don't surface unless safe.</strong> Surfacing makes you a bigger target; only break the waterline to reposition under low-clearance threats.</li>
+      <li><strong>Lead the target.</strong> Your missile takes time to reach the sights, so aim at the point the enemy will occupy when it arrives. Firing where something already is wastes the shot.</li>
+      <li><strong>Fire from the nearest submarine.</strong> The three launch keys pick which sub fires, and a missile from the far side of the map takes noticeably longer to get there.</li>
+      <li><strong>Explosions wrap around the screen edges.</strong> A blast near the left edge also appears at the right, so one missile can take out two attackers sitting on opposite sides.</li>
+      <li><strong>Watch the smart bombs.</strong> They are worth four times an ordinary missile, but they steer around your explosions — lead them further than feels sensible.</li>
+      <li><strong>Leftover missiles are points.</strong> Only one apiece, but a clean round with a full rack beats a scrappy one, and running a submarine dry mid-wave leaves you reaching for a slower launcher.</li>
     </ul>
   </div>
 </body>
