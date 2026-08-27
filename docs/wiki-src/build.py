@@ -59,12 +59,19 @@ def resolve(target):
     for base in (PAGES_BASE, SITE_BASE):
         if t.startswith(base):
             return '../../' + t[len(base):], False
-    # bare repo-root files (README.md / ATTRIBUTION.md / CHANGELOG.md / LICENSE.TXT)
-    if '/' not in t and (t.endswith('.md') or t == 'LICENSE.TXT'):
-        stem = file2slug(t)
-        if stem in EXTRA: return stem + '.html', False
-        if stem in KNOWN: return out_name(stem), False
-        return '../../' + t, False
+    # bare repo-root files (README.md / ATTRIBUTION.md / CHANGELOG.md / LICENSE.TXT),
+    # with or without an #anchor. The fragment must come off BEFORE the .md test:
+    # 'ATTRIBUTION.md#removal-upon-request' does not end in '.md', so it used to
+    # fall through to the wiki-page branch below, which read the whole thing as a
+    # page slug and emitted 'ATTRIBUTION.md.html#...' -- a file that does not
+    # exist -- while also reporting it as a dead link. One cause, both symptoms.
+    base, _, frag = t.partition('#')
+    anchor = ('#' + frag) if frag else ''
+    if '/' not in base and (base.endswith('.md') or base == 'LICENSE.TXT'):
+        stem = file2slug(base)
+        if stem in EXTRA: return stem + '.html' + anchor, False
+        if stem in KNOWN: return out_name(stem) + anchor, False
+        return '../../' + base + anchor, False
     if re.match(r'^(https?:)?//', t) or t.startswith('mailto:') or t.startswith('/') \
        or t.startswith('../') or t.startswith('#'):
         return t, False

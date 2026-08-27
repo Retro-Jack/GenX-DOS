@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+### Fixed
+- **The wiki's link to the removal-upon-request policy was broken.** It pointed at `ATTRIBUTION.md.html`, which does not exist. The wiki builder strips a filename's extension to find the page it became, but tested for `.md` *before* removing any `#anchor` — so a link carrying one failed the test, fell through to the branch that handles wiki page names, and had `.html` appended to the whole string. The dead-link warning the build printed on every run was the same fault, not a separate one. Of all the links to have broken, it was the one a rights holder would click.
+
 ### Changed
 - **jimbro1000 is credited in ATTRIBUTION** for the CoCo artifact-colour suggestion, alongside dplassgit's Model 100 proposal. The docs caught up with the CoCo work at the same time: the README's gamepad section covers the CoCo's native joystick path and why a pad there needs Firefox, and the XRoar wiki page gained the artifact-colour table, the joystick traps and the browser limitation. The wiki's file index had fallen behind by two shared scripts.
 
