@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+### Changed
+- **jimbro1000 is credited in ATTRIBUTION** for the CoCo artifact-colour suggestion, alongside dplassgit's Model 100 proposal. The docs caught up with the CoCo work at the same time: the README's gamepad section covers the CoCo's native joystick path and why a pad there needs Firefox, and the XRoar wiki page gained the artifact-colour table, the joystick traps and the browser limitation. The wiki's file index had fallen behind by two shared scripts.
+
 ### Added
 - **The CoCo pages now say when the browser cannot see a gamepad.** An orange strip in the same style as the audio banner: *"This browser cannot detect a USB gamepad -- use Firefox to play with one."* Chromium browsers never hand a pad to these pages — the emulator asks the browser what joysticks exist once, at startup, and Chrome will not answer for a page that does not have focus, so by the time a pad could be admitted nothing is still asking. Firefox has no such rule and the same pad works there at once. This is not particular to us: XRoar's own online build lists the pad in Firefox and not in Chrome with the same pad plugged in. Since it cannot be fixed from the page, it is at least worth saying plainly. Dismissible, and it stays dismissed.
 

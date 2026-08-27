@@ -315,6 +315,14 @@ glad to say so.
   were able to ship the usual amount of games, even when the primary source
   failed. Thanks for the nudge.
 
+- **jimbro1000** — pointed out that the Tandy CoCo needs composite artifact
+  colour in its high-resolution modes, and named the option that provides it
+  (*"for the Tandy CoCo it really needs artifact emulation in hires black and
+  white. For example Demon Attack should show black, white, red and blue"*).
+  Demon Attack had been rendering in stark monochrome. Four games now carry
+  the setting, and testing the suggestion turned up two more that needed it
+  and three it would have spoiled. Thanks for the correction.
+
 ---
 
 ## Bezel artwork
