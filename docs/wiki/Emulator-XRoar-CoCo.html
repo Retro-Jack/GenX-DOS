@@ -77,6 +77,51 @@ function ui_update_tape_playing() {}
   2&gt;&amp;1 | grep CONSOLE
 </code></pre>
 <p>If the log shows valid CRC32 lines and the expected machine banner (<code>[part:coco] Tandy | Colour Computer</code>), it'll render. Headless can't verify pixels without a GPU, but a clean boot log is a strong proxy.</p>
+<h2 id="composite-artifact-colour">Composite artifact colour</h2>
+<p>The CoCo's high-resolution modes were nominally two-colour, but on an NTSC television alternating pixel columns come out red and blue, and games were drawn <em>for</em> that. XRoar models it with <code>-tv-input cmp-rb</code> (<code>cmp-br</code> is the opposite artifact phase); our WASM build already carries the option, so no rebuild was needed. Raised by <strong>jimbro1000</strong>, who also named the option.</p>
+<p><strong>It is per game</strong>, via a <code>tv</code> field in <code>games.json</code> pushed onto <code>Module.arguments</code> before <code>xroar.js</code> loads. Tested globally to check that decision, and the split is not the one you would guess:</p>
+<table>
+<thead>
+<tr>
+<th>Wants it</th>
+<th>Harmed by it</th>
+<th>No effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Demon Attack</td>
+<td>Dungeons of Daggorath</td>
+<td>Popcorn (colour semigraphics)</td>
+</tr>
+<tr>
+<td>Downland</td>
+<td>Monster Maze</td>
+<td>Polaris (4-colour)</td>
+</tr>
+<tr>
+<td>Canyon Climber</td>
+<td>Poltergeist</td>
+<td>Galactic Attack (green PMODE set)</td>
+</tr>
+<tr>
+<td>Mega-Bug</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Canyon Climber and Mega-Bug were the surprises — both look like ordinary colour games and are unreadable dither without it. The harmed three are deliberately clean white line art, which composite decoding fringes blue and orange; that is the argument against a global setting. The unaffected three come out pixel-identical either way, because artifacting only exists in the hi-res two-colour set.</p>
+<p><strong>Judge on the gameplay screen, not the title.</strong> Polaris and Poltergeist have hi-res-looking titles and four-colour gameplay.</p>
+<h2 id="joysticks-and-usb-gamepads">Joysticks, and USB gamepads</h2>
+<p>Several titles are joystick-only — Galactic Attack says "PRESS FIRE BUTTON TO BEGIN" and ignores the keyboard entirely — so without one they cannot be started. <code>games.json</code> carries <code>joy</code> (profile) and <code>joyport</code> (<code>left</code>/<code>right</code>) per game, passed as <code>-joy-left</code> / <code>-joy-right</code>.</p>
+<p>Two traps:</p>
+<ul>
+<li><strong>A keyboard joystick consumes those keys.</strong> Binding <code>kjoy0</code> (cursors + Alt) to a port takes the cursor keys away from the machine, so wiring one to a keyboard-controlled game <em>breaks</em> it. Poltergeist shipped that way and was fixed by removing its joystick.</li>
+<li><strong><code>joyport</code> is this stack's numbering, not the manual's.</strong> Polaris's manual says "the right joystick is for one player"; setting it to right gives a pad that does nothing, and <code>left</code> is what works. Set the field from testing, never from the documentation.</li>
+</ul>
+<p><strong>A physical pad works in Firefox and is never detected in Chrome.</strong> Chromium only reveals a gamepad to a document that currently has focus, and XRoar asks SDL what joysticks exist once at startup and never re-scans — so by the time the browser would admit a pad, nothing is asking. This is not ours: XRoar's own online build lists the pad in its joystick menu in Firefox and not in Chrome, same pad, same page. Nothing the page can do, so <code>_shared/genx-gamepad-browser-notice.js</code> says so on screen instead.</p>
+<p>Binding a pad needs the browser's <code>gamepadconnected</code> event forwarded into the emulator with <code>wasm_gamepad_connected</code>, and the joystick list read back from XRoar's own UI callbacks (<code>ui_menu_add</code> / <code>ui_menu_add_str</code>, which take <strong>string pointers</strong> needing <code>UTF8ToString</code>). Those callbacks are stubbed out as empty functions in most bundles; while they are stubs a connected pad is invisible by construction.</p>
 <h2 id="save--load-state">Save / load state</h2>
 <p>XRoar exports <code>Module._write_snapshot(filename)</code>, which writes a full-machine <code>.sna</code> to the emscripten FS. The adapter cwraps it, writes to <code>/gx-state.sna</code>, and reads the bytes straight back out with <code>Module.FS.readFile()</code> — that <code>Uint8Array</code> is the state. Restore is the mirror: write the bytes to the FS, then call <code>wasm_load_file('/gx-state.sna', 0, 0)</code> — the <strong>same</strong> cwrapped loader <code>play.html</code> already uses to load games (XRoar auto-detects the <code>.sna</code> and restores the machine). So no new core surface was needed; the existing load path does the heavy lifting. <code>_shared/genx-savestate-std.js</code> draws the buttons.</p>
 <h2 id="bundle-layout">Bundle layout</h2>

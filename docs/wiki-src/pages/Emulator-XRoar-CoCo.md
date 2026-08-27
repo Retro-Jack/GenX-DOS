@@ -81,6 +81,36 @@ chromium --headless --no-sandbox --enable-logging=stderr \
 
 If the log shows valid CRC32 lines and the expected machine banner (`[part:coco] Tandy | Colour Computer`), it'll render. Headless can't verify pixels without a GPU, but a clean boot log is a strong proxy.
 
+## Composite artifact colour
+
+The CoCo's high-resolution modes were nominally two-colour, but on an NTSC television alternating pixel columns come out red and blue, and games were drawn *for* that. XRoar models it with `-tv-input cmp-rb` (`cmp-br` is the opposite artifact phase); our WASM build already carries the option, so no rebuild was needed. Raised by **jimbro1000**, who also named the option.
+
+**It is per game**, via a `tv` field in `games.json` pushed onto `Module.arguments` before `xroar.js` loads. Tested globally to check that decision, and the split is not the one you would guess:
+
+| Wants it | Harmed by it | No effect |
+|---|---|---|
+| Demon Attack | Dungeons of Daggorath | Popcorn (colour semigraphics) |
+| Downland | Monster Maze | Polaris (4-colour) |
+| Canyon Climber | Poltergeist | Galactic Attack (green PMODE set) |
+| Mega-Bug | | |
+
+Canyon Climber and Mega-Bug were the surprises — both look like ordinary colour games and are unreadable dither without it. The harmed three are deliberately clean white line art, which composite decoding fringes blue and orange; that is the argument against a global setting. The unaffected three come out pixel-identical either way, because artifacting only exists in the hi-res two-colour set.
+
+**Judge on the gameplay screen, not the title.** Polaris and Poltergeist have hi-res-looking titles and four-colour gameplay.
+
+## Joysticks, and USB gamepads
+
+Several titles are joystick-only — Galactic Attack says "PRESS FIRE BUTTON TO BEGIN" and ignores the keyboard entirely — so without one they cannot be started. `games.json` carries `joy` (profile) and `joyport` (`left`/`right`) per game, passed as `-joy-left` / `-joy-right`.
+
+Two traps:
+
+- **A keyboard joystick consumes those keys.** Binding `kjoy0` (cursors + Alt) to a port takes the cursor keys away from the machine, so wiring one to a keyboard-controlled game *breaks* it. Poltergeist shipped that way and was fixed by removing its joystick.
+- **`joyport` is this stack's numbering, not the manual's.** Polaris's manual says "the right joystick is for one player"; setting it to right gives a pad that does nothing, and `left` is what works. Set the field from testing, never from the documentation.
+
+**A physical pad works in Firefox and is never detected in Chrome.** Chromium only reveals a gamepad to a document that currently has focus, and XRoar asks SDL what joysticks exist once at startup and never re-scans — so by the time the browser would admit a pad, nothing is asking. This is not ours: XRoar's own online build lists the pad in its joystick menu in Firefox and not in Chrome, same pad, same page. Nothing the page can do, so `_shared/genx-gamepad-browser-notice.js` says so on screen instead.
+
+Binding a pad needs the browser's `gamepadconnected` event forwarded into the emulator with `wasm_gamepad_connected`, and the joystick list read back from XRoar's own UI callbacks (`ui_menu_add` / `ui_menu_add_str`, which take **string pointers** needing `UTF8ToString`). Those callbacks are stubbed out as empty functions in most bundles; while they are stubs a connected pad is invisible by construction.
+
 ## Save / load state
 
 XRoar exports `Module._write_snapshot(filename)`, which writes a full-machine `.sna` to the emscripten FS. The adapter cwraps it, writes to `/gx-state.sna`, and reads the bytes straight back out with `Module.FS.readFile()` — that `Uint8Array` is the state. Restore is the mirror: write the bytes to the FS, then call `wasm_load_file('/gx-state.sna', 0, 0)` — the **same** cwrapped loader `play.html` already uses to load games (XRoar auto-detects the `.sna` and restores the machine). So no new core surface was needed; the existing load path does the heavy lifting. `_shared/genx-savestate-std.js` draws the buttons.

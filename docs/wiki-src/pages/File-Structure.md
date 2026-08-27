@@ -63,7 +63,10 @@ genx-dos/
     │   │                    ejs-console (2600/7800 switch buttons),
     │   │                    savestate(-std), savestate-transfer (export/restore),
     │   │                    bezel-ready (holds the screen until the bezel lands),
-    │   │                    audio-banner, bbc-copykey, trs80-softkeys, gamepad-keys, repo-link
+    │   │                    audio-banner, bbc-copykey, trs80-softkeys, gamepad-keys, repo-link,
+    │   │                    softkey-policy (+ softkeys.json: which games show which
+    │   │                    soft key, generated from the gamedocs),
+    │   │                    gamepad-browser-notice (Chrome cannot see a pad)
     │   ├── styles/          all shared CSS (genx-controls/frame/noscript/savestate/controls-link.css)
     │   │   └── VGA_font/    DOS-prompt CP437 sheets f12.<0-15>.png + make_fonts.py generator
     │   ├── bezels/          PNG monitor frames (every platform now bezeled)
