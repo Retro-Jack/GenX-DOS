@@ -1,6 +1,14 @@
 ## [Unreleased]
 
 ### Fixed
+- **Galactic Attack's page described a different game.** It had a first-person cockpit, a targeting reticle to crab the ship under, and a 1983 Datasoft credit. The cartridge is The Image Producers, 1981, and it is a Galaxian: a laser that slides along the bottom of the screen and eight aliens in formation above it that break and dive. Rewritten from the manual, which also settles the hardware — *"Connect a Joystick to the connection marked LEFT JOYSTK"* — confirming the port the emulator had been given by testing. It said the cartridge loads from tape, too.
+- **The USB notice appears only where a gamepad does something.** Two of the ten CoCo games read a joystick; on the other eight the notice was telling players their browser could not detect a pad for a game that would ignore one anyway. It is now shown by the page when the loaded game has a joystick, rather than by the script on sight of the browser.
+  Worth recording how the first attempt failed: the page called the notice only `if` the function existed, and the deferred script that defines it had not always run by then — off a warm cache the page's own lookup finished first, so the call was skipped in silence. It now sets a flag as well, and whichever of the two runs second shows the notice.
+
+### Changed
+- **Both CoCo joystick games now document the pad**, including that it needs Firefox, and Polaris notes that the sights move faster the further the stick is pushed — it reads the stick's position, not merely its direction.
+
+### Fixed
 - **The wiki's link to the removal-upon-request policy was broken.** It pointed at `ATTRIBUTION.md.html`, which does not exist. The wiki builder strips a filename's extension to find the page it became, but tested for `.md` *before* removing any `#anchor` — so a link carrying one failed the test, fell through to the branch that handles wiki page names, and had `.html` appended to the whole string. The dead-link warning the build printed on every run was the same fault, not a separate one. Of all the links to have broken, it was the one a rights holder would click.
 
 ### Changed

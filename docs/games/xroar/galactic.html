@@ -4,39 +4,53 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
   <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Galactic Attack — Tandy CoCo — GenX-DOS</title>
+  <title>Galactic Attack &mdash; Tandy CoCo &mdash; GenX-DOS</title>
   <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
 </head>
 <body>
   <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
   <div class="wrap">
     <div class="head">
-      <div class="system">Home Computer · Tandy Color Computer</div>
+      <div class="system">Home Computer &middot; Tandy Color Computer</div>
       <h1>Galactic Attack</h1>
-      <p class="sub">Datasoft (Steve Bjork), 1983 — first-person pseudo-3D space shooter. View from the cockpit of a fighter as alien ships swoop in waves; targeting reticle stays centred, your job is to crab the ship under the reticle on each incoming threat. A CoCo take on the Star Wars / Buck Rogers arcade style.</p>
+      <p class="sub">The Image Producers for Tandy, 1981 &mdash; a laser at the bottom of the screen, eight aliens in formation above it, and a manual that opens with a screenplay about Dr Laserbum.</p>
     </div>
 
-    <p class="intro">Star-field horizon, central crosshair, ships appear as dots that grow into recognisable silhouettes as they close. Hold a steady ship and lead the dots into the crosshair. Each ship has a different attack pattern — straight chargers, weavers, and the high-value capital ship that takes multiple hits.</p>
+    <p class="intro">The aliens arrive in strict formation, sliding right to left across the top of the screen. Then one is hit and the formation breaks: survivors peel off into dive attacks, drop bombs on the way down, and come back for another run if they miss. Your laser sits at the bottom and moves along it. Hit them low and they are worth more &mdash; up to sixteen times what a ship in formation scores.</p>
+
+    <h2>You need a joystick for this one</h2>
+    <p class="note">Galactic Attack reads the joystick and nothing else &mdash; the keyboard will not even start it. The manual is blunt about the hardware: <em>"Connect a Joystick to the connection marked LEFT JOYSTK."</em></p>
+    <p class="note">Without a gamepad the cursor keys stand in for the stick, with <kbd>L&nbsp;Alt</kbd> as the fire button. With a gamepad plugged in, the left stick and <strong>A</strong> take over. <strong>A gamepad only works in Firefox</strong> &mdash; Chromium browsers will not hand one to this page, and it says so on screen if you are in one.</p>
 
     <h2>Getting started</h2>
     <ol>
-      <li>Tape auto-loads; click the game area to enable sound and controls.</li>
-      <li>Press fire (<kbd>L&nbsp;Alt</kbd>) at the title.</li>
+      <li>The cartridge starts on its own; click the game area to enable sound and controls.</li>
+      <li>At <code>&gt;&gt;PRESS FIRE BUTTON TO BEGIN&lt;&lt;</code>, press fire &mdash; <kbd>L&nbsp;Alt</kbd>, or <strong>A</strong> on a pad.</li>
     </ol>
 
     <h2>Controls</h2>
     <table>
-      <tr><th>Key</th><th>Action</th></tr>
-      <tr><td><kbd>&uarr;</kbd> <kbd>&darr;</kbd> <kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Roll cockpit up / down / left / right</td></tr>
-      <tr><td><kbd>L&nbsp;Alt</kbd></td><td>Fire (repeating)</td></tr>
+      <tr><th>Joystick</th><th>Keyboard</th><th>Action</th></tr>
+      <tr><td>Left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Move the laser along the bottom of the screen</td></tr>
+      <tr><td><strong>A</strong></td><td><kbd>L&nbsp;Alt</kbd></td><td>Fire the laser beam &mdash; also begins the game</td></tr>
     </table>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Target</th><th>Points</th></tr>
+      <tr><td>A ship still in formation</td><td>10</td></tr>
+      <tr><td>A diving ship, by how low you let it come</td><td>up to 160</td></tr>
+      <tr><td>A bomb shot out of the air</td><td>nothing &mdash; but it cannot hit you either</td></tr>
+    </table>
+    <p class="note">Clear a whole group before any ship reaches Earth and the aliens answer with a <strong>night attack</strong>. Survive that without letting a single diver past and everything scored for the rest of it is worth <strong>four times</strong> as much. Let one through and the next wave drops back to an ordinary one.</p>
 
     <h2>Strategy</h2>
     <ul>
-      <li><strong>Lead the weavers.</strong> Don't track them with your cursor; pre-position the crosshair where they'll be on the next beat.</li>
-      <li><strong>Capital ships first.</strong> They're slower and worth more — clear them while small fighters are still distant.</li>
-      <li><strong>Steady horizon.</strong> Wild rolling makes the relative motion of incoming ships unreadable; small corrections only.</li>
-      <li><strong>Range matters.</strong> Closer ships are larger and easier to hit; let some come in rather than chasing distant pixels.</li>
+      <li><strong>Wait for them to come down.</strong> A ship in formation is worth 10 and a low diver up to 160. Shooting the neat rows at the top is the least profitable thing you can do.</li>
+      <li><strong>Shoot the bombs.</strong> They score nothing, but a bomb removed is a hit you do not take, and you only have three lasers to lose.</li>
+      <li><strong>Reinforcements arrive on the far side.</strong> Lose the laser on the right and its replacement comes in from the left. Expect to be somewhere you did not choose.</li>
+      <li><strong>The night attack is the whole score.</strong> Quadruple points make one clean night worth more than several careful ordinary waves, so it is worth taking risks to keep the run intact.</li>
+      <li><strong>They get harder to hit, not just faster.</strong> Later waves flutter and dodge the beam while still bombing, so lead them rather than aiming where they are.</li>
     </ul>
   </div>
 </body>

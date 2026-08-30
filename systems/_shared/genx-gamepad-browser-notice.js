@@ -20,8 +20,13 @@
 // It stacks BELOW the audio banner by sitting at --gx-banner-h, the height
 // that genx-audio-banner.js publishes, and moves up when that banner clears.
 //
-// Include via one tag in the bundle's play.html:
+// It does NOT show itself. The page calls GenXPadNotice() once it knows the
+// loaded game actually uses a joystick -- telling someone their browser cannot
+// see a gamepad, on a game that would ignore one anyway, is just noise.
+//
+// Include via one tag in the bundle's play.html, then call it:
 //   <script defer src="../_shared/genx-gamepad-browser-notice.js"></script>
+//   if (game.joy) GenXPadNotice();
 (function () {
   if (window.__genxPadNotice) return; // idempotent
   window.__genxPadNotice = true;
@@ -78,9 +83,17 @@
     document.body.appendChild(b);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', build);
-  } else {
-    build();
-  }
+  window.GenXPadNotice = function () {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', build);
+    } else {
+      build();
+    }
+  };
+
+  // The page may have decided it needs the notice before this script ran --
+  // it is deferred, and the page's own game lookup can finish first off a warm
+  // cache. Either order works: the page sets the flag and calls if it can, and
+  // this picks up the flag if the call came too early to land.
+  if (window.GENX_PAD_RELEVANT) window.GenXPadNotice();
 })();
