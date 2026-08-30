@@ -17,14 +17,14 @@
     /* Handheld bezel — first of a new kind. Instead of a CRT on the 70s
        wallpaper, the device is held up in the FOREGROUND over a classroom
        photo (classroom.jpg), like sneaking a Game Boy Color in class. The
-       grape GBC (gbc.png, 1105x912, body opaque, screen + outer margin keyed
+       grape GBC (GBC.png, 1105x912, body opaque, screen + outer margin keyed
        transparent) sits over the photo, anchored to the bottom of the window
        (held up from your lap); EJS draws the game into the screen hole. Layers
        (back to front):
          0. body background — classroom.jpg, full-bleed cover.
          1. .screen-bg — black backdrop, slightly larger than the hole.
          2. #game      — the EJS player at the measured screen hole.
-         3. .bezel-img — gbc.png on top; game shows through the screen.
+         3. .bezel-img — GBC.png on top; game shows through the screen.
        Screen hole (measured): left 23.2% top 20.2% width 54.2% height 58.0%.
        The classroom background must follow genx-frame.css (which sets body
        black). */
@@ -78,7 +78,7 @@
   <div class="bezel-wrap">
     <div class="screen-bg"></div>
     <div id="game"><div class="loading">Booting Game Boy Color…</div></div>
-    <img class="bezel-img" src="../_shared/bezels/gbc.png" alt="">
+    <img class="bezel-img" src="../_shared/bezels/GBC.png" alt="">
   </div>
   <script>
     // Game Boy Color — EmulatorJS + gambatte (GB/GBC libretro core). gambatte

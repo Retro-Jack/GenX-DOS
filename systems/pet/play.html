@@ -14,13 +14,13 @@
   <link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
   <style>
-    /* CRT bezel — Commodore PET 2001 (Pet.png, 1024x771, aspect 1.328).
+    /* CRT bezel — Commodore PET 2001 (PET.png, 1024x771, aspect 1.328).
        Three layers, back to front:
          1. .screen-bg  — black backdrop behind the screen hole, a touch
             larger than the cutout so the wallpaper can't bleed through the
             PNG's anti-aliased hole edge.
          2. #petscreen  — the emulator canvas, sized to the cutout.
-         3. .bezel-img  — Pet.png on top; its transparent hole reveals the
+         3. .bezel-img  — PET.png on top; its transparent hole reveals the
             canvas. Hole detected at left 26.86% top 17.12% w 44.34% h 42.28%;
             canvas inset ~4.5% per side so its edges tuck under the bezel lip.
        Wallpaper override must follow genx-frame.css (which sets body black). */
@@ -73,7 +73,7 @@
   <div class="bezel-wrap">
     <div class="screen-bg"></div>
     <canvas id="petscreen" width="640" height="400"></canvas>
-    <img class="bezel-img" src="../_shared/bezels/Pet.png" alt="">
+    <img class="bezel-img" src="../_shared/bezels/PET.png" alt="">
   </div>
   <script>
     (async function () {
@@ -154,7 +154,7 @@
     })();
   </script>
 
-  <!-- Bezel credit (Pet.png — Commodore PET 2001 monitor frame): bezel
+  <!-- Bezel credit (PET.png — Commodore PET 2001 monitor frame): bezel
        artwork sourced from public web archives; original photographer
        unknown. If you recognise your work, please open an issue at
        https://github.com/Retro-Jack/GenX-DOS/issues -->

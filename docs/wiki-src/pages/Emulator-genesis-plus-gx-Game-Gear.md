@@ -8,7 +8,7 @@ Sega's colour, backlit answer to the Game Boy. It's the third and final platform
 
 ## Same bezel style — held up in class
 
-The Game Gear reuses the handheld bezel style: the device held up in the **foreground over the classroom photo**, bottom-anchored and sized to 75%. `gamegear.png` (1523×818, wide landscape, screen keyed transparent), EJS in the screen hole. See [[Emulator-gambatte-Game-Boy]] for the full layer recipe — only the device image and hole coordinates differ.
+The Game Gear reuses the handheld bezel style: the device held up in the **foreground over the classroom photo**, bottom-anchored and sized to 75%. `GameGear.png` (1523×818, wide landscape, screen keyed transparent), EJS in the screen hole. See [[Emulator-gambatte-Game-Boy]] for the full layer recipe — only the device image and hole coordinates differ.
 
 ## The core: system `segaGG`
 

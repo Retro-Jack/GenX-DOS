@@ -16,13 +16,13 @@
   <style>
     /* Handheld bezel — the device held up in the FOREGROUND over a classroom
        photo (sneaking a game in class), same style as the Game Boy bundle. The
-       Atari Lynx is a wide landscape unit (lynx.png, 2097x853, body opaque,
+       Atari Lynx is a wide landscape unit (Lynx.png, 2097x853, body opaque,
        screen + outer margin keyed transparent), bottom-anchored over the photo;
        EJS draws the game into the screen hole. Layers (back to front):
          0. body background — classroom.jpg, full-bleed cover.
          1. .screen-bg — black backdrop, slightly larger than the hole.
          2. #game      — the EJS player at the measured screen hole.
-         3. .bezel-img — lynx.png on top; game shows through the screen.
+         3. .bezel-img — Lynx.png on top; game shows through the screen.
        Screen hole (measured): left 39.1% top 27.0% width 26.9% height 41.5%.
        The classroom background must follow genx-frame.css (which sets body
        black). */
@@ -76,7 +76,7 @@
   <div class="bezel-wrap">
     <div class="screen-bg"></div>
     <div id="game"><div class="loading">Booting Atari Lynx…</div></div>
-    <img class="bezel-img" src="../_shared/bezels/lynx.png" alt="">
+    <img class="bezel-img" src="../_shared/bezels/Lynx.png" alt="">
   </div>
   <script>
     // Atari Lynx — EmulatorJS + handy (libretro core). Needs the 512-byte Lynx

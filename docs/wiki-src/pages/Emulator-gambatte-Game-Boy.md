@@ -8,10 +8,10 @@ Every other bundle frames its display as a **CRT on the 70s wallpaper**. The han
 
 ```
 body { background: classroom.jpg cover; align-items: flex-end; }   /* held up from your lap */
-  .bezel-wrap                  (aspect of gbc.png, height-capped)
+  .bezel-wrap                  (aspect of GBC.png, height-capped)
     .screen-bg  (black backdrop, slightly larger than the hole)
     #game       (EJS player at the screen hole)
-    .bezel-img  (gbc.png — grape GBC, screen keyed to a transparent hole)
+    .bezel-img  (GBC.png — grape GBC, screen keyed to a transparent hole)
 ```
 
 `#game canvas { height: 100% !important; transform: scale(0.95); }` seats the picture inside the screen. The device PNG is maintainer-keyed (re-cropped so the device bottom = image bottom, for the bottom-anchor). This is the template for the upcoming Lynx + Game Gear.

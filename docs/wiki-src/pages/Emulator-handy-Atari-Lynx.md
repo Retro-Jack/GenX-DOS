@@ -4,7 +4,7 @@ The Atari Lynx — the world's first colour handheld (1989), with hardware sprit
 
 ## Same bezel style — held up in class
 
-The Lynx reuses the handheld bezel style: the device is held up in the **foreground over the classroom photo** (`classroom.jpg`), not a CRT on the wallpaper. The Lynx is a wide landscape unit (`lynx.png`, 2097×853, screen keyed to a transparent hole), bottom-anchored and sized to 75%. EJS draws into the screen hole; `#game canvas { height: 100% !important; transform: scale(0.95); }`. See [[Emulator-gambatte-Game-Boy]] for the full layer recipe — only the device image and the screen-hole coordinates differ.
+The Lynx reuses the handheld bezel style: the device is held up in the **foreground over the classroom photo** (`classroom.jpg`), not a CRT on the wallpaper. The Lynx is a wide landscape unit (`Lynx.png`, 2097×853, screen keyed to a transparent hole), bottom-anchored and sized to 75%. EJS draws into the screen hole; `#game canvas { height: 100% !important; transform: scale(0.95); }`. See [[Emulator-gambatte-Game-Boy]] for the full layer recipe — only the device image and the screen-hole coordinates differ.
 
 ## The boot ROM
 
