@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 ### Changed
+- **The two Tandy bezels are named after the machines they show.** `TRS80-3.png` becomes `TRS-80-Model-III.png` and `Model100.png` becomes `TRS-80-Model-100.png`. Both machines are branded "TRS-80 Model X", so the pair now reads consistently and matches the nameplates visible in the photographs themselves — "Radio Shack TRS-80 MODEL III MICROCOMPUTER" and "Radio Shack TRS-80 MODEL 100 PORTABLE COMPUTER". One reference each, both checked on screen.
 - **Bezel filenames are capitalised consistently.** Twelve of the sixteen were already proper-noun capitalised and four were not, so `gamegear.png`, `gbc.png`, `lynx.png` and `nes.png` become `GameGear.png`, `GBC.png`, `Lynx.png` and `NES.png` — the last two being initialisms, Game Boy Color and Nintendo Entertainment System. `Pet.png` becomes `PET.png` for the same reason: the Commodore PET is an acronym, Personal Electronic Transactor, not a word. `TV-vintage.png` becomes `TV-Vintage.png` to match the rest of the set.
   Verified by fetching all sixteen after deploying: every new name returns 200 and every old one 404s, and the two case-only renames were checked on screen, since those are exactly the sort that break quietly.
 
