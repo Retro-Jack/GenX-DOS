@@ -16,10 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tandy CoCo</title>
     <style>
-      /* CRT bezel — shared vintage TV (Sinclair.png, 1362x914, screen hole at
-       8.08%/12.14%/65.35%×73.96%) on the 70s wallpaper, same player-in-hole
-       recipe as the Spectrum/MSX. XRoar (SDL2) sizes #canvas itself, so we pin
-       it into the hole and force it to fill; no barrel/fisheye (the CoCo
+      /* CRT bezel — shared vintage TV (Sinclair.png, 1362x914) on the 70s
+       wallpaper, same player-in-hole recipe as the Spectrum/MSX. The hole is
+       at 7.636%/11.488%/66.3%×75.383%, flood-filled out of the PNG's alpha
+       channel rather than eyeballed, so the canvas meets the aperture corner
+       to corner; the tube's rounded corners trim a few pixels of overscan,
+       which is what a real one did. XRoar (SDL2) sizes #canvas itself, so we
+       pin it into the hole and force it to fill; no barrel/fisheye (the CoCo
        picture reads better flat). Black .screen-bg behind hides the cutout
        edge. !important on the wallpaper because genx-frame.css loads AFTER. */
       html,
@@ -54,10 +57,10 @@
       }
       #screen {
         position: absolute;
-        left: 8.08%;
-        top: 12.14%;
-        width: 65.35%;
-        height: 73.96%;
+        left: 7.636%;
+        top: 11.488%;
+        width: 66.3%;
+        height: 75.383%;
         overflow: hidden;
         z-index: 2;
       }
@@ -67,7 +70,6 @@
         display: block;
         image-rendering: pixelated;
         outline: none;
-        transform: translate(8px, 0px) scale(0.888);
       }
       .bezel-img {
         position: absolute;

@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+### Changed
+- **The CoCo picture now fills the tube corner to corner.** It had been sized by eye and then nudged with a `transform: scale()` on the canvas, which left it floating a little small and a little right of centre inside the bezel's aperture. The aperture was measured properly instead — flood-filled out of `Sinclair.png`'s alpha channel, which puts the hole at 7.636%/11.488% and 66.3% x 75.383% — and `#screen` set to exactly that, with the transform dropped. All four corners of the canvas now meet the corners of the opening, and the tube's rounded corners trim a few pixels of overscan the way a real one did. It brought the canvas to within a pixel of 1:1 with the emulator's own surface as a bonus, so `pixelated` is doing what it says rather than dropping rows on a downscale.
+
 ### Fixed
 - **Galactic Attack's page described a different game.** It had a first-person cockpit, a targeting reticle to crab the ship under, and a 1983 Datasoft credit. The cartridge is The Image Producers, 1981, and it is a Galaxian: a laser that slides along the bottom of the screen and eight aliens in formation above it that break and dive. Rewritten from the manual, which also settles the hardware — *"Connect a Joystick to the connection marked LEFT JOYSTK"* — confirming the port the emulator had been given by testing. It said the cartridge loads from tape, too.
 - **The USB notice appears only where a gamepad does something.** Two of the ten CoCo games read a joystick; on the other eight the notice was telling players their browser could not detect a pad for a game that would ignore one anyway. It is now shown by the page when the loaded game has a joystick, rather than by the script on sight of the browser.
