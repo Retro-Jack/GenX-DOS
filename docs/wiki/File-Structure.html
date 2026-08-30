@@ -43,7 +43,13 @@
 ├── 404.html / 403.html / 500.html    error pages (mapped by .htaccess; 403 is
 │                             reachable because directory listings are off)
 ├── build-portable.sh         builds the portable site (what the release zip + export contain)
-├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree
+├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree,
+│                             and that no doc still names a renamed file
+├── tools/                   developer tooling — excluded from the shipping file set
+│   ├── build-softkey-map.py  generates _shared/softkeys.json from the gamedocs
+│   └── bezel-test/          one BASIC test card per computer (white border, black
+│                            playfield) for checking a bezel's fit — see the
+│                            README in that directory for per-machine status
 ├── deploy.sh                 publishes the site to the web host (staging or live)
 ├── sync-wiki.sh              pushes the wiki source to the GitHub wiki repo
 ├── .htaccess                 web-host config — headers, compression, no directory listings

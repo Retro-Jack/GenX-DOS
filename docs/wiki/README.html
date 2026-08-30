@@ -56,7 +56,13 @@
 <h2 id="what-youll-find-in-the-repo">What you'll find in the repo</h2>
 <pre><code>index.html                home page — intro, spec sheet, links, and the way into prompt/
 GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the home page
-check-doc-counts.sh       checks the counts quoted in the docs still match the tree
+check-doc-counts.sh       checks the counts quoted in the docs still match the tree,
+                          and that no doc still names a file that has been renamed
+tools/                    developer tooling — not part of the shipping site
+  build-softkey-map.py    generates systems/_shared/softkeys.json from the gamedocs
+  bezel-test/             one BASIC test card per computer: white border, black
+                          playfield, so the edge of an emulator's picture is
+                          unambiguous when checking a bezel fits
 CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset
 LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)

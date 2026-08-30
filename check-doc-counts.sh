@@ -146,12 +146,16 @@ echo
 RETIRED_ASSETS="Sinclair.png Acorn.png Apple.png PC.png NES.png Pet.png
 gamegear.png gbc.png lynx.png TRS80-3.png Model100.png TRS80.png
 Amstrad_CPC_128.png"
+# Roadmap.md is allowed to name them: it carries the deliberate old->new
+# mapping so the historical entries above it still reconcile. A stale name in
+# prose is harmless anyway; what matters is a stale one in a runtime reference.
+RETIRED_ALLOW='docs/wiki-src/pages/Roadmap.md'
 retired_hits=0
 for name in $RETIRED_ASSETS; do
   hits=$(grep -rln -- "$name" \
            systems/ prompt/ tools/ docs/wiki-src/pages \
            README.md ATTRIBUTION.md index.html docs/article/index.html \
-           2>/dev/null | grep -v _Portable | grep -c . )
+           2>/dev/null | grep -v _Portable | grep -vE "$RETIRED_ALLOW" | grep -c . )
   if [ "$hits" != 0 ]; then
     bad "retired asset" "\"$name\" was renamed but is still referenced in $hits file(s)"
     retired_hits=1
