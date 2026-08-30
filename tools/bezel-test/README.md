@@ -20,6 +20,16 @@ Not every bundle boots to BASIC. Known routes:
     xroar      play.html                        (boots straight to BASIC)
     jsspeccy   play.html, then click to start
 
+### Typing these in through the browser
+
+Dispatch synthetic `KeyboardEvent`s at `document` (and at the canvas — some
+bundles listen there). One trap cost a run on the CPC: **`keypress` must carry the
+character code, not the key code.** A comma is `charCode: 44` with
+`keyCode: 188`; sending 188 as the charCode made `INK 0,0` arrive as `INK 0` and
+throw "Syntax error in 30". jsbeeb happened not to care, tiny8bit does. If a line
+comes out mangled, type `NEW` before retyping — the CPC keeps the failed text on
+its input line and you get `30 30 INK 0,0INK 0`.
+
 ### Findings — Acorn (done 30/08/2026)
 
 **BBC Micro and BBC Master pass.** The card showed the picture well inset from
@@ -46,6 +56,17 @@ The CoCo could be pushed proud of its hole only because what spilled over was
 screen *border*. A machine whose picture has no border margin has nothing to
 spend, so check what the overshoot would cost before taking it.
 
+### Findings — Amstrad (done 30/08/2026)
+
+**CPC passes.** It already uses the oversize-and-clip approach: `#canvas` at
+`24.85%/4.8%/46.3%/66.4%` against a hole bbox of `27.097%/13.004%/41.877%/47.177%`,
+so it stands 30px proud left and right, 73px top and 99px bottom, and the bezel
+trims the rest. No magenta anywhere. What the overshoot eats is the CPC's hardware
+border, not picture — the card shows a healthy white band still inside the glass.
+
+Cosmetic note, not a fault: the ROM reports **"Amstrad 128K Microcomputer (v3)"**,
+a 6128, while the bezel photograph is badged **CPC 464**.
+
 Use with the magenta trick — set `.screen-bg` to magenta and the three failure
 modes separate cleanly. See the `feedback-magenta-bezel-check` memory.
 
@@ -68,7 +89,7 @@ details — that is exactly the class of thing recall gets wrong.
 | `xroar.bas` | Tandy CoCo | colour set via `SCREEN 1,1` | **VERIFIED 30/08/2026** — `PCLS 0` is the correct one of the two |
 | `jsspeccy.bas` | ZX Spectrum | `BORDER` | drafted; needs K-mode/extended-mode entry, see above |
 | `msx1.bas`, `msx2.bas` | MSX1 / MSX2 | `COLOR fg,bg,border` | drafted |
-| `cpc.bas` | Amstrad CPC | `BORDER` | drafted |
+| `cpc.bas` | Amstrad CPC | `BORDER 26` = bright white | **VERIFIED 30/08/2026** |
 | `atari400.bas`, `atari800.bas` | Atari 8-bit | `SETCOLOR 4` = border, `2` = playfield | drafted |
 | `c64.bas` | C64 | `POKE 53280/53281` | drafted |
 | `c128.bas` | C128 | `COLOR` | **suspect** — used source 5 (80-col background); 40-col foreground is source 1 |
