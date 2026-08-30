@@ -48,38 +48,43 @@
       }
       .screen-bg {
         position: absolute;
-        left: 6.6%;
-        top: 10.6%;
-        width: 68.4%;
-        height: 77%;
+        left: 6.3%;
+        top: 9.5%;
+        width: 69%;
+        height: 79.5%;
         background: #000;
         z-index: 1;
       }
       #screen {
         position: absolute;
-        left: 7.636%;
-        top: 11.488%;
-        width: 66.3%;
-        height: 75.383%;
+        left: 6.975%;
+        top: 10.503%;
+        width: 67.621%;
+        height: 77.352%;
         overflow: hidden;
         z-index: 2;
       }
       #canvas {
-        /* Oversized on purpose, and clipped by #screen's overflow. XRoar fits
-           its picture to the canvas by width and its frame's aspect measures
-           about 1.370 rather than the 4:3 its documented picture areas imply,
-           so a canvas matching the opening always keeps a black band along the
-           top and bottom -- about 9px and 3px, since it does not centre the fit
-           either. Making the canvas 7.6% wider than the opening pushes the
-           painted picture 10px proud of it top and bottom, and the bands then
-           land outside the hole where the bezel covers them. The cost is 3.5%
-           of the frame hidden down each side, which is screen border, not
-           picture. Percentages, so it holds at every window size. */
+        /* Oversized on purpose, and clipped by #screen's overflow. Two things
+           are being worked around at once. XRoar fits its picture to the canvas
+           by width, and its frame's aspect measures about 1.370 rather than the
+           4:3 its documented picture areas imply, so a canvas matching the
+           opening always keeps a black band top and bottom -- about 9px and
+           3px, since it does not centre the fit either. And the bezel's cutout
+           carries a 9px feathered edge: #screen reaches the OUTER edge of that
+           ramp, so the picture sits behind the whole of it and the ink blends
+           into the picture rather than into whatever is behind. Clip to the
+           inner edge instead and the ramp blends with .screen-bg, which draws a
+           faint halo -- invisible while that is black, and glaring if it is not.
+           The canvas is 8.1% wider than the clip box, which puts the painted
+           picture 10px proud of it all round and drops the bands outside, at a
+           cost of 3.8% of the frame per side -- screen border, not picture.
+           Percentages throughout, so it holds at every window size. */
         position: absolute;
-        left: -3.783%;
-        top: -2.975%;
-        width: 107.567% !important;
-        height: 104.935% !important;
+        left: -4.071%;
+        top: -2.9%;
+        width: 108.142% !important;
+        height: 104.809% !important;
         display: block;
         image-rendering: pixelated;
         outline: none;
