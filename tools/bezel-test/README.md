@@ -47,7 +47,7 @@ real characters — the boot banner came up as "orn Electron" and "3ASIC". Jack
 spotted it immediately.
 
 **Compare a bezel's picture against the largest rectangle INSCRIBED in the hole,
-not the hole's bounding box.** For `Acorn.png` that is 85,73..753,637, i.e.
+not the hole's bounding box.** For `Microvitec-CUB.png` that is 85,73..753,637, i.e.
 `10.24%/10.169%/80%/78.41%` — against which the Electron's original
 `10.96%/10.97%/78.69%/76.69%` was already within 1.3%. Magenta visible between
 the inscribed rectangle and the hole's curve is the corners, and is expected.

@@ -25,8 +25,8 @@
   /* Three-layer bezel order (back → front):
      1. .screen-bg  — solid black backdrop slightly bigger than the canvas
      2. canvas      — the actual emulator surface
-     3. .bezel-img  — Acorn.png monitor PNG on top, cutout reveals canvas
-     Acorn.png is 835x719 (aspect 1.161). Cutout bbox, flood-filled from the
+     3. .bezel-img  — Microvitec-CUB.png monitor PNG on top, cutout reveals canvas
+     Microvitec-CUB.png is 835x719 (aspect 1.161). Cutout bbox, flood-filled from the
      centre of the hole: 51,44..788,666 = 738x623. Do NOT size the canvas to
      that. The hole is a rounded rectangle, so what fits is the largest
      inscribed rectangle -- 85,73..753,637, i.e. 10.24%/10.169%/80%/78.41% --
@@ -95,7 +95,7 @@
   <div class="bezel-wrap">
     <div class="screen-bg"></div>
     <canvas id="ElkJsOutput" width="640" height="512"></canvas>
-    <img class="bezel-img" src="../_shared/bezels/Acorn.png" alt="">
+    <img class="bezel-img" src="../_shared/bezels/Microvitec-CUB.png" alt="">
   </div>
   <script>
   var elkjs = ElkJs("ElkJsOutput");
@@ -175,7 +175,7 @@
   });
   </script>
 
-  <!-- Bezel credit (Acorn.png — Microvitec CUB monitor frame): bezel
+  <!-- Bezel credit (Microvitec-CUB.png — Microvitec CUB monitor frame): bezel
        artwork sourced from public web archives; original photographer
        unknown. If you recognise your work, please open an issue at
        https://github.com/Retro-Jack/GenX-DOS/issues -->
