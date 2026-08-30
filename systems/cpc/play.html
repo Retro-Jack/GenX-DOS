@@ -14,51 +14,40 @@
   <link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
   <style>
-    /* CRT bezel — Amstrad CPC 6128 + GT 65 monitor (Amstrad_CPC_128.png,
-       1195x917, aspect 1.303). Replaced the CPC464 photo on 31/08/2026: the
-       ROM is a 6128 and controls.html says so, but the old picture was a 464
-       with a tape deck where this machine has a 3-inch drive.
-       Three layers, back to front:
-         1. .screen-bg — black backdrop behind the screen hole, larger than
-            the cutout so the wallpaper cannot bleed through its edge.
-         2. #canvas    — the tiny8bit CPC framebuffer.
-         3. .bezel-img — the PNG on top; its transparent hole reveals the
-            canvas.
-       Cutout measured by flood-filling the alpha from inside the hole:
-       inner (a<32) 369,58..807,408 = 439x351; outer edge of the 3px feather
-       (a<250) 366,55..810,411 = 445x357. Note the hole's aspect is 1.25, NOT
-       the CPC's 4:3 — filling it outright would stretch the picture about 7%
-       vertically. So the canvas takes its height from the hole and its width
-       from 4:3, standing ~15px proud on each side where the bezel trims it.
-       What that trims is the CPC's hardware border, which the BASIC test card
-       in tools/bezel-test confirms is deep enough to spend.
-       Wallpaper override must follow genx-frame.css (which sets body black). */
+    /* CRT bezel — Amstrad CPC464 + CTM640 monitor (Amstrad.png, 1502x992,
+       aspect 1.514). Three layers, back to front:
+         1. .screen-bg — black backdrop behind the screen hole, a touch
+            larger than the cutout so the wallpaper can't bleed through the
+            PNG's anti-aliased hole edge.
+         2. #canvas    — the tiny8bit CPC framebuffer, sized to the cutout.
+         3. .bezel-img — Amstrad.png on top; its transparent hole reveals
+            the canvas. Hole detected at left 27.03% top 12.90% w 42.01%
+            h 47.38% (aspect 1.34 ≈ the CPC's 4:3); canvas inset ~1.5% per
+            side so its edges tuck under the bezel lip.
+       Bezel fills the full viewport height (100dvh). Wallpaper override must
+       follow genx-frame.css (which sets body black). */
     html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; }
     .bezel-wrap {
       position: relative;
-      width: min(100vw, calc((100dvh - 40px) * 1195 / 917));
-      aspect-ratio: 1195 / 917;
+      width: min(100vw, calc(100dvh * 1502 / 992 * 1.05));
+      aspect-ratio: 1502 / 992;
     }
     .screen-bg {
-      /* Kept tight to the canvas -- 6px margin, no more. This PNG is a cut-out
-         machine on transparency, so a backdrop any wider than the monitor's
-         casing shows as coloured strips down the sides of the monitor against
-         the wallpaper. The old 45%-wide value did exactly that. */
       position: absolute;
-      left: 28.787%; top: 5.289%; width: 40.837%; height: 40.240%;
+      left: 25.5%; top: 11.4%; width: 45%; height: 51%;
       background: #000;
       z-index: 1;
     }
     #canvas {
       position: absolute;
-      left: 29.289%; top: 5.943%; width: 39.833%; height: 38.931%;
+      left: 24.85%; top: 4.8%; width: 46.3%; height: 66.4%;
       image-rendering: pixelated; image-rendering: crisp-edges;
       background: #000;
       z-index: 2;
     }
     #loading {
       position: absolute;
-      left: 29.289%; top: 5.943%; width: 39.833%; height: 38.931%;
+      left: 24.85%; top: 4.8%; width: 46.3%; height: 66.4%;
       display: flex; align-items: center; justify-content: center;
       color: #888; font-family: monospace; pointer-events: none;
       z-index: 2;
@@ -92,7 +81,7 @@
     <div class="screen-bg"></div>
     <canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas>
     <div id="loading">Booting Amstrad CPC…</div>
-    <img class="bezel-img" src="../_shared/bezels/Amstrad_CPC_128.png" alt="">
+    <img class="bezel-img" src="../_shared/bezels/Amstrad.png" alt="">
   </div>
 
   <script>
@@ -251,10 +240,8 @@
     })();
   </script>
 
-  <!-- Bezel: Amstrad CPC 6128 (GT 65 monitor) — Amstrad_CPC_128.png,
-       supplied by Jack 31/08/2026, alpha-keyed with the screen cut out.
-       SOURCE AND LICENCE NOT YET RECORDED — ATTRIBUTION.md still describes the
-       CPC464 photo this replaced (Bill Bertram, CC-BY-SA 2.5), which no bundle
-       now loads. Both need settling. -->
+  <!-- Bezel: Amstrad CPC464 (CTM640 monitor) — photo by Bill Bertram
+       (Wikimedia Commons, "Amstrad CPC464"), CC-BY-SA 2.5. Background
+       alpha-keyed locally; this modified version is likewise CC-BY-SA 2.5. -->
 </body>
 </html>

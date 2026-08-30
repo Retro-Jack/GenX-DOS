@@ -331,11 +331,7 @@ glad to say so.
 
 Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-tracked** — these are anonymous hardware shots or generic CRT frames sourced from public web archives where the original photographer is no longer reachable, then processed locally (alpha-keying, screen cutout) in GIMP. Source-code dependencies stay fully tracked (above). Wired bezels ship without credit comments.
 
-**Exception — `Amstrad.png`** is properly source-cleared and carries a binding obligation: cropped from [File:Amstrad_CPC464.jpg](https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg) (Wikimedia Commons) by Bill Bertram (username Pixel8), 7 May 2005, **CC-BY-SA 2.5**. Modifications inherit share-alike.
-
-  **No longer wired to anything as of 31/08/2026** — the CPC moved to `Amstrad_CPC_128.png`, an actual 6128, because the 464 photo showed a tape deck where this machine has a 3-inch drive. The file is still in the repo and still ships, so the share-alike obligation still stands; it should either be deleted as an orphan or the credit kept as it is here.
-
-**`Amstrad_CPC_128.png`** (CPC 6128 + GT 65 monitor, 1195x917) — **source and licence not yet recorded.** Supplied by the maintainer 31/08/2026, already alpha-keyed with the screen cut out. Needs settling before the next release: if it is CC-BY-SA like its predecessor the credit belongs here, and if it is CC0 or public domain that is worth stating so nobody re-derives an obligation that does not exist.
+**Exception — `Amstrad.png`** is properly source-cleared and carries a binding obligation: cropped from [File:Amstrad_CPC464.jpg](https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg) (Wikimedia Commons) by Bill Bertram (username Pixel8), 7 May 2005, **CC-BY-SA 2.5**. Modifications inherit share-alike; `systems/cpc/play.html` carries the author + licence as an attribution comment.
 
 (Note: jsbeeb's CUB monitor frame lives inside `systems/bbcmicro/dist/` and `systems/bbcmaster/dist/` as part of the upstream build, not this shared set.)
 

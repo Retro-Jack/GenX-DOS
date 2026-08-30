@@ -1,9 +1,6 @@
 ## [Unreleased]
 
 ### Changed
-- **The Amstrad CPC bezel is now an actual CPC 6128.** The ROM has always been a 6128 and `controls.html` says so, but the photograph was a 464 — the tell is a tape deck where this machine has a 3-inch disc drive. `Amstrad_CPC_128.png` (1195x917) replaces it, and the geometry was measured rather than eyeballed: the cutout is 439x351 at 369,58 with a 3px feather.
-  One thing about that cutout is worth knowing: **its aspect is 1.25, not the CPC's 4:3.** Sizing the canvas to fill it would stretch the picture about 7% vertically, so the canvas takes its height from the hole and its width from 4:3 instead, standing ~15px proud on each side where the bezel trims it — and what that trims is hardware border, which the BASIC test card shows is deep enough to spare. `.screen-bg` is also kept tight to the canvas now: this PNG is a cut-out machine on transparency, so the old 45%-wide backdrop showed as coloured strips down the sides of the monitor once anything but black was behind it. The magenta check caught that in one look.
-
 - **The Acorn Electron's picture is 1.3% wider**, at the largest rectangle that actually fits inside its bezel's rounded cutout: `10.24%/10.169%/80%/78.41%`, measured rather than eyeballed. The previous `10.96%/10.97%/78.69%/76.69%` was very nearly right already.
   Recorded because the first attempt got it wrong in a way worth not repeating. The cutout's *bounding box* is 738x623 and the canvas was set to that, which looked like a 40px-per-side improvement and was really a regression: the hole is a rounded rectangle, and the Electron's addressable area runs edge to edge with no screen border, so the overshoot clipped real characters — the boot banner came up as "orn Electron" and "3ASIC". What fits a rounded hole is the largest **inscribed** rectangle, not the bbox. The CoCo tolerated being pushed proud of its hole only because what spilled over was screen border; the Electron has none to spend.
 
