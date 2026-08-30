@@ -57,16 +57,29 @@
       }
       #screen {
         position: absolute;
-        left: 7.061%;
+        left: 7.636%;
         top: 11.488%;
-        width: 67.450%;
+        width: 66.3%;
         height: 75.383%;
         overflow: hidden;
         z-index: 2;
       }
       #canvas {
-        width: 100% !important;
-        height: 100% !important;
+        /* Oversized on purpose, and clipped by #screen's overflow. XRoar fits
+           its picture to the canvas by width and its frame's aspect measures
+           about 1.370 rather than the 4:3 its documented picture areas imply,
+           so a canvas matching the opening always keeps a black band along the
+           top and bottom -- about 9px and 3px, since it does not centre the fit
+           either. Making the canvas 7.6% wider than the opening pushes the
+           painted picture 10px proud of it top and bottom, and the bands then
+           land outside the hole where the bezel covers them. The cost is 3.5%
+           of the frame hidden down each side, which is screen border, not
+           picture. Percentages, so it holds at every window size. */
+        position: absolute;
+        left: -3.783%;
+        top: -2.975%;
+        width: 107.567% !important;
+        height: 104.935% !important;
         display: block;
         image-rendering: pixelated;
         outline: none;
@@ -138,7 +151,55 @@
       // Note this build's API is not the one the Color Computer Archive's
       // older build uses: 'wasm_set_joystick' does not exist here, and calling
       // it silently does nothing.
+      // XRoar works out its picture rectangle once, from the canvas size it
+      // happens to see at startup, and never recomputes it. Everything after
+      // that -- our CSS box, a window resize, going fullscreen -- moves the
+      // backing store without telling the engine, so the picture stays the size
+      // it was first laid out at and the shortfall shows up as black bands
+      // inside the canvas that look for all the world like a bezel misfit. They
+      // are not: nothing about the aperture or the CSS can shift them, because
+      // the emulator is drawing a smaller rectangle than it has been given.
+      // wasm_resize is how upstream's own online build keeps the two in step,
+      // and it is the only thing that closes the gap.
+      function gxSyncCanvasSize() {
+        var c = document.getElementById('canvas');
+        if (!c) return;
+        var r = c.getBoundingClientRect();
+        var w = Math.max(1, Math.round(r.width));
+        var h = Math.max(1, Math.round(r.height));
+        if (c.width !== w || c.height !== h) {
+          c.width = w;
+          c.height = h;
+        }
+        if (typeof Module !== 'undefined' && Module._wasm_resize) {
+          try {
+            Module._wasm_resize(w, h);
+          } catch (e) {
+            /* older build without the export; picture just stays as laid out */
+          }
+        }
+      }
+
+      var gxResizeQueued = false;
+      window.addEventListener('resize', function () {
+        if (gxResizeQueued) return;
+        gxResizeQueued = true;
+        requestAnimationFrame(function () {
+          gxResizeQueued = false;
+          gxSyncCanvasSize();
+        });
+      });
+
       function ui_done_initialising() {
+        // Once is not enough: this fires before XRoar has finished settling its
+        // own video geometry, so a single call here gets overwritten and the
+        // bands come back on a cold load. Re-assert it over the first couple of
+        // seconds so ours is the last word, whenever the engine stops moving.
+        gxSyncCanvasSize();
+        requestAnimationFrame(gxSyncCanvasSize);
+        [100, 400, 1000, 2000].forEach(function (ms) {
+          setTimeout(gxSyncCanvasSize, ms);
+        });
         window.addEventListener('gamepadconnected', function (e) {
           try {
             Module.ccall(
