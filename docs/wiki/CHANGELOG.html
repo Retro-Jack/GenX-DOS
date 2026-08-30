@@ -28,42 +28,76 @@
   </nav>
   <main class="content">
 <h2 id="unreleased">[Unreleased]</h2>
-<h3 id="fixed">Fixed</h3>
-<ul>
-<li><strong>The wiki's link to the removal-upon-request policy was broken.</strong> It pointed at <code>ATTRIBUTION.md.html</code>, which does not exist. The wiki builder strips a filename's extension to find the page it became, but tested for <code>.md</code> <em>before</em> removing any <code>#anchor</code> — so a link carrying one failed the test, fell through to the branch that handles wiki page names, and had <code>.html</code> appended to the whole string. The dead-link warning the build printed on every run was the same fault, not a separate one. Of all the links to have broken, it was the one a rights holder would click.</li>
-</ul>
 <h3 id="changed">Changed</h3>
 <ul>
-<li><strong>jimbro1000 is credited in ATTRIBUTION</strong> for the CoCo artifact-colour suggestion, alongside dplassgit's Model 100 proposal. The docs caught up with the CoCo work at the same time: the README's gamepad section covers the CoCo's native joystick path and why a pad there needs Firefox, and the XRoar wiki page gained the artifact-colour table, the joystick traps and the browser limitation. The wiki's file index had fallen behind by two shared scripts.</li>
+<li><strong><code>Sinclair.png</code> is now <code>TV-vintage.png</code>.</strong> The file is a generic vintage television, and it is shared by six bundles from five different manufacturers — the TI-99/4A, ZX Spectrum, ZX81, MSX1, MSX2 and the Tandy CoCo. Naming it after one of them was misleading: nobody editing the CoCo page would think to look for "Sinclair", and the code comments in all six already described it as "the shared vintage TV". Now the filename and the prose agree.
+  The rest of the set was checked at the same time and left alone. <code>Acorn.png</code> (a Microvitec CUB), <code>Apple.png</code> (an Apple Monitor ///), <code>Commodore.png</code>, <code>PC.png</code> (an IBM 5153) and <code>nes.png</code> are each used by one machine or one manufacturer's family, so the brand name is a fair label even where the object is a monitor rather than a computer. <code>70s.png</code> and <code>80s.png</code> describe period televisions and go to the consoles.</li>
+<li>
+<p><strong>The unused CPC 6128 bezel is removed.</strong> <code>Amstrad_CPC_128.png</code> was added while trying it in place of the 464 photo, then dropped; it stays in history at <code>9637225</code> if wanted, along with its measurements — a clean enclosed cutout of 439x351 at 369,58 with a 3px feather, whose aspect is 1.25 against the CPC's 4:3.</p>
+</li>
+<li>
+<p><strong>The Acorn Electron's picture is 1.3% wider</strong>, at the largest rectangle that actually fits inside its bezel's rounded cutout: <code>10.24%/10.169%/80%/78.41%</code>, measured rather than eyeballed. The previous <code>10.96%/10.97%/78.69%/76.69%</code> was very nearly right already.
+  Recorded because the first attempt got it wrong in a way worth not repeating. The cutout's <em>bounding box</em> is 738x623 and the canvas was set to that, which looked like a 40px-per-side improvement and was really a regression: the hole is a rounded rectangle, and the Electron's addressable area runs edge to edge with no screen border, so the overshoot clipped real characters — the boot banner came up as "orn Electron" and "3ASIC". What fits a rounded hole is the largest <strong>inscribed</strong> rectangle, not the bbox. The CoCo tolerated being pushed proud of its hole only because what spilled over was screen border; the Electron has none to spend.</p>
+</li>
 </ul>
 <h3 id="added">Added</h3>
 <ul>
-<li><strong>The CoCo pages now say when the browser cannot see a gamepad.</strong> An orange strip in the same style as the audio banner: <em>"This browser cannot detect a USB gamepad -- use Firefox to play with one."</em> Chromium browsers never hand a pad to these pages — the emulator asks the browser what joysticks exist once, at startup, and Chrome will not answer for a page that does not have focus, so by the time a pad could be admitted nothing is still asking. Firefox has no such rule and the same pad works there at once. This is not particular to us: XRoar's own online build lists the pad in Firefox and not in Chrome with the same pad plugged in. Since it cannot be fixed from the page, it is at least worth saying plainly. Dismissible, and it stays dismissed.</li>
+<li><strong>BASIC test cards for every computer</strong> in <code>tools/bezel-test/</code>: one program each producing a white border and a black playfield, so the edge of an emulator's picture is unambiguous instead of being guessed against a game's own artwork. Twenty machines; the eleven consoles and handhelds have no BASIC in ROM and are listed as such. Verified by running them on the CoCo, BBC Micro, BBC Master and Electron so far — each machine has its own dialect <em>and</em> its own keyword-entry scheme, and the ZX Spectrum is the awkward one: in K mode a keypress is a whole keyword, so <code>B</code> <strong>is</strong> <code>BORDER</code> and typing the letters gives nonsense.</li>
+<li><code>tools/</code> is excluded from the shipping file set. It never was, so <code>build-softkey-map.py</code> had been publishing to the live site.</li>
+</ul>
+<h3 id="changed_1">Changed</h3>
+<ul>
+<li><strong>The CoCo picture now fills the bezel's opening, with no gaps at the top and bottom.</strong> It had been sized by eye and nudged with a <code>transform: scale()</code> on the canvas, which left it floating small and slightly right of centre, with bands of black showing between the picture and the tube. The opening was measured properly instead — flood-filled out of <code>Sinclair.png</code>'s alpha channel, which puts it at 104,105 to 1006,793, or 903 x 689 — and <code>#screen</code> given a 4:3 box of 918.7 x 689 centred on it: 7.8px proud down each side, which the bezel covers, and exact top and bottom.
+  The cause turned out to have nothing to do with the bezel, and the geometry above is only half the fix. <strong>The page never told XRoar its canvas had changed size.</strong> XRoar works out its picture rectangle once, from whatever the canvas measures at startup, and never recomputes it — so every CSS change, window resize and fullscreen toggle moved the backing store while the emulator carried on drawing a rectangle sized for a canvas that no longer existed. The shortfall showed up as black bands inside the canvas, indistinguishable from a bezel misfit, which is exactly how they were read for several rounds. <code>wasm_resize</code> is the export upstream's own online build calls for this; ours never called it. It is now called once the emulator is up, again on the next frame and at 100/400/1000/2000ms — a single call at <code>ui_done_initialising</code> gets overwritten, because that fires before XRoar has settled — and on every window resize. That took the bands from ~40px to ~10px.
+  The bezel's cutout also carries a <strong>9px feathered edge</strong>, uniform on all four sides, and the clip box now reaches the <em>outer</em> edge of that ramp rather than the inner one. Clipped to the inner edge, the ramp's semi-transparent ink had nothing behind it but <code>.screen-bg</code>, so it blended with that instead of with the picture — invisible while the backing is black, which is why it survived unnoticed, and a bright halo the moment it is anything else. Setting <code>.screen-bg</code> to magenta made it obvious in a second; setting the clip box to 921x707 at (95,96), the measured outer bound, put the picture behind the whole ramp. Verified by leaving the backing magenta and finding none of it visible anywhere, with the div proud of the clip box by 7-8px on every side. Suggested by Jack, who also called the feather before it was measured.
+  The last band is XRoar's own fit and is now cropped out. Its frame's aspect measures about 1.370 rather than the 4:3 its documented picture areas imply, and it does not centre the result either — 9px of black at the top against 3px at the bottom — so the canvas is deliberately made 7.6% wider than the opening and offset up and left, which pushes the painted picture 10px proud of the hole all round and drops the bands outside it, where <code>#screen</code>'s <code>overflow: hidden</code> and the bezel take care of them. It costs 3.5% of the frame down each side, and that is screen border rather than picture: Dungeons of Daggorath's full-width 32-column line still reads complete at both ends. <code>-no-vo-scale-60hz</code> was tried first on the theory that the odd aspect was a 60Hz correction; it changes nothing, so it is not in the arguments.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li><strong>Galactic Attack's page described a different game.</strong> It had a first-person cockpit, a targeting reticle to crab the ship under, and a 1983 Datasoft credit. The cartridge is The Image Producers, 1981, and it is a Galaxian: a laser that slides along the bottom of the screen and eight aliens in formation above it that break and dive. Rewritten from the manual, which also settles the hardware — <em>"Connect a Joystick to the connection marked LEFT JOYSTK"</em> — confirming the port the emulator had been given by testing. It said the cartridge loads from tape, too.</li>
+<li><strong>The USB notice appears only where a gamepad does something.</strong> Two of the ten CoCo games read a joystick; on the other eight the notice was telling players their browser could not detect a pad for a game that would ignore one anyway. It is now shown by the page when the loaded game has a joystick, rather than by the script on sight of the browser.
+  Worth recording how the first attempt failed: the page called the notice only <code>if</code> the function existed, and the deferred script that defines it had not always run by then — off a warm cache the page's own lookup finished first, so the call was skipped in silence. It now sets a flag as well, and whichever of the two runs second shows the notice.</li>
+</ul>
+<h3 id="changed_2">Changed</h3>
+<ul>
+<li><strong>Both CoCo joystick games now document the pad</strong>, including that it needs Firefox, and Polaris notes that the sights move faster the further the stick is pushed — it reads the stick's position, not merely its direction.</li>
 </ul>
 <h3 id="fixed_1">Fixed</h3>
+<ul>
+<li><strong>The wiki's link to the removal-upon-request policy was broken.</strong> It pointed at <code>ATTRIBUTION.md.html</code>, which does not exist. The wiki builder strips a filename's extension to find the page it became, but tested for <code>.md</code> <em>before</em> removing any <code>#anchor</code> — so a link carrying one failed the test, fell through to the branch that handles wiki page names, and had <code>.html</code> appended to the whole string. The dead-link warning the build printed on every run was the same fault, not a separate one. Of all the links to have broken, it was the one a rights holder would click.</li>
+</ul>
+<h3 id="changed_3">Changed</h3>
+<ul>
+<li><strong>jimbro1000 is credited in ATTRIBUTION</strong> for the CoCo artifact-colour suggestion, alongside dplassgit's Model 100 proposal. The docs caught up with the CoCo work at the same time: the README's gamepad section covers the CoCo's native joystick path and why a pad there needs Firefox, and the XRoar wiki page gained the artifact-colour table, the joystick traps and the browser limitation. The wiki's file index had fallen behind by two shared scripts.</li>
+</ul>
+<h3 id="added_1">Added</h3>
+<ul>
+<li><strong>The CoCo pages now say when the browser cannot see a gamepad.</strong> An orange strip in the same style as the audio banner: <em>"This browser cannot detect a USB gamepad -- use Firefox to play with one."</em> Chromium browsers never hand a pad to these pages — the emulator asks the browser what joysticks exist once, at startup, and Chrome will not answer for a page that does not have focus, so by the time a pad could be admitted nothing is still asking. Firefox has no such rule and the same pad works there at once. This is not particular to us: XRoar's own online build lists the pad in Firefox and not in Chrome with the same pad plugged in. Since it cannot be fixed from the page, it is at least worth saying plainly. Dismissible, and it stays dismissed.</li>
+</ul>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li><strong>A gamepad may need a second press in Chrome.</strong> Chrome only reveals a gamepad to a page that currently has focus; Firefox does not require it. A pad pressed while the window is not focused is invisible to the page, and there is nothing the page can do about it — so the controls page now says to click the game area first and press again. The same rule is why the CoCo pad appeared to work in one browser and not the other with identical code.</li>
 <li><strong>Polaris was documented as an entirely different game.</strong> Its page described a side-view submarine arcade port — piloting a sub, dodging depth charges from destroyers and helicopters, credited to Sega in 1983. None of that is this game. Tandy's Polaris is by Device Oriented Games, 1981, and it is a <em>Missile Command</em>: six islands, three dug-in submarines with nine missiles apiece, and a pair of crosshairs you steer onto missiles raining from the sky. The page has been rewritten from the cartridge manual — controls, scoring, the point multiplier, the bonus island at 2,000 points and the explosions that wrap round the screen edges.
   The confusion is at least an understandable one: Polaris was the submarine-launched ballistic missile, the game really does fire from submarines, and Sega shipped a 1980 arcade game of the same name that <em>is</em> the side-view submarine game described.</li>
 <li><strong>Polaris now gets the right joystick port.</strong> The manual is explicit — "the right joystick is for one player, the second player will use the left joystick" — and it had been wired to the left, which is why a gamepad did nothing at all. Aiming is on the joystick; firing stays on the keyboard, where the game put it: <kbd>Z</kbd>, <kbd>X</kbd> and <kbd>C</kbd> launch from the three submarines.</li>
 </ul>
-<h3 id="added_1">Added</h3>
+<h3 id="added_2">Added</h3>
 <ul>
 <li><strong>The CoCo now shows composite artifact colour, where the game was drawn for it.</strong> The Dragon/CoCo's high-resolution modes were nominally two-colour, but on an NTSC television alternating pixel columns come out red and blue — and games were drawn <em>for</em> that. Demon Attack is meant to be black, white, red and blue; it was rendering in stark monochrome. XRoar models this with <code>-tv-input</code>, and the bundle now passes it per game (<code>"tv": "cmp-rb"</code> in <code>games.json</code>), because it only means anything for titles that relied on it and the artifact phase differs between them. Enabled for <strong>Demon Attack</strong>, <strong>Downland</strong>, <strong>Canyon Climber</strong> and <strong>Mega-Bug</strong> — four of the ten, each checked on screen. Suggested by <strong>jimbro1000</strong>, who also identified the option.
   Testing it globally showed why it belongs per game — and that the split is not the one you would guess. Canyon Climber and Mega-Bug turned out to <em>need</em> it badly (without it Canyon Climber is an unreadable black-and-white dither, and Mega-Bug's insects are white blobs), while three titles are actively harmed: <strong>Dungeons of Daggorath</strong>, <strong>Monster Maze</strong> and <strong>Poltergeist</strong> are meant to be clean white on black, and composite decoding fringes their line art blue and orange. The rest are unaffected either way — Popcorn and Polaris use colour and text modes that do not artifact at all, and Galactic Attack's green mode is untouched by it.</li>
 </ul>
-<h3 id="added_2">Added</h3>
+<h3 id="added_3">Added</h3>
 <ul>
 <li><strong>USB gamepads work on the CoCo.</strong> Plug one in, press a button, and it takes over the joystick — left stick to move, <strong>A</strong> to fire — the CoCo's joystick had one button, so that is the one that matters (B reaches a second button a few games read; X and Y do nothing). Browsers deliberately hide gamepads until a button is pressed, so that first press is unavoidable and the page now says when the pad has connected.
   This needed more than an option. XRoar enumerates joysticks once at startup, and since the browser has revealed nothing by then its log reads "no devices found" even with a pad plugged in; nothing re-scans afterwards. It also reports what joysticks exist through UI callbacks this page had stubbed out as empty functions, so a connected pad was invisible to us by construction. The page now implements those callbacks, listens for the browser's connect event, and binds whatever XRoar reports — by its own name rather than a guessed one.</li>
 <li><strong>Joystick support on the CoCo.</strong> Several titles are joystick-only — Galactic Attack says "PRESS FIRE BUTTON TO BEGIN" and ignores the keyboard entirely — so until now they could not be started at all. The bundle passes XRoar's own <code>-joy-left</code> / <code>-joy-right</code> per game, which is the emulator's real joystick rather than faked key presses: a physical pad is picked up natively through SDL, and XRoar's keyboard joystick (cursor keys to steer, Alt to fire) covers players without one. On for Galactic Attack, which cannot be started any other way. <strong>Not</strong> for Polaris or Poltergeist: both were given one on the assumption they needed it, and testing each in play showed otherwise — Polaris ignores a joystick on either port, and Poltergeist is steered with the cursor keys, which a keyboard joystick <em>takes away from the game</em>. A joystick is only wired up where the game actually wants one.
   The port matters and is not the obvious one: <code>-joy-right</code> left Galactic Attack sitting on its title screen, <code>-joy-left</code> started it at once.</li>
 </ul>
-<h3 id="fixed_2">Fixed</h3>
+<h3 id="fixed_3">Fixed</h3>
 <ul>
 <li><strong>The CoCo browser tab said "XRoar".</strong> The tab is supposed to name the machine, never the emulator, and the page's own <code>&lt;title&gt;</code> was correct — but XRoar's SDL layer overwrites the window title once it starts, after the page has set it. It is now put back whenever that happens.</li>
 </ul>
-<h3 id="changed_1">Changed</h3>
+<h3 id="changed_4">Changed</h3>
 <ul>
 <li><strong>Soft keys now appear only on the games that use them.</strong> A CLEAR button on a game that never asks for CLEAR is noise, and worse, it implies the game wants it — a player pressing it learns only that it does nothing. The button now shows where the game's own page says the key is used: <strong>six of the ten TRS-80 games</strong>, and <strong>four of the twenty BBC games</strong>, so twenty buttons that meant nothing have gone.
   The map is generated from each gamedoc's <em>Controls</em> table by <code>tools/build-softkey-map.py</code>, so the button and the documentation cannot disagree — add a CLEAR row to a gamedoc and the button appears next build. It reads the Controls table only: the "Getting started" text used to hedge with "press the key it names to begin (often CLEAR)", which was true of nine TRS-80 pages and told a reader nothing. If the map can't be loaded the keys all show, because hiding the only discoverable way to start a game is far worse than one extra button.</li>
@@ -71,74 +105,74 @@
 <li><strong>The TRS-80 picture is nudged down so what you see is centred.</strong> Centring the surface on the cutout is not the same as centring the picture: the games don't fill the surface evenly — Galaxy Invasion's dotted frame runs from y 8 to y 335 of 384, so eight pixels above it and forty-eight below — and a mathematically centred canvas puts the visible frame high in the tube. It is offset by half that difference, which brings the frame's margins to within a pixel of each other.</li>
 <li><strong>The TRS-80 picture is inset within the glass</strong> rather than running to its very edge. The black backdrop was enlarged to cover the whole cutout at the same time, so the rest of the tube reads as an unlit CRT face instead of as a hole with wallpaper behind it.</li>
 </ul>
-<h3 id="fixed_3">Fixed</h3>
+<h3 id="fixed_4">Fixed</h3>
 <ul>
 <li><strong>Six TRS-80 gamedocs didn't mention the key that starts the game.</strong> Making the gamedocs decide which buttons appear meant checking they were right, and they weren't: only Defense Command named CLEAR in its controls, though Galaxy Invasion, Cosmic Fighter and Attack Force all need it to <em>start</em> — Cosmic Fighter's own title screen says so in as many words. Crazy Painter uses it in play, and Space Castle takes CLEAR with BREAK to restart. Each game's text was read out of its own binary rather than inferred.</li>
 <li><strong>The TRS-80 controls page said CLEAR was "hyperspace in a few" games. It isn't.</strong> Super Nova's hyperspace is the <strong>spacebar</strong>; no game in the lineup uses CLEAR for it. The page now names which games use CLEAR and what for.</li>
 </ul>
-<h3 id="changed_2">Changed</h3>
+<h3 id="changed_5">Changed</h3>
 <ul>
 <li><strong>The BBC COPY button has joined the rest of the soft keys under the machine.</strong> It was the last one still alone in the top-left, so the family disagreed with itself — TRS-80 CLEAR and the Atari console keys had already moved. Same amber style, same place. Being at the bottom it also clears the suspended-audio banner, which is fixed to the top at a very high z-index and had been burying it at exactly the moment a player goes looking for a control.</li>
 </ul>
-<h3 id="added_3">Added</h3>
+<h3 id="added_4">Added</h3>
 <ul>
 <li><strong><code>check-doc-counts.sh</code> now checks wording, not just numbers.</strong> Counts have always drifted loudly and the script caught them; <em>prose</em> drifted silently — when the soft keys moved out of the top-left corner, several documents went on describing them there and nothing noticed. There is now a blocklist of phrases that were true once, each with the paths it may legitimately still appear in, since history is not drift and a comment explaining what a control used to do is not a stale claim. It found two pages on its first run — both BBC controls pages still told players the COPY button was top-left.</li>
 </ul>
-<h3 id="fixed_4">Fixed</h3>
+<h3 id="fixed_5">Fixed</h3>
 <ul>
 <li><strong>The BBC COPY key was being delivered four times per click.</strong> The same bug already fixed in the Atari and TRS-80 scripts, and the last copy of it: the synthetic key was dispatched at <code>document</code>, <code>window</code>, <code>body</code> and the canvas, and those events bubble. One dispatch now, at <code>document</code>.</li>
 </ul>
-<h3 id="fixed_5">Fixed</h3>
+<h3 id="fixed_6">Fixed</h3>
 <ul>
 <li><strong>The TRS-80 screen was dropping pixel rows, and taking the tops off letters with them.</strong> "High Score" read as "-igh Score" and "Space" as "Scace". The canvas renders at 1024×768 and the bezel cutout is smaller, so the browser is always scaling it <em>down</em> — and it was told to scale with nearest-neighbour, which does not average pixels, it discards them. On a TRS-80 character twelve pixels tall that is enough to remove the top of the glyph. It now downscales smoothly, so every row survives. A leftover <code>transform: scale()</code> from the Model I bezel went at the same time — it was shrinking the picture inside its own hole and making the scale factor worse. Nearest-neighbour is still right everywhere else: every other bundle renders smaller than its cutout and scales <em>up</em>, which is the case it is good at.</li>
 </ul>
-<h3 id="changed_3">Changed</h3>
+<h3 id="changed_6">Changed</h3>
 <ul>
 <li><strong>Eliminator is out; Space Castle is in.</strong> Eliminator had been shipping dead — a black screen, and not because of the Model III: it did the same on the Model I. The file was structurally perfect, which is what made it worth chasing. It turns out our copy is byte-identical to the upstream self-contained conversion, so that conversion is broken at source; and the genuine binary — identical on both the Model I and Model III public-domain discs — loads above where the DOS sits and wants the DOS resident, so on a bare machine it loads, runs, and fills the screen with garbage. There is no Model III build to find. In its place, <strong>Space Castle</strong> (Cornsoft Group, 1982, Charles Guy): rotate, thrust and shoot through three spinning armour shields to the Castle at the centre — a different shape of game to the side-scrolling shooters that make up most of the lineup, and it carries its own rules screen on <kbd>?</kbd>. Ten games still, and the controls on its page are taken from that rules screen rather than inferred.</li>
 </ul>
-<h3 id="changed_4">Changed</h3>
+<h3 id="changed_7">Changed</h3>
 <ul>
 <li><strong>The TRS-80 bundle is now a Model III, not a Model I.</strong> The Model III runs the Model I library, so the ten games are unchanged — but it is a far better machine to put in front of a visitor: one case instead of a monitor, an expansion interface and a drive stack cabled together across the screen, a 2.03 MHz Z80 instead of 1.77, lower-case as standard, and a keyboard with a numeric keypad. New bezel to match. The switch cost two strings, because the ROM is now fetched and written into the emulator's filesystem at boot instead of being baked into the WASM — the old build fixed the machine at compile time, so changing it would have meant a full emscripten rebuild for a 14 KB file.</li>
 <li><strong>The TRS-80 CLEAR button looked disabled.</strong> Grey text on a grey border at 0.6 opacity, alone in the top-left corner — which is how a dead control looks, and CLEAR is the one button that starts most of these games. It is now in the amber style the rest of the site uses, sitting under the machine in front of the keyboard, alongside where the Atari console keys sit on their pages.</li>
 </ul>
-<h3 id="fixed_6">Fixed</h3>
+<h3 id="fixed_7">Fixed</h3>
 <ul>
 <li><strong>The TRS-80 CLEAR key was being delivered four times per click.</strong> The same bug fixed in the Atari scripts, still present here: the synthetic key was dispatched at <code>document</code>, <code>window</code>, <code>body</code> and the canvas, and those events bubble. One dispatch now, at <code>document</code>.</li>
 </ul>
-<h3 id="fixed_7">Fixed</h3>
+<h3 id="fixed_8">Fixed</h3>
 <ul>
 <li><strong>A hairline of wallpaper showed around the Atari 400 and 800XL screens.</strong> The cutout in the bezel has a soft, anti-aliased edge, and with nothing behind it the wallpaper showed through that fringe. Every other bezeled bundle already carried a black <code>.screen-bg</code> layer for exactly this — the 7800 uses one with the very same bezel — and these two were the only ones without it.</li>
 </ul>
-<h3 id="changed_5">Changed</h3>
+<h3 id="changed_8">Changed</h3>
 <ul>
 <li><strong>All the Atari soft keys now sit under the set.</strong> The 400 and 800XL keys were top-left while the 2600 panel and the 7800 keys sat between the TV's legs, so the family disagreed with itself. All four are centred beneath the screen now, where a console lived — and being at the bottom they clear the suspended-audio banner without needing the offset the top-left placement required.</li>
 <li><strong>40 gamedocs now name the button, not just the key.</strong> Every instruction that said "Press F4 Start" or "Press Enter (Reset)" now reads "Click START (or press F4)" — the button first, since it is the thing on screen, with the key kept as the alternative. 81 replacements across the Atari 400, 800XL, 2600 and 7800, applied from an explicit phrase map rather than a loose pattern, ordered longest-first so overlapping phrasings could not double-apply. The bold names match the on-screen legends exactly.</li>
 </ul>
-<h3 id="added_4">Added</h3>
+<h3 id="added_5">Added</h3>
 <ul>
 <li><strong>The Atari 2600 and 7800 switch panels are on screen.</strong> The whole panel, in the console's own left-to-right order and with its own lower-case legends stacked the way they were printed: tv type, left difficulty, right difficulty, game select and game reset on the 2600; and on the 7800 just PAUSE, SELECT and RESET as plain keys, matching the Atari 400/800 ones — its case carried no difficulty switches, whatever ids the core exposes for 2600 compatibility. Power is left off, since it means nothing here. The momentary switches are buttons and the two-position ones are switches that stay where you put them, and the panel sits under the set — between the TV's legs, where a console actually lived. Switches that sat on the console itself, physically labelled, and that games depend on — switches that sat on the console itself, physically labelled, and that games depend on: RESET is how most 2600 titles begin, and SELECT picks the variation, which on a 2600 cartridge is often the difference between one game and thirty. Same reasoning as the Atari 8-bit keys, and the same place on screen.
   These needed a different mechanism. Everywhere else a soft key dispatches a synthetic <code>KeyboardEvent</code>, because those engines read the DOM's keyboard events; EmulatorJS does not, and ignores them outright — firing <code>V</code> at the 2600 left the variation number exactly where it was. They go through <code>gameManager.simulateInput()</code> instead, the same path EmulatorJS's own on-screen controls use, with the button ids read from its source rather than guessed.</li>
 <li><strong>OPTION, SELECT and START are now buttons on the Atari 400 and 800XL.</strong> The Atari 8-bits put those three on their own labelled keys beside the keyboard, and most games will not begin until you press START — but in a browser there is nothing to see, so a game sits on a silent title screen and a player has no way to guess the way in is a function key. Reported by a reader as "it's not obvious how to hit custom keys, like the Atari 8-bit OPTION key". They were always on F2/F3/F4 and always documented; what was missing was the labels the machine used to have. RESET is deliberately not among them — it is one mis-click from throwing a game away.
   The buttons appear straight away but stay greyed for a few seconds while the machine boots, because a console key delivered mid-boot crashes the emulator outright, and clicking START repeatedly at a silent screen is exactly what an impatient player does.</li>
 </ul>
-<h3 id="fixed_8">Fixed</h3>
+<h3 id="fixed_9">Fixed</h3>
 <ul>
 <li><strong>Soft-key buttons were hidden behind the audio banner.</strong> The "browser has suspended audio" banner is fixed to the top of the screen with a very high z-index, and the soft keys sit at <code>top: 8px</code> — so while audio was suspended, which is precisely when a player is hunting for a control, the button was buried underneath it. The TRS-80's CLEAR has been in that state since it shipped; the Apple ][+ Flip Disk button joined it. The banner now publishes its height as <code>--gx-banner-h</code> and the soft keys sit below it, dropping back flush when it clears.</li>
 <li><strong>Soft-key buttons were delivering each press four times over.</strong> The shared soft-key pattern dispatches its synthetic key at <code>document</code>, <code>window</code>, <code>body</code> and the canvas "to be safe" — but the events bubble, so one click arrived at <code>window</code> four times and the emulator saw the key pressed four times. A few clicks in quick succession flooded atari800 into <code>memory access out of bounds</code> and a black screen. Now one dispatch at <code>document</code>, measured at exactly one keydown per click, and fifteen rapid presses no longer disturb it.</li>
 </ul>
-<h3 id="added_5">Added</h3>
+<h3 id="added_6">Added</h3>
 <ul>
 <li><strong>The Oregon Trail can now be finished.</strong> It shipped on a two-sided floppy and stops partway through to ask you to turn the disk over — and side B was never bundled, so the game ended there. Reported by a reader of the Tweakers write-up, who got exactly that far. Both sides now ship as <code>.woz</code> (apple2js reads the format natively, so nothing is converted), and a <strong>Flip Disk</strong> button sits at the top left of the Apple ][+ screen for this game, swapping the disk in the running drive the way turning it over did. No single-disk release exists to fall back on: every candidate turns out to be side A, and the catalogue gives it away — there is a file on it called <code>FLIP.LIB</code>.
   The button is deliberately not labelled "flip to side B": the game can ask for either side, more than once, and turning the disk over is one action either way.</li>
 </ul>
-<h3 id="added_6">Added</h3>
+<h3 id="added_7">Added</h3>
 <ul>
 <li><strong>Contact address is now <code>admin@genx-dos.fun</code></strong> rather than a personal Gmail, across removal requests, security reports and conduct reports. A project address that outlives any one mailbox, and it keeps a personal address off the repo and the site.</li>
 <li><strong>A removal request must now identify its sender and its basis.</strong> Previously it said a one-line message was enough, which would have let anyone strip the collection on an anonymous say-so. A request now needs three things: who is asking, their standing (rights holder, or who they represent and in what capacity), and the material plus the basis of the concern. Deliberately <em>not</em> raised further than that — no registration certificates, chain-of-title documents or legal citations, because the people most likely to ask are authors of forty-year-old games who never had paperwork. A request meeting those three points is taken in good faith and acted on immediately.</li>
 <li><strong>A plain removal-on-request statement</strong> — at the top of ATTRIBUTION, in the README, and linked from the foot of the home page, since the site is where a rights holder is most likely to arrive and the statement was otherwise three clicks deep. If a rights holder — or someone acting for one — raises a copyright or IP concern, the material goes immediately: no formal notice, no legal citation, no explanation required, and no argument. It covers everything here rather than only games: titles, system ROMs and BIOS images, emulator code, artwork, fonts, documentation, names and marks. The previous wording was scattered across four files, softer than intended, and read as though it applied to bundled titles alone; the issue template and CONTRIBUTING now say the same thing.</li>
 <li><strong><code>AI-DISCLAIMER.md</code></strong> — a short statement on the use of AI in building GenX-DOS: what it assisted with, and what it did not decide. Imported into the wiki like the other root documents, so it reads on the site as well as on GitHub. Linked from the foot of the home page, under the licence line — it belongs with the statements about the work rather than among the "Go further" cards, which are a fixed three.</li>
 </ul>
-<h3 id="changed_6">Changed</h3>
+<h3 id="changed_9">Changed</h3>
 <ul>
 <li><strong>Home page footer: the three lines now run shortest to longest, and <code>CC BY-NC 4.0</code> links to the canonical licence text</strong> at creativecommons.org, carrying <code>rel="license"</code>. The ordering gives the block a centred taper instead of a ragged middle.</li>
 <li><strong>The emulator-facing glue is now GPL-3.0-or-later; everything else stays CC BY-NC 4.0.</strong> <code>systems/_shared/genx-*.js</code>, <code>systems/_shared-ejs/genx-*.js</code> and the 29 <code>play.html</code> pages load and drive GPL emulator engines in the same browser context, which makes them part of a combined work with those engines — and the GPL does not allow further restrictions to be placed on such a work, which NonCommercial is. Each of those 44 files now carries an SPDX header, the GPL-3.0 text is in <code>COPYING</code> at the root, and <code>LICENSE.TXT</code> sets out the split and the reasoning. Nothing third-party is relicensed and the repository as a whole does not become GPL: the prompt, the writing, the artwork and the several hundred instruction pages remain NonCommercial.</li>
@@ -150,11 +184,11 @@
 <li><strong><code>deploy.sh</code> now says why it cannot connect.</strong> When the deploy key is held in an <code>ssh-agent</code> and the agent has not been unlocked for the session, the connection fails with <code>Permission denied (publickey)</code> — which reads as a rejected key and sends you looking at the server. A preflight check now names the real cause and the one command that fixes it, and runs before the build rather than after it, so a locked key costs a moment instead of a full staging build.</li>
 </ul>
 <h2 id="161---2026-08-16">[1.6.1] - 2026-08-16</h2>
-<h3 id="added_7">Added</h3>
+<h3 id="added_8">Added</h3>
 <ul>
 <li><strong><code>sync-wiki.sh</code></strong> — pushes <code>docs/wiki-src/pages/*.md</code> to the GitHub wiki, which is a separate repo with its own remote. It fetches before it compares anything: a clone that has sat untouched looks perfectly healthy until you do, so diffing against one reports pages as out of date when they are current. It rebuilds the in-repo HTML wiki first (the root CHANGELOG, README and ATTRIBUTION are imported as pages, so editing one leaves <code>docs/wiki/</code> stale), leaves the wiki-only <code>_Sidebar.md</code> alone, and refuses to run when the clone holds unpushed commits rather than resetting over them. Excluded from the release zip and the web deploy, like the other maintainer scripts — which <code>build-portable.sh</code> now does by pattern rather than by naming each script, so a new one is out by default instead of shipping until somebody notices. The rule is anchored to the repo root and admits the <code>GenX-DOS.sh</code> launcher ahead of itself: a blanket <code>*.sh</code> would also strip the reproducible WASM build recipes that ship beside the Odyssey² and Model 100 binaries.</li>
 </ul>
-<h3 id="changed_7">Changed</h3>
+<h3 id="changed_10">Changed</h3>
 <ul>
 <li><strong>The wordmark in the bottom pill is now the way home.</strong> <code>GenX-DOS</code> was plain text beside the licence / source / readme links; it is a link to the site root. Emulator pages are opened with <code>window.open</code> from the prompt, so clicking it points the window that opened this one at the home page and closes this one — otherwise you are left with a spent emulator tab and the prompt sitting behind it. A direct visit has no opener, so the click is left alone and the <code>href</code> navigates normally, which also keeps it working if the listener never runs.</li>
 <li><strong>GitHub Pages retired.</strong> <code>retro-jack.github.io/GenX-DOS/</code> is deleted; genx-dos.fun is the only address. Every reference was repointed — 37 files, most of them the 33 controls pages, whose "part of GenX-DOS" credit carried the old URL, plus <code>SECURITY.md</code> and the feature article. README and the wiki Home lost their "also mirrored on GitHub Pages" clause outright: there is no mirror now.</li>
@@ -165,7 +199,7 @@
 <ul>
 <li><strong>The feature article's GX VERDICT panel.</strong> The mock magazine score-out-of-100 — authenticity, self-reliance, pedantry, lastability and a pull-quote — was a joke that had outlived itself: the article reads better ending on its own argument than on a rating of itself. The section and its CSS (<code>.verdict</code>, <code>.meters</code>, <code>.overall</code>) are gone.</li>
 </ul>
-<h3 id="added_8">Added</h3>
+<h3 id="added_9">Added</h3>
 <ul>
 <li><strong>The screen now waits for its bezel.</strong> Every bundle draws a CRT or console bezel as a PNG and positions the canvas inside the screen hole in percentages of that image's box — so until the PNG arrived, the canvas and its black underlay were laid out against a box whose size wasn't settled, and appeared unframed, off-centre, or as a bare rectangle on the wallpaper. The Apple I and Atari 7800 were the most obvious, but every bundle did it to some degree. A new shared <code>genx-bezel-ready.js</code>, loaded synchronously in <code>&lt;head&gt;</code> on all 33 emulator pages, hides the whole screen stack — canvas, black underlay and bezel — until the bezel image has loaded and been through a layout pass, then reveals them together, so the machine arrives in one piece instead of assembling itself. It injects its own rule rather than relying on a stylesheet (six bundles don't load <code>genx-frame.css</code>), which also means a page can never be left hiding its canvas with no script to reveal it; a four-second failsafe covers a bezel that 404s or a bundle that turns out not to have one.</li>
 <li><strong>Save states can now be exported to a file and restored — so they survive a change of address.</strong> Browsers scope IndexedDB to the origin, and there is no cross-origin access, so save slots made at one address are simply invisible from another: not deleted, permanently unreachable. With the site gaining its own domain alongside GitHub Pages, that would have stranded every visitor's slots. A third <strong>backup</strong> drop-up now sits beside Save and Load on all 24 bundles that have them, offering <em>export all saves</em> — every slot on the whole site, not just the game on screen, written as one dated <code>.json</code> — and <em>restore from file</em>. Restoring is <strong>non-destructive</strong>: a slot that already holds a save is skipped rather than overwritten, so an old backup can never clobber newer progress, and the button reports what happened (<code>restored 12, kept 3</code>). New shared <code>genx-savestate-transfer.js</code> talks to the <code>gx-savestate</code> database directly rather than to any engine, so one file serves both the EmulatorJS bundles and the standalone ones; it also exposes <code>window.GenXSaveTransfer</code> for use without the button bar. The Your Data wiki page gained a section on backing up and on why moving address strands saves — it had told people to "export anything you want to keep first" since before there was any way to do so.</li>
@@ -177,7 +211,7 @@
 <li><strong>Consistent "audio suspended" banner on every system.</strong> A shared <code>genx-audio-banner.js</code> gives all the other bundles the same fixed top banner jsbeeb ships — <em>"Your browser has suspended audio — mouse click or key press for sound."</em> It wraps the <code>AudioContext</code> constructor to track the engine's context, shows the banner whenever audio is suspended, and clears it (resuming the context) on the first click/keypress. Wired into all 31 non-jsbeeb entry pages (each <code>play.html</code> plus WebMSX's <code>index.html</code>); jsbeeb keeps its own native banner. Verified the show/hide cycle on EmulatorJS, and the AudioContext hook catching contexts on emscripten-SDL (atari800) and sokol (CPC).</li>
 <li><strong><code>check-doc-counts.sh</code> — a guard against documentation drift.</strong> Several counts are repeated across README, the wiki, the feature article and the social card, and platform changes update some while missing others (the article's engine count sat stale from the Vectrex retirement until an audit caught it months later). The script measures the real numbers from the tree — gamedocs, sub-systems, <code>controls.html</code>, size on disk — and checks every place they're quoted, exiting non-zero on any mismatch. The engine count can't be derived (EmulatorJS is one engine hosting many libretro cores), so instead every document stating it must agree with the others. It also prints the line the social card should read, since a PNG can't be checked automatically. Excluded from the portable build.</li>
 </ul>
-<h3 id="changed_8">Changed</h3>
+<h3 id="changed_11">Changed</h3>
 <ul>
 <li><strong>Apple I: new bezel — the machine itself, in its wooden case.</strong> Replaces the anonymous surplus security monitor with the Apple 1 as it is actually remembered: koa case, integrated keyboard, monitor propped behind. A system portrait rather than a monitor shot, as the Amstrad CPC already was — its screen is 22.5% of the bezel area against the CPC's 18.8%. The bezel is sized to <strong>95% of viewport height</strong> rather than the usual <code>100dvh - 120px</code>, because a system portrait puts the screen at a fifth of the image and the Apple 1's 40-column font needs the room. The page also moves onto <strong><code>.bezel-wrap</code></strong>, the sizing mechanism every other bundle uses, instead of reaching for apple1js's wrapper by its style attribute; the wrapper carries the class and its inline width is gone, which retires the <code>body &gt; div[style]</code> selector that had been catching the shared audio banner as well.</li>
 <li><strong>User-facing text now reads in British English throughout.</strong> A sweep of the 327 gamedocs, the 33 controls pages, the wiki source, the feature article and the splash found the spellings mixed — 51 changes, mostly <em>toward</em> → <em>towards</em> (36), plus <em>analog</em> → <em>analogue</em>, <em>catalog</em> → <em>catalogue</em>, and single fixes for grey, defence, tyres and maths. Names are left exactly as they are: game titles (<em>Defense Command</em>, <em>Speed / Bingo Math</em>, R-Type's <em>POW Armor</em>), machines and products (<em>Tandy Color Computer</em>, <em>Game Boy Color</em>, <em>Color BASIC</em>, the 2600's <em>Color/B-W</em> switches), commands (Apple DOS 3.3's <code>CATALOG</code>) and people (<em>Chris Gray</em>). Several apparent Americanisms were correct as written and stayed: <em>meter</em> is right for a gauge — only the unit of length is <em>metre</em> — and <em>check</em> and <em>practice</em> (noun) are British as they stand. The <code>-ise</code> ending was already house style at 27 to 2.</li>
@@ -189,7 +223,7 @@
 <li><strong>SECURITY.md now documents the zero-external-calls posture.</strong> New "No external calls at runtime" section describing the self-hosting and the strict Content-Security-Policy that enforces it (browser-blocked off-site requests; zero external requests in DevTools).</li>
 <li><strong>Per-game content moved off the system-level controls pages.</strong> Those pages describe the machine and emulator, not individual titles — the per-game details belong on each game's own page (as <code>m100/controls.html</code> already states). Fixed: <strong>Apple ][+</strong> — dropped the per-game "starting hints" table (Lemonade Stand, Castle Wolfenstein, Choplifter, Aztec, Lode Runner, Sammy Lightfoot, Hard Hat Mack, Karateka, Oregon Trail); every entry was already covered in full on the game's own page, so it now points there (the Applesoft-BASIC prompt note, the one non-game row, moved into the BASIC section). <strong>TRS-80</strong> — the "playing the games" note no longer names specific titles/keys (Super Nova, Armored Patrol, Defense Command, Sea Dragon, Eliminator — all verified present in their gamedocs); it keeps the general guidance. <strong>PET</strong> — the annotated ten-game lineup (already duplicated in each gamedoc) reduced to a pointer, and the "Why no PETSCII Robots?" note removed (an unshipped title with no game page).</li>
 </ul>
-<h3 id="fixed_9">Fixed</h3>
+<h3 id="fixed_10">Fixed</h3>
 <ul>
 <li><strong>The AMIBIOS logo stopped appearing on the web host.</strong> <code>prompt/img/ami-logo.png</code> carried mode 600 in the working tree — git doesn't track read permissions and GitHub Pages ignores them, so it had never mattered until the site moved to a real web server. <code>rsync -a</code> faithfully preserved 600 to the host, where the server then couldn't read the file and answered <strong>403</strong> rather than 404, which is why it looked like a missing asset. The file is 644 now, and <code>deploy.sh</code> passes <code>--chmod=D755,F644</code> so what a file happens to be locally can no longer decide whether it is servable. The logo joins the deploy's own post-transfer checks.</li>
 <li><strong>EmulatorJS no longer chases a regional English translation that was never there.</strong> It short-circuits only two locales without a network request — <code>en</code> and <code>en-US</code> — so an en-GB, en-NZ, en-AU or en-CA visitor was taking a 404 and a console warning on every emulator load before landing on exactly the English it would have used anyway. A new <code>genx-ejs-lang.js</code> pins those locales to plain <code>en</code> so the lookup returns immediately. Nothing is lost: an en-GB override would have been an empty file, since the only American spellings in <code>en.json</code> sit inside the proper nouns <em>EmulatorJS License</em> and <em>RetroArch License</em>. Deliberately narrow — locales EmulatorJS really does translate (fr, de, es and the rest) are untouched and keep working.</li>
@@ -220,12 +254,12 @@
 <li>Deliberately kept, because they are not network calls: the SVG/XML namespace identifiers (<code>w3.org/2000/svg</code>) that the icon markup needs, and the GPL/MIT/FontAwesome licence notices embedded in the vendored engines (removing those would breach the licences).</li>
 </ul>
 <h2 id="141---2026-07-31">[1.4.1] - 2026-07-31</h2>
-<h3 id="fixed_10">Fixed</h3>
+<h3 id="fixed_11">Fixed</h3>
 <ul>
 <li><strong>BBC Micro &amp; Master no longer freeze on Chrome.</strong> Both bundles are rebuilt on <strong>jsbeeb 1.14.0</strong>, which carries the upstream workaround (<a href="https://github.com/mattgodbolt/jsbeeb/pull/704">#704</a>) for a <strong>Chrome 150 V8 bug</strong> that wedged the emulator a few seconds into a game — Chrome-only (Firefox was fine), no gamepad needed, all BBC games affected (Elite was the reproducer). Diagnosed the hard way — gamepad, audio-context and CSP all turned out to be red herrings; the tell was that upstream's live jsbeeb ran Elite fine. Our <code>Retro-Jack/jsbeeb</code> fork was rebased onto 1.14.0 (keeping the d-pad remap and monitor inset); 1.14.0's new <code>#restart-pending</code> config element is now in both bundles so the newer engine doesn't null-deref on it. With thanks to Matt Godbolt for shipping the upstream fix within a day.</li>
 </ul>
 <h2 id="140---2026-07-31">[1.4.0] - 2026-07-31</h2>
-<h3 id="added_9">Added</h3>
+<h3 id="added_10">Added</h3>
 <ul>
 <li><strong>BBC Micro/Master now run a jsbeeb fork, and Chuckie Egg gets USB gamepad support.</strong> The two BBC bundles are rebuilt from the new <a href="https://github.com/Retro-Jack/jsbeeb"><code>Retro-Jack/jsbeeb</code></a> fork (jsbeeb 1.13.1) instead of carrying an ad-hoc edit to the shipped build. The fork adds a <strong>d-pad gamepad remap</strong> — four <code>GP.D12</code>–<code>GP.D15</code> cases so a game's launch URL can map the d-pad buttons to any BBC key; jsbeeb hardwires them to Z/X/:/? with no remap hook, so a digital game with different keys couldn't drive the d-pad before. First game wired: <strong>Chuckie Egg</strong> (d-pad runs and climbs, any button jumps — <code>GP.FIRE=SPACE&amp;GP.D12=A&amp;GP.D13=Z&amp;GP.D14=COMMA&amp;GP.D15=PERIOD</code>). The d-pad remap is a general improvement and is offered upstream (the fork's clean <code>gamepad-dpad-remap</code> branch); the only GenX-local fork change is the CUB-monitor inset (68→120, for the wallpaper breathing room), which stays on the fork's build branch. Snapper (native scheme) and Elite (analogue stick) verified unchanged by the rebuild. See the fork's <code>GENX-CHANGES.md</code> and <a href="ATTRIBUTION.html">ATTRIBUTION.md</a>.</li>
 <li><strong>ATTRIBUTION: a "Research and reference sources" section crediting Paul Farrow.</strong> His fully-commented ZX81 disassembly of <em>3D Monster Maze</em> (<a href="http://www.fruitcake.plus.com">fruitcake.plus.com</a>) is the authority behind that gamedoc's verified keys — proper credit for freely-shared preservation work.</li>
@@ -244,7 +278,7 @@
 <li><strong>USB gamepad support on the Amstrad CPC bundle.</strong> The engine has no Gamepad API support, so <code>play.html</code> now polls pad 0 and synthesizes the arrow/Space key events it already understands, while a per-game <code>joystick</code> flag in <code>games.json</code> launches tiny8bit's emulated 9-pin joystick mode. D-pad or left stick steers, any face button fires; idle pads send nothing so keyboard games are unaffected. First game wired: 3D Starstrike.</li>
 <li><strong>Community-profile files.</strong> <code>CONTRIBUTING.md</code> (local setup, PR ground rules, scope rule, licensing), <code>CODE_OF_CONDUCT.md</code> (Contributor Covenant 2.1), issue templates (bug report + rights-holder takedown request, with a config pointing security reports at private advisories) and a PR checklist template. Completes the GitHub community-profile checklist.</li>
 </ul>
-<h3 id="fixed_11">Fixed</h3>
+<h3 id="fixed_12">Fixed</h3>
 <ul>
 <li>
 <p><strong>Menu codes now obey DOS 8.3 naming — 13 overflowing codes shortened.</strong> Nine-character codes (GALAFORCE, ASTEROIDS, CENTIPEDE, ADVENTURE, RIVERRAID, FOODFIGHT, CHOPLIFTR, KIDICARUS, LASTNINJA, LOCKCHASE, ALIENPLUS) filled the menu's code column flush against the border with no gap. All shortened to ≤8 characters with DOS-style truncation (ADVENTUR, CENTIPED, FOODFGHT…), with the numbered pointers and launcher <code>.bat</code> files renamed in lockstep. Also caught two launchers whose names never matched their advertised codes — typing <code>CASTLEV</code> or <code>FINALFNT</code> at the prompt didn't work because the files were <code>castlvnia.bat</code>/<code>finalfnts.bat</code>; both renamed to match. The whole virtual filesystem now passes an 8.3 scan, and staying within 8.3 is policy from here on. CodeQL flagged the <code>?game=</code> key flowing into <code>innerHTML</code> when a wrapper renders its "Unknown game key" / "no game" error. Real but low-impact (static site, no cookies/sessions to steal) — still, all error rendering now builds the message with <code>textContent</code> instead of <code>innerHTML</code>: the shared <code>genx-game-loader.js</code> and <code>genx-ejs-boot.js</code> helpers plus the inline <code>fail()</code>/error blocks in ten <code>play.html</code> wrappers (Atari 400/800XL, 7800, NES, Spectrum, ZX81, PET, TRS-80, CoCo, CPC). The <code>games.json</code> fetch-error messages got the same treatment for uniformity. Also removed a dead no-op <code>replace(' \&amp; ')</code> in <code>commands-core.js</code> (CodeQL js/identity-replacement; real <code>&amp;&amp;</code> chaining is handled separately).</p>
@@ -253,7 +287,7 @@
 <p><strong>Apple emulator CSS tidied.</strong> Dropped the Apple ][ disk-activity LEDs — their <code>red-off-16.png</code>/<code>red-on-16.png</code> images were missing, so the indicators never rendered — and removed dead <code>OPEN_APPLE</code>/<code>CLOSED_APPLE</code> keyboard rules (with their broken image references) from the Apple I stylesheet, for keys that machine never had.</p>
 </li>
 </ul>
-<h3 id="changed_9">Changed</h3>
+<h3 id="changed_12">Changed</h3>
 <ul>
 <li><strong>Controls and per-game instruction pages restyled to the site design language.</strong> The 33 controls pages and all 327 per-game instruction pages moved from the old DOS-flavoured look to the landing's dark-CRT design language (Michroma headings, amber/green/cyan on near-black, thin borders, keycaps as panels, self-hosted IBM Plex/Michroma). Only the interactive surfaces — the DOS prompt/menu and the emulator <code>play.html</code> pages — keep the terminal look. Each controls/gamedoc page also gained a home link back to the site root.</li>
 <li><strong>Feature article now matches the landing page, and moves to <code>docs/article/</code>.</strong> The article was recoloured and then reshaped to the landing's dark-CRT design language — thin amber hairlines, rounded dark panels, amber Michroma headings with trailing rules, green accents, cyan links, and soft glows in place of the old magazine's solid colour fields and hard offset shadows (the serif body stays, for long-form readability). It also moves from <code>docs/tech_article.html</code> to <code>docs/article/</code> (served as <code>index.html</code>); the credit pill's <code>readme</code> link, the landing's feature link, the README and ATTRIBUTION all follow. Shared fonts and both screenshots stay in <code>docs/</code> — the landing uses the same two screenshots.</li>
@@ -296,11 +330,11 @@
 <li><strong>GitHub Packages (container + npm) retired for a plain download.</strong> The ghcr container image and the <code>@retro-jack/genx-dos</code> npm package are gone — needless machinery for a static site that now runs from a one-command launcher or any static host. Each release ships a <strong>zip of the whole site</strong> instead; unzip and run <code>GenX-DOS.sh</code> (Linux/macOS) or <code>GenX-DOS.bat</code> (Windows). <code>Dockerfile</code>, <code>index.js</code>, <code>package.json</code>, the publish workflow and the placeholder Dependabot config are removed; <code>build-portable.sh</code> now builds the shipped site (identical to the portable export).</li>
 </ul>
 <h2 id="132---2026-07-16">[1.3.2] - 2026-07-16</h2>
-<h3 id="fixed_12">Fixed</h3>
+<h3 id="fixed_13">Fixed</h3>
 <ul>
 <li><strong>BBC controls pages named a URL parameter that doesn't exist.</strong> The auto-boot hyphenation pass reached inside a <code>&lt;code&gt;</code> span and rewrote the literal <code>?autoboot</code> launch param to <code>?auto-boot</code> on both BBC pages — so anyone following the instruction got a disc that didn't boot. The prose verb hyphenates; the parameter must not. Caught by an audit cross-checking the docs against <code>fs.js</code>, which is the runtime truth. The same pass also missed one <code>Autoboots.</code> (capitalised at a sentence start, in the Apple ][+ page's Castle Wolfenstein row); it's dropped rather than hyphenated, per the auto-boot preamble rule.</li>
 </ul>
-<h3 id="changed_10">Changed</h3>
+<h3 id="changed_13">Changed</h3>
 <ul>
 <li><strong>Gamedocs: dropped the auto-boot preamble.</strong> A game's "Getting started" list no longer opens by announcing that the cart or disk auto-boots — it is obvious from clicking the game, and on a page like Star Raiders' it read "Cart auto-boots to Star Raiders". All 109 affected gamedocs swept via an explicit per-variant map (40 distinct wordings, no regex guessing): 96 bullets keep whatever actually mattered (the focus note, "press 2 at the TI title", "press F4 Start to choose a mission"), 13 that said nothing else are gone. Detail wrapped inside those clauses was rescued rather than binned — the C128 pages' VDC 80-column mode, the PET's Color PETSCII start, a disk that multi-loads, and the BBC racers' instruction screens. The CPC's <code>run"…</code> launch commands went with them: every CPC game auto-runs and the bundle's BASIC entry boots with nothing in the drive, so the command was unreachable trivia.</li>
 <li><strong>The auto-boot preamble goes from the controls pages too.</strong> Follows the gamedoc sweep: a per-system page no longer announces that its games auto-boot either (the Apple ][+'s "Boots straight in", the C64's "the bundled disk image auto-boots", the MSX pages saying it twice, the VIC-20 intro, and the CPC's paragraph on the boot-command mechanism — which also re-stated the <code>run"…</code> commands just removed from the gamedocs). Eight pages. What a reader can't infer is kept and reworded off the verb: the BBC pages still say to drop <code>?autoboot</code> for a clean BASIC prompt, and the CPC's BASIC entry still explains that it loads no game.</li>
@@ -313,12 +347,12 @@
 <li><strong>Gamedocs: dropped the "keys from the game's own instructions screen" preamble</strong> from the BBC key-mapping notes (Revs, Commando) — the note now opens directly with the key facts.</li>
 </ul>
 <h2 id="131---2026-07-14">[1.3.1] - 2026-07-14</h2>
-<h3 id="added_10">Added</h3>
+<h3 id="added_11">Added</h3>
 <ul>
 <li><strong>Boot: the POST screen's <code>&lt;DEL&gt;</code> prompt is no longer just for show.</strong> Press Delete during the post-POST pause and you'll meet the CMOS password prompt (white-on-blue, six characters, asterisk echo) — drawn in the boot sequence's own CP437 sprite font. No password unlocks it; the third wrong attempt turns the box red with <code>System Halted!</code> and only a reload reboots the machine. Exactly as AMI intended. <kbd>Esc</kbd> backs out to the POST with the boot pause re-armed — but there's no backing out of a halt.</li>
 <li><strong>"Your Data" wiki page + README link.</strong> A new wiki page documents exactly what GenX-DOS persists to a user's browser (save-state slots in IndexedDB, the Model 100's battery RAM and EmulatorJS cartridge saves / settings in localStorage), when each is written, and that nothing leaves the machine — no cookies, accounts or telemetry. Linked from the README's Documentation list, the wiki sidebar, the Project Overview's save/load section, every bundle's <code>controls.html</code> footer (33 pages), and <code>SECURITY.md</code>.</li>
 </ul>
-<h3 id="changed_11">Changed</h3>
+<h3 id="changed_14">Changed</h3>
 <ul>
 <li><strong>Auto-boot hyphenation unified.</strong> The media-boot verb in the "Getting started" steps was split (<code>autoboots</code>/<code>auto-boots</code>, <code>autostart</code>/<code>auto-start</code>); all now hyphenated to match the already-consistent <code>auto-loads</code>/<code>auto-runs</code> (83 files). The Cart/Disk/Tape <em>media</em> distinction and the boots-vs-loads verb stay — those are meaningful. (The save-slot and keyboard-only notes were reviewed and deliberately left: their two wordings each fit their context — per-system <code>controls.html</code> detail vs per-game brevity for save slots; game-design "keyboard-driven" vs engine-limit "keyboard-only" — so they aren't drift.)</li>
 <li><strong>Getting-started "focus" note standardised sitewide.</strong> The "click to give it keyboard focus" instruction had drifted into ~15 wordings across platforms (<code>click the canvas first</code>, <code>…so the emulator receives keyboard input</code>, <code>Click the screen once so the keyboard has focus</code>, <code>click the screen for focus</code>, …). All <strong>170</strong> gamedocs + controls pages now use one line — <strong>"click the game area to enable sound and controls"</strong> — which is element-agnostic (canvas <em>or</em> screen) and more accurate (the click unlocks both audio autoplay and keyboard input). Game-specific text fused into those steps (media auto-boot clauses, <code>press Enter (Start)</code>, per-game start flow) was preserved.</li>
@@ -327,19 +361,19 @@
 <li><strong>SECURITY.md points at the exact reporting button.</strong> The vulnerability-reporting link now names the <strong>Security → Advisories</strong> page and gives its direct URL — the <strong>Report a vulnerability</strong> button lives there, not on the Security tab's landing page, so reporters don't hunt for it. (Private vulnerability reporting is enabled on the repo.)</li>
 </ul>
 <h2 id="130---2026-07-07">[1.3.0] - 2026-07-07</h2>
-<h3 id="added_11">Added</h3>
+<h3 id="added_12">Added</h3>
 <ul>
 <li><strong>Tandy TRS-80 Model 100 — a new platform and a new engine.</strong> New <code>systems/m100/</code> bundle for the 1983 portable, built from Stephen Hurd &amp; Ken Pettit's <strong>VirtualT</strong> by extracting its FLTK-free 8085 / HD44102-LCD / keyboard core to WASM behind a small headless SDL2 frontend (engine #19, 33 sub-systems now — an <em>acknowledgement, not a fork</em>, since the GUI/IDE/debugger are stripped away). Reached from the Tandy computers menu as slot #3 ("Model 100 (Portable)"), framed by a Model-100-on-a-desk bezel. <strong>Ten BASIC games:</strong> eight hand-transcribed from David Busch's <em>25 Games for your TRS-80 Model 100</em> (Codebreaker, Invisible Maze, Road Rally, Paper Rock Scissors, Slot Machine, Skydiver, Worm Hole, Bowling) plus Four Seasons Solitaire and ELIZA from club100 — each auto-boots via <code>?game=</code> and returns to its menu on close. An eleventh entry, <strong>Startup Menu</strong>, boots the bare machine, and it comes alive: a <strong>live RTC clock</strong> (real date and time, Y2K-correct — the ROM shows 2026 fine) and <strong>battery-backed RAM</strong> — files, address-book and scheduler entries, and typed-in BASIC programs persist to browser storage between visits, exactly like the real machine's battery-backed memory (games stay ephemeral). Full keyboard including the Caps Lock <em>toggle</em> and the PASTE / LABEL / BREAK command keys; ADDRSS and SCHEDL are seeded with empty <code>ADRS.DO</code>/<code>NOTE.DO</code> so they open instead of erroring. All ten gamedocs, plus a controls page sourced entirely from the Model 100 owner's manual (the three apps, file management, record formats). The platform was proposed by <strong>dplassgit</strong> in <a href="https://github.com/Retro-Jack/GenX-DOS/discussions/2">discussion #2</a>; VirtualT, Busch's book, dplassgit's suggestion and the owner's manual are all credited in <a href="ATTRIBUTION.html">ATTRIBUTION.md</a>.</li>
 </ul>
 <h2 id="120---2026-07-03">[1.2.0] - 2026-07-03</h2>
-<h3 id="added_12">Added</h3>
+<h3 id="added_13">Added</h3>
 <ul>
 <li><strong><code>SECURITY.md</code>.</strong> Short security policy — scope (static client-side site, no backend/user data), supported versions (latest release + live site), and private vulnerability reporting via the GitHub Security tab or email.</li>
 <li><strong>Social preview image (<code>docs/social-preview.png</code>).</strong> The repo's GitHub social-preview card — a 1280×640 image rendered from the site's own CP437 sprite sheets (<code>prompt/img/f12.*.png</code>), with the glyphs vertically stretched to match the live terminal. Committed for safekeeping; also set as the repo's Social preview via Settings.</li>
 <li><strong>Wiki link in the bottom-centre credit.</strong> The "GenX-DOS · licence · source" pill on every emulator page now also links the <strong>wiki</strong> (<code>systems/_shared/genx-repo-link.js</code>).</li>
 <li><strong>BBC COPY soft button (jsbeeb).</strong> The BBC's COPY key has no obvious PC equivalent (jsbeeb maps it to <kbd>End</kbd>), so the BBC Micro and Master bundles now show a clickable <strong>COPY</strong> button (top-left, in the GenX button style) that sends it — handy for games where COPY is "continue", e.g. Manic Miner. New shared <code>systems/_shared/genx-bbc-copykey.js</code>.</li>
 </ul>
-<h3 id="changed_12">Changed</h3>
+<h3 id="changed_15">Changed</h3>
 <ul>
 <li><strong>LICENSE.TXT: fixed a header typo</strong> ("EXPRESSCE" → "EXPRESS" disclaimer of warranty). No change to terms.</li>
 <li><strong>ATTRIBUTION: corrected two BIOS paths.</strong> The Intellivision EXEC/GROM and Odyssey² <code>o2rom.bin</code> live at their bundle roots (<code>systems/intv/</code>, <code>systems/odyssey2/</code>), not the <code>roms/</code> subdirs the table listed.</li>
@@ -376,7 +410,7 @@
 <li><strong>Acorn Electron trimmed to the 7 games ElkJS ships.</strong> Dropped <strong>Hopper, Chuckie Egg and Frak</strong> — they were extras added beyond upstream ElkJS's bundled set, and the only versions available for them were cassette tapes (no snapshots exist, upstream or anywhere). Rather than mix instant-snapshot and real-time-tape loading, the Electron now carries exactly the 7 upstream snapshot games: Snapper, Starship Command, Boxer, Cybertron Mission, Citadel, Elite, Repton 2. Removed their tape UEFs, gamedocs, menu entries and number→game launchers, renumbered the menu (BASIC prompt now #8), and corrected the counts in the README, tech article and wiki (Electron is the one system with 7, not 10).</li>
 <li><strong>VICE RUN/STOP / RESTORE on-screen buttons.</strong> Dropped the C64-family soft buttons — RUN/STOP and RESTORE aren't in-game keys (their real uses are breaking a program at the BASIC prompt and the RUN/STOP+RESTORE reset), so they were UI clutter. The keyboard routes stay: Scroll Lock / Pause → RUN/STOP, and Page Up → RESTORE (libretro default).</li>
 </ul>
-<h3 id="fixed_13">Fixed</h3>
+<h3 id="fixed_14">Fixed</h3>
 <ul>
 <li><strong>DOS prompt Backspace.</strong> The command line couldn't delete typed characters. The old handler sniffed the browser — simulating a <code>keypress</code> on non-Firefox and relying on Firefox to fire <code>keypress</code> for Backspace — but modern browsers no longer fire <code>keypress</code> for non-printable keys, so on Firefox nothing happened. Backspace now deletes directly in <code>keydown</code> (which fires everywhere), still guarding the <code>'p'</code>-classed prompt prefix / printed output so only typed input is erased.</li>
 <li><strong>Acorn Electron sound.</strong> ElkJS's <code>soundToggle()</code> resumes the AudioContext only on its first call, so games could end up silent (the context never resumed without a real user gesture). Added an idempotent <code>elkjs.resumeAudio()</code> and had <code>play.html</code> retry it on every user gesture (keydown / pointer / touch) alongside the window.open activation, so sound reliably starts. Output is mixed down to 25% in <code>sound.js</code> (the raw ±1 square wave was painfully loud).</li>
@@ -407,38 +441,38 @@
 <li><strong>Jet Set Willy (BBC Micro) gamedoc.</strong> Corrected the year to 1986 (Tynesoft; was 1985) and noted the BBC conversion's "Chris Robson" credit is a pseudonym for Dave Mann. Fixed the bug-room note — the BBC version's game-breaker is the <strong>Watch Tower</strong> crash, not the Attic (that was the Spectrum's). Clarified the jump key: it's the BBC <kbd>:</kbd>&thinsp;<kbd>*</kbd> key, which jsbeeb maps to the PC apostrophe <kbd>'</kbd>, so the table now lists both the PC and BBC keys. Added the missing save-state tip (no in-game save → use the load/save buttons, five slots). Added a save-state tip (no in-game save → use the load/save buttons, five slots).</li>
 </ul>
 <h2 id="110---2026-06-29">[1.1.0] - 2026-06-29</h2>
-<h3 id="added_13">Added</h3>
+<h3 id="added_14">Added</h3>
 <ul>
 <li><strong>Five save slots per game.</strong> The bottom-left Save/Load controls each open a drop-up menu of five slots, each labelled empty/used (status by label only; no slot is dimmed or disabled). Persistence moved from <code>localStorage</code> to <strong>IndexedDB</strong> (object store <code>gx-savestate</code>, keyed <code>platform:game:slot</code>) — no quota worries, stores the state binary directly, and different games keep independent saves. Both the EmulatorJS (<code>genx-savestate.js</code>) and standalone (<code>genx-savestate-std.js</code>) handlers; gamedocs reworded to "Five save slots per game".</li>
 </ul>
 <h2 id="108---2026-06-25">[1.0.8] - 2026-06-25</h2>
-<h3 id="changed_13">Changed</h3>
+<h3 id="changed_16">Changed</h3>
 <ul>
 <li><strong>Doc sync after the bundle splits.</strong> Updated README and the GitHub wiki (File Structure, Project Overview, Emulators, atari800, jsbeeb, WebMSX pages) to name the per-machine bundles — <code>atari400/</code>+<code>atari800/</code>, <code>msx1/</code>+<code>msx2/</code>, <code>bbcmicro/</code>+<code>bbcmaster/</code> — and dropped the now-false "share one build" / <code>?machine=</code> claims. Orphan-file audit found none to remove (gamedocs, ROMs all referenced); the BBC bundles each carry the full upstream jsbeeb disc set by design (full-copy split).</li>
 </ul>
 <h2 id="107---2026-06-25">[1.0.7] - 2026-06-25</h2>
-<h3 id="added_14">Added</h3>
+<h3 id="added_15">Added</h3>
 <ul>
 <li><strong>Published as GitHub Packages.</strong> A <code>Dockerfile</code> (the whole site served by nginx → <code>ghcr.io/retro-jack/genx-dos</code>) and an npm package (<code>@retro-jack/genx-dos</code>, the static site as files), each built and pushed by a <code>.github/workflows/publish-package.yml</code> workflow on every GitHub Release. README documents <code>docker run</code> and <code>npm install</code> usage. Each package's listing description states its version and format (container via a manifest annotation, npm via the package description).</li>
 </ul>
 <h2 id="106---2026-06-25">[1.0.6] - 2026-06-25</h2>
-<h3 id="added_15">Added</h3>
+<h3 id="added_16">Added</h3>
 <ul>
 <li><strong>Separate <code>systems/atari400/</code> bundle.</strong> The 400 menu now launches from its own bundle (honest <code>…/systems/atari400/…</code> URL path) instead of sharing <code>systems/atari800/</code>. Same atari800 emulator core, but the 400 bundle defaults to OS-B and the 800XL bundle to OS-XL. The 10 OS-B games + their ROMs + gamedocs moved to <code>atari400/</code> / <code>gamedocs/atari400/</code>; <code>atari800/</code> now holds the 800XL set only.</li>
 <li><strong>Split the shared WebMSX bundle into <code>systems/msx1/</code> + <code>systems/msx2/</code></strong> so the URL path names the actual machine instead of the ambiguous <code>systems/webmsx/</code>. Each bundle ships the WebMSX engine and its own <code>games/</code> + gamedocs (<code>gamedocs/msx1/</code>, <code>gamedocs/msx2/</code>); the MSX2 menu links now pass an explicit <code>M=MSX2</code> rather than relying on the engine default.</li>
 <li><strong>Split the shared jsbeeb bundle into <code>systems/bbcmicro/</code> + <code>systems/bbcmaster/</code></strong> so the URL path names the machine instead of the ambiguous <code>systems/jsbeeb/</code>. Each is a full self-contained jsbeeb copy (the Micro bundle boots Model B, the Master bundle <code>model=Master</code>); gamedocs split to <code>gamedocs/bbcmicro/</code> and <code>gamedocs/bbcmaster/</code> (the <code>master-</code> filename prefix dropped, now that each machine has its own dir), and each bundle's corner-link script points at its own gamedoc dir.</li>
 </ul>
-<h3 id="fixed_14">Fixed</h3>
+<h3 id="fixed_15">Fixed</h3>
 <ul>
 <li><strong>Atari 400 games were silently booting as an 800XL.</strong> The 400 menu launched every game with <code>?machine=atari</code>, but <code>play.html</code>'s machine-flag table had no <code>atari</code> key, so no machine flag was applied and atari800 fell back to its default machine — the 800XL. Fixed the flag table (added an <code>atari</code> alias) and split the bundles (above) so a 400 game boots OS-B from <code>systems/atari400/</code>. The tab title and the per-game gamedoc titles/subheads now name the actual machine (<strong>Atari 400</strong> for the OS-B set, <strong>Atari 800XL</strong> for the XL set) instead of a blanket "Atari 800".</li>
 </ul>
 <h2 id="1051---2026-06-25">[1.0.5.1] - 2026-06-25</h2>
-<h3 id="added_16">Added</h3>
+<h3 id="added_17">Added</h3>
 <ul>
 <li><strong>Prominent "accuracy not guaranteed" caveat</strong> on the three obscure gamedocs that couldn't be manual-verified in the re-audit (C128 Invaders, C128 Phazer, MAX Speed/Bingo Math). New reusable <code>.caveat</code> callout class in <code>genx-controls.css</code> (amber left-bar warning box), placed directly under the header description.</li>
 </ul>
 <h2 id="105---2026-06-25">[1.0.5] - 2026-06-25</h2>
-<h3 id="fixed_15">Fixed</h3>
+<h3 id="fixed_16">Fixed</h3>
 <ul>
 <li><strong>Gamedoc accuracy re-audit of the EmulatorJS console/handheld bundles (post-quota pass).</strong> The original 12a audit verified the standalone emulators against manuals but only gave the EJS bundles a gamedoc↔controls.html <em>consistency</em> check (the WebSearch quota had run out). Re-verifying each game's specific keys against manuals:</li>
 <li><strong>NES (4/10 fixed):</strong> Mega Man 2 — weapon menu opens with <strong>START</strong>, not Select (Select just moves the menu cursor). Final Fantasy — main menu opens with <strong>START</strong>; Select changes marching order (was attributed to Select / "Start unused"). Super Mario Bros. 3 — the world-map item box opens with <strong>B</strong> (A uses the chosen item); Select is unused (was "Select uses inventory"). Castlevania — stairs climb with <strong>Up / Down</strong> at a staircase, not a held diagonal (a CV3 mechanic).</li>
@@ -451,50 +485,50 @@
 <li><strong>Atari Lynx (3/10 fixed):</strong> Klax — the button <strong>drops</strong> a tile and <strong>Down speeds up</strong> the incoming tiles (the gamedoc had Down also dropping). Blue Lightning — the stick is <strong>inverted</strong> (Up dives, Down climbs), B fires <strong>guided missiles</strong> (not "bombs"), and speed is the <strong>Option 1 afterburner</strong>, not an Up/Down throttle. S.T.U.N. Runner — <strong>A = lasers, B = Shockwave</strong>; speed is automatic (boost pads) with no manual boost or jump button (the gamedoc had a boost button and a jump). Warbirds left as-is (A = guns, B = throttle plausible; no readable manual to confirm).</li>
 <li><strong>Commodore VICE family (3 fixed):</strong> the joystick games (the bulk of VIC-20/C64/C16/MAX/Plus4/C128) are correct by construction (arrows/Numpad → joystick, L Ctrl/Numpad 0 → fire); only the keyboard-driven games were error-prone. <strong>C64 — The Last Ninja:</strong> there is no "walk/combat mode" toggle; <strong>F3 / F5 cycle carried objects ("Holding")</strong> and <strong>Space cycles/selects the weapon ("Using")</strong> — the gamedoc had Space toggling a (non-existent) mode and an "I = inventory" key. <strong>C64 — Impossible Mission:</strong> the puzzle-screen function keys only <strong>flip pieces (F1/F3) and recolour them (F5)</strong> — they do <em>not</em> "save snooze/reset codes" (those are used at in-room terminals via the joystick); also a completed puzzle is <strong>four pieces</strong> forming a colour-matched punch-card and the nine puzzles spell a <strong>password word</strong>, not "musical note-lines". <strong>Plus/4 — Mercenary:</strong> movement/aim/fire are on the joystick; the keyboard verbs are <strong>T/D take/drop, B/L board/leave, E elevator, +/− engine power</strong> — the gamedoc had "Space = pick up" and a fabricated "A = toggle aircraft pitch mode". C64 Elite re-verified against the manual and left unchanged (S = dive, X = climb, view/combat/nav keys all correct).</li>
 </ul>
-<h3 id="changed_14">Changed</h3>
+<h3 id="changed_17">Changed</h3>
 <ul>
 <li><strong>Swapped the credit pill order to <code>GenX-DOS · licence · source</code></strong> (was <code>source · licence</code>) sitewide — one edit in <code>genx-repo-link.js</code>, so every emulator page and the DOS prompt page update together.</li>
 </ul>
 <h2 id="104---2026-06-24">[1.0.4] - 2026-06-24</h2>
-<h3 id="changed_15">Changed</h3>
+<h3 id="changed_18">Changed</h3>
 <ul>
 <li><strong>README License section now links <code>LICENSE.TXT</code> prominently</strong>, alongside the existing <code>ATTRIBUTION.md</code> link (the full licence text was previously only reachable via the CC badge).</li>
 <li><strong>ZX Spectrum (jsspeccy) bezel no longer fisheye-distorted and sits flatter in the glass.</strong> Removed the <code>#crtbulge</code> barrel-distortion filter (and its now-unused SVG/displacement-map) and dropped the fixed <code>translate()</code> nudge it needed. The screen now overscans the bezel cutout at <code>scale(1.09)</code>.</li>
 </ul>
-<h3 id="fixed_16">Fixed</h3>
+<h3 id="fixed_17">Fixed</h3>
 <ul>
 <li><strong>Atari 2600 (stella) canvas no longer drifts between games.</strong> <em>(community-reported)</em> Replaced the fixed <code>translateX(-18px)</code> nudge with proper centre anchoring (<code>top/left:50%</code> + <code>translate(-50%,-50%)</code>), so the canvas centre pins to the bezel-hole centre regardless of the width the core emits per game.</li>
 <li><strong>ZX Spectrum (jsspeccy) screen now tracks the window size.</strong> <em>(community-reported)</em> JSSpeccy (<code>uiEnabled:false</code>) injects its own <code>appContainer</code> div with a fixed inline pixel width (<code>320 × zoom</code>), which pinned the whole stack to that size so the canvas ignored the percentage-sized bezel cutout. Forcing the injected div to fill the hole (<code>inset:0; width/height:100%</code>) lets the canvas scale with the bezel like the ZX81 (jtyone) canvas does — fixing both the broken resize and the resulting black band at the top of the screen.</li>
 </ul>
-<h3 id="added_17">Added</h3>
+<h3 id="added_18">Added</h3>
 <ul>
 <li><strong><code>docs/tech_article.md</code></strong> — a magazine-style feature article on the project (the concept, the static/no-build constraint, the WASM-rebuild and save-state war stories, the curation philosophy, and the honest seams). Linked from the README's Documentation section and the new wiki <code>_Sidebar.md</code>.</li>
 </ul>
 <h2 id="103---2026-06-24">[1.0.3] - 2026-06-24</h2>
-<h3 id="added_18">Added</h3>
+<h3 id="added_19">Added</h3>
 <ul>
 <li><strong><code>source · licence</code> credit on the DOS prompt page too.</strong> The same self-contained <code>genx-repo-link.js</code> pill that sits on every emulator page is now included on <code>prompt/index.html</code>, so the menu/prompt surface carries the bottom-centre <code>GenX-DOS · source · licence</code> credit as well.</li>
 <li><strong><code>echo on</code> command.</strong> The prompt now understands <code>echo on</code> (mirroring <code>echo off</code>): it re-enables echo and drops to a fresh <code>C:\&gt;</code> prompt. A batch can end with <code>echo on</code> to return the user to a live prompt without the trailing blank line that <code>echo.</code> leaves.</li>
 </ul>
-<h3 id="fixed_17">Fixed</h3>
+<h3 id="fixed_18">Fixed</h3>
 <ul>
 <li><strong>"0. Exit" now drops to a <code>C:\&gt;</code> prompt again.</strong> Trimming the <code>echo.</code> lines from <code>SYSTEMS\0.bat</code> (above) removed the side effect that re-enabled echo and redrew the prompt — so the sign-off screen sat there with no cursor. The batch now ends with the new <code>echo on</code>, restoring the live prompt with no extra blank line.</li>
 </ul>
-<h3 id="changed_16">Changed</h3>
+<h3 id="changed_19">Changed</h3>
 <ul>
 <li><strong>Simplified the "0. Exit" sign-off.</strong> Dropped the two <code>echo.</code> blank lines and shortened the header to <code>GenX-DOS (2026)</code> with a short rule line — the exit screen now prints the title, rule, "Type help or menu to continue", then a fresh <code>C:\&gt;</code> prompt.</li>
 </ul>
 <h2 id="102---2026-06-24">[1.0.2] - 2026-06-24</h2>
-<h3 id="changed_17">Changed</h3>
+<h3 id="changed_20">Changed</h3>
 <ul>
 <li><strong>Orphan + doc-sync audit (24/06/2026).</strong> Full sweep after the v1.0.1 release. <strong>No orphan files</strong> — every shared helper (JS/CSS), bezel, texture, font sheet, and prompt script resolves to a runtime reference; no stray/temp files; no leftover <code>packaging/</code> dir. README and ATTRIBUTION verified current (19 engines / 32 sub-systems / 13 EmulatorJS bundles; every bundle and core attributed). <strong>Wiki fixes:</strong> <code>Virtual-Filesystem</code> was stale — it still described only CONSOLE + HOMECOMP (no <strong>Handheld Consoles</strong> category) and counted "28 sub-systems"; rebuilt the menu tree to the current EMULATOR LAUNCHER layout (HOMECOMP / CONSOLE / HANDHELD / WIKI / Exit), added the TANDY parent (TRS-80 + CoCo) and the three handhelds (Game Boy/Color, Lynx, Game Gear), and corrected the count to 32. <code>File-Structure</code> was missing the <code>gbc/</code> <code>lynx/</code> <code>gamegear/</code> dirs from both the tree and the per-emulator table, and omitted the <code>prosystem</code> core from the <code>_shared-ejs</code> line — all added.</li>
 </ul>
 <h2 id="101---2026-06-23">[1.0.1] - 2026-06-23</h2>
-<h3 id="added_19">Added</h3>
+<h3 id="added_20">Added</h3>
 <ul>
 <li><strong>Subtle "source · licence" credit on every emulator page.</strong> A new self-contained <code>systems/_shared/genx-repo-link.js</code> injects a bottom-centre note — <code>GenX-DOS · source · licence</code> — linking to the GitHub repo and <code>LICENSE.TXT</code>. It sits in a small dark pill so it reads over the wallpaper (bare amber text vanished into the busy pattern, the same reason the controls / save-load links carry their own background). Included on all 29 launch pages (26 <code>play.html</code> + the jsbeeb/jsvecx/webmsx wrappers). The text is <code>pointer-events:none</code> so only the two links are clickable and it never steals a click from the emulator; it sits clear of the controls link (bottom-right) and save/load buttons (bottom-left).</li>
 </ul>
-<h3 id="fixed_18">Fixed</h3>
+<h3 id="fixed_19">Fixed</h3>
 <ul>
 <li><strong>DOS prompt — reduced Firefox horizontal text hairlines.</strong> The prompt grid is fitted to the bezel cutout with a non-uniform <code>transform: scale</code>, which left every 12px row edge on a sub-pixel device position; Firefox antialiased those clip edges into a faint hairline across each text row. <code>fitPrompt()</code> now snaps each cell to a whole number of device pixels (floor <code>12·scale·dpr</code>, so the grid never overflows — <code>.prompt-fit</code>'s black fill covers the small slack), and <code>.font</code>/<code>.prompt</code> carry <code>image-rendering: pixelated</code> (nearest-neighbour sampling). The residual is now consistent with CRT scanline character rather than a rendering artifact. (A font-PNG cell-scaling rewrite was tried and reverted — the snapped transform looked better.)</li>
 <li><strong>BBC Micro wallpaper seam at the bezel's top edge.</strong> jsbeeb paints the 70s wallpaper on both <code>html</code> and <code>body</code> (it needs both — body's upstream background is black), and <code>#cub-monitor { margin-top: 60px }</code> collapsed through the block body, offsetting the body copy by 60px and seaming the tiled pattern right where the bezel meets the wallpaper. Fixed by adding <code>background-attachment: fixed</code> so both copies anchor to the viewport and tile from the same origin regardless of the margin offset. jsbeeb-specific — the other pages have no such margin offset.</li>
@@ -513,7 +547,7 @@
 <li><strong>Vectrex controls — corrected the whole set against the game manuals.</strong> Every Vectrex gamedoc had guessed button maps (fire on Button 1, thrust on the stick); the real convention is <strong>Button 4 = fire, Button 3 = thrust</strong>, joystick = direction/rotation. Verified all 11 games from their manuals (Ozyr's archive, Vectrex Wiki, scanned GCE manuals) and rewrote each control table — e.g. Mine Storm (B2 = Escape/teleport), Solar Quest (B2 smart bomb, B1 transport), Cosmic Chasm (B1 drill, B2 shield), Spike (B4 jump, B2/B3 kick L/R — not "Speak/Punch"), Pole Position (B3/4 gas, B1/2 gears — no brake), Polar Rescue (stick dive/surface, B4 torpedo), Star Trek (B4 laser, B3 shield, B2 dock). Fixed matching prose errors (Star Castle has no hyperspace; Spike doesn't throw rocks) and rebuilt <code>controls.html</code>'s per-game table. No gameplay-affecting guesswork remains.</li>
 <li><strong>Gamedoc accuracy sweep (per-platform web verification).</strong> Intellivision: corrected two release years — BurgerTime is the <strong>1983</strong> Mattel/Data East port (not 1982) and Atlantis shipped <strong>1982</strong> (not 1981); fixed <code>games.json</code>, both gamedocs, and the year-sorted menu (BurgerTime drops to #10). Controls were already accurate. (TRS-80 and Tandy CoCo corrected earlier in the sweep.)</li>
 </ul>
-<h3 id="changed_18">Changed</h3>
+<h3 id="changed_21">Changed</h3>
 <ul>
 <li><strong>Name Clint Basinger in the LGR credit.</strong> The terminal-base credit (README + ATTRIBUTION) now records that Mike wrote it informally for LGR — Lazy Game Reviews (Clint Basinger), rather than the brand alone. ATTRIBUTION also names the original project (<strong>LGR-DOS</strong> — the "LGR-DOS Command Prompt") and cites LGR's own site metadata crediting Mike (<code>&lt;meta name="Generator" content="Mike"&gt;</code>).</li>
 <li><strong>ATTRIBUTION: refresh the Site-code licence note.</strong> Replaced the pre-LICENSE.TXT line ("No licence file in repo; treated as source-available…") with the current state — Retro-Jack's original code is CC BY-NC 4.0 (see LICENSE.TXT); the LGR terminal base is excluded from that licence and stays under LGR's own terms with the required credit.</li>
@@ -527,7 +561,7 @@
 <p>First tagged release. Everything below predates the 1.0.0 tag — the full
 build-up of the suite to 19 engines / 32 sub-systems, all bezeled, most with
 save/load state.</p>
-<h3 id="added_20">Added</h3>
+<h3 id="added_21">Added</h3>
 <ul>
 <li><strong>Tandy TRS-80 Model I — new platform (sdltrs WASM).</strong> New <code>systems/trs80/</code> bundle on <strong>sdltrs</strong> (Mark Grebe / Jens Guenther, BSD-2-Clause), built from source to WASM via emscripten ASYNCIFY — <code>emscripten_sleep</code> replaces sdltrs's blocking <code>SDL_Delay</code>/<code>SDL_WaitEvent</code> so the continuous Z80 loop yields each timer tick; Model I Level II BASIC ROM embedded via <code>--embed-file</code>. 10 year-sorted Big Five / Adventure International <code>.cmd</code> arcade games (Galaxy Invasion → Crazy Painter), each entered directly via <code>trs_load_cmd</code>. CRT bezel (<code>TRS80.png</code>), top-left <strong>CLEAR</strong> softkey (synthetic Home — most games start with CLEAR), 10 gamedocs + controls page. New <strong>TANDY</strong> parent menu groups the Model I with the Color Computer. Engines 18 → 19, sub-systems 31 → 32.</li>
 <li><strong>Save / load state on the Amstrad CPC (cpc) — rebuilt the tiny8bit WASM.</strong> floooh's chips library already has <code>cpc_save_snapshot</code> / <code>cpc_load_snapshot</code> (a self-contained <code>cpc_t</code> struct copy, no <code>emscripten_sleep</code>), but the stock build didn't export them. Rebuilt <code>cpc.wasm</code> from <code>floooh/chips-test</code> with <code>EMSCRIPTEN_KEEPALIVE</code> <code>gx_state_*</code> wrappers added to <code>examples/emus/cpc.c</code>, plus <code>HEAPU8</code> added to <code>EXPORTED_RUNTIME_METHODS</code> in the fibs <code>emscripten.ts</code> (the stock fibs config exports none — same gotcha as the o2em rebuild). The adapter is <strong>synchronous</strong> (no ASYNCIFY deferral — the chips snapshot has no nested sleep, unlike atari800); <code>play.html</code> moves the raw struct bytes in/out via <code>HEAPU8</code>. Verified mid-game on <strong>Bruce Lee</strong>. BUILDING-WASM.md documents the new patch.</li>
@@ -553,7 +587,7 @@ save/load state.</p>
 <li><strong><code>nightly</code> gambatte core:</strong> the <code>stable</code> EmulatorJS gambatte renders a blank white panel (no ROM ever displays) — same broken-<code>stable</code> pattern as <code>vice_x128</code>; we mirror the <code>nightly</code> build, which works.</li>
 <li><strong>Menu:</strong> <code>Handheld Consoles</code> added to the root launcher; its submenu lists Nintendo Game Boy + Atari Lynx + Sega Game Gear (the latter two "coming soon" until their bundles are built).</li>
 </ul>
-<h3 id="changed_19">Changed</h3>
+<h3 id="changed_22">Changed</h3>
 <ul>
 <li><strong>Codebase beautified with Prettier + an auto-format standard.</strong> Ran Prettier over all GenX-authored JavaScript (<code>prompt/**</code>, the <code>systems/**/genx-*.js</code> helpers) and every JSON data file; added <code>.prettierrc</code> (single-quote) and <code>.prettierignore</code>. <strong>Vendored/upstream emulator runtimes are deliberately left exactly as shipped</strong> — beautifying them broke EmulatorJS at runtime (the "Download Game Core" stall), so <code>.prettierignore</code> excludes <code>systems/**/*.js</code> except our own <code>genx-*.js</code>. Authored JS verified with <code>node --check</code>; emulators smoke-tested.</li>
 <li><strong>Browser-tab titles now name the system — manufacturer + system, specs trimmed.</strong> Every emulator page's tab reads its system (e.g. <code>Commodore 64</code>, <code>Tandy TRS-80</code>, <code>Nintendo Entertainment System</code>, <code>Texas Instruments TI-99/4A</code>) regardless of which game is loaded — previously most flipped the tab to the game's name once a game booted, and a few leaked the engine name (<code>jsbeeb - Javascript BBC Micro emulator</code>, <code>Vectrex by DrSnuggles</code>, <code>Acorn Electron — ElkJS</code>, <code>Apple 1js …</code>, <code>TI-99/4A — GenX-DOS</code>). Spec/model qualifiers are trimmed (<code>Atari 800XL→Atari 800</code>, <code>TRS-80 Model I→Tandy TRS-80</code>, <code>Game Boy Color→Nintendo Game Boy</code>, <code>MAX Machine→Commodore MAX</code>). Fixed once in the shared EJS boot (all 13 EmulatorJS bundles) plus each standalone page; the controls (×11) and gamedoc (×131) page tabs were brought in line with the same names (visible page headers unchanged).</li>
@@ -570,19 +604,19 @@ save/load state.</p>
 <li><strong>C128 game sweep — replaced two non-launching titles.</strong> <code>kquest</code> (Knight's Quest) and <code>tetris</code> (Tetris 128) are ML-first homebrews: the disk's first file is machine code at <code>$4001</code> with no BASIC autostart loader, so VICE's <code>LOAD"*",8,1:RUN</code> can't start them (RUN only runs BASIC; they drop to <code>READY.</code>). Swapped both for cleanly-bootable 80-col VDC titles whose first file is a <code>$1C01</code> BASIC loader: <strong>Invaders</strong> (homebrew Space Invaders — <code>F</code> fire, <code>1</code>/<code>2</code> move, <code>P</code> pause) and <strong>Uniquest</strong> (homebrew fantasy RPG — seven cities, dungeons, 88 weapons/armour, 110 monsters; typed-command parser). Both confirmed to autostart and play. Menu, <code>games.json</code>, ROMs (<code>.d64</code> → <code>.prg</code>) and gamedocs updated; the other nine C128 titles all verified launching. <em>(The other ML-first checks: all eight remaining disk/<code>.prg</code> titles have BASIC-loader first files, so they autostart fine.)</em></li>
 <li><strong>C128 per-video-mode canvas scale.</strong> The 80-col VDC picture sits smaller in the 1084S glass than the 40-col VIC-II one, so <code>perGame</code> now tags <code>&lt;html&gt;</code> (<code>gx-vdc</code> / <code>gx-vicii</code>) and CSS picks the fill scale: VIC-II keeps the family <code>scale(1.01)</code>, VDC gets <code>scale(1.26)</code>.</li>
 </ul>
-<h3 id="fixed_19">Fixed</h3>
+<h3 id="fixed_20">Fixed</h3>
 <ul>
 <li><strong>MSX (webmsx) rebuilt from scratch — was completely broken.</strong> The old bundle was WebMSX's 5.26 MB <em>standalone</em> all-in-one with the GenX controls-link <code>&lt;script&gt;</code> injected <strong>inside</strong> the inline engine's body-HTML string with a raw <code>&lt;/script&gt;</code>; the browser read that as closing the inline engine ~120 KB in, dumping the rest as plain text — the emulator never ran (pre-existing; unrelated to the <code>emulators/</code>→<code>systems/</code> rename, which only touched two <code>&lt;meta&gt;</code> URLs). Rebuilt from the official WebMSX 6.0 <strong>embedded</strong> build: <code>wmsx.js</code> is the stock engine (a separate file, never edited) and <code>index.html</code> is a small GenX wrapper. Auto-load works via <code>WMSX.ALLOW_URL_PARAMETERS</code> (the engine reads the menu's <code>?ROM=</code>/<code>?M=</code>/<code>?ANY=</code> and maps them itself: <code>ROM</code>→<code>CARTRIDGE1_URL</code>, <code>M</code>→<code>MACHINE</code>, <code>ANY</code>→<code>AUTODETECT_URL</code>); the controls link is a normal <code>&lt;script&gt;</code> element <em>after</em> the engine (nothing can leak into it); WebMSX's control bar is hidden (<code>#wmsx-bar { display:none }</code>). Menu links, ROM library, and controls page unchanged. <em>(Self-inflicted footgun avoided: a <code>&lt;/script&gt;</code> literal in the wrapper's own JS comment will close the wrapper script too — keep closing-script-tags out of inline <code>&lt;script&gt;</code> comments.)</em></li>
 <li><strong>C128 boots again</strong> — the <code>stable</code> <code>vice_x128</code> libretro core cold-boots to uninitialised-RAM garbage (was live; the other VICE cores are unaffected). Swapped <code>systems/_shared-ejs/ejs/data/cores/vice_x128-legacy-wasm.data</code> to the <code>nightly</code> EmulatorJS build, which boots to BASIC 7.0 cleanly. Both video modes work — 40-col VIC-II and 80-col VDC (<code>vice_c128_video_output</code> values stay the bare keys <code>VICII</code>/<code>VDC</code>; the core's <code>"VIC-II (40 cols)"</code>/<code>"VDC (80 cols)"</code> strings are display labels, not settable values). Commercial 80-col titles (Star Fleet I) play through. Also <strong>dropped the C128 <code>scaleY</code> framebuffer hack</strong> — it compensated for the stable core's odd 856×288 buffer; the nightly core renders a normal framebuffer, so C128 now uses the same <code>#game canvas { height: 100% !important; transform: scale(1.01) }</code> fit as the rest of the family. <em>(Known per-game quirk, not the core: ML-direct homebrew like <code>kquest</code> loads via <code>LOAD"*",8,1</code> but the autostart's <code>RUN</code> can't start a non-BASIC image, so it drops to <code>READY.</code>)</em></li>
 </ul>
-<h3 id="changed_20">Changed</h3>
+<h3 id="changed_23">Changed</h3>
 <ul>
 <li><strong>jsbeeb CUB monitor breathing room</strong> — the BBC Micro/Master monitor was flush against the top of the viewport. Widened the sizing JS's vertical inset (<code>r</code> 68→120 in <code>dist/assets/index-*.js</code>) and added <code>#cub-monitor { margin-top: 60px }</code> so the monitor centres with ~60px of wallpaper above and below. (One change, both BBC machines — they share <code>dist/</code>.)</li>
 <li><strong>Electron bezel breathing room</strong> — matched the CUB spacing on <code>systems/electron/play.html</code>: capped <code>.bezel-wrap</code> height at <code>100dvh - 120px</code> so the Acorn monitor centres with ~60px above and below instead of filling the full height.</li>
 <li><strong>Atari 2600 migrated from Javatari to EmulatorJS + Stella</strong> (<code>stella2014</code> libretro core, GPL-2.0). Javatari sized its own canvas — so it couldn't take a CRT bezel like the other bundles — and put GAME SELECT / RESET on browser-reserved <code>F11</code>/<code>F12</code>, leaving its on-screen console panel as the only reliable control. The new <code>systems/stella/</code> bundle runs on the shared EJS framework like the 8 other EJS bundles: GenX controls the canvas, and the 2600's switches map to plain keys via <code>EJS_defaultControls</code> — <code>Space</code> = fire, <code>Enter</code> = GAME RESET, <code>V</code> = GAME SELECT, arrows = joystick. Existing <code>.a26</code> ROMs reused unchanged. Engine count 20 → 19 (the 2600 folds into EmulatorJS); EJS bundles 8 → 9; sub-systems unchanged at 28. Gamedocs moved <code>gamedocs/javatari/</code> → <code>gamedocs/stella/</code> and rewritten to the keyboard scheme; <code>fs.js</code> menu links repointed; old <code>systems/javatari/</code> bundle (Javatari.js, AGPL-3.0) deleted.</li>
 <li><strong>PET migrated from VICE xpet to Thomas Skibo's pet2001</strong> (BSD-2-Clause, vanilla JS, no WASM/libretro/EJS). <code>vice_xpet</code> ships with a hardcoded Business UK keyboard mapper that no <code>vicerc</code> resource overrides — symptom was <code>Enter</code>→<code>P</code> and scrambled letters. New <code>systems/pet/</code> runtime is ~90 lines of <code>play.html</code> driving Skibo's <code>pet2001/*.js</code> (9 files), bumps RAM to 32 KB, auto-types <code>load"*",8</code>+<code>run</code> via the petkeys queue with a per-game <code>autostart</code> override in <code>games.json</code>. Sub-system count unchanged at 28.</li>
 </ul>
-<h3 id="added_21">Added</h3>
+<h3 id="added_22">Added</h3>
 <ul>
 <li><strong>Commodore 1084S CRT bezel</strong> wired across the whole VICE family — <code>_shared/bezels/Commodore.png</code> (1223×1104) now frames all six machines (<code>c64</code>/<code>c128</code>/<code>c16</code>/<code>plus4</code>/<code>vic20</code>/<code>max</code>), which share one monitor and one screen hole (<code>12.3%/12.5%/76.0%×63.9%</code>). Same EJS player-in-hole recipe as Stella: <code>#game</code> sits in the hole with a slightly-larger black <code>.screen-bg</code> behind it and <code>Commodore.png</code> on top; the canvas is height-stretched to close EJS's letterbox and <code>scale(1.01)</code> to fill the glass. C128 keeps its existing <code>scaleY</code> framebuffer hack (now <code>scale(1.01) scaleY(2.784/1.333)</code>). The VICE NumLock / RUN-STOP softkey banners are <code>position:fixed</code>, so the flex-centred bezel is unaffected. <code>Commodore.png</code> moves staging → wired (now seven wired, three staging). <em>(Note: the C128's <code>x128</code> core boots to uninitialised-RAM garbage — a pre-existing issue, identical on the live site, unrelated to the bezel; tracked separately.)</em></li>
 <li><strong>Atari 2600 CRT bezel</strong> wired into <code>systems/stella/play.html</code> — <code>_shared/bezels/70s.png</code>, a maintainer-keyed wood-cabinet console TV with legs (1240×855, the set isolated from its photo and floating on the 70s wallpaper, with a transparent screen hole at <code>27.6%/13.1%/45.4%×51.6%</code>). <strong>First bezel on an EmulatorJS bundle</strong> — EJS owns the canvas, so the screen hole holds <code>#game</code> (the EJS player) and EJS draws into it. Three layers: a black <code>.screen-bg</code> slightly larger than the hole (stops wallpaper bleeding through the cutout's soft edge) → <code>#game</code> at the hole → bezel PNG on top. EJS fits the canvas preserving aspect, leaving a top/bottom letterbox; closed and sized it with <code>#game canvas { height: 100% !important; transform: translateX(-18px) scale(0.85) }</code> (height-stretch + a left nudge to centre + a shrink to sit the picture inside the glass). Sets the pattern for eventually bezeling the rest of the EJS family. <code>70s.png</code> moves staging → wired (now six wired, four staging).</li>
@@ -601,7 +635,7 @@ save/load state.</p>
 <li><strong>PETSCII Robots Shareware (2022)</strong> dropped from the PET bundle. Skibo's emulator has no 1541 disk-image support, no BASIC 4 / PET 4032 ROM, and no multi-file disk loader — three hard blockers that all three of PETSCII Robots' boot requirements need. The title is no longer shipped on any sub-system; its ATTRIBUTION/README credits were removed accordingly. Documented in detail at <code>wiki/Emulator-pet2001-Skibo</code>.</li>
 <li><strong><code>systems/_shared-ejs/ejs/data/cores/vice_xpet-legacy-wasm.data</code></strong> (1.3 MB) — the libretro VICE PET core, no longer referenced by any bundle. VICE-family shared dir drops from 5 cores to 4.</li>
 </ul>
-<h3 id="fixed_20">Fixed</h3>
+<h3 id="fixed_21">Fixed</h3>
 <ul>
 <li><strong>jsbeeb per-game gamedocs wired</strong> — the 20 <code>gamedocs/jsbeeb/*.html</code> (BBC Micro + Master) were runtime orphans: the Vite <code>dist/index.html</code> hardcodes the corner link to <code>../controls.html</code> and the menu launches keyless <code>?disc1=</code> URLs, so the per-game gamedoc never resolved. Added <code>systems/jsbeeb/genx-gamedoc-link.js</code> — maps the disc filename (e.g. <code>EliteMaster</code> → <code>master-elite</code>) to the gamedoc key and rewrites the corner link's <code>href</code> on load; keyless BASIC / blank-Master launches fall through to <code>controls.html</code>. Wired into <code>dist/index.html</code> via a deferred <code>&lt;script&gt;</code>. All 20 keys verified to map to existing files and serve 200.</li>
 <li><strong>BBC Elite gamedocs — front-view key relabelled to PC <code>F10</code></strong> — <code>gamedocs/jsbeeb/elite.html</code> and <code>master-elite.html</code> showed the front view as <code>F0</code>, which has no PC-keyboard equivalent. Verified jsbeeb's keymap (<code>i(k.F10,O.F0),i(k.F1,O.F1)…</code>): BBC <code>f1</code>–<code>f9</code> map to PC <code>F1</code>–<code>F9</code> 1:1, BBC <code>f0</code> maps to PC <code>F10</code>. Relabelled <code>F0</code>→<code>F10</code> and corrected elite.html's keyboard note (it had implied an <code>f0</code>–<code>f9</code> → <code>F1</code>–<code>F10</code> block shift).</li>
@@ -618,7 +652,7 @@ save/load state.</p>
 <li><strong>Doc sync after PET migration</strong> — <code>README.md</code>, <code>ATTRIBUTION.md</code>, the PET menu in <code>prompt/javascript/fs.js</code> (Star Trek slotted in at position 1, PETSCII Robots row removed, numbering shifted), and four wiki pages (<code>Roadmap</code>, <code>File-Structure</code>, <code>Virtual-Filesystem</code>, <code>Emulator-EmulatorJS-NES-FCEUmm</code>) all updated to describe PET as Skibo / 4 VICE cores instead of 5.</li>
 <li><strong>Audit doc sweep (10/06/2026)</strong> — the PET migration pushed the engine count 19 → 20 (pet2001 is now a standalone engine, no longer riding EmulatorJS). Corrected the lagging "19 emulators" / "5 VICE cores" / "nine bundles share EJS" claims across <code>README.md</code>, <code>Project-Overview</code>, <code>Home</code>, <code>Roadmap</code>, <code>Emulators</code>, <code>Emulator-VICE-family</code>, and <code>File-Structure</code>. Untracked staged bezel <code>_shared/bezels/Pet.png</code> committed to complete the set. Refreshed the ATTRIBUTION bezel section: 10 bezels now, <code>PC.png</code> + <code>Acorn.png</code> wired (the rest staging), <code>Pet.png</code> row added. Added the generic "original photographer unknown — open an issue if you recognise your work" bezel credit as an HTML comment at the foot of <code>prompt/index.html</code> (PC) and <code>systems/electron/play.html</code> (Acorn) — comment rather than visible text since both are fullscreen immersive pages.</li>
 </ul>
-<h3 id="added_22">Added</h3>
+<h3 id="added_23">Added</h3>
 <ul>
 <li><strong>Electron (ElkJS) bezel + audio auto-unlock</strong> — <code>systems/electron/play.html</code> now wraps the canvas in the standard three-layer order (<code>.screen-bg</code> z:1 → canvas z:2 → <code>Acorn.png</code> z:3) inside a <code>.bezel-wrap</code> sized via <code>min(100vw, calc(100dvh * 835 / 719))</code>. Body gets the 70s wallpaper. Sound: <code>_autoUnlockSound()</code> fires <code>elkjs.soundToggle()</code> at 0/100/500/1000/2000 ms on DOMContentLoaded; the original keydown fallback kicks in only if the burst missed the window.open activation window. Second emulator to validate the bezel pattern after jsbeeb.</li>
 <li><strong>jsbeeb dist chrome strip + bezel order + audio auto-unlock</strong> — <code>dist/index.html</code> hides upstream <code>#header-bar</code> and <code>#leds</code>; wallpaper paints on body; standard three-layer order inside <code>#cub-monitor</code> (black <code>::before</code> at <code>inset: 5%</code> z:1 → canvas z:2 → CUB PNG z:3, <code>pointer-events:none</code> on the PNG so clicks reach the canvas). Audio unlock: jsbeeb only resumes its <code>AudioContext</code> on <code>mousedown</code> to <code>#audio-warning</code>, so we (a) forward any page mousedown to the warning and (b) fire optimistic mousedowns at 0/100/500/1000/2000 ms on <code>DOMContentLoaded</code> so the user-gesture from the prompt's <code>window.open()</code> click can propagate through. Confirmed working 10/06/2026.</li>
@@ -633,11 +667,11 @@ save/load state.</p>
 <ul>
 <li><strong>Tseng ET4000 video BIOS POST lines</strong> from the boot sequence — <code>init.js</code> now goes straight from the AMI logo to the AMIBIOS system POST.</li>
 </ul>
-<h3 id="changed_21">Changed</h3>
+<h3 id="changed_24">Changed</h3>
 <ul>
 <li><strong>Wallpaper dropped from all doc pages</strong> — <code>_shared/genx-controls.css</code> body rule no longer paints the 70s tile. Removes the wallpaper from all 24 <code>controls.html</code> pages <strong>and</strong> all 281 <code>gamedocs/*/*.html</code> pages in one shot; keyboard tables and game instructions now sit on a flat <code>#0a0a0a</code> background, which keeps the dense table content legible. The earlier <code>body.controls-page</code> override + class on each controls.html body is now redundant — both removed. Wallpaper still tiles on the DOS prompt, jsbeeb dist, and Electron play.html.</li>
 </ul>
-<h3 id="fixed_21">Fixed</h3>
+<h3 id="fixed_22">Fixed</h3>
 <ul>
 <li><strong>Electron function-key references in <code>gamedocs/electron/elite.html</code></strong> — the BBC Elite manual's <kbd>f0</kbd>–<kbd>f9</kbd> labels were carried over wholesale, but the Electron has no F-keys at all. ElkJS already maps PC <kbd>Alt</kbd> → Electron FUNC (the orange key), which is how Electron software reaches f0–f9 in practice. Rewrote all 9 references in Elite to use <kbd>Alt</kbd>+<kbd>N</kbd> directly. controls.html keyboard table now spells out the Alt → FUNC mapping with the BBC <kbd>f7</kbd> → <kbd>Alt</kbd>+<kbd>7</kbd> example.</li>
 <li><strong>Electron sound (upstream <code>sound.soundInit</code> missing)</strong> — <code>elkjs.js:143</code> calls <code>sound.soundInit()</code> on first <code>soundToggle()</code>, but the method was never defined in <code>sound.js</code> — upstream's keydown path threw <code>TypeError</code> and audio never enabled for anyone. Added <code>self.soundInit = function () { if (audioContext.state === 'suspended') audioContext.resume(); }</code> to <code>sound.js</code>. Combined with the <code>_autoUnlockSound</code> burst from DOMContentLoaded, audio now starts on tab open via the prompt's <code>window.open</code> user-activation propagation.</li>
@@ -645,21 +679,21 @@ save/load state.</p>
 <li><strong>Double prompt after closing an emulator tab</strong> — <code>commands-core.js</code> close-handler now just re-runs <code>menu</code> in place instead of <code>cd ..; menu</code>. The old sequence trampolined through the parent's menu.bat (which itself <code>cd</code>s into the games dir and re-runs <code>menu</code>), and the trailing <code>echo.</code> on each layer toggled <code>bEchoOff</code> plus triggered an extra <code>prompt()</code> at the end of <code>handleCmd</code>, producing two prompt lines on return.</li>
 <li><strong>Audit sync (09/06/2026)</strong> — <code>ATTRIBUTION.md</code> bezel section updated to reflect PC.png landing on the DOS prompt. Stale <code>init.js</code> POST-flow comment that still referenced the (removed) Tseng line trimmed. No code-path changes.</li>
 </ul>
-<h3 id="changed_22">Changed</h3>
+<h3 id="changed_25">Changed</h3>
 <ul>
 <li><strong>Site JS beautified</strong> — <code>prompt/javascript/*.js</code>, <code>systems/_shared/*.js</code>, <code>systems/_shared-ejs/genx-ejs-boot.js</code>, and the inline controls-link injector in <code>apple2/play.html</code>. Run through <code>js-beautify</code> (4-space indent). No behaviour changes; same modules, same exports.</li>
 </ul>
-<h3 id="fixed_22">Fixed</h3>
+<h3 id="fixed_23">Fixed</h3>
 <ul>
 <li><strong>Vectrex focus-loss auto-resume</strong> — synthetic Escape <code>keyup</code> dispatched on <code>window.focus</code> triggers the runtime's existing <code>Mu()</code> handler, which closes the (internally-open) menu and calls <code>start()</code> after 300 ms. No more manual ESC press needed after clicking away.</li>
 <li><strong>JS7800 F-key reference</strong> — platform <code>controls.html</code> + 10 gamedoc pages had F3 and F4 swapped. F3 is the Reset switch (= start the game on most carts); F4 is Pause. Corrected throughout.</li>
 </ul>
-<h3 id="changed_23">Changed</h3>
+<h3 id="changed_26">Changed</h3>
 <ul>
 <li><strong>README rewritten in casual journey-style voice</strong> to match the wiki. No content removed; same lineup table, URL patterns, and licence list, just framed as a project narrative.</li>
 <li><strong>CHANGELOG de-cluttered</strong> — trimmed verbose entries to release-note form. Deep recipes live in the wiki now.</li>
 </ul>
-<h3 id="added_23">Added</h3>
+<h3 id="added_24">Added</h3>
 <ul>
 <li><strong>Mobile-device block</strong> — touch-only devices see a full-screen "Desktop Only" overlay via <code>@media (pointer: coarse), (hover: none)</code> + <code>body::before</code>. 24 emulator pages inherit it from <code>_shared/genx-noscript.css</code>; three outliers (root + prompt + jsbeeb dist index) get an inline copy. z-index 999999 sits above the corner controls link.</li>
 <li>Loosened to comma (OR) shortly after first commit — iPadOS reports <code>pointer: coarse</code> + <code>hover: hover</code> so the <code>and</code> form was skipping iPads.</li>
@@ -668,40 +702,40 @@ save/load state.</p>
 <ul>
 <li><strong>js99er upstream-UI orphans (11 files, ~200 KB)</strong> at <code>systems/js99er/</code> — <code>ams.js</code>, <code>googledrive.js</code>, four bootstrap variants, <code>fileSaver.js</code>, <code>imageMapResizer.js</code>, two unused zip features. Kept <code>lib/zip/inflate.js</code> (it's the <code>.rpk</code> worker).</li>
 </ul>
-<h3 id="fixed_23">Fixed</h3>
+<h3 id="fixed_24">Fixed</h3>
 <ul>
 <li><strong>Fourth doc-sync audit (08/06/2026)</strong> — README MSX line still mentioned MSX2+; bumped Virtual-Filesystem sub-system count 27 → 28; dropped TI-99/4A from Roadmap "Plausible" (now shipped).</li>
 </ul>
-<h3 id="added_24">Added</h3>
+<h3 id="added_25">Added</h3>
 <ul>
 <li><strong>Texas Instruments TI-99/4A</strong> at <code>systems/js99er/</code> (Rasmus Moustgaard's Js99'er, vanilla-JS, GPL-2.0) + 10 <code>.rpk</code> carts. New HOMECOMP entry <strong>TEXAS / TI99 (1979)</strong>. play.html falls back to the TI title screen when no cart is specified.</li>
 <li><strong>TI-99/4A gamedocs (10 pages)</strong>. Parsec gets a laser-overheat note; Tunnels of Doom has a separate combat-key table; Microsurgeon gets a tool-select reference. <strong>Gamedocs sweep stays complete: 28 / 28 sub-systems, 281 pages.</strong></li>
 </ul>
-<h3 id="changed_24">Changed</h3>
+<h3 id="changed_27">Changed</h3>
 <ul>
 <li><strong>HOMECOMP parent menu</strong> — added row 9 "Texas (1979) TI99" between Tandy and the back-row sentinel. Column widths preserved at 45 chars.</li>
 </ul>
-<h3 id="added_25">Added</h3>
+<h3 id="added_26">Added</h3>
 <ul>
 <li><strong>Tandy CoCo gamedocs (10 pages)</strong> at <code>gamedocs/xroar/</code>. Daggorath gets a dedicated typed-command reference. XRoar preserves <code>?game=</code> so no <code>fs.js</code> wiring needed. <strong>Gamedocs sweep complete: 27 / 27 sub-systems, 271 pages.</strong></li>
 </ul>
-<h3 id="added_26">Added</h3>
+<h3 id="added_27">Added</h3>
 <ul>
 <li><strong>MSX2 gamedocs (10 pages)</strong> at <code>gamedocs/webmsx/</code> — covers Konami's MSX2 peak (Vampire Killer, Metal Gear, etc.) through Compile's Aleste and SD Snatcher. Each <code>.bat</code> launcher appends <code>&amp;game=&lt;key&gt;</code> so the lowercase resolver picks up the right page.</li>
 </ul>
-<h3 id="changed_25">Changed</h3>
+<h3 id="changed_28">Changed</h3>
 <ul>
 <li><strong><code>prompt/javascript/fs.js</code></strong> — appended <code>&amp;game=&lt;key&gt;</code> to MSX2 <code>.bat</code> launchers (including SD Snatcher's <code>?ANY=…</code> disk-set variant). Pure documentation glue.</li>
 </ul>
-<h3 id="added_27">Added</h3>
+<h3 id="added_28">Added</h3>
 <ul>
 <li><strong>MSX1 gamedocs (10 pages)</strong> at <code>gamedocs/webmsx/</code> — 10 Konami MSX cartridges covering the formative 1983-86 era. <code>.bat</code> launchers append <code>&amp;game=&lt;key&gt;</code> because WebMSX's <code>?ROM=</code> is uppercase and <code>URLSearchParams.get('rom')</code> wouldn't match.</li>
 </ul>
-<h3 id="changed_26">Changed</h3>
+<h3 id="changed_29">Changed</h3>
 <ul>
 <li><strong><code>prompt/javascript/fs.js</code></strong> — appended <code>&amp;game=&lt;key&gt;</code> to MSX1 <code>.bat</code> launchers (documentation glue).</li>
 </ul>
-<h3 id="added_28">Added</h3>
+<h3 id="added_29">Added</h3>
 <ul>
 <li><strong>Commodore 128 gamedocs (10 pages)</strong> at <code>gamedocs/c128/</code>. Each page indicates VICII (40-col) vs VDC (80-col), matching the <code>video</code> field in <code>games.json</code>.</li>
 <li><strong>Commodore Plus/4 gamedocs (10 pages)</strong> at <code>gamedocs/plus4/</code>. Auto-linked from each game's controls badge.</li>
@@ -710,11 +744,11 @@ save/load state.</p>
 <ul>
 <li><strong>jsvecx upstream alternate entry points</strong> at <code>systems/jsvecx/</code> — <code>rtm.html</code>, <code>seamless.html</code>, <code>vectrex.html</code>, two overlays + 7 JS/CSS dependents (~127 KB). Kept <code>js/rtm.js</code> + <code>css/rtm.css</code> (Show Chips), full <code>bios/</code>/<code>img/</code>/<code>roms/</code>. HTTP 200 on <code>index.html</code> + all menu URLs confirmed post-delete.</li>
 </ul>
-<h3 id="added_29">Added</h3>
+<h3 id="added_30">Added</h3>
 <ul>
 <li><strong><code>systems/apple1/controls.html</code></strong> — Apple I keyboard / Woz Monitor / Integer BASIC reference. Resolves the 404 in the Woz Monitor prompt corner link.</li>
 </ul>
-<h3 id="fixed_24">Fixed</h3>
+<h3 id="fixed_25">Fixed</h3>
 <ul>
 <li><strong>Third doc-sync audit (08/06/2026)</strong> — ATTRIBUTION ElkJS jQuery row had wrong path + version; README Vectrex URL pattern missing <code>&amp;game=&lt;key&gt;</code>; wiki MSX list still mentioned MSX2+; MAX cart count, jsvecx ROM count, gamedocs progress numbers refreshed.</li>
 <li><strong>Second doc-sync audit (07/06/2026)</strong> — README atari800 "10 disk/cart titles" was 11 (Choplifter added); MAX line "8 .crt carts" → 10 carts (Mole Attack + Money Wars); atari800 AltirraOS clarified as embedded in WASM not separate ROM; EmulatorJS sharing line missing FCEUmm; ATTRIBUTION rows for the two nonexistent AltirraOS <code>.rom</code> paths removed.</li>
@@ -723,19 +757,19 @@ save/load state.</p>
 <li><strong><code>systems/pet/controls.html</code> was stale</strong> — described 4032/BASIC 4 with <code>DIRECTORY</code>/<code>DLOAD"name"</code> shortcuts that don't exist in BASIC 2. Rewritten for BASIC 2 with the PETSCII Robots 4032 override called out.</li>
 <li><strong><code>systems/cpc/controls.html</code> was stale</strong> — described CrocoDS + EJS toolbar; actual bundle is tiny8bit. Rewritten to match the real bundle (PgUp/PgDn→Space remap, page-reload reset, no in-canvas reset button).</li>
 </ul>
-<h3 id="changed_27">Changed</h3>
+<h3 id="changed_30">Changed</h3>
 <ul>
 <li><strong>Top-level EMULATOR LAUNCHER spacing</strong> — added a blank row between each entry. Previously only the WIKI entry had a separator above it.</li>
 </ul>
-<h3 id="added_30">Added</h3>
+<h3 id="added_31">Added</h3>
 <ul>
 <li><strong>MAX gets 2 more carts: Mole Attack + Money Wars</strong> — bank-extracted from the MultiMax EasyFlash compilation by screen-code PETSCII fingerprinting (bank 17 = "MOLE", bank 18 = "MONEY"). Wrapped as 8 KB Ultimax-mode <code>.crt</code>s. Commercial count: 8 → 10. Tried Mr. T.N.T. first (turned out to be a 1983 HesWare C64 cart, not MAX); Sea Wolf + Le Mans present on MultiMax but their banks lack identifiable strings.</li>
 </ul>
-<h3 id="changed_28">Changed</h3>
+<h3 id="changed_31">Changed</h3>
 <ul>
 <li><strong><code>systems/atari800/play.html</code> canvas fills viewport</strong> at 4:3 (<code>width: min(98vw, calc(98vh * 4 / 3))</code>) instead of rendering at native 336×240. Tried <code>transform: scale(2)</code> first; canvas overflowed <code>body{overflow:hidden}</code> and only a corner pixel showed.</li>
 </ul>
-<h3 id="added_31">Added</h3>
+<h3 id="added_32">Added</h3>
 <ul>
 <li><strong>Choplifter! added to Atari 400</strong> — 16K Brøderbund cart (1982), <code>cartType: 2</code>. 11th game in the Atari 400 menu. New <code>gamedocs/atari800/chopliftr.html</code> (shared between 400 + 800XL).</li>
 <li><strong>Commodore 16, C64, MAX, VIC-20, PET gamedocs (10 each)</strong> — same template as the other platforms. C64 notable: Impossible Mission's "Stay a while" digitised sample puzzle, Elite's full Cobra Mk III keymap, Wizball's colour-mix mechanic, Last Ninja walk/combat toggle. PET notable: PETSCII Robots' per-game <code>model: 4032</code> override and ~30 s authentic 1541 boot sound.</li>
@@ -746,7 +780,7 @@ save/load state.</p>
 <li><strong>Orphan upstream doc files</strong> — <code>_shared-ejs/ejs/data/compression/README.md</code>, <code>localization/README.md</code>, <code>jsbeeb/dist/roms/README</code>. Per the no-docs-in-bundles rule.</li>
 <li><strong>Half-done JtyOne ZX80 wiring</strong> — reverted. JtyOne's ZX80 mode has a display-sync bug (the <code>d</code> state machine is gated on <code>0 != zx81opts.machine</code>, so machine==0 never updates). zame-dev's <code>js-zx8x</code> works but lacks an SPDX header.</li>
 </ul>
-<h3 id="added_32">Added</h3>
+<h3 id="added_33">Added</h3>
 <ul>
 <li><strong>ZX81 gamedocs (10 pages)</strong> at <code>gamedocs/jtyone/</code>. 3D Monster Maze page notes the no-sound design; Chess (Psion) covers the coordinate-notation parser. <strong>Sinclair family now complete in the gamedocs sweep.</strong></li>
 <li><strong>ZX Spectrum gamedocs (10 pages)</strong> at <code>gamedocs/jsspeccy/</code>. Knight Lore documents the Filmation isometric engine; Skool Daze covers the four-teacher puzzle.</li>
@@ -809,7 +843,7 @@ save/load state.</p>
 <li><strong><code>&lt;noscript&gt;</code> overlay</strong> on all HTML entry points — fixed-position black-on-grey monospace.</li>
 <li><strong>Single-page boot animation</strong> — AMIBIOS POST, 4 s pause, System Configuration table, EMULATOR LAUNCHER drawn below (no <code>cls</code>, table stays on screen alongside the menu like a real DOS boot). Tseng Labs ET4000 video BIOS line prepended; memory test animates as a 4-digit counter every 32 ms to <code>8064 KB OK</code>.</li>
 </ul>
-<h3 id="changed_29">Changed</h3>
+<h3 id="changed_32">Changed</h3>
 <ul>
 <li><strong>ATTRIBUTION.md bezel section expanded</strong> — the 8 OBS bezels were sourced via Reddit/forums; EXIF stripped, original photographers unreachable. Hardware identified by visible markings (Microvitec CUB, IBM 5153 CGA, Commodore 1084S, Apple Monitor ///). Wikimedia replacement candidates logged where available.</li>
 <li><strong>Amstrad bezel</strong> — desk-shot swapped for a tight CTM640 cutout (Wikimedia Commons CC-BY-SA 2.5, Bill Bertram). Screen cutout now dominates the frame.</li>
@@ -883,7 +917,7 @@ save/load state.</p>
 <li><strong>Stale <code>c:\changes.bat</code></strong> — never referenced; superseded by this file.</li>
 <li><strong><code>systems/jsbeeb/index.html</code></strong> Google Analytics — <code>gtag</code> snippet for <code>G-Z9ZN3S7XRE</code> stripped; CSP tightened. <code>dist/</code> rebuilt.</li>
 </ul>
-<h3 id="fixed_25">Fixed</h3>
+<h3 id="fixed_26">Fixed</h3>
 <ul>
 <li><strong>C64 Elite stuck on Lenslok purple-screen loop</strong> — bundled <code>elite.d64</code> was the original 1985 Firebird release, which hangs on its Lenslok protection screen. Swapped for a protection-free, flicker-free build.</li>
 <li><strong>5 disk-swap-requiring games swapped</strong> for single-disk alternatives. Surfaced by user reporting Trinity (C128 D71 dual-sided) prompted for disk B mid-session.</li>

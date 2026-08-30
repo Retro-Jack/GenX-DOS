@@ -1,6 +1,10 @@
 ## [Unreleased]
 
 ### Changed
+- **`Sinclair.png` is now `TV-vintage.png`.** The file is a generic vintage television, and it is shared by six bundles from five different manufacturers — the TI-99/4A, ZX Spectrum, ZX81, MSX1, MSX2 and the Tandy CoCo. Naming it after one of them was misleading: nobody editing the CoCo page would think to look for "Sinclair", and the code comments in all six already described it as "the shared vintage TV". Now the filename and the prose agree.
+  The rest of the set was checked at the same time and left alone. `Acorn.png` (a Microvitec CUB), `Apple.png` (an Apple Monitor ///), `Commodore.png`, `PC.png` (an IBM 5153) and `nes.png` are each used by one machine or one manufacturer's family, so the brand name is a fair label even where the object is a monitor rather than a computer. `70s.png` and `80s.png` describe period televisions and go to the consoles.
+- **The unused CPC 6128 bezel is removed.** `Amstrad_CPC_128.png` was added while trying it in place of the 464 photo, then dropped; it stays in history at `9637225` if wanted, along with its measurements — a clean enclosed cutout of 439x351 at 369,58 with a 3px feather, whose aspect is 1.25 against the CPC's 4:3.
+
 - **The Acorn Electron's picture is 1.3% wider**, at the largest rectangle that actually fits inside its bezel's rounded cutout: `10.24%/10.169%/80%/78.41%`, measured rather than eyeballed. The previous `10.96%/10.97%/78.69%/76.69%` was very nearly right already.
   Recorded because the first attempt got it wrong in a way worth not repeating. The cutout's *bounding box* is 738x623 and the canvas was set to that, which looked like a 40px-per-side improvement and was really a regression: the hole is a rounded rectangle, and the Electron's addressable area runs edge to edge with no screen border, so the overshoot clipped real characters — the boot banner came up as "orn Electron" and "3ASIC". What fits a rounded hole is the largest **inscribed** rectangle, not the bbox. The CoCo tolerated being pushed proud of its hole only because what spilled over was screen border; the Electron has none to spend.
 

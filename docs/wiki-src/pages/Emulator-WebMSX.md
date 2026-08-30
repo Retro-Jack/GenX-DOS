@@ -31,7 +31,7 @@ WebMSX exposes the running machine as `WMSX.room.machine`, with `saveState(true)
 
 ## The CRT bezel
 
-WebMSX (`SCREEN_RESIZE_DISABLED: false`) sizes `#wmsx-screen-canvas` to fit its container, so the MSX takes the shared **`Sinclair.png`** vintage-TV bezel like the Spectrum/CoCo: `#wmsx` is pinned into the screen hole and the canvas is forced to fill it (`transform: translate(8px, -10px) scale(0.842)`). No barrel/fisheye — the MSX picture reads better flat.
+WebMSX (`SCREEN_RESIZE_DISABLED: false`) sizes `#wmsx-screen-canvas` to fit its container, so the MSX takes the shared **`TV-vintage.png`** vintage-TV bezel like the Spectrum/CoCo: `#wmsx` is pinned into the screen hole and the canvas is forced to fill it (`transform: translate(8px, -10px) scale(0.842)`). No barrel/fisheye — the MSX picture reads better flat.
 
 ## Cart loading
 
@@ -53,5 +53,5 @@ systems/msx1/   (and an identical systems/msx2/)
 
 ## Related
 
-- [[Emulator-XRoar-CoCo]] — same `Sinclair.png` bezel
+- [[Emulator-XRoar-CoCo]] — same `TV-vintage.png` bezel
 - [[Emulators]] — index

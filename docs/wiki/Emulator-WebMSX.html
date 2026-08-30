@@ -48,7 +48,7 @@
 <h2 id="save--load-state">Save / load state</h2>
 <p>WebMSX exposes the running machine as <code>WMSX.room.machine</code>, with <code>saveState(true)</code> / <code>loadState(state)</code> — the same complete state API its netplay uses. The wrapper registers a <code>GenXStateAdapter</code> around those two calls and <code>_shared/genx-savestate-std.js</code> turns it into the bottom-left <strong>save</strong> / <strong>load</strong> menus. The state is a plain object graph (typed arrays included), so the shared core's <code>structuredClone</code> + typed-array-tagged JSON handle the in-memory slots, which persist to IndexedDB (five per game).</p>
 <h2 id="the-crt-bezel">The CRT bezel</h2>
-<p>WebMSX (<code>SCREEN_RESIZE_DISABLED: false</code>) sizes <code>#wmsx-screen-canvas</code> to fit its container, so the MSX takes the shared <strong><code>Sinclair.png</code></strong> vintage-TV bezel like the Spectrum/CoCo: <code>#wmsx</code> is pinned into the screen hole and the canvas is forced to fill it (<code>transform: translate(8px, -10px) scale(0.842)</code>). No barrel/fisheye — the MSX picture reads better flat.</p>
+<p>WebMSX (<code>SCREEN_RESIZE_DISABLED: false</code>) sizes <code>#wmsx-screen-canvas</code> to fit its container, so the MSX takes the shared <strong><code>TV-vintage.png</code></strong> vintage-TV bezel like the Spectrum/CoCo: <code>#wmsx</code> is pinned into the screen hole and the canvas is forced to fill it (<code>transform: translate(8px, -10px) scale(0.842)</code>). No barrel/fisheye — the MSX picture reads better flat.</p>
 <h2 id="cart-loading">Cart loading</h2>
 <p>Carts auto-load by URL — every MSX game in this build is a cartridge that boots straight to play (no disk titles). The menu links pass <code>?ROM=games/&lt;name&gt;.zip&amp;M=MSX1</code> (or <code>&amp;M=MSX2</code>).</p>
 <h2 id="two-bundles-one-engine">Two bundles, one engine</h2>
@@ -62,7 +62,7 @@
 </code></pre>
 <h2 id="related">Related</h2>
 <ul>
-<li><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a> — same <code>Sinclair.png</code> bezel</li>
+<li><a href="Emulator-XRoar-CoCo.html">Emulator-XRoar-CoCo</a> — same <code>TV-vintage.png</code> bezel</li>
 <li><a href="Emulators.html">Emulators</a> — index</li>
 </ul>
   </main>
