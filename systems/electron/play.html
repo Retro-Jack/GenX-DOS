@@ -26,8 +26,18 @@
      1. .screen-bg  — solid black backdrop slightly bigger than the canvas
      2. canvas      — the actual emulator surface
      3. .bezel-img  — Acorn.png monitor PNG on top, cutout reveals canvas
-     Acorn.png is 835x719 (aspect 1.161); cutout at
-     left 6.71%, top 6.82%, w 87.19%, h 84.98%. */
+     Acorn.png is 835x719 (aspect 1.161). Cutout bbox, flood-filled from the
+     centre of the hole: 51,44..788,666 = 738x623. Do NOT size the canvas to
+     that. The hole is a rounded rectangle, so what fits is the largest
+     inscribed rectangle -- 85,73..753,637, i.e. 10.24%/10.169%/80%/78.41% --
+     and that is what the canvas is set to.
+     The Electron matters here in a way the CoCo does not: its addressable area
+     runs edge to edge with no screen border, so any overshoot clips real
+     content rather than border. Pushing the canvas out to the cutout bbox on
+     30/08/2026 cut the leftmost character column -- the boot banner came up as
+     "orn Electron" and "3ASIC" -- and was reverted. The magenta ring visible
+     between this rectangle and the hole's curve is the corners, and is expected:
+     it cannot be filled without losing characters. */
   .bezel-wrap {
     position: relative;
     /* Cap height at 100dvh - 120px so ~60px of wallpaper shows above and
@@ -44,10 +54,10 @@
   }
   #ElkJsOutput {
     position: absolute;
-    left: 10.96%;
-    top: 10.97%;
-    width: 78.69%;
-    height: 76.69%;
+    left: 10.24%;
+    top: 10.169%;
+    width: 80%;
+    height: 78.41%;
     image-rendering: pixelated;
     z-index: 2;
   }

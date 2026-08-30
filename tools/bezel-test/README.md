@@ -12,16 +12,39 @@ Not every bundle boots to BASIC. Known routes:
 
     bbcmicro   dist/index.html?disc=blank.ssd   (no param 404s on elite.ssd;
                                                  jsbeeb prepends discs/ itself)
+    bbcmaster  dist/?model=Master&disc1=blank.ssd
+               ^ the model matters: without it you get a Model B, banner
+                 "BBC Computer 32K" instead of "Acorn MOS". Not a bundle bug —
+                 the menu links all pass model=Master.
+    electron   play.html                        (boots straight to BASIC)
     xroar      play.html                        (boots straight to BASIC)
     jsspeccy   play.html, then click to start
 
-### First finding from the cards
+### Findings — Acorn (done 30/08/2026)
 
-**BBC Micro passes.** The card showed the picture well inset from the tube, which
-looked like a gap — but the canvas is exactly the bezel container's size, so it
-covers the whole glass and that band is the BBC's own black border, symmetric at
-138px left and 143px right. Without the card it was indistinguishable from the
-CoCo's fault.
+**BBC Micro and BBC Master pass.** The card showed the picture well inset from
+the tube, which looked like a gap — but the canvas is exactly the bezel
+container's size, so it covers the whole glass and that band is the BBC's own
+black border, symmetric at 138px left and 143px right. Both models identical.
+Without the card this was indistinguishable from the CoCo's real fault.
+
+**Acorn Electron passes** — and it produced the trap worth recording. The magenta
+backing showed a thick ring out to the glass, which read as a 40px-per-side gap
+against the cutout's bounding box of 738x623. Sizing the canvas to that bbox was
+a regression, not a fix: the hole is a **rounded** rectangle, and the Electron's
+addressable area runs edge to edge with no screen border, so the overshoot clipped
+real characters — the boot banner came up as "orn Electron" and "3ASIC". Jack
+spotted it immediately.
+
+**Compare a bezel's picture against the largest rectangle INSCRIBED in the hole,
+not the hole's bounding box.** For `Acorn.png` that is 85,73..753,637, i.e.
+`10.24%/10.169%/80%/78.41%` — against which the Electron's original
+`10.96%/10.97%/78.69%/76.69%` was already within 1.3%. Magenta visible between
+the inscribed rectangle and the hole's curve is the corners, and is expected.
+
+The CoCo could be pushed proud of its hole only because what spilled over was
+screen *border*. A machine whose picture has no border margin has nothing to
+spend, so check what the overshoot would cost before taking it.
 
 Use with the magenta trick — set `.screen-bg` to magenta and the three failure
 modes separate cleanly. See the `feedback-magenta-bezel-check` memory.
@@ -52,7 +75,7 @@ details — that is exactly the class of thing recall gets wrong.
 | `vic20.bas` | VIC-20 | `POKE 36879` | drafted |
 | `c16.bas`, `plus4.bas` | C16 / Plus4 | `COLOR` | **suspect** — assumed source 4 is the border, as on the C128; TED numbers differently |
 | `js99er.bas` | TI-99/4A | `CALL SCREEN` colours border *and* background together, so the playfield is filled with a black-on-black character | drafted |
-| `bbcmicro.bas`, `bbcmaster.bas`, `electron.bas` | BBC / Electron | **no border register** — border is always black, so the card is a white fill with a black inset, marking the addressable edge | **VERIFIED on bbcmicro 30/08/2026**; bbcmaster and electron share the dialect and the program, spot-check outstanding |
+| `bbcmicro.bas`, `bbcmaster.bas`, `electron.bas` | BBC / Electron | **no border register** — border is always black, so the card is a white fill with a black inset, marking the addressable edge | **ALL THREE VERIFIED 30/08/2026** |
 | `apple2.bas` | Apple ][+ | no border; inverse-space frame | drafted |
 | `pet.bas` | PET | no border; reverse-video frame | **suspect** — positions with `TAB`, but PET BASIC 2.0 positions with `CHR$` cursor codes |
 | `trs80.bas` | TRS-80 Model III | monochrome; `SET()` frame at the graphics edge | drafted |
