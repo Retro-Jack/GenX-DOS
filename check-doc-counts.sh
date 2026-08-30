@@ -136,6 +136,30 @@ done <<< "$STALE_PROSE"
 [ "$prose_hits" = 0 ] && ok "stale wording" "no retired phrasing found"
 echo
 
+# ---- retired asset filenames -------------------------------------------
+# Renamed files leave references behind, and a stale one is invisible: the
+# page just renders with no bezel. The blocklist above cannot catch these
+# because it does not scan play.html or prompt/, which is exactly where bezel
+# references live -- hence a separate check with its own haystack. CHANGELOG.md
+# and the generated docs/wiki/ are excluded: historical entries correctly name
+# the files as they were called at the time.
+RETIRED_ASSETS="Sinclair.png Acorn.png Apple.png PC.png NES.png Pet.png
+gamegear.png gbc.png lynx.png TRS80-3.png Model100.png TRS80.png
+Amstrad_CPC_128.png"
+retired_hits=0
+for name in $RETIRED_ASSETS; do
+  hits=$(grep -rln -- "$name" \
+           systems/ prompt/ tools/ docs/wiki-src/pages \
+           README.md ATTRIBUTION.md index.html docs/article/index.html \
+           2>/dev/null | grep -v _Portable | grep -c . )
+  if [ "$hits" != 0 ]; then
+    bad "retired asset" "\"$name\" was renamed but is still referenced in $hits file(s)"
+    retired_hits=1
+  fi
+done
+[ "$retired_hits" = 0 ] && ok "retired assets" "no references to renamed files"
+echo
+
 # ---- social card: an image, so just restate what it should read ---------
 echo "Social card (docs/images/genx-social.png) — cannot be parsed; its stats"
 echo "  line should read:  $GAMES games · $SUBSYS systems · 100% self-hosted"
