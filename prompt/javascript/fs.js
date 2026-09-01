@@ -3008,11 +3008,42 @@ var fs = [
                     directories: [
                       {
                         name: 'GAMES',
-                        directories: [],
+                        directories: [
+                          {
+                            name: 'DOS',
+                            directories: [],
+                            files: [
+                              {
+                                name: 'menu.bat',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º      TRS-80  MODEL III  -  SYSTEM DISKS     º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º    Choose a disk operating system to boot   º\necho                 º                                             º\necho                 º   1.  TRSDOS 1.3           (1981)  TRSDOS   º\necho                 º                                             º\necho                 º   2.  LDOS 5.3.1           (1991)  LDOS     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                              },
+                              {
+                                name: '0.bat',
+                                data: 'echo off\ncd ..\nmenu\n',
+                              },
+                              {
+                                name: '1.bat',
+                                data: 'trsdos\n',
+                              },
+                              {
+                                name: '2.bat',
+                                data: 'ldos\n',
+                              },
+                              {
+                                name: 'trsdos.bat',
+                                link: '../systems/trs80/play.html?game=trsdos',
+                              },
+                              {
+                                name: 'ldos.bat',
+                                link: '../systems/trs80/play.html?game=ldos',
+                              },
+                            ],
+                          },
+                        ],
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          TRS-80  MODEL III  GAMES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Galaxy Invasion      (1980)  GALAXY   º\necho                 º   2.  Cosmic Fighter       (1980)  COSMIC   º\necho                 º   3.  Attack Force         (1980)  ATTACK   º\necho                 º   4.  Super Nova           (1980)  SUPERNOV º\necho                 º   5.  Defense Command      (1981)  DEFENSE  º\necho                 º   6.  Robot Attack         (1981)  ROBOT    º\necho                 º   7.  Armored Patrol       (1981)  ARMORED  º\necho                 º   8.  Sea Dragon           (1982)  SEADRGN  º\necho                 º   9.  Crazy Painter        (1982)  CRAZYPNT º\necho                 º  10.  Space Castle         (1982)  CASTLE   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          TRS-80  MODEL III  GAMES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Galaxy Invasion      (1980)  GALAXY   º\necho                 º   2.  Cosmic Fighter       (1980)  COSMIC   º\necho                 º   3.  Attack Force         (1980)  ATTACK   º\necho                 º   4.  Super Nova           (1980)  SUPERNOV º\necho                 º   5.  Defense Command      (1981)  DEFENSE  º\necho                 º   6.  Robot Attack         (1981)  ROBOT    º\necho                 º   7.  Armored Patrol       (1981)  ARMORED  º\necho                 º   8.  Sea Dragon           (1982)  SEADRGN  º\necho                 º   9.  Crazy Painter        (1982)  CRAZYPNT º\necho                 º  10.  Space Castle         (1982)  CASTLE   º\necho                 º                                             º\necho                 º  11.  System disks                 DOS      º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -3097,6 +3128,14 @@ var fs = [
                           {
                             name: 'castle.bat',
                             link: '../systems/trs80/play.html?game=castle',
+                          },
+                          {
+                            name: '11.bat',
+                            data: 'dos\n',
+                          },
+                          {
+                            name: 'dos.bat',
+                            data: 'echo off\ncd dos\nmenu\n',
                           },
                         ],
                       },

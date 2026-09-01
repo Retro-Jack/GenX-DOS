@@ -154,7 +154,11 @@
           tabindex="0"
         ></canvas>
       </div>
-      <img class="bezel-img" src="../_shared/bezels/TRS-80-Model-III.png" alt="" />
+      <img
+        class="bezel-img"
+        src="../_shared/bezels/TRS-80-Model-III.png"
+        alt=""
+      />
     </div>
 
     <!-- sdltrs.js defines the createSDLTRS() factory; it MUST load before the
@@ -190,14 +194,32 @@
         }
         document.title = 'Tandy TRS-80';
 
-        let cmdBytes;
-        try {
-          cmdBytes = new Uint8Array(
-            await (await fetch(game.rom)).arrayBuffer(),
-          );
-        } catch (e) {
-          fail('Failed to load program: ' + e.message);
-          return;
+        // An entry may carry a rom (a .cmd loaded straight into memory) or a
+        // disk (a system disk in drive 0, which the machine boots). Menu entry
+        // 11 uses the second: a diskless Model III stops at the ROM's
+        // "Diskette?" prompt rather than reaching BASIC, so the disk is how it
+        // gets there.
+        let diskBytes = null;
+        if (game.disk) {
+          try {
+            diskBytes = new Uint8Array(
+              await (await fetch(game.disk)).arrayBuffer(),
+            );
+          } catch (e) {
+            fail('Failed to load system disk: ' + e.message);
+            return;
+          }
+        }
+        let cmdBytes = null;
+        if (game.rom) {
+          try {
+            cmdBytes = new Uint8Array(
+              await (await fetch(game.rom)).arrayBuffer(),
+            );
+          } catch (e) {
+            fail('Failed to load program: ' + e.message);
+            return;
+          }
         }
         let romBytes;
         try {
@@ -227,11 +249,13 @@
             '0',
             '-scale',
             '1',
-            '/game.cmd',
-          ],
+          ]
+            .concat(diskBytes ? ['-disk0', '/disk0.dsk'] : [])
+            .concat(cmdBytes ? ['/game.cmd'] : []),
           preRun: [
             function (m) {
-              m.FS.writeFile('/game.cmd', cmdBytes);
+              if (cmdBytes) m.FS.writeFile('/game.cmd', cmdBytes);
+              if (diskBytes) m.FS.writeFile('/disk0.dsk', diskBytes);
               m.FS.writeFile('/model3.rom', romBytes);
             },
           ],

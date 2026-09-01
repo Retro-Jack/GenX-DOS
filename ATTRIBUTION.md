@@ -240,6 +240,17 @@ copyright holders.
 | `systems/intv/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
 | `systems/odyssey2/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. |
 
+### Disk operating systems
+
+The TRS-80 Model III has BASIC in ROM, but a diskless machine stops at the
+boot ROM's `Diskette?` prompt, so the menu's **System disks** entry boots one
+of two period disk operating systems instead.
+
+| File | System | Copyright and permission |
+| --- | --- | --- |
+| `systems/trs80/disks/trsdos13.dmk` | TRSDOS 1.3, Model III (Jul 1, 1981) | © 1980 Tandy Corporation. Radio Shack's own DOS, shipped with disk-equipped Model IIIs. **No public distribution grant exists**, and it is included on the same footing as `systems/trs80/model3.rom`. |
+| `systems/trs80/disks/ld3-531.dsk` | LDOS 5.3.1, Model I/III (1991) | © 1991 MISOSYS, Inc. Commercial third-party DOS sold for the TRS-80 through the 1980s, many owners preferring it to TRSDOS. **Roy Soltoff grants free permission to everyone to download and use this software and documentation and to redistribute it to others, provided this notice is retained.** That notice is retained here, and this row is the retention. |
+
 ---
 
 ## Game ROMs

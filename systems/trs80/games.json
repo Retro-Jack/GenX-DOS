@@ -38,5 +38,13 @@
   "castle": {
     "title": "Space Castle (1982, Cornsoft)",
     "rom": "games/castle.cmd"
+  },
+  "trsdos": {
+    "title": "TRSDOS 1.3 (1981, Tandy)",
+    "disk": "disks/trsdos13.dmk"
+  },
+  "ldos": {
+    "title": "LDOS 5.3.1 (1991, MISOSYS)",
+    "disk": "disks/ld3-531.dsk"
   }
 }
