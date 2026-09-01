@@ -51,7 +51,15 @@
     display: block;
   }
   .screen-bg { position: absolute; left: 11.3%; top: 14.7%; width: 59.3%; height: 70.7%; background: #000; z-index: 1; }
-  #display { position: absolute; left: 13.3%; top: 16.7%; width: 55.3%; height: 66.7%; overflow: hidden; z-index: 2; }
+  /* Clip box reaches the OUTER edge of the cutout's 3px feather
+     (208,169..1089,864 measured from the PNG's alpha), not its inner edge.
+     Clipped to the inner edge, the feather's part-transparent ink has only
+     .screen-bg behind it, which shows as a fringe round the picture the
+     moment that backing is anything but black. */
+  /* margin:0 is load-bearing: apple2js's own #display rule sets margin:5px auto,
+     which on an absolutely positioned box shifts it 5px down and puts the clip
+     box below the cutout's top edge, so the backing shows through the feather. */
+  #display { position: absolute; left: 13.14%; top: 16.36%; width: 55.717%; height: 67.377%; margin: 0; overflow: hidden; z-index: 2; }
   .overscan { width: 100%; height: 100%; padding: 0; margin: 0; border: 0; border-radius: 0; background: #000; }
   #screen { width: 100% !important; height: 100% !important; display: block; image-rendering: pixelated; image-rendering: crisp-edges; transform: scale(1.01); }
   .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }

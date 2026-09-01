@@ -3,213 +3,334 @@
      Part of GenX-DOS. This page loads a GPL-licensed emulator engine, so it is
      GPL-3.0-or-later rather than the repo's CC BY-NC. -->
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' data: blob:; media-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'">
-  <script src="../_shared/genx-bezel-ready.js"></script>
-  <script src="../_shared/genx-audio-banner.js"></script>
-  <meta charset="utf-8" /><link rel="shortcut icon" href="../_shared/favicon.ico"><link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sinclair ZX81</title>
-  <style>
-    /* CRT bezel — shared vintage TV (TV-Vintage.png, 1362x914, screen hole
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' data: blob:; media-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <script src="../_shared/genx-bezel-ready.js"></script>
+    <script src="../_shared/genx-audio-banner.js"></script>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../_shared/favicon.ico" />
+    <link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sinclair ZX81</title>
+    <style>
+      /* CRT bezel — shared vintage TV (TV-Vintage.png, 1362x914, screen hole
        8.08%/12.14%/65.35%×73.96%), same as the ZX Spectrum (jsspeccy) bundle.
-       The flat ZX81 canvas is barrel-distorted (#crtbulge) to bow into the
-       curved glass; the bezel on top crops the spill to the screen shape. */
-    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; color: #fff; font-family: monospace; }
-    body { display: flex; align-items: center; justify-content: center; }
-    .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1362 / 914)); aspect-ratio: 1362 / 914; }
-    .screen-bg { position: absolute; left: 6.6%; top: 10.6%; width: 68.4%; height: 77.0%; background: #000; z-index: 1; }
-    #emulator_canvas { position: absolute; left: 8.08%; top: 12.14%; width: 65.35% !important; height: 73.96% !important; image-rendering: pixelated; background: #000; z-index: 2; transform: translate(8px, 10px) scale(1.155); filter: url(#crtbulge); }
-    #emulator_status { display: none; }
-    .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
-    .err { padding: 20px; }
-  </style>
-</head>
-<body>
-  <noscript><div class="gx-noscript">
-    <div class="gx-noscript-title">JavaScript Required</div>
-    <div>This site is a client-side DOS terminal and emulator suite.</div>
-    <div>It needs JavaScript to run.</div>
-    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
-  </div></noscript>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <filter id="crtbulge" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox">
-      <feImage href="../_shared/textures/crt-barrel.png" preserveAspectRatio="none" x="0" y="0" width="1" height="1" result="dmap"/>
-      <feDisplacementMap in="SourceGraphic" in2="dmap" scale="-0.08" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </svg>
-  <div class="bezel-wrap">
-    <div class="screen-bg"></div>
-    <canvas id="emulator_canvas"></canvas>
-    <img class="bezel-img" src="../_shared/bezels/TV-Vintage.png" alt="">
-  </div>
-  <span id="emulator_status">&nbsp;</span>
-  <script>
-    // USB gamepad → keyboard maps, one per game. JtyOne listens on document
-    // and decodes e.key (single chars) with an e.keyCode fallback, so the
-    // shim's defaults work as-is. This block must run before the loader
-    // below — it rewrites ?game= to ?tzx= via replaceState. The three
-    // typed-command games (blkcryst, cityxon, 1kchessk, 1kchessq) get no map.
-    (function () {
-      var K = {
-        one:   { key: '1', code: 'Digit1', keyCode: 49 },
-        five:  { key: '5', code: 'Digit5', keyCode: 53 },
-        six:   { key: '6', code: 'Digit6', keyCode: 54 },
-        seven: { key: '7', code: 'Digit7', keyCode: 55 },
-        eight: { key: '8', code: 'Digit8', keyCode: 56 },
-        zero:  { key: '0', code: 'Digit0', keyCode: 48 },
-        A: { key: 'a', code: 'KeyA', keyCode: 65 },
-        C: { key: 'c', code: 'KeyC', keyCode: 67 },
-        K: { key: 'k', code: 'KeyK', keyCode: 75 },
-        D: { key: 'd', code: 'KeyD', keyCode: 68 },
-        Q: { key: 'q', code: 'KeyQ', keyCode: 81 },
-        P: { key: 'p', code: 'KeyP', keyCode: 80 },
-        V: { key: 'v', code: 'KeyV', keyCode: 86 },
-        W: { key: 'w', code: 'KeyW', keyCode: 87 },
-        X: { key: 'x', code: 'KeyX', keyCode: 88 },
-        E: { key: 'e', code: 'KeyE', keyCode: 69 },
-        S: { key: 's', code: 'KeyS', keyCode: 83 },
-        H: { key: 'h', code: 'KeyH', keyCode: 72 },
-        J: { key: 'j', code: 'KeyJ', keyCode: 74 },
-        U: { key: 'u', code: 'KeyU', keyCode: 85 },
-        Y: { key: 'y', code: 'KeyY', keyCode: 89 },
-        space: { key: ' ', code: 'Space', keyCode: 32 }
-      };
-      var cursors = { left: K.five, right: K.eight, up: K.seven, down: K.six };
-      var pads = {
-        // Face buttons 0=A 1=B 2=X 3=Y. The pad is gameplay only — no Start
-        // button is mapped (use the keyboard for a game's title/start).
-        galaxian: { axes: { left: K.five, right: K.eight },
-                    buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero } },
-        frogger:  { axes: cursors,
-                    buttons: { 0: K.seven, 1: K.seven, 2: K.seven, 3: K.seven } },
-        mazerace: { axes: cursors,
-                    buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero } },
-        gp3d:     { axes: cursors,
-                    buttons: { 0: K.seven, 1: K.six } },
-        // Menu keys verified from the disassembly: K shows instructions, C
-        // proceeds (intro, and again at the death screen), A restarts (the
-        // tape's two NEW tokens are patched to RUN so A can never strand
-        // the player at a dead BASIC prompt). In-game the code only reads
-        // 5/7/8. The on-screen STOP/LIST/CONT labels are patched to
-        // "A"/"K"/"C".
-        monstmze: { axes: { left: K.five, right: K.eight, up: K.seven },
-                    buttons: { 0: K.seven, 1: K.C, 2: K.K, 3: K.seven } },
-        // 3D Defender's four keyboard zones emulate a joystick, so a straight
-        // cardinal needs two zones at once — the shim's multi-key directions
-        // compose them. Distinct keys per direction (all from the right zone
-        // range) so no key is shared between two directions on a diagonal.
-        // Vertical is inverted to match the on-screen sight (push up = sight up):
-        //   up=Q-T+Y-P · down=A-G+H-NL · left=A-G+Q-T · right=H-NL+Y-P
-        // Fire = any number-row key (one press looses a burst).
-        '3ddefend': { axes: { up:    [K.E, K.U], down:  [K.A, K.H],
-                              left:  [K.S, K.Q], right: [K.J, K.Y] },
-                      buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero } },
-        nightgun: { axes: { left: K.Q, right: K.P, up: K.one, down: K.A },
-                    buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space } }
-      };
-      var g = new URLSearchParams(location.search).get('game');
-      if (g && pads[g]) window.GenXGamepadMap = pads[g];
-
-      // Per-game key allowlist — a FALLBACK, not the default. On a ZX81 every
-      // key is live BASIC (Space is BREAK, a stray key can NEW the program),
-      // so an entry swallows keys with no in-game function. Reach for it only
-      // if a stray key actually drops a game to BASIC in play — it can also
-      // fight the pad. The games below are the ones that needed it; new and
-      // typed-command games get none.
-      var K5 = 53, K6 = 54, K7 = 55, K8 = 56, K0 = 48;
-      var AL = 37, AU = 38, AR = 39, AD = 40; // arrows → 5/7/8/6
-      var allow = {
-        monstmze: [K5, K7, K8, AL, AU, AR, 67, 75, 65, 89],   // 5/7/8, C K A Y
-        nightgun: [49, 50, 51, 52, K5, K6, K7, K8, 57, K0,    // 1-0: sight up
-                   65, 83, 68, 70, 71, 72, 74, 75, 76,        // A-L: sight down
-                   81, 87, 69, 82, 84,                        // Q-T: left
-                   89, 85, 73, 79, 80,                        // Y-P: right
-                   32, 16, AL, AU, AR, AD],                   // fire + arrows
-        galaxian: [K5, K8, K0, AL, AR],
-        frogger:  [K5, K6, K7, K8, K0, AL, AU, AR, AD],
-        gp3d:     [K5, K6, K7, K8, K0, AL, AU, AR, AD],
-        mazerace: [K5, K6, K7, K8, K0, AL, AU, AR, AD]
-      };
-      var keys = g && allow[g];
-      if (keys) {
-        var ok = {};
-        keys.forEach(function (k) { ok[k] = true; });
-        ['keydown', 'keyup'].forEach(function (ev) {
-          document.addEventListener(ev, function (e) {
-            if (!ok[e.keyCode]) {
-              e.stopImmediatePropagation();
-              e.preventDefault();
-            }
-          }, true);
-        });
+       The canvas is drawn flat: the barrel-distortion filter this page used to
+       carry was removed 02/09/2026, along with its texture. The bezel on top
+       crops the picture to the screen shape. */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #000 url('../_shared/textures/70s-bg.png') repeat !important;
+        background-size: 220px !important;
+        overflow: hidden;
+        color: #fff;
+        font-family: monospace;
       }
-
-      // Quit key: closes the game tab (prompt-launched windows are
-      // script-opened, so window.close() is allowed). If the browser
-      // refuses — a hand-typed URL — the keypress flows through to the
-      // game, whose patched NEW→RUN restarts it instead.
-      var quit = { monstmze: 65 };
-      if (g && quit[g]) {
-        document.addEventListener('keydown', function (e) {
-          if (e.keyCode === quit[g]) window.close();
-        }, true);
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-    })();
-  </script>
-  <script src="../_shared/genx-gamepad-keys.js"></script>
-  <script>
-    (async function () {
-      const params = new URLSearchParams(location.search);
-      const key = params.get('game');
-      if (key) {
-        let games;
-        try {
-          games = await (await fetch('games.json')).json();
-        } catch (e) {
-          const d = document.createElement('div');
-          d.className = 'err';
-          d.textContent = 'Failed to load games.json: ' + e.message;
-          document.body.replaceChildren(d);
-          return;
+      .bezel-wrap {
+        position: relative;
+        width: min(100vw, calc((100dvh - 120px) * 1362 / 914));
+        aspect-ratio: 1362 / 914;
+      }
+      .screen-bg {
+        position: absolute;
+        left: 6.6%;
+        top: 10.6%;
+        width: 68.4%;
+        height: 77%;
+        background: #000;
+        z-index: 1;
+      }
+      #emulator_canvas {
+        position: absolute;
+        left: 8.08%;
+        top: 12.14%;
+        width: 65.35% !important;
+        height: 73.96% !important;
+        image-rendering: pixelated;
+        background: #000;
+        z-index: 2;
+        transform: translate(8px, 10px) scale(1.155);
+      }
+      #emulator_status {
+        display: none;
+      }
+      .bezel-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        pointer-events: none;
+        z-index: 3;
+      }
+      .err {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript
+      ><div class="gx-noscript">
+        <div class="gx-noscript-title">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+      </div></noscript
+    >
+    <div class="bezel-wrap">
+      <div class="screen-bg"></div>
+      <canvas id="emulator_canvas"></canvas>
+      <img class="bezel-img" src="../_shared/bezels/TV-Vintage.png" alt="" />
+    </div>
+    <span id="emulator_status">&nbsp;</span>
+    <script>
+      // USB gamepad → keyboard maps, one per game. JtyOne listens on document
+      // and decodes e.key (single chars) with an e.keyCode fallback, so the
+      // shim's defaults work as-is. This block must run before the loader
+      // below — it rewrites ?game= to ?tzx= via replaceState. The three
+      // typed-command games (blkcryst, cityxon, 1kchessk, 1kchessq) get no map.
+      (function () {
+        var K = {
+          one: { key: '1', code: 'Digit1', keyCode: 49 },
+          five: { key: '5', code: 'Digit5', keyCode: 53 },
+          six: { key: '6', code: 'Digit6', keyCode: 54 },
+          seven: { key: '7', code: 'Digit7', keyCode: 55 },
+          eight: { key: '8', code: 'Digit8', keyCode: 56 },
+          zero: { key: '0', code: 'Digit0', keyCode: 48 },
+          A: { key: 'a', code: 'KeyA', keyCode: 65 },
+          C: { key: 'c', code: 'KeyC', keyCode: 67 },
+          K: { key: 'k', code: 'KeyK', keyCode: 75 },
+          D: { key: 'd', code: 'KeyD', keyCode: 68 },
+          Q: { key: 'q', code: 'KeyQ', keyCode: 81 },
+          P: { key: 'p', code: 'KeyP', keyCode: 80 },
+          V: { key: 'v', code: 'KeyV', keyCode: 86 },
+          W: { key: 'w', code: 'KeyW', keyCode: 87 },
+          X: { key: 'x', code: 'KeyX', keyCode: 88 },
+          E: { key: 'e', code: 'KeyE', keyCode: 69 },
+          S: { key: 's', code: 'KeyS', keyCode: 83 },
+          H: { key: 'h', code: 'KeyH', keyCode: 72 },
+          J: { key: 'j', code: 'KeyJ', keyCode: 74 },
+          U: { key: 'u', code: 'KeyU', keyCode: 85 },
+          Y: { key: 'y', code: 'KeyY', keyCode: 89 },
+          space: { key: ' ', code: 'Space', keyCode: 32 },
+        };
+        var cursors = {
+          left: K.five,
+          right: K.eight,
+          up: K.seven,
+          down: K.six,
+        };
+        var pads = {
+          // Face buttons 0=A 1=B 2=X 3=Y. The pad is gameplay only — no Start
+          // button is mapped (use the keyboard for a game's title/start).
+          galaxian: {
+            axes: { left: K.five, right: K.eight },
+            buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero },
+          },
+          frogger: {
+            axes: cursors,
+            buttons: { 0: K.seven, 1: K.seven, 2: K.seven, 3: K.seven },
+          },
+          mazerace: {
+            axes: cursors,
+            buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero },
+          },
+          gp3d: { axes: cursors, buttons: { 0: K.seven, 1: K.six } },
+          // Menu keys verified from the disassembly: K shows instructions, C
+          // proceeds (intro, and again at the death screen), A restarts (the
+          // tape's two NEW tokens are patched to RUN so A can never strand
+          // the player at a dead BASIC prompt). In-game the code only reads
+          // 5/7/8. The on-screen STOP/LIST/CONT labels are patched to
+          // "A"/"K"/"C".
+          monstmze: {
+            axes: { left: K.five, right: K.eight, up: K.seven },
+            buttons: { 0: K.seven, 1: K.C, 2: K.K, 3: K.seven },
+          },
+          // 3D Defender's four keyboard zones emulate a joystick, so a straight
+          // cardinal needs two zones at once — the shim's multi-key directions
+          // compose them. Distinct keys per direction (all from the right zone
+          // range) so no key is shared between two directions on a diagonal.
+          // Vertical is inverted to match the on-screen sight (push up = sight up):
+          //   up=Q-T+Y-P · down=A-G+H-NL · left=A-G+Q-T · right=H-NL+Y-P
+          // Fire = any number-row key (one press looses a burst).
+          '3ddefend': {
+            axes: {
+              up: [K.E, K.U],
+              down: [K.A, K.H],
+              left: [K.S, K.Q],
+              right: [K.J, K.Y],
+            },
+            buttons: { 0: K.zero, 1: K.zero, 2: K.zero, 3: K.zero },
+          },
+          nightgun: {
+            axes: { left: K.Q, right: K.P, up: K.one, down: K.A },
+            buttons: { 0: K.space, 1: K.space, 2: K.space, 3: K.space },
+          },
+        };
+        var g = new URLSearchParams(location.search).get('game');
+        if (g && pads[g]) window.GenXGamepadMap = pads[g];
+
+        // Per-game key allowlist — a FALLBACK, not the default. On a ZX81 every
+        // key is live BASIC (Space is BREAK, a stray key can NEW the program),
+        // so an entry swallows keys with no in-game function. Reach for it only
+        // if a stray key actually drops a game to BASIC in play — it can also
+        // fight the pad. The games below are the ones that needed it; new and
+        // typed-command games get none.
+        var K5 = 53,
+          K6 = 54,
+          K7 = 55,
+          K8 = 56,
+          K0 = 48;
+        var AL = 37,
+          AU = 38,
+          AR = 39,
+          AD = 40; // arrows → 5/7/8/6
+        var allow = {
+          monstmze: [K5, K7, K8, AL, AU, AR, 67, 75, 65, 89], // 5/7/8, C K A Y
+          nightgun: [
+            49,
+            50,
+            51,
+            52,
+            K5,
+            K6,
+            K7,
+            K8,
+            57,
+            K0, // 1-0: sight up
+            65,
+            83,
+            68,
+            70,
+            71,
+            72,
+            74,
+            75,
+            76, // A-L: sight down
+            81,
+            87,
+            69,
+            82,
+            84, // Q-T: left
+            89,
+            85,
+            73,
+            79,
+            80, // Y-P: right
+            32,
+            16,
+            AL,
+            AU,
+            AR,
+            AD,
+          ], // fire + arrows
+          galaxian: [K5, K8, K0, AL, AR],
+          frogger: [K5, K6, K7, K8, K0, AL, AU, AR, AD],
+          gp3d: [K5, K6, K7, K8, K0, AL, AU, AR, AD],
+          mazerace: [K5, K6, K7, K8, K0, AL, AU, AR, AD],
+        };
+        var keys = g && allow[g];
+        if (keys) {
+          var ok = {};
+          keys.forEach(function (k) {
+            ok[k] = true;
+          });
+          ['keydown', 'keyup'].forEach(function (ev) {
+            document.addEventListener(
+              ev,
+              function (e) {
+                if (!ok[e.keyCode]) {
+                  e.stopImmediatePropagation();
+                  e.preventDefault();
+                }
+              },
+              true,
+            );
+          });
         }
-        const game = games[key];
-        if (!game) {
-          const d = document.createElement('div');
-          d.className = 'err';
-          d.textContent = 'Unknown game key: ' + key;
-          document.body.replaceChildren(d);
-          return;
-        }
-        document.title = 'Sinclair ZX81';
-        // JtyOne reads window.location.search at script-load time. Use the
-        // `tzx` param as a generic URL passthrough; the loader sees the .p
-        // extension and calls tape.setP() on the bytes parsed from the
-        // .hex file (loader appends .hex automatically when fetching).
-        // Keep ?game= alongside ?tzx=: the deferred shared controls-link
-        // script needs it to build the gamedoc URL (deleting it raced the
-        // rewrite), and JtyOne ignores params it doesn't know.
-        const u = new URL(location.href);
-        u.searchParams.set('tzx', game.tape);
-        history.replaceState(null, '', u);
-      } else {
-        document.title = 'Sinclair ZX81';
-      }
-      const s = document.createElement('script');
-      s.src = 'zx81_emu.js';
-      s.onload = function () {
-        window.emulatorUI = new ZX81EmulatorUI('emulator_canvas', 'emulator_status');
-      };
-      document.body.appendChild(s);
-    })();
-    window.addEventListener('unload', function () {
-      if (window.emulatorUI && emulatorUI.stop) emulatorUI.stop();
-    });
-  </script>
-<link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
-  <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
-  <script defer src="../_shared/genx-controls-link.js"></script>
-<script defer src="../_shared/genx-repo-link.js"></script>
 
-</body>
+        // Quit key: closes the game tab (prompt-launched windows are
+        // script-opened, so window.close() is allowed). If the browser
+        // refuses — a hand-typed URL — the keypress flows through to the
+        // game, whose patched NEW→RUN restarts it instead.
+        var quit = { monstmze: 65 };
+        if (g && quit[g]) {
+          document.addEventListener(
+            'keydown',
+            function (e) {
+              if (e.keyCode === quit[g]) window.close();
+            },
+            true,
+          );
+        }
+      })();
+    </script>
+    <script src="../_shared/genx-gamepad-keys.js"></script>
+    <script>
+      (async function () {
+        const params = new URLSearchParams(location.search);
+        const key = params.get('game');
+        if (key) {
+          let games;
+          try {
+            games = await (await fetch('games.json')).json();
+          } catch (e) {
+            const d = document.createElement('div');
+            d.className = 'err';
+            d.textContent = 'Failed to load games.json: ' + e.message;
+            document.body.replaceChildren(d);
+            return;
+          }
+          const game = games[key];
+          if (!game) {
+            const d = document.createElement('div');
+            d.className = 'err';
+            d.textContent = 'Unknown game key: ' + key;
+            document.body.replaceChildren(d);
+            return;
+          }
+          document.title = 'Sinclair ZX81';
+          // JtyOne reads window.location.search at script-load time. Use the
+          // `tzx` param as a generic URL passthrough; the loader sees the .p
+          // extension and calls tape.setP() on the bytes parsed from the
+          // .hex file (loader appends .hex automatically when fetching).
+          // Keep ?game= alongside ?tzx=: the deferred shared controls-link
+          // script needs it to build the gamedoc URL (deleting it raced the
+          // rewrite), and JtyOne ignores params it doesn't know.
+          const u = new URL(location.href);
+          u.searchParams.set('tzx', game.tape);
+          history.replaceState(null, '', u);
+        } else {
+          document.title = 'Sinclair ZX81';
+        }
+        const s = document.createElement('script');
+        s.src = 'zx81_emu.js';
+        s.onload = function () {
+          window.emulatorUI = new ZX81EmulatorUI(
+            'emulator_canvas',
+            'emulator_status',
+          );
+        };
+        document.body.appendChild(s);
+      })();
+      window.addEventListener('unload', function () {
+        if (window.emulatorUI && emulatorUI.stop) emulatorUI.stop();
+      });
+    </script>
+    <link rel="stylesheet" href="../_shared/styles/genx-noscript.css" />
+    <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css" />
+    <script defer src="../_shared/genx-controls-link.js"></script>
+    <script defer src="../_shared/genx-repo-link.js"></script>
+  </body>
 </html>

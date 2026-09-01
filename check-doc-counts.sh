@@ -145,7 +145,7 @@ echo
 # the files as they were called at the time.
 RETIRED_ASSETS="Sinclair.png Acorn.png Apple.png PC.png NES.png Pet.png
 gamegear.png gbc.png lynx.png TRS80-3.png Model100.png TRS80.png
-Amstrad_CPC_128.png"
+Amstrad_CPC_128.png crt-barrel.png"
 # Roadmap.md is allowed to name them: it carries the deliberate old->new
 # mapping so the historical entries above it still reconcile. A stale name in
 # prose is harmless anyway; what matters is a stale one in a runtime reference.

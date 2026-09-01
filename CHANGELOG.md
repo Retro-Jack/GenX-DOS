@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+### Removed
+- **The CRT barrel-distortion filter is gone**, along with its texture. The ZX81 was the only bundle actually applying it: an SVG `feDisplacementMap` bowing the flat canvas into the curved glass. The MSX1 and MSX2 pages carried the same `#crtbulge` definition but never referenced it — dead markup with a comment claiming otherwise, which is worse than either having it or not. All three definitions are removed, the ZX81 draws flat, and `_shared/textures/crt-barrel.png` goes with them as the orphan it became. It is on the retired-asset check now, so a stale reference cannot creep back.
+
 ### Changed
 - **Audit + doc sync (01/09/2026)** — sweep after the TRS-80 System disks work. **No orphan files.** Three things looked like orphans and all three are known-good: the thirteen `VGA_font/f12.*.png` sprites are built as filenames at runtime by `goFontGo.js`; `jtyone/roms/zx81.rom` is system firmware loaded by the emulator, not a game; and **a mechanism new to the list** — the ZX81 manifest names `tapes/<key>.p` while the files on disk are `<key>.p.hex`, because the loader appends `.hex` when fetching, so a basename comparison flags all twelve. The two new TRS-80 disk images were correctly seen as referenced, and no gamedoc is stranded.
   **Stale text fixed in two places.** The README described the TRS-80 bundle as "10 .cmd games", which is no longer the whole of it. The wiki's sdltrs page predated the submenu entirely, and its "Why `.cmd`, not disk images" section needed qualifying: that reasoning still holds for the games, but the DOS entries do ship disk images. It now also carries the input finding, so the next person does not repeat the search for a key that does not exist.

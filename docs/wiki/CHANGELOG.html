@@ -28,6 +28,10 @@
   </nav>
   <main class="content">
 <h2 id="unreleased">[Unreleased]</h2>
+<h3 id="removed">Removed</h3>
+<ul>
+<li><strong>The CRT barrel-distortion filter is gone</strong>, along with its texture. The ZX81 was the only bundle actually applying it: an SVG <code>feDisplacementMap</code> bowing the flat canvas into the curved glass. The MSX1 and MSX2 pages carried the same <code>#crtbulge</code> definition but never referenced it — dead markup with a comment claiming otherwise, which is worse than either having it or not. All three definitions are removed, the ZX81 draws flat, and <code>_shared/textures/crt-barrel.png</code> goes with them as the orphan it became. It is on the retired-asset check now, so a stale reference cannot creep back.</li>
+</ul>
 <h3 id="changed">Changed</h3>
 <ul>
 <li><strong>Audit + doc sync (01/09/2026)</strong> — sweep after the TRS-80 System disks work. <strong>No orphan files.</strong> Three things looked like orphans and all three are known-good: the thirteen <code>VGA_font/f12.*.png</code> sprites are built as filenames at runtime by <code>goFontGo.js</code>; <code>jtyone/roms/zx81.rom</code> is system firmware loaded by the emulator, not a game; and <strong>a mechanism new to the list</strong> — the ZX81 manifest names <code>tapes/&lt;key&gt;.p</code> while the files on disk are <code>&lt;key&gt;.p.hex</code>, because the loader appends <code>.hex</code> when fetching, so a basename comparison flags all twelve. The two new TRS-80 disk images were correctly seen as referenced, and no gamedoc is stranded.
@@ -222,7 +226,7 @@
 <li><strong><code>deploy.sh</code> gained optional local-only overlays.</strong> Two hooks, both no-ops unless the file exists, so a fresh clone builds exactly the repo and the release zip is unaffected: <code>~/.config/genx-dos/pill-extra.js</code> is appended to the deployed copy of <code>genx-repo-link.js</code>, and <code>~/.config/genx-dos/home-extra.html</code> is spliced into <code>index.html</code>'s card list. Appending rather than patching means the repo's own copy of the pill script can change without the overlay going stale.</li>
 </ul>
 <h2 id="160---2026-08-16">[1.6.0] - 2026-08-16</h2>
-<h3 id="removed">Removed</h3>
+<h3 id="removed_1">Removed</h3>
 <ul>
 <li><strong>The feature article's GX VERDICT panel.</strong> The mock magazine score-out-of-100 — authenticity, self-reliance, pedantry, lastability and a pull-quote — was a joke that had outlived itself: the article reads better ending on its own argument than on a rating of itself. The section and its CSS (<code>.verdict</code>, <code>.meters</code>, <code>.overall</code>) are gone.</li>
 </ul>
@@ -352,7 +356,7 @@
 <li><strong>BBC Master: Firetrack → Bonecruncher.</strong> Firetrack's documented controls couldn't be reconciled with observed behaviour (the inlay's Return "fast fire" made no difference in play, and firing turned out to be automatic) — with the primary source and the running game disagreeing, the doc couldn't meet the site's accuracy bar, so the title was swapped out. In its place: Superior's <em>Bonecruncher</em> (1987, Andreas Kemnitz &amp; Martyn Howard), the Boulder Dash-style skeleton-soap puzzler — same year, so the menu sort is untouched. Disc, menu, launcher, gamedoc-link map and gamedoc all updated; the gamedoc is written from the inlay and verified against the game's own controls screen (including the D/W music keys the inlay omits), with the 22-chamber password system left for players to earn. The old page described a side-scrolling lane-dodger with wheelies, credited to the wrong author — the real game is Kevin Edwards' behind-the-bike 3D championship racer on real-world circuits (the Master version adds circuits, graphics and Martin Galway music). Now documents the true keys (Z/X steer, BBC <kbd>*</kbd>/<kbd>?</kbd> accelerate/decelerate in the PC-vs-BBC three-column layout, P pause, S sound, K keyboard/joystick), the green-light start (jump it and the bike stalls), top-six qualification across the sixty-rider field, and the 200-point knock-off bonus with the side-swipe vs rear-end collision rules.</li>
 <li><strong>Doc sync + orphan audit (July pass).</strong> Orphan scan found no authored orphans — every flagged candidate is a dynamic-path mechanism (js99er builds <code>carts/&lt;key&gt;.rpk</code>, JtyOne's loader appends <code>.hex</code> to <code>tapes/&lt;name&gt;.p</code>, jsvecx's <code>roms/</code> library is upstream-vendored). Synced the repo trees in the README and the wiki File-Structure page with the root files that post-date them (LICENSE.TXT, SECURITY.md, <code>docs/</code>, the npm/container packaging trio, <code>.github/</code>), fixed the wiki's per-emulator table still listing the PET under VICE (it runs Skibo's pet2001), and added the shared save-state / soft-button helpers to the wiki's <code>_shared/</code> listing.</li>
 </ul>
-<h3 id="removed_1">Removed</h3>
+<h3 id="removed_2">Removed</h3>
 <ul>
 <li><strong>GitHub Packages (container + npm) retired for a plain download.</strong> The ghcr container image and the <code>@retro-jack/genx-dos</code> npm package are gone — needless machinery for a static site that now runs from a one-command launcher or any static host. Each release ships a <strong>zip of the whole site</strong> instead; unzip and run <code>GenX-DOS.sh</code> (Linux/macOS) or <code>GenX-DOS.bat</code> (Windows). <code>Dockerfile</code>, <code>index.js</code>, <code>package.json</code>, the publish workflow and the placeholder Dependabot config are removed; <code>build-portable.sh</code> now builds the shipped site (identical to the portable export).</li>
 </ul>
@@ -431,7 +435,7 @@
 <li><strong>Acorn Electron canvas shrunk 5%.</strong> The ElkJS canvas now sits at 78.69%×76.69% of the bezel (down from 82.83%×80.73%), re-centred (left/top nudged to 10.96%/10.97%) so it shrinks toward the same point inside the Acorn monitor cutout.</li>
 <li><strong>BBC Micro menu: Jet Set Willy re-dated to 1986 and re-sorted.</strong> The menu listed Jet Set Willy as 1985; the Tynesoft BBC release is 1986, matching the corrected gamedoc. With the year-ascending order, Repton (1985) moves up to #6 and Jet Set Willy (1986) drops to #7; the number→game launchers were swapped to match. Uridium re-dated 1986 → 1987 to match its title screen (A.I.M.'s BBC conversion; the Graftgold original is 1986) — it stays at #9 between Thrust (1986) and Exile (1988), so no reorder.</li>
 </ul>
-<h3 id="removed_2">Removed</h3>
+<h3 id="removed_3">Removed</h3>
 <ul>
 <li><strong>Orphan disc cleanup — BBC bundles.</strong> The BBC Micro and BBC Master jsbeeb bundles are separate <code>dist/</code> trees that had each accumulated the <em>full</em> 20-disc library, while each menu only loads its own 10. Removed the 18 cross-bundle discs (9 per bundle) that no menu references — no functional change; each bundle now carries exactly the discs its menu links.</li>
 <li><strong>Acorn Electron trimmed to the 7 games ElkJS ships.</strong> Dropped <strong>Hopper, Chuckie Egg and Frak</strong> — they were extras added beyond upstream ElkJS's bundled set, and the only versions available for them were cassette tapes (no snapshots exist, upstream or anywhere). Rather than mix instant-snapshot and real-time-tape loading, the Electron now carries exactly the 7 upstream snapshot games: Snapper, Starship Command, Boxer, Cybertron Mission, Citadel, Elite, Repton 2. Removed their tape UEFs, gamedocs, menu entries and number→game launchers, renumbered the menu (BASIC prompt now #8), and corrected the counts in the README, tech article and wiki (Electron is the one system with 7, not 10).</li>
@@ -656,7 +660,7 @@ save/load state.</p>
 <li><strong>Star Trek (1977)</strong> added to the PET bundle as the replacement headline title — Mike Mayfield's defining BASIC space game, sourced from zimmers.net.</li>
 <li><strong><code>gamedocs/pet/startrek.html</code></strong> — per-game instructions for the new headline title (the <code>?game=startrek</code> controls link was 404ing without it). Gamedocs sweep stays complete at 281 pages.</li>
 </ul>
-<h3 id="removed_3">Removed</h3>
+<h3 id="removed_4">Removed</h3>
 <ul>
 <li><strong><code>gamedocs/pet/petrobot.html</code></strong> — orphaned PETSCII Robots gamedoc, left behind when the title was dropped from the PET bundle. No launcher or <code>games.json</code> key referenced it.</li>
 <li><strong>PETSCII Robots Shareware (2022)</strong> dropped from the PET bundle. Skibo's emulator has no 1541 disk-image support, no BASIC 4 / PET 4032 ROM, and no multi-file disk loader — three hard blockers that all three of PETSCII Robots' boot requirements need. The title is no longer shipped on any sub-system; its ATTRIBUTION/README credits were removed accordingly. Documented in detail at <code>wiki/Emulator-pet2001-Skibo</code>.</li>
@@ -690,7 +694,7 @@ save/load state.</p>
 <li><strong>Three explicit layers behind the bezel</strong> — <code>.screen-bg</code> (back, 90% of the bezel-wrap, solid black) → <code>.prompt-fit</code> (canvas, sized to the cutout, the prompt grid lives here) → <code>.bezel-img</code> (front, PC.png on top). The black backdrop blocks the wallpaper from bleeding through the PNG's anti-aliased cutout boundary.</li>
 <li><strong>AMI Megatrends logo proportions match the stretched grid</strong> — sized to 205×51 (½ width, ⅜ height of the source 409×136) so it doesn't appear elongated when the rest of the screen is non-uniformly scaled.</li>
 </ul>
-<h3 id="removed_4">Removed</h3>
+<h3 id="removed_5">Removed</h3>
 <ul>
 <li><strong>Tseng ET4000 video BIOS POST lines</strong> from the boot sequence — <code>init.js</code> now goes straight from the AMI logo to the AMIBIOS system POST.</li>
 </ul>
@@ -725,7 +729,7 @@ save/load state.</p>
 <li><strong>Mobile-device block</strong> — touch-only devices see a full-screen "Desktop Only" overlay via <code>@media (pointer: coarse), (hover: none)</code> + <code>body::before</code>. 24 emulator pages inherit it from <code>_shared/genx-noscript.css</code>; three outliers (root + prompt + jsbeeb dist index) get an inline copy. z-index 999999 sits above the corner controls link.</li>
 <li>Loosened to comma (OR) shortly after first commit — iPadOS reports <code>pointer: coarse</code> + <code>hover: hover</code> so the <code>and</code> form was skipping iPads.</li>
 </ul>
-<h3 id="removed_5">Removed</h3>
+<h3 id="removed_6">Removed</h3>
 <ul>
 <li><strong>js99er upstream-UI orphans (11 files, ~200 KB)</strong> at <code>systems/js99er/</code> — <code>ams.js</code>, <code>googledrive.js</code>, four bootstrap variants, <code>fileSaver.js</code>, <code>imageMapResizer.js</code>, two unused zip features. Kept <code>lib/zip/inflate.js</code> (it's the <code>.rpk</code> worker).</li>
 </ul>
@@ -767,7 +771,7 @@ save/load state.</p>
 <li><strong>Commodore 128 gamedocs (10 pages)</strong> at <code>gamedocs/c128/</code>. Each page indicates VICII (40-col) vs VDC (80-col), matching the <code>video</code> field in <code>games.json</code>.</li>
 <li><strong>Commodore Plus/4 gamedocs (10 pages)</strong> at <code>gamedocs/plus4/</code>. Auto-linked from each game's controls badge.</li>
 </ul>
-<h3 id="removed_6">Removed</h3>
+<h3 id="removed_7">Removed</h3>
 <ul>
 <li><strong>jsvecx upstream alternate entry points</strong> at <code>systems/jsvecx/</code> — <code>rtm.html</code>, <code>seamless.html</code>, <code>vectrex.html</code>, two overlays + 7 JS/CSS dependents (~127 KB). Kept <code>js/rtm.js</code> + <code>css/rtm.css</code> (Show Chips), full <code>bios/</code>/<code>img/</code>/<code>roms/</code>. HTTP 200 on <code>index.html</code> + all menu URLs confirmed post-delete.</li>
 </ul>
@@ -802,7 +806,7 @@ save/load state.</p>
 <li><strong>Commodore 16, C64, MAX, VIC-20, PET gamedocs (10 each)</strong> — same template as the other platforms. C64 notable: Impossible Mission's "Stay a while" digitised sample puzzle, Elite's full Cobra Mk III keymap, Wizball's colour-mix mechanic, Last Ninja walk/combat toggle. PET notable: PETSCII Robots' per-game <code>model: 4032</code> override and ~30 s authentic 1541 boot sound.</li>
 <li><strong>Amstrad CPC gamedocs (10 pages)</strong> at <code>gamedocs/cpc/</code>. Each documents the autoboot behaviour (tiny8bit's sokol_args <code>input=run"…</code> pre-types the boot command). <code>_genxGameKey</code> stash not yet wired; corner link still resolves because original <code>?game=</code> is read before the rewrite.</li>
 </ul>
-<h3 id="removed_7">Removed</h3>
+<h3 id="removed_8">Removed</h3>
 <ul>
 <li><strong>Orphan upstream doc files</strong> — <code>_shared-ejs/ejs/data/compression/README.md</code>, <code>localization/README.md</code>, <code>jsbeeb/dist/roms/README</code>. Per the no-docs-in-bundles rule.</li>
 <li><strong>Half-done JtyOne ZX80 wiring</strong> — reverted. JtyOne's ZX80 mode has a display-sync bug (the <code>d</code> state machine is gated on <code>0 != zx81opts.machine</code>, so machine==0 never updates). zame-dev's <code>js-zx8x</code> works but lacks an SPDX header.</li>
@@ -924,7 +928,7 @@ save/load state.</p>
 <li><strong><code>systems/jsbeeb/</code> optimised: 71 MB → 27 MB.</strong> Removed upstream dev infrastructure (<code>src/</code>, <code>public/</code>, <code>tests/</code>, <code>tools/</code>, <code>docs/</code>, <code>docker/</code>, <code>Dockerfile</code>, <code>Makefile</code>, dot-folders) and 18 sample/test discs not referenced.</li>
 <li><strong>README rewritten</strong> to reflect all emulators. Wiki refreshed end-to-end.</li>
 </ul>
-<h3 id="removed_8">Removed</h3>
+<h3 id="removed_9">Removed</h3>
 <ul>
 <li><strong>Sega Genesis</strong> (<code>systems/genesis/</code> + GENESIS submenu) — 16-bit (68000), outside 8-bit focus. ~20 MB.</li>
 <li><strong>Prince of Persia from CPC bundle</strong> — replaced by 3D Construction Kit (1991 Freescape).</li>
