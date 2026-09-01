@@ -81,7 +81,7 @@
 <p><code>-model 3</code> picks the machine and <code>-romfile3</code> names its ROM — note that each model has its own <code>-romfileN</code> switch, so <code>-romfile1</code> would be silently ignored here. <code>-noled -borderwidth 0</code> = a clean 512×384 (4:3) text area with no chrome (1024×768 at <code>-scale 2</code>). The <code>.cmd</code> is written to MEMFS and passed as a <strong>positional arg</strong>; sdltrs's <code>trs_load_cmd</code> runs it after reset and jumps straight into the program — no disk boot.</p>
 <h3 id="the-canvas-backing-store-gotcha-cost-an-hour">The canvas backing-store gotcha (cost an hour)</h3>
 <p>sdltrs uses the <strong>software</strong> video path (<code>SDL_GetWindowSurface</code> / <code>SDL_UpdateWindowSurface</code> = a raw <code>putImageData</code> into the canvas). Emscripten does <strong>not</strong> resize the canvas backing store on this path — it stays at the HTML default 300×150 — and <code>width:100%</code> CSS only sets the <em>display</em> size. So the 1024×768 surface lands in a 300×150 buffer and <strong>only the top-left corner draws</strong>. Fix: hard-set the backing store via HTML attributes — <code>&lt;canvas width="1024" height="768"&gt;</code> (= the scale-2 surface size); CSS then scales the display into the bezel cutout.</p>
-<h2 id="why-cmd-not-disk-images">Why <code>.cmd</code>, not disk images</h2>
+<h2 id="why-cmd-not-disk-images--for-the-games">Why <code>.cmd</code>, not disk images — for the games</h2>
 <p>The lineup is 10 self-contained <code>.cmd</code> arcade games (Big Five Software, Adventure International, Cornsoft Group). Disk boot was investigated and dropped: the RetroStore <code>disk_0.*</code> images aren't bootable system disks (the games ship as <code>command.CMD</code> to run on a bare machine), and a bare machine with a non-bootable disk hangs on the black FDC boot-wait. The <code>.cmd</code>-as-positional-arg path sidesteps boot entirely.</p>
 <h3 id="the-self-contained-build-is-the-thing-to-check">The self-contained build is the thing to check</h3>
 <p><strong>Eliminator was dropped in August 2026 and replaced with Space Castle</strong>, and the reason is worth recording because it will come up again.</p>
@@ -95,6 +95,53 @@
 <blockquote>
 <p>Sourcing note: RetroStore's RPC (<code>retrostore.org/rpc?m=pubapplist</code> → <code>downloadapp?appId=…</code>) yields a ZIP with the self-contained <code>command.CMD</code> plus a disk image; we keep the <code>.cmd</code>.</p>
 </blockquote>
+<h2 id="system-disks-and-the-keyboard-limit-that-forced-them">System disks, and the keyboard limit that forced them</h2>
+<p>Menu entry 11 is a <strong>System disks</strong> submenu offering two period disk operating
+systems. It exists because the obvious route does not work.</p>
+<p>A Model III has BASIC in ROM, so a diskless machine ought to reach it directly.
+It does not: with the FDC present the boot ROM stops at <code>Diskette?</code>, which on
+real hardware is answered with BREAK. <strong>No keypress reaches the emulator at that
+prompt</strong> — not the browser's own keys, not synthetic <code>KeyboardEvent</code>s, not the
+single-dispatch-at-<code>document</code>-with-a-hold recipe that drives the CLEAR softkey
+above. The same page takes keys perfectly once a <code>.cmd</code> is running; Space Castle
+starts on a plain digit.</p>
+<p>The machine is not hung. Draw the canvas into a 2D canvas and checksum it a
+second apart and the cursor is still blinking. The likeliest reading is that this
+ASYNCIFY build unwinds on a <em>blocking</em> key read and never resumes, so code that
+polls the keyboard itself works and code that waits on a key does not.</p>
+<p><strong>Do not go hunting for the right key.</strong> It is not a key-mapping problem, and an
+afternoon was lost establishing that.</p>
+<p>The consequence is that both DOSes boot and then stop at their own first prompt —
+TRSDOS at <code>Enter Date</code>, LDOS at <code>Time ?</code> — so the entry offers a boot screen
+rather than a command line. That is recorded rather than hidden.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Disk</th>
+<th>Format</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>trsdos</code></td>
+<td><code>disks/trsdos13.dmk</code></td>
+<td>DMK, 256016</td>
+<td>TRSDOS 1.3, dated Jul 1 1981. Radio Shack's own. No public distribution grant; same footing as the Model III ROM</td>
+</tr>
+<tr>
+<td><code>ldos</code></td>
+<td><code>disks/ld3-531.dsk</code></td>
+<td>JV3, 193024</td>
+<td>LDOS 5.3.1, MISOSYS. Freely redistributable <strong>provided the notice is retained</strong> — the ATTRIBUTION row is that retention</td>
+</tr>
+</tbody>
+</table>
+<p><code>play.html</code> now accepts a <code>disk</code> alongside <code>rom</code> in <code>games.json</code>: a disk is
+written to MEMFS and passed as <code>-disk0</code>, a rom is loaded positionally as before,
+and an entry may carry either. The submenu itself follows the ZX81 1K Chess
+pattern (see <a href="Customising-the-Filesystem.html">Customising-the-Filesystem</a>).</p>
 <h2 id="clear-softkey">CLEAR softkey</h2>
 <p>Most TRS-80 arcade games start with the <strong>CLEAR</strong> key, which has no obvious modern-keyboard equivalent. sdltrs maps CLEAR to PC <strong>Home</strong> (or Delete), so <code>systems/_shared/genx-trs80-softkeys.js</code> adds a <strong>CLEAR</strong> button that dispatches a synthetic <code>Home</code> keydown/keyup — emscripten SDL2 doesn't check <code>isTrusted</code>, so the synthetic key reaches the emulator. <code>Esc</code> is the TRS-80 BREAK key.</p>
 <p>Three things about it changed in August 2026, all worth knowing if you write another soft key:</p>

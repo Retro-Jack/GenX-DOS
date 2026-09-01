@@ -76,7 +76,7 @@ createSDLTRS({
 
 sdltrs uses the **software** video path (`SDL_GetWindowSurface` / `SDL_UpdateWindowSurface` = a raw `putImageData` into the canvas). Emscripten does **not** resize the canvas backing store on this path — it stays at the HTML default 300×150 — and `width:100%` CSS only sets the *display* size. So the 1024×768 surface lands in a 300×150 buffer and **only the top-left corner draws**. Fix: hard-set the backing store via HTML attributes — `<canvas width="1024" height="768">` (= the scale-2 surface size); CSS then scales the display into the bezel cutout.
 
-## Why `.cmd`, not disk images
+## Why `.cmd`, not disk images — for the games
 
 The lineup is 10 self-contained `.cmd` arcade games (Big Five Software, Adventure International, Cornsoft Group). Disk boot was investigated and dropped: the RetroStore `disk_0.*` images aren't bootable system disks (the games ship as `command.CMD` to run on a bare machine), and a bare machine with a non-bootable disk hangs on the black FDC boot-wait. The `.cmd`-as-positional-arg path sidesteps boot entirely.
 
@@ -93,6 +93,41 @@ Eliminator had been shipping dead — a black screen, on the Model I before the 
 So the rule for adding a title here: a `.cmd` that loads **low**, below where a DOS would be, is a bare-machine build and will work. One that loads high wants a DOS we do not provide, however clean its structure looks. Structural validity says nothing about it — the broken one parsed perfectly.
 
 > Sourcing note: RetroStore's RPC (`retrostore.org/rpc?m=pubapplist` → `downloadapp?appId=…`) yields a ZIP with the self-contained `command.CMD` plus a disk image; we keep the `.cmd`.
+
+## System disks, and the keyboard limit that forced them
+
+Menu entry 11 is a **System disks** submenu offering two period disk operating
+systems. It exists because the obvious route does not work.
+
+A Model III has BASIC in ROM, so a diskless machine ought to reach it directly.
+It does not: with the FDC present the boot ROM stops at `Diskette?`, which on
+real hardware is answered with BREAK. **No keypress reaches the emulator at that
+prompt** — not the browser's own keys, not synthetic `KeyboardEvent`s, not the
+single-dispatch-at-`document`-with-a-hold recipe that drives the CLEAR softkey
+above. The same page takes keys perfectly once a `.cmd` is running; Space Castle
+starts on a plain digit.
+
+The machine is not hung. Draw the canvas into a 2D canvas and checksum it a
+second apart and the cursor is still blinking. The likeliest reading is that this
+ASYNCIFY build unwinds on a *blocking* key read and never resumes, so code that
+polls the keyboard itself works and code that waits on a key does not.
+
+**Do not go hunting for the right key.** It is not a key-mapping problem, and an
+afternoon was lost establishing that.
+
+The consequence is that both DOSes boot and then stop at their own first prompt —
+TRSDOS at `Enter Date`, LDOS at `Time ?` — so the entry offers a boot screen
+rather than a command line. That is recorded rather than hidden.
+
+| Key | Disk | Format | Notes |
+| --- | --- | --- | --- |
+| `trsdos` | `disks/trsdos13.dmk` | DMK, 256016 | TRSDOS 1.3, dated Jul 1 1981. Radio Shack's own. No public distribution grant; same footing as the Model III ROM |
+| `ldos` | `disks/ld3-531.dsk` | JV3, 193024 | LDOS 5.3.1, MISOSYS. Freely redistributable **provided the notice is retained** — the ATTRIBUTION row is that retention |
+
+`play.html` now accepts a `disk` alongside `rom` in `games.json`: a disk is
+written to MEMFS and passed as `-disk0`, a rom is loaded positionally as before,
+and an entry may carry either. The submenu itself follows the ZX81 1K Chess
+pattern (see [[Customising-the-Filesystem]]).
 
 ## CLEAR softkey
 
