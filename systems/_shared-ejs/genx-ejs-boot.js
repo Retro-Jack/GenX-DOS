@@ -18,6 +18,7 @@
 //         defaultOptions: { ... },     // EJS_defaultOptions
 //         defaultControls: { ... },    // optional, EJS_defaultControls
 //         biosUrl: 'foo.rom',          // optional, bundle-local
+//         bareBoot: 'games/empty.prg',  // optional, ROM loaded when no ?game=
 //         perGame: (game, opts) => {}  // optional — mutate opts based on game
 //       });
 //     </script>
@@ -28,11 +29,19 @@
 // C128 VICII/VDC, MAX Ultimax mode) all live in defaultOptions +
 // per-game callback.
 //
-// VICE BASIC entry: a missing `?game=` URL is allowed and falls through
-// to the no-key boot (doc title = config.title, no EJS_gameUrl set).
-// EJS hits the "stuck on Download Game Core" path if nothing loads, so
-// every VICE bundle ships an empty.prg as games[basic].rom — the menu
-// always passes ?game=basic when the user picks BASIC.
+// Keyless boot: a missing `?game=` URL boots the bare machine, the way
+// switching one on with no cartridge or disk in it does. EJS will not
+// start at all without a game — it sits on "Download Game Data 100%"
+// for ever — so a bundle that has something sensible to boot into names
+// that ROM as `bareBoot`, and it is loaded instead. The VICE machines
+// point at their 4-byte empty.prg and land on the BASIC READY screen;
+// the ColecoVision and Lynx point at their own boot ROM. It is a plain
+// path rather than a games.json key on purpose: these are not games and
+// must not turn up in the game counts.
+//
+// A bundle with no meaningful bare state (a cartridge console with no
+// BIOS, say) simply omits `bareBoot` and gets a plain message rather
+// than the silent hang.
 window.genxBootEJS = async function (config) {
   const fail = (msg) => {
     // textContent, not innerHTML, so a crafted ?game= key can't inject markup.
@@ -49,6 +58,7 @@ window.genxBootEJS = async function (config) {
 
   let game = null;
   let gameUrl = null;
+  document.title = config.title || key || '';
   if (key) {
     let games;
     try {
@@ -62,10 +72,17 @@ window.genxBootEJS = async function (config) {
       fail('Unknown game key: ' + key);
       return;
     }
-    document.title = config.title || key;
     gameUrl = game.rom;
+  } else if (config.bareBoot) {
+    // No key: boot the bare machine. bareBoot is a plain bundle-relative
+    // path, deliberately not a games.json key — these are boot ROMs and
+    // empty stubs, not games, and they must not land in the game counts.
+    gameUrl = config.bareBoot;
   } else {
-    document.title = config.title || '';
+    // Every bundle declares bareBoot, so this is a safety net for a
+    // newly added one that forgot to — not something a visitor should see.
+    fail('This machine has no bare-boot ROM configured.');
+    return;
   }
 
   // Run the per-game callback (e.g. PET model override, C128 video output).
