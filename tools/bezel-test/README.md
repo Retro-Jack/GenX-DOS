@@ -56,6 +56,16 @@ The CoCo could be pushed proud of its hole only because what spilled over was
 screen *border*. A machine whose picture has no border margin has nothing to
 spend, so check what the overshoot would cost before taking it.
 
+### Findings — MSX (done 03/09/2026)
+
+**Both MSX bundles were wrong, and only the card showed it.** The magenta check alone said "fine": the ring around the picture stayed black, because WebMSX's own `#wmsx-screen` sits behind the canvas and is black, so it filled the gap and hid it. The card's white border stopped well short of the glass on all four sides — that was the tell.
+
+Cause: `#wmsx-screen-canvas` carried a fixed `transform: translate(8px,-10px) scale(0.842)`. `#wmsx` is already positioned exactly on the hole and the canvas is `100%` of it, so the scale shrank the picture to 84% and fitted it *inside* the hole instead of filling it.
+
+Removing the transform is not enough: WebMSX sizes `#wmsx-screen-canvas-outer` itself to preserve its frame aspect, so the canvas comes out 738px tall against a 669px hole and spills past the bottom. The fix computes the transform at runtime from the measured hole and outer, and re-applies it on resize and via a `ResizeObserver` — WebMSX re-sizes the canvas whenever the machine changes video mode, so a fixed scale can never be right. Stretching to the hole is correct rather than distortion: the MSX signal is meant to be shown at 4:3 and the hole is 4:3.
+
+Result: canvas matches the hole to 0px on all four sides on both bundles.
+
 ### Findings — Amstrad (done 30/08/2026)
 
 **CPC passes.** It already uses the oversize-and-clip approach: `#canvas` at
@@ -88,7 +98,7 @@ details — that is exactly the class of thing recall gets wrong.
 |---|---|---|---|
 | `xroar.bas` | Tandy CoCo | colour set via `SCREEN 1,1` | **VERIFIED 30/08/2026** — `PCLS 0` is the correct one of the two |
 | `jsspeccy.bas` | ZX Spectrum | `BORDER` | drafted; needs K-mode/extended-mode entry, see above |
-| `msx1.bas`, `msx2.bas` | MSX1 / MSX2 | `COLOR fg,bg,border` | drafted |
+| `msx1.bas`, `msx2.bas` | MSX1 / MSX2 | `COLOR fg,bg,border` | **VERIFIED 03/09/2026** — must be `SCREEN 1`, not `SCREEN 0`: in SCREEN 0 the MSX ignores the border parameter and the whole screen takes the background colour, so the card came up solid black and proved nothing |
 | `cpc.bas` | Amstrad CPC | `BORDER 26` = bright white | **VERIFIED 30/08/2026** |
 | `atari400.bas`, `atari800.bas` | Atari 8-bit | `SETCOLOR 4` = border, `2` = playfield | drafted |
 | `c64.bas` | C64 | `POKE 53280/53281` | drafted |

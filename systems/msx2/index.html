@@ -70,7 +70,8 @@
       }
       #wmsx-screen-canvas {
         image-rendering: pixelated;
-        transform: translate(8px, -10px) scale(0.842);
+        /* transform is set at runtime — see the fit script below */
+        transform-origin: top left;
       }
       /* hide WebMSX's control bar entirely (GenX bundles don't show emulator chrome) */
       #wmsx-bar {
@@ -164,5 +165,49 @@
     </script>
     <script defer src="../_shared/genx-savestate-std.js"></script>
     <script defer src="../_shared/genx-savestate-transfer.js"></script>
+
+    <script>
+      /* Fit the WebMSX canvas to the bezel hole.
+         WebMSX sizes #wmsx-screen-canvas-outer itself, preserving its own
+         frame aspect, so the canvas comes out taller than the hole and spills
+         (overflow is visible). This used to be handled by a fixed
+         `transform: translate(8px,-10px) scale(0.842)`, which fitted the
+         canvas INSIDE the hole rather than filling it — the MSX's own border
+         stopped short of the glass on all four sides, with WebMSX's black
+         #wmsx-screen behind filling the gap. Found by the bezel test card
+         (white border, black playfield) on 03/09/2026.
+         A fixed scale cannot be right at every viewport, and WebMSX re-sizes
+         the canvas whenever the machine changes video mode (SCREEN 0 vs 1),
+         so the transform is computed here instead and re-applied on resize.
+         The transform is on the canvas only, so measuring #wmsx and the outer
+         is unaffected by it. Stretching to the hole is correct, not distortion:
+         the MSX signal is meant to be shown at 4:3 and the hole is 4:3. */
+      (function () {
+        function fit() {
+          var w = document.getElementById('wmsx'),
+            o = document.getElementById('wmsx-screen-canvas-outer'),
+            c = document.getElementById('wmsx-screen-canvas');
+          if (!w || !o || !c) return;
+          var wr = w.getBoundingClientRect(),
+            or = o.getBoundingClientRect();
+          if (!or.width || !or.height) return;
+          c.style.transformOrigin = 'top left';
+          c.style.transform =
+            'translate(' + (wr.left - or.left) + 'px,' + (wr.top - or.top) + 'px) ' +
+            'scale(' + wr.width / or.width + ',' + wr.height / or.height + ')';
+        }
+        window.addEventListener('resize', fit);
+        window.addEventListener('load', fit);
+        var o = null;
+        var iv = setInterval(function () {
+          var el = document.getElementById('wmsx-screen-canvas-outer');
+          if (!el) return;
+          clearInterval(iv);
+          fit();
+          if (window.ResizeObserver) new ResizeObserver(fit).observe(el);
+        }, 100);
+      })();
+    </script>
+
   </body>
 </html>
