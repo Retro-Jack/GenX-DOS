@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+### Changed
+- **The Atari machines now run genuine Atari ROMs.** They had been running AltirraOS and Altirra BASIC — Avery Lee's clean-room reimplementations, baked into `atari800.wasm` by `--enable-altirra_bios` so that no copyrighted Atari ROM had to ship. They are good work and they are freely redistributable, but they are not Atari's code, and site policy is that firmware is the manufacturer's own or it is replaced. The 400 now boots **OS-B**, the 800XL **XL/XE OS Rev 2**, and both carry **Atari BASIC Rev C**, supplied at runtime through `-osb_rom` / `-xlxe_rom` / `-basic_rom` and fetched into MEMFS the same way the TRS-80 gets `model3.rom`. No rebuild was needed; the Altirra code is still in the binary but is a fallback that now never engages.
+  The tell is the boot banner. AltirraBASIC announces itself as `Altirra 8K BASIC 1.58`; the real ROM simply says `READY`. If that banner ever reappears, a ROM failed to load.
+  **Menu entry 11 was broken on both Atari machines** and this is what surfaced it. The row said "Atari BASIC prompt" and linked to a bare `play.html` with no query, which skips the manifest entirely — so it landed in AltirraOS's Memo Pad, which is what a 400 with no cartridge fitted actually does. It now points at a `basic` key that asks for the BASIC ROM.
+  Every other machine was checked and none was affected: WebMSX ships real MSX BIOS rather than C-BIOS, the CoCo's ROMs are genuine Tandy dumps rather than XRoar's replacement set, and the TRS-80, ZX81, Intellivision, ColecoVision, Odyssey² and Lynx all carry their manufacturers' own firmware.
+
 ### Removed
 - **The CRT barrel-distortion filter is gone**, along with its texture. The ZX81 was the only bundle actually applying it: an SVG `feDisplacementMap` bowing the flat canvas into the curved glass. The MSX1 and MSX2 pages carried the same `#crtbulge` definition but never referenced it — dead markup with a comment claiming otherwise, which is worse than either having it or not. All three definitions are removed, the ZX81 draws flat, and `_shared/textures/crt-barrel.png` goes with them as the orphan it became. It is on the retired-asset check now, so a stale reference cannot creep back.
 

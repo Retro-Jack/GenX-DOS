@@ -2347,7 +2347,7 @@ var fs = [
                           },
                           {
                             name: 'basic.bat',
-                            link: '../systems/atari400/play.html',
+                            link: '../systems/atari400/play.html?game=basic',
                           },
                         ],
                       },
@@ -2460,7 +2460,7 @@ var fs = [
                           },
                           {
                             name: 'basic.bat',
-                            link: '../systems/atari800/play.html',
+                            link: '../systems/atari800/play.html?game=basic',
                           },
                         ],
                       },

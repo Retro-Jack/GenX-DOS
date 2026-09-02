@@ -28,5 +28,6 @@
     "title": "Dig Dug (1983)",
     "rom": "roms/digdug.rom",
     "cartType": 2
-  }
+  },
+  "basic": { "title": "Atari BASIC" }
 }

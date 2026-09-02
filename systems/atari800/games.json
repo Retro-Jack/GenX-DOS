@@ -18,5 +18,6 @@
   "eastfrnt": {
     "title": "Eastern Front 1941 (1981)",
     "rom": "roms/eastfrnt.atr"
-  }
+  },
+  "basic": { "title": "Atari BASIC" }
 }

@@ -46,7 +46,7 @@
     }
     .screen {
       position: absolute;
-      left: 15.4%; top: 21.3%; width: 46.4%; height: 52.8%;
+      left: 15.238%; top: 21.156%; width: 46.667%; height: 53.067%;
       background: #000;
       overflow: hidden;
       z-index: 1;
@@ -105,6 +105,7 @@
       const params = new URLSearchParams(location.search);
       const key = params.get('game');
       let romUrl = null, vfsName = null, game = null;
+      let basicOnly = false;
 
       if (key) {
         let games;
@@ -116,10 +117,19 @@
         }
         game = games[key];
         if (!game) { fail('Unknown game key: ' + key); return; }
-        romUrl = game.rom;
-        // atari800 sniffs the format from the extension; preserve it.
-        const m = romUrl.match(/\.[A-Za-z0-9]+$/);
-        vfsName = 'game' + (m ? m[0].toLowerCase() : '.atr');
+        // An entry with no rom is the bare machine with BASIC: menu entry 11.
+        // Altirra BASIC is built into this wasm (--enable-altirra_bios), so
+        // -basic switches it in with nothing to load. Without it the machine
+        // comes up in AltirraOS's Memo Pad, which is what a 400/800 does with
+        // no cartridge fitted.
+        if (game.rom) {
+          romUrl = game.rom;
+          // atari800 sniffs the format from the extension; preserve it.
+          const m = romUrl.match(/\.[A-Za-z0-9]+$/);
+          vfsName = 'game' + (m ? m[0].toLowerCase() : '.atr');
+        } else {
+          basicOnly = true;
+        }
       }
 
       // Video: stretch the visible TV area to completely fill the canvas so
@@ -130,6 +140,13 @@
       // overscan border down to the TV-safe area.
       let args = ['-stretch', 'full', '-fit-screen', 'both', '-image-aspect', 'none',
                   '-horiz-area', 'tv', '-vert-area', 'tv'];
+      // Genuine Atari ROMs, fetched into MEMFS below. Without these the
+      // build falls back to the AltirraOS/AltirraBASIC reimplementations
+      // baked in by --enable-altirra_bios, which are not Atari's code.
+      args.push('-osb_rom', '/atariosb.rom');
+      args.push('-basic_rom', '/ataribas.rom');
+      if (basicOnly) args.push('-basic');
+      else args.push('-nobasic');
       if (vfsName) {
         const ext = vfsName.split('.').pop();
         if (ext === 'rom' || ext === 'bin') {
@@ -157,6 +174,8 @@
         canvas: document.getElementById('canvas'),
         arguments: args,
         preRun: [function () {
+          Module.FS.createPreloadedFile('/', 'atariosb.rom', 'roms/atariosb.rom', true, false);
+          Module.FS.createPreloadedFile('/', 'ataribas.rom', 'roms/ataribas.rom', true, false);
           if (!romUrl || !vfsName) return;
           Module.FS.createPreloadedFile('/', vfsName, romUrl, true, false);
         }],

@@ -118,6 +118,8 @@ TRS80.png
 elimintr	
 Eliminator	Emulator-sdltrs-TRS-80.md
 jsvecx	Roadmap.md
+no separate ROM file ships	
+AltirraOS baked in	
 EOF
 )
 prose_hits=0
