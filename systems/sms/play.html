@@ -27,8 +27,7 @@
        Screen hole (measured): left 15.4% top 21.3% width 46.4% height 52.8%.
        Height capped at 100dvh-120px so wallpaper shows around the set.
        Wallpaper override must follow genx-frame.css (which sets body black). */
-    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; }
-    body { display: flex; align-items: center; justify-content: center; }
+    html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; }
     .bezel-wrap {
       position: relative;
       width: min(100vw, calc((100dvh - 120px) * 1.25 * 1680 / 1125));

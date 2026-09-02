@@ -22,8 +22,8 @@
        ~2% larger) hides the cutout's AA edge; TV-Sony-Cabinet.png on top. The bottom shelf
        cubbies are also keyed through (wallpaper shows behind — natural). NES
        native 256x240 (8:7 PAR), shown 4:3. */
-    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; }
-    body { display: flex; align-items: flex-end; justify-content: center; }
+    html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; }
+    body { align-items: flex-end; }
     .bezel-wrap { position: relative; width: min(100vw, calc(100dvh * 2888 / 2611)); aspect-ratio: 2888 / 2611; transform: translateY(1px); }
     .screen-bg { position: absolute; left: 16.71%; top: 20.48%; width: 62.83%; height: 53.73%; background: #000; z-index: 1; }
     #game { position: absolute; left: 17.71%; top: 21.48%; width: 60.83%; height: 51.73%; overflow: hidden; z-index: 2; }

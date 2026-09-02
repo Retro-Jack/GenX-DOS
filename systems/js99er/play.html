@@ -27,8 +27,7 @@
        recipe as the MSX/CoCo/Spectrum. js99er sizes #canvas via CSS, so we pin
        it into the hole and force it to fill; no barrel/fisheye (the TI picture
        reads better flat). Black .screen-bg behind hides the cutout edge. */
-    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; font-family: monospace; color: #ddd; }
-    body { display: flex; align-items: center; justify-content: center; }
+    html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; font-family: monospace; color: #ddd; }
     .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1362 / 914)); aspect-ratio: 1362 / 914; }
     .screen-bg { position: absolute; left: 6.6%; top: 10.6%; width: 68.4%; height: 77.0%; background: #000; z-index: 1; }
     #screen { position: absolute; left: 8.08%; top: 12.14%; width: 65.35%; height: 73.96%; overflow: hidden; z-index: 2; }

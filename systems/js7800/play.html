@@ -21,14 +21,12 @@
        hides the cutout's AA edge; 80s.png on top. Screen hole (measured on
        80s.png): left 15.4% top 21.3% width 46.4% height 52.8%. genx-frame.css is
        linked BEFORE this <style>, so the wallpaper override wins without !important. */
-    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; color: #fff; font-family: monospace; overflow: hidden; }
-    body { display: flex; align-items: center; justify-content: center; }
+    html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; color: #fff; font-family: monospace; }
     .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1.25 * 1680 / 1125)); aspect-ratio: 1680 / 1125; }
     .screen-bg { position: absolute; left: 14.4%; top: 20.3%; width: 48.4%; height: 54.8%; background: #000; z-index: 1; }
     #game { position: absolute; left: 15.238%; top: 21.156%; width: 46.667%; height: 53.067%; overflow: hidden; z-index: 2; }
     #game canvas { height: 100% !important; transform: scale(0.95, 1.045); }
     .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
-    .err { padding: 20px; }
   </style>
   <script defer src="../_shared/genx-controls-link.js"></script>
 <script defer src="../_shared/genx-ejs-console.js"></script>

@@ -20,8 +20,7 @@
        on a TV; the set floats on the 70s wallpaper. JSSpeccy (uiEnabled:false)
        renders a fixed-zoom canvas into #jsspeccy; we put #jsspeccy in the hole
        and stretch its canvas to fill. */
-    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; color: #fff; font-family: monospace; }
-    body { display: flex; align-items: center; justify-content: center; }
+    html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; color: #fff; font-family: monospace; }
     .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1362 / 914)); aspect-ratio: 1362 / 914; }
     .screen-bg { position: absolute; left: 6.6%; top: 10.6%; width: 68.4%; height: 77.0%; background: #000; z-index: 1; }
     #jsspeccy { position: absolute; left: 8.08%; top: 12.14%; width: 65.35%; height: 73.96%; overflow: visible; z-index: 2; }
@@ -33,7 +32,6 @@
     #jsspeccy > div { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; }
     #jsspeccy canvas { width: 100% !important; height: 100% !important; display: block; image-rendering: pixelated; transform: scale(1.09); }
     .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
-    .err { padding: 20px; }
   </style>
   <script>
     // JSSpeccy creates its AudioContext internally with no public handle and

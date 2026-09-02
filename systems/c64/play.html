@@ -28,8 +28,7 @@
        The wallpaper override must follow genx-frame.css (which sets body
        black); the VICE numlock/softkey banners are position:fixed, so the
        flex-centred bezel is unaffected. */
-    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; }
-    body { display: flex; align-items: center; justify-content: center; }
+    html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; }
     .bezel-wrap {
       position: relative;
       width: min(100vw, calc((100dvh - 120px) * 1223 / 1104));
