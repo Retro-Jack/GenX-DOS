@@ -59,7 +59,12 @@
   }
   #display, #display tbody, #display tr, #display td { display: contents; }
   .screen-bg { position: absolute; left: 23.56%; top: 5.03%; width: 53.04%; height: 45.92%; background: #000; z-index: 1; }
-  .overscan { position: absolute; left: 24.42%; top: 6.07%; width: 51.32%; height: 43.84%; padding: 0; margin: 0; border: 0; overflow: hidden; z-index: 2; }
+  /* Clip box reaches the OUTER edge of the cutout's 2px feather
+     (302,63..948,545 measured from the PNG's alpha), not its inner edge:
+     clipped inside the ramp, the part-transparent ink has only .screen-bg
+     behind it and shows as a fringe the moment that backing is not black.
+     margin:0 stays for the same reason as the Apple ][ page. */
+  .overscan { position: absolute; left: 24.179%; top: 5.79%; width: 51.801%; height: 44.393%; padding: 0; margin: 0; border: 0; overflow: hidden; z-index: 2; }
   #text { position: static; width: 100% !important; height: 100% !important; image-rendering: pixelated; transform: scale(0.855); }
   .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
 </style>
@@ -77,6 +82,7 @@ var tapes = {};
 <script type="text/javascript" src="tapes/apple30th.js"></script>
 <script type="text/javascript" src="tapes/applesoft.js"></script>
 <script type="text/javascript" src="tapes/basic.js"></script>
+<script type="text/javascript" src="tapes/bezelcard.js"></script>
 <script type="text/javascript" src="tapes/blackjack.js"></script>
 <script type="text/javascript" src="tapes/checkers.js"></script>
 <script type="text/javascript" src="tapes/hamurabi.js"></script>
@@ -261,7 +267,8 @@ var tapes = {};
       checkers: 'Checkers',
       puzzle15: '15 Puzzle',
       life: 'Life',
-      apple30: 'Apple 30th'
+      apple30: 'Apple 30th',
+      bezelcard: 'Bezel test card'
     };
     var name = map[t] || t;
     setTimeout(function() {

@@ -97,11 +97,54 @@ details — that is exactly the class of thing recall gets wrong.
 | `c16.bas`, `plus4.bas` | C16 / Plus4 | `COLOR` | **suspect** — assumed source 4 is the border, as on the C128; TED numbers differently |
 | `js99er.bas` | TI-99/4A | `CALL SCREEN` colours border *and* background together, so the playfield is filled with a black-on-black character | drafted |
 | `bbcmicro.bas`, `bbcmaster.bas`, `electron.bas` | BBC / Electron | **no border register** — border is always black, so the card is a white fill with a black inset, marking the addressable edge | **ALL THREE VERIFIED 30/08/2026** |
-| `apple2.bas` | Apple ][+ | no border; inverse-space frame | drafted |
+| `apple2.bas` | Apple ][+ | no border; inverse-space frame | **SUPERSEDED** — see the disk card below; the machine cannot be driven to a BASIC prompt |
 | `pet.bas` | PET | no border; reverse-video frame | **suspect** — positions with `TAB`, but PET BASIC 2.0 positions with `CHR$` cursor codes |
 | `trs80.bas` | TRS-80 Model III | monochrome; `SET()` frame at the graphics edge | drafted |
 | `jtyone.bas` | ZX81 | no colour at all; screen is already white, so the card is an inverse-video black interior | drafted |
-| `apple1.bas` | Apple I | no inverse video and no graphics — a solid white edge is **not possible**; asterisk frame is the closest available | drafted, best-effort |
+| `apple1.bas` | Apple I | no inverse video and no graphics — a solid white edge is **not possible** | **SUPERSEDED** — see the tape card below |
+
+## When the machine cannot be typed into: ship the card as an image
+
+Two machines cannot be driven to a prompt from our bundles, so their cards are
+built as loadable images instead of programs to type. Generators live here; run
+them to regenerate.
+
+**Apple ][ — `make-apple2-card.py` -> `systems/apple2/json/disks/bezelcard.json`.**
+With a Disk II present and no bootable disk the machine sits in its boot loop,
+and nothing we synthesise reaches it (Delete, Ctrl+Delete, F12 all ignored). So
+the card is **self-booting and needs no DOS**: the Disk II boot ROM reads track 0
+sector 0 to $0800 and jumps to $0801, and 28 bytes of 6502 there set text mode
+and fill the text page with inverse spaces. Launch with `?game=bezelcard`.
+
+**Apple I — `make-apple1-card.py` -> `systems/apple1/tapes/bezelcard.js`.** No
+framebuffer and no inverse video: the display is a 40x24 uppercase terminal you
+can only print to, so a solid field is impossible. 18 bytes of 6502 loaded and
+run straight from the Woz Monitor (`C100R` / `0300.0311R` / `0300R`) print 30
+rows of 40 `@` -- more than a screenful, so the display is covered however far
+the monitor's own output has already pushed the cursor. Launch with
+`?tape=bezelcard`.
+
+**A solid fill beats a border-and-playfield card for this job.** Anything on
+screen that is not the fill is bezel, gap or overscan, with nothing to interpret.
+
+## The rule the Apple machines established: clip to the cutout's OUTER edge
+
+Jack, 02/09/2026: **no magenta may be visible on any bezel.** Both Apple pages
+failed it, and the mechanism is the same one the CoCo had:
+
+- A cutout has a feathered edge (3px on the Apple /// monitor, 2px on the Apple I).
+- If the clip box stops at the cutout's **inner** bound, that ramp's
+  part-transparent ink has only `.screen-bg` behind it, and composites with it.
+- Invisible while the backing is black. A bright fringe the moment it is not.
+
+So clip to the **outer** bound (flood the alpha at `< 250`, not `< 32`).
+
+**One extra trap on the Apple ][:** apple2js's own `#display` rule sets
+`margin: 5px auto`, which on an absolutely positioned box shifts it 5px down.
+The computed `top` was correct and the box still sat below the cutout. `margin: 0`
+is load-bearing on both Apple pages. Check computed geometry against the measured
+cutout rather than trusting the percentages -- `elementFromPoint` at the leak
+names the offending element in one call.
 
 ## Scope and order
 
