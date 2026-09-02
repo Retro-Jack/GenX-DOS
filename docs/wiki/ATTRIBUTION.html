@@ -205,10 +205,22 @@ fork rather than the bundle.</p>
 <td>GPL-2.0+</td>
 </tr>
 <tr>
-<td><code>systems/atari800/atari800.wasm</code>, <code>systems/atari400/atari800.wasm</code> (embedded)</td>
-<td>AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC</td>
-<td>Avery Lee</td>
-<td>Freely-redistributable open-source OS replacement, compiled into the WASM via <code>--enable-altirra_bios</code> (no separate ROM file ships)</td>
+<td><code>systems/atari400/roms/atariosb.rom</code></td>
+<td>Atari OS-B (400/800)</td>
+<td>Atari, Inc.</td>
+<td>© 1980 Atari. The genuine ROM, assembled from its three chips. Replaced Avery Lee's AltirraOS on 02/09/2026</td>
+</tr>
+<tr>
+<td><code>systems/atari800/roms/atarixl.rom</code></td>
+<td>Atari XL/XE OS Rev 2 (800XL)</td>
+<td>Atari, Inc.</td>
+<td>© 1983 Atari. Genuine ROM</td>
+</tr>
+<tr>
+<td><code>systems/atari400/roms/ataribas.rom</code>, <code>systems/atari800/roms/ataribas.rom</code></td>
+<td>Atari BASIC Rev C</td>
+<td>Atari, Inc.</td>
+<td>© 1983 Atari. Genuine ROM, one copy per bundle</td>
 </tr>
 <tr>
 <td><code>systems/intv/</code></td>
@@ -518,18 +530,13 @@ software under permissive terms:</p>
 <li><strong>Apple I cassette tapes</strong> — Integer BASIC era homebrew + Apple's own
   30th Anniversary demo by Brian Wiser. Sourced from the
   <a href="https://www.applefritter.com/apple1">Apple I Project</a> archive.</li>
-<li><strong>AltirraOS-800 / -XL</strong> (counted under BIOS, above) — Avery Lee's
-  free re-implementation of Atari OS-B / OS-XL.</li>
-<li><strong>3D Construction Kit demos and indie homebrew</strong> across various
-  platforms — license varies; check the per-bundle <code>games.json</code> or
-  source archive when in doubt.</li>
-<li><strong>Attack of the PETSCII Robots</strong> (C64, <code>systems/c64/games/petrobot.d64</code>) —
-  David Murray ("The 8-Bit Guy") / 8-Bit Productions, 2021. The official
-  free <strong>shareware</strong> build (2 of the full game's 13 levels) is explicitly
-  redistributable — "You are free to distribute this archive." Downloaded
-  from <a href="https://www.the8bitguy.com/25753/petscii-robot-shareware-available/">the8bitguy.com</a>;
-  the full game is for sale. Bundled disk only — the manual PDF and notes
-  in the original archive are not shipped.</li>
+<li><strong>The Atari bundles no longer use AltirraOS or Altirra BASIC.</strong> Avery
+  Lee's clean-room reimplementations are still compiled into
+  <code>atari800.wasm</code> by <code>--enable-altirra_bios</code>, but they are a fallback the
+  emulator only reaches when no real ROM is supplied, and both bundles now
+  supply genuine Atari ROMs at runtime via <code>-osb_rom</code> / <code>-xlxe_rom</code> /
+  <code>-basic_rom</code>. Site policy is that firmware must be the manufacturer's
+  own, not a reimplementation.</li>
 </ul>
 <p>For every other commercial title, redistribution within this repo is on a
 preservation / personal-use basis, and will be withdrawn the moment a rights

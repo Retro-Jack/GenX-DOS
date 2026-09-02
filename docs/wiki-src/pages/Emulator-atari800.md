@@ -63,7 +63,17 @@ Why each flag is there:
 - `--without-opengl` — atari800's SDL+GL path calls `eglCreateContext`, which fails in emscripten and leaves the canvas black. The software SDL renderer works fine.
 - `--disable-netsio` / `--disable-riodevice` / `--disable-rserial` / `--disable-rnetwork` — these all need `clock_gettime` or a real host TTY/serial port, both of which trip emcc's strict implicit-declaration check. Nothing about them works in a browser anyway.
 - `--disable-audiorecording` / `--disable-videorecording` — strips RLE/ZMBV/WAV/ADPCM/μ-law codecs we don't need.
-- `--enable-altirra_bios` — this is the big one. It bakes Avery Lee's AltirraOS-XL 3.41 directly into the WASM. No copyrighted Atari OS ROM needs to ship alongside the bundle; the emulator falls back to AltirraOS automatically when no real ROM is found. This is also why `systems/atari800/` has no `roms/` directory full of `.bin` files — the OS lives inside `atari800.wasm`.
+- `--enable-altirra_bios` — bakes Avery Lee's AltirraOS-XL 3.41 and Altirra BASIC into the WASM as a **fallback**, used only when no real ROM is supplied.
+
+  **As of 02/09/2026 that fallback never engages.** Site policy is that firmware must be the manufacturer's own rather than a reimplementation, however good, so both bundles now supply genuine Atari ROMs at runtime and the Altirra code is dead weight the build happens to carry:
+
+  | Bundle | ROM | Passed as |
+  |---|---|---|
+  | atari400 | `roms/atariosb.rom` — OS-B, 10240 bytes, assembled from its three chips (`co12399b` + `co12499b` + `co14599b`) | `-osb_rom` |
+  | atari800 | `roms/atarixl.rom` — XL/XE OS Rev 2, 16384 bytes (`co61598b`) | `-xlxe_rom` |
+  | both | `roms/ataribas.rom` — Atari BASIC Rev C, 8192 bytes (`co60302a`) | `-basic_rom` |
+
+  They are fetched into MEMFS in `preRun`, the same pattern the TRS-80 uses for `model3.rom`, so no rebuild was needed. **The tell is the boot banner:** AltirraBASIC announces itself as `Altirra 8K BASIC 1.58`, while the real ROM just says `READY`. If you ever see that banner again, a ROM failed to load and the emulator fell back.
 - `-sUSE_SDL=2` — pulls emscripten's SDL2 port for canvas, keyboard, and WebAudio.
 
 ## The relink step
@@ -125,7 +135,7 @@ Headless chromium screenshots of SDL2/WASM canvases look black even when frames 
 systems/atari400/   (and systems/atari800/, a full copy of the same build)
 ├── play.html           ← atari400/ defaults to OS-B; atari800/ to OS-XL
 ├── atari800.js
-├── atari800.wasm        ← AltirraOS baked in here
+├── atari800.wasm        ← Altirra fallback baked in (unused; real ROMs ship in roms/)
 ├── games.json          ← 400 carts/disks in atari400/, 800XL titles in atari800/
 ├── controls.html
 ├── COPYING

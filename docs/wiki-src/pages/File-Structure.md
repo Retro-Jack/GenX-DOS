@@ -140,7 +140,7 @@ Every emulator-specific page can be told in one row. Where there's an integratio
 | `trs80/` | `sdltrs.js` + `sdltrs.wasm` + `model3.rom` | `play.html` | `games/*.cmd` |
 | `m100/` | `virtualt.js` + `virtualt.wasm` (M100 ROM embedded) + `src/` (build source) | `play.html` | `games/*.ba` |
 | `js99er/` | vanilla-JS modules + `lib/` (jQuery + zip.js) | `play.html` (`.rpk` first, `.bin` fallback) | `carts/*.rpk` |
-| `atari400/`, `atari800/` | `atari800.js` + `atari800.wasm` (AltirraOS baked in; a full copy in each) | `play.html` (`?game=<key>`; 400 boots OS-B, 800XL boots OS-XL) | `roms/*.atr` + `*.rom` |
+| `atari400/`, `atari800/` | `atari800.js` + `atari800.wasm` (a full copy in each) | `play.html` (`?game=<key>`; 400 boots OS-B, 800XL boots OS-XL, both from genuine Atari ROMs in `roms/`) | `roms/*.atr` + `*.rom` |
 | `pet/` | Thomas Skibo's pet2001 (vanilla JS, `pet2001/` modules) | `play.html` (`?game=<key>`, IEEE-488 PRG injection) | `games/*.prg` |
 | `vic20`, `max`, `c64`, `c16`, `plus4`, `c128` | EmulatorJS framework + VICE libretro core (shared) | `play.html` (per-game `model`/`video` overrides) | `games/*.prg`/`*.d64`/`*.crt` |
 | `coleco/` | EmulatorJS + gearcoleco + `colecovision.rom` BIOS | `play.html` (`EJS_defaultControls` numpad remap) | `games/*.col` |
