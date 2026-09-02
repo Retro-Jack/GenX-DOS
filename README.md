@@ -193,7 +193,7 @@ The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.m
 - XRoar: GPL-3.0+ (Ciaran Anscomb)
 - sdltrs: BSD-2-Clause (Mark Grebe / Jens Guenther, gitlab.com/jengun/sdltrs) — TRS-80 Model III, built from source to WASM; Model III ROM (©Tandy/Microsoft) bundled for emulation
 - Js99'er: GPL-2.0 (Rasmus Moustgaard) — vanilla-JS build
-- atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); AltirraOS-XL/800/BASIC (Avery Lee, freely redistributable open-source OS replacement) embedded inside `atari800.wasm` at build time via `--enable-altirra_bios` — no separate ROM file ships
+- atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); the machines run **genuine Atari ROMs** — OS-B on the 400, XL/XE OS Rev 2 on the 800XL, and Atari BASIC Rev C on both — supplied at runtime from `roms/` via `-osb_rom` / `-xlxe_rom` / `-basic_rom`. The build also contains Avery Lee's AltirraOS/AltirraBASIC reimplementations, but they are only a fallback for when no real ROM is present, and never load here
 - EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 14 bundles via `systems/_shared-ejs/` — the six VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, Sega Master System, and the three handhelds (Game Boy/GBC, Lynx, Game Gear)
 - VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `x128`, `xvic`, `xplus4`) mirrored from `cdn.emulatorjs.org/stable/`
 - pet2001: BSD-2-Clause (Thomas Skibo) — vanilla-JS PET 2001 emulator at `systems/pet/pet2001/`
