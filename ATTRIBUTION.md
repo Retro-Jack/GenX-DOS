@@ -97,7 +97,9 @@ fork rather than the bundle.
 | `systems/js99er/` | Js99'er (vanilla-JS build) | Rasmus Moustgaard | GPL-2.0 |
 | `systems/js99er/carts/*.rpk` | TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983) | Texas Instruments / Imagic / Sega — original publishers | Distributed for retro-preservation; carts are 40+ years out of commerce. |
 | `systems/atari800/`, `systems/atari400/` | atari800 v5.2.0, built from source to WASM (same core shipped in two bundles — the 400 bundle boots OS-B, the 800XL bundle boots OS-XL) | atari800 project | GPL-2.0+ |
-| `systems/atari800/atari800.wasm`, `systems/atari400/atari800.wasm` (embedded) | AltirraOS-XL 3.41 + AltirraOS-800 + AltirraBASIC | Avery Lee | Freely-redistributable open-source OS replacement, compiled into the WASM via `--enable-altirra_bios` (no separate ROM file ships) |
+| `systems/atari400/roms/atariosb.rom` | Atari OS-B (400/800) | Atari, Inc. | © 1980 Atari. The genuine ROM, assembled from its three chips. Replaced Avery Lee's AltirraOS on 02/09/2026 |
+| `systems/atari800/roms/atarixl.rom` | Atari XL/XE OS Rev 2 (800XL) | Atari, Inc. | © 1983 Atari. Genuine ROM |
+| `systems/atari400/roms/ataribas.rom`, `systems/atari800/roms/ataribas.rom` | Atari BASIC Rev C | Atari, Inc. | © 1983 Atari. Genuine ROM, one copy per bundle |
 | `systems/intv/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
 | `systems/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | Artistic-2.0 (libretro-o2em, verified against upstream); frontend bundled under repo terms |
 | `systems/cpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` (status bar + muted-speaker icon patched out, plus `gx_state_*` save-state wrappers; see `systems/cpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
@@ -265,18 +267,13 @@ software under permissive terms:
 - **Apple I cassette tapes** — Integer BASIC era homebrew + Apple's own
   30th Anniversary demo by Brian Wiser. Sourced from the
   [Apple I Project](https://www.applefritter.com/apple1) archive.
-- **AltirraOS-800 / -XL** (counted under BIOS, above) — Avery Lee's
-  free re-implementation of Atari OS-B / OS-XL.
-- **3D Construction Kit demos and indie homebrew** across various
-  platforms — license varies; check the per-bundle `games.json` or
-  source archive when in doubt.
-- **Attack of the PETSCII Robots** (C64, `systems/c64/games/petrobot.d64`) —
-  David Murray ("The 8-Bit Guy") / 8-Bit Productions, 2021. The official
-  free **shareware** build (2 of the full game's 13 levels) is explicitly
-  redistributable — "You are free to distribute this archive." Downloaded
-  from [the8bitguy.com](https://www.the8bitguy.com/25753/petscii-robot-shareware-available/);
-  the full game is for sale. Bundled disk only — the manual PDF and notes
-  in the original archive are not shipped.
+- **The Atari bundles no longer use AltirraOS or Altirra BASIC.** Avery
+  Lee's clean-room reimplementations are still compiled into
+  `atari800.wasm` by `--enable-altirra_bios`, but they are a fallback the
+  emulator only reaches when no real ROM is supplied, and both bundles now
+  supply genuine Atari ROMs at runtime via `-osb_rom` / `-xlxe_rom` /
+  `-basic_rom`. Site policy is that firmware must be the manufacturer's
+  own, not a reimplementation.
 
 For every other commercial title, redistribution within this repo is on a
 preservation / personal-use basis, and will be withdrawn the moment a rights
