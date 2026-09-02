@@ -23,15 +23,16 @@
   <link rel="stylesheet" href="../_shared/styles/genx-savestate.css">
   <style>
     /* CRT bezel — shared vintage TV (TV-Vintage.png, 1362x914, screen hole at
-       8.08%/12.14%/65.35%×73.96%) on the 70s wallpaper, same player-in-hole
+       6.975%/10.503%/67.621%×77.352%, the hole's OUTER bound so the
+       feathered edge falls under the picture rather than over .screen-bg) on the 70s wallpaper, same player-in-hole
        recipe as the MSX/CoCo/Spectrum. js99er sizes #canvas via CSS, so we pin
        it into the hole and force it to fill; no barrel/fisheye (the TI picture
        reads better flat). Black .screen-bg behind hides the cutout edge. */
     html, body { background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; font-family: monospace; color: #ddd; }
     .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1362 / 914)); aspect-ratio: 1362 / 914; }
     .screen-bg { position: absolute; left: 6.6%; top: 10.6%; width: 68.4%; height: 77.0%; background: #000; z-index: 1; }
-    #screen { position: absolute; left: 8.08%; top: 12.14%; width: 65.35%; height: 73.96%; overflow: hidden; z-index: 2; }
-    #canvas { width: 100% !important; height: 100% !important; display: block; outline: none; border: none; image-rendering: pixelated; image-rendering: crisp-edges; background: #000; transform: translate(8px, 0px) scale(0.9); }
+    #screen { position: absolute; left: 6.975%; top: 10.503%; width: 67.621%; height: 77.352%; overflow: hidden; z-index: 2; }
+    #canvas { width: 100% !important; height: 100% !important; display: block; outline: none; border: none; image-rendering: pixelated; image-rendering: crisp-edges; background: #000; }
     .bezel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 3; }
     #loading {
       position: fixed;

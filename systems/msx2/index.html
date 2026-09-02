@@ -14,8 +14,11 @@
     <title>MSX2</title>
     <style>
       /* CRT bezel — vintage TV (TV-Vintage.png, 1362x914, screen keyed to a
-       transparent 4:3 hole at left 8.08% top 12.14% width 65.35% height
-       73.96%). Shared with the Spectrum/ZX81 bundles; the set floats on the
+       4:3 hole, the hole measured at its OUTER bound (alpha < 250, so the feathered
+       edge falls inside it): left 6.975% top 10.503% width 67.621%
+       height 77.352%. Measuring to the inner bound (alpha < 32) instead
+       leaves the feather compositing over .screen-bg — invisible while
+       that is black, a bright fringe otherwise). Shared with the Spectrum/ZX81 bundles; the set floats on the
        70s wallpaper. WebMSX (SCREEN_RESIZE_DISABLED:false) sizes its canvas to
        fit #wmsx-screen, so we put #wmsx in the hole and force the canvas to
        fill it. The canvas is drawn flat. !important on the
@@ -50,10 +53,10 @@
       }
       #wmsx {
         position: absolute;
-        left: 8.08%;
-        top: 12.14%;
-        width: 65.35%;
-        height: 73.96%;
+        left: 6.975%;
+        top: 10.503%;
+        width: 67.621%;
+        height: 77.352%;
         overflow: visible;
         z-index: 2;
       }

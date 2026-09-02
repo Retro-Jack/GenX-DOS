@@ -97,7 +97,7 @@ details — that is exactly the class of thing recall gets wrong.
 | file | machine | border control | status |
 |---|---|---|---|
 | `xroar.bas` | Tandy CoCo | colour set via `SCREEN 1,1` | **VERIFIED 30/08/2026** — `PCLS 0` is the correct one of the two |
-| `jsspeccy.bas` | ZX Spectrum | `BORDER` | drafted; needs K-mode/extended-mode entry, see above |
+| `jsspeccy.bas` | ZX Spectrum | `BORDER` + `POKE 23693` | **VERIFIED 03/09/2026** — typed as three direct commands. In K mode each keyword is one keypress: `B`=BORDER, `O`=POKE, `V`=CLS. `PAPER` is unreachable from K mode, so black paper comes from poking ATTR-P at 23693 |
 | `msx1.bas`, `msx2.bas` | MSX1 / MSX2 | `COLOR fg,bg,border` | **VERIFIED 03/09/2026** — must be `SCREEN 1`, not `SCREEN 0`: in SCREEN 0 the MSX ignores the border parameter and the whole screen takes the background colour, so the card came up solid black and proved nothing |
 | `cpc.bas` | Amstrad CPC | `BORDER 26` = bright white | **VERIFIED 30/08/2026** |
 | `atari400.bas`, `atari800.bas` | Atari 8-bit | `SETCOLOR 4` = border, `2` = playfield | drafted |
