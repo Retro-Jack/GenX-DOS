@@ -4,11 +4,11 @@
 # SOURCE OF TRUTH for the portable export folder and the release zip.
 # Change what ships by editing the excludes here.
 #
-# Usage: ./build-portable.sh [target-dir]      (default: dist)
+# Usage: ./build-portable.sh [target-dir]      (default: _Portable, the working copy)
 set -euo pipefail
 
 cd "$(dirname "$(realpath "$0")")"
-TARGET="${1:-dist}"
+TARGET="${1:-_Portable}"
 mkdir -p "$TARGET"
 
 # Everything NOT listed here ships. Excluded = dev tooling, build/meta, repo
