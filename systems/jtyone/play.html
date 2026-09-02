@@ -15,6 +15,8 @@
     <link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sinclair ZX81</title>
+    <link rel="stylesheet" href="../_shared/styles/genx-noscript.css" />
+    <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css" />
     <style>
       /* CRT bezel — shared vintage TV (TV-Vintage.png, 1362x914, screen hole
        8.08%/12.14%/65.35%×73.96%), same as the ZX Spectrum (jsspeccy) bundle.
@@ -26,8 +28,8 @@
         margin: 0;
         padding: 0;
         height: 100%;
-        background: #000 url('../_shared/textures/70s-bg.png') repeat !important;
-        background-size: 220px !important;
+        background: #000 url('../_shared/textures/70s-bg.png') repeat;
+        background-size: 220px;
         overflow: hidden;
         color: #fff;
         font-family: monospace;
@@ -328,8 +330,6 @@
         if (window.emulatorUI && emulatorUI.stop) emulatorUI.stop();
       });
     </script>
-    <link rel="stylesheet" href="../_shared/styles/genx-noscript.css" />
-    <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css" />
     <script defer src="../_shared/genx-controls-link.js"></script>
     <script defer src="../_shared/genx-repo-link.js"></script>
   </body>

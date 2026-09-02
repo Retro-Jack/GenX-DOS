@@ -15,6 +15,10 @@
     <link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tandy CoCo</title>
+    <link rel="stylesheet" href="../_shared/styles/genx-frame.css" />
+    <link rel="stylesheet" href="../_shared/styles/genx-noscript.css" />
+    <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css" />
+    <link rel="stylesheet" href="../_shared/styles/genx-savestate.css" />
     <style>
       /* CRT bezel — shared vintage TV (TV-Vintage.png, 1362x914) on the 70s
        wallpaper, same player-in-hole recipe as the Spectrum/MSX. The hole is
@@ -24,14 +28,14 @@
        which is what a real one did. XRoar (SDL2) sizes #canvas itself, so we
        pin it into the hole and force it to fill; no barrel/fisheye (the CoCo
        picture reads better flat). Black .screen-bg behind hides the cutout
-       edge. !important on the wallpaper because genx-frame.css loads AFTER. */
+       edge. */
       html,
       body {
         margin: 0;
         padding: 0;
         height: 100%;
-        background: #000 url('../_shared/textures/70s-bg.png') repeat !important;
-        background-size: 220px !important;
+        background: #000 url('../_shared/textures/70s-bg.png') repeat;
+        background-size: 220px;
         overflow: hidden;
         color: #fff;
         font-family: monospace;
@@ -102,7 +106,6 @@
         padding: 20px;
       }
     </style>
-    <link rel="stylesheet" href="../_shared/styles/genx-frame.css" />
   </head>
   <body>
     <noscript
@@ -516,8 +519,6 @@
         document.body.appendChild(s);
       })();
     </script>
-    <link rel="stylesheet" href="../_shared/styles/genx-noscript.css" />
-    <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css" />
     <script defer src="../_shared/genx-controls-link.js"></script>
     <script defer src="../_shared/genx-repo-link.js"></script>
     <script defer src="../_shared/genx-gamepad-browser-notice.js"></script>
@@ -526,7 +527,6 @@
        WASM FS); we read those bytes back as the state, and restore by writing
        them to the FS and reloading via wasm_load_file (same path used to load
        games). -->
-    <link rel="stylesheet" href="../_shared/styles/genx-savestate.css" />
     <script>
       (function () {
         var SNAP = '/gx-state.sna';

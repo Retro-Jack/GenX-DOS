@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../_shared/styles/genx-frame.css">
   <link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
   <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
+  <link rel="stylesheet" href="../_shared/styles/genx-savestate.css">
   <style>
     /* CRT bezel — early-'80s wood-cabinet CRT television (80s.png, 1680x1125).
        The set floats on the wallpaper: the PNG has a transparent background
@@ -42,14 +43,14 @@
       position: absolute;
       left: 14.4%; top: 20.3%; width: 48.4%; height: 54.8%;
       background: #000;
-      z-index: 0;
+      z-index: 1;
     }
     .screen {
       position: absolute;
       left: 15.238%; top: 21.156%; width: 46.667%; height: 53.067%;
       background: #000;
       overflow: hidden;
-      z-index: 1;
+      z-index: 2;
     }
     #canvas {
       /* The canvas fills the cutout exactly. atari800 is told (via -stretch
@@ -69,14 +70,13 @@
       width: 100%; height: 100%;
       object-fit: contain;
       pointer-events: none;
-      z-index: 2;
+      z-index: 3;
     }
     .err { padding: 20px; }
   </style>
   <script defer src="../_shared/genx-controls-link.js"></script>
 <script defer src="../_shared/genx-atari-console.js"></script>
   <script defer src="../_shared/genx-repo-link.js"></script>
-  <link rel="stylesheet" href="../_shared/styles/genx-savestate.css">
   <script defer src="../_shared/genx-savestate-std.js"></script>
     <script defer src="../_shared/genx-savestate-transfer.js"></script>
 </head>

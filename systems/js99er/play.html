@@ -17,14 +17,17 @@
     <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
   </div></noscript>
 
+  <link rel="stylesheet" href="../_shared/styles/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
+  <link rel="stylesheet" href="../_shared/styles/genx-savestate.css">
   <style>
     /* CRT bezel — shared vintage TV (TV-Vintage.png, 1362x914, screen hole at
        8.08%/12.14%/65.35%×73.96%) on the 70s wallpaper, same player-in-hole
        recipe as the MSX/CoCo/Spectrum. js99er sizes #canvas via CSS, so we pin
        it into the hole and force it to fill; no barrel/fisheye (the TI picture
-       reads better flat). Black .screen-bg behind hides the cutout edge.
-       !important on the wallpaper because genx-frame.css loads AFTER. */
-    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat !important; background-size: 220px !important; overflow: hidden; font-family: monospace; color: #ddd; }
+       reads better flat). Black .screen-bg behind hides the cutout edge. */
+    html, body { margin: 0; padding: 0; height: 100%; background: #000 url('../_shared/textures/70s-bg.png') repeat; background-size: 220px; overflow: hidden; font-family: monospace; color: #ddd; }
     body { display: flex; align-items: center; justify-content: center; }
     .bezel-wrap { position: relative; width: min(100vw, calc((100dvh - 120px) * 1362 / 914)); aspect-ratio: 1362 / 914; }
     .screen-bg { position: absolute; left: 6.6%; top: 10.6%; width: 68.4%; height: 77.0%; background: #000; z-index: 1; }
@@ -41,12 +44,8 @@
     }
   </style>
 
-  <link rel="stylesheet" href="../_shared/styles/genx-frame.css">
-  <link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
-  <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
   <script defer src="../_shared/genx-controls-link.js"></script>
 <script defer src="../_shared/genx-repo-link.js"></script>
-  <link rel="stylesheet" href="../_shared/styles/genx-savestate.css">
   <script defer src="../_shared/genx-savestate-std.js"></script>
     <script defer src="../_shared/genx-savestate-transfer.js"></script>
 
