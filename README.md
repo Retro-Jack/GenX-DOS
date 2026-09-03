@@ -138,7 +138,7 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | Intellivision | jzIntv (Joe Zbiciak) WASM, custom emscripten loader | `play.html?game=<key>` |
 | Amstrad CPC   | floooh/chips-test tiny8bit CPC WASM (Andre Weissflog) | `play.html?game=<key>` (rewrites to `?file=&input=` for sokol_args) |
 | Magnavox Odyssey² | libretro/libretro-o2em + custom SDL2/emscripten frontend | `play.html?game=<key>` |
-| GCE Vectrex | DrSnuggles/jsvecx, our fork with the speech DAC added | `play.html?rom=<dir>/<title>&game=<key>` |
+| GCE Vectrex | DrSnuggles/jsvecx, our fork with the speech DAC added | `play.html?game=<key>` |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 

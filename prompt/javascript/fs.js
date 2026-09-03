@@ -839,43 +839,43 @@ var fs = [
                       },
                       {
                         name: 'starcasl.bat',
-                        link: '../systems/jsvecx/play.html?rom=Commercial/Star%20Castle_1983&game=starcasl',
+                        link: '../systems/jsvecx/play.html?game=starcasl',
                       },
                       {
                         name: 'berzerk.bat',
-                        link: '../systems/jsvecx/play.html?rom=Commercial/Berzerk_1982&game=berzerk',
+                        link: '../systems/jsvecx/play.html?game=berzerk',
                       },
                       {
                         name: 'cosmicch.bat',
-                        link: '../systems/jsvecx/play.html?rom=Commercial/Cosmic%20Chasm_1982&game=cosmicch',
+                        link: '../systems/jsvecx/play.html?game=cosmicch',
                       },
                       {
                         name: 'polepos.bat',
-                        link: '../systems/jsvecx/play.html?rom=Commercial/Pole%20Position_1983&game=polepos',
+                        link: '../systems/jsvecx/play.html?game=polepos',
                       },
                       {
                         name: 'polarrsc.bat',
-                        link: '../systems/jsvecx/play.html?rom=Commercial/Polar%20Rescue_1983&game=polarrsc',
+                        link: '../systems/jsvecx/play.html?game=polarrsc',
                       },
                       {
                         name: 'spike.bat',
-                        link: '../systems/jsvecx/play.html?rom=Commercial/Spike_1983&game=spike',
+                        link: '../systems/jsvecx/play.html?game=spike',
                       },
                       {
                         name: 'startrek.bat',
-                        link: '../systems/jsvecx/play.html?rom=Commercial/Star%20Trek_1982&game=startrek',
+                        link: '../systems/jsvecx/play.html?game=startrek',
                       },
                       {
                         name: 'solarqst.bat',
-                        link: '../systems/jsvecx/play.html?rom=Commercial/Solar%20Quest_1982&game=solarqst',
+                        link: '../systems/jsvecx/play.html?game=solarqst',
                       },
                       {
                         name: 'ripoff.bat',
-                        link: '../systems/jsvecx/play.html?rom=Commercial/Rip-Off_1982&game=ripoff',
+                        link: '../systems/jsvecx/play.html?game=ripoff',
                       },
                       {
                         name: 'scramble.bat',
-                        link: '../systems/jsvecx/play.html?rom=Commercial/Scramble_1982&game=scramble',
+                        link: '../systems/jsvecx/play.html?game=scramble',
                       },
                       {
                         name: 'minestrm.bat',
