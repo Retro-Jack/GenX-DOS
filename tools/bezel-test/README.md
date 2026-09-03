@@ -56,6 +56,32 @@ The CoCo could be pushed proud of its hole only because what spilled over was
 screen *border*. A machine whose picture has no border margin has nothing to
 spend, so check what the overshoot would cost before taking it.
 
+### Findings — TRS-80 (done 03/09/2026)
+
+**The picture stops well short of the glass, and it is deliberate.** The card's
+white frame marks the true edge of the 512x384 surface, and a thick magenta ring
+sits outside it. `#screen` is at `20.77/12.32/35.6/39.21` against a hole whose
+outer bound is `17.490/6.795/42.190/46.556`. The inset is documented in the page
+on two counts: a ~5% margin so a little of the CRT's black surround shows rather
+than the image running to the edge of the glass, and the top nudged down ~1.9%
+to centre what you actually see in Galaxy Invasion (whose frame occupies y 8..335
+of the 384) rather than the technical surface. Left as-is pending a decision, the
+same way the PET was.
+
+**Typing into sdltrs — the earlier "keys never arrive" note is wrong.** Keys do
+reach blocking DOS prompts: `Enter Date` accepted a date and the machine went on
+to `TRSDOS Ready` and Disk BASIC. Three things to get right:
+- **Shift must be a real `keydown`/`keyup` around the key.** sdltrs reads the
+  physical key, not the event's `shiftKey` flag, so `SET(X,0)` arrives as
+  `SET9X,00` otherwise.
+- **Punctuation needs its true `code`** — `Equal`/187 for `=`, not a made-up
+  `Key=`, which gives "Syntax Error".
+- **Colons never arrive** (they come through as `;`), so split multi-statement
+  lines.
+- The canvas loses keyboard focus after other interaction, and the first couple
+  of keys after a re-focus are swallowed — click it, type something disposable,
+  then type for real.
+
 ### Findings — MSX (done 03/09/2026)
 
 **Both MSX bundles were wrong, and only the card showed it.** The magenta check alone said "fine": the ring around the picture stayed black, because WebMSX's own `#wmsx-screen` sits behind the canvas and is black, so it filled the gap and hid it. The card's white border stopped well short of the glass on all four sides — that was the tell.
@@ -109,7 +135,7 @@ details — that is exactly the class of thing recall gets wrong.
 | `bbcmicro.bas`, `bbcmaster.bas`, `electron.bas` | BBC / Electron | **no border register** — border is always black, so the card is a white fill with a black inset, marking the addressable edge | **ALL THREE VERIFIED 30/08/2026** |
 | `apple2.bas` | Apple ][+ | no border; inverse-space frame | **SUPERSEDED** — see the disk card below; the machine cannot be driven to a BASIC prompt |
 | `pet.bas` | PET | no border; reverse-video frame | **suspect** — positions with `TAB`, but PET BASIC 2.0 positions with `CHR$` cursor codes |
-| `trs80.bas` | TRS-80 Model III | monochrome; `SET()` frame at the graphics edge | drafted |
+| `trs80.bas` | TRS-80 Model III | monochrome; `SET()` frame at the graphics edge | **VERIFIED 03/09/2026** — one statement per line, colons do not survive synthetic typing here |
 | `jtyone.bas` | ZX81 | no colour at all; screen is already white, so the card is an inverse-video black interior | drafted |
 | `apple1.bas` | Apple I | no inverse video and no graphics — a solid white edge is **not possible** | **SUPERSEDED** — see the tape card below |
 
