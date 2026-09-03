@@ -2088,124 +2088,11 @@ var fs = [
                       },
                     ],
                   },
-                  {
-                    name: 'C128',
-                    directories: [
-                      {
-                        name: 'GAMES',
-                        directories: [],
-                        files: [
-                          {
-                            name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  128  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  128 Crush            (1985)  CRUSH    º\necho                 º   2.  Rocky Horror Show    (1985)  ROCKYH   º\necho                 º   3.  The Last V8          (1985)  LASTV8   º\necho                 º   4.  Star Fleet I         (1987)  STARFLT1 º\necho                 º   5.  Invaders             (19xx)  INVADERS º\necho                 º   6.  Uniquest             (19xx)  UNIQUEST º\necho                 º   7.  World at War         (2017)  WORLDWAR º\necho                 º   8.  Phazer               (2023)  PHAZER   º\necho                 º   9.  Rockfall 128         (2023)  ROCKFALL º\necho                 º  10.  Wumpus 2.0           (2023)  WUMPUS   º\necho                 º                                             º\necho                 º  11.  BASIC 7.0 prompt            BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
-                          },
-                          {
-                            name: '0.bat',
-                            data: 'echo off\ncd ..\ncd ..\nmenu\n',
-                          },
-                          {
-                            name: '1.bat',
-                            data: 'crush\n',
-                          },
-                          {
-                            name: '2.bat',
-                            data: 'rockyh\n',
-                          },
-                          {
-                            name: '3.bat',
-                            data: 'lastv8\n',
-                          },
-                          {
-                            name: '4.bat',
-                            data: 'starflt1\n',
-                          },
-                          {
-                            name: '5.bat',
-                            data: 'invaders\n',
-                          },
-                          {
-                            name: '6.bat',
-                            data: 'uniquest\n',
-                          },
-                          {
-                            name: '7.bat',
-                            data: 'worldwar\n',
-                          },
-                          {
-                            name: '8.bat',
-                            data: 'phazer\n',
-                          },
-                          {
-                            name: '9.bat',
-                            data: 'rockfall\n',
-                          },
-                          {
-                            name: '10.bat',
-                            data: 'wumpus\n',
-                          },
-                          {
-                            name: '11.bat',
-                            data: 'basic\n',
-                          },
-                          {
-                            name: 'lastv8.bat',
-                            link: '../systems/c128/play.html?game=lastv8',
-                          },
-                          {
-                            name: 'rockyh.bat',
-                            link: '../systems/c128/play.html?game=rockyh',
-                          },
-                          {
-                            name: 'crush.bat',
-                            link: '../systems/c128/play.html?game=crush',
-                          },
-                          {
-                            name: 'worldwar.bat',
-                            link: '../systems/c128/play.html?game=worldwar',
-                          },
-                          {
-                            name: 'invaders.bat',
-                            link: '../systems/c128/play.html?game=invaders',
-                          },
-                          {
-                            name: 'wumpus.bat',
-                            link: '../systems/c128/play.html?game=wumpus',
-                          },
-                          {
-                            name: 'starflt1.bat',
-                            link: '../systems/c128/play.html?game=starflt1',
-                          },
-                          {
-                            name: 'rockfall.bat',
-                            link: '../systems/c128/play.html?game=rockfall',
-                          },
-                          {
-                            name: 'phazer.bat',
-                            link: '../systems/c128/play.html?game=phazer',
-                          },
-                          {
-                            name: 'uniquest.bat',
-                            link: '../systems/c128/play.html?game=uniquest',
-                          },
-                          {
-                            name: 'basic.bat',
-                            link: '../systems/c128/play.html?game=basic',
-                          },
-                        ],
-                      },
-                    ],
-                    files: [
-                      {
-                        name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
-                      },
-                    ],
-                  },
                 ],
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  COMPUTERS             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Commodore PET        (1977)  PET      º\necho                 º   2.  Commodore VIC-20     (1980)  VIC20    º\necho                 º   3.  Commodore MAX        (1982)  MAX      º\necho                 º   4.  Commodore 64         (1982)  C64      º\necho                 º   5.  Commodore C16        (1984)  C16      º\necho                 º   6.  Commodore Plus/4     (1984)  PLUS4    º\necho                 º   7.  Commodore 128        (1985)  C128     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  COMPUTERS             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Commodore PET        (1977)  PET      º\necho                 º   2.  Commodore VIC-20     (1980)  VIC20    º\necho                 º   3.  Commodore MAX        (1982)  MAX      º\necho                 º   4.  Commodore 64         (1982)  C64      º\necho                 º   5.  Commodore C16        (1984)  C16      º\necho                 º   6.  Commodore Plus/4     (1984)  PLUS4    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -2230,10 +2117,6 @@ var fs = [
                   {
                     name: '6.bat',
                     data: 'cd plus4\ncd games\nmenu\n',
-                  },
-                  {
-                    name: '7.bat',
-                    data: 'cd c128\ncd games\nmenu\n',
                   },
                   {
                     name: '0.bat',
@@ -2783,7 +2666,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             AMSTRAD  CPC  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bruce Lee            (1984)  BRUCE    º\necho                 º   2.  Roland on the Run    (1984)  ROLAND   º\necho                 º   3.  3D Starstrike        (1985)  STARSTRK º\necho                 º   4.  Tau Ceti             (1986)  TAUCETI  º\necho                 º   5.  The Eidolon          (1986)  EIDOLON  º\necho                 º   6.  Head over Heels      (1987)  HEADOVER º\necho                 º   7.  Chase H.Q.           (1989)  CHASEHQ  º\necho                 º   8.  Rick Dangerous       (1989)  RICK     º\necho                 º   9.  Prince of Persia     (1990)  PRINCE   º\necho                 º  10.  3D Construction Kit  (1991)  3DKIT    º\necho                 º                                             º\necho                 º  11.  Locomotive BASIC prompt     BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             AMSTRAD  CPC  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bruce Lee            (1984)  BRUCE    º\necho                 º   2.  Roland on the Run    (1984)  ROLAND   º\necho                 º   3.  3D Starstrike        (1985)  STARSTRK º\necho                 º   4.  Tau Ceti             (1986)  TAUCETI  º\necho                 º   5.  The Eidolon          (1986)  EIDOLON  º\necho                 º   6.  R-Type               (1988)  RTYPE    º\necho                 º   7.  Chase H.Q.           (1989)  CHASEHQ  º\necho                 º   8.  Rick Dangerous       (1989)  RICK     º\necho                 º   9.  Prince of Persia     (1990)  PRINCE   º\necho                 º  10.  3D Construction Kit  (1991)  3DKIT    º\necho                 º                                             º\necho                 º  11.  Locomotive BASIC prompt     BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -2811,7 +2694,7 @@ var fs = [
                       },
                       {
                         name: '6.bat',
-                        data: 'headover\n',
+                        data: 'rtype\n',
                       },
                       {
                         name: '7.bat',
@@ -2866,8 +2749,8 @@ var fs = [
                         link: '../systems/cpc/play.html?game=eidolon',
                       },
                       {
-                        name: 'headover.bat',
-                        link: '../systems/cpc/play.html?game=headover',
+                        name: 'rtype.bat',
+                        link: '../systems/cpc/play.html?game=rtype',
                       },
                       {
                         name: 'rick.bat',

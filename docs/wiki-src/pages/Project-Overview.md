@@ -40,14 +40,14 @@ DOS is the prompt host. See [[Roadmap]] for the full in/out list and what's stil
 
 ## The lineup
 
-19 emulators ship under `systems/`, driving 33 sub-systems:
+19 emulators ship under `systems/`, driving 32 sub-systems:
 
 - Consoles: Atari 2600, Atari 7800, ColecoVision, Intellivision, NES, Magnavox Odyssey², Sega Master System
 - Handheld: Game Boy / Game Boy Color, Atari Lynx, Sega Game Gear
 - Apple: Apple I, Apple ][+
 - Acorn: BBC Micro, BBC Master 128 (same jsbeeb engine, shipped as two bundles — `bbcmicro/` boots Model B, `bbcmaster/` boots `?model=Master`), Electron
 - Atari home: Atari 400, Atari 800XL (same atari800 engine, shipped as two bundles — `atari400/` boots OS-B, `atari800/` boots OS-XL)
-- Commodore: VIC-20, MAX, C64, C16, Plus/4, C128 (six sub-systems off four VICE libretro cores); PET on its own (Thomas Skibo's pet2001, vanilla JS)
+- Commodore: VIC-20, MAX, C64, C16, Plus/4 (five sub-systems off three VICE libretro cores); PET on its own (Thomas Skibo's pet2001, vanilla JS)
 - Sinclair: ZX81, ZX Spectrum
 - Amstrad: CPC
 - Tandy: CoCo, TRS-80 Model I, TRS-80 Model 100

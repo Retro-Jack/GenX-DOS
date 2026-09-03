@@ -128,9 +128,8 @@ details — that is exactly the class of thing recall gets wrong.
 | `cpc.bas` | Amstrad CPC | `BORDER 26` = bright white | **VERIFIED 30/08/2026** |
 | `atari400.bas`, `atari800.bas` | Atari 8-bit | `SETCOLOR 4` = border, `2` = playfield | drafted |
 | `c64.bas` | C64 | `POKE 53280/53281` | drafted |
-| `c128.bas` | C128 | `COLOR` | **suspect** — used source 5 (80-col background); 40-col foreground is source 1 |
 | `vic20.bas` | VIC-20 | `POKE 36879` | drafted |
-| `c16.bas`, `plus4.bas` | C16 / Plus4 | `COLOR` | **suspect** — assumed source 4 is the border, as on the C128; TED numbers differently |
+| `c16.bas`, `plus4.bas` | C16 / Plus4 | `COLOR` | **suspect** — assumed source 4 is the border, as the C128 did; TED numbers differently |
 | `js99er.bas` | TI-99/4A | `CALL SCREEN` colours border *and* background together, so the playfield is filled with a black-on-black character | drafted |
 | `bbcmicro.bas`, `bbcmaster.bas`, `electron.bas` | BBC / Electron | **no border register** — border is always black, so the card is a white fill with a black inset, marking the addressable edge | **ALL THREE VERIFIED 30/08/2026** |
 | `apple2.bas` | Apple ][+ | no border; inverse-space frame | **SUPERSEDED** — see the disk card below; the machine cannot be driven to a BASIC prompt |
@@ -202,7 +201,7 @@ Jack, 30/08/2026: **every computer except the Tandy portable**, worked through
     Amstrad      cpc
     Apple        apple1, apple2
     Atari        atari400, atari800
-    Commodore    c16, c64, c128, pet, plus4, vic20
+    Commodore    c16, c64, pet, plus4, vic20
     MSX          msx1, msx2
     Sinclair     jsspeccy, jtyone
     Tandy        trs80, xroar

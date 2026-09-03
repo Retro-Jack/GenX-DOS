@@ -62,7 +62,7 @@ genx-dos/
 │       └── ami-logo.png      AMIBIOS POST logo   (f12.* sheets now live in systems/_shared/styles/VGA_font/)
 │
 └── systems/
-    ├── _shared/             shared JS + CSS + assets for every gamedoc + controls.html (360 pages) + play.html
+    ├── _shared/             shared JS + CSS + assets for every gamedoc + controls.html (349 pages) + play.html
     │   ├── genx-*.js        controls-link, game-loader, numlock-warn, vice-softkeys,
     │   │                    apple2-flipdisk (two-sided disks),
     │   │                    atari-console (OPTION/SELECT/START buttons),
@@ -109,7 +109,6 @@ genx-dos/
     ├── c64/                 Commodore 64       (EmulatorJS + VICE x64)
     ├── c16/                 Commodore 16       (EmulatorJS + VICE xplus4 in c16pal mode)
     ├── plus4/               Commodore Plus/4   (EmulatorJS + VICE xplus4)
-    ├── c128/                Commodore 128      (EmulatorJS + VICE x128 native mode)
     ├── coleco/              ColecoVision       (EmulatorJS + gearcoleco + BIOS)
     ├── intv/                Intellivision      (jzIntv WASM + custom loader + BIOS)
     ├── odyssey2/            Magnavox Odyssey²  (libretro-o2em + custom SDL2 frontend + BIOS)
@@ -142,7 +141,7 @@ Every emulator-specific page can be told in one row. Where there's an integratio
 | `js99er/` | vanilla-JS modules + `lib/` (jQuery + zip.js) | `play.html` (`.rpk` first, `.bin` fallback) | `carts/*.rpk` |
 | `atari400/`, `atari800/` | `atari800.js` + `atari800.wasm` (a full copy in each) | `play.html` (`?game=<key>`; 400 boots OS-B, 800XL boots OS-XL, both from genuine Atari ROMs in `roms/`) | `roms/*.atr` + `*.rom` |
 | `pet/` | Thomas Skibo's pet2001 (vanilla JS, `pet2001/` modules) | `play.html` (`?game=<key>`, IEEE-488 PRG injection) | `games/*.prg` |
-| `vic20`, `max`, `c64`, `c16`, `plus4`, `c128` | EmulatorJS framework + VICE libretro core (shared) | `play.html` (per-game `model`/`video` overrides) | `games/*.prg`/`*.d64`/`*.crt` |
+| `vic20`, `max`, `c64`, `c16`, `plus4` | EmulatorJS framework + VICE libretro core (shared) | `play.html` (per-game `model`/`video` overrides) | `games/*.prg`/`*.d64`/`*.crt` |
 | `coleco/` | EmulatorJS + gearcoleco + `colecovision.rom` BIOS | `play.html` (`EJS_defaultControls` numpad remap) | `games/*.col` |
 | `cpc/` | floooh/tiny8bit CPC WASM | `play.html` (URL rewrite to sokol_args `?file=&input=`) | `games/*.dsk` |
 | `intv/` | jzIntv WASM + `exec.bin` + `grom.bin` BIOS | `play.html` (calls `Module.launchJzintv()`) | `games/*.int` |

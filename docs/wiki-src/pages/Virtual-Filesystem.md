@@ -9,7 +9,7 @@ C:\
 └── SYSTEMS\              EMULATOR LAUNCHER: 1 HOMECOMP / 2 CONSOLE / 3 HANDHELD / 4 WIKI / 0 Exit
     ├── HOMECOMP\         ACORN (BBC / ELECTRON / MASTER) / AMSTRAD (CPC) /
     │                     APPLE (APPLE1 / APPLEII) / ATARI (400 / 800XL) /
-    │                     COMMODRE (PET / VIC20 / MAX / C64 / C16 / PLUS4 / C128) /
+    │                     COMMODRE (PET / VIC20 / MAX / C64 / C16 / PLUS4) /
     │                     MSX (MSX1 / MSX2) / SINCLAIR (SPECTRUM / ZX81) /
     │                     TANDY (TRS80 / COCO) / TI99
     ├── CONSOLE\          ATARI (2600 / 7800) / CVISION / INTV / NES /
@@ -47,7 +47,6 @@ All 32 bundled sub-systems run their games locally — every byte of game data i
 | HOMECOMP → COMMODRE → C64 | EmulatorJS + VICE x64 | real-time IEC loading |
 | HOMECOMP → COMMODRE → C16 | EmulatorJS + VICE xplus4 (C16 mode) | |
 | HOMECOMP → COMMODRE → PLUS4 | EmulatorJS + VICE xplus4 | |
-| HOMECOMP → COMMODRE → C128 | EmulatorJS + VICE x128 (native mode) | per-game VICII/VDC switch |
 | HOMECOMP → MSX → MSX1 / MSX2 | WebMSX — `msx1/` (`?M=MSX1`) + `msx2/` (`?M=MSX2`) bundles | full copy of the engine in each |
 | HOMECOMP → SINCLAIR → SPECTRUM | JSSpeccy 3 | |
 | HOMECOMP → SINCLAIR → ZX81 | JtyOne | |

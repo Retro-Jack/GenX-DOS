@@ -102,6 +102,12 @@
 <p>Both dispatch a synthetic Escape keydown. Synthetic events bypass the browser's Esc-capture because they aren't real user gestures, so they reach VICE cleanly as RUN/STOP. (RESTORE needs no remap — libretro VICE maps it to <code>Page Up</code>, which the browser doesn't capture.)</p>
 <p>There are no on-screen RUN/STOP / RESTORE buttons: neither is an in-game key (their real uses are breaking a program at the BASIC prompt and the RUN/STOP+RESTORE reset), so they'd be clutter — keyboard access only.</p>
 <h2 id="the-c128-garbage-boot-bug--and-the-framebuffer-hack-it-retired-13062026">The C128 garbage-boot bug — and the framebuffer hack it retired (13/06/2026)</h2>
+<blockquote>
+<p><strong>The C128 was dropped from the site on 03/09/2026</strong> — in native mode it was never really a
+games machine, and the lineup bore that out: of ten slots only one was a commercial C128
+title, two were C64 games, and the rest hobbyist BASIC. This section is kept because the
+nightly-core and framebuffer findings still explain how the family is wired.</p>
+</blockquote>
 <p>For a while the C128 cold-booted to a screen of uninitialised-RAM garbage instead of the BASIC 7.0 banner — and it did so on the live site too, so it wasn't a local regression. The other VICE cores (x64/xvic/xplus4) booted fine; only <strong><code>vice_x128</code></strong> was affected. The mirrored <code>stable</code> x128 build was byte-identical to the current <code>cdn.emulatorjs.org/stable</code> one, so the bug was in the stable build itself.</p>
 <p><strong>The fix: mirror the <code>nightly</code> x128 build instead</strong> (<code>cdn.emulatorjs.org/nightly/data/cores/vice_x128-legacy-wasm.data</code>). It boots straight to BASIC 7.0. C128 is now the one VICE machine on a nightly core; the rest stay on stable.</p>
 <p>This also <strong>retired a long-standing CSS hack.</strong> The stable x128 core reported a fat 856×288 framebuffer regardless of the active video chip, which forced a <code>scaleY(2.784/1.333)</code> stretch on the canvas to fill a 4:3 frame. The nightly core renders a normal framebuffer, so that hack is gone. C128 keeps the family's <code>height: 100%</code> fit but with a <strong>per-video-mode fill scale</strong>: 40-col VIC-II takes the family <code>scale(1.01)</code>, 80-col VDC takes <code>scale(1.26)</code> (the wider VDC picture sits smaller in the glass). <code>perGame</code> tags <code>&lt;html&gt;</code> with <code>gx-vicii</code> / <code>gx-vdc</code> and CSS picks the scale.</p>
@@ -139,14 +145,9 @@
 <td><code>vice_xplus4</code></td>
 <td><code>vice_xplus4-legacy-wasm.data</code></td>
 </tr>
-<tr>
-<td>C128</td>
-<td><code>vice_x128</code></td>
-<td><code>vice_x128-legacy-wasm.data</code> (<strong>nightly</strong> build — stable boots to garbage)</td>
-</tr>
 </tbody>
 </table>
-<p>Six bundles, four cores, one EmulatorJS copy. Total VICE-family storage is ~11 MB (8.5 MB shared + 6 × ~250 KB bundle-specific) instead of ~22 MB if every bundle carried its own framework.</p>
+<p>Five bundles, three cores, one EmulatorJS copy. Total VICE-family storage is ~10 MB (8.5 MB shared + 5 × ~250 KB bundle-specific) instead of ~22 MB if every bundle carried its own framework.</p>
 <h2 id="crt-bezel--one-monitor-for-the-whole-family-13062026">CRT bezel — one monitor for the whole family (13/06/2026)</h2>
 <p>All six machines share a single <code>Commodore.png</code> bezel — the <strong>1084S</strong> monitor (1223×1104), keyed to a transparent screen hole. Because they're all one shared <code>play.html</code> shape, one bezel + one set of hole coordinates does the lot. Same EmulatorJS player-in-hole recipe as <a href="Emulator-Stella.html">Emulator-Stella</a>: drop the EJS player div (<code>#game</code>) into the hole and let EJS draw into it.</p>
 <pre><code>.bezel-wrap  (1223×1104, aspect of Commodore.png)
@@ -167,7 +168,7 @@
     ├── cores/       ← 4 VICE cores + gearcoleco + FCEUmm
     └── …
 
-systems/c64/        (and vic20, max, c16, plus4, c128)
+systems/c64/        (and vic20, max, c16, plus4)
 ├── play.html         ← ~70 lines; sets EJS_* globals, injects loader.js
 ├── controls.html
 ├── games.json

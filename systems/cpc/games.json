@@ -9,11 +9,6 @@
     "rom": "games/bruce.dsk",
     "input": "run\"bruce\n"
   },
-  "headover": {
-    "title": "Head over Heels (1987 Ocean)",
-    "rom": "games/headover.dsk",
-    "input": "run\"head\n"
-  },
   "rick": {
     "title": "Rick Dangerous (1989 Firebird)",
     "rom": "games/rick.dsk",
@@ -51,5 +46,10 @@
     "rom": "games/prince.dsk",
     "input": "run\"prince\n",
     "joystick": true
+  },
+  "rtype": {
+    "title": "R-Type (1988 Electric Dreams)",
+    "rom": "games/rtype.dsk",
+    "input": "run\"rtype\n"
   }
 }

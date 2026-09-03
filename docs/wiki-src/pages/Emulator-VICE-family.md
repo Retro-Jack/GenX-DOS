@@ -90,6 +90,11 @@ There are no on-screen RUN/STOP / RESTORE buttons: neither is an in-game key (th
 
 ## The C128 garbage-boot bug — and the framebuffer hack it retired (13/06/2026)
 
+> **The C128 was dropped from the site on 03/09/2026** — in native mode it was never really a
+> games machine, and the lineup bore that out: of ten slots only one was a commercial C128
+> title, two were C64 games, and the rest hobbyist BASIC. This section is kept because the
+> nightly-core and framebuffer findings still explain how the family is wired.
+
 For a while the C128 cold-booted to a screen of uninitialised-RAM garbage instead of the BASIC 7.0 banner — and it did so on the live site too, so it wasn't a local regression. The other VICE cores (x64/xvic/xplus4) booted fine; only **`vice_x128`** was affected. The mirrored `stable` x128 build was byte-identical to the current `cdn.emulatorjs.org/stable` one, so the bug was in the stable build itself.
 
 **The fix: mirror the `nightly` x128 build instead** (`cdn.emulatorjs.org/nightly/data/cores/vice_x128-legacy-wasm.data`). It boots straight to BASIC 7.0. C128 is now the one VICE machine on a nightly core; the rest stay on stable.
@@ -115,9 +120,8 @@ Every VICE-family bundle uses the same play.html, the same EmulatorJS framework,
 | VIC-20 | `vice_xvic` | `vice_xvic-legacy-wasm.data` |
 | MAX, C64 | `vice_x64` | `vice_x64-legacy-wasm.data` |
 | C16, Plus/4 | `vice_xplus4` | `vice_xplus4-legacy-wasm.data` |
-| C128 | `vice_x128` | `vice_x128-legacy-wasm.data` (**nightly** build — stable boots to garbage) |
 
-Six bundles, four cores, one EmulatorJS copy. Total VICE-family storage is ~11 MB (8.5 MB shared + 6 × ~250 KB bundle-specific) instead of ~22 MB if every bundle carried its own framework.
+Five bundles, three cores, one EmulatorJS copy. Total VICE-family storage is ~10 MB (8.5 MB shared + 5 × ~250 KB bundle-specific) instead of ~22 MB if every bundle carried its own framework.
 
 ## CRT bezel — one monitor for the whole family (13/06/2026)
 
@@ -150,7 +154,7 @@ systems/_shared-ejs/
     ├── cores/       ← 4 VICE cores + gearcoleco + FCEUmm
     └── …
 
-systems/c64/        (and vic20, max, c16, plus4, c128)
+systems/c64/        (and vic20, max, c16, plus4)
 ├── play.html         ← ~70 lines; sets EJS_* globals, injects loader.js
 ├── controls.html
 ├── games.json

@@ -153,11 +153,11 @@ gambatte, handy, genesis_plus_gx, prosystem) are mirrored from `cdn.emulatorjs.o
 locally. The upstream CDN serves the same `.data` archives EmulatorJS itself
 loads from.
 
-**Exception — `vice_x128` (C128) and `gambatte` (Game Boy):** the current
-`stable` builds are broken — `vice_x128` cold-boots to uninitialised-RAM
-garbage, and `gambatte` renders a blank white panel (no ROM ever displays).
-Both verified June 2026. We mirror the `nightly` builds of these two instead
-(`cdn.emulatorjs.org/nightly/`), which work. All other cores stay on `stable`.
+**Exception — `gambatte` (Game Boy):** the current `stable` build is broken —
+it renders a blank white panel (no ROM ever displays). Verified June 2026. We
+mirror the `nightly` build instead (`cdn.emulatorjs.org/nightly/`), which
+works. All other cores stay on `stable`. (`vice_x128` was a second exception
+for the same reason until the C128 was dropped on 03/09/2026.)
 
 ### Self-compiled WASM builds
 

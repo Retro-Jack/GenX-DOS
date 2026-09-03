@@ -89,7 +89,7 @@
 │       └── ami-logo.png      AMIBIOS POST logo   (f12.* sheets now live in systems/_shared/styles/VGA_font/)
 │
 └── systems/
-    ├── _shared/             shared JS + CSS + assets for every gamedoc + controls.html (360 pages) + play.html
+    ├── _shared/             shared JS + CSS + assets for every gamedoc + controls.html (349 pages) + play.html
     │   ├── genx-*.js        controls-link, game-loader, numlock-warn, vice-softkeys,
     │   │                    apple2-flipdisk (two-sided disks),
     │   │                    atari-console (OPTION/SELECT/START buttons),
@@ -136,7 +136,6 @@
     ├── c64/                 Commodore 64       (EmulatorJS + VICE x64)
     ├── c16/                 Commodore 16       (EmulatorJS + VICE xplus4 in c16pal mode)
     ├── plus4/               Commodore Plus/4   (EmulatorJS + VICE xplus4)
-    ├── c128/                Commodore 128      (EmulatorJS + VICE x128 native mode)
     ├── coleco/              ColecoVision       (EmulatorJS + gearcoleco + BIOS)
     ├── intv/                Intellivision      (jzIntv WASM + custom loader + BIOS)
     ├── odyssey2/            Magnavox Odyssey²  (libretro-o2em + custom SDL2 frontend + BIOS)
@@ -275,7 +274,7 @@
 <td><code>games/*.prg</code></td>
 </tr>
 <tr>
-<td><code>vic20</code>, <code>max</code>, <code>c64</code>, <code>c16</code>, <code>plus4</code>, <code>c128</code></td>
+<td><code>vic20</code>, <code>max</code>, <code>c64</code>, <code>c16</code>, <code>plus4</code></td>
 <td>EmulatorJS framework + VICE libretro core (shared)</td>
 <td><code>play.html</code> (per-game <code>model</code>/<code>video</code> overrides)</td>
 <td><code>games/*.prg</code>/<code>*.d64</code>/<code>*.crt</code></td>

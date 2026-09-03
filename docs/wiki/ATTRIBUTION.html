@@ -385,11 +385,11 @@ and the libretro port kept those terms.</p>
 gambatte, handy, genesis_plus_gx, prosystem) are mirrored from <code>cdn.emulatorjs.org/stable/</code> rather than rebuilt
 locally. The upstream CDN serves the same <code>.data</code> archives EmulatorJS itself
 loads from.</p>
-<p><strong>Exception — <code>vice_x128</code> (C128) and <code>gambatte</code> (Game Boy):</strong> the current
-<code>stable</code> builds are broken — <code>vice_x128</code> cold-boots to uninitialised-RAM
-garbage, and <code>gambatte</code> renders a blank white panel (no ROM ever displays).
-Both verified June 2026. We mirror the <code>nightly</code> builds of these two instead
-(<code>cdn.emulatorjs.org/nightly/</code>), which work. All other cores stay on <code>stable</code>.</p>
+<p><strong>Exception — <code>gambatte</code> (Game Boy):</strong> the current <code>stable</code> build is broken —
+it renders a blank white panel (no ROM ever displays). Verified June 2026. We
+mirror the <code>nightly</code> build instead (<code>cdn.emulatorjs.org/nightly/</code>), which
+works. All other cores stay on <code>stable</code>. (<code>vice_x128</code> was a second exception
+for the same reason until the C128 was dropped on 03/09/2026.)</p>
 <h3 id="self-compiled-wasm-builds">Self-compiled WASM builds</h3>
 <ul>
 <li><strong>atari800</strong> — built from <code>atari800/atari800</code> v5.2.0 source via

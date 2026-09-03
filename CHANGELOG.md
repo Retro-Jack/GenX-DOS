@@ -1,5 +1,12 @@
 ## [Unreleased]
 
+### Removed
+- **The Commodore 128 is gone — 33 sub-systems down to 32, 327 games to 317.** In native mode it was never really a games machine, and its own lineup made the case better than any argument could. Of ten slots: **The Last V8** and **Rocky Horror Show** carry no C128 or VDC strings at all — they are 1985 **C64** games, and we already have a C64; **Wumpus 2.0** was German, which is what started this; six more were hobbyist BASIC type-ins loading at `$1C01`; and exactly **one**, Star Fleet I, was a commercial C128 title.
+  The replacement search settled it. Of the whole 80-column library at zimmers we already shipped four, most of the remainder are Infocom multi-disk sets the launcher cannot mount, and what was left to choose from was Yahtzee, Blackjack, Solitaire and a Wordle clone. Every future audit pass would have cost the same disproportionate effort for the weakest content on the site.
+  Removed: the `systems/c128/` bundle, ten gamedocs, `controls.html`, the C128 row and launcher in the COMMODORE menu, and the `c128.bas` bezel card. The VICE family is now five bundles on three cores rather than six on four; `vice_x128` is no longer mirrored, so the nightly-build exception in ATTRIBUTION now covers only `gambatte`.
+  The engineering notes are kept, not deleted — the C128 garbage-boot bug and the framebuffer hack it retired still explain how the VICE family is wired, so that section stays on the wiki page with a note saying the machine has gone.
+  **The social card still needs re-rendering by hand:** its stats line should read `317 games · 32 systems · 100% self-hosted`.
+
 ### Changed
 - **The TRS-80 picture is now sized to the picture rather than to the hole.** It sits at `20.848% / 11.414% / 36.172% / 37.318%`, a little wider than before and centred on the aperture's mean row centre.
   The width is the real change, and it is small: the old `35.6%` was already within 0.25% of the largest rectangle that fits inside the rounded hole, so the picture only grew about 1.6%. Pushing out to the hole's full bounding box was tried first and reverted — the corners of that rectangle sit under the bezel, and Galaxy Invasion lost the P of "Press" and the ends of its dotted border.
