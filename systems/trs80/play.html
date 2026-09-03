@@ -64,17 +64,31 @@
       }
       #screen {
         position: absolute;
-        left: 20.77%;
-        /* Nudged DOWN relative to the cutout on purpose. The picture is
-           512x384, but the games don't fill it evenly: Galaxy Invasion's
-           dotted frame occupies y 8..335, leaving 8 pixels above it and 48
-           below, so a canvas centred on the cutout puts the visible frame
-           high in the tube. Offsetting by half that difference — 20 canvas
-           px, about 1.9% of the bezel height — centres what you actually
-           see rather than what the surface technically contains. */
-        top: 12.32%;
-        width: 35.6%;
-        height: 39.21%;
+        left: 20.848%;
+        /* Sized to the picture, not to the hole. The screen hole's bounding
+           box is 17.49/6.795/42.19/46.556 (alpha flood-fill at the OUTER
+           bound, alpha < 250), but the hole is ROUNDED, so a canvas at the
+           bbox puts its corners under the bezel: at that size Galaxy
+           Invasion lost the P of "Press" and the ends of its dotted border.
+           The largest inscribed rectangle is 21.562/8.724/35.848/41.506, and
+           the width here (36.172%) sits just outside it — close enough that
+           nothing readable is covered, wide enough to fill the glass.
+
+           The height is then DERIVED, not chosen: the canvas is object-fit:
+           contain, so the 512x384 picture keeps its 4:3 whatever box it is
+           given, and 37.318% is exactly the height that box needs at this
+           width. Any more is dead padding inside the canvas and changes
+           nothing on screen — an earlier 46.556% here looked like a big
+           vertical gain and was worth 0 pixels of picture.
+           Making the height matter needs object-fit: fill, which was tried
+           on 03/09/2026 and rejected: it stretched the picture to 124.8% of
+           4:3 and pushed the top and bottom rows under the bezel.
+
+           So the black margin above and below is a 4:3 picture in a wider
+           aperture, and is correct. Measured and set 03/09/2026. */
+        top: 11.414%;
+        width: 36.172%;
+        height: 37.318%;
         z-index: 2;
         overflow: hidden;
       }

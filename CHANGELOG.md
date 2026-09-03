@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+### Changed
+- **The TRS-80 picture is now sized to the picture rather than to the hole.** It sits at `20.848% / 11.414% / 36.172% / 37.318%`, a little wider than before and centred on the aperture's mean row centre.
+  The width is the real change, and it is small: the old `35.6%` was already within 0.25% of the largest rectangle that fits inside the rounded hole, so the picture only grew about 1.6%. Pushing out to the hole's full bounding box was tried first and reverted — the corners of that rectangle sit under the bezel, and Galaxy Invasion lost the P of "Press" and the ends of its dotted border.
+  **The height turns out not to be a lever at all.** The canvas is `object-fit: contain`, so the 512x384 picture keeps its 4:3 in whatever box it is given; `37.318%` is exactly the height that box needs at this width, and anything more is dead padding inside the canvas worth zero pixels of picture. An intermediate `46.556%` looked like a large vertical gain and changed nothing on screen. Making the height matter needs `object-fit: fill`, which was tried and rejected: it stretched the picture to 124.8% of 4:3 and pushed the top and bottom rows under the bezel.
+  So the black margin above and below is simply a 4:3 picture in a wider aperture, and is correct. All of it verified with the bezel test card — white frame on black — which now shows complete on all four sides.
+
 ### Fixed
 - **Five machines were showing their picture inside the screen hole instead of filling it.** The vintage TV bezel (`TV-Vintage.png`) is shared by six bundles, and only the CoCo had been corrected. The other five — **MSX1, MSX2, ZX Spectrum, ZX81 and TI-99/4A** — pinned the picture to `8.08%/12.14%/65.35%/73.96%`, which is inside even the fully-transparent part of the hole, so a ring of `.screen-bg` showed all round. They now use the hole's **outer** bound, `6.975%/10.503%/67.621%/77.352%`, measured by alpha flood-fill at `alpha < 250` so the feathered edge falls *under* the picture. That is the same rectangle the CoCo already used.
   Two of them had a second fault on top: a hardcoded `transform: scale()` shrinking the canvas inside its own container — `scale(0.842)` on the MSX pair and `scale(0.9)` on the TI-99. Both are gone.
