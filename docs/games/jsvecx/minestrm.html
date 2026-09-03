@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mine Storm — GCE Vectrex — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Console · GCE Vectrex</div>
+      <h1>Mine Storm</h1>
+      <p class="sub">GCE, 1982 — the Vectrex's built-in pack-in game by John Hall. An Asteroids variant with mine types and a bug that hangs the console at wave 13 (the famous "Mine Storm bug").</p>
+    </div>
+
+    <p class="intro">Your ship faces waves of mines. Some explode into smaller mines on contact (Floating Mines), some chase you (Magnetic), some shoot back (Fireball), some teleport (Magnetic Fireball). The Mine Layer drops new mines mid-wave. Clear the wave to advance. Wave 13 famously crashes the original ROM — replaced by Mine Storm II for refunders.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Wait for the Vectrex BIOS intro.</li>
+      <li>Press a button to begin (Button 1 switches to a 2-player game).</li>
+      <li>Rotate, thrust, fire. Same fundamentals as Asteroids.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Rotate (right = clockwise)</td></tr>
+      <tr><td><kbd>D</kbd></td><td>Thrust</td></tr>
+      <tr><td><kbd>F</kbd></td><td>Fire</td></tr>
+      <tr><td><kbd>S</kbd></td><td>Escape — teleport to a random new spot</td></tr>
+      <tr><td><kbd>A</kbd></td><td>Start a 2-player game (at the title)</td></tr>
+    </table>
+
+    <h2>Mine types</h2>
+    <table>
+      <tr><th>Mine</th><th>Behaviour</th></tr>
+      <tr><td>Floating Mine</td><td>Drifts. Splits into smaller mines when hit.</td></tr>
+      <tr><td>Magnetic Mine</td><td>Slowly tracks your ship.</td></tr>
+      <tr><td>Magnetic Fireball</td><td>Tracks AND shoots back.</td></tr>
+      <tr><td>Mine Layer</td><td>Drops new mines mid-wave. Kill it fast.</td></tr>
+      <tr><td>Fireball</td><td>Stationary but spits aimed shots.</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Hunt the Mine Layer.</strong> If a Mine Layer enters the wave, it'll drop indefinite mines. Drop everything to kill it.</li>
+      <li><strong>Magnetic > Floating priority.</strong> Magnetic mines move toward you; Floating drift randomly. Kill chasers first.</li>
+      <li><strong>Stay centred.</strong> Wraparound makes hugging the edge dangerous — mines wrap too. Centre dance with brief thrusts.</li>
+      <li><strong>Escape = panic.</strong> Button 2 teleports you to a random new spot — last resort, much like Asteroids hyperspace.</li>
+      <li><strong>Wave 13 bug.</strong> The original Mine Storm ROM has an infinite-loop bug at wave 13. GCE shipped Mine Storm II cartridges as a free replacement. This emulator's built-in might or might not patch this.</li>
+    </ul>
+
+    <h2>Vectrex controls</h2>
+    <p>Mine Storm is the only game that ships built into the Vectrex BIOS — no cartridge required. Power-on with no cart loaded boots straight into Mine Storm's title screen.</p>
+  </div>
+</body>
+</html>

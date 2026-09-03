@@ -9,7 +9,7 @@ A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs
 
 Live at **[genx-dos.fun](https://genx-dos.fun/)**.
 
-We bundle 18 emulator engines covering 32 sub-systems between them, from the Apple I to the Sega Master System.
+We bundle 19 emulator engines covering 33 sub-systems between them, from the Apple I to the Sega Master System.
 
 **Scope:** 8-bit *feel* — anything with the look and sound of an 8-bit machine (sprite-based, chiptune, low-res), including the 8-bit-feel handhelds (Game Boy/GBC, Game Gear, Lynx) even where they run into the late 90s. The cutoff is the *aesthetic*, not the calendar or strict CPU width; 16-bit home consoles/computers (Genesis, SNES, Amiga, ST) stay out. See the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected.
 
@@ -81,6 +81,7 @@ systems/
   js7800/                 Atari 7800          — EmulatorJS + ProSystem + 10 .a78 carts
   msx1/                   MSX1                — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 titles
   msx2/                   MSX2                — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 titles
+  jsvecx/                 GCE Vectrex         — JSVecX (our fork, speech DAC added) + 10 commercial carts
   sms/                    Sega Master System  — EmulatorJS + genesis_plus_gx + 10 .sms carts
   jsspeccy/               Sinclair Spectrum   — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81       — JtyOne + 10 .p tapes
@@ -137,6 +138,7 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | Intellivision | jzIntv (Joe Zbiciak) WASM, custom emscripten loader | `play.html?game=<key>` |
 | Amstrad CPC   | floooh/chips-test tiny8bit CPC WASM (Andre Weissflog) | `play.html?game=<key>` (rewrites to `?file=&input=` for sokol_args) |
 | Magnavox Odyssey² | libretro/libretro-o2em + custom SDL2/emscripten frontend | `play.html?game=<key>` |
+| GCE Vectrex | DrSnuggles/jsvecx, our fork with the speech DAC added | `play.html?rom=<dir>/<title>&game=<key>` |
 
 ROMs are bundled locally — nothing is fetched at runtime.
 

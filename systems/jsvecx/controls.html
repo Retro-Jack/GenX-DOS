@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../_shared/favicon.ico"><link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GCE Vectrex Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../_shared/styles/genx-controls.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">GCE · Vectrex (1982)</div>
+      <h1>Vectrex — Controls</h1>
+    </div>
+
+    <p class="intro">The Vectrex shipped with one analogue joystick that had four action buttons in a row. PC keyboard maps the joystick directions and the four buttons.</p>
+
+    <h2>Joystick</h2>
+    <table>
+      <tr><th>Key</th><th>Action</th></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td>Stick direction (analogue motion is faked digitally)</td></tr>
+    </table>
+
+    <h2>Action buttons (1 / 2 / 3 / 4)</h2>
+    <p>The Vectrex controller's four buttons sat in a horizontal row labelled 1, 2, 3, 4. This emulator maps them to the home-row keys. Across the library the convention is consistent: <strong>Button 4 is fire</strong> and <strong>Button 3 is thrust</strong>, with the joystick handling direction or rotation.</p>
+    <table>
+      <tr><th>Key</th><th>Vectrex button</th></tr>
+      <tr><td><kbd>A</kbd></td><td>Button 1</td></tr>
+      <tr><td><kbd>S</kbd></td><td>Button 2</td></tr>
+      <tr><td><kbd>D</kbd></td><td>Button 3 (usually thrust)</td></tr>
+      <tr><td><kbd>F</kbd></td><td>Button 4 (usually fire)</td></tr>
+    </table>
+
+    <h2>Game-specific button use</h2>
+    <p>Verified from each game's manual. The per-game <em>controls</em> link on every title lists the full scheme.</p>
+    <table>
+      <tr><th>Game</th><th>Button mapping</th></tr>
+      <tr><td>Mine Storm</td><td>Stick rotates · 3 Thrust · 4 Fire · 2 Escape (teleport)</td></tr>
+      <tr><td>Star Castle</td><td>Stick or 1/2 rotate · 3 Thrust · 4 Fire</td></tr>
+      <tr><td>Solar Quest</td><td>Stick rotates · 3 Thrust · 4 Fire · 2 Smart bomb · 1 Transport</td></tr>
+      <tr><td>Cosmic Chasm</td><td>Stick rotates · 1 Drill · 2 Shield · 3 Thrust · 4 Fire</td></tr>
+      <tr><td>Star Trek</td><td>Stick steers · 3 Shield · 4 Fire · 2 Dock/refuel</td></tr>
+      <tr><td>Scramble</td><td>Stick steers · 3 Bomb · 4 Fire</td></tr>
+      <tr><td>Berzerk</td><td>Stick moves 8-way · 4 Fire</td></tr>
+      <tr><td>Rip-Off</td><td>Stick rotate + thrust · 4 Fire</td></tr>
+      <tr><td>Pole Position</td><td>Stick steers · 3/4 Gas · 1/2 Low/high gear</td></tr>
+      <tr><td>Spike</td><td>Stick walks/climbs · 4 Jump · 2/3 Kick left/right · 1 Ladder</td></tr>
+      <tr><td>Polar Rescue</td><td>Stick dive/surface/rotate · 4 Torpedo · 2/3 Reverse/forward · 1 Pause</td></tr>
+    </table>
+
+    <h2>Notes</h2>
+    <p>The period-correct plastic overlay is selected automatically per game. To reset or switch games, use the GenX-DOS menu or reload the page.</p>
+    <p>The Vectrex's BIOS plays the "Vectrex" intro tune at every boot — wait it out (about 4 seconds) before pressing buttons.</p>
+    <p>Most cartridges have no in-game pause.</p>
+
+    <p class="note">The Vectrex has no pause: the machine simply has no such control, so almost no cartridge offers one. Resetting or reloading is the only way out of a game.</p>
+
+    <p class="note">Shipped locally from this site; no network calls at runtime.</p>
+
+    <div class="footer">
+      <a href="javascript:window.close()">close tab</a> ·
+      part of <a href="https://retro-jack.github.io/GenX-DOS/" target="_blank" rel="noopener">GenX-DOS</a>
+    </div>
+  </div>
+</body>
+</html>

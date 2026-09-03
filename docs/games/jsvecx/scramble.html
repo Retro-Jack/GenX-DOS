@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scramble — GCE Vectrex — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Console · GCE Vectrex</div>
+      <h1>Scramble</h1>
+      <p class="sub">GCE, 1982 — vector port of the 1981 Konami arcade by Konami's Akira Hashimoto. Horizontal-scrolling shooter with terrain and fuel management.</p>
+    </div>
+
+    <p class="intro">A ship flies right through six themed segments: mountains, UFOs, fireballs, asteroids, urban, base. Bomb ground targets (especially fuel tanks — they refill your dwindling fuel meter). Shoot rockets and UFOs out of the air. Hit terrain or run out of fuel = death.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Wait for the Vectrex BIOS intro.</li>
+      <li>Press a button at the title to start.</li>
+      <li>Steer with arrows; <kbd>A</kbd> fires forward, <kbd>S</kbd> drops bombs.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd></td><td>Steer (up / down + speed)</td></tr>
+      <tr><td><kbd>F</kbd></td><td>Fire laser (forward)</td></tr>
+      <tr><td><kbd>D</kbd></td><td>Drop bombs</td></tr>
+    </table>
+
+    <h2>Segments</h2>
+    <table>
+      <tr><th>Segment</th><th>Theme</th></tr>
+      <tr><td>1</td><td>Mountains — bomb fuel tanks, shoot rockets</td></tr>
+      <tr><td>2</td><td>UFOs in open sky</td></tr>
+      <tr><td>3</td><td>Fireballs rising from the ground</td></tr>
+      <tr><td>4</td><td>Asteroid field — narrow gaps</td></tr>
+      <tr><td>5</td><td>Urban canyon — winding terrain</td></tr>
+      <tr><td>6</td><td>The Base — destroy the rocket at the end</td></tr>
+    </table>
+
+    <h2>Strategy</h2>
+    <ul>
+      <li><strong>Bomb every fuel tank.</strong> Each refill is 100 pts AND fills the meter. Fuel runs out faster than enemies kill you.</li>
+      <li><strong>Lead the bomb.</strong> Bombs arc down-forward — release them just past the target.</li>
+      <li><strong>Section 4 is hardest.</strong> Asteroids leave one tile of clear at a time. Vertical position is everything.</li>
+      <li><strong>Base run.</strong> The rocket at the base must be bombed (laser doesn't kill it). One shot, one chance — slow your approach.</li>
+      <li><strong>Loop bonus.</strong> Completing the run loops you back to section 1 with a difficulty bump. The Vectrex version preserves the arcade loop.</li>
+    </ul>
+
+    <h2>Vectrex controls</h2>
+    <p>Stick + buttons 1 (laser) and 2 (bomb). Wait for the BIOS intro before pressing buttons.</p>
+  </div>
+</body>
+</html>

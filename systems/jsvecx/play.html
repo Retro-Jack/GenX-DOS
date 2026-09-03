@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later
+     Part of GenX-DOS. This page loads a GPL-licensed emulator engine, so it is
+     GPL-3.0-or-later rather than the repo's CC BY-NC. -->
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' data: blob:; media-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <script src="../_shared/genx-bezel-ready.js"></script>
+  <script src="../_shared/genx-audio-banner.js"></script>
+<meta charset="utf-8"><link rel="shortcut icon" href="../_shared/favicon.ico"><link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif">
+<title>GCE Vectrex</title>
+<script defer src="../_shared/genx-controls-link.js"></script>
+<script defer src="../_shared/genx-repo-link.js"></script>
+<link rel="stylesheet" href="../_shared/styles/genx-frame.css">
+<link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
+<link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
+<style>
+  html, body {
+    background: #000 url('../_shared/textures/70s-bg.png') repeat;
+    background-size: 220px;
+  }
+
+  /* Three-layer bezel order (back -> front):
+     1. .screen-bg  — solid black backdrop slightly bigger than the picture
+     2. #vecscr / #overlay — the vector canvas and the game's screen overlay
+     3. .bezel-img  — Vectrex.png console photo on top, its cutout reveals both
+
+     Vectrex.png is 1099x1399 and portrait — the machine is a console with the
+     tube built in, so unlike the shared monitor bezels it is a photo of the
+     whole unit floating on the wallpaper.
+
+     The screen hole is a clean RECTANGLE, not a rounded aperture: measured
+     across the blob, width holds at 646-647px over the full height and height
+     at 804-811px over the full width. So there is no corner-clipping risk and
+     no need for the inscribed-rectangle treatment the TRS-80 and Electron
+     needed. These percentages ARE the measured feather bound — where the bezel
+     stops being fully transparent. The old bundle sat about 0.2% inside it,
+     which left a visible sliver of backdrop down the right-hand side under
+     the magenta check.
+
+     Note for anyone re-measuring: the usual transparent-pixel bounding box
+     returns 100% x 100% here and is useless, because the console floats on a
+     transparent surround. Flood-fill from the hole centre instead. */
+  .bezel-wrap {
+    position: relative;
+    width: min(100vw, calc((100dvh - 40px) * 1099 / 1399));
+    aspect-ratio: 1099 / 1399;
+  }
+  .screen-bg {
+    position: absolute;
+    left: 15.5%;
+    top: 11%;
+    width: 60.5%;
+    height: 59.5%;
+    background: #000;
+    z-index: 1;
+  }
+  /* !important is load-bearing here, not cargo cult. The engine's resizer()
+     runs on every resize and writes inline width/height/left/top on both the
+     canvas and the overlay, sizing them to the whole viewport for its own
+     full-screen layout. Inline styles beat ordinary rules, so without these
+     the picture escapes the bezel entirely. Same situation as the apple1 and
+     apple2 pages, which override their engine's stylesheet the same way. */
+  #vecscr, #overlay {
+    position: absolute;
+    left: 16.29% !important;
+    top: 11.72% !important;
+    width: 58.96% !important;
+    height: 58.04% !important;
+    z-index: 2;
+  }
+  /* The overlay is the printed plastic screen cover each game shipped with —
+     it belongs in front of the vectors, not behind them. */
+  #overlay { z-index: 3; pointer-events: none; }
+  .bezel-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  /* The engine ships its own developer UI — ROM picker, sliders, memory
+     monitor, credits. The elements must exist because the runtime writes to
+     them unconditionally and throws if they are missing, but none of it
+     belongs in front of a player. */
+  #menu, #memMon, #notice, #tblDiv, #instructions, #credits, #quicklink { display: none !important; }
+</style>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <canvas id="vecscr" width="660" height="820"></canvas>
+    <img id="overlay" alt="">
+    <img class="bezel-img" src="../_shared/bezels/Vectrex.png" alt="">
+  </div>
+
+  <!-- Required by the engine but not shown: it writes to these without
+       checking they exist. -->
+  <div id="wrapper">
+    <div id="menu"><div id="stat"></div>
+      <div id="tblDiv">
+        <!-- The ROM picker's own script walks this table on startup and throws
+             if the thead inputs or the tbody are missing, taking the whole boot
+             with it — so the markup has to be real, not a bare <table>. -->
+        <table class="tbl" id="myTbl" cellspacing="0" cellpadding="0" width="100%">
+          <thead><tr>
+            <th><input placeholder="Name"/></th>
+            <th><input placeholder="Detail"/></th>
+            <th><input placeholder="Author"/></th>
+            <th width="1"><input placeholder="Year"/></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <select id="roms"></select>
+      <!-- Matches the 2.0 the engine sets on its GainNode, so the hidden
+           control does not disagree with what is actually playing. -->
+      <input id="vol_slider" type="range" min="0" max="2" step="0.01" value="2">
+      <input id="lum_slider" type="range" min="0" max="1" step="0.01" value="0.5">
+      <input id="gam_slider" type="range" min="0" max="1" step="0.01" value="0.5">
+      <div id="instructions"></div><div id="credits"></div><a id="quicklink"></a>
+    </div>
+    <div id="notice"></div>
+  </div>
+  <div id="memMon"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/globals.js"></script>
+  <script src="processed/e6809.js"></script>
+  <script src="js/audioWorkletWrapper.js"></script>
+  <!-- e8910Full.js must load AFTER audioWorkletWrapper.js. Both define
+       e8910(); the later wins, and only this one produces sound — the
+       AudioWorklet path is silent, upstream included. See the fork's
+       BUILDING-DAC.md. -->
+  <script src="js/e8910Full.js"></script>
+  <script src="js/osint.js"></script>
+  <script src="js/vector_t.js"></script>
+  <script src="processed/vecx.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/dnd.js"></script>
+  <script src="js/table.js"></script>
+  <script src="js/hexMon.js"></script>
+  <script src="js/cocktail.js"></script>
+  <script src="js/romList.js"></script>
+  <script src="js/UZIP_depacker.js"></script>
+  <script src="js/seamless.js"></script>
+
+  <script>
+  /* Audio auto-unlock. The click that fired window.open from the prompt
+     carries user-activation into this tab, but only briefly. Poll rather than
+     fire a fixed burst: the engine builds its AudioContext lazily, so on a
+     cold load there is nothing to resume yet and an early burst all misses —
+     the same failure jsbeeb had. Stops as soon as the context reports
+     running; gives up after 8s. Direct navigation, and Firefox in all cases,
+     still need the user's own first click, which the shim below handles. */
+  (function () {
+    function ctx() { return (window.vecx && vecx.e8910 && vecx.e8910.ctx) || null; }
+    function tick() {
+      var c = ctx();
+      if (c && c.state === 'running') return true;
+      if (c) c.resume();
+      document.documentElement.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      return false;
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      var deadline = Date.now() + 8000;
+      if (tick()) return;
+      var t = setInterval(function () {
+        if (tick() || Date.now() > deadline) clearInterval(t);
+      }, 150);
+    });
+    document.addEventListener('mousedown', function () {
+      var c = ctx();
+      if (c && c.state !== 'running') c.resume();
+    }, true);
+  })();
+  </script>
+
+  <!-- Bezel credit (Vectrex.png — GCE Vectrex console): see ATTRIBUTION.md. -->
+</body>
+</html>

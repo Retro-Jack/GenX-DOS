@@ -40,9 +40,9 @@ DOS is the prompt host. See [[Roadmap]] for the full in/out list and what's stil
 
 ## The lineup
 
-19 emulators ship under `systems/`, driving 32 sub-systems:
+20 emulators ship under `systems/`, driving 33 sub-systems:
 
-- Consoles: Atari 2600, Atari 7800, ColecoVision, Intellivision, NES, Magnavox Odyssey², Sega Master System
+- Consoles: Atari 2600, Atari 7800, ColecoVision, Intellivision, NES, Magnavox Odyssey², Sega Master System, GCE Vectrex
 - Handheld: Game Boy / Game Boy Color, Atari Lynx, Sega Game Gear
 - Apple: Apple I, Apple ][+
 - Acorn: BBC Micro, BBC Master 128 (same jsbeeb engine, shipped as two bundles — `bbcmicro/` boots Model B, `bbcmaster/` boots `?model=Master`), Electron

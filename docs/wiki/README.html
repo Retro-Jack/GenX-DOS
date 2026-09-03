@@ -35,7 +35,7 @@
 </p>
 
 <p>Live at <strong><a href="../../">genx-dos.fun</a></strong>.</p>
-<p>We bundle 18 emulator engines covering 32 sub-systems between them, from the Apple I to the Sega Master System.</p>
+<p>We bundle 19 emulator engines covering 33 sub-systems between them, from the Apple I to the Sega Master System.</p>
 <p><strong>Scope:</strong> 8-bit <em>feel</em> — anything with the look and sound of an 8-bit machine (sprite-based, chiptune, low-res), including the 8-bit-feel handhelds (Game Boy/GBC, Game Gear, Lynx) even where they run into the late 90s. The cutoff is the <em>aesthetic</em>, not the calendar or strict CPU width; 16-bit home consoles/computers (Genesis, SNES, Amiga, ST) stay out. See the <a href="Roadmap.html">Roadmap</a> for what's shipped, planned, and rejected.</p>
 <h2 id="quick-start">Quick start</h2>
 <pre><code class="language-sh">./GenX-DOS.sh
@@ -92,6 +92,7 @@ systems/
   js7800/                 Atari 7800          — EmulatorJS + ProSystem + 10 .a78 carts
   msx1/                   MSX1                — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 titles
   msx2/                   MSX2                — WebMSX 6.0 (stock wmsx.js + wrapper) + 10 titles
+  jsvecx/                 GCE Vectrex         — JSVecX (our fork, speech DAC added) + 10 commercial carts
   sms/                    Sega Master System  — EmulatorJS + genesis_plus_gx + 10 .sms carts
   jsspeccy/               Sinclair Spectrum   — JSSpeccy 3.2 + 10 .z80 snapshots
   jtyone/                 Sinclair ZX81       — JtyOne + 10 .p tapes
@@ -236,6 +237,11 @@ systems/
 <td>Magnavox Odyssey²</td>
 <td>libretro/libretro-o2em + custom SDL2/emscripten frontend</td>
 <td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>GCE Vectrex</td>
+<td>DrSnuggles/jsvecx, our fork with the speech DAC added</td>
+<td><code>play.html?rom=&lt;dir&gt;/&lt;title&gt;&amp;game=&lt;key&gt;</code></td>
 </tr>
 </tbody>
 </table>
