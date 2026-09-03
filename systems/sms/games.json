@@ -38,5 +38,9 @@
   "sonic": {
     "title": "Sonic the Hedgehog (1991)",
     "rom": "roms/sonic.sms"
+  },
+  "bezelcard": {
+    "title": "Bezel test card",
+    "rom": "bezelcard.sms"
   }
 }
