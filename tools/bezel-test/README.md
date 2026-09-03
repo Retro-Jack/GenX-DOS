@@ -112,25 +112,25 @@ details — that is exactly the class of thing recall gets wrong.
 | `trs80.bas` | TRS-80 Model III | monochrome; `SET()` frame at the graphics edge | drafted |
 | `jtyone.bas` | ZX81 | no colour at all; screen is already white, so the card is an inverse-video black interior | drafted |
 | `apple1.bas` | Apple I | no inverse video and no graphics — a solid white edge is **not possible** | **SUPERSEDED** — see the tape card below |
-| `coleco-card.asm` | ColecoVision | blanked display + backdrop | **VERIFIED 03/09/2026** — solid white fill. gearcoleco renders only the 256x192 active area, so a backdrop *border* is cropped away entirely; blanking the display makes the backdrop fill the whole picture instead, which shows its extent just as well. A drawn white-frame version assembles and loads but comes up black — unsolved |
 
-## Assemblers
+## Assemblers available
 
-Built from source into `~/.local/bin` on 03/09/2026 (they are not in the CachyOS
-repos and installing needs a password): **sjasmplus** (Z80 — ColecoVision, SMS,
-Game Gear, Game Boy), **ca65/ld65/cc65** (6502 — NES), **dasm** (Atari 2600).
-Console cards are real assembly now, not hand-assembled byte arrays.
+Built from source into `~/.local/bin` on 03/09/2026, since they are not in the
+CachyOS repos and installing system packages needs a password: **sjasmplus**
+(Z80), **ca65/ld65/cc65** (6502) and **dasm** (6502/2600). Nothing in the repo
+depends on them — they are here for whenever a card has to be assembled rather
+than typed in.
 
 ## The EmulatorJS ROM cache will lie to you
 
 **EJS caches the downloaded game in IndexedDB (`EmulatorJS-Cache`), keyed on the
-file name, and a `?v=` query does not bust it.** Three different ColecoVision
-ROMs in a row rendered identically because only the first was ever loaded — an
-hour lost to it. When iterating on a card, **ship each build under a new file
-name** (`probe.col`, `probe2.col`, ...) rather than overwriting one, and only
-settle on the final name once the card is right. Deleting the database from the
+file name, and a `?v=` query does not bust it.** Three different ROMs in a row
+once rendered identically because only the first was ever loaded. When iterating
+on anything EJS loads as a game, **ship each build under a new file name** and
+settle on the final name once it is right. Deleting the database from the
 console does clear it, but it also leaves the loader stuck on "Download Game
-Core" for that origin until it rebuilds, so it is not a quick fix mid-session.
+Core" for that origin until it rebuilds, so it is not a quick fix mid-session —
+and it takes out that origin for testing until it settles.
 
 ## When the machine cannot be typed into: ship the card as an image
 
