@@ -113,14 +113,6 @@ details — that is exactly the class of thing recall gets wrong.
 | `jtyone.bas` | ZX81 | no colour at all; screen is already white, so the card is an inverse-video black interior | drafted |
 | `apple1.bas` | Apple I | no inverse video and no graphics — a solid white edge is **not possible** | **SUPERSEDED** — see the tape card below |
 
-## Assemblers available
-
-Built from source into `~/.local/bin` on 03/09/2026, since they are not in the
-CachyOS repos and installing system packages needs a password: **sjasmplus**
-(Z80), **ca65/ld65/cc65** (6502) and **dasm** (6502/2600). Nothing in the repo
-depends on them — they are here for whenever a card has to be assembled rather
-than typed in.
-
 ## The EmulatorJS ROM cache will lie to you
 
 **EJS caches the downloaded game in IndexedDB (`EmulatorJS-Cache`), keyed on the
