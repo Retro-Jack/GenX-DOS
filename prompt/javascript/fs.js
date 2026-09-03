@@ -1406,7 +1406,7 @@ var fs = [
                 ],
               },
 
-              // COMMODORE (PET + VIC-20 + MAX + C64 + C16 + Plus/4 + C128 all via EmulatorJS + VICE)
+              // COMMODORE (PET + VIC-20 + MAX + C64 + C16 + Plus/4 all via EmulatorJS + VICE)
               {
                 name: 'COMMODRE',
                 directories: [
