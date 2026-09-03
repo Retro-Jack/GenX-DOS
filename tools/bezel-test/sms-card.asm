@@ -14,7 +14,7 @@
 ;
 ; Assemble:
 ;   sjasmplus --raw=../../systems/sms/bezelcard.sms sms-card.asm
-;   sjasmplus --raw=../../systems/gamegear/bezelcard.gg sms-card.asm
+;   sjasmplus -DGAMEGEAR --raw=../../systems/gamegear/bezelcard.gg sms-card.asm
 
 VDP_DATA        equ $BE
 VDP_CTRL        equ $BF
@@ -38,13 +38,30 @@ VDP_CTRL        equ $BF
 
 start:          ld   sp,$DFF0           ; top of the SMS work RAM
 
-                ; CRAM entry 16 (first sprite colour) = white
-                ld   a,$10
+                ; CRAM entry 16 (first sprite colour) = white.
+                ; The two machines differ here and it matters: Master System
+                ; CRAM is ONE byte per colour (--BBGGRR), Game Gear is TWO
+                ; (----BBBB then GGGGRRRR), and the entries are twice as far
+                ; apart. Writing the SMS form to a Game Gear sets half a colour
+                ; and the card comes up black — which is exactly what the first
+                ; build did.
+                IFDEF GAMEGEAR
+                ld   a,$20              ; byte offset 32 = colour entry 16
+                out  (VDP_CTRL),a
+                ld   a,$C0              ; $C0 = write to CRAM
+                out  (VDP_CTRL),a
+                ld   a,$FF              ; GGGGRRRR
+                out  (VDP_DATA),a
+                ld   a,$0F              ; ----BBBB
+                out  (VDP_DATA),a
+                ELSE
+                ld   a,$10              ; colour entry 16
                 out  (VDP_CTRL),a
                 ld   a,$C0              ; $C0 = write to CRAM
                 out  (VDP_CTRL),a
                 ld   a,$3F              ; --BBGGRR all on
                 out  (VDP_DATA),a
+                ENDIF
 
                 ; VDP registers: R0 mode 4, R1 display OFF (screen shows the
                 ; backdrop), R7 backdrop = sprite colour 0 -> CRAM 16
