@@ -48,8 +48,8 @@
     document.body.appendChild(a);
   }
 
-  link('gx-left', 'controls.html', 'system', 'help');
+  link('gx-left', 'controls.html', 'System', 'help');
   if (key) {
-    link('gx-right', '../../docs/games/' + platform + '/' + key + '.html', 'game', 'controls');
+    link('gx-right', '../../docs/games/' + platform + '/' + key + '.html', 'Game', 'controls');
   }
 })();

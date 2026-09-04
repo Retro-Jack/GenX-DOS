@@ -34,8 +34,9 @@
   /* 'IBM Plex Mono' 600 — the face the home page uses for its card headings,
      so the emulator chrome speaks in the site's voice rather than whatever
      monospace the browser happens to pick. */
-  font: 600 11px/1.25 'IBM Plex Mono', ui-monospace, "SF Mono", Menlo, monospace;
+  font: 600 16.5px/1.25 'IBM Plex Mono', ui-monospace, "SF Mono", Menlo, monospace;
   letter-spacing: 0.06em;
+  text-align: center;
   text-decoration: none;
   transition: color .15s ease, border-color .15s ease;
   /* two lines, so the label reads as a heading rather than a long strip */
@@ -43,11 +44,12 @@
   flex-direction: column;
   gap: 1px;
 }
-.gx-corner-link .gx-l2 { display: inline-flex; align-items: center; gap: 5px; }
-.gx-corner-link.gx-left  { left: 12px;  align-items: flex-start; text-align: left; }
-.gx-corner-link.gx-right { right: 12px; align-items: flex-end;   text-align: right; }
+.gx-corner-link .gx-l2 { display: inline-flex; align-items: center; gap: 6px; }
+/* both lines centred within the button, and the button itself hugs its corner */
+.gx-corner-link.gx-left  { left: 12px;  align-items: center; }
+.gx-corner-link.gx-right { right: 12px; align-items: center; }
 .gx-corner-link:hover { color: #ff8800; border-color: #ff8800; }
-.gx-corner-link svg { width: 10px; height: 10px; fill: currentColor; flex-shrink: 0; }
+.gx-corner-link svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
 
 /* Kept for any bundle still positioning its own link the old way. */
 .gx-controls-link {
