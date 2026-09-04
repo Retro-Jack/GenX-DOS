@@ -4,7 +4,7 @@
 //
 // Injects the two top-corner links into every emulator's entry HTML:
 //
-//   top-left   game controls -> this game's gamedoc           (how to play
+//   top-left   gameplay controls -> this game's gamedoc       (how to play
 //                               the loaded title)
 //   top-right  system help   -> this bundle's controls.html  (the machine:
 //                               keyboard map, soft keys, quirks)
@@ -49,7 +49,7 @@
   }
 
   if (key) {
-    link('gx-left', '../../docs/games/' + platform + '/' + key + '.html', 'Game', 'controls');
+    link('gx-left', '../../docs/games/' + platform + '/' + key + '.html', 'Gameplay', 'controls');
   }
   link('gx-right', 'controls.html', 'System', 'help');
 })();
