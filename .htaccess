@@ -42,6 +42,54 @@
 </IfModule>
 
 # ---------------------------------------------------------------------------
+# Caching
+# ---------------------------------------------------------------------------
+# The host sent no cache headers at all, which left every file on heuristic
+# caching — the browser guessing a lifetime from how long ago the file was
+# modified. That produced the worst possible failure for a site deployed by
+# rsync under stable filenames: fresh HTML running a stale copy of a shared
+# script. It cost real time during two deploys, where a change looked like it
+# had not shipped until a hard reload proved otherwise, and a visitor gets no
+# hard reload.
+#
+# Nothing here is versioned or content-hashed, so nothing can be cached
+# immutably. The rule below is therefore "keep it, but ask first": no-cache
+# does not mean do not store — it means revalidate on every use. This host
+# sends no ETag (checked: none on any response), so revalidation rides on
+# Last-Modified, which rsync preserves from the local file. An unchanged file
+# answers 304 with no body — measured at 0 bytes on staging — so a repeat
+# visit costs a round trip and nothing else, and a changed file is never
+# missed.
+<IfModule mod_headers.c>
+    # Everything that decides how the site looks and behaves, plus the
+    # machine images that change whenever a game or a core is rebuilt.
+    <FilesMatch "\.(html|js|mjs|css|json|wasm|data|map)$">
+        Header always set Cache-Control "no-cache"
+    </FilesMatch>
+
+    # ROMs, discs, tapes and cartridges: same reasoning — a swapped game keeps
+    # its filename, so a cached copy would outlive the change.
+    <FilesMatch "\.(bin|rom|prg|d64|ssd|dsd|atr|woz|hex|tap|cas|col|a26|a78|gg|gb|gbc|nes|sms|lnx|vec|zip|rpk|img|p)$">
+        Header always set Cache-Control "no-cache"
+    </FilesMatch>
+
+    # Fonts are the one genuinely immutable class here: subsetted, named for
+    # what they are, and unchanged since they shipped. A month spares repeat
+    # visitors the round trips.
+    <FilesMatch "\.(woff|woff2|ttf|otf)$">
+        Header always set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+
+    # Bezels, wallpaper, screenshots and the favicon. These do change — a
+    # bezel gets re-cut now and then — so a week rather than a year, which is
+    # long enough to matter on a page carrying a 1 MB photograph and short
+    # enough that a correction is not stuck out there.
+    <FilesMatch "\.(png|jpe?g|gif|webp|avif|svg|ico|mp3|ogg|wav|m4a|mp4|webm)$">
+        Header always set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------------------------------------
 # Error pages
 # ---------------------------------------------------------------------------
 # Leading slash = server-relative, so these resolve from any depth. 403 earns
