@@ -32,7 +32,8 @@
 <ul>
 <li><strong>A game's page and its machine's page now link to each other.</strong> They answered adjacent questions with no way to get from one to the other: a gamedoc had a single link, to the site root, and a controls page had none at all. Every gamedoc now carries <em>System help — the &lt;machine&gt; controls</em> under its header, and every controls page ends with a <strong>Game controls</strong> list of that system's games in menu order. 328 gamedocs and 33 controls pages; all 656 new links verified to resolve.
   Both page types run under <code>default-src 'none'</code> with no <code>script-src</code>, so this is static HTML — there is no way for a controls page to know which game you arrived from, which is why it lists them all rather than offering a single "back" link.
-  Set in the mono, uppercase, letter-spaced treatment the pages already use for metadata, and the game list is a grid rather than bullets, so both read as navigation instead of stray prose.</li>
+  Set in the mono, uppercase, letter-spaced treatment the pages already use for metadata, and the game list is a grid rather than bullets, so both read as navigation instead of stray prose.
+  Titles too long for one column go last. A grid row is as tall as its tallest cell, so a wrapping title stretches everything beside it — with <em>Star Trek: The Motion Picture</em> sitting seventh, three rows went ragged for the sake of one entry. Measured rather than guessed: 27 characters fit at the rendered column width and the columns can shrink to a 215px floor, so 26 is the cut. Twelve systems had at least one.</li>
 </ul>
 <h3 id="fixed">Fixed</h3>
 <ul>
