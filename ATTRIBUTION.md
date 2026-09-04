@@ -377,7 +377,10 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
 - `styles/fonts/ibm-plex-mono-*.woff2`, `styles/fonts/ibm-plex-serif-*.woff2` —
     **IBM Plex Mono** and **IBM Plex Serif** by Mike Abbink & Bold Monday for
     IBM. Licensed **SIL Open Font License 1.1**. Body / UI faces on the landing
-    page and the feature article. Subsetted to the Latin range.
+    page, the feature article, the gamedocs and controls pages, and — declared
+    separately in `systems/_shared/styles/genx-controls-link.css` so no play
+    page has to pull in the whole design language — the two corner links on
+    every emulator page. Subsetted to the Latin range.
 
 ---
 

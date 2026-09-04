@@ -4,7 +4,7 @@
 // GenX-DOS save/load-state buttons for EmulatorJS bundles.
 // The EmulatorJS toolbar is hidden site-wide (genx-frame.css hides
 // .ejs_menu_bar / .ejs_context_menu), so this re-exposes Save/Load State as
-// GenX-styled controls (same look as the 'controls' link, bottom-left). EJS-only:
+// GenX-styled controls in the bottom-left corner. EJS-only:
 // everything is gated on window.EJS_emulator, so the script is a harmless no-op
 // on non-EJS bundles (it gives up after ~60s).
 //

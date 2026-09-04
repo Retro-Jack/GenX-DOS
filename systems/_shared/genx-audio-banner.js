@@ -84,10 +84,9 @@
     if (!b) return;
     var show = anySuspended();
     b.style.display = show ? 'block' : 'none';
-    // Publish the banner's height so anything pinned to the top of the screen
-    // can sit below it. The banner is fixed at top:0 with a very high z-index,
-    // so a soft-key button at top:8px is simply buried underneath while audio
-    // is suspended — which is exactly when a player is looking for it. Reading
+    // Publish the banner's height so anything else pinned to the bottom of the
+    // screen can stack on top of it — the gamepad notice sits at
+    // bottom:var(--gx-banner-h) and rides up when this banner appears. Reading
     // this variable is cheaper and less fragile than each script hunting for
     // the banner element itself.
     document.documentElement.style.setProperty(

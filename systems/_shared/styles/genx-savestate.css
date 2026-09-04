@@ -1,6 +1,7 @@
-/* Bottom-left Save / Load state buttons for EmulatorJS bundles — same look as
-   the 'controls' link (genx-controls-link.css), which sits bottom-right. Added
-   because the EmulatorJS toolbar (its own save-state UI) is hidden site-wide. */
+/* Bottom-left Save / Load state buttons for EmulatorJS bundles. They share the
+   pill treatment and the wallpaper brown of the corner links
+   (genx-controls-link.css), which sit in the two top corners. Added because the
+   EmulatorJS toolbar (its own save-state UI) is hidden site-wide. */
 .gx-state-bar {
   position: fixed;
   bottom: 8px;

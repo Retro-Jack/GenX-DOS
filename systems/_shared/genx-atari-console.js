@@ -83,9 +83,9 @@
     style.textContent = `
       #genx-atari-console {
         /* Under the set, matching the 2600 and 7800 panels — where a console
-             sat, rather than floating over the wallpaper. At the bottom it also
-             clears the suspended-audio banner without the --gx-banner-h offset
-             the top-left placement needed. */
+             sat, rather than floating over the wallpaper. 58px clears the
+             suspended-audio banner, which is pinned to the bottom of the
+             screen and about half that tall. */
           position: fixed; bottom: 58px; left: 50%; transform: translateX(-50%);
         z-index: 100;
         display: flex; gap: 6px;

@@ -10,11 +10,15 @@
 // a clone, or a private host. Only source is an absolute GitHub URL.
 //
 // Sits in a small dark pill (the surround is the wallpaper, not black, so
-// bare text would vanish into it — same reason the controls / save-load
-// links carry their own background). Understated but legible. The pill is
+// bare text would vanish into it — same reason the corner links and the
+// save / load buttons carry their own background; all three share the brown
+// taken from the wallpaper itself). Understated but legible. The pill is
 // pointer-events:none so only the links take clicks and it never
-// steals one from the emulator; it stays clear of the controls link
-// (bottom-right) and the save / load buttons (bottom-left).
+// steals one from the emulator; it stays clear of the save / load buttons
+// (bottom-left). The dismissible banners deliberately cover it — a credit
+// line is the one thing down there that can afford to be hidden for a
+// moment, which is why they sit at the bottom rather than over the corner
+// links at the top.
 (function () {
   if (document.querySelector('.gx-repo-link')) return;
   var REPO = 'https://github.com/Retro-Jack/GenX-DOS';

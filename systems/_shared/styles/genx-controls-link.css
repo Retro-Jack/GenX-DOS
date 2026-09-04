@@ -8,19 +8,14 @@
 @font-face{font-family:'IBM Plex Mono';font-weight:600;font-display:swap;
   src:url('../../../styles/fonts/ibm-plex-mono-600.woff2') format('woff2')}
 
-/* The two corner links on every emulator page: system help (left) and this
-   game's controls (right).
+/* The two corner links on every emulator page: this game's controls (left)
+   and system help (right).
 
-   They sit at the very top and never move. The banners move instead —
-   --gx-corner-h below tells the audio banner and the gamepad notice how far
-   down to start, so the links stay put while banners come and go. That is the
-   right way round: banners are dismissible and clear once play starts, whereas
-   the links are wanted at any moment, and a control that jumps as a banner
-   appears is worse than one that is briefly crowded.
-
-   A page that does not load this sheet leaves --gx-corner-h unset, and the
-   banners fall back to 0 and behave exactly as they did before. */
-:root { --gx-corner-h: 30px; }
+   They sit at the very top and never move, because they are wanted at any
+   moment. The banners give way instead: both are pinned to the bottom of the
+   screen, where they cover only the credit pill. A control that jumps down the
+   page as a banner appears, or hides behind one, is worse than a credit line
+   being hidden for the few seconds before play starts. */
 
 .gx-corner-link {
   position: fixed;
