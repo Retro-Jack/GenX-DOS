@@ -3,7 +3,7 @@
 styled in the site's home-page design language, fully relative-linked (so it
 travels to any host). Regenerate:  python3 docs/wiki-src/build.py
 Source of truth is the markdown in pages/ (mirrored from the old GitHub wiki)."""
-import os, re, sys, unicodedata, html
+import os, re, sys, unicodedata, html, json, base64, hashlib
 import markdown
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -192,10 +192,16 @@ def build_nav(active_slug):
     flush()
     return '\n'.join(out)
 
+# Every page but one carries this. The search page needs to run its own script,
+# so it gets the same policy plus a hash of exactly that script and nothing
+# else — see build_search().
+CSP = ("default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; "
+       "base-uri 'none'; form-action 'none'")
+
 TEMPLATE = '''<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="{csp}">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} — GenX-DOS Wiki</title>
@@ -207,7 +213,7 @@ TEMPLATE = '''<!doctype html>
 <body>
 <header class="top">
   <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
-  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+  <span class="out"><a href="Search.html">Search</a><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
 </header>
 <div class="layout">
   <nav class="side">
@@ -224,8 +230,150 @@ TEMPLATE = '''<!doctype html>
 </html>
 '''
 
+# ---------------------------------------------------------------------------
+# Search
+# ---------------------------------------------------------------------------
+# The wiki runs under default-src 'none' with no script-src, which is why none
+# of these pages has ever executed a line of JavaScript. Search has to, so this
+# page — and only this page — carries script-src with the SHA-256 of the one
+# script it contains. Not 'unsafe-inline', which would permit ANY inline script
+# on the page: a hash permits exactly these bytes and nothing else. Because
+# build.py emits the script and computes the hash in the same breath, the two
+# cannot drift apart.
+#
+# The index is inlined rather than fetched, so the page needs no connect-src
+# and still works from a file:// copy of the release zip, where fetch() of a
+# local JSON is blocked as a cross-origin request.
+def _sections_of(md_text):
+    """Split a page into (heading, anchor, plain text) at its h2/h3 boundaries."""
+    out, head, anchor, buf = [], None, '', []
+    def flush():
+        text = ' '.join(buf).strip()
+        if text:
+            out.append((head, anchor, text))
+    for line in md_text.splitlines():
+        m = re.match(r'^(#{2,3})\s+(.+?)\s*$', line)
+        if m:
+            flush(); buf = []
+            head = re.sub(r'[`*_\[\]]', '', m.group(2)).strip()
+            anchor = gh_slugify(head, '-')
+            continue
+        if line.startswith('```'):
+            continue
+        # strip the markdown that would only add noise to a hit
+        t = re.sub(r'!\[[^\]]*\]\([^)]*\)', ' ', line)
+        t = re.sub(r'\[([^\]]+)\]\([^)]*\)', r'\1', t)
+        t = re.sub(r'\[\[([^\]]+)\]\]', r'\1', t)
+        t = re.sub(r'<[^>]*>', ' ', t)      # before the punctuation strip below,
+        t = re.sub(r'[`*_>|#]', ' ', t)     # which would eat the closing '>'
+        t = re.sub(r'\s+', ' ', t)
+        if t.strip():
+            buf.append(t.strip())
+    flush()
+    return out
+
+SEARCH_JS = r"""
+var IDX = __INDEX__;
+var q = document.getElementById('q'), res = document.getElementById('res'),
+    tally = document.getElementById('tally');
+function esc(s){ return s.replace(/[&<>]/g, function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+function rx(t){ return t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function snippet(text, terms){
+  var low = text.toLowerCase(), at = -1;
+  for (var i = 0; i < terms.length && at < 0; i++) at = low.indexOf(terms[i]);
+  if (at < 0) at = 0;
+  var from = Math.max(0, at - 60), cut = text.slice(from, from + 210);
+  var out = esc((from ? '…' : '') + cut + (from + 210 < text.length ? '…' : ''));
+  terms.forEach(function(t){
+    out = out.replace(new RegExp('(' + rx(t) + ')', 'ig'), '<mark>$1</mark>');
+  });
+  return out;
+}
+function run(){
+  var raw = q.value.trim().toLowerCase();
+  res.innerHTML = ''; tally.textContent = '';
+  if (raw.length < 2){ tally.textContent = raw ? 'keep typing…' : ''; return; }
+  var terms = raw.split(/\s+/), hits = [];
+  IDX.forEach(function(p){
+    p.s.forEach(function(sec){
+      var hay = ((sec.h || '') + ' ' + sec.x).toLowerCase(), n = 0, all = true;
+      terms.forEach(function(t){
+        var c = hay.split(t).length - 1;
+        if (!c) all = false; else n += c;
+      });
+      if (!all) return;
+      hits.push({ p: p, sec: sec, n: n,
+                  head: (sec.h || '').toLowerCase().indexOf(terms[0]) >= 0 ? 1 : 0 });
+    });
+  });
+  hits.sort(function(a, b){ return (b.head - a.head) || (b.n - a.n); });
+  tally.textContent = hits.length
+    ? hits.length + (hits.length === 1 ? ' result' : ' results') +
+      (hits.length > 60 ? ' · showing the first 60' : '')
+    : 'nothing found';
+  hits.slice(0, 60).forEach(function(h){
+    var a = document.createElement('a');
+    a.className = 'hit';
+    a.href = h.p.u + (h.sec.a ? '#' + h.sec.a : '');
+    a.innerHTML = '<span class="hit-h">' + esc(h.sec.h || h.p.t) + '</span>' +
+                  '<span class="hit-p">' + esc(h.p.t) +
+                  (h.n > 1 ? ' · ' + h.n + ' matches' : '') + '</span>' +
+                  '<span class="hit-x">' + snippet(h.sec.x, terms) + '</span>';
+    res.appendChild(a);
+  });
+}
+q.addEventListener('input', run);
+q.focus();
+if (location.hash.length > 1){ q.value = decodeURIComponent(location.hash.slice(1)); run(); }
+"""
+
+SEARCH_BODY = """<h1>Search</h1>
+<p>Every page of this wiki, indexed by section. Typing filters as you go.</p>
+<input id="q" type="search" autocomplete="off" spellcheck="false"
+       placeholder="asyncify, bezel, joyport, save state…" aria-label="Search the wiki">
+<p id="tally" class="tally"></p>
+<div id="res"></div>
+<p class="searchnote">Nothing is sent anywhere. The index is part of this page and
+the search runs in your browser, so it works just as well from a downloaded copy
+with no server at all.</p>
+"""
+
+def build_search(sections):
+    index, n = [], 0
+    # Cap the indexed text per section. The whole wiki inlined verbatim came to
+    # 224 KB gzipped on a single page, most of it the changelog; 700 characters
+    # is enough to match on and to cut a snippet from, and brings that under a
+    # third. A section longer than the cap is still findable by its heading and
+    # its opening — which is where a section says what it is about.
+    CAP = 700
+    for title, url, raw in sections:
+        secs = _sections_of(raw)
+        n += len(secs)
+        index.append({'t': title, 'u': url,
+                      's': [{'h': h, 'a': a, 'x': x[:CAP]} for h, a, x in secs]})
+    payload = json.dumps(index, separators=(',', ':'), ensure_ascii=False)
+    # The WebMSX page discusses the '</script>' footgun, which means the index
+    # contains that text — and an HTML parser ends a script element at '</script'
+    # regardless of what it means to the JavaScript inside. Escaping every '<' as
+    # \u003c is the standard defence: identical string to JSON, impossible to
+    # mistake for markup. (The wiki documenting the trap and then falling into it
+    # is the sort of thing that only shows up when you actually load the page.)
+    payload = payload.replace('<', '\\u003c')
+    script = SEARCH_JS.replace('__INDEX__', payload)
+    digest = base64.b64encode(hashlib.sha256(script.encode('utf-8')).digest()).decode()
+    # The semicolon matters: without it "script-src" reads as another value of
+    # the preceding directive, script-src falls back to default-src 'none', and
+    # the page silently runs nothing at all — no console error, just a dead box.
+    csp = CSP + "; script-src 'sha256-%s'" % digest
+    page = TEMPLATE.format(csp=csp, title='Search', nav=build_nav('Search'),
+                           content=SEARCH_BODY + '<script>' + script + '</script>')
+    open(os.path.join(OUT, 'Search.html'), 'w').write(page)
+    return n
+
 def main():
     dead_all = {}
+    sections = []          # (title, url, markdown) per page, for the search index
     jobs = [(slug, os.path.join(SRC, slug + '.md'), 'md') for slug in PAGES]
     jobs += [(slug, path, kind) for slug, (path, kind) in sorted(EXTRA.items())]
     for slug, path, kind in jobs:
@@ -239,12 +387,16 @@ def main():
         body = rewrite_imgs(body)
         body = rewrite_hrefs(body, dead)
         if dead: dead_all[slug] = dead
-        page = TEMPLATE.format(title=html.escape(title),
+        page = TEMPLATE.format(csp=CSP,
+                               title=html.escape(title),
                                nav=build_nav(slug),
                                content=body)
+        sections.append((title, out_name(slug), raw))
         open(os.path.join(OUT, out_name(slug)), 'w').write(page)
+    n_terms = build_search(sections)
     open(os.path.normpath(os.path.join(HERE, '..', '..', 'styles', 'wiki.css')), 'w').write(CSS)
-    print('wrote %d html pages + wiki.css to %s' % (len(jobs), OUT))
+    print('wrote %d html pages + Search.html (%d sections) + wiki.css to %s'
+          % (len(jobs), n_terms, OUT))
     if dead_all:
         print('DEAD LINKS:')
         for s, d in dead_all.items(): print('  ', s, '->', sorted(d))
@@ -285,6 +437,28 @@ a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .side a.active{background:var(--panel);color:var(--amber);box-shadow:inset 2px 0 0 var(--amber)}
 
 .content{flex:1 1 auto;min-width:0;max-width:820px;padding:2.5rem 2.6rem 4.5rem}
+
+/* --- search ------------------------------------------------------------ */
+#q{width:100%;margin:.4rem 0 .2rem;padding:.7rem .9rem;background:var(--panel);
+  color:var(--paper);border:1px solid var(--line);border-radius:5px;
+  font-family:'IBM Plex Mono',monospace;font-size:.95rem}
+#q:focus{outline:none;border-color:var(--amber)}
+#q::placeholder{color:var(--dim)}
+.tally{min-height:1.2rem;margin:.5rem 0 1.1rem;color:var(--green);
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase}
+a.hit{display:block;margin:0 0 .55rem;padding:.75rem .9rem;border:1px solid var(--line);
+  border-left:3px solid var(--line);border-radius:5px;background:var(--panel);
+  color:var(--paper);text-decoration:none}
+a.hit:hover{border-left-color:var(--amber);background:rgba(255,176,0,.05)}
+.hit-h{display:block;color:var(--amber);font-family:'IBM Plex Mono',monospace;
+  font-size:.86rem;letter-spacing:.02em}
+.hit-p{display:block;margin:.15rem 0 .4rem;color:var(--green);
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase}
+.hit-x{display:block;color:var(--dim);font-size:.9rem;line-height:1.5}
+.hit-x mark{background:rgba(255,176,0,.22);color:var(--paper);border-radius:2px;padding:0 .1em}
+.searchnote{margin-top:2rem;color:var(--dim);font-size:.86rem;font-style:italic}
 .content h1{font-family:'Michroma',sans-serif;font-weight:400;color:var(--amber);
   font-size:clamp(1.5rem,3.4vw,2.05rem);line-height:1.16;letter-spacing:.01em;
   margin:0 0 1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
