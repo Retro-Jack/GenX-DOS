@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [1.7.0] - 2026-09-04
+
 ### Changed
 - **Doc sync after the restore, and three counts the automated check cannot see.** The feature article carries the machine count spelled out in prose — standfirst, body and closing — and all three still read *thirty-two*. `check-doc-counts.sh` only reads the numerals in the THE NUMBERS block, so they survived the earlier sync untouched.
   The Vectrex also had no engine page on the wiki, though every other engine has one, and nothing flagged it: the build's dead-link check only sees links that exist. `Emulator-jsvecx-Vectrex` is new — why it was removed, why the note we left behind blaming AY-3-8912 emulation was wrong on both counts, the DAC that was actually missing, and the measurement used in place of trusting ears. Alongside it: an index row in Emulators, a shipped-table row in Roadmap plus a correction to the entry still listing the machine as removed, the bundle tree and layout table in File-Structure, and the Master System's row, which still said it "replaced the Vectrex" when both now ship.
