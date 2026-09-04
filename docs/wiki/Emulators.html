@@ -236,8 +236,17 @@ implements it:</p>
 </tr>
 </tbody>
 </table>
-<p>Machines with no pad support at all — Apple I and ][+, Atari 400/800, TI-99/4A,
-Model 100, MSX1/2, PET, TRS-80 — carry two columns.</p>
+<p>The <strong>Apple ][+</strong> belongs on that list too, found during the sweep: <code>apple2js</code>
+drives paddles 0 and 1 straight off the left stick and maps pad <code>A</code>/<code>LB</code> to Apple
+button 0, <code>B</code>/<code>RB</code> to button 1 (<code>dist/main2.bundle.js</code>, default map
+<code>{A:0, B:1, L1:0, R1:1}</code>).</p>
+<p>Machines with no pad support at all — Apple I, Atari 400/800, TI-99/4A, Model
+100, MSX1/2, PET, TRS-80, Intellivision, Odyssey² — carry two columns. The last
+two are worth naming because their tables used to <em>have</em> a Gamepad column that
+described the original console's controller rather than a USB one. For the
+Atari, TRS-80, Model 100 and MSX the SDL builds do carry Emscripten's gamepad
+plumbing, but nothing here binds it to anything, so a column would be a claim we
+cannot support: test with a real pad before adding one.</p>
 <h2 id="adding-a-new-emulator">Adding a new emulator</h2>
 <p>Same recipe each time:</p>
 <ol>

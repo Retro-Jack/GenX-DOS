@@ -104,8 +104,18 @@ implements it:
 | Tandy CoCo | the per-game `joystick` field in `games.json` |
 | CPC, Electron, Spectrum, ZX81 | the per-game `window.GenXGamepadMap` in that bundle's `play.html` |
 
-Machines with no pad support at all — Apple I and ][+, Atari 400/800, TI-99/4A,
-Model 100, MSX1/2, PET, TRS-80 — carry two columns.
+The **Apple ][+** belongs on that list too, found during the sweep: `apple2js`
+drives paddles 0 and 1 straight off the left stick and maps pad `A`/`LB` to Apple
+button 0, `B`/`RB` to button 1 (`dist/main2.bundle.js`, default map
+`{A:0, B:1, L1:0, R1:1}`).
+
+Machines with no pad support at all — Apple I, Atari 400/800, TI-99/4A, Model
+100, MSX1/2, PET, TRS-80, Intellivision, Odyssey² — carry two columns. The last
+two are worth naming because their tables used to *have* a Gamepad column that
+described the original console's controller rather than a USB one. For the
+Atari, TRS-80, Model 100 and MSX the SDL builds do carry Emscripten's gamepad
+plumbing, but nothing here binds it to anything, so a column would be a claim we
+cannot support: test with a real pad before adding one.
 
 ## Adding a new emulator
 
