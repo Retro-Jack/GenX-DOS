@@ -30,7 +30,7 @@
 <h1 id="jtyone--sinclair-zx81">JtyOne — Sinclair ZX81</h1>
 <p>JtyOne (Simon Holdsworth) is a port of Mike Wynne's EightyOne. The ZX81 bundle is small and quiet — the smallest screen, the smallest emulator, the smallest games.</p>
 <h2 id="where-we-started">Where we started</h2>
-<p><a href="https://github.com/jtyone">JtyOne</a> is GPL-2.0. Pure JavaScript, no WASM, no build step. The runtime exports a global object and writes to an emulator canvas + status span.</p>
+<p><a href="https://www.zx81stuff.org.uk/zx81/jtyone.html">JtyOne</a> is GPL-2.0. Pure JavaScript, no WASM, no build step. The runtime exports a global object and writes to an emulator canvas + status span.</p>
 <h2 id="the-launch-flow">The launch flow</h2>
 <p><code>play.html</code> reads <code>?game=&lt;key&gt;</code> from the URL, fetches <code>games.json</code>, gets a <code>{rom, type}</code> record per entry, and hands it off to JtyOne's loader. <code>rom</code> is the file path; <code>type</code> distinguishes <code>.p</code> files (snapshot, loads instantly) from <code>.tap</code> files (real tape image, real load time).</p>
 <h2 id="the-display">The display</h2>

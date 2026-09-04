@@ -33,7 +33,7 @@ The same harness then corrected the game documentation. Run over all ten cartrid
 
 ## Three sound chips, one of which works
 
-The engine ships **three** implementations that each define `e8910()` — `processed/e8910.js`, `js/e8910Full.js`, and an AudioWorklet built from a minified string inside `js/audioWorkletWrapper.js`. Whichever script loads last wins.
+Upstream ships **three** implementations that each define `e8910()` — `processed/e8910.js`, `js/e8910Full.js`, and an AudioWorklet built from a minified string inside `js/audioWorkletWrapper.js`. Whichever script loads last wins. (Our bundle carries two: the worklet file was pruned, for the reason below.)
 
 Tested in Chrome with an analyser tapped between the gain node and the destination, the AudioWorklet path produces RMS 0.001 and peak 0.002 — silence — while the ScriptProcessorNode in `e8910Full.js` gives RMS 0.17–0.37 with peaks near 0.99. Pristine upstream behaves the same, so this is not something our fork caused. It does mean upstream's own shipped build has no working audio, because that build is precisely the one that excludes `e8910Full.js`.
 
@@ -48,6 +48,12 @@ The audio rate is effectively fixed at 22050 Hz: `SOUND_FREQ` is used in exactly
 **ROMs are stored flat**, as `games/<key>.bin` with `overlays/<key>.png` beside them, driven by a single `?game=<key>` like every other bundle here. Upstream nested them in collection folders and derived the overlay name by splitting the filename on its `_<year>` suffix. It also accepted remote URLs fetched through a proxy — a runtime network call this site does not make. That path is gone.
 
 `minestrm` is deliberately not a file: Mine Storm lives in the boot ROM, so it sets its overlay and leaves the machine bare.
+
+## What we pruned
+
+The bundle-add prune paid out again — five files, 43 KB. `css/seamless.css` was never linked; `js/dnd.js` was referenced by nothing; `js/audioWorkletWrapper.js` is one of the three `e8910()` definitions above, and the silent one.
+
+The interesting one was the **ROM picker** (`js/romList.js` + `js/table.js`, 22 KB). It was hidden behind CSS and unreachable, but still ran on every load and populated **486 entries** for ROMs the bundle does not ship. Upstream used that table's existence as `doinit()`'s "already initialised" flag, so removing it needed a boolean in its place. The tell was console output — "486 roms in list" on every load — not a file scan. Worth remembering: an orphan that still executes will not show up as an unreferenced file.
 
 ## The overlays
 

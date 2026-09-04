@@ -80,7 +80,7 @@ genx-dos/
     │   └── favicon.ico / animated_favicon1.gif   site favicon, linked by every page
     ├── _shared-ejs/         genx-ejs-boot.js + genx-ejs-lang.js (our glue), then the
     │                        shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem cores
-    │                        (14 bundles share; saves ~25 MB vs per-bundle copies)
+    │                        (13 bundles share; saves ~25 MB vs per-bundle copies)
     ├── apple1/              Apple I            (copied from scullin/apple1js)
     ├── apple2/              Apple ][+          (copied from whscullin/apple2js)
     ├── bbcmicro/            BBC Micro          (jsbeeb, Model B — copied from mattgodbolt/jsbeeb)

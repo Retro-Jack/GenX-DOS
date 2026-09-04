@@ -67,7 +67,7 @@ prompt/                   the DOS terminal (HTML + JS, no build)
 systems/
   _shared/                shared CSS + helpers (NumLock warn, VICE RUN/STOP key remap, BBC COPY button, save-state, ...)
   _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem
-                          (14 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
+                          (13 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
   apple1/                 Apple I             — apple1js + 10 cassette tapes
   bbcmicro/               BBC Micro           — jsbeeb Vite dist (Model B) + BBC disks
   bbcmaster/              BBC Master 128      — jsbeeb Vite dist (model=Master) + Master-enhanced disks
@@ -158,7 +158,7 @@ The **Vectrex** reads a pad natively too, and is the one machine here where that
 
 ## Save / load state
 
-Most bundles carry **save** / **load** controls in the bottom-left corner — each opens a drop-up menu of **five save slots per game**, an instant in-browser snapshot of the running machine kept in memory and persisted to **IndexedDB** (`gx-savestate`, keyed `platform:game:slot`) so the slots survive a reload. Because they're keyed per game, different games keep independent saves. The 14 EmulatorJS bundles use the libretro cores' own state API (`systems/_shared/genx-savestate.js`); the standalone engines that expose a reachable save-state — TI-99/4A, BBC Micro/Master (mid-game, even Elite), MSX, Tandy CoCo, Odyssey², Atari 400/800XL and Amstrad CPC — ride each emulator's native API through `systems/_shared/genx-savestate-std.js` + a small per-bundle `GenXStateAdapter`. Three needed a WASM rebuild to expose state the stock build hid: the **Odyssey²** (o2em — call libretro's dead-code-eliminated `retro_serialize`/`retro_unserialize`), the **Atari 400/800XL** (atari800 fork — `StateSav_*`, deferred through the frame loop to dodge an ASYNCIFY clash) and the **Amstrad CPC** (tiny8bit — export chips' `cpc_save_snapshot`/`cpc_load_snapshot`). The remaining engines (Apple, Electron, Spectrum, ZX81, Intellivision, PET) expose no reachable state API, so those bundles have no buttons. The TRS-80 Model III (sdltrs) ships a built-in save-state (`trs_state_save`/`trs_state_load`) that isn't wired to buttons yet — so no buttons there either, for now.
+Most bundles carry **save** / **load** controls in the bottom-left corner — each opens a drop-up menu of **five save slots per game**, an instant in-browser snapshot of the running machine kept in memory and persisted to **IndexedDB** (`gx-savestate`, keyed `platform:game:slot`) so the slots survive a reload. Because they're keyed per game, different games keep independent saves. The 13 EmulatorJS bundles use the libretro cores' own state API (`systems/_shared/genx-savestate.js`); the standalone engines that expose a reachable save-state — TI-99/4A, BBC Micro/Master (mid-game, even Elite), MSX, Tandy CoCo, Odyssey², Atari 400/800XL and Amstrad CPC — ride each emulator's native API through `systems/_shared/genx-savestate-std.js` + a small per-bundle `GenXStateAdapter`. Three needed a WASM rebuild to expose state the stock build hid: the **Odyssey²** (o2em — call libretro's dead-code-eliminated `retro_serialize`/`retro_unserialize`), the **Atari 400/800XL** (atari800 fork — `StateSav_*`, deferred through the frame loop to dodge an ASYNCIFY clash) and the **Amstrad CPC** (tiny8bit — export chips' `cpc_save_snapshot`/`cpc_load_snapshot`). The remaining engines (Apple, Electron, Spectrum, ZX81, Intellivision, PET) expose no reachable state API, so those bundles have no buttons. The TRS-80 Model III (sdltrs) ships a built-in save-state (`trs_state_save`/`trs_state_load`) that isn't wired to buttons yet — so no buttons there either, for now.
 
 ## Documentation
 
@@ -182,7 +182,7 @@ Prefer a narrative read? **[Booting a Museum in a Browser Tab](https://genx-dos.
 
 The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.md](ATTRIBUTION.md)** is the canonical record of every bundled third-party component (source URLs, authors, BIOS/ROM provenance, bezel artwork licences, and BY-SA share-alike obligations). Summary below.
 
-- DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system by Mike, written informally for **LGR — Lazy Game Reviews** (Clint Basinger, <https://www.lazygamereviews.com>)
+- DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system by Mike, written informally for **LGR — Lazy Game Reviews** (Clint Basinger, <http://www.lazygamereviews.com>)
 - AMIBIOS POST animation, emulator integration wrappers, menu tree, and bundled-emulator-specific code by Retro-Jack
 - jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb)
 - ElkJS: (c) Darren Coles 2013 (dmcoles/elkjs) — 6502 core ported from Elkulator by Tom Walker
@@ -197,8 +197,8 @@ The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.m
 - sdltrs: BSD-2-Clause (Mark Grebe / Jens Guenther, gitlab.com/jengun/sdltrs) — TRS-80 Model III, built from source to WASM; Model III ROM (©Tandy/Microsoft) bundled for emulation
 - Js99'er: GPL-2.0 (Rasmus Moustgaard) — vanilla-JS build
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); the machines run **genuine Atari ROMs** — OS-B on the 400, XL/XE OS Rev 2 on the 800XL, and Atari BASIC Rev C on both — supplied at runtime from `roms/` via `-osb_rom` / `-xlxe_rom` / `-basic_rom`. The build also contains Avery Lee's AltirraOS/AltirraBASIC reimplementations, but they are only a fallback for when no real ROM is present, and never load here
-- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 14 bundles via `systems/_shared-ejs/` — the six VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, Sega Master System, and the three handhelds (Game Boy/GBC, Lynx, Game Gear)
-- VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `x128`, `xvic`, `xplus4`) mirrored from `cdn.emulatorjs.org/stable/`
+- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 13 bundles via `systems/_shared-ejs/` — the five VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, Sega Master System, and the three handhelds (Game Boy/GBC, Lynx, Game Gear)
+- VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `xvic`, `xplus4`) mirrored from `cdn.emulatorjs.org/stable/`
 - pet2001: BSD-2-Clause (Thomas Skibo) — vanilla-JS PET 2001 emulator at `systems/pet/pet2001/`
 - gearcoleco: GPL-3.0 (Drhelius) — libretro ColecoVision core mirrored from `cdn.emulatorjs.org/stable/`
 - ColecoVision BIOS: ©1982 Coleco, bundled for emulator-only use

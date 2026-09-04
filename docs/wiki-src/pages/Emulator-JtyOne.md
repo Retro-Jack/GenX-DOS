@@ -4,7 +4,7 @@ JtyOne (Simon Holdsworth) is a port of Mike Wynne's EightyOne. The ZX81 bundle i
 
 ## Where we started
 
-[JtyOne](https://github.com/jtyone) is GPL-2.0. Pure JavaScript, no WASM, no build step. The runtime exports a global object and writes to an emulator canvas + status span.
+[JtyOne](https://www.zx81stuff.org.uk/zx81/jtyone.html) is GPL-2.0. Pure JavaScript, no WASM, no build step. The runtime exports a global object and writes to an emulator canvas + status span.
 
 ## The launch flow
 

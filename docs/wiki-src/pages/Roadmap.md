@@ -52,7 +52,7 @@ Every shipped system has the *feel* of an 8-bit machine — sprite-based, chiptu
 
 **Shared infrastructure:**
 - `_shared/` — controls.css, frame.css, NumLock JS, VICE softkeys, gamedocs link JS
-- `_shared-ejs/` — one EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem cores (14 bundles share; ~25 MB saved vs per-bundle copies)
+- `_shared-ejs/` — one EmulatorJS framework + 3 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem cores (13 bundles share; ~25 MB saved vs per-bundle copies)
 
 See [[Emulators]] for the per-platform integration stories.
 

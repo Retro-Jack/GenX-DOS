@@ -1,6 +1,6 @@
 # VICE — the whole Commodore family
 
-The VICE-family bundle was the first time we leaned on [EmulatorJS](https://emulatorjs.org) as a host framework instead of integrating a standalone emulator. Six sub-systems (VIC-20, MAX, C64, C16, Plus/4, C128) share one copy of EmulatorJS and four VICE libretro cores in `systems/_shared-ejs/`. Every gotcha listed below was paid for at least once.
+The VICE-family bundle was the first time we leaned on [EmulatorJS](https://emulatorjs.org) as a host framework instead of integrating a standalone emulator. Five sub-systems (VIC-20, MAX, C64, C16, Plus/4) share one copy of EmulatorJS and three VICE libretro cores in `systems/_shared-ejs/`. A sixth, the C128, was dropped on 03/09/2026 — the note below explains why, and several findings on this page came from it. Every gotcha listed below was paid for at least once.
 
 > The PET originally rode along as a seventh sub-system on `vice_xpet`, but libretro-vice ships PET with a hardcoded Business UK keyboard mapper that no `vicerc` resource can override — the symptom was `Enter` producing `P` and letters scrambled. We migrated PET out to Thomas Skibo's standalone emulator in June 2026; see [[Emulator-pet2001-Skibo]] for the full story.
 
@@ -36,11 +36,16 @@ The 4-byte stub leaves a faint `RUN` line and a doubled `READY.` on screen. We t
 
 ## The `localStorage` ambush
 
-`EJS_defaultOptions` is overridden by persisted user settings. First-visit values get written to `localStorage['ejs-<gameId>-settings']` and IndexedDB `EJS_CFG`, and on subsequent visits *those* win. Changing `EJS_defaultOptions` in `play.html` has zero effect until storage is cleared:
+`EJS_defaultOptions` is overridden by persisted user settings. First-visit values get written to `localStorage['ejs-<gameId>-settings']`, and on subsequent visits *those* win. Changing `EJS_defaultOptions` in `play.html` has zero effect until storage is cleared:
 
 ```js
-localStorage.clear(); indexedDB.deleteDatabase('EJS_CFG'); location.reload();
+localStorage.clear();
+indexedDB.deleteDatabase('EmulatorJS-Cache');   // the core/ROM cache
+indexedDB.deleteDatabase('/data/saves');        // the core's own save dir
+location.reload();
 ```
+
+The three databases an EmulatorJS bundle actually creates are `EmulatorJS-Cache`, `/data/saves` and our own `gx-savestate` — leave the last one alone unless you mean to throw away save states. (Earlier revisions of this page named a database called `EJS_CFG`; there is no such thing, so that line deleted nothing and the settings appeared to survive the reset.)
 
 Critical when iterating on options. Once shipping, irrelevant to users — but mid-development, the cause of an embarrassing amount of "this fix isn't working" panic.
 
@@ -125,7 +130,7 @@ Five bundles, three cores, one EmulatorJS copy. Total VICE-family storage is ~10
 
 ## CRT bezel — one monitor for the whole family (13/06/2026)
 
-All six machines share a single `Commodore.png` bezel — the **1084S** monitor (1223×1104), keyed to a transparent screen hole. Because they're all one shared `play.html` shape, one bezel + one set of hole coordinates does the lot. Same EmulatorJS player-in-hole recipe as [[Emulator-Stella]]: drop the EJS player div (`#game`) into the hole and let EJS draw into it.
+All five machines share a single `Commodore.png` bezel — the **1084S** monitor (1223×1104), keyed to a transparent screen hole. Because they're all one shared `play.html` shape, one bezel + one set of hole coordinates does the lot. Same EmulatorJS player-in-hole recipe as [[Emulator-Stella]]: drop the EJS player div (`#game`) into the hole and let EJS draw into it.
 
 ```
 .bezel-wrap  (1223×1104, aspect of Commodore.png)
@@ -141,7 +146,7 @@ The hole is ~4:3, so the canvas fill is gentle:
 #game canvas { height: 100% !important; transform: scale(1.01); }
 ```
 
-`height: 100%` closes EJS's tiny letterbox; `scale(1.01)` is a +1% nudge to seat the picture in the glass with no border gap. Five of the six machines share this exact rule; **C128 splits it by video chip** — 40-col VIC-II `scale(1.01)`, 80-col VDC `scale(1.26)` — via the `gx-vicii` / `gx-vdc` class its `perGame` adds to `<html>` (see [above](#the-c128-garbage-boot-bug--and-the-framebuffer-hack-it-retired-13062026)).
+`height: 100%` closes EJS's tiny letterbox; `scale(1.01)` is a +1% nudge to seat the picture in the glass with no border gap. All five machines share this exact rule. (The C128 used to split it by video chip — 40-col VIC-II `scale(1.01)`, 80-col VDC `scale(1.26)`, chosen by a `gx-vicii` / `gx-vdc` class its `perGame` put on `<html>`; that went with the machine.)
 
 One layout wrinkle worth noting: the VICE bundles inject a NumLock-off warning banner (`position: fixed`), so it sits above the flex-centred bezel without disturbing it.
 

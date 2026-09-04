@@ -4,7 +4,7 @@ The Acorn Electron bundle is one of the older browser emulators on the site. Elk
 
 ## Where we started
 
-[ElkJS](https://github.com/dorpsgek/elkjs) is Darren Coles's port of Tom Walker's Elkulator. Pure JavaScript, no WASM, no build step — drop the source into a directory, point a `<script>` tag at `elkjs.js`, and it runs. License-wise it's "© Darren Coles 2013" with no SPDX header; the underlying Elkulator core is GPL-2.
+[ElkJS](https://github.com/dmcoles/elkjs) is Darren Coles's port of Tom Walker's Elkulator. Pure JavaScript, no WASM, no build step — drop the source into a directory, point a `<script>` tag at `elkjs.js`, and it runs. License-wise it's "© Darren Coles 2013" with no SPDX header; the underlying Elkulator core is GPL-2.
 
 ## The first observation: the display had scanlines
 

@@ -53,7 +53,7 @@ rights holder's wishes about their own work.
 
 - **DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system**
   — by Mike, who wrote it informally for **LGR — Lazy Game Reviews**
-  (Clint Basinger, <https://www.lazygamereviews.com>). LGR's own site
+  (Clint Basinger, <http://www.lazygamereviews.com>). LGR's own site
   metadata credits Mike — `<meta name="Generator" content="Mike">` and
   `<meta name="Originator" content="Mike's brain -- thanks, Mike!">`.
   The interactive prompt under `prompt/`, the `fs.js` virtual `C:` drive
@@ -106,7 +106,7 @@ fork rather than the bundle.
 | `systems/cpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` (status bar + muted-speaker icon patched out, plus `gx_state_*` save-state wrappers; see `systems/cpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
 | `systems/pet/pet2001/` | pet2001 (vanilla-JS PET 2001 emulator) | Thomas Skibo | BSD-2-Clause |
 | `systems/_shared-ejs/` | EmulatorJS framework | EmulatorJS team | GPL-3.0 |
-| `systems/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `x128`, `xvic`, `xplus4`) | vice-emu.sourceforge.net | GPL-2.0 |
+| `systems/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `xvic`, `xplus4`) | vice-emu.sourceforge.net | GPL-2.0 |
 | `systems/_shared-ejs/ejs/data/cores/` | gearcoleco libretro core (ColecoVision) | Drhelius | GPL-3.0 |
 | `systems/_shared-ejs/ejs/data/cores/` | FCEUmm libretro core (NES) | libretro/libretro-fceumm | GPL-2.0 |
 | `systems/_shared-ejs/ejs/data/cores/` | Stella libretro core (`stella2014`, Atari 2600) | stella-emu / libretro | GPL-2.0 |
@@ -126,7 +126,7 @@ rebuild or inspect what we ship.
 | Binary we ship | Corresponding source |
 |---|---|
 | `_shared-ejs/ejs/` — EmulatorJS runtime (GPL-3.0) | https://github.com/EmulatorJS/EmulatorJS |
-| `vice_x64`, `vice_x128`, `vice_xvic`, `vice_xplus4` (GPL-2.0) | https://sourceforge.net/projects/vice-emu/ — libretro packaging: https://github.com/libretro/vice-libretro |
+| `vice_x64`, `vice_xvic`, `vice_xplus4` (GPL-2.0) | https://sourceforge.net/projects/vice-emu/ — libretro packaging: https://github.com/libretro/vice-libretro |
 | `fceumm` (GPL-2.0) | https://github.com/libretro/libretro-fceumm |
 | `gearcoleco` (GPL-3.0) | https://github.com/drhelius/Gearcoleco |
 | `stella2014` (GPL-2.0) | https://github.com/libretro/stella2014-libretro |
@@ -417,7 +417,7 @@ beside it, which is what the GPL asks for:
 
 | File | Covers |
 |---|---|
-| `systems/_shared-ejs/COPYING` (GPL-3.0) | the EmulatorJS runtime, and with it all 14 bundles that share it — none of them carries its own core binary |
+| `systems/_shared-ejs/COPYING` (GPL-3.0) | the EmulatorJS runtime, and with it all 13 bundles that share it — none of them carries its own core binary |
 | `systems/_shared-ejs/ejs/data/cores/COPYING` (GPL-2.0) | the libretro cores sitting in that directory |
 | `systems/jsspeccy/COPYING`, `systems/xroar/COPYING` (GPL-3.0) | those engines |
 | `systems/jtyone/COPYING`, `systems/js99er/COPYING` (GPL-2.0) | those engines |
