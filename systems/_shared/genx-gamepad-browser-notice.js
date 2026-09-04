@@ -51,8 +51,33 @@
     if (!document.body || document.getElementById('genx-pad-notice')) return;
     var b = document.createElement('div');
     b.id = 'genx-pad-notice';
-    b.textContent =
-      'This browser cannot detect a USB gamepad -- use Firefox to play with one.';
+    // Two lines. The first says what is wrong and names the browsers it
+    // applies to -- the check below is the whole Chromium family, so naming
+    // only Chrome would leave an Edge or Brave player thinking it was not
+    // about them. The second gives BOTH ways out: Firefox for anyone who owns
+    // a pad, and the keyboard for everyone else. Saying only "use Firefox"
+    // strands the majority who have no controller at all.
+    //
+    // It deliberately does NOT say a controller is required. On some machines
+    // it is not -- the Vectrex maps its whole stick and all four buttons to
+    // the keyboard -- and telling a player they cannot proceed without
+    // hardware they do not own would be both wrong and discouraging.
+    var line1 = document.createElement('div');
+    line1.textContent =
+      'USB controllers are not recognised by Chrome, Edge, Brave or Opera.';
+    var line2 = document.createElement('div');
+    line2.style.cssText = 'font-weight:normal;font-size:14px';
+    line2.appendChild(document.createTextNode('Use Firefox to play with one, or see '));
+    var a = document.createElement('a');
+    a.href = 'controls.html';          // sibling of every bundle's play page
+    a.textContent = 'Controls';
+    a.style.cssText = 'color:#fff;text-decoration:underline';
+    // the banner dismisses on click, so the link must not be swallowed by it
+    a.addEventListener('click', function (e) { e.stopPropagation(); });
+    line2.appendChild(a);
+    line2.appendChild(document.createTextNode(' for the keyboard equivalents.'));
+    b.appendChild(line1);
+    b.appendChild(line2);
     b.title = 'Click to dismiss';
     b.style.cssText = [
       'position:fixed',

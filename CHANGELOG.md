@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+### Changed
+- **The gamepad banner now tells you what to do instead, not just what is broken.** It read "This browser cannot detect a USB gamepad -- use Firefox to play with one", which only helps a player who already owns a pad and strands everyone else. It now names the browsers it applies to — the check is the whole Chromium family, so naming only Chrome would let an Edge or Brave player assume it was not about them — and offers both routes: Firefox for a pad, or a link straight to the bundle's Controls page for the keyboard equivalents.
+  It deliberately does **not** say a controller is required. On the Vectrex it is not: the keyboard maps the whole stick and all four buttons, and telling players they cannot proceed without hardware they do not own would be wrong as well as discouraging. Where a game genuinely is joystick-only, as some CoCo titles are, the Controls page is the thing that knows — which is why the banner points there rather than asserting specifics it cannot check.
+  Shared file, so the CoCo gets the same wording.
+
 ### Added
 - **The Vectrex now shows the "this browser cannot see your gamepad" strip.** The shared notice has existed since the CoCo work but only the CoCo ever loaded it, so Vectrex players in a Chromium browser got a page telling them a pad works and no explanation when it didn't. Confirmed with a real pad: Chrome will not hand one to this page even with the page focused and clicked first.
   The CoCo gates the notice per game, because most of its library ignores the joystick. The Vectrex cannot — the analogue stick and its four buttons are the machine's only controller, so every game reads it and the notice is unconditional here.
