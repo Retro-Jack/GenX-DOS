@@ -71,7 +71,7 @@ systems/bbcmicro/   (and an identical systems/bbcmaster/)
 
 `play.html` for each is just `dist/index.html`. The `controls.html` next to it is GenX-specific, not from upstream.
 
-Because jsbeeb launches with keyless disc URLs (`?disc1=<Title>.ssd`), the shared `genx-controls-link.js` can't resolve a per-game gamedoc. `dist/index.html` ships a hardcoded `<a class="gx-controls-link" href="../controls.html">` plus a deferred `genx-gamedoc-link.js` that maps the disc filename → gamedoc key and upgrades the link's `href` on load. Each bundle's script targets its own gamedoc dir — `bbcmicro/` → `docs/games/bbcmicro/` (e.g. `Elite` → `elite`), `bbcmaster/` → `docs/games/bbcmaster/` (e.g. `EliteMaster` → `elite`, the old `master-` prefix dropped now each machine has its own dir). Keyless BASIC / blank-Master launches keep the generic `controls.html`.
+Because jsbeeb launches with keyless disc URLs (`?disc1=<Title>.ssd`), the shared `genx-controls-link.js` has no game key to resolve a gamedoc from. `dist/index.html` ships a deferred `genx-gamedoc-link.js`, included *before* the shared script, that maps the disc filename → gamedoc key and publishes it as `window.GENX_GAME_KEY`; the shared script reads that in preference to the URL and builds both corner links from it. Each bundle's script targets its own gamedoc dir — `bbcmicro/` → `docs/games/bbcmicro/` (e.g. `Elite` → `elite`), `bbcmaster/` → `docs/games/bbcmaster/` (e.g. `EliteMaster` → `elite`, the old `master-` prefix dropped now each machine has its own dir). Keyless BASIC / blank-Master launches keep the generic `controls.html`.
 
 ## Related
 

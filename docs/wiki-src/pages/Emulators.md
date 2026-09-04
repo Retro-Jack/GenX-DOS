@@ -62,7 +62,11 @@ Every emulator directory has a `controls.html` documenting its keyboard / joysti
 
 The pages link to each other as well: every gamedoc carries *System help* under its header, and every `controls.html` ends with a **Gameplay controls** list of that system's games in menu order. Both page types run under `default-src 'none'` with no `script-src`, so this is static HTML — a controls page cannot know which game you arrived from, which is why it lists them all.
 
-Four bundles still carry the older single bottom-right link, built inline by their own entry HTML rather than by the shared script: **apple2** and **cpc** (both rewrite their URL on load and beat the deferred script to it), and **bbcmicro** / **bbcmaster** (Vite builds whose keyless `?disc1=` URLs carry no game key at all — see the jsbeeb page). The shared script stands down whenever it finds a `.gx-controls-link` already in the page, so a bundle can opt out simply by providing one, and `genx-controls-link.css` keeps the old rule for exactly that reason.
+**Where the key comes from.** Normally the live URL. Four bundles have no usable key there by the time the deferred script runs: **apple2** rewrites `?game=` into the `?disk=` its engine expects, **cpc** folds it into sokol_args, and **bbcmicro** / **bbcmaster** launch from a keyless `?disc1=` and never carry one. Each of those pages sets `window.GENX_GAME_KEY` synchronously instead, and the shared script prefers it over the URL — the BBC bundles' `genx-gamedoc-link.js` already published that variable for the soft-key policy, so one disc-to-gamedoc map now serves both. They previously kept three inline copies of the link-building code, which had drifted.
+
+Both hrefs are resolved from the script's own `src`, not written relative to the page: the BBC entry points live at `systems/<bundle>/dist/index.html`, a directory deeper than every other bundle's, where a page-relative path lands a level short.
+
+The shared script still stands down whenever it finds a `.gx-corner-link` or legacy `.gx-controls-link` already in the page, so a bundle that needs its own placement can opt out by providing one; `genx-controls-link.css` keeps the old rule for that case.
 
 None of these pages are in the virtual filesystem; the DOS prompt's `dir` output shows only `.bat` launchers and menu scripts, never raw `.html` files.
 
