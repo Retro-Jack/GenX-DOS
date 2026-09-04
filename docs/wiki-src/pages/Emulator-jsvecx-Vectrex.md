@@ -65,6 +65,6 @@ The canvas and overlay both need `!important` on their geometry. The engine's ow
 
 Ten cartridge games, plus Mine Storm — which lives in the boot ROM rather than on a cartridge of its own.
 
-The Vectrex is the one machine here whose software is in the public domain: the rights were released rather than defended. That is also why the homebrew scene around it is still producing new games decades on, on hardware that was discontinued in 1984.
+The Vectrex sits in an unusual position here. It is often said to be public domain, and that is not quite right — Jay Smith and Smith Engineering still hold the rights. What they granted, back in the mid-1990s, is standing permission to reproduce and distribute the software they published, provided nobody profits by it. That fits this site exactly, which is non-commercial by licence as well as by intent, and it is a large part of why the homebrew scene around a machine discontinued in 1984 is still producing new games.
 
 No save states: jsvecx exposes none, so the bundle has no save/load controls.

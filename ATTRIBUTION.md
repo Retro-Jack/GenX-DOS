@@ -242,6 +242,7 @@ copyright holders.
 | `systems/lynx/lynxboot.img` | Atari Lynx boot ROM (512 bytes) | © 1989 Atari Corp. (required by the handy core to start games) |
 | `systems/intv/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
 | `systems/odyssey2/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. |
+| embedded in `systems/jsvecx/js/seamless.js` | GCE Vectrex boot ROM, 8 KB — base64 in the engine rather than a file, so a file-level audit will not find it | © 1982 Smith Engineering. Covered by the non-commercial permission described under **Game ROMs**; Mine Storm lives in this ROM, which is why it needs no cartridge |
 
 ### Disk operating systems
 
@@ -268,6 +269,16 @@ software under permissive terms:
 - **Apple I cassette tapes** — Integer BASIC era homebrew + Apple's own
   30th Anniversary demo by Brian Wiser. Sourced from the
   [Apple I Project](https://www.applefritter.com/apple1) archive.
+- **GCE Vectrex — the whole library, including the boot ROM.** Jay Smith and
+  Smith Engineering retain the rights; they are *not* public domain, contrary
+  to a widespread claim. What Smith granted, from the mid-1990s, is standing
+  permission to reproduce and distribute the software Smith Engineering
+  published, on a **non-commercial, non-profit** basis. GenX-DOS is
+  non-commercial by licence (CC BY-NC 4.0) as well as in fact, so the bundle
+  sits inside that permission rather than relying on the preservation basis
+  below. The permission covers the software; it is not a transfer of rights,
+  and **Removal upon request** at the top of this file applies as it does
+  everywhere else.
 - **The Atari bundles no longer use AltirraOS or Altirra BASIC.** Avery
   Lee's clean-room reimplementations are still compiled into
   `atari800.wasm` by `--enable-altirra_bios`, but they are a fallback the
