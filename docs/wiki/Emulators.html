@@ -165,6 +165,79 @@
 <p>Both hrefs are resolved from the script's own <code>src</code>, not written relative to the page: the BBC entry points live at <code>systems/&lt;bundle&gt;/dist/index.html</code>, a directory deeper than every other bundle's, where a page-relative path lands a level short.</p>
 <p>The shared script still stands down whenever it finds a <code>.gx-corner-link</code> or legacy <code>.gx-controls-link</code> already in the page, so a bundle that needs its own placement can opt out by providing one; <code>genx-controls-link.css</code> keeps the old rule for that case.</p>
 <p>None of these pages are in the virtual filesystem; the DOS prompt's <code>dir</code> output shows only <code>.bat</code> launchers and menu scripts, never raw <code>.html</code> files.</p>
+<h3 id="the-controls-table--the-house-layout">The controls table — the house layout</h3>
+<p>Every gamedoc's <strong>Controls</strong> table uses the same three columns, in this order:</p>
+<table>
+<thead>
+<tr>
+<th>Gamepad</th>
+<th>Keyboard</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D-pad ← / →</td>
+<td><kbd>←</kbd> / <kbd>→</kbd></td>
+<td>Rotate ship counter-clockwise / clockwise</td>
+</tr>
+<tr>
+<td>B</td>
+<td><kbd>Space</kbd></td>
+<td>Fire</td>
+</tr>
+<tr>
+<td>Start</td>
+<td><kbd>Enter</kbd></td>
+<td>GAME RESET — start game</td>
+</tr>
+</tbody>
+</table>
+<p>Drop a column that does not apply to that machine: a bundle with no gamepad
+support loses the first, and the handful of games driven entirely by a pad lose
+the second. Never leave a column in place and fill it with dashes.</p>
+<p><strong>The Gamepad column names what the player presses</strong>, in Xbox terms — <code>A</code>, <code>B</code>,
+<code>X</code>, <code>Y</code>, <code>LB</code>, <code>RB</code>, <code>LT</code>, <code>RT</code>, <code>D-pad</code>, <code>Left stick</code>, <code>Start</code>, <code>Back</code>. Xbox
+because that is what most people have plugged into a PC; a player should be able
+to read the cell and put a thumb on the right button without translating. It does
+<em>not</em> name the original machine's control. "Fire", "Reset" and "Joystick" are
+things the 1982 hardware had; they belong in the Action column if they need
+saying at all, which is why a 2600 row reads <code>Start | Enter | GAME RESET — start
+game</code> rather than putting the switch name in a column header's place.</p>
+<p><strong>Where the mapping comes from</strong> — never from memory, always from the thing that
+implements it:</p>
+<table>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>Authority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The 13 EmulatorJS bundles</td>
+<td><code>_shared-ejs/ejs/data/src/gamepad.js</code> (pad button 0-3 = A/B/X/Y) crossed with <code>emulator.js</code>'s <code>initControlVars</code> defaults and the bundle's own <code>defaultControls</code> override in <code>play.html</code></td>
+</tr>
+<tr>
+<td>Vectrex</td>
+<td>the engine polls the axes directly: left stick, and X/Y/A/B are buttons 1-4</td>
+</tr>
+<tr>
+<td>BBC Micro / Master</td>
+<td>the per-game <code>GP.*</code> parameters in the launch URL in <code>fs.js</code></td>
+</tr>
+<tr>
+<td>Tandy CoCo</td>
+<td>the per-game <code>joystick</code> field in <code>games.json</code></td>
+</tr>
+<tr>
+<td>CPC, Electron, Spectrum, ZX81</td>
+<td>the per-game <code>window.GenXGamepadMap</code> in that bundle's <code>play.html</code></td>
+</tr>
+</tbody>
+</table>
+<p>Machines with no pad support at all — Apple I and ][+, Atari 400/800, TI-99/4A,
+Model 100, MSX1/2, PET, TRS-80 — carry two columns.</p>
 <h2 id="adding-a-new-emulator">Adding a new emulator</h2>
 <p>Same recipe each time:</p>
 <ol>

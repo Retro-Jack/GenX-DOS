@@ -70,6 +70,43 @@ The shared script still stands down whenever it finds a `.gx-corner-link` or leg
 
 None of these pages are in the virtual filesystem; the DOS prompt's `dir` output shows only `.bat` launchers and menu scripts, never raw `.html` files.
 
+### The controls table — the house layout
+
+Every gamedoc's **Controls** table uses the same three columns, in this order:
+
+| Gamepad | Keyboard | Action |
+|---|---|---|
+| D-pad ← / → | <kbd>←</kbd> / <kbd>→</kbd> | Rotate ship counter-clockwise / clockwise |
+| B | <kbd>Space</kbd> | Fire |
+| Start | <kbd>Enter</kbd> | GAME RESET — start game |
+
+Drop a column that does not apply to that machine: a bundle with no gamepad
+support loses the first, and the handful of games driven entirely by a pad lose
+the second. Never leave a column in place and fill it with dashes.
+
+**The Gamepad column names what the player presses**, in Xbox terms — `A`, `B`,
+`X`, `Y`, `LB`, `RB`, `LT`, `RT`, `D-pad`, `Left stick`, `Start`, `Back`. Xbox
+because that is what most people have plugged into a PC; a player should be able
+to read the cell and put a thumb on the right button without translating. It does
+*not* name the original machine's control. "Fire", "Reset" and "Joystick" are
+things the 1982 hardware had; they belong in the Action column if they need
+saying at all, which is why a 2600 row reads `Start | Enter | GAME RESET — start
+game` rather than putting the switch name in a column header's place.
+
+**Where the mapping comes from** — never from memory, always from the thing that
+implements it:
+
+| Bundle | Authority |
+|---|---|
+| The 13 EmulatorJS bundles | `_shared-ejs/ejs/data/src/gamepad.js` (pad button 0-3 = A/B/X/Y) crossed with `emulator.js`'s `initControlVars` defaults and the bundle's own `defaultControls` override in `play.html` |
+| Vectrex | the engine polls the axes directly: left stick, and X/Y/A/B are buttons 1-4 |
+| BBC Micro / Master | the per-game `GP.*` parameters in the launch URL in `fs.js` |
+| Tandy CoCo | the per-game `joystick` field in `games.json` |
+| CPC, Electron, Spectrum, ZX81 | the per-game `window.GenXGamepadMap` in that bundle's `play.html` |
+
+Machines with no pad support at all — Apple I and ][+, Atari 400/800, TI-99/4A,
+Model 100, MSX1/2, PET, TRS-80 — carry two columns.
+
 ## Adding a new emulator
 
 Same recipe each time:
