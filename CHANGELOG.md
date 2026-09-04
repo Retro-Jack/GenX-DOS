@@ -1,6 +1,12 @@
 ## [Unreleased]
 
 ### Fixed
+- **The Vectrex pages said gamepads were not supported. They are, and always were.** All eleven gamedocs carried "This emulator is keyboard-only — USB gamepads aren't supported", inherited from the old bundle and never checked. The engine polls the Gamepad API around 180 times a second and maps all four face buttons and both stick axes; confirmed on the live site, then confirmed in play with Pole Position, which is the game where it matters most.
+  It matters more than a corrected sentence, because **the Vectrex is the exception on this site**. Every other machine here is digital, so their pages tell you to use the D-pad. The Vectrex controller was genuinely analogue in 1982, and the engine drives those same axes from the **left stick** — how far you push it counts, not just which way. Pole Position steers properly with it in a way no D-pad can reproduce.
+  The four face buttons are the Vectrex's four in row order: X is button 1, Y is 2, A is 3, B is 4, read straight from the engine's mapping table rather than assumed. The D-pad only stands in on a pad with no stick. As everywhere else on the site, a pad only works in Firefox.
+
+
+### Fixed
 - **A restored gamedoc missed the British-spelling sweep.** Mine Storm's page still read "move toward you"; every other page on the site was changed to "towards" on 15/08/2026, while the Vectrex was out of the tree. It was the only occurrence of the word left anywhere.
   The same check cleared two false alarms worth recording. "Fuel meter" in Scramble is correct — a *meter* is a gauge, only the unit of length is *metre*. And the auto-boot preamble stripped from 110 gamedocs in July never applied here: that was disc and cartridge boot language for the computers, which cartridge-based Vectrex pages never carried.
 
