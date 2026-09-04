@@ -109,7 +109,7 @@ echo
 #   term <TAB> allowed-path-regex (empty = allowed nowhere)
 echo "Stale prose (terms describing a state the tree has left):"
 STALE_PROSE=$(cat <<'EOF'
-top-left	genx-bbc-copykey|genx-trs80-softkeys|genx-atari-console|Emulator-sdltrs-TRS-80.md
+top-left	genx-bbc-copykey|genx-trs80-softkeys|genx-atari-console|Emulator-sdltrs-TRS-80.md|genx-controls-link
 is hyperspace in a few	
 most games start with CLEAR	
 TRS-80 Model I 	ATTRIBUTION.md|Emulator-sdltrs-TRS-80.md

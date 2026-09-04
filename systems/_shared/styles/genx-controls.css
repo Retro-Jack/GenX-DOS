@@ -44,6 +44,24 @@ em{font-style:italic;color:var(--paper)}
 a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(75,196,214,.35)}
 a:hover{color:#8fe3ef;border-bottom-color:var(--cyan)}
 
+/* --- cross-links between a game's page and its machine's page ---------
+   Set like .system and .footer rather than as body prose: these are
+   navigation, not something to read, so they take the mono/uppercase/
+   letter-spaced treatment the page already uses for metadata. */
+.gx-crosslink{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;margin:0 0 1.9rem}
+.gx-crosslink a{color:var(--amber);border-bottom-color:rgba(255,176,0,.28)}
+.gx-crosslink a:hover{color:var(--paper);border-bottom-color:var(--amber)}
+
+/* The game list on a controls page. A bulleted list of ten titles reads as
+   an afterthought; a mono grid reads like the menu the player came from. */
+.gx-gamelist{list-style:none;margin:.7rem 0 1.6rem;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:.5rem 1.5rem}
+.gx-gamelist li{margin:0}
+.gx-gamelist a{font-family:'IBM Plex Mono',monospace;font-size:.84rem;
+  color:var(--cyan);border-bottom-color:rgba(75,196,214,.28)}
+.gx-gamelist a:hover{border-bottom-color:var(--cyan)}
+
 .note{font-family:'IBM Plex Serif',serif;color:var(--dim);font-style:italic;margin-top:1.7rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.9rem}
 .note-plain{color:var(--dim);font-style:italic;margin:.3rem 0 1rem;font-size:.9rem}
 .caveat{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--amber);
