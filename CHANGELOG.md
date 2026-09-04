@@ -1,6 +1,11 @@
 ## [Unreleased]
 
 ### Fixed
+- **A restored gamedoc missed the British-spelling sweep.** Mine Storm's page still read "move toward you"; every other page on the site was changed to "towards" on 15/08/2026, while the Vectrex was out of the tree. It was the only occurrence of the word left anywhere.
+  The same check cleared two false alarms worth recording. "Fuel meter" in Scramble is correct — a *meter* is a gauge, only the unit of length is *metre*. And the auto-boot preamble stripped from 110 gamedocs in July never applied here: that was disc and cartridge boot language for the computers, which cartridge-based Vectrex pages never carried.
+
+
+### Fixed
 - **The Vectrex controls page linked to an address that has not existed since August.** Its footer pointed at `retro-jack.github.io/GenX-DOS/`, which 404s — GitHub Pages was retired on 16/08/2026 and all 37 references were repointed then, but this page was not in the tree to be swept: it came back from git history with the restore, carrying the old link with it. It also predated the *your data* footer link, so that was missing too. Both now match every other controls page.
   Worth remembering when restoring anything from history: a file that missed a sitewide sweep arrives still needing it.
 
