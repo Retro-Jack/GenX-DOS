@@ -6,11 +6,11 @@ The Vectrex is the odd one out on this site twice over. It is the only console h
 
 We dropped it on 04/07/2026, and the reason was one game. *Spike* talks: it is the Vectrex title everyone remembers for having a voice. Under jsvecx it ran perfectly and said nothing at all. A console whose most famous game is silent is a console shipped broken, so out it went and the Sega Master System took the slot.
 
-The note we left behind said the fault was AY-3-8912 sound emulation, and that the same limitation existed in the libretro `vecx` core, so it was the emulation lineage rather than our bundle. That note was wrong on both counts, and it took a link from Jack to find out.
+The note we left behind said the fault was AY-3-8912 sound emulation, and that the same limitation existed in the libretro `vecx` core, so it was the emulation lineage rather than our bundle. That note was wrong on both counts.
 
 ## Why it came back
 
-The link was [vectrexia.com](https://vectrexia.com/), where Spike speaks. Which meant it was possible — and, once we looked, that site is running jsvecx too. It had simply added the missing piece itself.
+Then [vectrexia.com](https://vectrexia.com/) turned up, where Spike speaks. Which meant it was possible — and, once we looked, that site is running jsvecx too. It had simply added the missing piece itself.
 
 The missing piece is not the sound chip. The Vectrex has no speech hardware whatsoever, and neither does the *Spike* cartridge. What it has is a **four-level DAC on VIA port A**, and a multiplexor that can route that DAC to the sound line. Speech is played by flicking between those levels very fast: the waveform lives in the *timing* of the flicks, not in sample depth. Across the whole of *Spike*, port A only ever holds four values while the gate is open — `0, 48, 160, 208`, which as signed 16-bit are `0, +12288, −24576, −12288`.
 
