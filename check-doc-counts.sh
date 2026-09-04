@@ -12,8 +12,20 @@
 # document that states it must agree with every other.
 #
 # Usage:  ./check-doc-counts.sh          # report; exit 1 if anything drifted
+#         ./check-doc-counts.sh --write  # stamp the measured values into the
+#                                        # documents, so a count is generated
+#                                        # rather than maintained by hand
+#
+# Every slot --write knows how to fill is also a slot the report checks, and
+# vice versa: they read from the same table below. A number that lives anywhere
+# else is, by definition, one nobody is guarding — which is how the landing
+# page sat at 327 games and the article's byline at 32 systems / 317 games
+# while the same article's own NUMBERS block said 33 and 328.
 set -uo pipefail
 cd "$(dirname "$0")"
+
+WRITE=0
+[ "${1:-}" = "--write" ] && WRITE=1
 
 fail=0
 note() { printf '  %-34s %s\n' "$1" "$2"; }
@@ -59,6 +71,47 @@ for f in README.md docs/wiki-src/pages/*.md; do
 done
 check_phrase docs/wiki-src/pages/Roadmap.md        '[0-9]+ pages' "$GAMES"  "gamedoc pages"
 check_phrase docs/wiki-src/pages/File-Structure.md '[0-9]+ pages' "$SHARED" "gamedocs+controls"
+echo
+
+# ---- the generated slots ------------------------------------------------
+# Each entry is a file, a regex with the number as its one capture group, and
+# the measured value it must hold. The report and --write both read this table,
+# so a slot cannot be checked without being writable or vice versa.
+slots() {
+  cat <<SLOTS
+index.html|(<span class="k">Systems</span><span class="lead"></span><span class="v">)[0-9]+|$SUBSYS|landing page · Systems
+index.html|(<span class="k">Games</span><span class="lead"></span><span class="v">)[0-9]+|$GAMES|landing page · Games
+docs/article/index.html|(<span><b>SYSTEMS:</b> )[0-9]+|$SUBSYS|article byline · Systems
+docs/article/index.html|(<span><b>GAMES:</b> )[0-9]+|$GAMES|article byline · Games
+docs/article/index.html|(<li><span>Systems</span><b>)[0-9]+|$SUBSYS|article numbers · Systems
+docs/article/index.html|(<li><span>Games</span><b>)[0-9]+|$GAMES|article numbers · Games
+docs/article/index.html|(<li><span>Size on disk</span><b>)[0-9]+|$SIZE|article numbers · Size on disk
+SLOTS
+}
+
+echo "Generated counts:"
+# process substitution, not a pipe: a piped while runs in a subshell, where
+# `fail=1` would be set and then thrown away, and the script would exit 0 on a
+# mismatch it had just printed in red.
+while IFS='|' read -r file re want label; do
+  [ -f "$file" ] || continue
+  have=$(grep -oE "$re" "$file" | grep -oE '[0-9]+$' | sort -u | tr '\n' ' ' | sed 's/ $//')
+  if [ "$WRITE" = 1 ] && [ "$have" != "$want" ]; then
+    python3 - "$file" "$re" "$want" <<'PYW'
+import io, re, sys
+path, pattern, want = sys.argv[1], sys.argv[2], sys.argv[3]
+s = io.open(path, encoding='utf-8').read()
+s2 = re.sub(pattern, lambda m: m.group(1) + want, s)
+if s2 != s:
+    io.open(path, 'w', encoding='utf-8').write(s2)
+PYW
+    printf '  \033[33mwrote\033[0m     %-24s %s -> %s\n' "$label" "${have:-none}" "$want"
+  elif [ "$have" = "$want" ]; then
+    ok "$label" "$have"
+  else
+    bad "$label" "says ${have:-nothing}, tree says $want"
+  fi
+done < <(slots)
 echo
 
 # ---- feature article: the THE NUMBERS block -----------------------------
