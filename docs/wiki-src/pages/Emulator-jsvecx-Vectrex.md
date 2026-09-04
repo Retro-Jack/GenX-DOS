@@ -63,6 +63,8 @@ The canvas and overlay both need `!important` on their geometry. The engine's ow
 
 ## What you get
 
-Ten commercial cartridges plus Mine Storm from the boot ROM. The bundle is 912 KB — the version we shipped in 2026 carried the emulator's entire 499-ROM library, of which the menu ever listed eleven.
+Ten cartridge games, plus Mine Storm — which lives in the boot ROM rather than on a cartridge of its own.
+
+The Vectrex is the one machine here whose software is in the public domain: the rights were released rather than defended. That is also why the homebrew scene around it is still producing new games decades on, on hardware that was discontinued in 1984.
 
 No save states: jsvecx exposes none, so the bundle has no save/load controls.
