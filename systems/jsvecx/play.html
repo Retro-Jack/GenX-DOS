@@ -86,7 +86,7 @@
      monitor, credits. The elements must exist because the runtime writes to
      them unconditionally and throws if they are missing, but none of it
      belongs in front of a player. */
-  #menu, #memMon, #notice, #tblDiv, #instructions, #credits, #quicklink { display: none !important; }
+  #menu, #memMon, #notice, #instructions, #credits, #quicklink { display: none !important; }
 </style>
 </head>
 <body>
@@ -108,21 +108,6 @@
        checking they exist. -->
   <div id="wrapper">
     <div id="menu"><div id="stat"></div>
-      <div id="tblDiv">
-        <!-- The ROM picker's own script walks this table on startup and throws
-             if the thead inputs or the tbody are missing, taking the whole boot
-             with it — so the markup has to be real, not a bare <table>. -->
-        <table class="tbl" id="myTbl" cellspacing="0" cellpadding="0" width="100%">
-          <thead><tr>
-            <th><input placeholder="Name"/></th>
-            <th><input placeholder="Detail"/></th>
-            <th><input placeholder="Author"/></th>
-            <th width="1"><input placeholder="Year"/></th>
-          </tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <select id="roms"></select>
       <!-- Matches the 2.0 the engine sets on its GainNode, so the hidden
            control does not disagree with what is actually playing. -->
       <input id="vol_slider" type="range" min="0" max="2" step="0.01" value="2">
@@ -137,21 +122,17 @@
   <script src="js/utils.js"></script>
   <script src="js/globals.js"></script>
   <script src="processed/e6809.js"></script>
-  <script src="js/audioWorkletWrapper.js"></script>
-  <!-- e8910Full.js must load AFTER audioWorkletWrapper.js. Both define
-       e8910(); the later wins, and only this one produces sound — the
-       AudioWorklet path is silent, upstream included. See the fork's
-       BUILDING-DAC.md. -->
+  <!-- The engine ships three PSG implementations that each define e8910();
+       only this one actually produces sound. The AudioWorklet path is
+       silent, upstream included, so its wrapper is not loaded here at all.
+       See the fork's BUILDING-DAC.md. -->
   <script src="js/e8910Full.js"></script>
   <script src="js/osint.js"></script>
   <script src="js/vector_t.js"></script>
   <script src="processed/vecx.js"></script>
   <script src="js/input.js"></script>
-  <script src="js/dnd.js"></script>
-  <script src="js/table.js"></script>
   <script src="js/hexMon.js"></script>
   <script src="js/cocktail.js"></script>
-  <script src="js/romList.js"></script>
   <script src="js/UZIP_depacker.js"></script>
   <script src="js/seamless.js"></script>
 

@@ -256,14 +256,17 @@ function copyToClipboard(str){
     document.getSelection().addRange(selected);   // Restore the original selection
   }
 };
+var genxInitDone = false;
 function doinit() {
   // catch me if we are here 2nd time, needed vor late init after loading URL
-  if (romTbl.tbl !== null) return;
+  /* GenX-DOS: upstream used the ROM picker's table as its "already
+     initialised" flag. The picker is gone — it listed all 486 ROMs in the
+     emulator's own library, none of which this bundle ships, so every entry
+     would have 404'd — so the flag is now just a boolean. */
+  if (genxInitDone) return;
+  genxInitDone = true;
 
   stat.innerText = "Starting up...";
-
-  // fill rom table
-  romTbl.init(myTbl, romList);
 
   /*
   // fill select

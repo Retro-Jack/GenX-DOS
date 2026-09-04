@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+### Removed
+- **Orphan pass over the new Vectrex bundle — five files, 43 KB.** Every bundle we copy in arrives with upstream's own UI wrapped around it, and this one was no exception.
+  `css/seamless.css` was never linked by our page, and `js/dnd.js` (drag-and-drop ROM loading) was referenced by nothing at all. `js/audioWorkletWrapper.js` went too: it is one of **three** implementations in that engine that each define `e8910()`, and the only one that makes no sound.
+  The bigger find was the ROM picker — `js/romList.js` and `js/table.js`, 22 KB between them. It was hidden behind CSS and unreachable, but it was still running on every load and populating itself with **486 entries**, every one of them a ROM this bundle does not ship and would have 404'd. Upstream used that table's existence as its "already initialised" flag, so removing it meant giving `doinit()` a plain boolean instead.
+
 ### Added
 - **The Vectrex is back — 32 sub-systems up to 33, 317 games to 328, and 18 emulator engines to 19.** It was dropped on 04/07/2026 because the emulator had no voice: *Spike* ran perfectly and said nothing. You found [vectrexia.com](https://vectrexia.com/), where Spike speaks, which meant it was possible after all.
   **The engine never had a DAC.** The Vectrex plays sampled speech by flicking a four-level DAC on VIA port A while the multiplexor routes it to the sound line — the waveform lives in the *timing* of those flicks, not in sample depth. Upstream jsvecx does not emulate it, and neither does any newer upstream: the site that made Spike talk had added the missing piece itself. So we added ours, taken verbatim from `libretro-vecx` rather than tuned by ear.
