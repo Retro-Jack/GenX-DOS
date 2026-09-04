@@ -90,7 +90,12 @@
       'padding:8px 12px',
       'margin:0',
       // under the audio banner's 100000, over everything else
-      'z-index:99999',   // over the credit pill, also at 99998
+      // 100000, the banner layer: a banner has to sit over every other piece
+      // of page chrome, and the corner links, the save / load bar and the
+      // credit pill are all at 99998-99999. Shares the layer with the audio
+      // banner, which it never overlaps — it offsets itself by that banner's
+      // published height instead.
+      'z-index:100000',
       'text-align:center',
       'font:bold 15px/1.4 system-ui,Arial,sans-serif',
       'color:#fff',

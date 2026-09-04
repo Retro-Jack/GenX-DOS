@@ -374,13 +374,12 @@
     (function () {
       const params = new URLSearchParams(location.search);
       const key = params.get('game');
-      var _a = document.createElement('a');
-      _a.href = key ? '../../docs/games/apple2/' + key + '.html' : 'controls.html';
-      _a.target = '_blank';
-      _a.rel = 'noopener';
-      _a.className = 'gx-controls-link';
-      _a.innerHTML = 'controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg>';
-      document.body.appendChild(_a);
+      // Hand the key to the deferred genx-controls-link.js before the rewrite
+      // below removes it from the URL, so the corner links can still resolve
+      // this game's page. ?disk= is read as well, so a reload of the rewritten
+      // URL — which is what the address bar holds from this point on — keeps
+      // both links rather than dropping to the machine page.
+      window.GENX_GAME_KEY = key || params.get('disk') || '';
       if (!key) {
         document.title = 'Apple II';
         history.replaceState(null, '', location.pathname);
@@ -396,6 +395,7 @@
     })();
   </script>
   <script src="dist/main2.bundle.js"></script>
+  <script defer src="../_shared/genx-controls-link.js"></script>
   <script defer src="../_shared/genx-apple2-flipdisk.js"></script>
   <script defer src="../_shared/genx-repo-link.js"></script>
 </body>

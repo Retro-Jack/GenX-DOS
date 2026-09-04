@@ -18,14 +18,39 @@
 // The left-hand link is only created when there is a game to point at. A
 // keyless URL boots the bare machine, which has no gamedoc.
 //
+// WHERE THE KEY COMES FROM. Normally the live URL: ?game=, ?tape= or ?rom=.
+// Some bundles rewrite their URL on load — apple2 turns ?game= into the
+// ?disk= its engine expects, the CPC folds it into sokol_args, the BBC pages
+// launch with a keyless ?disc1= and never carry a key at all. Those pages set
+// `window.GENX_GAME_KEY` synchronously, before this deferred script runs, and
+// it wins over the URL. That replaced three separate inline copies of this
+// file's link-building, one per bundle, each of which had drifted.
+//
+// WHERE THE LINKS POINT. Both hrefs are resolved from this script's own src
+// rather than written relative to the page, because the pages sit at
+// different depths: systems/<bundle>/play.html for most, but
+// systems/<bundle>/dist/index.html for the Vite builds, where a relative
+// ../../ lands a level short.
+//
 // Skipped entirely if a `.gx-corner-link` or legacy `.gx-controls-link`
 // element already exists, so a bundle that needs its own placement can opt
 // out by providing one.
 (function () {
   if (document.querySelector('.gx-corner-link, .gx-controls-link')) return;
 
+  var me = document.currentScript;
+  var ROOT =
+    me && me.src
+      ? me.src.replace(/systems\/_shared\/genx-controls-link\.js.*$/, '')
+      : '../../';
+
   var p = new URLSearchParams(location.search);
-  var key = p.get('game') || p.get('tape') || p.get('rom') || '';
+  var key =
+    (typeof window.GENX_GAME_KEY === 'string' && window.GENX_GAME_KEY) ||
+    p.get('game') ||
+    p.get('tape') ||
+    p.get('rom') ||
+    '';
   var platform = location.pathname
     .replace(/.*\/systems\//, '')
     .replace(/\/.*/, '');
@@ -49,7 +74,7 @@
   }
 
   if (key) {
-    link('gx-left', '../../docs/games/' + platform + '/' + key + '.html', 'Gameplay', 'controls');
+    link('gx-left', ROOT + 'docs/games/' + platform + '/' + key + '.html', 'Gameplay', 'controls');
   }
-  link('gx-right', 'controls.html', 'System', 'help');
+  link('gx-right', ROOT + 'systems/' + platform + '/controls.html', 'System', 'help');
 })();

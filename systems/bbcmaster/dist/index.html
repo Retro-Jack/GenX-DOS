@@ -65,18 +65,24 @@
          need a real click/keypress before sound starts, so this call-to-action
          has to be obvious. Upstream styles it position:absolute / z-index:1, which
          lets the wallpaper and bezel bury it. Pin it as a fixed banner across the
-         very top of the viewport, above the bezel. jsbeeb still owns show/hide via
-         display/opacity, so the auto-unlock detection is unaffected. */
+         very bottom of the viewport, above the bezel — the same place the shared
+         genx-audio-banner.js puts its own, so a player moving between machines
+         finds the message in one place, and it stays clear of the corner links.
+         jsbeeb still owns show/hide via display/opacity, so the auto-unlock
+         detection is unaffected. */
       #audio-warning {
         position: fixed !important;
-        top: 0 !important;
+        bottom: 0 !important;
         left: 0 !important;
         width: 100% !important;
         margin: 0 !important;
         border-radius: 0 !important;
         text-align: center !important;
         font-weight: bold !important;
-        z-index: 1000 !important;
+        /* 100000 — the same layer the shared genx-audio-banner.js uses, so it
+           covers the credit pill (99998) the way it does on every other
+           machine. Upstream's 1 left it under both. */
+        z-index: 100000 !important;
         cursor: pointer !important;
       }
       /* Mobile-device block — see systems/_shared/styles/genx-noscript.css for the canonical copy. */
@@ -1086,8 +1092,8 @@
       </div>
     </div>
   <link rel="stylesheet" href="../../_shared/styles/genx-controls-link.css">
-<a href="../controls.html" target="_blank" rel="noopener" class="gx-controls-link">controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg></a>
 <script defer src="../genx-gamedoc-link.js"></script>
+<script defer src="../../_shared/genx-controls-link.js"></script>
 <link rel="stylesheet" href="../../_shared/styles/genx-savestate.css">
 <script>
   /* jsbeeb exposes the running machine as window.processor; its own rewind

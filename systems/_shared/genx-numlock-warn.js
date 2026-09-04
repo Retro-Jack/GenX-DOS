@@ -21,7 +21,9 @@
         background: #2a1f00; color: #ffcc00;
         border: 1px solid #ffcc00; border-radius: 3px;
         padding: 8px 14px; font: 13px/1.4 monospace;
-        z-index: 10000; max-width: min(92vw, 620px);
+        /* banner layer: over the corner links, save / load bar and credit
+           pill, which sit at 99998-99999 */
+        z-index: 100000; max-width: min(92vw, 620px);
         box-shadow: 0 4px 16px rgba(0,0,0,0.6);
         display: flex; align-items: center; gap: 12px;
       }
