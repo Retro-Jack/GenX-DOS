@@ -4,10 +4,10 @@
 //
 // Injects the two top-corner links into every emulator's entry HTML:
 //
-//   top-left   system help   -> this bundle's controls.html  (the machine:
-//                               keyboard map, soft keys, quirks)
-//   top-right  game controls -> this game's gamedoc           (how to play
+//   top-left   game controls -> this game's gamedoc           (how to play
 //                               the loaded title)
+//   top-right  system help   -> this bundle's controls.html  (the machine:
+//                               keyboard map, soft keys, quirks)
 //
 // These used to be a single bottom-right link that pointed at ONE of the two
 // depending on whether a ?game= key was present — so a player reading a
@@ -15,7 +15,7 @@
 // machine page had no route back to the game. They answer different questions
 // and are now both reachable at once.
 //
-// The right-hand link is only created when there is a game to point at. A
+// The left-hand link is only created when there is a game to point at. A
 // keyless URL boots the bare machine, which has no gamedoc.
 //
 // Skipped entirely if a `.gx-corner-link` or legacy `.gx-controls-link`
@@ -48,8 +48,8 @@
     document.body.appendChild(a);
   }
 
-  link('gx-left', 'controls.html', 'System', 'help');
   if (key) {
-    link('gx-right', '../../docs/games/' + platform + '/' + key + '.html', 'Game', 'controls');
+    link('gx-left', '../../docs/games/' + platform + '/' + key + '.html', 'Game', 'controls');
   }
+  link('gx-right', 'controls.html', 'System', 'help');
 })();
