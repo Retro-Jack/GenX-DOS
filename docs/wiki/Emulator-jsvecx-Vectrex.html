@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSVecX — GCE Vectrex — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="../../styles/genx.css">
+<link rel="stylesheet" href="../../styles/wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li><li><a href="README.html">Readme</a></li><li><a href="ATTRIBUTION.html">Attribution</a></li><li><a href="CHANGELOG.html">Changelog</a></li><li><a href="CONTRIBUTING.html">Contributing</a></li><li><a href="SECURITY.html">Security</a></li><li><a href="CODE_OF_CONDUCT.html">Code of Conduct</a></li><li><a href="AI-DISCLAIMER.html">On the use of AI</a></li><li><a href="LICENSE.html">License</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="jsvecx--gce-vectrex">JSVecX — GCE Vectrex</h1>
+<p>The Vectrex is the odd one out on this site twice over. It is the only console here with its own screen built in — no television, so no 4:3 bezel, just a photo of the whole machine standing on the wallpaper — and it is the only platform we have shipped, removed, and then shipped again.</p>
+<h2 id="why-we-removed-it">Why we removed it</h2>
+<p>We dropped it on 04/07/2026, and the reason was one game. <em>Spike</em> talks: it is the Vectrex title everyone remembers for having a voice. Under jsvecx it ran perfectly and said nothing at all. A console whose most famous game is silent is a console shipped broken, so out it went and the Sega Master System took the slot.</p>
+<p>The note we left behind said the fault was AY-3-8912 sound emulation, and that the same limitation existed in the libretro <code>vecx</code> core, so it was the emulation lineage rather than our bundle. That note was wrong on both counts, and it took a link from Jack to find out.</p>
+<h2 id="why-it-came-back">Why it came back</h2>
+<p>The link was <a href="https://vectrexia.com/">vectrexia.com</a>, where Spike speaks. Which meant it was possible — and, once we looked, that site is running jsvecx too. It had simply added the missing piece itself.</p>
+<p>The missing piece is not the sound chip. The Vectrex has no speech hardware whatsoever, and neither does the <em>Spike</em> cartridge. What it has is a <strong>four-level DAC on VIA port A</strong>, and a multiplexor that can route that DAC to the sound line. Speech is played by flicking between those levels very fast: the waveform lives in the <em>timing</em> of the flicks, not in sample depth. Across the whole of <em>Spike</em>, port A only ever holds four values while the gate is open — <code>0, 48, 160, 208</code>, which as signed 16-bit are <code>0, +12288, −24576, −12288</code>.</p>
+<p>Upstream jsvecx does not emulate that path at all. So we added it, in <a href="https://github.com/Retro-Jack/jsvecx">our fork</a>, taken verbatim from <code>libretro-vecx</code> rather than tuned by ear.</p>
+<p>Two details are worth knowing, because neither is obvious and both will bite anyone reimplementing this:</p>
+<ul>
+<li><strong>The gate test needs three bits, not two.</strong> <code>alg_update()</code> already switches on <code>via_orb &amp; 0x06</code>, but the DAC only reaches the sound line when the demultiplexor is enabled as well. The condition is <code>(via_orb &amp; 0x07) == 0x06</code>.</li>
+<li><strong>The value is latched before the gate opens.</strong> Instrument the port-A write, count only the writes made while the gate is open, and you get <em>zero</em>. The game sets the value first and switches the multiplexor afterwards, so a single hook on the write will never see any speech.</li>
+</ul>
+<h2 id="proving-it-rather-than-trusting-our-ears">Proving it rather than trusting our ears</h2>
+<p>The whole reason the platform was removed was a judgement made by listening, and that judgement was wrong. So the DAC went in against a measurement instead.</p>
+<p>A headless harness runs the emulator with no display and counts how often the DAC is gated open. The reference implementation, <code>libretro-vecx</code>, gives <strong>20,702</strong> for <em>Spike</em> and <strong>0</strong> for <em>Mine Storm</em>. Our JavaScript gives <strong>20,530</strong> and <strong>0</strong> — 0.8% apart. That number says something useful beyond "it works": jsvecx's 6809 and VIA emulation were always faithful, and only the DAC was ever missing.</p>
+<p>One trap in running it: with no buttons pressed the game sits on its title screen and the DAC never fires, which looks exactly like a broken DAC. Drive the input.</p>
+<p>The same harness then corrected the game documentation. Run over all ten cartridges, it shows that only <em>Spike</em> produces multi-level DAC output. <strong>Berzerk uses the DAC not at all</strong> — so the arcade machine's "Chicken! Fight like a robot!" taunt, which our gamedoc claimed the port retained, never existed on this machine. Star Castle, Cosmic Chasm and Rip-Off gate the DAC open at a single unchanging level, which is the analogue path rather than sound content.</p>
+<h2 id="three-sound-chips-one-of-which-works">Three sound chips, one of which works</h2>
+<p>The engine ships <strong>three</strong> implementations that each define <code>e8910()</code> — <code>processed/e8910.js</code>, <code>js/e8910Full.js</code>, and an AudioWorklet built from a minified string inside <code>js/audioWorkletWrapper.js</code>. Whichever script loads last wins.</p>
+<p>Tested in Chrome with an analyser tapped between the gain node and the destination, the AudioWorklet path produces RMS 0.001 and peak 0.002 — silence — while the ScriptProcessorNode in <code>e8910Full.js</code> gives RMS 0.17–0.37 with peaks near 0.99. Pristine upstream behaves the same, so this is not something our fork caused. It does mean upstream's own shipped build has no working audio, because that build is precisely the one that excludes <code>e8910Full.js</code>.</p>
+<p>So the bundle loads <code>js/e8910Full.js</code> last, deliberately. The fork carries the same DAC in the worklet as well, in case that path is ever fixed, but nothing relies on it.</p>
+<p>The audio rate is effectively fixed at 22050 Hz: <code>SOUND_FREQ</code> is used in exactly one place, to construct the AudioContext, while the PSG's period maths uses a hard-coded <code>STEP3 = 1</code>. Raising the rate transposes all the music down an octave.</p>
+<h2 id="what-we-changed-besides-the-dac">What we changed besides the DAC</h2>
+<p><strong>The emulator paused itself whenever the window lost focus</strong> — it called <code>stop()</code> and forced its menu open on <code>blur</code>, so clicking any other window froze the machine. Wrong for an embedded player, and it makes measurement treacherous, since any unfocused reading looks like a dead emulator. Removed. Genuine backgrounding via <code>visibilitychange</code> is left alone.</p>
+<p><strong>ROMs are stored flat</strong>, as <code>games/&lt;key&gt;.bin</code> with <code>overlays/&lt;key&gt;.png</code> beside them, driven by a single <code>?game=&lt;key&gt;</code> like every other bundle here. Upstream nested them in collection folders and derived the overlay name by splitting the filename on its <code>_&lt;year&gt;</code> suffix. It also accepted remote URLs fetched through a proxy — a runtime network call this site does not make. That path is gone.</p>
+<p><code>minestrm</code> is deliberately not a file: Mine Storm lives in the boot ROM, so it sets its overlay and leaves the machine bare.</p>
+<h2 id="the-overlays">The overlays</h2>
+<p>Vectrex games shipped with a printed plastic screen cover, because the display is monochrome — the colour you remember is physical. We ship the eleven overlays and lay each one in front of the vectors inside the bezel aperture, which is why <em>Spike</em> has a blue sky and a red logo on a machine that could only ever draw white lines.</p>
+<h2 id="the-bezel">The bezel</h2>
+<p>The screen hole is a clean rectangle — width holds at 646–647px across the full height, height at 804–811px across the full width — so it needs none of the inscribed-rectangle fitting the TRS-80 and Electron did.</p>
+<p>One measuring trap: the usual transparent-pixel bounding box returns <strong>100% × 100%</strong> here and is useless, because the console floats on a transparent surround rather than filling the frame. Flood-fill from the hole centre instead. Any bezel that is a photograph of a whole machine will behave the same way.</p>
+<p>The canvas and overlay both need <code>!important</code> on their geometry. The engine's own <code>resizer()</code> runs on every resize and writes inline <code>width</code>/<code>height</code>/<code>left</code>/<code>top</code> on both, sizing them to the viewport for its full-screen layout, and inline styles beat ordinary rules.</p>
+<h2 id="what-you-get">What you get</h2>
+<p>Ten commercial cartridges plus Mine Storm from the boot ROM. The bundle is 912 KB — the version we shipped in 2026 carried the emulator's entire 499-ROM library, of which the menu ever listed eleven.</p>
+<p>No save states: jsvecx exposes none, so the bundle has no save/load controls.</p>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

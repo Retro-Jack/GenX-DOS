@@ -95,6 +95,7 @@ genx-dos/
     ├── msx1/                MSX1               (mirror of ppeccin/WebMSX, boots M=MSX1)
     ├── msx2/                MSX2               (full copy of the same WebMSX engine, boots M=MSX2)
     ├── sms/                 Sega Master System (EmulatorJS + genesis_plus_gx)
+    ├── jsvecx/              GCE Vectrex (JSVecX, our fork — speech DAC added)
     ├── jsspeccy/            Sinclair Spectrum  (copied from gasman/JSSpeccy 3)
     ├── jtyone/              Sinclair ZX81      (copied from JtyOne)
     ├── xroar/               Tandy CoCo         (copied from 6809.org.uk/xroar)
@@ -133,6 +134,7 @@ Every emulator-specific page can be told in one row. Where there's an integratio
 | `gamegear/` | EmulatorJS + genesis_plus_gx | `play.html` | `roms/*.gg` |
 | `msx1/`, `msx2/` | stock `wmsx.js` engine + our wrapper `index.html` (a full copy in each) | the bundle's own `index.html` (URL-driven; `&M=MSX1` / `&M=MSX2`) | `games/*.zip` |
 | `sms/` | EmulatorJS + genesis_plus_gx | `play.html` (`?game=<key>`) | `roms/*.sms` |
+| `jsvecx/` | JSVecX (our fork) | `play.html` (`?game=<key>`) | `games/*.bin` + `overlays/*.png` |
 | `jsspeccy/` | `jsspeccy/jsspeccy.js` + WASM Z80 in Web Worker | `play.html` | `games/*.z80`/`*.tap` |
 | `jtyone/` | `zx81_emu.js` + `roms/zx81.rom` | `play.html` | `tapes/*.p` |
 | `xroar/` | `xroar.js` + `xroar.wasm` + 9 system ROMs | `play.html` | `roms/*.ccc` |

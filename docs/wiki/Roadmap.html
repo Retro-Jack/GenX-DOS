@@ -85,7 +85,15 @@
 <td>1986</td>
 <td><code>sms/</code></td>
 <td>EmulatorJS + genesis_plus_gx</td>
-<td>replaced the Vectrex 04/07/2026</td>
+<td>took the Vectrex's slot 04/07/2026; both ship now</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>GCE Vectrex</td>
+<td>1982</td>
+<td><code>jsvecx/</code></td>
+<td>JSVecX (our fork — speech DAC added)</td>
+<td>vector display; game overlays; removed 04/07/2026, restored 04/09/2026</td>
 </tr>
 <tr>
 <td>Console</td>
@@ -323,7 +331,7 @@
 <h3 id="quality--hosting--library-size">Quality / hosting / library size</h3>
 <ul>
 <li><strong>Research Machines RM 380Z</strong> (1977) — surveyed 14/07/2026. RM's first machine and one of the first built for UK schools, predating the BBC Micro: a £7,000 card-cage CP/M box (~£56,000 in today's money) — S100-style IEEE bus, 2 MHz Z80 (not a Z80A), 64 K max, COS ROM monitor booting CP/M and RML Extended BASIC. <strong>No games library exists</strong> — the CBM-II rule, only harder. The fullest inventory anywhere (<a href="https://vt100.net/rm/software/">vt100.net</a>) lists six games — Adventure, Startrek, Games Package, Wordsquare, Hike, Fives and Threes — all text, none held. MAME ships no software list for <code>rm380z</code> or <code>rm480z</code>, so nothing has ever been dumped. The dedicated archive at <code>rml380z.org</code> was abandoned in July 2012 with every section left an empty stub (its Games page is one line plus a system-disk image), and the domain is now dead. A collector with a school 380Z and its complete original software haul confirms he has no games for it. Emulation is MAME-only with no browser build, but the library settles it before that matters. Reopens only if a genuinely dumped games library surfaces.</li>
-<li><strong>GCE / Milton Bradley Vectrex</strong> (1982) — <strong>shipped, then removed 04/07/2026</strong> (replaced by the Sega Master System). The only browser core, jsvecx, has AY-3-8912 sound emulation that overruns tones and can't voice Spike's speech; confirmed against upstream jsvecx and the libretro <code>vecx</code> core, so it's the emulation lineage rather than a bundle bug, with no practical browser alternative. Fails the site's accuracy bar. Door reopens only if a browser Vectrex emulator with correct AY sound appears.</li>
+<li><strong>GCE / Milton Bradley Vectrex</strong> (1982) — <strong>shipped</strong>. Removed 04/07/2026 because <em>Spike</em> was silent, and restored 04/09/2026 once we found out why: the machine plays speech through a four-level DAC on VIA port A that jsvecx never emulated. It is not a sound-chip limitation, and the note that used to sit here blaming AY-3-8912 emulation was wrong. See <a href="Emulator-jsvecx-Vectrex.html">Emulator-jsvecx-Vectrex</a>.</li>
 <li><strong>Sinclair ZX80</strong> (1980) — re-investigated 07/06/2026. ROMs OK. JtyOne ZX80 mode is broken (display-sync state machine never fires the keyboard scan). zame-dev's <code>js-zx8x</code> works correctly but ships without an SPDX licence header. Door stays open if either gets fixed.</li>
 <li><strong>Acorn Atom</strong> — removed 26/05/2026. Investigated as jsbeeb's Atom mode + tape files; didn't meet the quality bar, JS patch reverted.</li>
 </ul>

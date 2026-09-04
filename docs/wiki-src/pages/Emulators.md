@@ -24,6 +24,7 @@
 | [[Emulator-gambatte-Game-Boy]] | Game Boy, Game Boy Color |
 | [[Emulator-handy-Atari-Lynx]] | Atari Lynx |
 | [[Emulator-genesis-plus-gx-Game-Gear]] | Sega Master System + Game Gear (one genesis_plus_gx core) |
+| [[Emulator-jsvecx-Vectrex]] | GCE Vectrex |
 | [[Emulator-EmulatorJS-7800-ProSystem]] | Atari 7800 |
 | [[Emulator-WebMSX]] | MSX, MSX2 |
 | [[Emulator-JSSpeccy]] | ZX Spectrum |

@@ -20,7 +20,8 @@ Every shipped system has the *feel* of an 8-bit machine — sprite-based, chiptu
 | Console | Magnavox Odyssey² | 1978 | `odyssey2/` | libretro-o2em → WASM + custom SDL2 frontend | EJS path dead; o2rom.bin BIOS bundled |
 | Console | Intellivision | 1979 | `intv/` | jzIntv WASM (custom loader) | exec.bin + grom.bin BIOS bundled |
 | Console | ColecoVision | 1982 | `coleco/` | EmulatorJS + gearcoleco | RetroPad → numpad keypad remap |
-| Console | Sega Master System | 1986 | `sms/` | EmulatorJS + genesis_plus_gx | replaced the Vectrex 04/07/2026 |
+| Console | Sega Master System | 1986 | `sms/` | EmulatorJS + genesis_plus_gx | took the Vectrex's slot 04/07/2026; both ship now |
+| Console | GCE Vectrex | 1982 | `jsvecx/` | JSVecX (our fork — speech DAC added) | vector display; game overlays; removed 04/07/2026, restored 04/09/2026 |
 | Console | NES | 1983 | `jsnes/` | EmulatorJS + FCEUmm libretro | dir name predates migration |
 | Console | Atari 7800 | 1986 | `js7800/` | EmulatorJS + ProSystem | migrated from JS7800 for the bezel |
 | Apple | Apple I | 1976 | `apple1/` | scullin/apple1js | 10 tapes (Integer BASIC + 6502 asm) |
@@ -72,7 +73,7 @@ Listed for clarity — these are the 16-bit/32-bit transition and beyond.
 
 ### Quality / hosting / library size
 - **Research Machines RM 380Z** (1977) — surveyed 14/07/2026. RM's first machine and one of the first built for UK schools, predating the BBC Micro: a £7,000 card-cage CP/M box (~£56,000 in today's money) — S100-style IEEE bus, 2 MHz Z80 (not a Z80A), 64 K max, COS ROM monitor booting CP/M and RML Extended BASIC. **No games library exists** — the CBM-II rule, only harder. The fullest inventory anywhere ([vt100.net](https://vt100.net/rm/software/)) lists six games — Adventure, Startrek, Games Package, Wordsquare, Hike, Fives and Threes — all text, none held. MAME ships no software list for `rm380z` or `rm480z`, so nothing has ever been dumped. The dedicated archive at `rml380z.org` was abandoned in July 2012 with every section left an empty stub (its Games page is one line plus a system-disk image), and the domain is now dead. A collector with a school 380Z and its complete original software haul confirms he has no games for it. Emulation is MAME-only with no browser build, but the library settles it before that matters. Reopens only if a genuinely dumped games library surfaces.
-- **GCE / Milton Bradley Vectrex** (1982) — **shipped, then removed 04/07/2026** (replaced by the Sega Master System). The only browser core, jsvecx, has AY-3-8912 sound emulation that overruns tones and can't voice Spike's speech; confirmed against upstream jsvecx and the libretro `vecx` core, so it's the emulation lineage rather than a bundle bug, with no practical browser alternative. Fails the site's accuracy bar. Door reopens only if a browser Vectrex emulator with correct AY sound appears.
+- **GCE / Milton Bradley Vectrex** (1982) — **shipped**. Removed 04/07/2026 because *Spike* was silent, and restored 04/09/2026 once we found out why: the machine plays speech through a four-level DAC on VIA port A that jsvecx never emulated. It is not a sound-chip limitation, and the note that used to sit here blaming AY-3-8912 emulation was wrong. See [[Emulator-jsvecx-Vectrex]].
 - **Sinclair ZX80** (1980) — re-investigated 07/06/2026. ROMs OK. JtyOne ZX80 mode is broken (display-sync state machine never fires the keyboard scan). zame-dev's `js-zx8x` works correctly but ships without an SPDX licence header. Door stays open if either gets fixed.
 - **Acorn Atom** — removed 26/05/2026. Investigated as jsbeeb's Atom mode + tape files; didn't meet the quality bar, JS patch reverted.
 
