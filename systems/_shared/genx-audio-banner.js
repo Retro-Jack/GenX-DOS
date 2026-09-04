@@ -50,7 +50,9 @@
     // click still bubbles to the document handler below and resumes audio.
     banner.style.cssText = [
       'position:fixed',
-      'top:0',
+      // bottom of the screen, above the credit pill — the top belongs to the
+      // corner links, which must not be covered by a banner that clears itself
+      'bottom:0',
       'left:0',
       'width:100%',
       'box-sizing:border-box',

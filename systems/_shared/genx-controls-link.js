@@ -1,30 +1,51 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Part of GenX-DOS. This file runs alongside GPL-licensed emulator
 // engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
-// Injects the bottom-right "controls" link into every emulator's entry
-// HTML. Each bundle has a controls.html alongside its play.html; this
-// script auto-creates the <a> + SVG icon at runtime so the HTML stays
-// short. Bundles include this with `<script defer src=".../genx-controls-link.js"></script>`
-// and add the matching <link rel="stylesheet" ...controls-link.css">.
 //
-// Skipped if a `.gx-controls-link` element already exists (so bundles
-// that need to position the link differently can opt out by adding
-// their own).
+// Injects the two top-corner links into every emulator's entry HTML:
+//
+//   top-left   system help   -> this bundle's controls.html  (the machine:
+//                               keyboard map, soft keys, quirks)
+//   top-right  game controls -> this game's gamedoc           (how to play
+//                               the loaded title)
+//
+// These used to be a single bottom-right link that pointed at ONE of the two
+// depending on whether a ?game= key was present — so a player reading a
+// game's page had no route to the machine's keyboard map, and a player on the
+// machine page had no route back to the game. They answer different questions
+// and are now both reachable at once.
+//
+// The right-hand link is only created when there is a game to point at. A
+// keyless URL boots the bare machine, which has no gamedoc.
+//
+// Skipped entirely if a `.gx-corner-link` or legacy `.gx-controls-link`
+// element already exists, so a bundle that needs its own placement can opt
+// out by providing one.
 (function () {
-  if (document.querySelector('.gx-controls-link')) return;
+  if (document.querySelector('.gx-corner-link, .gx-controls-link')) return;
+
   var p = new URLSearchParams(location.search);
   var key = p.get('game') || p.get('tape') || p.get('rom') || '';
   var platform = location.pathname
     .replace(/.*\/systems\//, '')
     .replace(/\/.*/, '');
-  var a = document.createElement('a');
-  a.href = key
-    ? '../../docs/games/' + platform + '/' + key + '.html'
-    : 'controls.html';
-  a.target = '_blank';
-  a.rel = 'noopener';
-  a.className = 'gx-controls-link';
-  a.innerHTML =
-    'controls<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg>';
-  document.body.appendChild(a);
+
+  // the box-arrow used on both, matching the old single link
+  var ICON =
+    '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg>';
+
+  function link(cls, href, label) {
+    var a = document.createElement('a');
+    a.href = href;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.className = 'gx-corner-link ' + cls;
+    a.innerHTML = label + ICON;
+    document.body.appendChild(a);
+  }
+
+  link('gx-left', 'controls.html', 'system help');
+  if (key) {
+    link('gx-right', '../../docs/games/' + platform + '/' + key + '.html', 'game controls');
+  }
 })();

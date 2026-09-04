@@ -1,4 +1,40 @@
-/* Bottom-right 'controls' link injected into every emulator's entry HTML */
+/* The two corner links on every emulator page: system help (left) and this
+   game's controls (right).
+
+   They sit at the very top and never move. The banners move instead —
+   --gx-corner-h below tells the audio banner and the gamepad notice how far
+   down to start, so the links stay put while banners come and go. That is the
+   right way round: banners are dismissible and clear once play starts, whereas
+   the links are wanted at any moment, and a control that jumps as a banner
+   appears is worse than one that is briefly crowded.
+
+   A page that does not load this sheet leaves --gx-corner-h unset, and the
+   banners fall back to 0 and behave exactly as they did before. */
+:root { --gx-corner-h: 30px; }
+
+.gx-corner-link {
+  position: fixed;
+  top: 6px;
+  z-index: 99999;
+  color: rgba(255, 176, 0, 0.75);
+  background: #000;
+  border: 1px solid rgba(255, 176, 0, 0.35);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font: 11px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: color .15s ease, border-color .15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.gx-corner-link.gx-left  { left: 12px; }
+.gx-corner-link.gx-right { right: 12px; }
+.gx-corner-link:hover { color: #ff8800; border-color: #ff8800; }
+.gx-corner-link svg { width: 10px; height: 10px; fill: currentColor; flex-shrink: 0; }
+
+/* Kept for any bundle still positioning its own link the old way. */
 .gx-controls-link {
   position: fixed;
   bottom: 8px;
@@ -12,7 +48,6 @@
   font: 11px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   letter-spacing: 0.05em;
   text-decoration: none;
-  transition: color .15s ease, border-color .15s ease;
   display: inline-flex;
   align-items: center;
   gap: 5px;

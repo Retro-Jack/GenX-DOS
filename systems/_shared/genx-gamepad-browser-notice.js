@@ -82,14 +82,15 @@
     b.style.cssText = [
       'position:fixed',
       // below the audio banner, and back to the top when that one clears
-      'top:var(--gx-banner-h, 0px)',
+      // above the audio banner, which is itself above the credit pill
+      'bottom:var(--gx-banner-h, 0px)',
       'left:0',
       'width:100%',
       'box-sizing:border-box',
       'padding:8px 12px',
       'margin:0',
       // under the audio banner's 100000, over everything else
-      'z-index:99998',
+      'z-index:99999',   // over the credit pill, also at 99998
       'text-align:center',
       'font:bold 15px/1.4 system-ui,Arial,sans-serif',
       'color:#fff',

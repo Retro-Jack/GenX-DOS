@@ -71,4 +71,5 @@
     window.close();
   });
   document.body.appendChild(d);
+
 })();

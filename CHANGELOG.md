@@ -1,6 +1,11 @@
 ## [Unreleased]
 
 ### Changed
+- **Every play page now carries two links in the top corners instead of one in the bottom.** *system help* on the left goes to the machine's controls page; *game controls* on the right goes to the loaded game's page. There was previously a single bottom-right link that pointed at **one** of those depending on whether a `?game=` key was present — so a player reading a game's page had no route to the machine's keyboard map, and a player on the machine page had no route back to the game. They answer different questions and are now both reachable. The right-hand link is omitted on a keyless URL, which boots the bare machine and has no game page.
+- **The banners moved to the bottom of the screen.** The audio banner sits flush to the bottom with the gamepad notice stacked on it, both covering the credit pill. Previously they were pinned to the top, which is where the new links live — and a control that jumps down the page as a banner appears, or hides behind one, is worse than a banner sitting over a credit line. The banners are dismissible and clear themselves once play starts; the links are wanted at any moment, so the links keep the top and the banners give way.
+
+
+### Changed
 - **The gamepad banner now tells you what to do instead, not just what is broken.** It read "This browser cannot detect a USB gamepad -- use Firefox to play with one", which only helps a player who already owns a pad and strands everyone else. It now names the browsers it applies to — the check is the whole Chromium family, so naming only Chrome would let an Edge or Brave player assume it was not about them — and offers both routes: Firefox for a pad, or a link straight to the bundle's Controls page for the keyboard equivalents.
   It deliberately does **not** say a controller is required. On the Vectrex it is not: the keyboard maps the whole stick and all four buttons, and telling players they cannot proceed without hardware they do not own would be wrong as well as discouraging. Where a game genuinely is joystick-only, as some CoCo titles are, the Controls page is the thing that knows — which is why the banner points there rather than asserting specifics it cannot check.
   Shared file, so the CoCo gets the same wording.
