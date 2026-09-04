@@ -40,6 +40,7 @@
 
 
 ### Changed
+- **The save / load buttons and their drop-up menus join the corner links on dark brown.** The stylesheet's own comment already claimed they shared the pill treatment and the wallpaper brown; the three rules underneath it still said `#000`. Now they match — the bar's buttons, the drop-up panel and the slot rows.
 - **The corner links and the credit pill sit on dark brown rather than black.** A black panel on the wallpaper reads as a hole punched through it; the brown is taken from the paper itself — the single most common dark tone in the texture, `#5d3924` — and then darkened to `#4c2e1d` so it still separates from its surroundings at 1.21:1 instead of disappearing into them. Amber text on it holds 6.7:1, better than it managed on black at the same opacity.
 - **The corner links now read in the site's own voice, on two lines.** *System / help* and *Game / controls* — sentence case, centred, at 16.5px — set in IBM Plex Mono 600 — the face the home page uses for its card headings — rather than whatever monospace the browser happened to pick. Split over two lines they read as a small heading in the corner instead of a long strip across the top of the picture.
   The two faces are declared in the link stylesheet directly rather than by importing `genx.css` the way the controls pages do: that sheet carries the whole design language, and pulling it into a play page would restyle the emulator's own chrome. Same self-hosted files, so nothing is fetched off-site.

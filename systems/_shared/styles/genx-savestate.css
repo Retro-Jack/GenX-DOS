@@ -12,7 +12,7 @@
 }
 .gx-state-btn {
   color: rgba(255, 176, 0, 0.75);
-  background: #000;
+  background: #4c2e1d;
   border: 1px solid rgba(255, 176, 0, 0.35);
   padding: 4px 10px;
   border-radius: 4px;
@@ -39,7 +39,7 @@
   display: none;
   flex-direction: column;
   min-width: 100%;
-  background: #000;
+  background: #4c2e1d;
   border: 1px solid rgba(255, 176, 0, 0.35);
   border-radius: 4px;
   overflow: hidden;
@@ -48,7 +48,7 @@
 .gx-state-slot {
   appearance: none;
   -webkit-appearance: none;
-  background: #000;
+  background: #4c2e1d;
   color: rgba(255, 176, 0, 0.75);
   border: 0;
   border-bottom: 1px solid rgba(255, 176, 0, 0.15);
