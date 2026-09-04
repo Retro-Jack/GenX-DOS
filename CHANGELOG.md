@@ -1,6 +1,9 @@
 ## [Unreleased]
 
 ### Fixed
+- **The portable export could never let go of a file once it was excluded.** `build-portable.sh` mirrored the shipping set with `rsync --delete`, but an `--exclude`d path is skipped on *both* sides — so rsync never considered removing it from the target either. Anything that shipped before its exclude was written stayed in the export folder, and in the release zip, permanently: `tools/build-softkey-map.py` had been sitting there since 18/08/2026, a build script in a folder of nothing but the site. `--delete-excluded` makes the target only ever the set the script describes, so adding an exclude now actually removes what it names.
+
+### Fixed
 - **The host sent no cache headers at all, so browsers were guessing.** With nothing stated, a browser falls back to heuristic caching — inventing a lifetime from how long ago a file was last modified — which is the worst possible behaviour for a site deployed by rsync under stable filenames. It produced fresh HTML running a stale copy of a shared script, twice in one day: a change looked like it had not shipped until a hard reload proved otherwise, and a visitor has no hard reload.
   `.htaccess` now says it outright. Nothing here is versioned or content-hashed, so nothing can be cached immutably; everything that decides how the site looks or behaves — HTML, JS, CSS, JSON, `.wasm`, core `.data`, and the ROM and disc images that change whenever a game is swapped — is `no-cache`, which does not mean *don't store* but *revalidate before use*. Fonts, the one genuinely immutable class, get a month; bezels, wallpaper and screenshots get a week, since a bezel does occasionally get re-cut.
   Verified on staging rather than assumed: this host sends no ETag on anything, so revalidation rides on `Last-Modified`, which rsync preserves. A conditional request for an unchanged file answers **304 with zero bytes**, so the cost of the strict setting is one round trip per file and no payload.

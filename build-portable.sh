@@ -25,7 +25,13 @@ mkdir -p "$TARGET"
 # systems/odyssey2/build.sh and systems/m100/src/build.sh — the reproducible
 # WASM build recipes that sit beside the binaries they produced. o2em is
 # GPL-2.0+, so shipping the recipe with it is the point, not an oversight.
-rsync -a --delete \
+# --delete-excluded, not just --delete: an --exclude'd path is skipped on BOTH
+# sides, so rsync never considers removing it from the target either. Anything
+# that shipped before its exclude was added therefore sat in the export folder
+# — and in the release zip — for good. `tools/build-softkey-map.py` had been
+# doing exactly that since 18/08/2026. With this, the target is only ever the
+# set below, and adding an exclude actually removes what it names.
+rsync -a --delete --delete-excluded \
   --exclude='/.git' --exclude='/.github' --exclude='/.claude' \
   --exclude='/.gitignore' --exclude='/.gitattributes' \
   --exclude='/.dockerignore' --exclude='/.npmignore' \
