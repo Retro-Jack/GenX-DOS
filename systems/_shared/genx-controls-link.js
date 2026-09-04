@@ -34,18 +34,22 @@
   var ICON =
     '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1h5v5L8.86 3.85 4.7 8 4 7.3l4.15-4.16zM2 3h2v1H2v6h6V8h1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg>';
 
-  function link(cls, href, label) {
+  // Two lines: the first word sits above, the second carries the icon. Split
+  // this way the label reads as a small heading in the corner rather than a
+  // long horizontal strip across the top of the picture.
+  function link(cls, href, l1, l2) {
     var a = document.createElement('a');
     a.href = href;
     a.target = '_blank';
     a.rel = 'noopener';
     a.className = 'gx-corner-link ' + cls;
-    a.innerHTML = label + ICON;
+    a.innerHTML = '<span class="gx-l1">' + l1 + '</span>' +
+                  '<span class="gx-l2">' + l2 + ICON + '</span>';
     document.body.appendChild(a);
   }
 
-  link('gx-left', 'controls.html', 'system help');
+  link('gx-left', 'controls.html', 'system', 'help');
   if (key) {
-    link('gx-right', '../../docs/games/' + platform + '/' + key + '.html', 'game controls');
+    link('gx-right', '../../docs/games/' + platform + '/' + key + '.html', 'game', 'controls');
   }
 })();

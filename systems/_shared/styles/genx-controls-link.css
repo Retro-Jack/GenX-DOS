@@ -1,3 +1,13 @@
+/* Just the two faces, not an @import of genx.css. The controls pages import
+   that whole sheet for the design language, but a play page must not — it
+   would restyle the emulator's own chrome. A bare @font-face declares the
+   family without touching anything else. Same self-hosted files, so CSP
+   font-src 'self' is satisfied and nothing is fetched off-site. */
+@font-face{font-family:'IBM Plex Mono';font-weight:400;font-display:swap;
+  src:url('../../../styles/fonts/ibm-plex-mono-400.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-weight:600;font-display:swap;
+  src:url('../../../styles/fonts/ibm-plex-mono-600.woff2') format('woff2')}
+
 /* The two corner links on every emulator page: system help (left) and this
    game's controls (right).
 
@@ -21,16 +31,21 @@
   border: 1px solid rgba(255, 176, 0, 0.35);
   padding: 4px 10px;
   border-radius: 4px;
-  font: 11px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  letter-spacing: 0.05em;
+  /* 'IBM Plex Mono' 600 — the face the home page uses for its card headings,
+     so the emulator chrome speaks in the site's voice rather than whatever
+     monospace the browser happens to pick. */
+  font: 600 11px/1.25 'IBM Plex Mono', ui-monospace, "SF Mono", Menlo, monospace;
+  letter-spacing: 0.06em;
   text-decoration: none;
   transition: color .15s ease, border-color .15s ease;
+  /* two lines, so the label reads as a heading rather than a long strip */
   display: inline-flex;
-  align-items: center;
-  gap: 5px;
+  flex-direction: column;
+  gap: 1px;
 }
-.gx-corner-link.gx-left  { left: 12px; }
-.gx-corner-link.gx-right { right: 12px; }
+.gx-corner-link .gx-l2 { display: inline-flex; align-items: center; gap: 5px; }
+.gx-corner-link.gx-left  { left: 12px;  align-items: flex-start; text-align: left; }
+.gx-corner-link.gx-right { right: 12px; align-items: flex-end;   text-align: right; }
 .gx-corner-link:hover { color: #ff8800; border-color: #ff8800; }
 .gx-corner-link svg { width: 10px; height: 10px; fill: currentColor; flex-shrink: 0; }
 
