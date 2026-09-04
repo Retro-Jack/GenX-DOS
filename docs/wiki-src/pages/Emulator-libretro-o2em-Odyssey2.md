@@ -98,7 +98,7 @@ systems/odyssey2/
     └── *.bin          ← 10 cart images, ~36 KB total
 ```
 
-It now ships a `controls.html` like the rest of the bundles (added 17/06/2026, completing the set). When a launch carries `?game=<key>` the corner link resolves to the gamedocs page; the controls page is the fallback for a keyless launch.
+It now ships a `controls.html` like the rest of the bundles (added 17/06/2026, completing the set). Every launch here carries `?game=<key>`, so both corner links appear — the game's page on the left, this page on the right; a keyless launch would show only the right-hand one.
 
 Total bundle ~1.05 MB. Comparable to Intellivision.
 

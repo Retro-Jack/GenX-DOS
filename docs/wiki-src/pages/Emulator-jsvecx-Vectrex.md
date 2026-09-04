@@ -61,6 +61,16 @@ One measuring trap: the usual transparent-pixel bounding box returns **100% × 1
 
 The canvas and overlay both need `!important` on their geometry. The engine's own `resizer()` runs on every resize and writes inline `width`/`height`/`left`/`top` on both, sizing them to the viewport for its full-screen layout, and inline styles beat ordinary rules.
 
+## The controller
+
+The Vectrex is the one machine on this site whose controller was genuinely analogue, and jsvecx drives those axes directly: it polls the Gamepad API around 180 times a second and reads both stick axes plus all four face buttons. So a USB pad here is not a convenience, it is the original input — how far you push the **left stick** counts, not just which way. Pole Position is the game that shows it. The face buttons map in the Vectrex's own row order: 1, 2, 3, 4 are X, Y, A, B.
+
+Nothing about this is per-game. The analogue stick and its four buttons are the machine's only controller, so every cartridge reads them.
+
+The catch is the browser. **A Chromium browser never hands a pad to this page**, focused or clicked or not, so the bundle loads `_shared/genx-gamepad-browser-notice.js` unconditionally — the only other bundle that does is the CoCo, and there the cause is different (XRoar asks SDL for the joystick list once at startup; jsvecx never binds one at all). The notice names Firefox and points at `controls.html` for the keyboard equivalents, which cover the whole stick and all four buttons, so nobody is stuck without hardware.
+
+Eleven gamedocs carried "This emulator is keyboard-only — USB gamepads aren't supported" for as long as the bundle existed, inherited and never checked. They were wrong from the start.
+
 ## What you get
 
 Ten cartridge games, plus Mine Storm — which lives in the boot ROM rather than on a cartridge of its own.

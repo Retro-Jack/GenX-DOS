@@ -95,7 +95,7 @@ Game `.bat` files use `link:`. `menu.bat` and numbered launchers use `data:`.
 
 ## The no-`.html`-files rule
 
-The virtual filesystem only lists `.bat` files — game launchers, menu scripts, and the numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's `controls.html`, future bezels, etc.) live on disk under `systems/<name>/` but are reached from inside the emulator's entry HTML via a corner link, not from the DOS prompt.
+The virtual filesystem only lists `.bat` files — game launchers, menu scripts, and the numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's `controls.html`, future bezels, etc.) live on disk under `systems/<name>/` but are reached from inside the emulator's entry HTML via the top-corner links, not from the DOS prompt.
 
 This is period-correct: a DOS user typing `dir` shouldn't see `.html`.
 

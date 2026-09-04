@@ -56,9 +56,15 @@ All six VICE-family + 800XL bundles route through a small `empty.prg` for the BA
 
 Every emulator directory has a `controls.html` documenting its keyboard / joystick mapping. Same dark-amber DOS-flavoured style across all pages; the page-level CSS lives in `systems/_shared/styles/genx-controls.css`.
 
-**Per-game instruction pages** at `docs/games/<platform>/<key>.html` replace `controls.html` when a game has researched gameplay instructions. The `genx-controls-link.js` script reads `?game=`, `?tape=`, or `?rom=` from the URL and routes to the matching gamedocs page, falling back to `controls.html` when no game param is present (prompt/BASIC entries).
+**Per-game instruction pages** live at `docs/games/<platform>/<key>.html`. They do not replace `controls.html` — the two answer different questions, and a play page offers both at once.
 
-Every emulator's main entry HTML carries a small bottom-right `controls` link (fixed position, semi-transparent, Wikipedia-style external-link SVG icon). The link sits in the entry HTML itself — `play.html` for the wrapped emulators, the upstream `index.html` for the URL-driven ones (`bbcmicro`, `bbcmaster`, `msx1`, `msx2`). It's **not** in the virtual filesystem; the DOS prompt's `dir` output shows only `.bat` launchers and menu scripts, never raw `.html` files.
+`genx-controls-link.js` puts **two links in the top corners** of every emulator page: **gameplay controls** on the left, resolved from `?game=`, `?tape=` or `?rom=` in the live URL, and **system help** on the right, always `controls.html`. A keyless URL boots the bare machine, which has no game page, so only the right-hand link appears. Each is a two-line label in IBM Plex Mono on a pill of the wallpaper's own brown; the banners are pinned to the bottom of the screen so nothing ever displaces them.
+
+The pages link to each other as well: every gamedoc carries *System help* under its header, and every `controls.html` ends with a **Gameplay controls** list of that system's games in menu order. Both page types run under `default-src 'none'` with no `script-src`, so this is static HTML — a controls page cannot know which game you arrived from, which is why it lists them all.
+
+Four bundles still carry the older single bottom-right link, built inline by their own entry HTML rather than by the shared script: **apple2** and **cpc** (both rewrite their URL on load and beat the deferred script to it), and **bbcmicro** / **bbcmaster** (Vite builds whose keyless `?disc1=` URLs carry no game key at all — see the jsbeeb page). The shared script stands down whenever it finds a `.gx-controls-link` already in the page, so a bundle can opt out simply by providing one, and `genx-controls-link.css` keeps the old rule for exactly that reason.
+
+None of these pages are in the virtual filesystem; the DOS prompt's `dir` output shows only `.bat` launchers and menu scripts, never raw `.html` files.
 
 ## Adding a new emulator
 
