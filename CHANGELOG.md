@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+### Added
+- **The Vectrex now shows the "this browser cannot see your gamepad" strip.** The shared notice has existed since the CoCo work but only the CoCo ever loaded it, so Vectrex players in a Chromium browser got a page telling them a pad works and no explanation when it didn't. Confirmed with a real pad: Chrome will not hand one to this page even with the page focused and clicked first.
+  The CoCo gates the notice per game, because most of its library ignores the joystick. The Vectrex cannot — the analogue stick and its four buttons are the machine's only controller, so every game reads it and the notice is unconditional here.
+
 ### Fixed
 - **The Vectrex pages said gamepads were not supported. They are, and always were.** All eleven gamedocs carried "This emulator is keyboard-only — USB gamepads aren't supported", inherited from the old bundle and never checked. The engine polls the Gamepad API around 180 times a second and maps all four face buttons and both stick axes; confirmed on the live site, then confirmed in play with Pole Position, which is the game where it matters most.
   It matters more than a corrected sentence, because **the Vectrex is the exception on this site**. Every other machine here is digital, so their pages tell you to use the D-pad. The Vectrex controller was genuinely analogue in 1982, and the engine drives those same axes from the **left stick** — how far you push it counts, not just which way. Pole Position steers properly with it in a way no D-pad can reproduce.
