@@ -159,7 +159,7 @@
       /* Sized to its own legend rather than a fixed width — "color" needs more
          channel than "a", exactly as the printed panel gave it. */
       min-width: 62px; height: 20px;
-      background: #000; border: 1px solid rgba(255, 176, 0, 0.35);
+      background: var(--gx-btn-bg, #4c2e1d); border: 1px solid var(--gx-btn-line, rgba(255, 176, 0, 0.35));
       border-radius: 10px;
       overflow: hidden;
     }
@@ -181,9 +181,9 @@
     .gx-sw[data-pos="1"] .gx-sw-knob { transform: translateX(calc(100% + 2px)); }
     /* the moulded grip on the real switch */
     .gx-sw-knob i { width: 1px; height: 7px; background: rgba(0, 0, 0, 0.45); }
-    .gx-sw:hover .gx-sw-track { border-color: #ff8800; }
-    .gx-sw:hover .gx-sw-knob { background: #ff8800; }
-    .gx-sw:focus-visible { outline: 2px solid #ff8800; outline-offset: 3px; }
+    .gx-sw:hover .gx-sw-track { border-color: var(--gx-btn-hot, #ff8800); }
+    .gx-sw:hover .gx-sw-knob { background: var(--gx-btn-hot, #ff8800); }
+    .gx-sw:focus-visible { outline: 2px solid var(--gx-btn-hot, #ff8800); outline-offset: 3px; }
 
     .gx-press {
       display: flex; flex-direction: column; gap: 6px; align-items: center;
@@ -196,7 +196,7 @@
     .gx-press-cap {
       width: 62px; height: 20px;
       display: flex; align-items: center; justify-content: center;
-      background: #000; border: 1px solid rgba(255, 176, 0, 0.35);
+      background: var(--gx-btn-bg, #4c2e1d); border: 1px solid var(--gx-btn-line, rgba(255, 176, 0, 0.35));
       border-radius: 10px;
       transition: background 0.12s ease, border-color 0.12s ease;
     }
@@ -204,26 +204,16 @@
       width: 14px; height: 8px; border-radius: 4px;
       background: rgba(255, 176, 0, 0.8);
     }
-    .gx-press:hover .gx-press-cap { border-color: #ff8800; }
-    .gx-press:hover .gx-press-cap span { background: #ff8800; }
+    .gx-press:hover .gx-press-cap { border-color: var(--gx-btn-hot, #ff8800); }
+    .gx-press:hover .gx-press-cap span { background: var(--gx-btn-hot, #ff8800); }
     .gx-press:active .gx-press-cap { background: rgba(255, 176, 0, 0.15); }
-    .gx-press:focus-visible { outline: 2px solid #ff8800; outline-offset: 3px; }
+    .gx-press:focus-visible { outline: 2px solid var(--gx-btn-hot, #ff8800); outline-offset: 3px; }
 
     /* Plain keys — for a console whose switches were all momentary, so there is
        no slider to draw and no panel to group them into. */
     #genx-ejs-console.plain {
       background: none; border: 0; box-shadow: none; padding: 0; gap: 6px;
     }
-    .gx-key {
-      color: rgba(255, 176, 0, 0.75); background: #000;
-      border: 1px solid rgba(255, 176, 0, 0.35); border-radius: 4px;
-      font: 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-      letter-spacing: 0.05em; padding: 5px 10px;
-      cursor: pointer;
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-    .gx-key:hover { color: #ff8800; border-color: #ff8800; }
-    .gx-key:focus-visible { outline: 2px solid #ff8800; outline-offset: 2px; }
   `;
 
   const build = (panel) => {
@@ -240,7 +230,7 @@
       if (ctl.kind === 'press') {
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = plain ? 'gx-key' : 'gx-press';
+        btn.className = plain ? 'gx-btn gx-key' : 'gx-press';
         btn.title = ctl.name + ' — momentary switch, springs back';
         if (plain) {
           btn.textContent = ctl.name;

@@ -8,6 +8,41 @@
 @font-face{font-family:'IBM Plex Mono';font-weight:600;font-display:swap;
   src:url('../../../styles/fonts/ibm-plex-mono-600.woff2') format('woff2')}
 
+/* ---------------------------------------------------------------------------
+   The site's on-screen button treatment, defined once.
+
+   Six identical copies of these declarations had accumulated — the BBC's COPY
+   key, the Apple ][+ Flip Disk, the Atari console panel, the TRS-80 CLEAR, the
+   EmulatorJS console keys and the save / load bar — so a colour change meant
+   six edits and usually got five. They all use `.gx-btn` now and this is the
+   only place the palette is written down.
+
+   It lives in this file because this is the one stylesheet every entry page
+   loads (all 33 of them); the scripts that draw those buttons are otherwise
+   self-contained, and they now depend on this sheet for their appearance.
+   --------------------------------------------------------------------------- */
+:root {
+  --gx-btn-bg:   #4c2e1d;              /* the wallpaper's own dark brown */
+  --gx-btn-fg:   rgba(255, 176, 0, 0.75);
+  --gx-btn-line: rgba(255, 176, 0, 0.35);
+  --gx-btn-hot:  #ff8800;
+}
+
+.gx-btn {
+  color: var(--gx-btn-fg);
+  background: var(--gx-btn-bg);
+  border: 1px solid var(--gx-btn-line);
+  border-radius: 4px;
+  font: 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.gx-btn:hover:not(:disabled) { color: var(--gx-btn-hot); border-color: var(--gx-btn-hot); }
+.gx-btn:focus-visible { outline: 2px solid var(--gx-btn-hot); outline-offset: 2px; }
+.gx-btn:disabled { opacity: 0.4; cursor: default; }
+
 /* The two corner links on every emulator page: this game's controls (left)
    and system help (right).
 
@@ -21,9 +56,9 @@
   position: fixed;
   top: 6px;
   z-index: 99999;
-  color: rgba(255, 176, 0, 0.75);
-  background: #4c2e1d;
-  border: 1px solid rgba(255, 176, 0, 0.35);
+  color: var(--gx-btn-fg);
+  background: var(--gx-btn-bg);
+  border: 1px solid var(--gx-btn-line);
   padding: 4px 10px;
   border-radius: 4px;
   /* 'IBM Plex Mono' 600 — the face the home page uses for its card headings,
@@ -43,7 +78,7 @@
 /* both lines centred within the button, and the button itself hugs its corner */
 .gx-corner-link.gx-left  { left: 12px;  align-items: center; }
 .gx-corner-link.gx-right { right: 12px; align-items: center; }
-.gx-corner-link:hover { color: #ff8800; border-color: #ff8800; }
+.gx-corner-link:hover { color: var(--gx-btn-hot); border-color: var(--gx-btn-hot); }
 .gx-corner-link svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
 
 /* Kept for any bundle still positioning its own link the old way. */
@@ -52,9 +87,9 @@
   bottom: 8px;
   right: 12px;
   z-index: 99999;
-  color: rgba(255, 176, 0, 0.75);
-  background: #4c2e1d;
-  border: 1px solid rgba(255, 176, 0, 0.35);
+  color: var(--gx-btn-fg);
+  background: var(--gx-btn-bg);
+  border: 1px solid var(--gx-btn-line);
   padding: 4px 10px;
   border-radius: 4px;
   font: 11px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -64,5 +99,5 @@
   align-items: center;
   gap: 5px;
 }
-.gx-controls-link:hover { color: #ff8800; border-color: #ff8800; }
+.gx-controls-link:hover { color: var(--gx-btn-hot); border-color: var(--gx-btn-hot); }
 .gx-controls-link svg { width: 10px; height: 10px; fill: currentColor; flex-shrink: 0; }

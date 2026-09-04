@@ -35,13 +35,13 @@
   var s = document.createElement('style');
   s.textContent =
     '.gx-repo-link{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);' +
-    'z-index:99998;background:#4c2e1d;border:1px solid rgba(255,176,0,.22);' +
+    'z-index:99998;background:var(--gx-btn-bg,#4c2e1d);border:1px solid rgba(255,176,0,.22);' +
     'padding:3px 11px;border-radius:4px;white-space:nowrap;pointer-events:none;' +
     'font:10px/1 ui-monospace,"SF Mono",Menlo,Consolas,monospace;' +
     'letter-spacing:.05em;color:rgba(255,176,0,.5)}' +
     '.gx-repo-link a{color:rgba(255,176,0,.82);text-decoration:none;' +
     'pointer-events:auto;transition:color .15s ease}' +
-    '.gx-repo-link a:hover{color:#ff8800}';
+    '.gx-repo-link a:hover{color:var(--gx-btn-hot,#ff8800)}';
   document.head.appendChild(s);
   var d = document.createElement('div');
   d.className = 'gx-repo-link';

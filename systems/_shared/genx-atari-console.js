@@ -90,17 +90,6 @@
         z-index: 100;
         display: flex; gap: 6px;
       }
-      #genx-atari-console button {
-        color: rgba(255, 176, 0, 0.75); background: #000;
-        border: 1px solid rgba(255, 176, 0, 0.35); border-radius: 4px;
-        font: 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-        letter-spacing: 0.05em; padding: 5px 10px;
-        cursor: pointer;
-        transition: color 0.15s ease, border-color 0.15s ease;
-      }
-      #genx-atari-console button:hover:not(:disabled) { color: #ff8800; border-color: #ff8800; }
-      #genx-atari-console button:disabled { opacity: 0.4; cursor: default; }
-      #genx-atari-console button:focus-visible { outline: 2px solid #ff8800; outline-offset: 2px; }
     `;
     document.head.appendChild(style);
 
@@ -110,6 +99,7 @@
     const buttons = [];
     for (const spec of KEYS) {
       const btn = document.createElement('button');
+      btn.className = 'gx-btn';
       btn.type = 'button';
       btn.textContent = spec.label;
       btn.disabled = true;

@@ -11,9 +11,9 @@
   gap: 6px;
 }
 .gx-state-btn {
-  color: rgba(255, 176, 0, 0.75);
-  background: #4c2e1d;
-  border: 1px solid rgba(255, 176, 0, 0.35);
+  color: var(--gx-btn-fg);
+  background: var(--gx-btn-bg);
+  border: 1px solid var(--gx-btn-line);
   padding: 4px 10px;
   border-radius: 4px;
   font: 11px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -24,9 +24,9 @@
   gap: 5px;
   transition: color .15s ease, border-color .15s ease;
 }
-.gx-state-btn:hover { color: #ff8800; border-color: #ff8800; }
+.gx-state-btn:hover { color: var(--gx-btn-hot); border-color: var(--gx-btn-hot); }
 .gx-state-btn svg { width: 10px; height: 10px; fill: currentColor; flex-shrink: 0; }
-.gx-state-flash { color: #ff8800; border-color: #ff8800; }
+.gx-state-flash { color: var(--gx-btn-hot); border-color: var(--gx-btn-hot); }
 
 /* Save / Load each open a drop-up menu of the three per-game slots. The bar
    sits at the bottom of the viewport, so the list rises above the button; each
@@ -39,8 +39,8 @@
   display: none;
   flex-direction: column;
   min-width: 100%;
-  background: #4c2e1d;
-  border: 1px solid rgba(255, 176, 0, 0.35);
+  background: var(--gx-btn-bg);
+  border: 1px solid var(--gx-btn-line);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -48,8 +48,8 @@
 .gx-state-slot {
   appearance: none;
   -webkit-appearance: none;
-  background: #4c2e1d;
-  color: rgba(255, 176, 0, 0.75);
+  background: var(--gx-btn-bg);
+  color: var(--gx-btn-fg);
   border: 0;
   border-bottom: 1px solid rgba(255, 176, 0, 0.15);
   padding: 6px 12px;
@@ -63,4 +63,4 @@
 /* Empty and used slots both sit at the default button brightness — status is
    carried by the "empty"/"used" label, never by dimming, so no slot looks
    unselectable. */
-.gx-state-slot:hover { color: #ff8800; background: rgba(255, 176, 0, 0.1); }
+.gx-state-slot:hover { color: var(--gx-btn-hot); background: rgba(255, 176, 0, 0.1); }

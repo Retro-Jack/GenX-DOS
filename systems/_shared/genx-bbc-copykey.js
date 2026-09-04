@@ -51,20 +51,13 @@
       #genx-bbc-copy {
         position: fixed; bottom: 58px; left: 50%; transform: translateX(-50%);
         z-index: 100;
-        color: rgba(255, 176, 0, 0.75); background: #000;
-        border: 1px solid rgba(255, 176, 0, 0.35); border-radius: 4px;
-        font: 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-        letter-spacing: 0.05em; padding: 5px 10px;
-        cursor: pointer;
-        transition: color 0.15s ease, border-color 0.15s ease;
       }
-      #genx-bbc-copy:hover { color: #ff8800; border-color: #ff8800; }
-      #genx-bbc-copy:focus-visible { outline: 2px solid #ff8800; outline-offset: 2px; }
     `;
     document.head.appendChild(style);
 
     const btn = document.createElement('button');
     btn.id = 'genx-bbc-copy';
+    btn.className = 'gx-btn';
     btn.type = 'button';
     btn.textContent = 'COPY';
     btn.title =
