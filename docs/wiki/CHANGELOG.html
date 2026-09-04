@@ -28,9 +28,10 @@
   </nav>
   <main class="content">
 <h2 id="unreleased">[Unreleased]</h2>
+<h2 id="180---2026-09-05">[1.8.0] - 2026-09-05</h2>
 <h3 id="added">Added</h3>
 <ul>
-<li><strong>The wiki has search.</strong> Forty-three pages had no way to find anything in them but the sidebar and guesswork. <code>build.py</code> now indexes every page by section — 504 of them — and generates a <code>Search.html</code> that filters as you type, ranks a heading match above a body match, and links each hit straight to the section anchor it came from.
+<li><strong>The wiki has search.</strong> Forty-three pages had no way to find anything in them but the sidebar and guesswork. <code>build.py</code> now indexes every page by section — 505 of them — and generates a <code>Search.html</code> that filters as you type, ranks a heading match above a body match, and links each hit straight to the section anchor it came from.
   The interesting part is the content policy. These pages run <code>default-src 'none'</code> with no <code>script-src</code>, which is why not one of them has ever executed a line of JavaScript, and that is a property worth keeping. So the search page carries the standard policy <strong>plus the SHA-256 of exactly the script it contains</strong> — not <code>'unsafe-inline'</code>, which would permit any inline script on the page. The hash is computed as the script is written, in the same function, so the two cannot drift apart. Every other page in the wiki is untouched and still runs nothing.
   The index is inlined rather than fetched, so the page needs no <code>connect-src</code> and works from a downloaded copy with no server at all — <code>fetch()</code> of a local JSON would be blocked as cross-origin from <code>file://</code>. Section text is capped at 700 characters, which took the page from 224 KB gzipped to 107 KB while leaving every section findable by its heading and its opening.
   Two bugs on the way there, both worth recording. The wiki's WebMSX page discusses the <code>&lt;/script&gt;</code> footgun, so those characters were <em>in the index</em> — and an HTML parser ends a script element at `</li>
