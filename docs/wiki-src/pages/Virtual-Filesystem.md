@@ -67,8 +67,8 @@ A typical `<SYSTEM>\GAMES\` directory looks like:
 GAMES\
 ├── menu.bat              numbered title list (45-char wide box-drawn menu)
 ├── 0.bat                 cd .. / cd .. / menu (back two levels)
-├── 1.bat .. N.bat        each runs a named .bat
-└── <key>.bat             one per title, with link: → emulator URL
+├── 1.bat .. N.bat        each runs a named .exe
+└── <key>.exe             one per title, with link: → emulator URL
 ```
 
 How a user gets from the prompt to a game (NES example):
@@ -91,11 +91,18 @@ A node in `fs.js` is `{ name, directories?, files? }` for directories, or one of
 | `link: '<url>'` | Treats the file as a launcher — `window.open(link, "_blank")` |
 | `hidden: true` | Hidden from `dir` output (still navigable via `cd`) |
 
-Game `.bat` files use `link:`. `menu.bat` and numbered launchers use `data:`.
+Game launchers use `link:` and are named `.exe`, because that is what they are —
+a program you run. `menu.bat` and the numbered shortcuts are batch scripts, so they
+keep `.bat` and use `data:`.
+
+`TYPE` on an `.exe` does what DOS did: prints the file's bytes as CP437 glyphs,
+starting `MZ`, and stops at the first Ctrl-Z. The bytes are generated from the
+filename rather than stored, so each program has its own stable garbage and
+`fs.js` doesn't carry 351 blobs of noise.
 
 ## The no-`.html`-files rule
 
-The virtual filesystem only lists `.bat` files — game launchers, menu scripts, and the numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's `controls.html`, future bezels, etc.) live on disk under `systems/<name>/` but are reached from inside the emulator's entry HTML via the top-corner links, not from the DOS prompt.
+The virtual filesystem only lists `.exe` launchers and the `.bat` menu scripts and numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's `controls.html`, future bezels, etc.) live on disk under `systems/<name>/` but are reached from inside the emulator's entry HTML via the top-corner links, not from the DOS prompt.
 
 This is period-correct: a DOS user typing `dir` shouldn't see `.html`.
 

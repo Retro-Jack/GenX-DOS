@@ -1,5 +1,23 @@
 ## [Unreleased]
 
+### Changed
+- **The menus lost their code column.** Every framed menu on the site ran four columns — number, title, year, and the DOS command that launches it — and the fourth was eating the space the titles needed. Dropping it freed eleven characters, so sixteen titles that had been squeezed to fit are now written out in full, and the year sits one space off the border instead of two. 359 dated rows and 29 yearless ones changed across 708 framed rows, every one still exactly 45 characters wide.
+  The codes were never decorative — `berzerk` is a real command, and typing it still works. What's gone is the column that advertised them, which is the sort of thing a DOS user found out by typing `dir` anyway.
+
+- **The game launchers are `.exe` files now.** A launcher opens a program, so calling it `berzerk.bat` was describing it as a batch script, which it never was. The 351 named launchers — the ones carrying a `link:` — are now `.EXE`; the 408 numbered shortcuts and the `menu.bat` scripts genuinely are batch files and keep the extension. Nothing about running them changed: `BERZERK`, `berzerk.exe` and the menu number all still work, because the shell matches on the base name and checks for a link before it ever looks at the extension.
+  `TYPE BERZERK.EXE` now does what DOS did — prints the program's bytes as CP437 glyphs, starting `MZ`, and stops dead at the first Ctrl-Z, which is why you get a short burst of noise rather than a screenful. The bytes are generated from the filename rather than stored, so each program has its own stable garbage and `fs.js` doesn't gain 351 blobs of it. Five byte values are shifted into printable range because the console acts on them instead of drawing them — bell, backspace, tab, linefeed, carriage return — exactly the five DOS's own console consumed.
+  Deliberately absent: *This program cannot be run in DOS mode.* That string belongs to the Windows PE stub, and a machine pretending to be a DOS box has no business printing it.
+
+### Fixed
+- **`find` has never once printed a game's title.** It parses each menu's rows to learn what a launcher is called, and its pattern expected the `echo` and the box border to be adjacent — but the menus are padded out to centre the box, so the pattern matched no row anywhere on the site. Every result fell back to the launcher name printed twice: `DEMON  DEMON`. The wiki's example output showed titles because it had been written from intent rather than from a run; it is now generated from the real thing.
+  Fixing the pattern exposed the second half: with the code column gone there was nothing left to key titles on, so the index is rebuilt on the row *number* instead, which the numbered `.bat` beside each row resolves to a launcher (`smb`) or a sub-directory (`cd bbc`). That last part is new — directory rows never resolved before, so `find acorn` said `ACORN  ACORN` and now says `Acorn (1981)`.
+
+- **Pokémon Red had a Greek capital theta in it.** The font sheet is indexed by character code — `charCodeAt` picks the sprite directly, with no Unicode translation — so a glyph is written as whatever character sits at that code, which is why the box borders are spelled `ÉÍ»º`. The title had been written with a real `é` (U+00E9 = 233), and sprite 233 is CP437's `Θ`. It now holds char 130, CP437's actual `é`, written as `\x82` rather than the invisible control character that lives at U+0082.
+  Swept the other 397 menu titles for the same mistake: `Odyssey²` is the only other non-ASCII one and it was already right. Nothing else on the site renders a character it doesn't mean to.
+  Searching for it was fixed properly rather than patched. `find` had a special case truncating any query starting with `odyssey`, because `Odysseyý` could never match what a person types; that is replaced by a fold applied to the title before matching — CP437's accented-letter block back to plain letters, 253 to `2` — plus a retry with spaces stripped from both sides. So `find pokemon` and `find "odyssey 2"` both land, and the next title that needs a trick glyph needs no code at all.
+
+- **`dir` and `find` crashed on the three handhelds.** The Game Boy, Lynx and Game Gear directories were written without the empty `files` and `directories` arrays every other directory has, and both commands index those arrays without checking. `cd gameboy` followed by `dir` threw, and `find` threw on *any* query, because it walks the whole tree and always reached them. Nothing about the games was wrong — six missing `[]`s.
+
 ## [1.8.0] - 2026-09-05
 
 ### Added

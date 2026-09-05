@@ -86,11 +86,11 @@
 </tr>
 <tr>
 <td><code>type &lt;file&gt;</code></td>
-<td>Print the file's <code>data</code> (or <code>link</code>) to the screen</td>
+<td>Print the file's <code>data</code> (or <code>link</code>) to the screen. On an <code>.exe</code> it prints the program's bytes as CP437 glyphs — <code>MZ</code> then noise — and stops at the first Ctrl-Z, exactly as DOS did</td>
 </tr>
 <tr>
 <td><code>find &lt;word&gt;</code></td>
-<td>Search the whole virtual FS for games (<code>.bat</code> launchers) and emulator menus (sub-directories) whose name or short code matches the query at a word boundary. Reports two sections — <code>GAMES</code> and <code>MENUS</code> — each with code + title + full path. Cross-references numbered <code>.bat</code> shortcuts, so launchers like <code>mario.bat</code> are findable by their menu-displayed title (<code>Super Mario Bros.</code>).</td>
+<td>Search the whole virtual FS for games (<code>.exe</code> launchers) and emulator menus (sub-directories) whose name matches the query at a word boundary. Reports two sections — <code>GAMES</code> and <code>MENUS</code> — each with launcher + title + full path. Cross-references the numbered <code>.bat</code> shortcuts against the menu they sit beside, so <code>smb.exe</code> is findable by the title the menu shows for it (<code>Super Mario Bros.</code>).</td>
 </tr>
 <tr>
 <td><code>find "&lt;phrase&gt;"</code></td>
@@ -102,9 +102,9 @@
 <pre><code>C:\&gt;find attack
 
 Searching for &quot;attack&quot;...
-5 matches found.
+7 matches found.
 
-GAMES (5)
+GAMES (7)
   DEMON      Demon Attack (1982)
              C:\SYSTEMS\CONSOLE\ODYSSEY2\GAMES
   DEMONATK   Demon Attack (1983)
@@ -112,9 +112,13 @@ GAMES (5)
   MOLATAK    Mole Attack (1982)
              C:\SYSTEMS\HOMECOMP\COMMODRE\MAX\GAMES
   DEMON      Demon Attack (1982)
-             C:\SYSTEMS\HOMECOMP\COCO\GAMES
+             C:\SYSTEMS\HOMECOMP\TANDY\COCO\GAMES
   GALACTIC   Galactic Attack (1983)
-             C:\SYSTEMS\HOMECOMP\COCO\GAMES
+             C:\SYSTEMS\HOMECOMP\TANDY\COCO\GAMES
+  ATTACK     Attack Force (1980)
+             C:\SYSTEMS\HOMECOMP\TANDY\TRS80\GAMES
+  ROBOT      Robot Attack (1981)
+             C:\SYSTEMS\HOMECOMP\TANDY\TRS80\GAMES
 </code></pre>
 <h2 id="display">Display</h2>
 <table>

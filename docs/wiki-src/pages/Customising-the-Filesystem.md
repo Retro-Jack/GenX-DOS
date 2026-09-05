@@ -58,7 +58,7 @@ Lines are separated by `\n`. Supported batch commands: anything in [[Commands]] 
 
 ## Adding a system menu (numbered list)
 
-The standard pattern for a system with several titles is a directory whose `menu.bat` prints a box-drawn menu, plus numbered launcher `.bat` files that each run a named link `.bat`.
+The standard pattern for a system with several titles is a directory whose `menu.bat` prints a box-drawn menu, plus numbered `.bat` shortcuts that each run a named `.exe` launcher.
 
 ```js
 { name: 'GAMES', directories: [], files: [
@@ -66,14 +66,14 @@ The standard pattern for a system with several titles is a directory whose `menu
     { name: '0.bat',    data: 'echo off\ncd ..\ncd ..\nmenu\n' },
     { name: '1.bat',    data: 'mario\n' },
     { name: '2.bat',    data: 'contra\n' },
-    { name: 'mario.bat',  link: '../systems/jsnes/play.html?game=mario' },
-    { name: 'contra.bat', link: '../systems/jsnes/play.html?game=contra' },
+    { name: 'mario.exe',  link: '../systems/jsnes/play.html?game=mario' },
+    { name: 'contra.exe', link: '../systems/jsnes/play.html?game=contra' },
 ] }
 ```
 
-The `menu.bat` data string renders rows like `║   1.  Super Mario Bros.    (1985)  MARIO    ║` — **title first, year column, code last** is the project convention (see Menu box format below).
+The `menu.bat` data string renders rows like `║   1.  Super Mario Bros.        (1985) ║` — **title first, year last** is the project convention (see Menu box format below).
 
-The flow: the user types a number → it runs the matching `N.bat` → which runs `<key>` → which resolves to `<key>.bat` (the `link:` entry) → which opens the emulator URL.
+The flow: the user types a number → it runs the matching `N.bat` → which runs `<key>` → which resolves to `<key>.exe` (the `link:` entry) → which opens the emulator URL. Typing `<key>` at the prompt does the same thing, which is what keeps the menus self-documenting for anyone who tries `dir`.
 
 For a real example see the NES or C64 blocks in `fs.js`.
 
@@ -88,10 +88,10 @@ Standard menus use double-rule CP437 borders with a **45-char inner width**.
  ║              CENTERED HEADER                ║ ◄── header (45 chars between ║)
  ╠─────────────────────────────────────────────╣
  ║                                             ║ ◄── blank spacer row
- ║   1.  Some Title           (1985)  CMDNAME  ║ ◄── 4-column: # Title (Year) CODE
- ║   2.  Another Title        (1986)  CMD2     ║
+ ║   1.  Some Title                     (1985) ║ ◄── 3-column: # Title (Year)
+ ║   2.  Another Title                  (1986) ║
  ║                                             ║
- ║  11.  BASIC system prompt          BASIC    ║ ◄── BASIC/prompt rows skip the year column
+ ║  11.  BASIC system prompt                   ║ ◄── prompt rows have no year
  ║                                             ║
  ║   0.  Back                                  ║ ◄── always last
  ║                                             ║
@@ -100,17 +100,18 @@ Standard menus use double-rule CP437 borders with a **45-char inner width**.
  ╚═════════════════════════════════════════════╝
 ```
 
-Entry row layout (45 chars between borders): **4 columns — number, title, year, code.** Games sorted by year ascending, alphabetical within year.
+Entry row layout (45 chars between borders): **3 columns — number, title, year.** Games sorted by year ascending, alphabetical within year.
 
 ```
- ║   N.  Title field          (YYYY)  CMDNAME  ║
- ├──┤├──┤├─────────────────┤├──────┤├─┤├──────┤
-  3   2.       21 chars        6     2    9
-  spc ". "   title (left)    year   sp  code (left)
+ ║   N.  Title field                    (YYYY) ║
+  ├─────┤├─────────────────────────────┤├────┤│
+     7                 31                 6   1
+   "N.  "        title (left)          (YYYY)
 ```
 
-- Title field 21 chars left-justified; year column 6 chars `(YYYY)` or `(home)`-style marker; 2-char separator; code field 9 chars left-justified.
-- BASIC / system-prompt rows have no year — title field extends through the year + separator slot.
+- Title field 31 chars left-justified; year column 6 chars `(YYYY)` or `(home)`-style marker; 1 space of padding before the border.
+- BASIC / system-prompt rows have no year — the title field extends through the year slot.
+- The launcher name is no longer a column. It is still typeable at the prompt, and `find` recovers it by reading the numbered `.bat` beside each row.
 - Double-digit numbers shift left one space: `  NN.  ` vs `   N.  ` — same 7-char prefix width.
 - Blank line before the last entry in a group = visual separator (e.g. games vs system prompt).
 

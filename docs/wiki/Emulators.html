@@ -145,7 +145,7 @@
 <ol>
 <li>The user picks a number in a <code>GAMES</code> menu.</li>
 <li><code>N.bat</code> runs the named launcher (e.g. <code>sonic1</code>).</li>
-<li><code>sonic1.bat</code> is a <code>link:</code> entry pointing at the emulator's URL.</li>
+<li><code>sonic1.exe</code> is a <code>link:</code> entry pointing at the emulator's URL.</li>
 <li>The terminal opens that URL in a new tab via <code>window.open(link, "_blank")</code>.</li>
 </ol>
 <p>URL patterns vary per emulator. Each engine article documents its own.</p>
@@ -164,7 +164,7 @@
 <p><strong>Where the key comes from.</strong> Normally the live URL. Four bundles have no usable key there by the time the deferred script runs: <strong>apple2</strong> rewrites <code>?game=</code> into the <code>?disk=</code> its engine expects, <strong>cpc</strong> folds it into sokol_args, and <strong>bbcmicro</strong> / <strong>bbcmaster</strong> launch from a keyless <code>?disc1=</code> and never carry one. Each of those pages sets <code>window.GENX_GAME_KEY</code> synchronously instead, and the shared script prefers it over the URL — the BBC bundles' <code>genx-gamedoc-link.js</code> already published that variable for the soft-key policy, so one disc-to-gamedoc map now serves both. They previously kept three inline copies of the link-building code, which had drifted.</p>
 <p>Both hrefs are resolved from the script's own <code>src</code>, not written relative to the page: the BBC entry points live at <code>systems/&lt;bundle&gt;/dist/index.html</code>, a directory deeper than every other bundle's, where a page-relative path lands a level short.</p>
 <p>The shared script still stands down whenever it finds a <code>.gx-corner-link</code> or legacy <code>.gx-controls-link</code> already in the page, so a bundle that needs its own placement can opt out by providing one; <code>genx-controls-link.css</code> keeps the old rule for that case.</p>
-<p>None of these pages are in the virtual filesystem; the DOS prompt's <code>dir</code> output shows only <code>.bat</code> launchers and menu scripts, never raw <code>.html</code> files.</p>
+<p>None of these pages are in the virtual filesystem; the DOS prompt's <code>dir</code> output shows only <code>.exe</code> launchers and <code>.bat</code> menu scripts, never raw <code>.html</code> files.</p>
 <h3 id="the-controls-table--the-house-layout">The controls table — the house layout</h3>
 <p>Every gamedoc's <strong>Controls</strong> table uses the same three columns, in this order:</p>
 <table>
@@ -259,7 +259,7 @@ cannot support: test with a real pad before adding one.</p>
 <li><strong>Add the standard <code>&lt;noscript&gt;</code> overlay</strong> to every new HTML entry point — copy verbatim from any existing emulator page.</li>
 <li><strong>Write <code>play.html</code></strong> if the emulator needs a key-based launcher. Skip if the emulator's own page already accepts URL params (BBC and WebMSX patterns). The wrapper reads <code>?game=&lt;key&gt;</code>, fetches <code>games.json</code>, looks up <code>{title, rom}</code>, and boots the emulator with that ROM.</li>
 <li><strong>Bundle the ROMs</strong> under <code>systems/&lt;name&gt;/&lt;roms-dir&gt;/</code>. External ROM sites generally don't set CORS for direct browser fetch, so wrappers can't pull at runtime — every byte must be on the same origin.</li>
-<li><strong>Wire <code>fs.js</code></strong>: each game's <code>.bat</code> gets a <code>link:</code> field pointing at the URL pattern above. Per-system <code>GAMES</code> menu follows the 45-char box format (see <a href="Customising-the-Filesystem.html">Customising the Filesystem</a>) with 10 titles + a PROMPT or BASIC entry.</li>
+<li><strong>Wire <code>fs.js</code></strong>: each game's <code>.exe</code> gets a <code>link:</code> field pointing at the URL pattern above. Per-system <code>GAMES</code> menu follows the 45-char box format (see <a href="Customising-the-Filesystem.html">Customising the Filesystem</a>) with 10 titles + a PROMPT or BASIC entry.</li>
 </ol>
 <h2 id="multi-model-platforms">Multi-model platforms</h2>
 <p>Some platforms host multiple machines under the same vendor — ATARI has 2600 / 7800 as siblings under CONSOLE and 400 / 800XL as siblings under HOMECOMP; MSX has MSX1 and MSX2; SINCLAIR has SPECTRUM and ZX81. The hierarchical pattern: a parent menu with <code>1.&lt;MODEL1&gt;</code> / <code>2.&lt;MODEL2&gt;</code> rows, each pointing into its own GAMES dir. See <code>prompt/javascript/fs.js</code> for the exact tree.</p>
@@ -272,7 +272,7 @@ cannot support: test with a real pad before adding one.</p>
 <h2 id="related">Related</h2>
 <ul>
 <li><a href="Project-Overview.html">Project Overview</a> — what the site does</li>
-<li><a href="Virtual-Filesystem.html">Virtual Filesystem</a> — how <code>.bat</code> launchers reach <code>play.html</code></li>
+<li><a href="Virtual-Filesystem.html">Virtual Filesystem</a> — how <code>.exe</code> launchers reach <code>play.html</code></li>
 <li><a href="File-Structure.html">File Structure</a> — where bundles sit in the repo</li>
 <li><a href="Roadmap.html">Roadmap</a> — what's shipped, what's next</li>
 </ul>

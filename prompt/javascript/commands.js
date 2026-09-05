@@ -163,7 +163,7 @@ var HELP_TEXT = [
   '  cls              Clear the screen',
   '',
   'FILES',
-  '  <filename>       Execute (link opens URL, .bat runs as batch)',
+  '  <filename>       Execute (.exe launches, .bat runs as batch)',
   "  type <file>      Print the file's data",
   '  find <word>      Search games + emulator menus by name or code',
   '  find "<phrase>"  Quote multi-word queries',

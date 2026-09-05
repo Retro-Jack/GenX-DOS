@@ -81,18 +81,18 @@
 </code></pre>
 <hr />
 <h2 id="adding-a-system-menu-numbered-list">Adding a system menu (numbered list)</h2>
-<p>The standard pattern for a system with several titles is a directory whose <code>menu.bat</code> prints a box-drawn menu, plus numbered launcher <code>.bat</code> files that each run a named link <code>.bat</code>.</p>
+<p>The standard pattern for a system with several titles is a directory whose <code>menu.bat</code> prints a box-drawn menu, plus numbered <code>.bat</code> shortcuts that each run a named <code>.exe</code> launcher.</p>
 <pre><code class="language-js">{ name: 'GAMES', directories: [], files: [
     { name: 'menu.bat', data: 'echo off\ncls\necho ╔═══...╗\n...echo.\n' },
     { name: '0.bat',    data: 'echo off\ncd ..\ncd ..\nmenu\n' },
     { name: '1.bat',    data: 'mario\n' },
     { name: '2.bat',    data: 'contra\n' },
-    { name: 'mario.bat',  link: '../systems/jsnes/play.html?game=mario' },
-    { name: 'contra.bat', link: '../systems/jsnes/play.html?game=contra' },
+    { name: 'mario.exe',  link: '../systems/jsnes/play.html?game=mario' },
+    { name: 'contra.exe', link: '../systems/jsnes/play.html?game=contra' },
 ] }
 </code></pre>
-<p>The <code>menu.bat</code> data string renders rows like <code>║   1.  Super Mario Bros.    (1985)  MARIO    ║</code> — <strong>title first, year column, code last</strong> is the project convention (see Menu box format below).</p>
-<p>The flow: the user types a number → it runs the matching <code>N.bat</code> → which runs <code>&lt;key&gt;</code> → which resolves to <code>&lt;key&gt;.bat</code> (the <code>link:</code> entry) → which opens the emulator URL.</p>
+<p>The <code>menu.bat</code> data string renders rows like <code>║   1.  Super Mario Bros.        (1985) ║</code> — <strong>title first, year last</strong> is the project convention (see Menu box format below).</p>
+<p>The flow: the user types a number → it runs the matching <code>N.bat</code> → which runs <code>&lt;key&gt;</code> → which resolves to <code>&lt;key&gt;.exe</code> (the <code>link:</code> entry) → which opens the emulator URL. Typing <code>&lt;key&gt;</code> at the prompt does the same thing, which is what keeps the menus self-documenting for anyone who tries <code>dir</code>.</p>
 <p>For a real example see the NES or C64 blocks in <code>fs.js</code>.</p>
 <hr />
 <h2 id="menu-box-format">Menu box format</h2>
@@ -101,10 +101,10 @@
  ║              CENTERED HEADER                ║ ◄── header (45 chars between ║)
  ╠─────────────────────────────────────────────╣
  ║                                             ║ ◄── blank spacer row
- ║   1.  Some Title           (1985)  CMDNAME  ║ ◄── 4-column: # Title (Year) CODE
- ║   2.  Another Title        (1986)  CMD2     ║
+ ║   1.  Some Title                     (1985) ║ ◄── 3-column: # Title (Year)
+ ║   2.  Another Title                  (1986) ║
  ║                                             ║
- ║  11.  BASIC system prompt          BASIC    ║ ◄── BASIC/prompt rows skip the year column
+ ║  11.  BASIC system prompt                   ║ ◄── prompt rows have no year
  ║                                             ║
  ║   0.  Back                                  ║ ◄── always last
  ║                                             ║
@@ -112,15 +112,16 @@
  ║        Type a number and press ENTER        ║
  ╚═════════════════════════════════════════════╝
 </code></pre>
-<p>Entry row layout (45 chars between borders): <strong>4 columns — number, title, year, code.</strong> Games sorted by year ascending, alphabetical within year.</p>
-<pre><code> ║   N.  Title field          (YYYY)  CMDNAME  ║
- ├──┤├──┤├─────────────────┤├──────┤├─┤├──────┤
-  3   2.       21 chars        6     2    9
-  spc &quot;. &quot;   title (left)    year   sp  code (left)
+<p>Entry row layout (45 chars between borders): <strong>3 columns — number, title, year.</strong> Games sorted by year ascending, alphabetical within year.</p>
+<pre><code> ║   N.  Title field                    (YYYY) ║
+  ├─────┤├─────────────────────────────┤├────┤│
+     7                 31                 6   1
+   &quot;N.  &quot;        title (left)          (YYYY)
 </code></pre>
 <ul>
-<li>Title field 21 chars left-justified; year column 6 chars <code>(YYYY)</code> or <code>(home)</code>-style marker; 2-char separator; code field 9 chars left-justified.</li>
-<li>BASIC / system-prompt rows have no year — title field extends through the year + separator slot.</li>
+<li>Title field 31 chars left-justified; year column 6 chars <code>(YYYY)</code> or <code>(home)</code>-style marker; 1 space of padding before the border.</li>
+<li>BASIC / system-prompt rows have no year — the title field extends through the year slot.</li>
+<li>The launcher name is no longer a column. It is still typeable at the prompt, and <code>find</code> recovers it by reading the numbered <code>.bat</code> beside each row.</li>
 <li>Double-digit numbers shift left one space: <code>NN.</code> vs <code>N.</code> — same 7-char prefix width.</li>
 <li>Blank line before the last entry in a group = visual separator (e.g. games vs system prompt).</li>
 </ul>

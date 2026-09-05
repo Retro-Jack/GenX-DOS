@@ -28,7 +28,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  2600  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Breakout             (1978)  BREAKOUT º\necho                 º   2.  Adventure            (1980)  ADVENTUR º\necho                 º   3.  Space Invaders       (1980)  INVADERS º\necho                 º   4.  Asteroids            (1981)  ASTEROID º\necho                 º   5.  Missile Command      (1981)  MISSILE  º\necho                 º   6.  Pac-Man              (1982)  PACMAN   º\necho                 º   7.  Pitfall!             (1982)  PITFALL  º\necho                 º   8.  River Raid           (1982)  RIVERAID º\necho                 º   9.  Yars' Revenge        (1982)  YARS     º\necho                 º  10.  Centipede            (1983)  CENTIPED º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  2600  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Breakout                       (1978) º\necho                 º   2.  Adventure                      (1980) º\necho                 º   3.  Space Invaders                 (1980) º\necho                 º   4.  Asteroids                      (1981) º\necho                 º   5.  Missile Command                (1981) º\necho                 º   6.  Pac-Man                        (1982) º\necho                 º   7.  Pitfall!                       (1982) º\necho                 º   8.  River Raid                     (1982) º\necho                 º   9.  Yars\' Revenge                  (1982) º\necho                 º  10.  Centipede                      (1983) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                           },
                           {
                             name: '0.bat',
@@ -75,43 +75,43 @@ var fs = [
                             data: 'centiped\n',
                           },
                           {
-                            name: 'adventur.bat',
+                            name: 'adventur.exe',
                             link: '../systems/stella/play.html?game=adventure',
                           },
                           {
-                            name: 'asteroid.bat',
+                            name: 'asteroid.exe',
                             link: '../systems/stella/play.html?game=asteroids',
                           },
                           {
-                            name: 'pacman.bat',
+                            name: 'pacman.exe',
                             link: '../systems/stella/play.html?game=pacman',
                           },
                           {
-                            name: 'pitfall.bat',
+                            name: 'pitfall.exe',
                             link: '../systems/stella/play.html?game=pitfall',
                           },
                           {
-                            name: 'invaders.bat',
+                            name: 'invaders.exe',
                             link: '../systems/stella/play.html?game=invaders',
                           },
                           {
-                            name: 'breakout.bat',
+                            name: 'breakout.exe',
                             link: '../systems/stella/play.html?game=breakout',
                           },
                           {
-                            name: 'missile.bat',
+                            name: 'missile.exe',
                             link: '../systems/stella/play.html?game=missile',
                           },
                           {
-                            name: 'yars.bat',
+                            name: 'yars.exe',
                             link: '../systems/stella/play.html?game=yars',
                           },
                           {
-                            name: 'centiped.bat',
+                            name: 'centiped.exe',
                             link: '../systems/stella/play.html?game=centipede',
                           },
                           {
-                            name: 'riveraid.bat',
+                            name: 'riveraid.exe',
                             link: '../systems/stella/play.html?game=riverraid',
                           },
                         ],
@@ -120,7 +120,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -133,7 +133,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  7800  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Asteroids            (1986)  ASTEROID º\necho                 º   2.  Centipede            (1986)  CENTIPED º\necho                 º   3.  Joust                (1986)  JOUST    º\necho                 º   4.  Ms. Pac-Man          (1986)  MSPACMAN º\necho                 º   5.  Xevious              (1986)  XEVIOUS  º\necho                 º   6.  Desert Falcon        (1987)  DESERTFL º\necho                 º   7.  Dig Dug              (1987)  DIGDUG   º\necho                 º   8.  Food Fight           (1987)  FOODFGHT º\necho                 º   9.  Galaga               (1987)  GALAGA   º\necho                 º  10.  Robotron 2084        (1987)  ROBOTRON º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  7800  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Asteroids                      (1986) º\necho                 º   2.  Centipede                      (1986) º\necho                 º   3.  Joust                          (1986) º\necho                 º   4.  Ms. Pac-Man                    (1986) º\necho                 º   5.  Xevious                        (1986) º\necho                 º   6.  Desert Falcon                  (1987) º\necho                 º   7.  Dig Dug                        (1987) º\necho                 º   8.  Food Fight                     (1987) º\necho                 º   9.  Galaga                         (1987) º\necho                 º  10.  Robotron 2084                  (1987) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -180,43 +180,43 @@ var fs = [
                             data: 'robotron\n',
                           },
                           {
-                            name: 'asteroid.bat',
+                            name: 'asteroid.exe',
                             link: '../systems/js7800/play.html?game=asteroids',
                           },
                           {
-                            name: 'centiped.bat',
+                            name: 'centiped.exe',
                             link: '../systems/js7800/play.html?game=centipede',
                           },
                           {
-                            name: 'joust.bat',
+                            name: 'joust.exe',
                             link: '../systems/js7800/play.html?game=joust',
                           },
                           {
-                            name: 'mspacman.bat',
+                            name: 'mspacman.exe',
                             link: '../systems/js7800/play.html?game=mspacman',
                           },
                           {
-                            name: 'galaga.bat',
+                            name: 'galaga.exe',
                             link: '../systems/js7800/play.html?game=galaga',
                           },
                           {
-                            name: 'desertfl.bat',
+                            name: 'desertfl.exe',
                             link: '../systems/js7800/play.html?game=desertfl',
                           },
                           {
-                            name: 'digdug.bat',
+                            name: 'digdug.exe',
                             link: '../systems/js7800/play.html?game=digdug',
                           },
                           {
-                            name: 'xevious.bat',
+                            name: 'xevious.exe',
                             link: '../systems/js7800/play.html?game=xevious',
                           },
                           {
-                            name: 'foodfght.bat',
+                            name: 'foodfght.exe',
                             link: '../systems/js7800/play.html?game=foodfight',
                           },
                           {
-                            name: 'robotron.bat',
+                            name: 'robotron.exe',
                             link: '../systems/js7800/play.html?game=robotron',
                           },
                         ],
@@ -225,7 +225,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -233,7 +233,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               ATARI  CONSOLES               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Atari 2600           (1977)  2600     º\necho                 º                                             º\necho                 º   2.  Atari 7800           (1986)  7800     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               ATARI  CONSOLES               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Atari 2600                     (1977) º\necho                 º                                             º\necho                 º   2.  Atari 7800                     (1986) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -258,7 +258,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  NES  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Super Mario Bros.    (1985)  MARIO    º\necho                 º   2.  Castlevania          (1987)  CASTLEV  º\necho                 º   3.  Kid Icarus           (1987)  KIDICARU º\necho                 º   4.  Mega Man             (1987)  MEGAMAN  º\necho                 º   5.  Metroid              (1987)  METROID  º\necho                 º   6.  Mike Tyson's P-O!!   (1987)  PUNCHOUT º\necho                 º   7.  The Legend of Zelda  (1987)  ZELDA    º\necho                 º   8.  Contra               (1988)  CONTRA   º\necho                 º   9.  Tetris               (1989)  TETRIS   º\necho                 º  10.  Final Fantasy        (1990)  FINALFNT º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  NES  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Super Mario Bros.              (1985) º\necho                 º   2.  Castlevania                    (1987) º\necho                 º   3.  Kid Icarus                     (1987) º\necho                 º   4.  Mega Man                       (1987) º\necho                 º   5.  Metroid                        (1987) º\necho                 º   6.  Mike Tyson\'s P-O!!             (1987) º\necho                 º   7.  Zelda: Link\'s Awakening        (1987) º\necho                 º   8.  Contra                         (1988) º\necho                 º   9.  Tetris                         (1989) º\necho                 º  10.  Final Fantasy                  (1990) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       {
                         name: '0.bat',
@@ -305,43 +305,43 @@ var fs = [
                         data: 'finalfnt\n',
                       },
                       {
-                        name: 'smb.bat',
+                        name: 'smb.exe',
                         link: '../systems/jsnes/play.html?game=smb',
                       },
                       {
-                        name: 'kidicaru.bat',
+                        name: 'kidicaru.exe',
                         link: '../systems/jsnes/play.html?game=kidicarus',
                       },
                       {
-                        name: 'zelda.bat',
+                        name: 'zelda.exe',
                         link: '../systems/jsnes/play.html?game=zelda',
                       },
                       {
-                        name: 'contra.bat',
+                        name: 'contra.exe',
                         link: '../systems/jsnes/play.html?game=contra',
                       },
                       {
-                        name: 'megaman.bat',
+                        name: 'megaman.exe',
                         link: '../systems/jsnes/play.html?game=megaman',
                       },
                       {
-                        name: 'castlev.bat',
+                        name: 'castlev.exe',
                         link: '../systems/jsnes/play.html?game=castlvnia',
                       },
                       {
-                        name: 'metroid.bat',
+                        name: 'metroid.exe',
                         link: '../systems/jsnes/play.html?game=metroid',
                       },
                       {
-                        name: 'tetris.bat',
+                        name: 'tetris.exe',
                         link: '../systems/jsnes/play.html?game=tetris',
                       },
                       {
-                        name: 'punchout.bat',
+                        name: 'punchout.exe',
                         link: '../systems/jsnes/play.html?game=punchout',
                       },
                       {
-                        name: 'finalfnt.bat',
+                        name: 'finalfnt.exe',
                         link: '../systems/jsnes/play.html?game=finalfnts',
                       },
                     ],
@@ -350,7 +350,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                   },
                 ],
               },
@@ -364,7 +364,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: "echo off\ncls\necho                ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                º            INTELLIVISION  GAMES             º\necho                ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                º                                             º\necho                º   1.  Adventure            (1981)  ADVENT   º\necho                º   2.  Astrosmash           (1981)  ASTRO    º\necho                º   3.  B-17 Bomber          (1981)  B-17     º\necho                º   4.  Snafu                (1981)  SNAFU    º\necho                º   5.  Star Strike          (1981)  STARSTRK º\necho                º   6.  TRON: Deadly Discs   (1981)  TRON     º\necho                º   7.  Atlantis             (1982)  ATLANTIS º\necho                º   8.  Lock 'N' Chase       (1982)  LOCKCHAS º\necho                º   9.  Night Stalker        (1982)  NIGHTSTK º\necho                º  10.  BurgerTime           (1983)  BURGER   º\necho                º                                             º\necho                º   0.  Back                                  º\necho                º                                             º\necho                ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                º        Type a number and press ENTER        º\necho                ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                                data: "echo off\ncls\necho                ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                º            INTELLIVISION  GAMES             º\necho                ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                º                                             º\necho                º   1.  Adventure            (1981)  ADVENT   º\necho                º   2.  Astrosmash           (1981)  ASTRO    º\necho                º   3.  B-17 Bomber          (1981)  B-17     º\necho                º   4.  Snafu                (1981)  SNAFU    º\necho                º   5.  Star Strike          (1981)  STARSTRK º\necho                º   6.  TRON: Deadly Discs   (1981)  TRON     º\necho                º   7.  Atlantis             (1982)  ATLANTIS º\necho                º   8.  Lock 'N' Chase       (1982)  LOCKCHAS º\necho                º   9.  Night Stalker        (1982)  NIGHTSTK º\necho                º  10.  BurgerTime           (1983)  BURGER   º\necho                º                                             º\necho                º   0.  Back                                  º\necho                º                                             º\necho                ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                º        Type a number and press ENTER        º\necho                ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       {
                         name: '0.bat',
@@ -411,19 +411,19 @@ var fs = [
                         data: 'nightstk\n',
                       },
                       {
-                        name: 'astro.bat',
+                        name: 'astro.exe',
                         link: '../systems/intv/play.html?game=astro',
                       },
                       {
-                        name: 'burger.bat',
+                        name: 'burger.exe',
                         link: '../systems/intv/play.html?game=burger',
                       },
                       {
-                        name: 'tron.bat',
+                        name: 'tron.exe',
                         link: '../systems/intv/play.html?game=tron',
                       },
                       {
-                        name: 'snafu.bat',
+                        name: 'snafu.exe',
                         link: '../systems/intv/play.html?game=snafu',
                       },
                       {
@@ -431,23 +431,23 @@ var fs = [
                         link: '../systems/intv/play.html?game=b17',
                       },
                       {
-                        name: 'nightstk.bat',
+                        name: 'nightstk.exe',
                         link: '../systems/intv/play.html?game=nightstk',
                       },
                       {
-                        name: 'advent.bat',
+                        name: 'advent.exe',
                         link: '../systems/intv/play.html?game=advent',
                       },
                       {
-                        name: 'atlantis.bat',
+                        name: 'atlantis.exe',
                         link: '../systems/intv/play.html?game=atlantis',
                       },
                       {
-                        name: 'lockchas.bat',
+                        name: 'lockchas.exe',
                         link: '../systems/intv/play.html?game=lockchase',
                       },
                       {
-                        name: 'starstrk.bat',
+                        name: 'starstrk.exe',
                         link: '../systems/intv/play.html?game=starstrk',
                       },
                     ],
@@ -456,7 +456,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                   },
                 ],
               },
@@ -470,7 +470,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             COLECOVISION  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Carnival             (1982)  CARNIVAL º\necho                 º   2.  Cosmic Avenger       (1982)  COSMIC   º\necho                 º   3.  Donkey Kong          (1982)  DKONG    º\necho                 º   4.  Lady Bug             (1982)  LADYBUG  º\necho                 º   5.  Mouse Trap           (1982)  MOUSETRP º\necho                 º   6.  Smurf Rescue         (1982)  SMURF    º\necho                 º   7.  Venture              (1982)  VENTURE  º\necho                 º   8.  Zaxxon               (1982)  ZAXXON   º\necho                 º   9.  Mr. Do!              (1983)  MRDO     º\necho                 º  10.  Q*bert               (1983)  QBERT    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             COLECOVISION  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Carnival                       (1982) º\necho                 º   2.  Cosmic Avenger                 (1982) º\necho                 º   3.  Donkey Kong                    (1982) º\necho                 º   4.  Lady Bug                       (1982) º\necho                 º   5.  Mouse Trap                     (1982) º\necho                 º   6.  Smurf: Rescue in Gargamel\'s    (1982) º\necho                 º   7.  Venture                        (1982) º\necho                 º   8.  Zaxxon                         (1982) º\necho                 º   9.  Mr. Do!                        (1983) º\necho                 º  10.  Q*bert                         (1983) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -517,43 +517,43 @@ var fs = [
                         data: 'qbert\n',
                       },
                       {
-                        name: 'dkong.bat',
+                        name: 'dkong.exe',
                         link: '../systems/coleco/play.html?game=dkong',
                       },
                       {
-                        name: 'cosmic.bat',
+                        name: 'cosmic.exe',
                         link: '../systems/coleco/play.html?game=cosmic',
                       },
                       {
-                        name: 'ladybug.bat',
+                        name: 'ladybug.exe',
                         link: '../systems/coleco/play.html?game=ladybug',
                       },
                       {
-                        name: 'mousetrp.bat',
+                        name: 'mousetrp.exe',
                         link: '../systems/coleco/play.html?game=mousetrp',
                       },
                       {
-                        name: 'carnival.bat',
+                        name: 'carnival.exe',
                         link: '../systems/coleco/play.html?game=carnival',
                       },
                       {
-                        name: 'venture.bat',
+                        name: 'venture.exe',
                         link: '../systems/coleco/play.html?game=venture',
                       },
                       {
-                        name: 'smurf.bat',
+                        name: 'smurf.exe',
                         link: '../systems/coleco/play.html?game=smurf',
                       },
                       {
-                        name: 'zaxxon.bat',
+                        name: 'zaxxon.exe',
                         link: '../systems/coleco/play.html?game=zaxxon',
                       },
                       {
-                        name: 'mrdo.bat',
+                        name: 'mrdo.exe',
                         link: '../systems/coleco/play.html?game=mrdo',
                       },
                       {
-                        name: 'qbert.bat',
+                        name: 'qbert.exe',
                         link: '../systems/coleco/play.html?game=qbert',
                       },
                     ],
@@ -562,7 +562,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                   },
                 ],
               },
@@ -576,7 +576,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               ODYSSEYý  GAMES               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Cosmic Conflict!     (1979)  COSMIC   º\necho                 º   2.  Alien Invaders+!     (1980)  ALIENPLS º\necho                 º   3.  K.C. Munchkin!       (1981)  KCMUNCH  º\necho                 º   4.  Quest for Rings!     (1981)  QRINGS   º\necho                 º   5.  UFO!                 (1981)  UFO      º\necho                 º   6.  Atlantis             (1982)  ATLANTIS º\necho                 º   7.  Demon Attack         (1982)  DEMON    º\necho                 º   8.  Pick Axe Pete!       (1982)  PICKAXE  º\necho                 º   9.  Smithereens!         (1982)  SMITHER  º\necho                 º  10.  Killer Bees!         (1983)  KILLBEES º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               ODYSSEYý  GAMES               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Cosmic Conflict!               (1979) º\necho                 º   2.  Alien Invaders+!               (1980) º\necho                 º   3.  K.C. Munchkin!                 (1981) º\necho                 º   4.  Quest for Rings!               (1981) º\necho                 º   5.  UFO!                           (1981) º\necho                 º   6.  Atlantis                       (1982) º\necho                 º   7.  Demon Attack                   (1982) º\necho                 º   8.  Pick Axe Pete!                 (1982) º\necho                 º   9.  Smithereens!                   (1982) º\necho                 º  10.  Killer Bees!                   (1983) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -623,43 +623,43 @@ var fs = [
                         data: 'killbees\n',
                       },
                       {
-                        name: 'cosmic.bat',
+                        name: 'cosmic.exe',
                         link: '../systems/odyssey2/play.html?game=cosmic',
                       },
                       {
-                        name: 'alienpls.bat',
+                        name: 'alienpls.exe',
                         link: '../systems/odyssey2/play.html?game=alienplus',
                       },
                       {
-                        name: 'kcmunch.bat',
+                        name: 'kcmunch.exe',
                         link: '../systems/odyssey2/play.html?game=kcmunch',
                       },
                       {
-                        name: 'qrings.bat',
+                        name: 'qrings.exe',
                         link: '../systems/odyssey2/play.html?game=qrings',
                       },
                       {
-                        name: 'ufo.bat',
+                        name: 'ufo.exe',
                         link: '../systems/odyssey2/play.html?game=ufo',
                       },
                       {
-                        name: 'atlantis.bat',
+                        name: 'atlantis.exe',
                         link: '../systems/odyssey2/play.html?game=atlantis',
                       },
                       {
-                        name: 'demon.bat',
+                        name: 'demon.exe',
                         link: '../systems/odyssey2/play.html?game=demon',
                       },
                       {
-                        name: 'pickaxe.bat',
+                        name: 'pickaxe.exe',
                         link: '../systems/odyssey2/play.html?game=pickaxe',
                       },
                       {
-                        name: 'smither.bat',
+                        name: 'smither.exe',
                         link: '../systems/odyssey2/play.html?game=smither',
                       },
                       {
-                        name: 'killbees.bat',
+                        name: 'killbees.exe',
                         link: '../systems/odyssey2/play.html?game=killbees',
                       },
                     ],
@@ -668,7 +668,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                   },
                 ],
               },
@@ -682,7 +682,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SEGA  MASTER  SYSTEM  GAMES         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Alex Kidd            (1986)  ALEXKIDD º\necho                 º   2.  Fantasy Zone         (1986)  FANTZONE º\necho                 º   3.  Wonder Boy           (1986)  WONDRBOY º\necho                 º   4.  Out Run              (1987)  OUTRUN   º\necho                 º   5.  Phantasy Star        (1988)  PHANTSTR º\necho                 º   6.  R-Type               (1988)  RTYPE    º\necho                 º   7.  Shinobi              (1988)  SHINOBI  º\necho                 º   8.  Psycho Fox           (1989)  PSYCHFOX º\necho                 º   9.  Castle of Illusion   (1990)  CASTLE   º\necho                 º  10.  Sonic the Hedgehog   (1991)  SONIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SEGA  MASTER  SYSTEM  GAMES         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Alex Kidd in Miracle World     (1986) º\necho                 º   2.  Fantasy Zone                   (1986) º\necho                 º   3.  Wonder Boy                     (1986) º\necho                 º   4.  Out Run                        (1987) º\necho                 º   5.  Phantasy Star                  (1988) º\necho                 º   6.  R-Type                         (1988) º\necho                 º   7.  Shinobi                        (1988) º\necho                 º   8.  Psycho Fox                     (1989) º\necho                 º   9.  Castle of Illusion             (1990) º\necho                 º  10.  Sonic the Hedgehog             (1991) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -729,43 +729,43 @@ var fs = [
                         data: 'sonic\n',
                       },
                       {
-                        name: 'alexkidd.bat',
+                        name: 'alexkidd.exe',
                         link: '../systems/sms/play.html?game=alexkidd',
                       },
                       {
-                        name: 'fantzone.bat',
+                        name: 'fantzone.exe',
                         link: '../systems/sms/play.html?game=fantzone',
                       },
                       {
-                        name: 'wondrboy.bat',
+                        name: 'wondrboy.exe',
                         link: '../systems/sms/play.html?game=wondrboy',
                       },
                       {
-                        name: 'outrun.bat',
+                        name: 'outrun.exe',
                         link: '../systems/sms/play.html?game=outrun',
                       },
                       {
-                        name: 'phantstr.bat',
+                        name: 'phantstr.exe',
                         link: '../systems/sms/play.html?game=phantstr',
                       },
                       {
-                        name: 'rtype.bat',
+                        name: 'rtype.exe',
                         link: '../systems/sms/play.html?game=rtype',
                       },
                       {
-                        name: 'shinobi.bat',
+                        name: 'shinobi.exe',
                         link: '../systems/sms/play.html?game=shinobi',
                       },
                       {
-                        name: 'psychfox.bat',
+                        name: 'psychfox.exe',
                         link: '../systems/sms/play.html?game=psychfox',
                       },
                       {
-                        name: 'castle.bat',
+                        name: 'castle.exe',
                         link: '../systems/sms/play.html?game=castle',
                       },
                       {
-                        name: 'sonic.bat',
+                        name: 'sonic.exe',
                         link: '../systems/sms/play.html?game=sonic',
                       },
                     ],
@@ -774,7 +774,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncd games\nmenu\n',
+                                data: 'echo off\ncd games\nmenu\n',
                   },
                 ],
               },
@@ -787,7 +787,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          VECTREX  COMMERCIAL  GAMES         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Berzerk              (1982)  BERZERK  º\necho                 º   2.  Cosmic Chasm         (1982)  COSMICCH º\necho                 º   3.  Rip-Off              (1982)  RIPOFF   º\necho                 º   4.  Scramble             (1982)  SCRAMBLE º\necho                 º   5.  Solar Quest          (1982)  SOLARQST º\necho                 º   6.  Star Trek            (1982)  STARTREK º\necho                 º   7.  Polar Rescue         (1983)  POLARRSC º\necho                 º   8.  Pole Position        (1983)  POLEPOS  º\necho                 º   9.  Spike                (1983)  SPIKE    º\necho                 º  10.  Star Castle          (1983)  STARCASL º\necho                 º                                             º\necho                 º  11.  Mine Storm (built-in)        MINESTRM º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          VECTREX  COMMERCIAL  GAMES         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Berzerk                        (1982) º\necho                 º   2.  Cosmic Chasm                   (1982) º\necho                 º   3.  Rip-Off                        (1982) º\necho                 º   4.  Scramble                       (1982) º\necho                 º   5.  Solar Quest                    (1982) º\necho                 º   6.  Star Trek                      (1982) º\necho                 º   7.  Polar Rescue                   (1983) º\necho                 º   8.  Pole Position                  (1983) º\necho                 º   9.  Spike                          (1983) º\necho                 º  10.  Star Castle                    (1983) º\necho                 º                                             º\necho                 º  11.  Mine Storm (built-in)                 º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -838,47 +838,47 @@ var fs = [
                         data: 'minestrm\n',
                       },
                       {
-                        name: 'starcasl.bat',
+                        name: 'starcasl.exe',
                         link: '../systems/jsvecx/play.html?game=starcasl',
                       },
                       {
-                        name: 'berzerk.bat',
+                        name: 'berzerk.exe',
                         link: '../systems/jsvecx/play.html?game=berzerk',
                       },
                       {
-                        name: 'cosmicch.bat',
+                        name: 'cosmicch.exe',
                         link: '../systems/jsvecx/play.html?game=cosmicch',
                       },
                       {
-                        name: 'polepos.bat',
+                        name: 'polepos.exe',
                         link: '../systems/jsvecx/play.html?game=polepos',
                       },
                       {
-                        name: 'polarrsc.bat',
+                        name: 'polarrsc.exe',
                         link: '../systems/jsvecx/play.html?game=polarrsc',
                       },
                       {
-                        name: 'spike.bat',
+                        name: 'spike.exe',
                         link: '../systems/jsvecx/play.html?game=spike',
                       },
                       {
-                        name: 'startrek.bat',
+                        name: 'startrek.exe',
                         link: '../systems/jsvecx/play.html?game=startrek',
                       },
                       {
-                        name: 'solarqst.bat',
+                        name: 'solarqst.exe',
                         link: '../systems/jsvecx/play.html?game=solarqst',
                       },
                       {
-                        name: 'ripoff.bat',
+                        name: 'ripoff.exe',
                         link: '../systems/jsvecx/play.html?game=ripoff',
                       },
                       {
-                        name: 'scramble.bat',
+                        name: 'scramble.exe',
                         link: '../systems/jsvecx/play.html?game=scramble',
                       },
                       {
-                        name: 'minestrm.bat',
+                        name: 'minestrm.exe',
                         link: '../systems/jsvecx/play.html?game=minestrm',
                       },
                     ],
@@ -887,7 +887,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncd games\nmenu\n',
+                                data: 'echo off\ncd games\nmenu\n',
                   },
                 ],
               },
@@ -895,7 +895,7 @@ var fs = [
             files: [
               {
                 name: 'menu.bat',
-                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              CONSOLE  SYSTEMS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Atari                (1977)  ATARI    º\necho                 º   2.  ColecoVision         (1982)  CVISION  º\necho                 º   3.  Intellivision        (1979)  INTV     º\necho                 º   4.  NES                  (1985)  NES      º\necho                 º   5.  Odysseyý             (1978)  ODYSSEY2 º\necho                 º   6.  Sega Master System   (1986)  SMS      º\necho                 º   7.  Vectrex              (1982)  VECTREX  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              CONSOLE  SYSTEMS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Atari                          (1977) º\necho                 º   2.  ColecoVision                   (1982) º\necho                 º   3.  Intellivision                  (1979) º\necho                 º   4.  NES                            (1985) º\necho                 º   5.  Odysseyý                       (1978) º\necho                 º   6.  Sega Master System             (1986) º\necho                 º   7.  Vectrex                        (1982) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
               },
               {
                 name: '1.bat',
@@ -949,7 +949,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              BBC  MICRO  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Snapper              (1982)  SNAPPER  º\necho                 º   2.  Chuckie Egg          (1983)  CHUCKEGG º\necho                 º   3.  Elite                (1984)  ELITE    º\necho                 º   4.  Frak!                (1984)  FRAK     º\necho                 º   5.  Repton               (1985)  REPTON   º\necho                 º   6.  Castle Quest         (1985)  CASTLEQ  º\necho                 º   7.  Jet Set Willy        (1986)  JETWILLY º\necho                 º   8.  Thrust               (1986)  THRUST   º\necho                 º   9.  Firetrack            (1987)  FIRETRAK º\necho                 º  10.  Exile                (1988)  EXILE    º\necho                 º                                             º\necho                 º  11.  BASIC system prompt          PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              BBC  MICRO  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Snapper                        (1982) º\necho                 º   2.  Chuckie Egg                    (1983) º\necho                 º   3.  Elite                          (1984) º\necho                 º   4.  Frak!                          (1984) º\necho                 º   5.  Repton                         (1985) º\necho                 º   6.  Castle Quest                   (1985) º\necho                 º   7.  Jet Set Willy                  (1986) º\necho                 º   8.  Thrust                         (1986) º\necho                 º   9.  Firetrack                      (1987) º\necho                 º  10.  Exile                          (1988) º\necho                 º                                             º\necho                 º  11.  BASIC system prompt                   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1000,47 +1000,47 @@ var fs = [
                             data: 'prompt\n',
                           },
                           {
-                            name: 'elite.bat',
+                            name: 'elite.exe',
                             link: '../systems/bbcmicro/dist/?disc1=Acornsoft/Elite.ssd&autoboot&GP.A=A&GP.RB=SPACE&GP.LB=SLASH&GP.D12=S&GP.D13=X&GP.D14=COMMA&GP.D15=PERIOD',
                           },
                           {
-                            name: 'chuckegg.bat',
+                            name: 'chuckegg.exe',
                             link: '../systems/bbcmicro/dist/?disc1=AnF/ChuckieEgg.ssd&autoboot&GP.FIRE=SPACE&GP.D12=A&GP.D13=Z&GP.D14=COMMA&GP.D15=PERIOD',
                           },
                           {
-                            name: 'repton.bat',
+                            name: 'repton.exe',
                             link: '../systems/bbcmicro/dist/?disc1=Superior/Repton.ssd&autoboot',
                           },
                           {
-                            name: 'castleq.bat',
+                            name: 'castleq.exe',
                             link: '../systems/bbcmicro/dist/?disc1=Micropower/CastleQuest.ssd&autoboot',
                           },
                           {
-                            name: 'jetwilly.bat',
+                            name: 'jetwilly.exe',
                             link: '../systems/bbcmicro/dist/?disc1=Tynesoft/JetSetWilly.ssd&autoboot',
                           },
                           {
-                            name: 'frak.bat',
+                            name: 'frak.exe',
                             link: '../systems/bbcmicro/dist/?disc1=Aardvark/Frak.ssd&autoboot',
                           },
                           {
-                            name: 'exile.bat',
+                            name: 'exile.exe',
                             link: '../systems/bbcmicro/dist/?disc1=Superior/Exile.ssd&autoboot',
                           },
                           {
-                            name: 'thrust.bat',
+                            name: 'thrust.exe',
                             link: '../systems/bbcmicro/dist/?disc1=Superior/Thrust.ssd&autoboot&GP.D14=CAPSLOCK&GP.D15=CTRL&GP.D12=SHIFT&GP.B=SPACE',
                           },
                           {
-                            name: 'snapper.bat',
+                            name: 'snapper.exe',
                             link: '../systems/bbcmicro/dist/?disc1=Acornsoft/Snapper-v1-alt.ssd&autoboot',
                           },
                           {
-                            name: 'firetrak.bat',
+                            name: 'firetrak.exe',
                             link: '../systems/bbcmicro/dist/?disc1=ElectricDreams/Firetrack.ssd&autoboot',
                           },
                           {
-                            name: 'prompt.bat',
+                            name: 'prompt.exe',
                             link: '../systems/bbcmicro/dist/?disc1=blank.ssd',
                           },
                         ],
@@ -1049,7 +1049,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -1062,7 +1062,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           ACORN  ELECTRON  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Cybertron Mission    (1983)  CYBRTRON º\necho                 º   2.  Snapper              (1983)  SNAPPER  º\necho                 º   3.  Starship Command     (1983)  STARSHIP º\necho                 º   4.  Boxer                (1984)  BOXER    º\necho                 º   5.  Citadel              (1985)  CITADEL  º\necho                 º   6.  Elite                (1985)  ELITE    º\necho                 º                                             º\necho                 º   7.  Electron BASIC prompt       BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           ACORN  ELECTRON  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Cybertron Mission              (1983) º\necho                 º   2.  Snapper                        (1983) º\necho                 º   3.  Starship Command               (1983) º\necho                 º   4.  Boxer                          (1984) º\necho                 º   5.  Citadel                        (1985) º\necho                 º   6.  Elite                          (1985) º\necho                 º                                             º\necho                 º   7.  Electron BASIC prompt                 º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1097,31 +1097,31 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'snapper.bat',
+                            name: 'snapper.exe',
                             link: '../systems/electron/play.html?game=snapper',
                           },
                           {
-                            name: 'citadel.bat',
+                            name: 'citadel.exe',
                             link: '../systems/electron/play.html?game=citadel',
                           },
                           {
-                            name: 'starship.bat',
+                            name: 'starship.exe',
                             link: '../systems/electron/play.html?game=starship',
                           },
                           {
-                            name: 'boxer.bat',
+                            name: 'boxer.exe',
                             link: '../systems/electron/play.html?game=boxer',
                           },
                           {
-                            name: 'cybrtron.bat',
+                            name: 'cybrtron.exe',
                             link: '../systems/electron/play.html?game=cybertron',
                           },
                           {
-                            name: 'elite.bat',
+                            name: 'elite.exe',
                             link: '../systems/electron/play.html?game=elite',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/electron/play.html',
                           },
                         ],
@@ -1130,7 +1130,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -1143,7 +1143,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           MASTER-ENHANCED  TITLES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Commando             (1985)  COMMANDO º\necho                 º   2.  Galaforce            (1986)  GALFORCE º\necho                 º   3.  Elite                (1986)  ELITE    º\necho                 º   4.  Crazee Rider         (1987)  CRAZEE   º\necho                 º   5.  Bonecruncher         (1987)  BONECRUN º\necho                 º   6.  Palace of Magic      (1987)  PALACE   º\necho                 º   7.  Fair or Foul         (1988)  BFMOF    º\necho                 º   8.  Ballistix            (1989)  BALLISTX º\necho                 º   9.  Holed Out            (1989)  HOLEDOUT º\necho                 º  10.  Nevryon              (1990)  NEVRYON  º\necho                 º                                             º\necho                 º  11.  BBC BASIC prompt            PROMPT    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           MASTER-ENHANCED  TITLES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Commando                       (1985) º\necho                 º   2.  Galaforce                      (1986) º\necho                 º   3.  Elite                          (1986) º\necho                 º   4.  Crazee Rider                   (1987) º\necho                 º   5.  Bonecruncher                   (1987) º\necho                 º   6.  Palace of Magic                (1987) º\necho                 º   7.  Fair or Foul                   (1988) º\necho                 º   8.  Ballistix                      (1989) º\necho                 º   9.  Holed Out                      (1989) º\necho                 º  10.  Nevryon                        (1990) º\necho                 º                                             º\necho                 º  11.  BBC BASIC prompt                      º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1194,47 +1194,47 @@ var fs = [
                             data: 'prompt\n',
                           },
                           {
-                            name: 'elite.bat',
+                            name: 'elite.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Acornsoft/EliteMaster.dsd&autoboot',
                           },
                           {
-                            name: 'nevryon.bat',
+                            name: 'nevryon.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=4thDimension/Nevryon.ssd&autoboot',
                           },
                           {
-                            name: 'galforce.bat',
+                            name: 'galforce.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/Galaforce.ssd&autoboot',
                           },
                           {
-                            name: 'palace.bat',
+                            name: 'palace.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/PalaceOfMagic.ssd&autoboot',
                           },
                           {
-                            name: 'bonecrun.bat',
+                            name: 'bonecrun.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/BoneCruncher.ssd&autoboot',
                           },
                           {
-                            name: 'crazee.bat',
+                            name: 'crazee.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/CrazeeRider.ssd&autoboot',
                           },
                           {
-                            name: 'commando.bat',
+                            name: 'commando.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Elite/Commando.ssd&autoboot',
                           },
                           {
-                            name: 'bfmof.bat',
+                            name: 'bfmof.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/ByFairMeansOrFoul.ssd&autoboot',
                           },
                           {
-                            name: 'holedout.bat',
+                            name: 'holedout.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=4thDimension/HoledOut.ssd&autoboot',
                           },
                           {
-                            name: 'ballistx.bat',
+                            name: 'ballistx.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=Superior/Ballistix.ssd&autoboot',
                           },
                           {
-                            name: 'prompt.bat',
+                            name: 'prompt.exe',
                             link: '../systems/bbcmaster/dist/?model=Master&disc1=blank.ssd',
                           },
                         ],
@@ -1243,7 +1243,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -1251,7 +1251,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              ACORN  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  BBC Micro            (1981)  BBC      º\necho                 º                                             º\necho                 º   2.  Acorn Electron       (1983)  ELECTRON º\necho                 º                                             º\necho                 º   3.  BBC Master           (1986)  MASTER   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              ACORN  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  BBC Micro                      (1981) º\necho                 º                                             º\necho                 º   2.  Acorn Electron                 (1983) º\necho                 º                                             º\necho                 º   3.  BBC Master                     (1986) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -1285,7 +1285,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               APPLE  I  GAMES               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Game of Life         (1970)  LIFE     º\necho                 º   2.  Hamurabi             (1971)  HAMURABI º\necho                 º   3.  Hunt the Wumpus      (1973)  WUMPUS   º\necho                 º   4.  Blackjack            (1976)  BLACKJK  º\necho                 º   5.  Microchess           (1976)  CHESS    º\necho                 º   6.  Lunar Lander         (1976)  LUNAR    º\necho                 º   7.  Star Trek            (1977)  STARTREK º\necho                 º   8.  Checkers             (1978)  CHECKERS º\necho                 º   9.  Apple 30th Anniv.    (2006)  APPLE30  º\necho                 º  10.  15 Puzzle            (2020)  PUZZLE15 º\necho                 º                                             º\necho                 º  11.  Woz Monitor prompt          PROMPT    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               APPLE  I  GAMES               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Game of Life                   (1970) º\necho                 º   2.  Hamurabi                       (1971) º\necho                 º   3.  Hunt the Wumpus                (1973) º\necho                 º   4.  Blackjack                      (1976) º\necho                 º   5.  Microchess                     (1976) º\necho                 º   6.  Lunar Lander                   (1976) º\necho                 º   7.  Star Trek                      (1977) º\necho                 º   8.  Checkers                       (1978) º\necho                 º   9.  Apple 30th Anniv.              (2006) º\necho                 º  10.  15 Puzzle                      (2020) º\necho                 º                                             º\necho                 º  11.  Woz Monitor prompt                    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1336,47 +1336,47 @@ var fs = [
                             data: 'prompt\n',
                           },
                           {
-                            name: 'startrek.bat',
+                            name: 'startrek.exe',
                             link: '../systems/apple1/play.html?tape=startrek',
                           },
                           {
-                            name: 'blackjk.bat',
+                            name: 'blackjk.exe',
                             link: '../systems/apple1/play.html?tape=blackjack',
                           },
                           {
-                            name: 'chess.bat',
+                            name: 'chess.exe',
                             link: '../systems/apple1/play.html?tape=chess',
                           },
                           {
-                            name: 'hamurabi.bat',
+                            name: 'hamurabi.exe',
                             link: '../systems/apple1/play.html?tape=hamurabi',
                           },
                           {
-                            name: 'lunar.bat',
+                            name: 'lunar.exe',
                             link: '../systems/apple1/play.html?tape=lunar',
                           },
                           {
-                            name: 'wumpus.bat',
+                            name: 'wumpus.exe',
                             link: '../systems/apple1/play.html?tape=wumpus',
                           },
                           {
-                            name: 'checkers.bat',
+                            name: 'checkers.exe',
                             link: '../systems/apple1/play.html?tape=checkers',
                           },
                           {
-                            name: 'puzzle15.bat',
+                            name: 'puzzle15.exe',
                             link: '../systems/apple1/play.html?tape=puzzle15',
                           },
                           {
-                            name: 'life.bat',
+                            name: 'life.exe',
                             link: '../systems/apple1/play.html?tape=life',
                           },
                           {
-                            name: 'apple30.bat',
+                            name: 'apple30.exe',
                             link: '../systems/apple1/play.html?tape=apple30',
                           },
                           {
-                            name: 'prompt.bat',
+                            name: 'prompt.exe',
                             link: '../systems/apple1/play.html',
                           },
                         ],
@@ -1385,7 +1385,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -1398,7 +1398,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              APPLE  ][  GAMES               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Lemonade Stand       (1979)  LEMONADE º\necho                 º   2.  Castle Wolfenstein   (1981)  WOLF     º\necho                 º   3.  Choplifter           (1982)  CHOPLIFT º\necho                 º   4.  Aztec                (1982)  AZTEC    º\necho                 º   5.  Lode Runner          (1983)  LODERUN  º\necho                 º   6.  Sammy Lightfoot      (1983)  SAMMY    º\necho                 º   7.  Hard Hat Mack        (1983)  HARDHAT  º\necho                 º   8.  Archon               (1984)  ARCHON   º\necho                 º   9.  Karateka             (1984)  KARATEKA º\necho                 º  10.  The Oregon Trail     (1985)  OREGON   º\necho                 º                                             º\necho                 º  11.  Applesoft BASIC              BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              APPLE  ][  GAMES               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Lemonade Stand                 (1979) º\necho                 º   2.  Castle Wolfenstein             (1981) º\necho                 º   3.  Choplifter                     (1982) º\necho                 º   4.  Aztec                          (1982) º\necho                 º   5.  Lode Runner                    (1983) º\necho                 º   6.  Sammy Lightfoot                (1983) º\necho                 º   7.  Hard Hat Mack                  (1983) º\necho                 º   8.  Archon                         (1984) º\necho                 º   9.  Karateka                       (1984) º\necho                 º  10.  The Oregon Trail               (1985) º\necho                 º                                             º\necho                 º  11.  Applesoft BASIC                       º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1449,47 +1449,47 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'archon.bat',
+                            name: 'archon.exe',
                             link: '../systems/apple2/play.html?game=archon',
                           },
                           {
-                            name: 'lemonade.bat',
+                            name: 'lemonade.exe',
                             link: '../systems/apple2/play.html?game=lemonade',
                           },
                           {
-                            name: 'wolf.bat',
+                            name: 'wolf.exe',
                             link: '../systems/apple2/play.html?game=wolf',
                           },
                           {
-                            name: 'choplift.bat',
+                            name: 'choplift.exe',
                             link: '../systems/apple2/play.html?game=choplift',
                           },
                           {
-                            name: 'aztec.bat',
+                            name: 'aztec.exe',
                             link: '../systems/apple2/play.html?game=aztec',
                           },
                           {
-                            name: 'loderun.bat',
+                            name: 'loderun.exe',
                             link: '../systems/apple2/play.html?game=loderun',
                           },
                           {
-                            name: 'sammy.bat',
+                            name: 'sammy.exe',
                             link: '../systems/apple2/play.html?game=sammy',
                           },
                           {
-                            name: 'hardhat.bat',
+                            name: 'hardhat.exe',
                             link: '../systems/apple2/play.html?game=hardhat',
                           },
                           {
-                            name: 'karateka.bat',
+                            name: 'karateka.exe',
                             link: '../systems/apple2/play.html?game=karateka',
                           },
                           {
-                            name: 'oregon.bat',
+                            name: 'oregon.exe',
                             link: '../systems/apple2/play.html?game=oregon',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/apple2/play.html',
                           },
                         ],
@@ -1498,7 +1498,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -1506,7 +1506,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              APPLE  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Apple I              (1976)  APPLE1   º\necho                 º                                             º\necho                 º   2.  Apple ][             (1977)  APPLEII  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              APPLE  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Apple I                        (1976) º\necho                 º                                             º\necho                 º   2.  Apple ][                       (1977) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -1536,7 +1536,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  PET  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Star Trek            (1977)  STARTREK º\necho                 º   2.  Adventureland        (1979)  ADVLAND  º\necho                 º   3.  Android NIM          (1979)  ANDNIM   º\necho                 º   4.  Lunar Lander         (1979)  LUNAR    º\necho                 º   5.  Hangman              (1980)  HANGMAN  º\necho                 º   6.  Space Invaders       (1980)  INVADER  º\necho                 º   7.  ComputerSpace 2001   (1981)  CS2001   º\necho                 º   8.  Crazy Balloon        (1981)  CRZBALLN º\necho                 º   9.  Frogger              (1981)  FROGGER  º\necho                 º  10.  Pac-Man              (1982)  PACMAN   º\necho                 º                                             º\necho                 º  11.  BASIC 2 prompt              BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  PET  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Star Trek                      (1977) º\necho                 º   2.  Adventureland                  (1979) º\necho                 º   3.  Android NIM                    (1979) º\necho                 º   4.  Lunar Lander                   (1979) º\necho                 º   5.  Hangman                        (1980) º\necho                 º   6.  Space Invaders                 (1980) º\necho                 º   7.  ComputerSpace 2001             (1981) º\necho                 º   8.  Crazy Balloon                  (1981) º\necho                 º   9.  Frogger                        (1981) º\necho                 º  10.  Pac-Man                        (1982) º\necho                 º                                             º\necho                 º  11.  BASIC 2 prompt                        º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1587,47 +1587,47 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'startrek.bat',
+                            name: 'startrek.exe',
                             link: '../systems/pet/play.html?game=startrek',
                           },
                           {
-                            name: 'andnim.bat',
+                            name: 'andnim.exe',
                             link: '../systems/pet/play.html?game=andnim',
                           },
                           {
-                            name: 'lunar.bat',
+                            name: 'lunar.exe',
                             link: '../systems/pet/play.html?game=lunar',
                           },
                           {
-                            name: 'advland.bat',
+                            name: 'advland.exe',
                             link: '../systems/pet/play.html?game=advland',
                           },
                           {
-                            name: 'hangman.bat',
+                            name: 'hangman.exe',
                             link: '../systems/pet/play.html?game=hangman',
                           },
                           {
-                            name: 'invader.bat',
+                            name: 'invader.exe',
                             link: '../systems/pet/play.html?game=invader',
                           },
                           {
-                            name: 'crzballn.bat',
+                            name: 'crzballn.exe',
                             link: '../systems/pet/play.html?game=crzballn',
                           },
                           {
-                            name: 'cs2001.bat',
+                            name: 'cs2001.exe',
                             link: '../systems/pet/play.html?game=cs2001',
                           },
                           {
-                            name: 'frogger.bat',
+                            name: 'frogger.exe',
                             link: '../systems/pet/play.html?game=frogger',
                           },
                           {
-                            name: 'pacman.bat',
+                            name: 'pacman.exe',
                             link: '../systems/pet/play.html?game=pacman',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/pet/play.html?game=basic',
                           },
                         ],
@@ -1636,7 +1636,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -1649,7 +1649,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          COMMODORE  VIC-20  GAMES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Avenger              (1981)  AVENGER  º\necho                 º   2.  Radar Rat Race       (1981)  RATRACE  º\necho                 º   3.  Choplifter           (1982)  CHOPPER  º\necho                 º   4.  Gorf                 (1982)  GORF     º\necho                 º   5.  Gridrunner           (1982)  GRIDRUN  º\necho                 º   6.  Omega Race           (1982)  OMEGA    º\necho                 º   7.  Atlantis             (1983)  ATLANTIS º\necho                 º   8.  Demon Attack         (1983)  DEMONATK º\necho                 º   9.  Frogger              (1983)  FROGGER  º\necho                 º  10.  Pac-Man              (1983)  PACMAN   º\necho                 º                                             º\necho                 º  11.  BASIC prompt                BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          COMMODORE  VIC-20  GAMES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Avenger                        (1981) º\necho                 º   2.  Radar Rat Race                 (1981) º\necho                 º   3.  Choplifter                     (1982) º\necho                 º   4.  Gorf                           (1982) º\necho                 º   5.  Gridrunner                     (1982) º\necho                 º   6.  Omega Race                     (1982) º\necho                 º   7.  Atlantis                       (1983) º\necho                 º   8.  Demon Attack                   (1983) º\necho                 º   9.  Frogger                        (1983) º\necho                 º  10.  Pac-Man                        (1983) º\necho                 º                                             º\necho                 º  11.  BASIC prompt                          º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1700,47 +1700,47 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'avenger.bat',
+                            name: 'avenger.exe',
                             link: '../systems/vic20/play.html?game=avenger',
                           },
                           {
-                            name: 'ratrace.bat',
+                            name: 'ratrace.exe',
                             link: '../systems/vic20/play.html?game=ratrace',
                           },
                           {
-                            name: 'gorf.bat',
+                            name: 'gorf.exe',
                             link: '../systems/vic20/play.html?game=gorf',
                           },
                           {
-                            name: 'omega.bat',
+                            name: 'omega.exe',
                             link: '../systems/vic20/play.html?game=omega',
                           },
                           {
-                            name: 'chopper.bat',
+                            name: 'chopper.exe',
                             link: '../systems/vic20/play.html?game=chopper',
                           },
                           {
-                            name: 'gridrun.bat',
+                            name: 'gridrun.exe',
                             link: '../systems/vic20/play.html?game=gridrun',
                           },
                           {
-                            name: 'frogger.bat',
+                            name: 'frogger.exe',
                             link: '../systems/vic20/play.html?game=frogger',
                           },
                           {
-                            name: 'pacman.bat',
+                            name: 'pacman.exe',
                             link: '../systems/vic20/play.html?game=pacman',
                           },
                           {
-                            name: 'atlantis.bat',
+                            name: 'atlantis.exe',
                             link: '../systems/vic20/play.html?game=atlantis',
                           },
                           {
-                            name: 'demonatk.bat',
+                            name: 'demonatk.exe',
                             link: '../systems/vic20/play.html?game=demonatk',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/vic20/play.html?game=basic',
                           },
                         ],
@@ -1749,7 +1749,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -1762,7 +1762,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º       COMMODORE  MAX  MACHINE  GAMES        º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Clowns               (1982)  CLOWNS   º\necho                 º   2.  Jupiter Lander       (1982)  JUPITER  º\necho                 º   3.  Mole Attack          (1982)  MOLATAK  º\necho                 º   4.  Money Wars           (1982)  MONYWARS º\necho                 º   5.  Omega Race           (1982)  OMEGRACE º\necho                 º   6.  Radar Rat Race       (1982)  RRR      º\necho                 º   7.  Slalom               (1982)  SLALOM   º\necho                 º   8.  Speed/Bingo Math     (1982)  SPEEDMTH º\necho                 º   9.  Billiards            (1983)  BILLIARD º\necho                 º  10.  Pinball Spectacular  (1983)  PINBALL  º\necho                 º                                             º\necho                 º  11.  MAX BASIC cartridge         BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º       COMMODORE  MAX  MACHINE  GAMES        º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Clowns                         (1982) º\necho                 º   2.  Jupiter Lander                 (1982) º\necho                 º   3.  Mole Attack                    (1982) º\necho                 º   4.  Money Wars                     (1982) º\necho                 º   5.  Omega Race                     (1982) º\necho                 º   6.  Radar Rat Race                 (1982) º\necho                 º   7.  Slalom                         (1982) º\necho                 º   8.  Speed/Bingo Math               (1982) º\necho                 º   9.  Billiards                      (1983) º\necho                 º  10.  Pinball Spectacular            (1983) º\necho                 º                                             º\necho                 º  11.  MAX BASIC cartridge                   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1813,47 +1813,47 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'clowns.bat',
+                            name: 'clowns.exe',
                             link: '../systems/max/play.html?game=clowns',
                           },
                           {
-                            name: 'omegrace.bat',
+                            name: 'omegrace.exe',
                             link: '../systems/max/play.html?game=omegrace',
                           },
                           {
-                            name: 'rrr.bat',
+                            name: 'rrr.exe',
                             link: '../systems/max/play.html?game=rrr',
                           },
                           {
-                            name: 'jupiter.bat',
+                            name: 'jupiter.exe',
                             link: '../systems/max/play.html?game=jupiter',
                           },
                           {
-                            name: 'molatak.bat',
+                            name: 'molatak.exe',
                             link: '../systems/max/play.html?game=molatak',
                           },
                           {
-                            name: 'monywars.bat',
+                            name: 'monywars.exe',
                             link: '../systems/max/play.html?game=monywars',
                           },
                           {
-                            name: 'speedmth.bat',
+                            name: 'speedmth.exe',
                             link: '../systems/max/play.html?game=speedmth',
                           },
                           {
-                            name: 'slalom.bat',
+                            name: 'slalom.exe',
                             link: '../systems/max/play.html?game=slalom',
                           },
                           {
-                            name: 'billiard.bat',
+                            name: 'billiard.exe',
                             link: '../systems/max/play.html?game=billiard',
                           },
                           {
-                            name: 'pinball.bat',
+                            name: 'pinball.exe',
                             link: '../systems/max/play.html?game=pinball',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/max/play.html?game=basic',
                           },
                         ],
@@ -1862,7 +1862,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -1875,7 +1875,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  64  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Beach Head           (1983)  BEACHHD  º\necho                 º   2.  Forbidden Forest     (1983)  FORBFRST º\necho                 º   3.  Boulder Dash         (1984)  BOULDER  º\necho                 º   4.  Impossible Mission   (1984)  IMPMISS  º\necho                 º   5.  Elite                (1985)  ELITE    º\necho                 º   6.  Ghosts 'n Goblins    (1986)  GHOSTS   º\necho                 º   7.  Uridium              (1986)  URIDIUM  º\necho                 º   8.  The Last Ninja       (1987)  LASTNINJ º\necho                 º   9.  Wizball              (1987)  WIZBALL  º\necho                 º  10.  PETSCII Robots       (2021)  PETROBOT º\necho                 º                                             º\necho                 º  11.  BASIC prompt                BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  64  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Beach Head                     (1983) º\necho                 º   2.  Forbidden Forest               (1983) º\necho                 º   3.  Boulder Dash                   (1984) º\necho                 º   4.  Impossible Mission             (1984) º\necho                 º   5.  Elite                          (1985) º\necho                 º   6.  Ghosts \'n Goblins              (1986) º\necho                 º   7.  Uridium                        (1986) º\necho                 º   8.  The Last Ninja                 (1987) º\necho                 º   9.  Wizball                        (1987) º\necho                 º  10.  PETSCII Robots                 (2021) º\necho                 º                                             º\necho                 º  11.  BASIC prompt                          º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                           },
                           {
                             name: '0.bat',
@@ -1926,47 +1926,47 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'lastninj.bat',
+                            name: 'lastninj.exe',
                             link: '../systems/c64/play.html?game=lastninja',
                           },
                           {
-                            name: 'impmiss.bat',
+                            name: 'impmiss.exe',
                             link: '../systems/c64/play.html?game=impmiss',
                           },
                           {
-                            name: 'wizball.bat',
+                            name: 'wizball.exe',
                             link: '../systems/c64/play.html?game=wizball',
                           },
                           {
-                            name: 'elite.bat',
+                            name: 'elite.exe',
                             link: '../systems/c64/play.html?game=elite',
                           },
                           {
-                            name: 'uridium.bat',
+                            name: 'uridium.exe',
                             link: '../systems/c64/play.html?game=uridium',
                           },
                           {
-                            name: 'beachhd.bat',
+                            name: 'beachhd.exe',
                             link: '../systems/c64/play.html?game=beachhd',
                           },
                           {
-                            name: 'boulder.bat',
+                            name: 'boulder.exe',
                             link: '../systems/c64/play.html?game=boulder',
                           },
                           {
-                            name: 'forbfrst.bat',
+                            name: 'forbfrst.exe',
                             link: '../systems/c64/play.html?game=forbfrst',
                           },
                           {
-                            name: 'ghosts.bat',
+                            name: 'ghosts.exe',
                             link: '../systems/c64/play.html?game=ghosts',
                           },
                           {
-                            name: 'petrobot.bat',
+                            name: 'petrobot.exe',
                             link: '../systems/c64/play.html?game=petrobot',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/c64/play.html?game=basic',
                           },
                         ],
@@ -1975,7 +1975,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -1988,7 +1988,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  C16  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Fire Ant             (1984)  FIREANT  º\necho                 º   2.  Skramble             (1984)  SKRAMBLE º\necho                 º   3.  Tower of Evil        (1984)  TOWREVIL º\necho                 º   4.  Xargon Wars          (1984)  XARGON   º\necho                 º   5.  Berks                (1985)  BERKS    º\necho                 º   6.  Big Mac              (1985)  BIGMAC   º\necho                 º   7.  Hustler              (1985)  HUSTLER  º\necho                 º   8.  Tom Thumb            (1985)  TOMTHUMB º\necho                 º   9.  Tutti Frutti         (1985)  TUTTIFRT º\necho                 º  10.  Mr. Puniverse        (1986)  PUNIVRSE º\necho                 º                                             º\necho                 º  11.  BASIC 3.5 prompt            BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  C16  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Fire Ant                       (1984) º\necho                 º   2.  Skramble                       (1984) º\necho                 º   3.  Tower of Evil                  (1984) º\necho                 º   4.  Xargon Wars                    (1984) º\necho                 º   5.  Berks                          (1985) º\necho                 º   6.  Big Mac                        (1985) º\necho                 º   7.  Hustler                        (1985) º\necho                 º   8.  Tom Thumb                      (1985) º\necho                 º   9.  Tutti Frutti                   (1985) º\necho                 º  10.  Mr. Puniverse                  (1986) º\necho                 º                                             º\necho                 º  11.  BASIC 3.5 prompt                      º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2039,47 +2039,47 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'fireant.bat',
+                            name: 'fireant.exe',
                             link: '../systems/c16/play.html?game=fireant',
                           },
                           {
-                            name: 'skramble.bat',
+                            name: 'skramble.exe',
                             link: '../systems/c16/play.html?game=skramble',
                           },
                           {
-                            name: 'towrevil.bat',
+                            name: 'towrevil.exe',
                             link: '../systems/c16/play.html?game=towrevil',
                           },
                           {
-                            name: 'xargon.bat',
+                            name: 'xargon.exe',
                             link: '../systems/c16/play.html?game=xargon',
                           },
                           {
-                            name: 'berks.bat',
+                            name: 'berks.exe',
                             link: '../systems/c16/play.html?game=berks',
                           },
                           {
-                            name: 'bigmac.bat',
+                            name: 'bigmac.exe',
                             link: '../systems/c16/play.html?game=bigmac',
                           },
                           {
-                            name: 'hustler.bat',
+                            name: 'hustler.exe',
                             link: '../systems/c16/play.html?game=hustler',
                           },
                           {
-                            name: 'tomthumb.bat',
+                            name: 'tomthumb.exe',
                             link: '../systems/c16/play.html?game=tomthumb',
                           },
                           {
-                            name: 'tuttifrt.bat',
+                            name: 'tuttifrt.exe',
                             link: '../systems/c16/play.html?game=tuttifrt',
                           },
                           {
-                            name: 'punivrse.bat',
+                            name: 'punivrse.exe',
                             link: '../systems/c16/play.html?game=punivrse',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/c16/play.html?game=basic',
                           },
                         ],
@@ -2088,7 +2088,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -2101,7 +2101,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          COMMODORE  PLUS/4  GAMES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Blagger              (1984)  BLAGGER  º\necho                 º   2.  Popeye               (1984)  POPEYE   º\necho                 º   3.  Citadel              (1985)  CITADEL  º\necho                 º   4.  Kikstart             (1985)  KIKSTART º\necho                 º   5.  Punchy               (1985)  PUNCHY   º\necho                 º   6.  Rockman              (1985)  ROCKMAN  º\necho                 º   7.  Saboteur             (1985)  SABOTEUR º\necho                 º   8.  Squirm               (1985)  SQUIRM   º\necho                 º   9.  Mercenary            (1986)  MERCNARY º\necho                 º  10.  Trailblazer          (1986)  TRAILBLZ º\necho                 º                                             º\necho                 º  11.  BASIC 3.5 prompt            BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          COMMODORE  PLUS/4  GAMES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Blagger                        (1984) º\necho                 º   2.  Popeye                         (1984) º\necho                 º   3.  Citadel                        (1985) º\necho                 º   4.  Kikstart                       (1985) º\necho                 º   5.  Punchy                         (1985) º\necho                 º   6.  Rockman                        (1985) º\necho                 º   7.  Saboteur                       (1985) º\necho                 º   8.  Squirm                         (1985) º\necho                 º   9.  Mercenary                      (1986) º\necho                 º  10.  Trailblazer                    (1986) º\necho                 º                                             º\necho                 º  11.  BASIC 3.5 prompt                      º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2152,47 +2152,47 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'blagger.bat',
+                            name: 'blagger.exe',
                             link: '../systems/plus4/play.html?game=blagger',
                           },
                           {
-                            name: 'popeye.bat',
+                            name: 'popeye.exe',
                             link: '../systems/plus4/play.html?game=popeye',
                           },
                           {
-                            name: 'citadel.bat',
+                            name: 'citadel.exe',
                             link: '../systems/plus4/play.html?game=citadel',
                           },
                           {
-                            name: 'kikstart.bat',
+                            name: 'kikstart.exe',
                             link: '../systems/plus4/play.html?game=kikstart',
                           },
                           {
-                            name: 'punchy.bat',
+                            name: 'punchy.exe',
                             link: '../systems/plus4/play.html?game=punchy',
                           },
                           {
-                            name: 'rockman.bat',
+                            name: 'rockman.exe',
                             link: '../systems/plus4/play.html?game=rockman',
                           },
                           {
-                            name: 'saboteur.bat',
+                            name: 'saboteur.exe',
                             link: '../systems/plus4/play.html?game=saboteur',
                           },
                           {
-                            name: 'squirm.bat',
+                            name: 'squirm.exe',
                             link: '../systems/plus4/play.html?game=squirm',
                           },
                           {
-                            name: 'mercnary.bat',
+                            name: 'mercnary.exe',
                             link: '../systems/plus4/play.html?game=mercnary',
                           },
                           {
-                            name: 'trailblz.bat',
+                            name: 'trailblz.exe',
                             link: '../systems/plus4/play.html?game=trailblz',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/plus4/play.html?game=basic',
                           },
                         ],
@@ -2201,7 +2201,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -2209,7 +2209,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  COMPUTERS             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Commodore PET        (1977)  PET      º\necho                 º   2.  Commodore VIC-20     (1980)  VIC20    º\necho                 º   3.  Commodore MAX        (1982)  MAX      º\necho                 º   4.  Commodore 64         (1982)  C64      º\necho                 º   5.  Commodore C16        (1984)  C16      º\necho                 º   6.  Commodore Plus/4     (1984)  PLUS4    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  COMPUTERS             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Commodore PET                  (1977) º\necho                 º   2.  Commodore VIC-20               (1980) º\necho                 º   3.  Commodore MAX                  (1982) º\necho                 º   4.  Commodore 64                   (1982) º\necho                 º   5.  Commodore C16                  (1984) º\necho                 º   6.  Commodore Plus/4               (1984) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -2255,7 +2255,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              ATARI  400  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Space Invaders       (1980)  INVADERS º\necho                 º   2.  Asteroids            (1981)  ASTEROID º\necho                 º   3.  Defender             (1981)  DEFENDER º\necho                 º   4.  Missile Command      (1981)  MISSILE  º\necho                 º   5.  Centipede            (1982)  CENTIPED º\necho                 º   6.  Choplifter           (1982)  CHOPLIFT º\necho                 º   7.  Pac-Man              (1982)  PACMAN   º\necho                 º   8.  Dig Dug              (1983)  DIGDUG   º\necho                 º   9.  Donkey Kong          (1983)  DKONG    º\necho                 º  10.  Joust                (1983)  JOUST    º\necho                 º                                             º\necho                 º  11.  Atari BASIC prompt           BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              ATARI  400  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Space Invaders                 (1980) º\necho                 º   2.  Asteroids                      (1981) º\necho                 º   3.  Defender                       (1981) º\necho                 º   4.  Missile Command                (1981) º\necho                 º   5.  Centipede                      (1982) º\necho                 º   6.  Choplifter                     (1982) º\necho                 º   7.  Pac-Man                        (1982) º\necho                 º   8.  Dig Dug                        (1983) º\necho                 º   9.  Donkey Kong                    (1983) º\necho                 º  10.  Joust                          (1983) º\necho                 º                                             º\necho                 º  11.  Atari BASIC prompt                    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2306,47 +2306,47 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'missile.bat',
+                            name: 'missile.exe',
                             link: '../systems/atari400/play.html?game=missile',
                           },
                           {
-                            name: 'asteroid.bat',
+                            name: 'asteroid.exe',
                             link: '../systems/atari400/play.html?game=asteroid',
                           },
                           {
-                            name: 'defender.bat',
+                            name: 'defender.exe',
                             link: '../systems/atari400/play.html?game=defender',
                           },
                           {
-                            name: 'invaders.bat',
+                            name: 'invaders.exe',
                             link: '../systems/atari400/play.html?game=invaders',
                           },
                           {
-                            name: 'pacman.bat',
+                            name: 'pacman.exe',
                             link: '../systems/atari400/play.html?game=pacman',
                           },
                           {
-                            name: 'centiped.bat',
+                            name: 'centiped.exe',
                             link: '../systems/atari400/play.html?game=centiped',
                           },
                           {
-                            name: 'choplift.bat',
+                            name: 'choplift.exe',
                             link: '../systems/atari400/play.html?game=chopliftr',
                           },
                           {
-                            name: 'dkong.bat',
+                            name: 'dkong.exe',
                             link: '../systems/atari400/play.html?game=dkong',
                           },
                           {
-                            name: 'joust.bat',
+                            name: 'joust.exe',
                             link: '../systems/atari400/play.html?game=joust',
                           },
                           {
-                            name: 'digdug.bat',
+                            name: 'digdug.exe',
                             link: '../systems/atari400/play.html?game=digdug',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/atari400/play.html?game=basic',
                           },
                         ],
@@ -2355,7 +2355,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -2368,7 +2368,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  800XL  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Star Raiders         (1979)  STARRAID º\necho                 º   2.  Eastern Front 1941   (1981)  EASTFRNT º\necho                 º   3.  Miner 2049er         (1982)  MINER2K  º\necho                 º   4.  Archon               (1983)  ARCHON   º\necho                 º   5.  M.U.L.E.             (1983)  MULE     º\necho                 º   6.  Pole Position        (1983)  POLEPOS  º\necho                 º   7.  Boulder Dash         (1984)  BOULDER  º\necho                 º   8.  Bruce Lee            (1984)  BRUCELEE º\necho                 º   9.  Ballblazer           (1985)  BALLBLZR º\necho                 º  10.  Rescue on Fractalus! (1985)  FRACTLUS º\necho                 º                                             º\necho                 º  11.  Atari BASIC prompt           BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             ATARI  800XL  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Star Raiders                   (1979) º\necho                 º   2.  Eastern Front 1941             (1981) º\necho                 º   3.  Miner 2049er                   (1982) º\necho                 º   4.  Archon                         (1983) º\necho                 º   5.  M.U.L.E.                       (1983) º\necho                 º   6.  Pole Position                  (1983) º\necho                 º   7.  Boulder Dash                   (1984) º\necho                 º   8.  Bruce Lee                      (1984) º\necho                 º   9.  Ballblazer                     (1985) º\necho                 º  10.  Rescue on Fractalus!           (1985) º\necho                 º                                             º\necho                 º  11.  Atari BASIC prompt                    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2419,47 +2419,47 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'starraid.bat',
+                            name: 'starraid.exe',
                             link: '../systems/atari800/play.html?game=starraid',
                           },
                           {
-                            name: 'mule.bat',
+                            name: 'mule.exe',
                             link: '../systems/atari800/play.html?game=mule',
                           },
                           {
-                            name: 'boulder.bat',
+                            name: 'boulder.exe',
                             link: '../systems/atari800/play.html?game=boulder',
                           },
                           {
-                            name: 'archon.bat',
+                            name: 'archon.exe',
                             link: '../systems/atari800/play.html?game=archon',
                           },
                           {
-                            name: 'ballblzr.bat',
+                            name: 'ballblzr.exe',
                             link: '../systems/atari800/play.html?game=ballblzr',
                           },
                           {
-                            name: 'fractlus.bat',
+                            name: 'fractlus.exe',
                             link: '../systems/atari800/play.html?game=fractlus',
                           },
                           {
-                            name: 'brucelee.bat',
+                            name: 'brucelee.exe',
                             link: '../systems/atari800/play.html?game=brucelee',
                           },
                           {
-                            name: 'miner2k.bat',
+                            name: 'miner2k.exe',
                             link: '../systems/atari800/play.html?game=miner2k',
                           },
                           {
-                            name: 'polepos.bat',
+                            name: 'polepos.exe',
                             link: '../systems/atari800/play.html?game=polepos',
                           },
                           {
-                            name: 'eastfrnt.bat',
+                            name: 'eastfrnt.exe',
                             link: '../systems/atari800/play.html?game=eastfrnt',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/atari800/play.html?game=basic',
                           },
                         ],
@@ -2468,7 +2468,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -2476,7 +2476,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              ATARI  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Atari 400            (1979)  400      º\necho                 º                                             º\necho                 º   2.  Atari 800XL          (1983)  800XL    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              ATARI  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Atari 400                      (1979) º\necho                 º                                             º\necho                 º   2.  Atari 800XL                    (1983) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -2506,7 +2506,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          SINCLAIR  SPECTRUM  GAMES          º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Atic Atac            (1983)  ATATAC   º\necho                 º   2.  Chuckie Egg          (1983)  CHUCKEGG º\necho                 º   3.  Manic Miner          (1983)  MANICMN  º\necho                 º   4.  Pssst                (1983)  PSSST    º\necho                 º   5.  Jet Set Willy        (1984)  JETWILLY º\necho                 º   6.  Knight Lore          (1984)  KNGTLORE º\necho                 º   7.  Sabre Wulf           (1984)  SABRWULF º\necho                 º   8.  Skool Daze           (1984)  SKOOLDZD º\necho                 º   9.  Underwurlde          (1984)  UWURLDE  º\necho                 º  10.  Dizzy                (1987)  DIZZY    º\necho                 º                                             º\necho                 º  11.  ZX BASIC prompt              BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          SINCLAIR  SPECTRUM  GAMES          º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Atic Atac                      (1983) º\necho                 º   2.  Chuckie Egg                    (1983) º\necho                 º   3.  Manic Miner                    (1983) º\necho                 º   4.  Pssst                          (1983) º\necho                 º   5.  Jet Set Willy                  (1984) º\necho                 º   6.  Knight Lore                    (1984) º\necho                 º   7.  Sabre Wulf                     (1984) º\necho                 º   8.  Skool Daze                     (1984) º\necho                 º   9.  Underwurlde                    (1984) º\necho                 º  10.  Dizzy                          (1987) º\necho                 º                                             º\necho                 º  11.  ZX BASIC prompt                       º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2557,47 +2557,47 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/jsspeccy/play.html',
                           },
                           {
-                            name: 'manicmn.bat',
+                            name: 'manicmn.exe',
                             link: '../systems/jsspeccy/play.html?game=manicmn',
                           },
                           {
-                            name: 'jetwilly.bat',
+                            name: 'jetwilly.exe',
                             link: '../systems/jsspeccy/play.html?game=jetwilly',
                           },
                           {
-                            name: 'chuckegg.bat',
+                            name: 'chuckegg.exe',
                             link: '../systems/jsspeccy/play.html?game=chuckegg',
                           },
                           {
-                            name: 'sabrwulf.bat',
+                            name: 'sabrwulf.exe',
                             link: '../systems/jsspeccy/play.html?game=sabrwulf',
                           },
                           {
-                            name: 'kngtlore.bat',
+                            name: 'kngtlore.exe',
                             link: '../systems/jsspeccy/play.html?game=kngtlore',
                           },
                           {
-                            name: 'atatac.bat',
+                            name: 'atatac.exe',
                             link: '../systems/jsspeccy/play.html?game=atatac',
                           },
                           {
-                            name: 'pssst.bat',
+                            name: 'pssst.exe',
                             link: '../systems/jsspeccy/play.html?game=pssst',
                           },
                           {
-                            name: 'uwurlde.bat',
+                            name: 'uwurlde.exe',
                             link: '../systems/jsspeccy/play.html?game=uwurlde',
                           },
                           {
-                            name: 'dizzy.bat',
+                            name: 'dizzy.exe',
                             link: '../systems/jsspeccy/play.html?game=dizzy',
                           },
                           {
-                            name: 'skooldzd.bat',
+                            name: 'skooldzd.exe',
                             link: '../systems/jsspeccy/play.html?game=skooldzd',
                           },
                         ],
@@ -2606,7 +2606,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -2622,7 +2622,7 @@ var fs = [
                             files: [
                               {
                                 name: 'menu.bat',
-                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SINCLAIR  ZX81  -  1K CHESS         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º     Choose the computer's opening move      º\necho                 º                                             º\necho                 º   1.  Queen's Pawn         (1.d4)  1KCHESSQ º\necho                 º                                             º\necho                 º   2.  King's Pawn          (1.e4)  1KCHESSK º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º         SINCLAIR  ZX81  -  1K CHESS         º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º     Choose the computer's opening move      º\necho                 º                                             º\necho                 º   1.  Queen\'s Pawn         (1.d4)           º\necho                 º                                             º\necho                 º   2.  King\'s Pawn          (1.e4)           º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                               },
                               {
                                 name: '0.bat',
@@ -2637,11 +2637,11 @@ var fs = [
                                 data: '1kchessk\n',
                               },
                               {
-                                name: '1kchessk.bat',
+                                name: '1kchessk.exe',
                                 link: '../systems/jtyone/play.html?game=1kchessk',
                               },
                               {
-                                name: '1kchessq.bat',
+                                name: '1kchessq.exe',
                                 link: '../systems/jtyone/play.html?game=1kchessq',
                               },
                             ],
@@ -2650,7 +2650,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            SINCLAIR  ZX81  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  3D Defender          (1981)  3DDEFEND º\necho                 º   2.  3D Monster Maze      (1981)  MONSTMZE º\necho                 º   3.  1K Chess             (1982)  1KCHESS  º\necho                 º   4.  Black Crystal        (1982)  BLKCRYST º\necho                 º   5.  City of Xon          (1982)  CITYXON  º\necho                 º   6.  Frogger              (1982)  FROGGER  º\necho                 º   7.  Galaxians            (1982)  GALAXIAN º\necho                 º   8.  3D Grand Prix        (1983)  GP3D     º\necho                 º   9.  Maze Death Race      (1983)  MAZERACE º\necho                 º  10.  Night Gunner         (1983)  NIGHTGUN º\necho                 º                                             º\necho                 º  11.  ZX81 BASIC prompt            BASIC    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            SINCLAIR  ZX81  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  3D Defender                    (1981) º\necho                 º   2.  3D Monster Maze                (1981) º\necho                 º   3.  1K Chess                       (1982) º\necho                 º   4.  Black Crystal                  (1982) º\necho                 º   5.  City of Xon                    (1982) º\necho                 º   6.  Frogger                        (1982) º\necho                 º   7.  Galaxians                      (1982) º\necho                 º   8.  3D Grand Prix                  (1983) º\necho                 º   9.  Maze Death Race                (1983) º\necho                 º  10.  Night Gunner                   (1983) º\necho                 º                                             º\necho                 º  11.  ZX81 BASIC prompt                     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2701,23 +2701,23 @@ var fs = [
                             data: 'basic\n',
                           },
                           {
-                            name: 'basic.bat',
+                            name: 'basic.exe',
                             link: '../systems/jtyone/play.html',
                           },
                           {
-                            name: 'monstmze.bat',
+                            name: 'monstmze.exe',
                             link: '../systems/jtyone/play.html?game=monstmze',
                           },
                           {
-                            name: '3ddefend.bat',
+                            name: '3ddefend.exe',
                             link: '../systems/jtyone/play.html?game=3ddefend',
                           },
                           {
-                            name: 'nightgun.bat',
+                            name: 'nightgun.exe',
                             link: '../systems/jtyone/play.html?game=nightgun',
                           },
                           {
-                            name: 'galaxian.bat',
+                            name: 'galaxian.exe',
                             link: '../systems/jtyone/play.html?game=galaxian',
                           },
                           {
@@ -2725,23 +2725,23 @@ var fs = [
                             data: 'echo off\ncd 1kchess\nmenu\n',
                           },
                           {
-                            name: 'frogger.bat',
+                            name: 'frogger.exe',
                             link: '../systems/jtyone/play.html?game=frogger',
                           },
                           {
-                            name: 'cityxon.bat',
+                            name: 'cityxon.exe',
                             link: '../systems/jtyone/play.html?game=cityxon',
                           },
                           {
-                            name: 'blkcryst.bat',
+                            name: 'blkcryst.exe',
                             link: '../systems/jtyone/play.html?game=blkcryst',
                           },
                           {
-                            name: 'gp3d.bat',
+                            name: 'gp3d.exe',
                             link: '../systems/jtyone/play.html?game=gp3d',
                           },
                           {
-                            name: 'mazerace.bat',
+                            name: 'mazerace.exe',
                             link: '../systems/jtyone/play.html?game=mazerace',
                           },
                         ],
@@ -2750,7 +2750,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -2758,7 +2758,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             SINCLAIR  COMPUTERS             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Sinclair ZX81        (1981)  ZX81     º\necho                 º                                             º\necho                 º   2.  Sinclair Spectrum    (1982)  SPECTRUM º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             SINCLAIR  COMPUTERS             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Sinclair ZX81                  (1981) º\necho                 º                                             º\necho                 º   2.  Sinclair Spectrum              (1982) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -2783,7 +2783,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             AMSTRAD  CPC  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bruce Lee            (1984)  BRUCE    º\necho                 º   2.  Roland on the Run    (1984)  ROLAND   º\necho                 º   3.  3D Starstrike        (1985)  STARSTRK º\necho                 º   4.  Tau Ceti             (1986)  TAUCETI  º\necho                 º   5.  The Eidolon          (1986)  EIDOLON  º\necho                 º   6.  R-Type               (1988)  RTYPE    º\necho                 º   7.  Chase H.Q.           (1989)  CHASEHQ  º\necho                 º   8.  Rick Dangerous       (1989)  RICK     º\necho                 º   9.  Prince of Persia     (1990)  PRINCE   º\necho                 º  10.  3D Construction Kit  (1991)  3DKIT    º\necho                 º                                             º\necho                 º  11.  Locomotive BASIC prompt     BASIC     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             AMSTRAD  CPC  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bruce Lee                      (1984) º\necho                 º   2.  Roland on the Run              (1984) º\necho                 º   3.  3D Starstrike                  (1985) º\necho                 º   4.  Tau Ceti                       (1986) º\necho                 º   5.  The Eidolon                    (1986) º\necho                 º   6.  R-Type                         (1988) º\necho                 º   7.  Chase H.Q.                     (1989) º\necho                 º   8.  Rick Dangerous                 (1989) º\necho                 º   9.  Prince of Persia               (1990) º\necho                 º  10.  3D Construction Kit            (1991) º\necho                 º                                             º\necho                 º  11.  Locomotive BASIC prompt               º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -2834,47 +2834,47 @@ var fs = [
                         data: 'basic\n',
                       },
                       {
-                        name: 'basic.bat',
+                        name: 'basic.exe',
                         link: '../systems/cpc/play.html',
                       },
                       {
-                        name: '3dkit.bat',
+                        name: '3dkit.exe',
                         link: '../systems/cpc/play.html?game=3dkit',
                       },
                       {
-                        name: 'roland.bat',
+                        name: 'roland.exe',
                         link: '../systems/cpc/play.html?game=roland',
                       },
                       {
-                        name: 'starstrk.bat',
+                        name: 'starstrk.exe',
                         link: '../systems/cpc/play.html?game=starstrike',
                       },
                       {
-                        name: 'bruce.bat',
+                        name: 'bruce.exe',
                         link: '../systems/cpc/play.html?game=bruce',
                       },
                       {
-                        name: 'prince.bat',
+                        name: 'prince.exe',
                         link: '../systems/cpc/play.html?game=prince',
                       },
                       {
-                        name: 'tauceti.bat',
+                        name: 'tauceti.exe',
                         link: '../systems/cpc/play.html?game=tauceti',
                       },
                       {
-                        name: 'eidolon.bat',
+                        name: 'eidolon.exe',
                         link: '../systems/cpc/play.html?game=eidolon',
                       },
                       {
-                        name: 'rtype.bat',
+                        name: 'rtype.exe',
                         link: '../systems/cpc/play.html?game=rtype',
                       },
                       {
-                        name: 'rick.bat',
+                        name: 'rick.exe',
                         link: '../systems/cpc/play.html?game=rick',
                       },
                       {
-                        name: 'chasehq.bat',
+                        name: 'chasehq.exe',
                         link: '../systems/cpc/play.html?game=chasehq',
                       },
                     ],
@@ -2883,7 +2883,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                   },
                 ],
               },
@@ -2899,7 +2899,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             TANDY  COCO  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Mega-Bug             (1981)  MEGABUG  º\necho                 º   2.  Poltergeist          (1981)  POLTRGST º\necho                 º   3.  Popcorn              (1981)  POPCORN  º\necho                 º   4.  Canyon Climber       (1982)  CANYON   º\necho                 º   5.  Demon Attack         (1982)  DEMON    º\necho                 º   6.  Daggorath            (1982)  DAGGOR   º\necho                 º   7.  Monster Maze         (1982)  MONSTRMZ º\necho                 º   8.  Downland             (1983)  DOWNLAND º\necho                 º   9.  Galactic Attack      (1983)  GALACTIC º\necho                 º  10.  Polaris              (1983)  POLARIS  º\necho                 º                                             º\necho                 º  11.  Color BASIC prompt           PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             TANDY  COCO  GAMES              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Mega-Bug                       (1981) º\necho                 º   2.  Poltergeist                    (1981) º\necho                 º   3.  Popcorn                        (1981) º\necho                 º   4.  Canyon Climber                 (1982) º\necho                 º   5.  Demon Attack                   (1982) º\necho                 º   6.  Dungeons of Daggorath          (1982) º\necho                 º   7.  Monster Maze                   (1982) º\necho                 º   8.  Downland                       (1983) º\necho                 º   9.  Galactic Attack                (1983) º\necho                 º  10.  Polaris                        (1983) º\necho                 º                                             º\necho                 º  11.  Color BASIC prompt                    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -2950,47 +2950,47 @@ var fs = [
                             data: 'prompt\n',
                           },
                           {
-                            name: 'daggor.bat',
+                            name: 'daggor.exe',
                             link: '../systems/xroar/play.html?game=daggor',
                           },
                           {
-                            name: 'downland.bat',
+                            name: 'downland.exe',
                             link: '../systems/xroar/play.html?game=downland',
                           },
                           {
-                            name: 'canyon.bat',
+                            name: 'canyon.exe',
                             link: '../systems/xroar/play.html?game=canyon',
                           },
                           {
-                            name: 'demon.bat',
+                            name: 'demon.exe',
                             link: '../systems/xroar/play.html?game=demon',
                           },
                           {
-                            name: 'polaris.bat',
+                            name: 'polaris.exe',
                             link: '../systems/xroar/play.html?game=polaris',
                           },
                           {
-                            name: 'galactic.bat',
+                            name: 'galactic.exe',
                             link: '../systems/xroar/play.html?game=galactic',
                           },
                           {
-                            name: 'popcorn.bat',
+                            name: 'popcorn.exe',
                             link: '../systems/xroar/play.html?game=popcorn',
                           },
                           {
-                            name: 'megabug.bat',
+                            name: 'megabug.exe',
                             link: '../systems/xroar/play.html?game=megabug',
                           },
                           {
-                            name: 'poltrgst.bat',
+                            name: 'poltrgst.exe',
                             link: '../systems/xroar/play.html?game=poltrgst',
                           },
                           {
-                            name: 'monstrmz.bat',
+                            name: 'monstrmz.exe',
                             link: '../systems/xroar/play.html?game=monstrmz',
                           },
                           {
-                            name: 'prompt.bat',
+                            name: 'prompt.exe',
                             link: '../systems/xroar/play.html',
                           },
                         ],
@@ -2999,7 +2999,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -3015,7 +3015,7 @@ var fs = [
                             files: [
                               {
                                 name: 'menu.bat',
-                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º      TRS-80  MODEL III  -  SYSTEM DISKS     º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º    Choose a disk operating system to boot   º\necho                 º                                             º\necho                 º   1.  TRSDOS 1.3           (1981)  TRSDOS   º\necho                 º                                             º\necho                 º   2.  LDOS 5.3.1           (1991)  LDOS     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º      TRS-80  MODEL III  -  SYSTEM DISKS     º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º    Choose a disk operating system to boot   º\necho                 º                                             º\necho                 º   1.  TRSDOS 1.3                     (1981) º\necho                 º                                             º\necho                 º   2.  LDOS 5.3.1                     (1991) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                               },
                               {
                                 name: '0.bat',
@@ -3030,11 +3030,11 @@ var fs = [
                                 data: 'ldos\n',
                               },
                               {
-                                name: 'trsdos.bat',
+                                name: 'trsdos.exe',
                                 link: '../systems/trs80/play.html?game=trsdos',
                               },
                               {
-                                name: 'ldos.bat',
+                                name: 'ldos.exe',
                                 link: '../systems/trs80/play.html?game=ldos',
                               },
                             ],
@@ -3043,7 +3043,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          TRS-80  MODEL III  GAMES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Galaxy Invasion      (1980)  GALAXY   º\necho                 º   2.  Cosmic Fighter       (1980)  COSMIC   º\necho                 º   3.  Attack Force         (1980)  ATTACK   º\necho                 º   4.  Super Nova           (1980)  SUPERNOV º\necho                 º   5.  Defense Command      (1981)  DEFENSE  º\necho                 º   6.  Robot Attack         (1981)  ROBOT    º\necho                 º   7.  Armored Patrol       (1981)  ARMORED  º\necho                 º   8.  Sea Dragon           (1982)  SEADRGN  º\necho                 º   9.  Crazy Painter        (1982)  CRAZYPNT º\necho                 º  10.  Space Castle         (1982)  CASTLE   º\necho                 º                                             º\necho                 º  11.  System disks                 DOS      º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º          TRS-80  MODEL III  GAMES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Galaxy Invasion                (1980) º\necho                 º   2.  Cosmic Fighter                 (1980) º\necho                 º   3.  Attack Force                   (1980) º\necho                 º   4.  Super Nova                     (1980) º\necho                 º   5.  Defense Command                (1981) º\necho                 º   6.  Robot Attack                   (1981) º\necho                 º   7.  Armored Patrol                 (1981) º\necho                 º   8.  Sea Dragon                     (1982) º\necho                 º   9.  Crazy Painter                  (1982) º\necho                 º  10.  Space Castle                   (1982) º\necho                 º                                             º\necho                 º  11.  System disks                          º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -3090,43 +3090,43 @@ var fs = [
                             data: 'castle\n',
                           },
                           {
-                            name: 'galaxy.bat',
+                            name: 'galaxy.exe',
                             link: '../systems/trs80/play.html?game=galaxy',
                           },
                           {
-                            name: 'cosmic.bat',
+                            name: 'cosmic.exe',
                             link: '../systems/trs80/play.html?game=cosmic',
                           },
                           {
-                            name: 'attack.bat',
+                            name: 'attack.exe',
                             link: '../systems/trs80/play.html?game=attack',
                           },
                           {
-                            name: 'supernov.bat',
+                            name: 'supernov.exe',
                             link: '../systems/trs80/play.html?game=supernov',
                           },
                           {
-                            name: 'defense.bat',
+                            name: 'defense.exe',
                             link: '../systems/trs80/play.html?game=defense',
                           },
                           {
-                            name: 'robot.bat',
+                            name: 'robot.exe',
                             link: '../systems/trs80/play.html?game=robot',
                           },
                           {
-                            name: 'armored.bat',
+                            name: 'armored.exe',
                             link: '../systems/trs80/play.html?game=armored',
                           },
                           {
-                            name: 'seadrgn.bat',
+                            name: 'seadrgn.exe',
                             link: '../systems/trs80/play.html?game=seadrgn',
                           },
                           {
-                            name: 'crazypnt.bat',
+                            name: 'crazypnt.exe',
                             link: '../systems/trs80/play.html?game=crazypnt',
                           },
                           {
-                            name: 'castle.bat',
+                            name: 'castle.exe',
                             link: '../systems/trs80/play.html?game=castle',
                           },
                           {
@@ -3143,7 +3143,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -3156,7 +3156,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           TRS-80  MODEL 100  GAMES          º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bowling              (1984)  BOWLING  º\necho                 º   2.  Codebreaker          (1984)  CODEBREK º\necho                 º   3.  ELIZA                (1984)  ELIZA    º\necho                 º   4.  Four Seasons         (1984)  FSNSOL   º\necho                 º   5.  Invisible Maze       (1984)  INVMAZE  º\necho                 º   6.  Paper Rock Scissors  (1984)  PRS      º\necho                 º   7.  Road Rally           (1984)  RALLY    º\necho                 º   8.  Skydiver             (1984)  SKYDIVER º\necho                 º   9.  Slot Machine         (1984)  SLOTS    º\necho                 º  10.  Worm Hole (Snake)    (1984)  WORMHOLE º\necho                 º                                             º\necho                 º  11.  Startup Menu                 M100     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           TRS-80  MODEL 100  GAMES          º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Bowling                        (1984) º\necho                 º   2.  Codebreaker                    (1984) º\necho                 º   3.  ELIZA                          (1984) º\necho                 º   4.  Four Seasons Solitaire         (1984) º\necho                 º   5.  Invisible Maze                 (1984) º\necho                 º   6.  Paper, Rock, Scissors          (1984) º\necho                 º   7.  Road Rally                     (1984) º\necho                 º   8.  Skydiver                       (1984) º\necho                 º   9.  Slot Machine                   (1984) º\necho                 º  10.  Worm Hole                      (1984) º\necho                 º                                             º\necho                 º  11.  Startup Menu                          º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -3207,47 +3207,47 @@ var fs = [
                             data: 'm100\n',
                           },
                           {
-                            name: 'bowling.bat',
+                            name: 'bowling.exe',
                             link: '../systems/m100/play.html?game=bowling',
                           },
                           {
-                            name: 'codebrek.bat',
+                            name: 'codebrek.exe',
                             link: '../systems/m100/play.html?game=codebrek',
                           },
                           {
-                            name: 'eliza.bat',
+                            name: 'eliza.exe',
                             link: '../systems/m100/play.html?game=eliza',
                           },
                           {
-                            name: 'fsnsol.bat',
+                            name: 'fsnsol.exe',
                             link: '../systems/m100/play.html?game=fsnsol',
                           },
                           {
-                            name: 'invmaze.bat',
+                            name: 'invmaze.exe',
                             link: '../systems/m100/play.html?game=invmaze',
                           },
                           {
-                            name: 'prs.bat',
+                            name: 'prs.exe',
                             link: '../systems/m100/play.html?game=prs',
                           },
                           {
-                            name: 'rally.bat',
+                            name: 'rally.exe',
                             link: '../systems/m100/play.html?game=rally',
                           },
                           {
-                            name: 'skydiver.bat',
+                            name: 'skydiver.exe',
                             link: '../systems/m100/play.html?game=skydiver',
                           },
                           {
-                            name: 'slots.bat',
+                            name: 'slots.exe',
                             link: '../systems/m100/play.html?game=slots',
                           },
                           {
-                            name: 'wormhole.bat',
+                            name: 'wormhole.exe',
                             link: '../systems/m100/play.html?game=wormhole',
                           },
                           {
-                            name: 'm100.bat',
+                            name: 'm100.exe',
                             link: '../systems/m100/play.html',
                           },
                         ],
@@ -3256,7 +3256,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -3264,7 +3264,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              TANDY  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  TRS-80 Model III     (1980)  TRS80    º\necho                 º                                             º\necho                 º   2.  Color Computer       (1980)  COCO     º\necho                 º                                             º\necho                 º   3.  Model 100 (Portable) (1983)  M100     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              TANDY  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  TRS-80 Model III               (1980) º\necho                 º                                             º\necho                 º   2.  Color Computer                 (1980) º\necho                 º                                             º\necho                 º   3.  Model 100 (Portable)           (1983) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -3295,7 +3295,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           TI-99/4A  -  CARTRIDGES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Hunt the Wumpus      (1980)  WUMPUS   º\necho                 º   2.  Car Wars             (1981)  CARWARS  º\necho                 º   3.  TI Invaders          (1981)  TIINVAD  º\necho                 º   4.  Tombstone City       (1981)  TMBCITY  º\necho                 º   5.  Alpiner              (1982)  ALPINER  º\necho                 º   6.  Microsurgeon         (1982)  MICROSRG º\necho                 º   7.  Munch Man            (1982)  MUNCHMAN º\necho                 º   8.  Parsec               (1982)  PARSEC   º\necho                 º   9.  Tunnels of Doom      (1982)  DOOM     º\necho                 º  10.  Buck Rogers          (1983)  BUCKRGRS º\necho                 º                                             º\necho                 º  11.  TI BASIC prompt              PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           TI-99/4A  -  CARTRIDGES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Hunt the Wumpus                (1980) º\necho                 º   2.  Car Wars                       (1981) º\necho                 º   3.  TI Invaders                    (1981) º\necho                 º   4.  Tombstone City: 21st Century   (1981) º\necho                 º   5.  Alpiner                        (1982) º\necho                 º   6.  Microsurgeon                   (1982) º\necho                 º   7.  Munch Man                      (1982) º\necho                 º   8.  Parsec                         (1982) º\necho                 º   9.  Tunnels of Doom                (1982) º\necho                 º  10.  Buck Rogers: Planet of Zoom    (1983) º\necho                 º                                             º\necho                 º  11.  TI BASIC prompt                       º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -3346,47 +3346,47 @@ var fs = [
                         data: 'prompt\n',
                       },
                       {
-                        name: 'wumpus.bat',
+                        name: 'wumpus.exe',
                         link: '../systems/js99er/play.html?game=wumpus',
                       },
                       {
-                        name: 'carwars.bat',
+                        name: 'carwars.exe',
                         link: '../systems/js99er/play.html?game=carwars',
                       },
                       {
-                        name: 'tiinvad.bat',
+                        name: 'tiinvad.exe',
                         link: '../systems/js99er/play.html?game=tiinvad',
                       },
                       {
-                        name: 'tmbcity.bat',
+                        name: 'tmbcity.exe',
                         link: '../systems/js99er/play.html?game=tmbcity',
                       },
                       {
-                        name: 'alpiner.bat',
+                        name: 'alpiner.exe',
                         link: '../systems/js99er/play.html?game=alpiner',
                       },
                       {
-                        name: 'microsrg.bat',
+                        name: 'microsrg.exe',
                         link: '../systems/js99er/play.html?game=microsrg',
                       },
                       {
-                        name: 'munchman.bat',
+                        name: 'munchman.exe',
                         link: '../systems/js99er/play.html?game=munchman',
                       },
                       {
-                        name: 'parsec.bat',
+                        name: 'parsec.exe',
                         link: '../systems/js99er/play.html?game=parsec',
                       },
                       {
-                        name: 'doom.bat',
+                        name: 'doom.exe',
                         link: '../systems/js99er/play.html?game=doom',
                       },
                       {
-                        name: 'buckrgrs.bat',
+                        name: 'buckrgrs.exe',
                         link: '../systems/js99er/play.html?game=buckrgrs',
                       },
                       {
-                        name: 'prompt.bat',
+                        name: 'prompt.exe',
                         link: '../systems/js99er/play.html',
                       },
                     ],
@@ -3395,7 +3395,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                   },
                 ],
               },
@@ -3413,7 +3413,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             MSX1  -  CARTRIDGES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Antarctic Adventure  (1983)  ANTRCTIC º\necho                 º   2.  Athletic Land        (1984)  ATHLETIC º\necho                 º   3.  Eggerland Mystery    (1985)  EGGRLAND º\necho                 º   4.  King's Valley        (1985)  KINGSVAL º\necho                 º   5.  Pippols              (1985)  PIPPOLS  º\necho                 º   6.  Road Fighter         (1985)  ROADFGTR º\necho                 º   7.  Yie Ar Kung-Fu       (1985)  YIEARKF  º\necho                 º   8.  Knightmare           (1986)  KNIGHTMR º\necho                 º   9.  Nemesis              (1986)  NEMESIS  º\necho                 º  10.  The Goonies          (1986)  GOONIES  º\necho                 º                                             º\necho                 º  11.  MSX BASIC prompt             PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             MSX1  -  CARTRIDGES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Antarctic Adventure            (1983) º\necho                 º   2.  Athletic Land                  (1984) º\necho                 º   3.  Eggerland Mystery              (1985) º\necho                 º   4.  King\'s Valley                  (1985) º\necho                 º   5.  Pippols                        (1985) º\necho                 º   6.  Road Fighter                   (1985) º\necho                 º   7.  Yie Ar Kung-Fu                 (1985) º\necho                 º   8.  Knightmare                     (1986) º\necho                 º   9.  Nemesis                        (1986) º\necho                 º  10.  The Goonies                    (1986) º\necho                 º                                             º\necho                 º  11.  MSX BASIC prompt                      º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                           },
                           {
                             name: '0.bat',
@@ -3464,47 +3464,47 @@ var fs = [
                             data: 'prompt\n',
                           },
                           {
-                            name: 'antrctic.bat',
+                            name: 'antrctic.exe',
                             link: '../systems/msx1/?ROM=games/antarcticadv.zip&M=MSX1&game=antrctic',
                           },
                           {
-                            name: 'athletic.bat',
+                            name: 'athletic.exe',
                             link: '../systems/msx1/?ROM=games/athleticland.zip&M=MSX1&game=athletic',
                           },
                           {
-                            name: 'pippols.bat',
+                            name: 'pippols.exe',
                             link: '../systems/msx1/?ROM=games/pippols.zip&M=MSX1&game=pippols',
                           },
                           {
-                            name: 'roadfgtr.bat',
+                            name: 'roadfgtr.exe',
                             link: '../systems/msx1/?ROM=games/roadfighter.zip&M=MSX1&game=roadfgtr',
                           },
                           {
-                            name: 'kingsval.bat',
+                            name: 'kingsval.exe',
                             link: '../systems/msx1/?ROM=games/kingsvalley.zip&M=MSX1&game=kingsval',
                           },
                           {
-                            name: 'yiearkf.bat',
+                            name: 'yiearkf.exe',
                             link: '../systems/msx1/?ROM=games/yiearkungfu.zip&M=MSX1&game=yiearkf',
                           },
                           {
-                            name: 'eggrland.bat',
+                            name: 'eggrland.exe',
                             link: '../systems/msx1/?ROM=games/eggerland.zip&M=MSX1&game=eggrland',
                           },
                           {
-                            name: 'knightmr.bat',
+                            name: 'knightmr.exe',
                             link: '../systems/msx1/?ROM=games/knightmare.zip&M=MSX1&game=knightmr',
                           },
                           {
-                            name: 'nemesis.bat',
+                            name: 'nemesis.exe',
                             link: '../systems/msx1/?ROM=games/nemesis.zip&M=MSX1&game=nemesis',
                           },
                           {
-                            name: 'goonies.bat',
+                            name: 'goonies.exe',
                             link: '../systems/msx1/?ROM=games/goonies.zip&M=MSX1&game=goonies',
                           },
                           {
-                            name: 'prompt.bat',
+                            name: 'prompt.exe',
                             link: '../systems/msx1/?M=MSX1',
                           },
                         ],
@@ -3513,7 +3513,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -3526,7 +3526,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           MSX2  -  CARTS  &  DISKS          º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Castle Excellent     (1986)  CASTLEEX º\necho                 º   2.  Vampire Killer       (1986)  VAMPKILL º\necho                 º   3.  Bubble Bobble        (1987)  BUBBLBOB º\necho                 º   4.  F-1 Spirit           (1987)  F1SPIRIT º\necho                 º   5.  Metal Gear           (1987)  METLGEAR º\necho                 º   6.  The Treasure of Usas (1987)  USAS     º\necho                 º   7.  Aleste               (1988)  ALESTE   º\necho                 º   8.  Parodius Da!         (1988)  PARODIUS º\necho                 º   9.  Space Manbow         (1989)  MANBOW   º\necho                 º  10.  Quarth               (1990)  QUARTH   º\necho                 º                                             º\necho                 º  11.  MSX BASIC prompt             PROMPT   º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           MSX2  -  CARTS  &  DISKS          º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Castle Excellent               (1986) º\necho                 º   2.  Vampire Killer                 (1986) º\necho                 º   3.  Bubble Bobble                  (1987) º\necho                 º   4.  F-1 Spirit: Way to Formula-1   (1987) º\necho                 º   5.  Metal Gear                     (1987) º\necho                 º   6.  The Treasure of Usas           (1987) º\necho                 º   7.  Aleste                         (1988) º\necho                 º   8.  Parodius Da!                   (1988) º\necho                 º   9.  Space Manbow                   (1989) º\necho                 º  10.  Quarth                         (1990) º\necho                 º                                             º\necho                 º  11.  MSX BASIC prompt                      º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -3577,47 +3577,47 @@ var fs = [
                             data: 'prompt\n',
                           },
                           {
-                            name: 'vampkill.bat',
+                            name: 'vampkill.exe',
                             link: '../systems/msx2/?ROM=games/vampirekill.zip&M=MSX2&game=vampkill',
                           },
                           {
-                            name: 'castleex.bat',
+                            name: 'castleex.exe',
                             link: '../systems/msx2/?ROM=games/castleexcl.zip&M=MSX2&game=castleex',
                           },
                           {
-                            name: 'bubblbob.bat',
+                            name: 'bubblbob.exe',
                             link: '../systems/msx2/?ROM=games/bubblebobble.zip&M=MSX2&game=bubblbob',
                           },
                           {
-                            name: 'metlgear.bat',
+                            name: 'metlgear.exe',
                             link: '../systems/msx2/?ROM=games/metalgear.zip&M=MSX2&game=metlgear',
                           },
                           {
-                            name: 'usas.bat',
+                            name: 'usas.exe',
                             link: '../systems/msx2/?ROM=games/usas.zip&M=MSX2&game=usas',
                           },
                           {
-                            name: 'f1spirit.bat',
+                            name: 'f1spirit.exe',
                             link: '../systems/msx2/?ROM=games/f1spirit.zip&M=MSX2&game=f1spirit',
                           },
                           {
-                            name: 'aleste.bat',
+                            name: 'aleste.exe',
                             link: '../systems/msx2/?ROM=games/aleste.zip&M=MSX2&game=aleste',
                           },
                           {
-                            name: 'parodius.bat',
+                            name: 'parodius.exe',
                             link: '../systems/msx2/?ROM=games/parodius.zip&M=MSX2&game=parodius',
                           },
                           {
-                            name: 'manbow.bat',
+                            name: 'manbow.exe',
                             link: '../systems/msx2/?ROM=games/spacemanbow.zip&M=MSX2&game=manbow',
                           },
                           {
-                            name: 'quarth.bat',
+                            name: 'quarth.exe',
                             link: '../systems/msx2/?ROM=games/quarth.zip&M=MSX2&game=quarth',
                           },
                           {
-                            name: 'prompt.bat',
+                            name: 'prompt.exe',
                             link: '../systems/msx2/?M=MSX2',
                           },
                         ],
@@ -3626,7 +3626,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncd games\nmenu\necho.\n',
+                                data: 'echo off\ncd games\nmenu\necho.\n',
                       },
                     ],
                   },
@@ -3634,7 +3634,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º                MSX  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  MSX                  (1983)  MSX1     º\necho                 º                                             º\necho                 º   2.  MSX2                 (1986)  MSX2     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º                MSX  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  MSX                            (1983) º\necho                 º                                             º\necho                 º   2.  MSX2                           (1986) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                   },
                   {
                     name: '1.bat',
@@ -3654,7 +3654,7 @@ var fs = [
             files: [
               {
                 name: 'menu.bat',
-                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               HOME  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Acorn                (1981)  ACORN    º\necho                 º   2.  Amstrad              (1984)  CPC      º\necho                 º   3.  Apple                (1976)  APPLE    º\necho                 º   4.  Atari                (1979)  ATARI    º\necho                 º   5.  Commodore            (1977)  COMMODRE º\necho                 º   6.  MSX                  (1983)  MSX      º\necho                 º   7.  Sinclair             (1981)  SINCLAIR º\necho                 º   8.  Tandy                (1980)  TANDY    º\necho                 º   9.  Texas Instruments    (1979)  TI99     º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               HOME  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Acorn                          (1981) º\necho                 º   2.  Amstrad                        (1984) º\necho                 º   3.  Apple                          (1976) º\necho                 º   4.  Atari                          (1979) º\necho                 º   5.  Commodore                      (1977) º\necho                 º   6.  MSX                            (1983) º\necho                 º   7.  Sinclair                       (1981) º\necho                 º   8.  Tandy                          (1980) º\necho                 º   9.  Texas Instruments              (1979) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
               },
               {
                 name: '1.bat',
@@ -3704,13 +3704,15 @@ var fs = [
             directories: [
               {
                 name: 'GAMEBOY',
+                files: [],
                 directories: [
                   {
                     name: 'GAMES',
+                    directories: [],
                     files: [
                       {
                         name: 'menu.bat',
-                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  GAME  BOY             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Tetris               (1989)  TETRIS   º\necho                 º   2.  Super Mario Land     (1989)  SMLAND   º\necho                 º   3.  Castlevania          (1989)  CASTLEV  º\necho                 º   4.  Gargoyle's Quest     (1990)  GARGOYLE º\necho                 º   5.  Final Fantasy Adv.   (1991)  FFADV    º\necho                 º   6.  Kirby's Dream Land   (1992)  KIRBY    º\necho                 º   7.  Link's Awakening     (1993)  ZELDA    º\necho                 º   8.  Donkey Kong          (1994)  DKONG    º\necho                 º   9.  Pokemon Red          (1996)  POKEMON  º\necho                 º  10.  Shantae              (2002)  SHANTAE  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  GAME  BOY             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Tetris                         (1989) º\necho                 º   2.  Super Mario Land               (1989) º\necho                 º   3.  Castlevania: The Adventure     (1989) º\necho                 º   4.  Gargoyle\'s Quest               (1990) º\necho                 º   5.  Final Fantasy Adventure        (1991) º\necho                 º   6.  Kirby\'s Dream Land             (1992) º\necho                 º   7.  Zelda: Link\'s Awakening        (1993) º\necho                 º   8.  Donkey Kong                    (1994) º\necho                 º   9.  Pok\x82mon Red                    (1996) º\necho                 º  10.  Shantae                        (2002) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       { name: '1.bat', data: 'tetris\n' },
                       { name: '2.bat', data: 'smland\n' },
@@ -3724,43 +3726,43 @@ var fs = [
                       { name: '10.bat', data: 'shantae\n' },
                       { name: '0.bat', data: 'echo off\ncd ..\ncd ..\nmenu\n' },
                       {
-                        name: 'tetris.bat',
+                        name: 'tetris.exe',
                         link: '../systems/gbc/play.html?game=tetris',
                       },
                       {
-                        name: 'smland.bat',
+                        name: 'smland.exe',
                         link: '../systems/gbc/play.html?game=smland',
                       },
                       {
-                        name: 'castlev.bat',
+                        name: 'castlev.exe',
                         link: '../systems/gbc/play.html?game=castlev',
                       },
                       {
-                        name: 'gargoyle.bat',
+                        name: 'gargoyle.exe',
                         link: '../systems/gbc/play.html?game=gargoyle',
                       },
                       {
-                        name: 'kirby.bat',
+                        name: 'kirby.exe',
                         link: '../systems/gbc/play.html?game=kirby',
                       },
                       {
-                        name: 'zelda.bat',
+                        name: 'zelda.exe',
                         link: '../systems/gbc/play.html?game=zelda',
                       },
                       {
-                        name: 'dkong.bat',
+                        name: 'dkong.exe',
                         link: '../systems/gbc/play.html?game=dkong',
                       },
                       {
-                        name: 'pokemon.bat',
+                        name: 'pokemon.exe',
                         link: '../systems/gbc/play.html?game=pokemon',
                       },
                       {
-                        name: 'ffadv.bat',
+                        name: 'ffadv.exe',
                         link: '../systems/gbc/play.html?game=ffadv',
                       },
                       {
-                        name: 'shantae.bat',
+                        name: 'shantae.exe',
                         link: '../systems/gbc/play.html?game=shantae',
                       },
                     ],
@@ -3769,13 +3771,15 @@ var fs = [
               },
               {
                 name: 'LYNX',
+                files: [],
                 directories: [
                   {
                     name: 'GAMES',
+                    directories: [],
                     files: [
                       {
                         name: 'menu.bat',
-                        data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º                 ATARI  LYNX                 º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  California Games     (1989)  CALGAMES º\necho                 º   2.  Chip's Challenge     (1989)  CHIPS    º\necho                 º   3.  Electrocop           (1989)  ELECTRO  º\necho                 º   4.  Blue Lightning       (1989)  BLUELGHT º\necho                 º   5.  Warbirds             (1989)  WARBIRDS º\necho                 º   6.  Zarlor Mercenary     (1990)  ZARLOR   º\necho                 º   7.  Klax                 (1990)  KLAX     º\necho                 º   8.  Slime World          (1990)  SLIME    º\necho                 º   9.  S.T.U.N. Runner      (1991)  STUNRUN  º\necho                 º  10.  Rampart              (1991)  RAMPART  º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º                 ATARI  LYNX                 º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  California Games               (1989) º\necho                 º   2.  Chip\'s Challenge               (1989) º\necho                 º   3.  Electrocop                     (1989) º\necho                 º   4.  Blue Lightning                 (1989) º\necho                 º   5.  Warbirds                       (1989) º\necho                 º   6.  Zarlor Mercenary               (1990) º\necho                 º   7.  Klax                           (1990) º\necho                 º   8.  Todd\'s Adventures: Slime World (1990) º\necho                 º   9.  S.T.U.N. Runner                (1991) º\necho                 º  10.  Rampart                        (1991) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       { name: '1.bat', data: 'calgames\n' },
                       { name: '2.bat', data: 'chips\n' },
@@ -3789,43 +3793,43 @@ var fs = [
                       { name: '10.bat', data: 'rampart\n' },
                       { name: '0.bat', data: 'echo off\ncd ..\ncd ..\nmenu\n' },
                       {
-                        name: 'calgames.bat',
+                        name: 'calgames.exe',
                         link: '../systems/lynx/play.html?game=calgames',
                       },
                       {
-                        name: 'chips.bat',
+                        name: 'chips.exe',
                         link: '../systems/lynx/play.html?game=chips',
                       },
                       {
-                        name: 'electro.bat',
+                        name: 'electro.exe',
                         link: '../systems/lynx/play.html?game=electro',
                       },
                       {
-                        name: 'bluelght.bat',
+                        name: 'bluelght.exe',
                         link: '../systems/lynx/play.html?game=bluelght',
                       },
                       {
-                        name: 'warbirds.bat',
+                        name: 'warbirds.exe',
                         link: '../systems/lynx/play.html?game=warbirds',
                       },
                       {
-                        name: 'zarlor.bat',
+                        name: 'zarlor.exe',
                         link: '../systems/lynx/play.html?game=zarlor',
                       },
                       {
-                        name: 'klax.bat',
+                        name: 'klax.exe',
                         link: '../systems/lynx/play.html?game=klax',
                       },
                       {
-                        name: 'slime.bat',
+                        name: 'slime.exe',
                         link: '../systems/lynx/play.html?game=slime',
                       },
                       {
-                        name: 'stunrun.bat',
+                        name: 'stunrun.exe',
                         link: '../systems/lynx/play.html?game=stunrun',
                       },
                       {
-                        name: 'rampart.bat',
+                        name: 'rampart.exe',
                         link: '../systems/lynx/play.html?game=rampart',
                       },
                     ],
@@ -3834,13 +3838,15 @@ var fs = [
               },
               {
                 name: 'GAMEGEAR',
+                files: [],
                 directories: [
                   {
                     name: 'GAMES',
+                    directories: [],
                     files: [
                       {
                         name: 'menu.bat',
-                        data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               SEGA  GAME  GEAR              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Columns              (1991)  COLUMNS  º\necho                 º   2.  Sonic the Hedgehog   (1991)  SONIC    º\necho                 º   3.  Shinobi              (1991)  SHINOBI  º\necho                 º   4.  Aerial Assault       (1992)  AERIAL   º\necho                 º   5.  Streets of Rage      (1992)  RAGE     º\necho                 º   6.  Defenders of Oasis   (1992)  OASIS    º\necho                 º   7.  Land of Illusion     (1993)  ILLUSION º\necho                 º   8.  Mortal Kombat        (1993)  KOMBAT   º\necho                 º   9.  Mean Bean Machine    (1993)  MEANBEAN º\necho                 º  10.  Tails Adventure      (1995)  TAILS    º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               SEGA  GAME  GEAR              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Columns                        (1991) º\necho                 º   2.  Sonic the Hedgehog             (1991) º\necho                 º   3.  Shinobi                        (1991) º\necho                 º   4.  Aerial Assault                 (1992) º\necho                 º   5.  Streets of Rage                (1992) º\necho                 º   6.  Defenders of Oasis             (1992) º\necho                 º   7.  Land of Illusion               (1993) º\necho                 º   8.  Mortal Kombat                  (1993) º\necho                 º   9.  Robotnik\'s Mean Bean Machine   (1993) º\necho                 º  10.  Tails Adventure                (1995) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       { name: '1.bat', data: 'columns\n' },
                       { name: '2.bat', data: 'sonic\n' },
@@ -3854,43 +3860,43 @@ var fs = [
                       { name: '10.bat', data: 'tails\n' },
                       { name: '0.bat', data: 'echo off\ncd ..\ncd ..\nmenu\n' },
                       {
-                        name: 'columns.bat',
+                        name: 'columns.exe',
                         link: '../systems/gamegear/play.html?game=columns',
                       },
                       {
-                        name: 'sonic.bat',
+                        name: 'sonic.exe',
                         link: '../systems/gamegear/play.html?game=sonic',
                       },
                       {
-                        name: 'shinobi.bat',
+                        name: 'shinobi.exe',
                         link: '../systems/gamegear/play.html?game=shinobi',
                       },
                       {
-                        name: 'aerial.bat',
+                        name: 'aerial.exe',
                         link: '../systems/gamegear/play.html?game=aerial',
                       },
                       {
-                        name: 'rage.bat',
+                        name: 'rage.exe',
                         link: '../systems/gamegear/play.html?game=rage',
                       },
                       {
-                        name: 'oasis.bat',
+                        name: 'oasis.exe',
                         link: '../systems/gamegear/play.html?game=oasis',
                       },
                       {
-                        name: 'illusion.bat',
+                        name: 'illusion.exe',
                         link: '../systems/gamegear/play.html?game=illusion',
                       },
                       {
-                        name: 'kombat.bat',
+                        name: 'kombat.exe',
                         link: '../systems/gamegear/play.html?game=kombat',
                       },
                       {
-                        name: 'meanbean.bat',
+                        name: 'meanbean.exe',
                         link: '../systems/gamegear/play.html?game=meanbean',
                       },
                       {
-                        name: 'tails.bat',
+                        name: 'tails.exe',
                         link: '../systems/gamegear/play.html?game=tails',
                       },
                     ],
@@ -3901,7 +3907,7 @@ var fs = [
             files: [
               {
                 name: 'menu.bat',
-                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              HANDHELD  CONSOLES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Nintendo Game Boy    (1989)  GAMEBOY  º\necho                 º                                             º\necho                 º   2.  Atari Lynx           (1989)  LYNX     º\necho                 º                                             º\necho                 º   3.  Sega Game Gear       (1990)  GAMEGEAR º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              HANDHELD  CONSOLES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Nintendo Game Boy              (1989) º\necho                 º                                             º\necho                 º   2.  Atari Lynx                     (1989) º\necho                 º                                             º\necho                 º   3.  Sega Game Gear                 (1990) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
               },
               { name: '1.bat', data: 'cd gameboy\ncd games\nmenu\n' },
               { name: '2.bat', data: 'cd lynx\ncd games\nmenu\n' },
@@ -3913,7 +3919,7 @@ var fs = [
         files: [
           {
             name: 'menu.bat',
-            data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             EMULATOR  LAUNCHER              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Home Computers            HOMECOMP    º\necho                 º                                             º\necho                 º   2.  Games Consoles            CONSOLE     º\necho                 º                                             º\necho                 º   3.  Handheld Consoles         HANDHELD    º\necho                 º                                             º\necho                 º                                             º\necho                 º   4.  GenX-DOS Wiki             WIKI        º\necho                 º                                             º\necho                 º   0.  Exit                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                                data: 'echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             EMULATOR  LAUNCHER              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Home Computers                        º\necho                 º                                             º\necho                 º   2.  Games Consoles                        º\necho                 º                                             º\necho                 º   3.  Handheld Consoles                     º\necho                 º                                             º\necho                 º                                             º\necho                 º   4.  GenX-DOS Wiki                         º\necho                 º                                             º\necho                 º   0.  Exit                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
           },
           {
             name: '1.bat',
@@ -3932,7 +3938,7 @@ var fs = [
             data: 'wiki\n',
           },
           {
-            name: 'wiki.bat',
+            name: 'wiki.exe',
             link: '../docs/wiki/',
           },
           {
@@ -3949,7 +3955,7 @@ var fs = [
       },
       {
         name: 'menu.bat',
-        data: 'cd systems\nmenu\n',
+                                data: 'cd systems\nmenu\n',
       },
     ],
   },

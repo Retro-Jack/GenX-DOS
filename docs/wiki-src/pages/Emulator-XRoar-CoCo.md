@@ -133,4 +133,4 @@ systems/xroar/
 
 - [[Emulators]] — index of all engines
 - [[File-Structure]] — where bundles sit in the repo
-- [[Virtual-Filesystem]] — how `.bat` launchers reach `play.html`
+- [[Virtual-Filesystem]] — how `.exe` launchers reach `play.html`

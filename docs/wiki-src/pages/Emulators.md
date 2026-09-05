@@ -38,7 +38,7 @@ The same flow across every emulator:
 
 1. The user picks a number in a `GAMES` menu.
 2. `N.bat` runs the named launcher (e.g. `sonic1`).
-3. `sonic1.bat` is a `link:` entry pointing at the emulator's URL.
+3. `sonic1.exe` is a `link:` entry pointing at the emulator's URL.
 4. The terminal opens that URL in a new tab via `window.open(link, "_blank")`.
 
 URL patterns vary per emulator. Each engine article documents its own.
@@ -68,7 +68,7 @@ Both hrefs are resolved from the script's own `src`, not written relative to the
 
 The shared script still stands down whenever it finds a `.gx-corner-link` or legacy `.gx-controls-link` already in the page, so a bundle that needs its own placement can opt out by providing one; `genx-controls-link.css` keeps the old rule for that case.
 
-None of these pages are in the virtual filesystem; the DOS prompt's `dir` output shows only `.bat` launchers and menu scripts, never raw `.html` files.
+None of these pages are in the virtual filesystem; the DOS prompt's `dir` output shows only `.exe` launchers and `.bat` menu scripts, never raw `.html` files.
 
 ### The controls table — the house layout
 
@@ -130,7 +130,7 @@ Same recipe each time:
 3. **Add the standard `<noscript>` overlay** to every new HTML entry point — copy verbatim from any existing emulator page.
 4. **Write `play.html`** if the emulator needs a key-based launcher. Skip if the emulator's own page already accepts URL params (BBC and WebMSX patterns). The wrapper reads `?game=<key>`, fetches `games.json`, looks up `{title, rom}`, and boots the emulator with that ROM.
 5. **Bundle the ROMs** under `systems/<name>/<roms-dir>/`. External ROM sites generally don't set CORS for direct browser fetch, so wrappers can't pull at runtime — every byte must be on the same origin.
-6. **Wire `fs.js`**: each game's `.bat` gets a `link:` field pointing at the URL pattern above. Per-system `GAMES` menu follows the 45-char box format (see [[Customising the Filesystem]]) with 10 titles + a PROMPT or BASIC entry.
+6. **Wire `fs.js`**: each game's `.exe` gets a `link:` field pointing at the URL pattern above. Per-system `GAMES` menu follows the 45-char box format (see [[Customising the Filesystem]]) with 10 titles + a PROMPT or BASIC entry.
 
 ## Multi-model platforms
 
@@ -151,6 +151,6 @@ After editing `fs.js` or any emulator wrapper, hard-refresh the prompt page (Ctr
 ## Related
 
 - [[Project Overview]] — what the site does
-- [[Virtual Filesystem]] — how `.bat` launchers reach `play.html`
+- [[Virtual Filesystem]] — how `.exe` launchers reach `play.html`
 - [[File Structure]] — where bundles sit in the repo
 - [[Roadmap]] — what's shipped, what's next

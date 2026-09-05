@@ -66,7 +66,7 @@ A standard DOS 3.3 disk is 35 tracks × 16 sectors × 256 bytes = 143,360 bytes 
 
 - `json/disks/<key>.json` (the disk itself)
 - `json/disks/index.js` (the local-catalogue declaration)
-- The menu's `<key>.bat` link
+- The menu's `<key>.exe` link
 
 Any one of those missing and the disk silently fails to load.
 

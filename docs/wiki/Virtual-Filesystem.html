@@ -217,8 +217,8 @@
 <pre><code>GAMES\
 ├── menu.bat              numbered title list (45-char wide box-drawn menu)
 ├── 0.bat                 cd .. / cd .. / menu (back two levels)
-├── 1.bat .. N.bat        each runs a named .bat
-└── &lt;key&gt;.bat             one per title, with link: → emulator URL
+├── 1.bat .. N.bat        each runs a named .exe
+└── &lt;key&gt;.exe             one per title, with link: → emulator URL
 </code></pre>
 <p>How a user gets from the prompt to a game (NES example):</p>
 <pre><code>1   → cd systems / menu        (EMULATOR LAUNCHER → CONSOLE / HOMECOMP)
@@ -251,9 +251,15 @@
 </tr>
 </tbody>
 </table>
-<p>Game <code>.bat</code> files use <code>link:</code>. <code>menu.bat</code> and numbered launchers use <code>data:</code>.</p>
+<p>Game launchers use <code>link:</code> and are named <code>.exe</code>, because that is what they are —
+a program you run. <code>menu.bat</code> and the numbered shortcuts are batch scripts, so they
+keep <code>.bat</code> and use <code>data:</code>.</p>
+<p><code>TYPE</code> on an <code>.exe</code> does what DOS did: prints the file's bytes as CP437 glyphs,
+starting <code>MZ</code>, and stops at the first Ctrl-Z. The bytes are generated from the
+filename rather than stored, so each program has its own stable garbage and
+<code>fs.js</code> doesn't carry 351 blobs of noise.</p>
 <h2 id="the-no-html-files-rule">The no-<code>.html</code>-files rule</h2>
-<p>The virtual filesystem only lists <code>.bat</code> files — game launchers, menu scripts, and the numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's <code>controls.html</code>, future bezels, etc.) live on disk under <code>systems/&lt;name&gt;/</code> but are reached from inside the emulator's entry HTML via the top-corner links, not from the DOS prompt.</p>
+<p>The virtual filesystem only lists <code>.exe</code> launchers and the <code>.bat</code> menu scripts and numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's <code>controls.html</code>, future bezels, etc.) live on disk under <code>systems/&lt;name&gt;/</code> but are reached from inside the emulator's entry HTML via the top-corner links, not from the DOS prompt.</p>
 <p>This is period-correct: a DOS user typing <code>dir</code> shouldn't see <code>.html</code>.</p>
 <p>See <a href="Customising-the-Filesystem.html">Customising the Filesystem</a> for worked examples of adding entries.</p>
   </main>

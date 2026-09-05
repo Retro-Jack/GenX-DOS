@@ -215,6 +215,19 @@ function type(file) {
         echo(fsc.files[i].data);
         return true;
       }
+      // A launcher is a program, so TYPE treats it as one: DOS printed the
+      // raw bytes of an .EXE and honoured Ctrl-Z as end-of-file, which is why
+      // you got a short burst of noise rather than pages of it. The bytes are
+      // generated, never stored — 351 files of saved junk would bloat fs.js
+      // for nothing — and are seeded from the filename, so each program's
+      // garbage is stable and its own.
+      if (
+        typeof fsc.files[i].link !== 'undefined' &&
+        fname.split('.')[1] === 'exe'
+      ) {
+        typeExe(fname);
+        return true;
+      }
       if (typeof fsc.files[i].link !== 'undefined') {
         echo(fsc.files[i].link);
         return true;
@@ -225,13 +238,55 @@ function type(file) {
   return false;
 }
 
+
+// ============================================================
+// TYPE on an .EXE — the DOS behaviour, reproduced.
+// Real MS-DOS printed the file's bytes to screen; the terminal rendered
+// each one as its CP437 glyph, and TYPE stopped dead at the first 0x1A
+// (Ctrl-Z), the end-of-file marker. So you saw "MZ", a burst of noise,
+// and then the prompt came back.
+//
+// Deliberately NOT included: "This program cannot be run in DOS mode."
+// That string belongs to the Windows PE stub and would be an anachronism
+// on a machine pretending to be a DOS box — a real DOS executable is
+// just MZ followed by binary.
+// ============================================================
+function typeExe(name) {
+  var seed = 0;
+  for (var i = 0; i < name.length; i++)
+    seed = (seed * 31 + name.charCodeAt(i)) >>> 0;
+  function nextByte() {
+    seed = (seed * 1103515245 + 12345) >>> 0;
+    return (seed >>> 16) & 0xff;
+  }
+
+  var eof = 60 + (nextByte() % 220); // where this file's Ctrl-Z happens to sit
+  var line = 'MZ';
+  for (var n = 0; n < eof; n++) {
+    var b = nextByte();
+    if (b === 26) break; // Ctrl-Z reached early: DOS stops here too
+    // DOS wrote these bytes to the console, which acted on a handful of
+    // them instead of drawing a glyph: bell, backspace, tab, linefeed and
+    // carriage return. Shift those into printable range so the run stays a
+    // solid block; every other control code draws its CP437 glyph, which is
+    // exactly what a real screenful of executable looked like.
+    if (b === 7 || b === 8 || b === 9 || b === 10 || b === 13) b = 32 + b;
+    line += String.fromCharCode(b);
+    if (line.length >= 78) {
+      echo(line);
+      line = '';
+    }
+  }
+  if (line.length) echo(line);
+}
+
 // ============================================================
 // FILESYSTEM COMMANDS — find
-// Search the virtual FS for games (.bat launchers) and emulator
-// menus (sub-directories), matching the query against the human
-// title parsed from each directory's menu.bat plus the short code.
+// Search the virtual FS for games (.exe launchers) and emulator
+// menus (sub-directories), matching the query against the launcher
+// name and against the human title parsed from each menu.bat.
 // ============================================================
-var FIND_CODE_COL = 11; // width of the leading code column
+var FIND_CODE_COL = 11; // width of the leading launcher-name column
 var FIND_INDENT = '             '; // 2 + FIND_CODE_COL spaces, for the path line
 
 function find(query) {
@@ -258,25 +313,21 @@ function find(query) {
     return;
   }
 
-  // Special case: any query starting with "odyssey" matches the
-  // Odyssey² entry, regardless of what comes after. The menu title
-  // is stored as "Odysseyý" (custom-font trick: char ý at sprite
-  // index 253 renders the CP437 superscript-2 glyph), so a literal
-  // `find "odyssey 2"` would otherwise miss it.
-  if (q.indexOf('odyssey') === 0) q = 'odyssey';
 
   // One pass over node.files collecting:
-  //   byCode: { displayedCode -> title }     menu rows keyed by their code column
-  //   byNum:  { rowNumber    -> title }      menu rows keyed by their N.
-  //   launcherTitle: { launcherCode -> title } from numbered .bat -> menu row
-  // Menu rows look like:  echo º   N.  Title text         CODE     º
-  // Title/code separated by 2+ spaces; either may contain single
-  // spaces (e.g. "Duke Nukem", "MARIO 3"). "[GAMES]" marker stripped.
-  // Numbered .bat data like "smb\n" maps row N -> launcher "smb".
+  //   byNum:         { rowNumber -> title }      menu rows keyed by their N.
+  //   launcherTitle: { launcher  -> title }      via the numbered .bat
+  //   dirTitle:      { dirName   -> title }      via the numbered .bat
+  // Menu rows look like:  echo <pad> º   N.  Title text        (year) º
+  // The row number is the only stable key: the title may contain single
+  // spaces ("Duke Nukem") and the trailing year is not part of it.
+  // Each numbered .bat then says what row N actually does — `smb` runs a
+  // launcher, `cd bbc` descends into a directory — which is what turns a
+  // row's human title into a title for the thing it points at.
   function parseDir(node) {
-    var byCode = {},
-      byNum = {},
-      numToLauncher = {};
+    var byNum = {},
+      numToLauncher = {},
+      numToDir = {};
     for (var i = 0; i < node.files.length; i++) {
       var f = node.files[i];
       if (typeof f.data === 'undefined') continue;
@@ -284,16 +335,16 @@ function find(query) {
       if (lname === 'menu.bat') {
         var lines = f.data.split('\n');
         for (var j = 0; j < lines.length; j++) {
-          var m = lines[j].match(/^echo º\s+(\d+)\.\s+(.+?)\s*º\s*$/);
+          // The echo is padded out to centre the box, so allow for that.
+          var m = lines[j].match(/^echo\s+º\s+(\d+)\.\s+(.+?)\s*º\s*$/);
           if (!m || m[1] === '0') continue;
-          var parts = m[2].split(/\s{2,}/);
-          if (parts.length < 2) continue;
-          var title = parts[0].replace(/\s+$/, '');
-          var code = parts[parts.length - 1]
+          // Collapse the column padding, but keep the trailing year: it is
+          // what tells two "Demon Attack"s apart in the results.
+          var title = m[2]
             .replace(/^\[GAMES\]\s*/i, '')
+            .replace(/\s{2,}/g, ' ')
             .trim();
-          if (!code) continue;
-          byCode[code.toLowerCase()] = title;
+          if (!title) continue;
           byNum[m[1]] = title;
         }
         continue;
@@ -304,39 +355,76 @@ function find(query) {
       for (var l = 0; l < dlines.length; l++) {
         var line = dlines[l].trim();
         if (!line) continue;
-        var tok = line.split(/\s+/)[0].toLowerCase();
-        if (
-          tok === 'echo' ||
-          tok === 'echo.' ||
-          tok === 'cls' ||
-          tok === 'cd' ||
-          tok === 'menu'
-        )
+        var bits = line.split(/\s+/);
+        var tok = bits[0].toLowerCase();
+        if (tok === 'echo' || tok === 'echo.' || tok === 'cls' || tok === 'menu')
           continue;
+        // `cd bbc` — this row opens a sub-directory. `cd ..` goes back and
+        // names nothing, so keep looking.
+        if (tok === 'cd') {
+          if (bits[1] && bits[1] !== '..' && !numToDir[fbase])
+            numToDir[fbase] = bits[1].toLowerCase();
+          continue;
+        }
         numToLauncher[fbase] = tok;
         break;
       }
     }
-    // Invert numToLauncher into launcherCode -> title using byNum.
-    var launcherTitle = {};
+    // Invert both maps into name -> title using the menu row each came from.
+    var launcherTitle = {},
+      dirTitle = {};
     for (var n in numToLauncher) {
       if (byNum[n]) launcherTitle[numToLauncher[n]] = byNum[n];
     }
+    for (var dn in numToDir) {
+      if (byNum[dn]) dirTitle[numToDir[dn]] = byNum[dn];
+    }
     return {
-      byCode: byCode,
       launcherTitle: launcherTitle,
+      dirTitle: dirTitle,
     };
   }
 
   // Match `needle` (already lowercased) at a word boundary inside `hayLower`.
   // "nes" matches "NES" and "Nintendo Ent. System" but NOT "Cybernes".
-  function matches(hayLower, needle) {
+  // Menu titles are stored as the font wants them, not as anyone would type
+  // them: the sprite sheet is indexed by character code, so a CP437 glyph is
+  // written as whatever character sits at that code. "Pokémon" holds char 130
+  // and "Odyssey²" holds char 253. Folded back to plain letters here so that
+  // `find pokemon` and `find "odyssey 2"` reach them; the displayed title is
+  // untouched. Indexed from 128, covering CP437's accented-letter block.
+  var CP437_FOLD =
+    'cueaaaaceeeiiiaaeAAooouuyOU   f' + // 128-158, then 159 (ƒ)
+    'aioun';                           // 160-164
+  function searchable(str) {
+    var outp = '';
+    for (var i = 0; i < str.length; i++) {
+      var code = str.charCodeAt(i);
+      if (code === 253) outp += '2'; // ² — the Odyssey² trick
+      else if (code === 252) outp += 'n'; // ⁿ
+      else if (code >= 128 && code - 128 < CP437_FOLD.length)
+        outp += CP437_FOLD.charAt(code - 128);
+      else outp += str.charAt(i);
+    }
+    return outp.toLowerCase();
+  }
+
+  function matchesOne(hayLower, needle) {
     var idx = hayLower.indexOf(needle);
     while (idx !== -1) {
       if (idx === 0 || /[^a-z0-9]/.test(hayLower.charAt(idx - 1))) return true;
       idx = hayLower.indexOf(needle, idx + 1);
     }
     return false;
+  }
+
+  // Also compared with the spaces taken out of both sides, so that a title
+  // the font runs together ("Odyssey²") is still found by the spaced name
+  // someone would actually type ("odyssey 2").
+  function matches(hayLower, needle) {
+    hayLower = searchable(hayLower);
+    if (matchesOne(hayLower, needle)) return true;
+    return matchesOne(hayLower.replace(/ /g, ''), needle.replace(/ /g, ''));
   }
 
   var games = [];
@@ -349,11 +437,12 @@ function find(query) {
       var f = node.files[i];
       if (typeof f.link === 'undefined') continue;
       var fname = f.name.toLowerCase();
-      if (fname.indexOf('.bat') === -1) continue;
+      // Launchers are .exe (they carry a link); .bat is kept for the
+      // numbered aliases and menus, which are not games.
+      if (fname.indexOf('.exe') === -1) continue;
       var code = fname.split('.')[0];
       if (/^\d+$/.test(code)) continue;
-      var title =
-        meta.byCode[code] || meta.launcherTitle[code] || code.toUpperCase();
+      var title = meta.launcherTitle[code] || code.toUpperCase();
       if (matches(title.toLowerCase(), q) || matches(code, q)) {
         games.push({
           code: code.toUpperCase(),
@@ -366,7 +455,7 @@ function find(query) {
     for (var di = 0; di < node.directories.length; di++) {
       var d = node.directories[di];
       var dcode = d.name.toLowerCase();
-      var dtitle = meta.byCode[dcode] || d.name;
+      var dtitle = meta.dirTitle[dcode] || d.name;
       if (matches(dtitle.toLowerCase(), q) || matches(dcode, q)) {
         menus.push({
           code: d.name,
