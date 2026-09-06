@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later
+     Part of GenX-DOS. This page loads a GPL-licensed emulator engine, so it is
+     GPL-3.0-or-later rather than the repo's CC BY-NC. -->
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' data: blob:; media-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <script src="../_shared/genx-bezel-ready.js"></script>
+  <script src="../_shared/genx-audio-banner.js"></script>
+<meta charset="utf-8"><link rel="shortcut icon" href="../_shared/favicon.ico"><link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif">
+<title>Arcade</title>
+<link rel="stylesheet" href="../_shared/styles/genx-frame.css">
+<link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
+<link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
+<link rel="stylesheet" href="../_shared/styles/genx-savestate.css">
+<style>
+  html, body {
+    /* Arcade carpet rather than the site's 70s wallpaper. The other bundles are
+       machines in a living room; this one is a cabinet on an arcade floor.
+
+       The source artwork already tiled, on a 781px period recovered from it by
+       autocorrelation, and this is one clean period of it — nothing more. A 2x2
+       brick stagger was tried and REVERTED: offsetting the lower row by half a
+       width breaks vertical continuity, because the lower row's top edge is then
+       a different part of the pattern from the upper row's bottom edge, and the
+       join shows as a horizontal line. Staggering only survives on a tile whose
+       edges are blank. This one is seamless in its own right and needs none. */
+    background: #0d1030 url('../_shared/textures/arcade-carpet.png') repeat;
+    background-size: 550px;
+  }
+
+  /* Two cabinets, because the lineup needs both. Arcade monitors were fitted
+     portrait or landscape per game, and this lineup splits 5/5 — the core's own
+     DAT is the authority on which is which, not the way a game looks. One
+     cabinet for all ten would leave Pac-Man filling 61% of its hole and Tempest
+     59%, sitting in the middle of a black rectangle. Two takes the worst case
+     to 83% and the mean to 92%.
+
+     Both PNGs are 744x868, already keyed, and their screen holes are clean
+     rectangles (99.6% and 99.9% rectangular fill) — so no inscribed-rectangle
+     treatment is needed, unlike the TRS-80 and Electron.
+
+     The marquee hole is identical in both, so marquee art is interchangeable.
+
+     Layer order (back -> front): marquee backing, screen backing, canvas,
+     cabinet PNG. The gaps beside the side rails are transparent by design and
+     show the wallpaper through, which is what makes it read as a cabinet
+     standing in a room rather than a sticker. */
+  .bezel-wrap {
+    position: relative;
+    /* Full viewport height. The cabinet is a tall portrait object — unlike the
+       monitor bezels elsewhere, which are landscape and leave wallpaper above
+       and below — so height is what it should be sized to, and the wallpaper
+       shows down the sides instead. Width caps it on narrow windows. */
+    height: 100dvh;
+    width: min(100vw, calc(100dvh * 744 / 868));
+    aspect-ratio: 744 / 868;
+  }
+
+  /* Both holes are FEATHERED — a ~4px ring of partial alpha around the fully
+     transparent core (2-3px on the vertical screen). Size a backing to the
+     transparent core alone and the wallpaper shows straight through that ring
+     as a bright halo. So there are two rectangles per hole:
+       backing  -> the OUTER bound, alpha < 250, reaching under the feather
+       picture  -> the inner bound, alpha < 8, the hard-edged hole
+     The 4px difference then reads as the dark inner lip of the bezel, which is
+     what it is on a real cabinet. */
+
+  /* An unlit marquee: black rather than wallpaper showing through.
+     Pixel-identical on both cabinets, so this one rule serves both. */
+  .marquee-bg {
+    position: absolute;
+    left: 4.301%; top: 5.991%; width: 91.667%; height: 17.627%;   /* outer bound */
+    background: #050505;
+    z-index: 1;
+  }
+  /* The marquee artwork sits on the inner bound, on top of that backing. Most
+     of these logos are taller than the slot — several are two-line — so they
+     are contained rather than cropped and the panel shows around them. Cropping
+     to fill turns "SPACE INVADERS" into "SPACE" and "STAR WARS" into "STAR",
+     which is worse than a smaller marquee. */
+  .marquee-art {
+    position: absolute;
+    left: 4.839%; top: 6.452%; width: 90.591%; height: 16.705%;   /* inner bound */
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Horizontal cabinet: 460x359 hole (aspect 1.281) */
+  .screen-bg {
+    position: absolute;
+    left: 18.548%; top: 48.041%; width: 62.903%; height: 42.281%;  /* outer bound */
+  }
+  #game {
+    position: absolute;
+    left: 19.086%; top: 48.502%; width: 61.828%; height: 41.359%;  /* inner bound */
+  }
+  /* Vertical cabinet: 330x422 hole (aspect 0.782) */
+  html.gx-vert .screen-bg {
+    left: 27.151%; top: 44.355%; width: 45.027%; height: 49.194%;  /* outer bound */
+  }
+  html.gx-vert #game {
+    left: 27.419%; top: 44.585%; width: 44.355%; height: 48.618%;  /* inner bound */
+  }
+  .screen-bg { background: #000; z-index: 2; }
+  #game { z-index: 3; }
+
+  .bezel-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 4;
+  }
+</style>
+<script defer src="../_shared/genx-controls-link.js"></script>
+<script defer src="../_shared/genx-repo-link.js"></script>
+<script defer src="../_shared/genx-savestate.js"></script>
+<script defer src="../_shared/genx-savestate-transfer.js"></script>
+<script src="../_shared-ejs/genx-ejs-lang.js"></script>
+<script src="../_shared/genx-game-loader.js"></script>
+<script src="../_shared-ejs/genx-ejs-boot.js"></script>
+</head>
+<body>
+  <noscript><div class="gx-noscript">
+    <div class="gx-noscript-title">JavaScript Required</div>
+    <div>This site is a client-side DOS terminal and emulator suite.</div>
+    <div>It needs JavaScript to run.</div>
+    <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+  </div></noscript>
+
+  <div class="bezel-wrap">
+    <div class="marquee-bg"></div>
+    <img class="marquee-art" id="marquee" alt="">
+    <div class="screen-bg"></div>
+    <div id="game"></div>
+    <img class="bezel-img" id="cabinet" src="../_shared/bezels/Arcade-Cabinet.png" alt="">
+  </div>
+
+  <script>
+    // Pick the cabinet before the emulator measures anything. Orientation is
+    // recorded per game in games.json, taken from the core's DAT — Space
+    // Invaders and Q*bert in particular are only mildly portrait and are easy
+    // to guess wrong. Runs synchronously off games.json, and genx-bezel-ready
+    // holds the screen back until the chosen cabinet has actually loaded, so
+    // there is no flash of the wrong frame.
+    (function () {
+      var key = new URLSearchParams(location.search).get('game');
+      if (!key) return;
+      var rq = new XMLHttpRequest();
+      rq.open('GET', 'games.json', false);           // sync: must settle before layout
+      try { rq.send(null); } catch (e) { return; }
+      if (rq.status !== 200 && rq.status !== 0) return;
+      var g;
+      try { g = JSON.parse(rq.responseText)[key]; } catch (e) { return; }
+      if (!g) return;
+      // A cabinet with no marquee art reads as an unlit marquee, which is a
+      // real thing you saw in an arcade. A broken-image icon is not, so the
+      // element hides itself rather than showing one.
+      var mq = document.getElementById('marquee');
+      if (mq) {
+        mq.onerror = function () { this.hidden = true; };
+        mq.src = 'marquees/' + key + '.png';
+      }
+      if (g.orientation !== 'vertical') return;
+      document.documentElement.classList.add('gx-vert');
+      var img = document.getElementById('cabinet');
+      if (img) img.src = '../_shared/bezels/Arcade-Cabinet-Vertical.png';
+    })();
+  </script>
+
+  <script>
+    // Arcade — EmulatorJS + mame2003_plus (MAME 0.78 era, which is where the
+    // golden-age sets live). Unlike every other bundle here there is no single
+    // machine: each game is its own board, and the core switches hardware per
+    // romset.
+    //
+    // Controls follow the cabinet, not a console. A real machine has no Start
+    // button until you have paid, so COIN comes first and START second — 5 and
+    // 1 are MAME's own keys for those and are what every arcade player expects.
+    // They are also completely unguessable from a keyboard, so they get soft
+    // buttons on the controls page the way the Coleco keypad does.
+    genxBootEJS({
+      title: 'Arcade',
+      coreName: 'mame2003_plus',
+      defaultOptions: {
+        // MAME opens with a warning screen on any game whose emulation it
+        // considers imperfect, and waits for a keypress. That is right for a
+        // debugging front-end and wrong for a cabinet, which just switches on.
+        'mame2003-plus_skip_warnings': 'enabled',
+
+        // MAME also opens with its own copyright/disclaimer screen and waits
+        // for a keypress. Every one of these games already shows its own
+        // copyright line in attract mode — Pac-Man's "© 1980 MIDWAY MFG.CO.",
+        // Star Wars' "© 1983 LUCASFILM LTD AND ATARI, INC." — so the emulator
+        // repeating it in front of the cabinet adds nothing but a barrier.
+        'mame2003-plus_skip_disclaimer': 'enabled',
+
+        // Three of these games — Asteroids, Star Wars and Tempest — are vector
+        // and have no raster at all, so this is the resolution their lines are
+        // drawn at rather than a scaling factor. Left unset the core picks its
+        // own default and the log complains it got an invalid value. Valid
+        // values are 640x480, 1024x768, 1280x960, 1440x1080, 1600x1200 and
+        // 1707x1280 (read out of the core itself); 1024x768 is comfortably
+        // above the aperture's pixel size without making WASM MAME work for
+        // nothing.
+        'mame2003-plus_vector_resolution': '1024x768'
+      },
+      defaultControls: {
+        0: {
+          // Coin and start are keyboard-only ON PURPOSE. They have visible
+          // buttons on screen — the coin slot and the 1P/2P starts — so a pad
+          // player can already see and reach them, and binding them to Back and
+          // Start as well would only make them easy to hit by accident, which
+          // on a coin-op means racking up credits mid-game. 5 / 1 / 2 are the
+          // keys a real cabinet used, so they stay.
+          // value2 must be set EMPTY, not omitted: EmulatorJS merges these over
+          // its own default scheme, so an absent field leaves its built-in Back
+          // and Start bindings in place rather than clearing them.
+          2: { value: '5', value2: '' },   // Insert coin
+          3: { value: '1', value2: '' },   // 1 player start
+          // Six buttons, because these cabinets used them. Defender alone has
+          // five (fire, thrust, smart bomb, hyperspace, reverse) and Star Wars
+          // four; mapping only two would leave a third of Defender unreachable.
+          // Which key does what differs per game and is listed in each gamedoc.
+          // The core walks B, Y, A, X, L, R and assigns them to MAME buttons
+          // 1..6 in that order, so the ID is fixed — what is chosen here is
+          // which physical pad button and which key sits on each.
+          //
+          // Laid out by HOW OFTEN A BUTTON IS PRESSED against HOW FAR THE HAND
+          // HAS TO MOVE, not by MAME's numbering.
+          //
+          // The hand: the right thumb rests on A and pivots from its base, so
+          // reach cost runs A -> B -> X -> Y, with Y needing the most extension.
+          // The right index finger already rests on RB, so a button there costs
+          // no movement at all and can be held indefinitely without competing
+          // with the thumb. The left thumb is busy steering throughout.
+          //
+          // The frequency, taking Defender as the only game here that uses all
+          // five: fire is constant, thrust is held almost continuously, REVERSE
+          // is frequent (turning to chase landers is the core of the game),
+          // smart bomb is rationed, and hyperspace is rare.
+          //
+          //   fire       MAME 1  -> A    thumb at rest, the most-pressed button
+          //   thrust     MAME 2  -> RB   index finger, held WITH fire
+          //   reverse    MAME 5  -> B    frequent, so the easier thumb move
+          //   smart bomb MAME 3  -> X    occasional and rationed
+          //   hyperspace MAME 4  -> Y    rare, and hardest to hit BY DESIGN:
+          //                              it is the button that can kill you
+          //   (unused)   MAME 6  -> LB
+          //
+          // Keys follow the same frequency order along the row, keeping the
+          // site's usual Z/X for the first two so players moving between
+          // systems are not relearning.
+          0:  { value: 'z', value2: 'BUTTON_1' },            // MAME 1  fire
+          1:  { value: 'x', value2: 'RIGHT_TOP_SHOULDER' },  // MAME 2  thrust
+          10: { value: 'c', value2: 'BUTTON_2' },            // MAME 5  reverse
+          8:  { value: 'v', value2: 'BUTTON_3' },            // MAME 3  smart bomb
+          9:  { value: 'a', value2: 'BUTTON_4' },            // MAME 4  hyperspace
+          11: { value: 's', value2: 'LEFT_TOP_SHOULDER' },   // MAME 6  unused here
+
+          // Five of these cabinets have TWO sticks, one per hand: Robotron and
+          // Splat! move with the left and fire with the right, Battlezone and
+          // Sheriff drive a tread with each, Inferno moves and aims. The core
+          // reads those as a separate second joystick fed from the pad's RIGHT
+          // analogue stick, so the D-pad alone can never reach them — on
+          // Battlezone that means the tank drives but cannot steer.
+          //
+          // The left stick is therefore bound to the same arrow keys as the
+          // D-pad. Nothing reads both, so this costs nothing on the other 95
+          // games and means movement is the arrow keys everywhere. The right
+          // stick keeps the emulator's own I/J/K/L, which collide with none of
+          // the six button keys above.
+          16: { value: 'right arrow', value2: 'LEFT_STICK_X:+1' },
+          17: { value: 'left arrow',  value2: 'LEFT_STICK_X:-1' },
+          18: { value: 'down arrow',  value2: 'LEFT_STICK_Y:+1' },
+          19: { value: 'up arrow',    value2: 'LEFT_STICK_Y:-1' },
+          20: { value: 'l', value2: 'RIGHT_STICK_X:+1' },
+          21: { value: 'j', value2: 'RIGHT_STICK_X:-1' },
+          22: { value: 'k', value2: 'RIGHT_STICK_Y:+1' },
+          23: { value: 'i', value2: 'RIGHT_STICK_Y:-1' },
+        },
+        // Player 2 gets its start button only. Two players alternate on all ten
+        // of these — nobody shares one keyboard for Pac-Man — but 2-player start
+        // is a genuinely separate input on the board, and 2 is the key the
+        // cabinet used, so it is worth having rather than leaving the second
+        // credit unreachable.
+        1: {
+          3: { value: '2', value2: '' }   // 2 player start — on screen, not on the pad
+        }
+      }
+    });
+  </script>
+  <script src="../_shared/genx-gamepad-keys.js"></script>
+  <script defer src="../_shared/genx-arcade-softkeys.js"></script>
+</body>
+</html>

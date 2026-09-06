@@ -440,8 +440,10 @@ function find(query) {
       // Launchers are .exe (they carry a link); .bat is kept for the
       // numbered aliases and menus, which are not games.
       if (fname.indexOf('.exe') === -1) continue;
+      // No digit filter here: the numbered aliases carry `data`, not `link`,
+      // so the check above has already skipped them — and Capcom's 1942 is a
+      // launcher whose name really is a number.
       var code = fname.split('.')[0];
-      if (/^\d+$/.test(code)) continue;
       var title = meta.launcherTitle[code] || code.toUpperCase();
       if (matches(title.toLowerCase(), q) || matches(code, q)) {
         games.push({

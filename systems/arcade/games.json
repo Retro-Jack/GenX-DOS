@@ -1,0 +1,502 @@
+{
+  "asteroid": {
+    "title": "Asteroids (1979 Atari)",
+    "rom": "games/asteroid.zip",
+    "orientation": "horizontal"
+  },
+  "bzone": {
+    "title": "Battlezone (1980 Atari)",
+    "rom": "games/bzone.zip",
+    "orientation": "horizontal"
+  },
+  "centiped": {
+    "title": "Centipede (1980 Atari)",
+    "rom": "games/centiped.zip",
+    "orientation": "vertical"
+  },
+  "missile": {
+    "title": "Missile Command (1980 Atari)",
+    "rom": "games/missile.zip",
+    "orientation": "horizontal"
+  },
+  "tempest": {
+    "title": "Tempest (1980 Atari)",
+    "rom": "games/tempest.zip",
+    "orientation": "vertical"
+  },
+  "irobot": {
+    "title": "I, Robot (1983 Atari)",
+    "rom": "games/irobot.zip",
+    "orientation": "horizontal"
+  },
+  "starwars": {
+    "title": "Star Wars (1983 Atari)",
+    "rom": "games/starwars.zip",
+    "orientation": "horizontal"
+  },
+  "marble": {
+    "title": "Marble Madness (1984 Atari)",
+    "rom": "games/marble.zip",
+    "orientation": "horizontal"
+  },
+  "paperboy": {
+    "title": "Paperboy (1984 Atari)",
+    "rom": "games/paperboy.zip",
+    "orientation": "horizontal"
+  },
+  "gauntlet": {
+    "title": "Gauntlet (1985 Atari)",
+    "rom": "games/gauntlet.zip",
+    "orientation": "horizontal"
+  },
+  "1942": {
+    "title": "1942 (1984 Capcom)",
+    "rom": "games/1942.zip",
+    "orientation": "vertical"
+  },
+  "commando": {
+    "title": "Commando (1985 Capcom)",
+    "rom": "games/commando.zip",
+    "orientation": "vertical"
+  },
+  "gng": {
+    "title": "Ghosts'n Goblins (1985 Capcom)",
+    "rom": "games/gng.zip",
+    "orientation": "horizontal"
+  },
+  "gunsmoke": {
+    "title": "Gun.Smoke (1985 Capcom)",
+    "rom": "games/gunsmoke.zip",
+    "orientation": "vertical"
+  },
+  "bionicc": {
+    "title": "Bionic Commando (1987 Capcom)",
+    "rom": "games/bionicc.zip",
+    "orientation": "horizontal"
+  },
+  "blktiger": {
+    "title": "Black Tiger (1987 Capcom)",
+    "rom": "games/blktiger.zip",
+    "orientation": "horizontal"
+  },
+  "sf1": {
+    "title": "Street Fighter (1987 Capcom)",
+    "rom": "games/sf1.zip",
+    "orientation": "horizontal"
+  },
+  "forgottn": {
+    "title": "Forgotten Worlds (1988 Capcom)",
+    "rom": "games/forgottn.zip",
+    "orientation": "horizontal"
+  },
+  "ffight": {
+    "title": "Final Fight (1989 Capcom)",
+    "rom": "games/ffight.zip",
+    "orientation": "horizontal"
+  },
+  "strider": {
+    "title": "Strider (1989 Capcom)",
+    "rom": "games/strider.zip",
+    "orientation": "horizontal"
+  },
+  "redalert": {
+    "title": "Red Alert (1981 Irem)",
+    "rom": "games/redalert.zip",
+    "orientation": "vertical"
+  },
+  "mpatrol": {
+    "title": "Moon Patrol (1982 Irem)",
+    "rom": "games/mpatrol.zip",
+    "orientation": "horizontal"
+  },
+  "yard": {
+    "title": "10 Yard Fight (1983 Irem)",
+    "rom": "games/yard.zip",
+    "orientation": "horizontal"
+  },
+  "travrusa": {
+    "title": "Traverse USA (1983 Irem)",
+    "rom": "games/travrusa.zip",
+    "orientation": "vertical"
+  },
+  "kungfum": {
+    "title": "Kung-Fu Master (1984 Irem)",
+    "rom": "games/kungfum.zip",
+    "orientation": "horizontal"
+  },
+  "kidniki": {
+    "title": "Kid Niki (1986 Irem)",
+    "rom": "games/kidniki.zip",
+    "orientation": "horizontal"
+  },
+  "rtype": {
+    "title": "R-Type (1987 Irem)",
+    "rom": "games/rtype.zip",
+    "orientation": "horizontal"
+  },
+  "imgfight": {
+    "title": "Image Fight (1988 Irem)",
+    "rom": "games/imgfight.zip",
+    "orientation": "vertical"
+  },
+  "nspirit": {
+    "title": "Ninja Spirit (1988 Irem)",
+    "rom": "games/nspirit.zip",
+    "orientation": "horizontal"
+  },
+  "vigilant": {
+    "title": "Vigilante (1988 Irem)",
+    "rom": "games/vigilant.zip",
+    "orientation": "horizontal"
+  },
+  "frogger": {
+    "title": "Frogger (1981 Konami)",
+    "rom": "games/frogger.zip",
+    "orientation": "vertical"
+  },
+  "scramble": {
+    "title": "Scramble (1981 Konami)",
+    "rom": "games/scramble.zip",
+    "orientation": "vertical"
+  },
+  "timeplt": {
+    "title": "Time Pilot (1982 Konami)",
+    "rom": "games/timeplt.zip",
+    "orientation": "vertical"
+  },
+  "tutankhm": {
+    "title": "Tutankham (1982 Konami)",
+    "rom": "games/tutankhm.zip",
+    "orientation": "vertical"
+  },
+  "gyruss": {
+    "title": "Gyruss (1983 Konami)",
+    "rom": "games/gyruss.zip",
+    "orientation": "vertical"
+  },
+  "trackfld": {
+    "title": "Track & Field (1983 Konami)",
+    "rom": "games/trackfld.zip",
+    "orientation": "horizontal"
+  },
+  "gberet": {
+    "title": "Green Beret (1985 Konami)",
+    "rom": "games/gberet.zip",
+    "orientation": "horizontal"
+  },
+  "nemesis": {
+    "title": "Nemesis (1985 Konami)",
+    "rom": "games/nemesis.zip",
+    "orientation": "horizontal"
+  },
+  "yiear": {
+    "title": "Yie Ar Kung-Fu (1985 Konami)",
+    "rom": "games/yiear.zip",
+    "orientation": "horizontal"
+  },
+  "contra": {
+    "title": "Contra (1987 Konami)",
+    "rom": "games/contra.zip",
+    "orientation": "vertical"
+  },
+  "seawolf": {
+    "title": "Sea Wolf (1976 Midway)",
+    "rom": "games/seawolf.zip",
+    "orientation": "horizontal"
+  },
+  "wow": {
+    "title": "Wizard of Wor (1980 Midway)",
+    "rom": "games/wow.zip",
+    "orientation": "horizontal"
+  },
+  "gorf": {
+    "title": "Gorf (1981 Midway)",
+    "rom": "games/gorf.zip",
+    "orientation": "vertical"
+  },
+  "mspacman": {
+    "title": "Ms. Pac-Man (1981 Midway)",
+    "rom": "games/mspacman.zip",
+    "orientation": "vertical"
+  },
+  "omegrace": {
+    "title": "Omega Race (1981 Midway)",
+    "rom": "games/omegrace.zip",
+    "orientation": "horizontal"
+  },
+  "shollow": {
+    "title": "Satan's Hollow (1981 Midway)",
+    "rom": "games/shollow.zip",
+    "orientation": "vertical"
+  },
+  "tron": {
+    "title": "Tron (1982 Midway)",
+    "rom": "games/tron.zip",
+    "orientation": "vertical"
+  },
+  "spyhunt": {
+    "title": "Spy Hunter (1983 Midway)",
+    "rom": "games/spyhunt.zip",
+    "orientation": "vertical"
+  },
+  "tapper": {
+    "title": "Tapper (1983 Midway)",
+    "rom": "games/tapper.zip",
+    "orientation": "horizontal"
+  },
+  "rampage": {
+    "title": "Rampage (1986 Midway)",
+    "rom": "games/rampage.zip",
+    "orientation": "horizontal"
+  },
+  "galaxian": {
+    "title": "Galaxian (1979 Namco)",
+    "rom": "games/galaxian.zip",
+    "orientation": "vertical"
+  },
+  "puckman": {
+    "title": "Pac-Man (1980 Namco)",
+    "rom": "games/puckman.zip",
+    "orientation": "vertical"
+  },
+  "rallyx": {
+    "title": "Rally-X (1980 Namco)",
+    "rom": "games/rallyx.zip",
+    "orientation": "horizontal"
+  },
+  "bosco": {
+    "title": "Bosconian (1981 Namco)",
+    "rom": "games/bosco.zip",
+    "orientation": "horizontal"
+  },
+  "galaga": {
+    "title": "Galaga (1981 Namco)",
+    "rom": "games/galaga.zip",
+    "orientation": "vertical"
+  },
+  "digdug": {
+    "title": "Dig Dug (1982 Namco)",
+    "rom": "games/digdug.zip",
+    "orientation": "vertical"
+  },
+  "polepos": {
+    "title": "Pole Position (1982 Namco)",
+    "rom": "games/polepos.zip",
+    "orientation": "horizontal"
+  },
+  "xevious": {
+    "title": "Xevious (1982 Namco)",
+    "rom": "games/xevious.zip",
+    "orientation": "vertical"
+  },
+  "mappy": {
+    "title": "Mappy (1983 Namco)",
+    "rom": "games/mappy.zip",
+    "orientation": "vertical"
+  },
+  "rthunder": {
+    "title": "Rolling Thunder (1986 Namco)",
+    "rom": "games/rthunder.zip",
+    "orientation": "horizontal"
+  },
+  "sheriff": {
+    "title": "Sheriff (1979 Nintendo)",
+    "rom": "games/sheriff.zip",
+    "orientation": "vertical"
+  },
+  "spacefev": {
+    "title": "Space Fever (1979 Nintendo)",
+    "rom": "games/spacefev.zip",
+    "orientation": "vertical"
+  },
+  "helifire": {
+    "title": "HeliFire (1980 Nintendo)",
+    "rom": "games/helifire.zip",
+    "orientation": "vertical"
+  },
+  "radarscp": {
+    "title": "Radar Scope (1980 Nintendo)",
+    "rom": "games/radarscp.zip",
+    "orientation": "vertical"
+  },
+  "spacefb": {
+    "title": "Space Firebird (1980 Nintendo)",
+    "rom": "games/spacefb.zip",
+    "orientation": "vertical"
+  },
+  "dkong": {
+    "title": "Donkey Kong (1981 Nintendo)",
+    "rom": "games/dkong.zip",
+    "orientation": "vertical"
+  },
+  "skyskipr": {
+    "title": "Sky Skipper (1981 Nintendo)",
+    "rom": "games/skyskipr.zip",
+    "orientation": "horizontal"
+  },
+  "popeye": {
+    "title": "Popeye (1982 Nintendo)",
+    "rom": "games/popeye.zip",
+    "orientation": "horizontal"
+  },
+  "mario": {
+    "title": "Mario Bros. (1983 Nintendo)",
+    "rom": "games/mario.zip",
+    "orientation": "horizontal"
+  },
+  "punchout": {
+    "title": "Punch-Out!! (1984 Nintendo)",
+    "rom": "games/punchout.zip",
+    "orientation": "horizontal"
+  },
+  "turbo": {
+    "title": "Turbo (1981 Sega)",
+    "rom": "games/turbo.zip",
+    "orientation": "vertical"
+  },
+  "pengo": {
+    "title": "Pengo (1982 Sega)",
+    "rom": "games/pengo.zip",
+    "orientation": "vertical"
+  },
+  "zaxxon": {
+    "title": "Zaxxon (1982 Sega)",
+    "rom": "games/zaxxon.zip",
+    "orientation": "vertical"
+  },
+  "hangon": {
+    "title": "Hang-On (1985 Sega)",
+    "rom": "games/hangon.zip",
+    "orientation": "horizontal"
+  },
+  "sharrier": {
+    "title": "Space Harrier (1985 Sega)",
+    "rom": "games/sharrier.zip",
+    "orientation": "horizontal"
+  },
+  "fantzone": {
+    "title": "Fantasy Zone (1986 Sega)",
+    "rom": "games/fantzone.zip",
+    "orientation": "horizontal"
+  },
+  "outrun": {
+    "title": "Out Run (1986 Sega)",
+    "rom": "games/outrun.zip",
+    "orientation": "horizontal"
+  },
+  "shinobi": {
+    "title": "Shinobi (1987 Sega)",
+    "rom": "games/shinobi.zip",
+    "orientation": "horizontal"
+  },
+  "altbeast": {
+    "title": "Altered Beast (1988 Sega)",
+    "rom": "games/altbeast.zip",
+    "orientation": "horizontal"
+  },
+  "goldnaxe": {
+    "title": "Golden Axe (1989 Sega)",
+    "rom": "games/goldnaxe.zip",
+    "orientation": "horizontal"
+  },
+  "sitv": {
+    "title": "Space Invaders (1978 Taito)",
+    "rom": "games/sitv.zip",
+    "orientation": "vertical"
+  },
+  "qix": {
+    "title": "Qix (1981 Taito)",
+    "rom": "games/qix.zip",
+    "orientation": "vertical"
+  },
+  "junglek": {
+    "title": "Jungle King (1982 Taito)",
+    "rom": "games/junglek.zip",
+    "orientation": "horizontal"
+  },
+  "elevator": {
+    "title": "Elevator Action (1983 Taito)",
+    "rom": "games/elevator.zip",
+    "orientation": "horizontal"
+  },
+  "arkanoid": {
+    "title": "Arkanoid (1986 Taito)",
+    "rom": "games/arkanoid.zip",
+    "orientation": "vertical"
+  },
+  "bublbobl": {
+    "title": "Bubble Bobble (1986 Taito)",
+    "rom": "games/bublbobl.zip",
+    "orientation": "horizontal"
+  },
+  "opwolf": {
+    "title": "Operation Wolf (1987 Taito)",
+    "rom": "games/opwolf.zip",
+    "orientation": "horizontal"
+  },
+  "rastan": {
+    "title": "Rastan (1987 Taito)",
+    "rom": "games/rastan.zip",
+    "orientation": "horizontal"
+  },
+  "chasehq": {
+    "title": "Chase H.Q. (1988 Taito)",
+    "rom": "games/chasehq.zip",
+    "orientation": "horizontal"
+  },
+  "tnzs": {
+    "title": "The New Zealand Story (1988 Taito)",
+    "rom": "games/tnzs.zip",
+    "orientation": "horizontal"
+  },
+  "defender": {
+    "title": "Defender (1980 Williams)",
+    "rom": "games/defender.zip",
+    "orientation": "horizontal"
+  },
+  "bubbles": {
+    "title": "Bubbles (1982 Williams)",
+    "rom": "games/bubbles.zip",
+    "orientation": "horizontal"
+  },
+  "joust": {
+    "title": "Joust (1982 Williams)",
+    "rom": "games/joust.zip",
+    "orientation": "horizontal"
+  },
+  "robotron": {
+    "title": "Robotron: 2084 (1982 Williams)",
+    "rom": "games/robotron.zip",
+    "orientation": "horizontal"
+  },
+  "sinistar": {
+    "title": "Sinistar (1982 Williams)",
+    "rom": "games/sinistar.zip",
+    "orientation": "vertical"
+  },
+  "splat": {
+    "title": "Splat! (1982 Williams)",
+    "rom": "games/splat.zip",
+    "orientation": "horizontal"
+  },
+  "blaster": {
+    "title": "Blaster (1983 Williams)",
+    "rom": "games/blaster.zip",
+    "orientation": "horizontal"
+  },
+  "mysticm": {
+    "title": "Mystic Marathon (1983 Williams)",
+    "rom": "games/mysticm.zip",
+    "orientation": "horizontal"
+  },
+  "inferno": {
+    "title": "Inferno (1984 Williams)",
+    "rom": "games/inferno.zip",
+    "orientation": "horizontal"
+  },
+  "narc": {
+    "title": "Narc (1988 Williams)",
+    "rom": "games/narc.zip",
+    "orientation": "horizontal"
+  }
+}

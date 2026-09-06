@@ -1,4 +1,4 @@
-19 emulator engines ship with GenX-DOS, driving 33 sub-systems between them. Some of the integrations were one-liners; others took a week of trial and failure. Every engine — plus each libretro core the shared EmulatorJS framework hosts — has its own integration story, so the index below runs to more rows than the engine count: one row per story page.
+19 emulator engines ship with GenX-DOS, driving 34 sub-systems between them. Some of the integrations were one-liners; others took a week of trial and failure. Every engine — plus each libretro core the shared EmulatorJS framework hosts — has its own integration story, so the index below runs to more rows than the engine count: one row per story page.
 
 ## The engines
 
