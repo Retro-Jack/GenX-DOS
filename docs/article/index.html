@@ -14,7 +14,7 @@
       type="image/gif"
       href="../../systems/_shared/animated_favicon1.gif"
     />
-    <link rel="stylesheet" href="../../styles/genx.css" />
+    <link rel="stylesheet" href="../../styles/genx-doc.css" />
     <style>
       * {
         box-sizing: border-box;
@@ -24,29 +24,14 @@
       html {
         background: var(--crt);
       }
+      /* Face, size, colour and justification come from genx-doc.css, the same
+         sheet the controls pages, the gamedocs and the wiki use. What stays
+         here is the magazine layout on top of it — the measure, the kicker,
+         the drop cap, the pull quotes, the rail. */
       body {
-        background: var(--crt);
-        color: var(--paper);
-        font-family: 'IBM Plex Serif', Georgia, serif;
-        font-size: 1.0625rem;
-        line-height: 1.62;
         max-width: 1000px;
         margin: 0 auto;
       }
-      a {
-        color: var(--cyan);
-        text-decoration: none;
-        border-bottom: 1px solid rgba(75, 196, 214, 0.4);
-      }
-      a:hover {
-        color: #8fe3ef;
-        border-bottom-color: var(--cyan);
-      }
-      a:focus-visible {
-        outline: 2px solid var(--cyan);
-        outline-offset: 2px;
-      }
-
       /* ---------- masthead strip ---------- */
       .strip {
         display: flex;
@@ -172,8 +157,6 @@
       }
       .copy p {
         margin-bottom: 1.15rem;
-        text-align: justify;
-        hyphens: auto;
       }
       .copy p:last-child {
         margin-bottom: 0;
@@ -282,7 +265,6 @@
       .boxout .note {
         font-size: 0.84rem;
         line-height: 1.55;
-        font-family: 'IBM Plex Serif', serif;
         color: var(--paper);
         padding: 0.9rem 0.9rem 1rem;
       }

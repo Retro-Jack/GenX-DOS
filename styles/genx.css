@@ -1,16 +1,31 @@
-/* GenX-DOS — shared design tokens + self-hosted faces. Imported by every
-   front-facing page in the site design language (landing, article, wiki,
-   controls + gamedocs), so fonts and the palette are declared in ONE place.
-   Fonts live in fonts/ (beside this file). */
+/* GenX-DOS — shared design tokens, self-hosted faces and the link rule. The
+   one sheet every front-facing page loads: the docs by @import from
+   genx-doc.css, the landing page and the error screens by their own link. It
+   holds no layout, which is why it can serve all three — an error screen wants
+   the palette without inheriting a document's typography.
+   Fonts live in fonts/ (beside this file). IBM Plex Serif was dropped once the
+   docs moved to the landing page's mono; nothing declared it any more. */
 @font-face{font-family:'Michroma';font-weight:400;font-display:swap;src:url('fonts/michroma-400.woff2') format('woff2')}
-@font-face{font-family:'IBM Plex Serif';font-weight:400;font-display:swap;src:url('fonts/ibm-plex-serif-400.woff2') format('woff2')}
-@font-face{font-family:'IBM Plex Serif';font-weight:600;font-display:swap;src:url('fonts/ibm-plex-serif-600.woff2') format('woff2')}
-@font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/ibm-plex-serif-400-italic.woff2') format('woff2')}
-@font-face{font-family:'IBM Plex Serif';font-style:italic;font-weight:600;font-display:swap;src:url('fonts/ibm-plex-serif-600-italic.woff2') format('woff2')}
 @font-face{font-family:'IBM Plex Mono';font-weight:400;font-display:swap;src:url('fonts/ibm-plex-mono-400.woff2') format('woff2')}
 @font-face{font-family:'IBM Plex Mono';font-weight:600;font-display:swap;src:url('fonts/ibm-plex-mono-600.woff2') format('woff2')}
 @font-face{font-family:'VGA437';font-weight:400;font-display:swap;src:url('fonts/web437-vga.woff') format('woff')}
 :root{
   --crt:#0B0D10; --panel:#14171C; --amber:#FFB000; --green:#35FF6D; --cyan:#4BC4D6;
   --paper:#D4D1C6; --dim:#837D6E; --line:rgba(255,176,0,.22);
+  --prose:#BEBBB0;   /* body copy: a step back from --paper, which is for emphasis */
 }
+
+/* Links, once, for the whole site. Four copies of this rule had accumulated —
+   the landing page, the feature article, the wiki and the controls sheet —
+   and they had drifted: two border alphas, two focus-ring colours and one
+   sheet with no focus ring at all. Worse, three of them then re-coloured
+   links per context, so the same kind of link was cyan on one page and amber
+   on the next. These are the landing page's values, which is the design
+   language everything else follows.
+
+   Page furniture that happens to be an anchor — the masthead, the wiki's
+   sidebar buttons, the BOOT button — is styled by its own class and is not
+   affected. This is for links you read in a sentence. */
+a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(75,196,214,.4)}
+a:hover{color:#8fe3ef;border-bottom-color:var(--cyan)}
+a:focus-visible{outline:2px solid var(--amber);outline-offset:3px}

@@ -42,7 +42,7 @@ genx-dos/
 │   ├── wiki.css             wiki page styling
 │   ├── error.css            404/403/500 layout — kept out of the pages so the
 │   │                        three cannot drift, and so they need no inline styles
-│   └── fonts/               self-hosted woff2 — Michroma, IBM Plex Mono/Serif, VGA437
+│   └── fonts/               self-hosted woff2 — Michroma, IBM Plex Mono, VGA437
 │
 ├── prompt/                   the DOS terminal
 │   ├── index.html

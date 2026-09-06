@@ -91,8 +91,11 @@ def page(key, game, labels, control, buttons, sub, intro, extra_start=None,
         note = ('<p class="note-plain">No buttons at all &mdash; the control panel was '
                 f'{what} and nothing else.</p>')
     else:
+        # Just the count. What the buttons do is the table directly below, and
+        # a line saying the others do nothing tells the reader what the absence
+        # of a row already told them.
         note = (f'<p class="note-plain">This cabinet used {buttons} button'
-                f'{"s" if buttons != 1 else ""}. Buttons not listed here do nothing on this machine.</p>')
+                f'{"s" if buttons != 1 else ""}.</p>')
     steps = ['      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>',
              '      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>']
     if control in ANALOGUE:
@@ -107,7 +110,7 @@ def page(key, game, labels, control, buttons, sub, intro, extra_start=None,
   <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(title)} &mdash; Arcade &mdash; GenX-DOS</title>
-  <link rel="stylesheet" href="../../../systems/_shared/styles/genx-controls.css">
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
 </head>
 <body>
   <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>

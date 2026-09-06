@@ -1,5 +1,5 @@
-/* Just the two faces, not an @import of genx.css. The controls pages import
-   that whole sheet for the design language, but a play page must not — it
+/* Just the two faces, declared here rather than pulled from genx.css. A
+   document loads the whole design language; a play page must not, because it
    would restyle the emulator's own chrome. A bare @font-face declares the
    family without touching anything else. Same self-hosted files, so CSP
    font-src 'self' is satisfied and nothing is fetched off-site. */
