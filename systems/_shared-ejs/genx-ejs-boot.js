@@ -19,7 +19,8 @@
 //         defaultControls: { ... },    // optional, EJS_defaultControls
 //         biosUrl: 'foo.rom',          // optional, bundle-local
 //         bareBoot: 'games/empty.prg',  // optional, ROM loaded when no ?game=
-//         perGame: (game, opts) => {}  // optional — mutate opts based on game
+//         perGame: (game, opts, controls, key) => {}   // optional — mutate
+//                                        // opts or controls for this game
 //       });
 //     </script>
 //   </body>
@@ -85,10 +86,22 @@ window.genxBootEJS = async function (config) {
     return;
   }
 
-  // Run the per-game callback (e.g. PET model override, C128 video output).
+  // Run the per-game callback (e.g. PET model override, C128 video output,
+  // the arcade's directional-fire cabinets moving to the right stick).
   const options = Object.assign({}, config.defaultOptions || {});
+  // Controls are copied one level deeper than the options, because what a hook
+  // rebinds is an individual input's { value, value2 } object. A shallow copy
+  // would hand it the page's own literal to write into, and the edit would
+  // then apply to every game loaded afterwards in the same tab.
+  const controls = {};
+  for (const player in config.defaultControls || {}) {
+    controls[player] = {};
+    for (const input in config.defaultControls[player]) {
+      controls[player][input] = Object.assign({}, config.defaultControls[player][input]);
+    }
+  }
   if (typeof config.perGame === 'function') {
-    config.perGame(game, options);
+    config.perGame(game, options, controls, key);
   }
 
   // EJS expects globals set BEFORE loader.js runs.
@@ -107,8 +120,7 @@ window.genxBootEJS = async function (config) {
   // undefined and the loader bails silently.
   window.EJS_DEBUG_XX = true;
   window.EJS_defaultOptions = options;
-  if (config.defaultControls)
-    window.EJS_defaultControls = config.defaultControls;
+  if (config.defaultControls) window.EJS_defaultControls = controls;
   // When coreName names a concrete core (e.g. 'genesis_plus_gx' because the
   // system's first-choice core isn't bundled), controlScheme pins the input
   // scheme to the intended system (e.g. 'segaMS').
@@ -116,6 +128,43 @@ window.genxBootEJS = async function (config) {
   if (config.biosUrl)
     window.EJS_biosUrl = new URL(config.biosUrl, location.href).href;
   if (gameUrl) window.EJS_gameUrl = new URL(gameUrl, location.href).href;
+
+  // The core's option file is written from EmulatorJS's getCoreSettings(),
+  // and that function reads EJS_defaultOptions only in two cases: when the
+  // browser has no localStorage at all, or when this game ALREADY has a saved
+  // settings entry. Otherwise it returns an empty string. The entry is keyed
+  // per ROM URL, so "otherwise" is every visitor's first visit to every game
+  // on the site — the core boots on its own defaults and nothing set here
+  // reaches it. That is why the arcade cabinet kept showing MAME's copyright
+  // screen with skip_disclaimer set: the file it was written into was empty.
+  //
+  // Fixed here rather than in the vendored runtime. EmulatorJS still writes
+  // whatever the player has saved, and each option it did NOT write falls back
+  // to this page's default, which is what a default is. Hooked through a
+  // property setter rather than a poll, so it lands the moment loader.js
+  // constructs the emulator — long before the core asks for the file.
+  let ejsInstance;
+  Object.defineProperty(window, 'EJS_emulator', {
+    configurable: true,
+    get: () => ejsInstance,
+    set: (e) => {
+      ejsInstance = e;
+      if (!e || typeof e.getCoreSettings !== 'function') return;
+      const orig = e.getCoreSettings.bind(e);
+      e.getCoreSettings = () => {
+        let rv = orig();
+        for (const k in options) {
+          const line = new RegExp('^' + k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*=', 'm');
+          if (line.test(rv)) continue;
+          // quoted or bare exactly as EmulatorJS writes them, so the core
+          // parses our lines the same way it parses its own
+          const v = options[k];
+          rv += k + ' = ' + (isNaN(v) ? '"' + v + '"' : v) + '\n';
+        }
+        return rv;
+      };
+    }
+  });
 
   const s = document.createElement('script');
   s.src = '../_shared-ejs/ejs/data/loader.js';

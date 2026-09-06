@@ -481,8 +481,6 @@
             // the two runs second is the one that shows the notice. A bare
             // "call it if it exists" check silently did nothing when the fetch
             // won the race, which is exactly how this was missed the first time.
-            window.GENX_PAD_RELEVANT = true;
-            if (window.GenXPadNotice) window.GenXPadNotice();
             // XRoar's own keyboard joystick: cursor keys to steer, Alt to
             // fire. Defining a custom profile was tried and abandoned — the
             // -joy-axis/-joy-button options did not attach to a profile named
@@ -509,7 +507,6 @@
     </script>
     <script defer src="../_shared/genx-controls-link.js"></script>
     <script defer src="../_shared/genx-repo-link.js"></script>
-    <script defer src="../_shared/genx-gamepad-browser-notice.js"></script>
 
     <!-- save / load state: XRoar exports write_snapshot (full-machine .sna to the
        WASM FS); we read those bytes back as the state, and restore by writing

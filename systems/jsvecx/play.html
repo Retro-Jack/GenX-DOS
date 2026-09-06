@@ -11,17 +11,7 @@
 <title>GCE Vectrex</title>
 <script defer src="../_shared/genx-controls-link.js"></script>
 <script defer src="../_shared/genx-repo-link.js"></script>
-<script defer src="../_shared/genx-gamepad-browser-notice.js"></script>
 <script>
-  /* The CoCo gates this notice per game, because most of its library ignores
-     the joystick. The Vectrex cannot: the analogue stick and its four buttons
-     are the machine's only controller, so every game here reads it and the
-     notice is always relevant.
-     Chrome will not hand a pad to this page even with the page focused —
-     tested with a real pad on 04/09/2026, clicking first made no difference —
-     which is the same behaviour XRoar has. Firefox works. */
-  window.GENX_PAD_RELEVANT = true;
-  if (window.GenXPadNotice) window.GenXPadNotice();
 </script>
 <link rel="stylesheet" href="../_shared/styles/genx-frame.css">
 <link rel="stylesheet" href="../_shared/styles/genx-noscript.css">

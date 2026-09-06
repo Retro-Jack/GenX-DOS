@@ -9,8 +9,9 @@
 // to know the answer is the 5 key. It is the least guessable control on the
 // whole site, so it gets the most literal button: a coin slot.
 //
-// Order matches the cabinet: coin first, then start, because that is the order
-// the machine demands them in.
+// The slot sits between the two start buttons, which is where the coin door is
+// on the cabinet: centred under the panel with 1P to its left and 2P to its
+// right, so the button you want is on the side you are standing.
 //
 // MECHANISM: EmulatorJS ignores synthetic KeyboardEvents outright, so these go
 // through gameManager.simulateInput(player, buttonId, value) — the path EJS's
@@ -41,22 +42,30 @@
 
   function build() {
     const css = `
-      /* Top-left on the wallpaper, under the controls link — the standard soft
-         key position on this site. NOT bottom-centre like the TRS-80's CLEAR:
+      /* A second corner box, beside the Gameplay controls link rather than
+         floating under it. Same background, border, radius and padding, and
+         its height is measured off that link at runtime — the label is two
+         lines of a webfont, so its height is not a number that can be written
+         down here and stay true. NOT bottom-centre like the TRS-80's CLEAR:
          this cabinet is sized to full viewport height, so there is no wallpaper
          below it and a bottom bar lands on top of the game screen.
-         The offset clears the audio banner, which is fixed at the top and would
-         otherwise bury these exactly when a player is hunting for the way in. */
+         left and height are set from JS; the rest is fixed. */
       #genx-arcade-keys {
         position: fixed;
-        top: calc(62px + var(--gx-banner-h, 0px));
-        left: 16px;
-        z-index: 100; display: flex; align-items: center; gap: 10px;
+        top: 6px;
+        left: 12px;
+        z-index: 99999;
+        box-sizing: border-box;
+        background: var(--gx-btn-bg, #4c2e1d);
+        border: 1px solid var(--gx-btn-line, rgba(255,176,0,0.35));
+        border-radius: 4px;
+        padding: 4px 10px;
+        display: flex; align-items: center; gap: 10px;
       }
       /* The coin slot is the artwork itself rather than a labelled button —
          it is the one control that needs no words in any language. */
       #genx-arcade-coin {
-        width: 44px; height: 44px; padding: 0; border-radius: 4px;
+        height: 100%; aspect-ratio: 1; padding: 0; border-radius: 4px;
         border: 1px solid var(--gx-btn-line, rgba(255,176,0,0.35));
         background: url('coin.png') center/cover no-repeat;
         cursor: pointer; display: block;
@@ -67,7 +76,7 @@
          get no border or background — a chrome button in a chrome-coloured box
          would read as a picture of a button rather than a button. */
       .gx-arcade-start {
-        width: 44px; height: 44px; padding: 0; border: 0; background: transparent
+        height: 100%; aspect-ratio: 1; padding: 0; border: 0; background: transparent
           center/contain no-repeat;
         cursor: pointer; display: block;
         filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6));
@@ -106,13 +115,33 @@
       return b;
     };
 
-    bar.appendChild(coin);
     bar.appendChild(mk('genx-arcade-1p', '1 player start',
       'One player start — needs a credit first (keyboard: 1)', 0));
+    bar.appendChild(coin);
     bar.appendChild(mk('genx-arcade-2p', '2 player start',
       'Two player start, alternating — needs two credits (keyboard: 2)', 1));
     document.body.appendChild(bar);
+    place(bar);
   }
+
+  // Sit the box immediately right of the Gameplay controls link and match its
+  // height. Measured rather than assumed: the link's height comes from two
+  // lines of IBM Plex Mono, so it changes when the webfont arrives and again
+  // if the browser's own metrics differ. Re-run on both.
+  function place(bar) {
+    const link = document.querySelector('.gx-corner-link.gx-left');
+    if (!link) return;                       // keyless boot: no link, stay in the corner
+    const r = link.getBoundingClientRect();
+    bar.style.left = (r.right + 10) + 'px';
+    bar.style.height = r.height + 'px';
+  }
+
+  const replace = () => {
+    const bar = document.getElementById('genx-arcade-keys');
+    if (bar) place(bar);
+  };
+  addEventListener('resize', replace);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(replace);
 
   // EJS publishes its emulator object well after the page parses, and a control
   // delivered before the machine has booted is wasted, so wait rather than race.

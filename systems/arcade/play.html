@@ -209,6 +209,107 @@
         // nothing.
         'mame2003-plus_vector_resolution': '1024x768'
       },
+      // THE PAD'S FACE BUTTONS AS A CONTROL PANEL.
+      //
+      // Y, X and B sit in a diamond -- X on the left, B on the right, Y above
+      // between them -- and a few of these panels were laid out in space
+      // rather than as a row of "button 1, button 2, button 3". Where that is
+      // true the diamond is used as the panel itself:
+      //
+      //   Gun.Smoke      the sheriff shoots down the left, the centre or the
+      //                  right of the street, one button per lane
+      //   Missile Command  three missile bases, left, centre and right of the
+      //                  screen, one button each
+      //   Punch-Out!!    a left blow and a right blow, with the uppercut above
+      //
+      // WHICH BUTTON IS WHICH WAS MEASURED, NOT ASSUMED. MAME's numbering is
+      // not panel order: on both Gun.Smoke and Missile Command button 1 and
+      // button 2 are the two OUTER positions and button 3 is the middle one.
+      // Verified by playing them -- Missile Command prints LOW under a base
+      // that is nearly out, so firing one button repeatedly says exactly which
+      // base it belongs to, and Gun.Smoke's shots visibly leave the sheriff to
+      // one side. Reading the numbering as left-centre-right, which is the
+      // obvious thing to do, puts two of the three in the wrong place.
+      //
+      // Tutankham keeps the right stick: it fires along the corridor it is
+      // standing in, only ever left or right, and an axis says that better
+      // than a pair of buttons.
+      //
+      // Input ids are the core's: it walks B, Y, A, X, L, R and hands them to
+      // MAME buttons 1..6, so MAME 1 = 0, MAME 2 = 1, MAME 3 = 8. Pad names
+      // are EmulatorJS's: BUTTON_2 = B, BUTTON_3 = X, BUTTON_4 = Y.
+      //
+      // Each of these cabinets has exactly three buttons, so MAME 4 and 5 are
+      // cleared. They are unused by the board but still carry this bundle's
+      // default Y and B, and leaving them there would put those two pad
+      // buttons on two inputs at once.
+      perGame: function (game, options, controls, key) {
+        var PANEL = {
+          gunsmoke: {
+            0: 'BUTTON_3',        // MAME 1  fire left      X
+            1: 'BUTTON_2',        // MAME 2  fire right     B
+            8: 'BUTTON_4',        // MAME 3  fire centre    Y
+            9: '', 10: ''
+          },
+          missile: {
+            0: 'BUTTON_3',        // MAME 1  left base      X
+            1: 'BUTTON_2',        // MAME 2  right base     B
+            8: 'BUTTON_4',        // MAME 3  centre base    Y
+            9: '', 10: ''
+          },
+          punchout: {
+            0: 'BUTTON_3',        // MAME 1  left blow      X
+            1: 'BUTTON_2',        // MAME 2  right blow     B
+            8: 'BUTTON_4',        // MAME 3  hook uppercut  Y
+            9: '', 10: ''
+          },
+          tutankhm: {
+            0: 'RIGHT_STICK_X:-1',   // MAME 1  fire left
+            1: 'RIGHT_STICK_X:+1'    // MAME 2  fire right
+          }
+        };
+        var panel = PANEL[key];
+        if (panel) {
+          for (var input in panel) controls[0][input].value2 = panel[input];
+        }
+
+        // Star Wars is flown, not steered. Its cabinet is a yoke and the game
+        // reads it as a true analogue input -- the core's own data calls the
+        // control a "stick" rather than one of the joyNway kinds every other
+        // cabinet here uses -- so the left stick gives it real proportional
+        // pitch and roll rather than the digital approximation.
+        //
+        // A yoke is pulled BACK to climb, which is the opposite of a stick
+        // pushed forward, so the vertical axis is inverted. The swap is on the
+        // two analogue inputs rather than on the bindings because EmulatorJS
+        // picks between those two by the sign of the reading and never looks
+        // at which binding matched.
+        // Star Wars is flown, not steered. Its cabinet is a yoke and the
+        // core's own data calls the control a "stick" rather than one of the
+        // joyNway kinds every other cabinet here uses, so the left stick gives
+        // it real proportional pitch and roll -- the one genuinely analogue
+        // control in the lineup.
+        //
+        // THE YOKE WOULD NOT RETURN TO CENTRE. Released, the crosshair sprang
+        // back to a fixed point about a quarter of the way across rather than
+        // to the middle. The axis itself was fine -- held hard over, the two
+        // extremes sit symmetrically either side of centre -- so it was the
+        // rest position alone that was wrong, and it is this option that sets
+        // it. "Digital Joystick Centering" is for driving an analogue port
+        // from a digital stick; with a real analogue stick on the port it
+        // pulls the rest position off centre instead. Off, the crosshair rests
+        // dead centre on both axes.
+        //
+        // The mouse comes off the same game. The core drives an XY device from
+        // the mouse by default, and a mouse is relative -- it has no centre to
+        // return to -- which is not something a sprung yoke wants sharing its
+        // input. Nobody plays this site with a mouse; the pad and the keyboard
+        // are what the pages document.
+        if (key === 'starwars') {
+          options['mame2003-plus_digital_joy_centering'] = 'disabled';
+          options['mame2003-plus_xy_device'] = 'disabled';
+        }
+      },
       defaultControls: {
         0: {
           // Coin and start are keyboard-only ON PURPOSE. They have visible
@@ -270,7 +371,7 @@
           // Battlezone that means the tank drives but cannot steer.
           //
           // The left stick is therefore bound to the same arrow keys as the
-          // D-pad. Nothing reads both, so this costs nothing on the other 95
+          // D-pad. Nothing reads both, so this costs nothing on the other 94
           // games and means movement is the arrow keys everywhere. The right
           // stick keeps the emulator's own I/J/K/L, which collide with none of
           // the six button keys above.

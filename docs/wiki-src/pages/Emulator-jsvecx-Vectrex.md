@@ -73,7 +73,7 @@ The Vectrex is the one machine on this site whose controller was genuinely analo
 
 Nothing about this is per-game. The analogue stick and its four buttons are the machine's only controller, so every cartridge reads them.
 
-The catch is the browser. **A Chromium browser never hands a pad to this page**, focused or clicked or not, so the bundle loads `_shared/genx-gamepad-browser-notice.js` unconditionally — the only other bundle that does is the CoCo, and there the cause is different (XRoar asks SDL for the joystick list once at startup; jsvecx never binds one at all). The notice names Firefox and points at `controls.html` for the keyboard equivalents, which cover the whole stick and all four buttons, so nobody is stuck without hardware.
+A pad is handed over by the browser only once it has been pressed on a focused page, so the first press may go nowhere -- click the screen and press again. `controls.html` covers the keyboard equivalents for the whole stick and all four buttons, so nobody is stuck without hardware.
 
 Eleven gamedocs carried "This emulator is keyboard-only — USB gamepads aren't supported" for as long as the bundle existed, inherited and never checked. They were wrong from the start.
 
