@@ -65,8 +65,11 @@
 │   └── images/             landing/README screenshots + social card (genx-social.png)
 │
 ├── styles/                   the front-facing design system
-│   ├── genx.css             the one @font-face set + the :root colour tokens
-│   ├── wiki.css             wiki page styling
+│   ├── genx.css             the @font-face set, the :root colour tokens
+│   │                        and the site-wide link rule
+│   ├── genx-doc.css         the document design language — every controls
+│   │                        page, gamedoc, wiki page and the article
+│   ├── wiki.css             the wiki frame only: sidebar, top bar, search
 │   ├── error.css            404/403/500 layout — kept out of the pages so the
 │   │                        three cannot drift, and so they need no inline styles
 │   └── fonts/               self-hosted woff2 — Michroma, IBM Plex Mono, VGA437
@@ -100,7 +103,7 @@
     │   │                    softkey-policy (+ softkeys.json: which games show which
     │   │                    soft key, generated from the gamedocs),
     │   │                    gamepad-browser-notice (Chrome cannot see a pad)
-    │   ├── styles/          all shared CSS (genx-controls/frame/noscript/savestate/controls-link.css)
+    │   ├── styles/          play-page CSS only (frame/noscript/savestate/controls-link.css)
     │   │   └── VGA_font/    DOS-prompt CP437 sheets f12.&lt;0-15&gt;.png + make_fonts.py generator
     │   ├── bezels/          PNG monitor frames (every platform now bezeled)
     │   ├── textures/        70s wallpaper tile (sitewide body background)

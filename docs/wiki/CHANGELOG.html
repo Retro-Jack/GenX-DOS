@@ -39,6 +39,10 @@
 <h3 id="changed">Changed</h3>
 <ul>
 <li>
+<p><strong>The docs describe the tree as it is now.</strong> The social card's stats line reads <code>428 games · 34 systems · 100% self-hosted</code>; it had been left at <code>328 · 33</code> since the arcade section landed, and was the one count the checker can flag but not fix, since it cannot read a PNG. Redrawn in the card's own font rather than a substitute &mdash; the digits were lifted from the menu row that already carried a <code>4</code>, so the glyphs are the card's own. The changelog entry describing that card was wrong too, quoting <code>327</code> for a line that has always said <code>328</code>.
+  The wiki's file listing gained <code>genx-doc.css</code> and now describes what each stylesheet is for, and its emulator page no longer sends readers to <code>systems/_shared/styles/genx-controls.css</code>, which was deleted when the document language was consolidated.</p>
+</li>
+<li>
 <p><strong>One design language for everything you read, in one file.</strong> <code>styles/genx-doc.css</code> now sets the type on the controls pages, the hundred-odd gamedocs and all forty-three wiki pages: the landing page's Michroma amber headings with the rule running off the end of a section label, its serif body on the dark CRT ground, its green mono table headers.
   There had been two of these, and they had drifted apart without anyone choosing it — the controls sheet and the wiki sheet were parallel implementations of the same idea, at section headings of .85rem against 1rem, table headers green against amber, table type at .92rem against .88rem, and two different paragraph rhythms. The link rule alone existed in <strong>four</strong> copies, at two different border weights and two different focus rings, one of them with no focus ring at all; three of those then re-coloured links per context, so a gamedoc's cross-link was amber while the link in the sentence below it was cyan. Lists, block quotes, horizontal rules and inline code had been styled for the wiki only, so a gamedoc's bullets were whatever the browser felt like.
   The docs are also in the landing page's <strong>face</strong> now. They had been set in IBM Plex Serif &mdash; a second voice nothing else on the site spoke, and the reason the two halves of the site never quite looked related. Everything a reader meets is IBM Plex Mono at the landing page's 16px/1.65, with Michroma still carrying the headings. The one remaining serif, on the closing aside of every controls page, went with it.
@@ -76,6 +80,9 @@
 </ul>
 <h3 id="fixed">Fixed</h3>
 <ul>
+<li>
+<p><strong>Twelve vendored images that nothing used were shipping to every BBC visitor.</strong> jsbeeb's own web UI has an example screenshot, a sidebar, a bottom bar, two disc-drive icons and an app icon; our embedded build uses none of them &mdash; its page asks only for the cub monitor and a placeholder &mdash; but all six were in the tree twice, once per BBC machine, and all twelve reached the web host. Removed. They will come back if the fork is ever re-vendored, so the re-vendor recipe should strip them.</p>
+</li>
 <li>
 <p><strong>Star Wars' yoke would not return to centre.</strong> It is the one genuinely analogue control in the arcade lineup — the core's own data calls it a stick rather than one of the joyNway kinds — so the pad's left stick flies it proportionally, how far you push being how far the crosshair goes. Released, though, the crosshair sprang back to a point about a quarter of the way across the screen rather than to the middle.
   The axis was never the problem: held hard over, the two extremes sit symmetrically either side of centre, so only the rest position was wrong. That is set by the core's "Digital Joystick Centering", which exists for driving an analogue port from a <em>digital</em> stick and, with a real analogue stick on the port, pulls the rest position off centre instead. Off, the crosshair rests dead centre on both axes and the yoke behaves as the sprung one did.
