@@ -17,472 +17,472 @@ sourcing ROMs, BIOS or firmware, for legal reasons, so please don't ask.
 
 Amstrad CPC 464
 ---------------
-  systems/cpc/games/3dkit.dsk                          3D Construction Kit (1991 Domark)
-  systems/cpc/games/bruce.dsk                          Bruce Lee (1984 US Gold)
-  systems/cpc/games/chasehq.dsk                        Chase H.Q. (1989 Ocean)
-  systems/cpc/games/eidolon.dsk                        The Eidolon (1986 Activision)
-  systems/cpc/games/rick.dsk                           Rick Dangerous (1989 Firebird)
-  systems/cpc/games/roland.dsk                         Roland on the Run (1984 Amsoft)
-  systems/cpc/games/rtype.dsk                          R-Type (1988 Electric Dreams)
-  systems/cpc/games/starstrike.dsk                     3D Starstrike (1985 Realtime)
-  systems/cpc/games/tauceti.dsk                        Tau Ceti (1986 CRL)
+  systems/cpc/games/3dkit.dsk                              3D Construction Kit (1991)
+  systems/cpc/games/bruce.dsk                              Bruce Lee (1984)
+  systems/cpc/games/chasehq.dsk                            Chase H.Q. (1989)
+  systems/cpc/games/eidolon.dsk                            The Eidolon (1986)
+  systems/cpc/games/rick.dsk                               Rick Dangerous (1989)
+  systems/cpc/games/roland.dsk                             Roland on the Run (1984)
+  systems/cpc/games/rtype.dsk                              R-Type (1988)
+  systems/cpc/games/starstrike.dsk                         3D Starstrike (1985)
+  systems/cpc/games/tauceti.dsk                            Tau Ceti (1986)
 
 Apple ][+
 ---------
-  systems/apple2/json/disks/archon.json                Archon
-  systems/apple2/json/disks/aztec.json                 Aztec
-  systems/apple2/json/disks/choplift.json              Choplifter
-  systems/apple2/json/disks/hardhat.json               Hard Hat Mack
-  systems/apple2/json/disks/karateka.json              Karateka
-  systems/apple2/json/disks/lemonade.json              Lemonade Stand
-  systems/apple2/json/disks/loderun.json               Lode Runner
-  systems/apple2/json/disks/oregon.json                The Oregon Trail
-  systems/apple2/json/disks/sammy.json                 Sammy Lightfoot
-  systems/apple2/json/disks/wolf.json                  Castle Wolfenstein
-  systems/apple2/woz/oregon-a.woz                      The Oregon Trail, side A
-  systems/apple2/woz/oregon-b.woz                      The Oregon Trail, side B
+  systems/apple2/json/disks/archon.json                    Archon (1984)
+  systems/apple2/json/disks/aztec.json                     Aztec (1982)
+  systems/apple2/json/disks/choplift.json                  Choplifter (1982)
+  systems/apple2/json/disks/hardhat.json                   Hard Hat Mack (1983)
+  systems/apple2/json/disks/karateka.json                  Karateka (1984)
+  systems/apple2/json/disks/lemonade.json                  Lemonade Stand (1979)
+  systems/apple2/json/disks/loderun.json                   Lode Runner (1983)
+  systems/apple2/json/disks/oregon.json                    The Oregon Trail (1985)
+  systems/apple2/json/disks/sammy.json                     Sammy Lightfoot (1983)
+  systems/apple2/json/disks/wolf.json                      Castle Wolfenstein (1981)
+  systems/apple2/woz/oregon-a.woz                          The Oregon Trail, side A (1985)
+  systems/apple2/woz/oregon-b.woz                          The Oregon Trail, side B (1985)
 
 Arcade
 ------
-  systems/arcade/games/1942.zip                        1942 (1984 Capcom)
-  systems/arcade/games/altbeast.zip                    Altered Beast (1988 Sega)
-  systems/arcade/games/arkanoid.zip                    Arkanoid (1986 Taito)
-  systems/arcade/games/asteroid.zip                    Asteroids (1979 Atari)
-  systems/arcade/games/bionicc.zip                     Bionic Commando (1987 Capcom)
-  systems/arcade/games/blaster.zip                     Blaster (1983 Williams)
-  systems/arcade/games/blktiger.zip                    Black Tiger (1987 Capcom)
-  systems/arcade/games/bosco.zip                       Bosconian (1981 Namco)
-  systems/arcade/games/bubbles.zip                     Bubbles (1982 Williams)
-  systems/arcade/games/bublbobl.zip                    Bubble Bobble (1986 Taito)
-  systems/arcade/games/bzone.zip                       Battlezone (1980 Atari)
-  systems/arcade/games/centiped.zip                    Centipede (1980 Atari)
-  systems/arcade/games/chasehq.zip                     Chase H.Q. (1988 Taito)
-  systems/arcade/games/commando.zip                    Commando (1985 Capcom)
-  systems/arcade/games/contra.zip                      Contra (1987 Konami)
-  systems/arcade/games/defender.zip                    Defender (1980 Williams)
-  systems/arcade/games/digdug.zip                      Dig Dug (1982 Namco)
-  systems/arcade/games/dkong.zip                       Donkey Kong (1981 Nintendo)
-  systems/arcade/games/elevator.zip                    Elevator Action (1983 Taito)
-  systems/arcade/games/fantzone.zip                    Fantasy Zone (1986 Sega)
-  systems/arcade/games/ffight.zip                      Final Fight (1989 Capcom)
-  systems/arcade/games/forgottn.zip                    Forgotten Worlds (1988 Capcom)
-  systems/arcade/games/frogger.zip                     Frogger (1981 Konami)
-  systems/arcade/games/galaga.zip                      Galaga (1981 Namco)
-  systems/arcade/games/galaxian.zip                    Galaxian (1979 Namco)
-  systems/arcade/games/gauntlet.zip                    Gauntlet (1985 Atari)
-  systems/arcade/games/gberet.zip                      Green Beret (1985 Konami)
-  systems/arcade/games/gng.zip                         Ghosts'n Goblins (1985 Capcom)
-  systems/arcade/games/goldnaxe.zip                    Golden Axe (1989 Sega)
-  systems/arcade/games/gorf.zip                        Gorf (1981 Midway)
-  systems/arcade/games/gunsmoke.zip                    Gun.Smoke (1985 Capcom)
-  systems/arcade/games/gyruss.zip                      Gyruss (1983 Konami)
-  systems/arcade/games/hangon.zip                      Hang-On (1985 Sega)
-  systems/arcade/games/helifire.zip                    HeliFire (1980 Nintendo)
-  systems/arcade/games/imgfight.zip                    Image Fight (1988 Irem)
-  systems/arcade/games/inferno.zip                     Inferno (1984 Williams)
-  systems/arcade/games/irobot.zip                      I, Robot (1983 Atari)
-  systems/arcade/games/joust.zip                       Joust (1982 Williams)
-  systems/arcade/games/junglek.zip                     Jungle King (1982 Taito)
-  systems/arcade/games/kidniki.zip                     Kid Niki (1986 Irem)
-  systems/arcade/games/kungfum.zip                     Kung-Fu Master (1984 Irem)
-  systems/arcade/games/mappy.zip                       Mappy (1983 Namco)
-  systems/arcade/games/marble.zip                      Marble Madness (1984 Atari)
-  systems/arcade/games/mario.zip                       Mario Bros. (1983 Nintendo)
-  systems/arcade/games/missile.zip                     Missile Command (1980 Atari)
-  systems/arcade/games/mpatrol.zip                     Moon Patrol (1982 Irem)
-  systems/arcade/games/mspacman.zip                    Ms. Pac-Man (1981 Midway)
-  systems/arcade/games/mysticm.zip                     Mystic Marathon (1983 Williams)
-  systems/arcade/games/narc.zip                        Narc (1988 Williams)
-  systems/arcade/games/nemesis.zip                     Nemesis (1985 Konami)
-  systems/arcade/games/nspirit.zip                     Ninja Spirit (1988 Irem)
-  systems/arcade/games/omegrace.zip                    Omega Race (1981 Midway)
-  systems/arcade/games/opwolf.zip                      Operation Wolf (1987 Taito)
-  systems/arcade/games/outrun.zip                      Out Run (1986 Sega)
-  systems/arcade/games/paperboy.zip                    Paperboy (1984 Atari)
-  systems/arcade/games/pengo.zip                       Pengo (1982 Sega)
-  systems/arcade/games/polepos.zip                     Pole Position (1982 Namco)
-  systems/arcade/games/popeye.zip                      Popeye (1982 Nintendo)
-  systems/arcade/games/puckman.zip                     Pac-Man (1980 Namco)
-  systems/arcade/games/punchout.zip                    Punch-Out!! (1984 Nintendo)
-  systems/arcade/games/qix.zip                         Qix (1981 Taito)
-  systems/arcade/games/radarscp.zip                    Radar Scope (1980 Nintendo)
-  systems/arcade/games/rallyx.zip                      Rally-X (1980 Namco)
-  systems/arcade/games/rampage.zip                     Rampage (1986 Midway)
-  systems/arcade/games/rastan.zip                      Rastan (1987 Taito)
-  systems/arcade/games/redalert.zip                    Red Alert (1981 Irem)
-  systems/arcade/games/robotron.zip                    Robotron: 2084 (1982 Williams)
-  systems/arcade/games/rthunder.zip                    Rolling Thunder (1986 Namco)
-  systems/arcade/games/rtype.zip                       R-Type (1987 Irem)
-  systems/arcade/games/scramble.zip                    Scramble (1981 Konami)
-  systems/arcade/games/seawolf.zip                     Sea Wolf (1976 Midway)
-  systems/arcade/games/sf1.zip                         Street Fighter (1987 Capcom)
-  systems/arcade/games/sharrier.zip                    Space Harrier (1985 Sega)
-  systems/arcade/games/sheriff.zip                     Sheriff (1979 Nintendo)
-  systems/arcade/games/shinobi.zip                     Shinobi (1987 Sega)
-  systems/arcade/games/shollow.zip                     Satan's Hollow (1981 Midway)
-  systems/arcade/games/sinistar.zip                    Sinistar (1982 Williams)
-  systems/arcade/games/sitv.zip                        Space Invaders (1978 Taito)
-  systems/arcade/games/skyskipr.zip                    Sky Skipper (1981 Nintendo)
-  systems/arcade/games/spacefb.zip                     Space Firebird (1980 Nintendo)
-  systems/arcade/games/spacefev.zip                    Space Fever (1979 Nintendo)
-  systems/arcade/games/splat.zip                       Splat! (1982 Williams)
-  systems/arcade/games/spyhunt.zip                     Spy Hunter (1983 Midway)
-  systems/arcade/games/starwars.zip                    Star Wars (1983 Atari)
-  systems/arcade/games/strider.zip                     Strider (1989 Capcom)
-  systems/arcade/games/tapper.zip                      Tapper (1983 Midway)
-  systems/arcade/games/tempest.zip                     Tempest (1980 Atari)
-  systems/arcade/games/timeplt.zip                     Time Pilot (1982 Konami)
-  systems/arcade/games/tnzs.zip                        The New Zealand Story (1988 Taito)
-  systems/arcade/games/trackfld.zip                    Track & Field (1983 Konami)
-  systems/arcade/games/travrusa.zip                    Traverse USA (1983 Irem)
-  systems/arcade/games/tron.zip                        Tron (1982 Midway)
-  systems/arcade/games/turbo.zip                       Turbo (1981 Sega)
-  systems/arcade/games/tutankhm.zip                    Tutankham (1982 Konami)
-  systems/arcade/games/vigilant.zip                    Vigilante (1988 Irem)
-  systems/arcade/games/wow.zip                         Wizard of Wor (1980 Midway)
-  systems/arcade/games/xevious.zip                     Xevious (1982 Namco)
-  systems/arcade/games/yard.zip                        10 Yard Fight (1983 Irem)
-  systems/arcade/games/yiear.zip                       Yie Ar Kung-Fu (1985 Konami)
-  systems/arcade/games/zaxxon.zip                      Zaxxon (1982 Sega)
+  systems/arcade/games/1942.zip                            1942 (1984)
+  systems/arcade/games/altbeast.zip                        Altered Beast (1988)
+  systems/arcade/games/arkanoid.zip                        Arkanoid (1986)
+  systems/arcade/games/asteroid.zip                        Asteroids (1979)
+  systems/arcade/games/bionicc.zip                         Bionic Commando (1987)
+  systems/arcade/games/blaster.zip                         Blaster (1983)
+  systems/arcade/games/blktiger.zip                        Black Tiger (1987)
+  systems/arcade/games/bosco.zip                           Bosconian (1981)
+  systems/arcade/games/bubbles.zip                         Bubbles (1982)
+  systems/arcade/games/bublbobl.zip                        Bubble Bobble (1986)
+  systems/arcade/games/bzone.zip                           Battlezone (1980)
+  systems/arcade/games/centiped.zip                        Centipede (1980)
+  systems/arcade/games/chasehq.zip                         Chase H.Q. (1988)
+  systems/arcade/games/commando.zip                        Commando (1985)
+  systems/arcade/games/contra.zip                          Contra (1987)
+  systems/arcade/games/defender.zip                        Defender (1980)
+  systems/arcade/games/digdug.zip                          Dig Dug (1982)
+  systems/arcade/games/dkong.zip                           Donkey Kong (1981)
+  systems/arcade/games/elevator.zip                        Elevator Action (1983)
+  systems/arcade/games/fantzone.zip                        Fantasy Zone (1986)
+  systems/arcade/games/ffight.zip                          Final Fight (1989)
+  systems/arcade/games/forgottn.zip                        Forgotten Worlds (1988)
+  systems/arcade/games/frogger.zip                         Frogger (1981)
+  systems/arcade/games/galaga.zip                          Galaga (1981)
+  systems/arcade/games/galaxian.zip                        Galaxian (1979)
+  systems/arcade/games/gauntlet.zip                        Gauntlet (1985)
+  systems/arcade/games/gberet.zip                          Green Beret (1985)
+  systems/arcade/games/gng.zip                             Ghosts'n Goblins (1985)
+  systems/arcade/games/goldnaxe.zip                        Golden Axe (1989)
+  systems/arcade/games/gorf.zip                            Gorf (1981)
+  systems/arcade/games/gunsmoke.zip                        Gun.Smoke (1985)
+  systems/arcade/games/gyruss.zip                          Gyruss (1983)
+  systems/arcade/games/hangon.zip                          Hang-On (1985)
+  systems/arcade/games/helifire.zip                        HeliFire (1980)
+  systems/arcade/games/imgfight.zip                        Image Fight (1988)
+  systems/arcade/games/inferno.zip                         Inferno (1984)
+  systems/arcade/games/irobot.zip                          I, Robot (1983)
+  systems/arcade/games/joust.zip                           Joust (1982)
+  systems/arcade/games/junglek.zip                         Jungle King (1982)
+  systems/arcade/games/kidniki.zip                         Kid Niki (1986)
+  systems/arcade/games/kungfum.zip                         Kung-Fu Master (1984)
+  systems/arcade/games/mappy.zip                           Mappy (1983)
+  systems/arcade/games/marble.zip                          Marble Madness (1984)
+  systems/arcade/games/mario.zip                           Mario Bros. (1983)
+  systems/arcade/games/missile.zip                         Missile Command (1980)
+  systems/arcade/games/mpatrol.zip                         Moon Patrol (1982)
+  systems/arcade/games/mspacman.zip                        Ms. Pac-Man (1981)
+  systems/arcade/games/mysticm.zip                         Mystic Marathon (1983)
+  systems/arcade/games/narc.zip                            Narc (1988)
+  systems/arcade/games/nemesis.zip                         Nemesis (1985)
+  systems/arcade/games/nspirit.zip                         Ninja Spirit (1988)
+  systems/arcade/games/omegrace.zip                        Omega Race (1981)
+  systems/arcade/games/opwolf.zip                          Operation Wolf (1987)
+  systems/arcade/games/outrun.zip                          Out Run (1986)
+  systems/arcade/games/paperboy.zip                        Paperboy (1984)
+  systems/arcade/games/pengo.zip                           Pengo (1982)
+  systems/arcade/games/polepos.zip                         Pole Position (1982)
+  systems/arcade/games/popeye.zip                          Popeye (1982)
+  systems/arcade/games/puckman.zip                         Pac-Man (1980)
+  systems/arcade/games/punchout.zip                        Punch-Out!! (1984)
+  systems/arcade/games/qix.zip                             Qix (1981)
+  systems/arcade/games/radarscp.zip                        Radar Scope (1980)
+  systems/arcade/games/rallyx.zip                          Rally-X (1980)
+  systems/arcade/games/rampage.zip                         Rampage (1986)
+  systems/arcade/games/rastan.zip                          Rastan (1987)
+  systems/arcade/games/redalert.zip                        Red Alert (1981)
+  systems/arcade/games/robotron.zip                        Robotron: 2084 (1982)
+  systems/arcade/games/rthunder.zip                        Rolling Thunder (1986)
+  systems/arcade/games/rtype.zip                           R-Type (1987)
+  systems/arcade/games/scramble.zip                        Scramble (1981)
+  systems/arcade/games/seawolf.zip                         Sea Wolf (1976)
+  systems/arcade/games/sf1.zip                             Street Fighter (1987)
+  systems/arcade/games/sharrier.zip                        Space Harrier (1985)
+  systems/arcade/games/sheriff.zip                         Sheriff (1979)
+  systems/arcade/games/shinobi.zip                         Shinobi (1987)
+  systems/arcade/games/shollow.zip                         Satan's Hollow (1981)
+  systems/arcade/games/sinistar.zip                        Sinistar (1982)
+  systems/arcade/games/sitv.zip                            Space Invaders (1978)
+  systems/arcade/games/skyskipr.zip                        Sky Skipper (1981)
+  systems/arcade/games/spacefb.zip                         Space Firebird (1980)
+  systems/arcade/games/spacefev.zip                        Space Fever (1979)
+  systems/arcade/games/splat.zip                           Splat! (1982)
+  systems/arcade/games/spyhunt.zip                         Spy Hunter (1983)
+  systems/arcade/games/starwars.zip                        Star Wars (1983)
+  systems/arcade/games/strider.zip                         Strider (1989)
+  systems/arcade/games/tapper.zip                          Tapper (1983)
+  systems/arcade/games/tempest.zip                         Tempest (1980)
+  systems/arcade/games/timeplt.zip                         Time Pilot (1982)
+  systems/arcade/games/tnzs.zip                            The New Zealand Story (1988)
+  systems/arcade/games/trackfld.zip                        Track & Field (1983)
+  systems/arcade/games/travrusa.zip                        Traverse USA (1983)
+  systems/arcade/games/tron.zip                            Tron (1982)
+  systems/arcade/games/turbo.zip                           Turbo (1981)
+  systems/arcade/games/tutankhm.zip                        Tutankham (1982)
+  systems/arcade/games/vigilant.zip                        Vigilante (1988)
+  systems/arcade/games/wow.zip                             Wizard of Wor (1980)
+  systems/arcade/games/xevious.zip                         Xevious (1982)
+  systems/arcade/games/yard.zip                            10 Yard Fight (1983)
+  systems/arcade/games/yiear.zip                           Yie Ar Kung-Fu (1985)
+  systems/arcade/games/zaxxon.zip                          Zaxxon (1982)
 
 Atari 2600
 ----------
-  systems/stella/roms/adventure.a26                    Adventure
-  systems/stella/roms/asteroids.a26                    Asteroids
-  systems/stella/roms/breakout.a26                     Breakout
-  systems/stella/roms/centipede.a26                    Centipede
-  systems/stella/roms/invaders.a26                     Space Invaders
-  systems/stella/roms/missile.a26                      Missile Command
-  systems/stella/roms/pacman.a26                       Pac-Man
-  systems/stella/roms/riverraid.a26                    River Raid
-  systems/stella/roms/yars.a26                         Yars' Revenge
+  systems/stella/roms/adventure.a26                        Adventure (1980)
+  systems/stella/roms/asteroids.a26                        Asteroids (1981)
+  systems/stella/roms/breakout.a26                         Breakout (1978)
+  systems/stella/roms/centipede.a26                        Centipede (1983)
+  systems/stella/roms/invaders.a26                         Space Invaders (1980)
+  systems/stella/roms/missile.a26                          Missile Command (1981)
+  systems/stella/roms/pacman.a26                           Pac-Man (1982)
+  systems/stella/roms/riverraid.a26                        River Raid (1982)
+  systems/stella/roms/yars.a26                             Yars' Revenge (1982)
 
 Atari 400
 ---------
-  systems/atari400/roms/ataribas.rom                   firmware: Atari BASIC (rev. C)
-  systems/atari400/roms/atariosb.rom                   firmware: Atari 400/800 OS (rev. B)
-  systems/atari400/roms/asteroid.rom                   Asteroids (1981)
-  systems/atari400/roms/centiped.atr                   Centipede (1982)
-  systems/atari400/roms/chopliftr.rom                  Choplifter! (1982)
-  systems/atari400/roms/defender.rom                   Defender (1981)
-  systems/atari400/roms/digdug.rom                     Dig Dug (1983)
-  systems/atari400/roms/dkong.rom                      Donkey Kong (1983)
-  systems/atari400/roms/invaders.atr                   Space Invaders (1980)
-  systems/atari400/roms/joust.atr                      Joust (1983)
-  systems/atari400/roms/missile.atr                    Missile Command (1981)
-  systems/atari400/roms/pacman.atr                     Pac-Man (1982)
+  systems/atari400/roms/ataribas.rom                       firmware: Atari BASIC (rev. C)
+  systems/atari400/roms/atariosb.rom                       firmware: Atari 400/800 OS (rev. B)
+  systems/atari400/roms/asteroid.rom                       Asteroids (1981)
+  systems/atari400/roms/centiped.atr                       Centipede (1982)
+  systems/atari400/roms/chopliftr.rom                      Choplifter! (1982)
+  systems/atari400/roms/defender.rom                       Defender (1981)
+  systems/atari400/roms/digdug.rom                         Dig Dug (1983)
+  systems/atari400/roms/dkong.rom                          Donkey Kong (1983)
+  systems/atari400/roms/invaders.atr                       Space Invaders (1980)
+  systems/atari400/roms/joust.atr                          Joust (1983)
+  systems/atari400/roms/missile.atr                        Missile Command (1981)
+  systems/atari400/roms/pacman.atr                         Pac-Man (1982)
 
 Atari 7800
 ----------
-  systems/js7800/roms/asteroids.a78                    Asteroids
-  systems/js7800/roms/centipede.a78                    Centipede
-  systems/js7800/roms/desertfl.a78                     Desert Falcon
-  systems/js7800/roms/digdug.a78                       Dig Dug
-  systems/js7800/roms/foodfight.a78                    Food Fight
-  systems/js7800/roms/galaga.a78                       Galaga
-  systems/js7800/roms/joust.a78                        Joust
-  systems/js7800/roms/mspacman.a78                     Ms. Pac-Man
-  systems/js7800/roms/robotron.a78                     Robotron: 2084
-  systems/js7800/roms/xevious.a78                      Xevious
+  systems/js7800/roms/asteroids.a78                        Asteroids (1986)
+  systems/js7800/roms/centipede.a78                        Centipede (1986)
+  systems/js7800/roms/desertfl.a78                         Desert Falcon (1987)
+  systems/js7800/roms/digdug.a78                           Dig Dug (1987)
+  systems/js7800/roms/foodfight.a78                        Food Fight (1987)
+  systems/js7800/roms/galaga.a78                           Galaga (1987)
+  systems/js7800/roms/joust.a78                            Joust (1986)
+  systems/js7800/roms/mspacman.a78                         Ms. Pac-Man (1986)
+  systems/js7800/roms/robotron.a78                         Robotron: 2084 (1987)
+  systems/js7800/roms/xevious.a78                          Xevious (1986)
 
 Atari 800XL
 -----------
-  systems/atari800/roms/ataribas.rom                   firmware: Atari BASIC (rev. C)
-  systems/atari800/roms/atarixl.rom                    firmware: Atari XL/XE OS
-  systems/atari800/roms/archon.atr                     Archon (1983)
-  systems/atari800/roms/ballblzr.atr                   Ballblazer (1985)
-  systems/atari800/roms/boulder.atr                    Boulder Dash (1984)
-  systems/atari800/roms/brucelee.atr                   Bruce Lee (1984)
-  systems/atari800/roms/eastfrnt.atr                   Eastern Front 1941 (1981)
-  systems/atari800/roms/fractlus.atr                   Rescue on Fractalus! (1985)
-  systems/atari800/roms/miner2k.atr                    Miner 2049er (1982)
-  systems/atari800/roms/mule.atr                       M.U.L.E. (1983)
-  systems/atari800/roms/polepos.atr                    Pole Position (1984)
-  systems/atari800/roms/starraid.rom                   Star Raiders (1979)
+  systems/atari800/roms/ataribas.rom                       firmware: Atari BASIC (rev. C)
+  systems/atari800/roms/atarixl.rom                        firmware: Atari XL/XE OS
+  systems/atari800/roms/archon.atr                         Archon (1983)
+  systems/atari800/roms/ballblzr.atr                       Ballblazer (1985)
+  systems/atari800/roms/boulder.atr                        Boulder Dash (1984)
+  systems/atari800/roms/brucelee.atr                       Bruce Lee (1984)
+  systems/atari800/roms/eastfrnt.atr                       Eastern Front 1941 (1981)
+  systems/atari800/roms/fractlus.atr                       Rescue on Fractalus! (1985)
+  systems/atari800/roms/miner2k.atr                        Miner 2049er (1982)
+  systems/atari800/roms/mule.atr                           M.U.L.E. (1983)
+  systems/atari800/roms/polepos.atr                        Pole Position (1983)
+  systems/atari800/roms/starraid.rom                       Star Raiders (1979)
 
 Atari Lynx
 ----------
-  systems/lynx/lynxboot.img                            firmware: Lynx boot ROM
-  systems/lynx/roms/bluelght.lnx                       Blue Lightning (1989)
-  systems/lynx/roms/calgames.lnx                       California Games (1989)
-  systems/lynx/roms/chips.lnx                          Chip's Challenge (1989)
-  systems/lynx/roms/electro.lnx                        Electrocop (1989)
-  systems/lynx/roms/klax.lnx                           Klax (1990)
-  systems/lynx/roms/rampart.lnx                        Rampart (1991)
-  systems/lynx/roms/slime.lnx                          Todd's Adventures in Slime World (1990)
-  systems/lynx/roms/stunrun.lnx                        S.T.U.N. Runner (1991)
-  systems/lynx/roms/warbirds.lnx                       Warbirds (1989)
-  systems/lynx/roms/zarlor.lnx                         Zarlor Mercenary (1990)
+  systems/lynx/lynxboot.img                                firmware: Lynx boot ROM
+  systems/lynx/roms/bluelght.lnx                           Blue Lightning (1989)
+  systems/lynx/roms/calgames.lnx                           California Games (1989)
+  systems/lynx/roms/chips.lnx                              Chip's Challenge (1989)
+  systems/lynx/roms/electro.lnx                            Electrocop (1989)
+  systems/lynx/roms/klax.lnx                               Klax (1990)
+  systems/lynx/roms/rampart.lnx                            Rampart (1991)
+  systems/lynx/roms/slime.lnx                              Todd's Adventures in Slime World (1990)
+  systems/lynx/roms/stunrun.lnx                            S.T.U.N. Runner (1991)
+  systems/lynx/roms/warbirds.lnx                           Warbirds (1989)
+  systems/lynx/roms/zarlor.lnx                             Zarlor Mercenary (1990)
 
 BBC Master 128
 --------------
-  systems/bbcmaster/dist/discs/4thDimension/Nevryon.ssd Nevryon
-  systems/bbcmaster/dist/discs/Acornsoft/EliteMaster.dsd Elite Master
-  systems/bbcmaster/dist/discs/Elite/Commando.ssd      Commando
-  systems/bbcmaster/dist/discs/Superior/BoneCruncher.ssd Bone Cruncher
-  systems/bbcmaster/dist/discs/Superior/Galaforce.ssd  Galaforce
-  systems/bbcmaster/dist/discs/Superior/PalaceOfMagic.ssd Palace Of Magic
+  systems/bbcmaster/dist/discs/4thDimension/Nevryon.ssd    Nevryon (1990)
+  systems/bbcmaster/dist/discs/Acornsoft/EliteMaster.dsd   Elite (1986)
+  systems/bbcmaster/dist/discs/Elite/Commando.ssd          Commando (1985)
+  systems/bbcmaster/dist/discs/Superior/BoneCruncher.ssd   Bonecruncher (1987)
+  systems/bbcmaster/dist/discs/Superior/Galaforce.ssd      Galaforce (1986)
+  systems/bbcmaster/dist/discs/Superior/PalaceOfMagic.ssd  Palace of Magic (1987)
 
 BBC Micro
 ---------
-  systems/bbcmicro/dist/discs/Micropower/CastleQuest.ssd Castle Quest
+  systems/bbcmicro/dist/discs/Micropower/CastleQuest.ssd   Castle Quest (1985)
 
 ColecoVision
 ------------
-  systems/coleco/colecovision.rom                      firmware: ColecoVision BIOS
-  systems/coleco/games/carnival.col                    Carnival
-  systems/coleco/games/cosmic.col                      Cosmic Avenger
-  systems/coleco/games/donkeykong.col                  Donkey Kong
-  systems/coleco/games/ladybug.col                     Lady Bug
-  systems/coleco/games/mousetrap.col                   Mouse Trap
-  systems/coleco/games/mrdo.col                        Mr. Do!
-  systems/coleco/games/qbert.col                       Q*bert
-  systems/coleco/games/smurf.col                       Smurf: Rescue in Gargamel's Castle
-  systems/coleco/games/venture.col                     Venture
-  systems/coleco/games/zaxxon.col                      Zaxxon
+  systems/coleco/colecovision.rom                          firmware: ColecoVision BIOS
+  systems/coleco/games/carnival.col                        Carnival (1982)
+  systems/coleco/games/cosmic.col                          Cosmic Avenger (1982)
+  systems/coleco/games/donkeykong.col                      Donkey Kong (1982)
+  systems/coleco/games/ladybug.col                         Lady Bug (1982)
+  systems/coleco/games/mousetrap.col                       Mouse Trap (1982)
+  systems/coleco/games/mrdo.col                            Mr. Do! (1983)
+  systems/coleco/games/qbert.col                           Q*bert (1983)
+  systems/coleco/games/smurf.col                           Smurf: Rescue in Gargamel's Castle (1982)
+  systems/coleco/games/venture.col                         Venture (1982)
+  systems/coleco/games/zaxxon.col                          Zaxxon (1982)
 
 Commodore 16
 ------------
-  systems/c16/games/berks.prg                          Berks (1985)
-  systems/c16/games/big_mac.prg                        Big Mac (1985)
-  systems/c16/games/fire_ant.prg                       Fire Ant (1984)
-  systems/c16/games/hustler.prg                        Hustler (1985)
-  systems/c16/games/mr_puniverse.prg                   Mr. Puniverse (1986)
-  systems/c16/games/skramble.prg                       Skramble (1984)
-  systems/c16/games/tom_thumb.prg                      Tom Thumb (1985)
-  systems/c16/games/tower_of_evil.prg                  Tower of Evil (1984)
-  systems/c16/games/tutti_frutti.prg                   Tutti Frutti (1985)
-  systems/c16/games/xargon_wars.prg                    Xargon Wars (1984)
+  systems/c16/games/berks.prg                              Berks (1985)
+  systems/c16/games/big_mac.prg                            Big Mac (1985)
+  systems/c16/games/fire_ant.prg                           Fire Ant (1984)
+  systems/c16/games/hustler.prg                            Hustler (1985)
+  systems/c16/games/mr_puniverse.prg                       Mr. Puniverse (1986)
+  systems/c16/games/skramble.prg                           Skramble (1984)
+  systems/c16/games/tom_thumb.prg                          Tom Thumb (1985)
+  systems/c16/games/tower_of_evil.prg                      Tower of Evil (1984)
+  systems/c16/games/tutti_frutti.prg                       Tutti Frutti (1985)
+  systems/c16/games/xargon_wars.prg                        Xargon Wars (1984)
 
 Commodore 64
 ------------
-  systems/c64/games/beachhd.d64                        Beach Head (1983)
-  systems/c64/games/boulder.d64                        Boulder Dash (1984)
-  systems/c64/games/elite.d64                          Elite (1985)
-  systems/c64/games/forbfrst.d64                       Forbidden Forest (1983)
-  systems/c64/games/ghosts.d64                         Ghosts 'n Goblins (1986)
-  systems/c64/games/impmiss.d64                        Impossible Mission (1984)
-  systems/c64/games/lastninja.d64                      The Last Ninja (1987)
-  systems/c64/games/petrobot.d64                       Attack of the PETSCII Robots (2021)
-  systems/c64/games/uridium.d64                        Uridium (1986)
-  systems/c64/games/wizball.d64                        Wizball (1987)
+  systems/c64/games/beachhd.d64                            Beach Head (1983)
+  systems/c64/games/boulder.d64                            Boulder Dash (1984)
+  systems/c64/games/elite.d64                              Elite (1985)
+  systems/c64/games/forbfrst.d64                           Forbidden Forest (1983)
+  systems/c64/games/ghosts.d64                             Ghosts 'n Goblins (1986)
+  systems/c64/games/impmiss.d64                            Impossible Mission (1984)
+  systems/c64/games/lastninja.d64                          The Last Ninja (1987)
+  systems/c64/games/petrobot.d64                           Attack of the PETSCII Robots (2021)
+  systems/c64/games/uridium.d64                            Uridium (1986)
+  systems/c64/games/wizball.d64                            Wizball (1987)
 
 Commodore MAX Machine
 ---------------------
-  systems/max/games/billiard.crt                       Billiards (1983)
-  systems/max/games/clowns.crt                         Clowns (1982)
-  systems/max/games/jupiter.crt                        Jupiter Lander (1982)
-  systems/max/games/maxbasic.crt                       MAX BASIC (1982)
-  systems/max/games/molatak.crt                        Mole Attack (1982)
-  systems/max/games/monywars.crt                       Money Wars (1982)
-  systems/max/games/omegrace.crt                       Omega Race (1982)
-  systems/max/games/pinball.crt                        Pinball Spectacular (1983)
-  systems/max/games/rrr.crt                            Radar Rat Race (1982)
-  systems/max/games/slalom.crt                         Slalom (1982)
-  systems/max/games/speedmth.crt                       Speed/Bingo Math (1982)
+  systems/max/games/billiard.crt                           Billiards (1983)
+  systems/max/games/clowns.crt                             Clowns (1982)
+  systems/max/games/jupiter.crt                            Jupiter Lander (1982)
+  systems/max/games/maxbasic.crt                           MAX BASIC (1982)
+  systems/max/games/molatak.crt                            Mole Attack (1982)
+  systems/max/games/monywars.crt                           Money Wars (1982)
+  systems/max/games/omegrace.crt                           Omega Race (1982)
+  systems/max/games/pinball.crt                            Pinball Spectacular (1983)
+  systems/max/games/rrr.crt                                Radar Rat Race (1982)
+  systems/max/games/slalom.crt                             Slalom (1982)
+  systems/max/games/speedmth.crt                           Speed/Bingo Math (1982)
 
 Commodore PET 2001
 ------------------
-  systems/pet/games/advland.prg                        Adventureland (1979)
-  systems/pet/games/android_nim.prg                    Android NIM (1979)
-  systems/pet/games/computerspace2001.prg              ComputerSpace 2001 (1981)
-  systems/pet/games/crazy_balloon.prg                  Crazy Balloon (1981)
-  systems/pet/games/frogger.prg                        Frogger (1981)
-  systems/pet/games/hangman.prg                        Hangman (1980)
-  systems/pet/games/invader.prg                        Space Invaders (1980)
-  systems/pet/games/lunar.prg                          Lunar Lander (1979)
-  systems/pet/games/pacman.prg                         Pac-Man (1982)
-  systems/pet/games/startrek.prg                       Star Trek (1977)
+  systems/pet/games/advland.prg                            Adventureland (1979)
+  systems/pet/games/android_nim.prg                        Android NIM (1979)
+  systems/pet/games/computerspace2001.prg                  ComputerSpace 2001 (1981)
+  systems/pet/games/crazy_balloon.prg                      Crazy Balloon (1981)
+  systems/pet/games/frogger.prg                            Frogger (1981)
+  systems/pet/games/hangman.prg                            Hangman (1980)
+  systems/pet/games/invader.prg                            Space Invaders (1980)
+  systems/pet/games/lunar.prg                              Lunar Lander (1979)
+  systems/pet/games/pacman.prg                             Pac-Man (1982)
+  systems/pet/games/startrek.prg                           Star Trek (1977)
 
 Commodore Plus/4
 ----------------
-  systems/plus4/games/blagger.prg                      Blagger (1984)
-  systems/plus4/games/citadel.prg                      Citadel (1985)
-  systems/plus4/games/kikstart.prg                     Kikstart (1985)
-  systems/plus4/games/mercnary.prg                     Mercenary (1986)
-  systems/plus4/games/popeye.prg                       Popeye (1984)
-  systems/plus4/games/punchy.prg                       Punchy (1985)
-  systems/plus4/games/rockman.prg                      Rockman (1985)
-  systems/plus4/games/saboteur.prg                     Saboteur (1985)
-  systems/plus4/games/squirm.prg                       Squirm (1985)
-  systems/plus4/games/trailblz.prg                     Trailblazer (1986)
+  systems/plus4/games/blagger.prg                          Blagger (1984)
+  systems/plus4/games/citadel.prg                          Citadel (1985)
+  systems/plus4/games/kikstart.prg                         Kikstart (1985)
+  systems/plus4/games/mercnary.prg                         Mercenary (1986)
+  systems/plus4/games/popeye.prg                           Popeye (1984)
+  systems/plus4/games/punchy.prg                           Punchy (1985)
+  systems/plus4/games/rockman.prg                          Rockman (1985)
+  systems/plus4/games/saboteur.prg                         Saboteur (1985)
+  systems/plus4/games/squirm.prg                           Squirm (1985)
+  systems/plus4/games/trailblz.prg                         Trailblazer (1986)
 
 Commodore VIC-20
 ----------------
-  systems/vic20/games/atlantis.prg                     Atlantis (1983)
-  systems/vic20/games/avenger.prg                      Avenger (1981)
-  systems/vic20/games/chopper.prg                      Choplifter (1982)
-  systems/vic20/games/demonatk.prg                     Demon Attack (1983)
-  systems/vic20/games/frogger.prg                      Frogger (1983)
-  systems/vic20/games/gorf.prg                         Gorf (1982)
-  systems/vic20/games/gridrun.prg                      Gridrunner (1982)
-  systems/vic20/games/omega.prg                        Omega Race (1982)
-  systems/vic20/games/pacman.prg                       Pac-Man (1983)
-  systems/vic20/games/ratrace.prg                      Radar Rat Race (1981)
+  systems/vic20/games/atlantis.prg                         Atlantis (1983)
+  systems/vic20/games/avenger.prg                          Avenger (1981)
+  systems/vic20/games/chopper.prg                          Choplifter (1982)
+  systems/vic20/games/demonatk.prg                         Demon Attack (1983)
+  systems/vic20/games/frogger.prg                          Frogger (1983)
+  systems/vic20/games/gorf.prg                             Gorf (1982)
+  systems/vic20/games/gridrun.prg                          Gridrunner (1982)
+  systems/vic20/games/omega.prg                            Omega Race (1982)
+  systems/vic20/games/pacman.prg                           Pac-Man (1983)
+  systems/vic20/games/ratrace.prg                          Radar Rat Race (1981)
 
 MSX
 ---
-  systems/msx1/games/antarcticadv.zip                  Antarctic Adventure
-  systems/msx1/games/athleticland.zip                  Athletic Land
-  systems/msx1/games/eggerland.zip                     Eggerland Mystery
-  systems/msx1/games/goonies.zip                       The Goonies
-  systems/msx1/games/kingsvalley.zip                   King's Valley
-  systems/msx1/games/knightmare.zip                    Knightmare
-  systems/msx1/games/nemesis.zip                       Nemesis
-  systems/msx1/games/pippols.zip                       Pippols
-  systems/msx1/games/roadfighter.zip                   Road Fighter
-  systems/msx1/games/yiearkungfu.zip                   Yie Ar Kung-Fu
+  systems/msx1/games/antarcticadv.zip                      Antarctic Adventure (1983)
+  systems/msx1/games/athleticland.zip                      Athletic Land (1984)
+  systems/msx1/games/eggerland.zip                         Eggerland Mystery (1985)
+  systems/msx1/games/goonies.zip                           The Goonies (1986)
+  systems/msx1/games/kingsvalley.zip                       King's Valley (1985)
+  systems/msx1/games/knightmare.zip                        Knightmare (1986)
+  systems/msx1/games/nemesis.zip                           Nemesis (1986)
+  systems/msx1/games/pippols.zip                           Pippols (1985)
+  systems/msx1/games/roadfighter.zip                       Road Fighter (1985)
+  systems/msx1/games/yiearkungfu.zip                       Yie Ar Kung-Fu (1985)
 
 MSX2
 ----
-  systems/msx2/games/aleste.zip                        Aleste
-  systems/msx2/games/bubblebobble.zip                  Bubble Bobble
-  systems/msx2/games/castleexcl.zip                    Castle Excellent
-  systems/msx2/games/f1spirit.zip                      F-1 Spirit: The Way to Formula-1
-  systems/msx2/games/metalgear.zip                     Metal Gear
-  systems/msx2/games/parodius.zip                      Parodius: The Octopus Saves the Earth
-  systems/msx2/games/quarth.zip                        Quarth
-  systems/msx2/games/spacemanbow.zip                   Space Manbow
-  systems/msx2/games/usas.zip                          The Treasure of Usas
-  systems/msx2/games/vampirekill.zip                   Vampire Killer
+  systems/msx2/games/aleste.zip                            Aleste (1988)
+  systems/msx2/games/bubblebobble.zip                      Bubble Bobble (1987)
+  systems/msx2/games/castleexcl.zip                        Castle Excellent (1986)
+  systems/msx2/games/f1spirit.zip                          F-1 Spirit: The Way to Formula-1 (1987)
+  systems/msx2/games/metalgear.zip                         Metal Gear (1987)
+  systems/msx2/games/parodius.zip                          Parodius: The Octopus Saves the Earth (1988)
+  systems/msx2/games/quarth.zip                            Quarth (1990)
+  systems/msx2/games/spacemanbow.zip                       Space Manbow (1989)
+  systems/msx2/games/usas.zip                              The Treasure of Usas (1987)
+  systems/msx2/games/vampirekill.zip                       Vampire Killer (1986)
 
 Magnavox Odyssey²
 -----------------
-  systems/odyssey2/o2rom.bin                           firmware: Odyssey² BIOS
-  systems/odyssey2/games/alienplus.bin                 Alien Invaders - Plus! (1980 Magnavox)
-  systems/odyssey2/games/atlantis.bin                  Atlantis (1982 Imagic)
-  systems/odyssey2/games/cosmic.bin                    Cosmic Conflict! (1979 Magnavox)
-  systems/odyssey2/games/demon.bin                     Demon Attack (1982 Imagic)
-  systems/odyssey2/games/kcmunch.bin                   K.C. Munchkin! (1981 Magnavox)
-  systems/odyssey2/games/killbees.bin                  Killer Bees! (1983 Magnavox)
-  systems/odyssey2/games/pickaxe.bin                   Pick Axe Pete! (1982 Magnavox)
-  systems/odyssey2/games/qrings.bin                    Quest for the Rings! (1981 Magnavox)
-  systems/odyssey2/games/smither.bin                   Smithereens! (1982 Magnavox)
-  systems/odyssey2/games/ufo.bin                       UFO! (1981 Magnavox)
+  systems/odyssey2/o2rom.bin                               firmware: Odyssey² BIOS
+  systems/odyssey2/games/alienplus.bin                     Alien Invaders - Plus! (1980)
+  systems/odyssey2/games/atlantis.bin                      Atlantis (1982)
+  systems/odyssey2/games/cosmic.bin                        Cosmic Conflict! (1979)
+  systems/odyssey2/games/demon.bin                         Demon Attack (1982)
+  systems/odyssey2/games/kcmunch.bin                       K.C. Munchkin! (1981)
+  systems/odyssey2/games/killbees.bin                      Killer Bees! (1983)
+  systems/odyssey2/games/pickaxe.bin                       Pick Axe Pete! (1982)
+  systems/odyssey2/games/qrings.bin                        Quest for the Rings! (1981)
+  systems/odyssey2/games/smither.bin                       Smithereens! (1982)
+  systems/odyssey2/games/ufo.bin                           UFO! (1981)
 
 Mattel Intellivision
 --------------------
-  systems/intv/exec.bin                                firmware: Intellivision Executive ROM
-  systems/intv/grom.bin                                firmware: Intellivision Graphics ROM
-  systems/intv/games/adventur.int                      Adventure (AD&D): Cloudy Mountain (1982 Mattel)
-  systems/intv/games/astrosmash.int                    Astrosmash (1981 Mattel)
-  systems/intv/games/atlantis.int                      Atlantis (1982 Imagic)
-  systems/intv/games/b17.int                           B-17 Bomber (1981 Mattel)
-  systems/intv/games/burgertime.int                    BurgerTime (1983 Mattel)
-  systems/intv/games/lockchase.int                     Lock 'N' Chase (1982 Mattel)
-  systems/intv/games/nightstk.int                      Night Stalker (1982 Mattel)
-  systems/intv/games/snafu.int                         Snafu (1981 Mattel)
-  systems/intv/games/starstrk.int                      Star Strike (1981 Mattel)
-  systems/intv/games/tron.int                          TRON: Deadly Discs (1981 Mattel)
+  systems/intv/exec.bin                                    firmware: Intellivision Executive ROM
+  systems/intv/grom.bin                                    firmware: Intellivision Graphics ROM
+  systems/intv/games/adventur.int                          Adventure (AD&D): Cloudy Mountain (1981)
+  systems/intv/games/astrosmash.int                        Astrosmash (1981)
+  systems/intv/games/atlantis.int                          Atlantis (1982)
+  systems/intv/games/b17.int                               B-17 Bomber (1981)
+  systems/intv/games/burgertime.int                        BurgerTime (1982)
+  systems/intv/games/lockchase.int                         Lock 'N' Chase (1982)
+  systems/intv/games/nightstk.int                          Night Stalker (1983)
+  systems/intv/games/snafu.int                             Snafu (1981)
+  systems/intv/games/starstrk.int                          Star Strike (1981)
+  systems/intv/games/tron.int                              TRON: Deadly Discs (1981)
 
 Nintendo Entertainment System
 -----------------------------
-  systems/jsnes/roms/castlvnia.nes                     Castlevania
-  systems/jsnes/roms/contra.nes                        Contra
-  systems/jsnes/roms/finalfnts.nes                     Final Fantasy
-  systems/jsnes/roms/kidicarus.nes                     Kid Icarus
-  systems/jsnes/roms/megaman.nes                       Mega Man
-  systems/jsnes/roms/metroid.nes                       Metroid
-  systems/jsnes/roms/punchout.nes                      Mike Tyson's Punch-Out!!
-  systems/jsnes/roms/smb.nes                           Super Mario Bros.
-  systems/jsnes/roms/tetris.nes                        Tetris
-  systems/jsnes/roms/zelda.nes                         The Legend of Zelda
+  systems/jsnes/roms/castlvnia.nes                         Castlevania (1987)
+  systems/jsnes/roms/contra.nes                            Contra (1988)
+  systems/jsnes/roms/finalfnts.nes                         Final Fantasy (1990)
+  systems/jsnes/roms/kidicarus.nes                         Kid Icarus (1987)
+  systems/jsnes/roms/megaman.nes                           Mega Man (1987)
+  systems/jsnes/roms/metroid.nes                           Metroid (1987)
+  systems/jsnes/roms/punchout.nes                          Mike Tyson's Punch-Out!! (1987)
+  systems/jsnes/roms/smb.nes                               Super Mario Bros. (1985)
+  systems/jsnes/roms/tetris.nes                            Tetris (1989)
+  systems/jsnes/roms/zelda.nes                             The Legend of Zelda (1987)
 
 Nintendo Game Boy / Game Boy Color
 ----------------------------------
-  systems/gbc/roms/castlevania.gb                      Castlevania: The Adventure (1989)
-  systems/gbc/roms/donkeykong.gb                       Donkey Kong (1994)
-  systems/gbc/roms/ffadv.gb                            Final Fantasy Adventure (1991)
-  systems/gbc/roms/gargoyle.gb                         Gargoyle's Quest (1990)
-  systems/gbc/roms/kirby.gb                            Kirby's Dream Land (1992)
-  systems/gbc/roms/pokemonred.gb                       Pokémon Red (1996)
-  systems/gbc/roms/shantae.gbc                         Shantae (2002)
-  systems/gbc/roms/supermarioland.gb                   Super Mario Land (1989)
-  systems/gbc/roms/tetris.gb                           Tetris (1989)
-  systems/gbc/roms/zelda.gb                            The Legend of Zelda: Link's Awakening (1993)
+  systems/gbc/roms/castlevania.gb                          Castlevania: The Adventure (1989)
+  systems/gbc/roms/donkeykong.gb                           Donkey Kong (1994)
+  systems/gbc/roms/ffadv.gb                                Final Fantasy Adventure (1991)
+  systems/gbc/roms/gargoyle.gb                             Gargoyle's Quest (1990)
+  systems/gbc/roms/kirby.gb                                Kirby's Dream Land (1992)
+  systems/gbc/roms/pokemonred.gb                           Pokémon Red (1996)
+  systems/gbc/roms/shantae.gbc                             Shantae (2002)
+  systems/gbc/roms/supermarioland.gb                       Super Mario Land (1989)
+  systems/gbc/roms/tetris.gb                               Tetris (1989)
+  systems/gbc/roms/zelda.gb                                The Legend of Zelda: Link's Awakening (1993)
 
 Sega Game Gear
 --------------
-  systems/gamegear/roms/aerial.gg                      Aerial Assault (1992)
-  systems/gamegear/roms/columns.gg                     Columns (1991)
-  systems/gamegear/roms/illusion.gg                    Land of Illusion (1993)
-  systems/gamegear/roms/kombat.gg                      Mortal Kombat (1993)
-  systems/gamegear/roms/meanbean.gg                    Dr. Robotnik's Mean Bean Machine (1993)
-  systems/gamegear/roms/oasis.gg                       Defenders of Oasis (1992)
-  systems/gamegear/roms/rage.gg                        Streets of Rage (1992)
-  systems/gamegear/roms/shinobi.gg                     Shinobi (1991)
-  systems/gamegear/roms/sonic.gg                       Sonic the Hedgehog (1991)
-  systems/gamegear/roms/tails.gg                       Tails Adventure (1995)
+  systems/gamegear/roms/aerial.gg                          Aerial Assault (1992)
+  systems/gamegear/roms/columns.gg                         Columns (1991)
+  systems/gamegear/roms/illusion.gg                        Land of Illusion (1993)
+  systems/gamegear/roms/kombat.gg                          Mortal Kombat (1993)
+  systems/gamegear/roms/meanbean.gg                        Dr. Robotnik's Mean Bean Machine (1993)
+  systems/gamegear/roms/oasis.gg                           Defenders of Oasis (1992)
+  systems/gamegear/roms/rage.gg                            Streets of Rage (1992)
+  systems/gamegear/roms/shinobi.gg                         Shinobi (1991)
+  systems/gamegear/roms/sonic.gg                           Sonic the Hedgehog (1991)
+  systems/gamegear/roms/tails.gg                           Tails Adventure (1995)
 
 Sega Master System
 ------------------
-  systems/sms/roms/alexkidd.sms                        Alex Kidd in Miracle World (1986)
-  systems/sms/roms/castle.sms                          Castle of Illusion (1990)
-  systems/sms/roms/fantzone.sms                        Fantasy Zone (1986)
-  systems/sms/roms/outrun.sms                          Out Run (1987)
-  systems/sms/roms/phantstr.sms                        Phantasy Star (1988)
-  systems/sms/roms/psychfox.sms                        Psycho Fox (1989)
-  systems/sms/roms/rtype.sms                           R-Type (1988)
-  systems/sms/roms/shinobi.sms                         Shinobi (1988)
-  systems/sms/roms/sonic.sms                           Sonic the Hedgehog (1991)
-  systems/sms/roms/wondrboy.sms                        Wonder Boy (1986)
+  systems/sms/roms/alexkidd.sms                            Alex Kidd in Miracle World (1986)
+  systems/sms/roms/castle.sms                              Castle of Illusion (1990)
+  systems/sms/roms/fantzone.sms                            Fantasy Zone (1986)
+  systems/sms/roms/outrun.sms                              Out Run (1987)
+  systems/sms/roms/phantstr.sms                            Phantasy Star (1988)
+  systems/sms/roms/psychfox.sms                            Psycho Fox (1989)
+  systems/sms/roms/rtype.sms                               R-Type (1988)
+  systems/sms/roms/shinobi.sms                             Shinobi (1988)
+  systems/sms/roms/sonic.sms                               Sonic the Hedgehog (1991)
+  systems/sms/roms/wondrboy.sms                            Wonder Boy (1986)
 
 Sinclair ZX Spectrum
 --------------------
-  systems/jsspeccy/games/atatac.z80                    Atic Atac
-  systems/jsspeccy/games/chuckegg.z80                  Chuckie Egg
-  systems/jsspeccy/games/dizzy.z80                     Dizzy
-  systems/jsspeccy/games/jetwilly.z80                  Jet Set Willy
-  systems/jsspeccy/games/kngtlore.z80                  Knight Lore
-  systems/jsspeccy/games/manicmn.z80                   Manic Miner
-  systems/jsspeccy/games/pssst.z80                     Pssst
-  systems/jsspeccy/games/sabrwulf.z80                  Sabre Wulf
-  systems/jsspeccy/games/skooldzd.z80                  Skool Daze
-  systems/jsspeccy/games/uwurlde.z80                   Underwurlde
+  systems/jsspeccy/games/atatac.z80                        Atic Atac (1983)
+  systems/jsspeccy/games/chuckegg.z80                      Chuckie Egg (1983)
+  systems/jsspeccy/games/dizzy.z80                         Dizzy (1987)
+  systems/jsspeccy/games/jetwilly.z80                      Jet Set Willy (1984)
+  systems/jsspeccy/games/kngtlore.z80                      Knight Lore (1984)
+  systems/jsspeccy/games/manicmn.z80                       Manic Miner (1983)
+  systems/jsspeccy/games/pssst.z80                         Pssst (1983)
+  systems/jsspeccy/games/sabrwulf.z80                      Sabre Wulf (1984)
+  systems/jsspeccy/games/skooldzd.z80                      Skool Daze (1984)
+  systems/jsspeccy/games/uwurlde.z80                       Underwurlde (1984)
 
 Sinclair ZX81
 -------------
-  systems/jtyone/tapes/cityxon.p.hex                   City of Xon
-  systems/jtyone/tapes/monstmze.p.hex                  3D Monster Maze
+  systems/jtyone/tapes/cityxon.p.hex                       City of Xon (1982)
+  systems/jtyone/tapes/monstmze.p.hex                      3D Monster Maze (1981)
 
 TRS-80 Model 100
 ----------------
-  systems/m100/games/bowling.ba                        Bowling
-  systems/m100/games/codebrek.ba                       Codebreaker
-  systems/m100/games/eliza.ba                          ELIZA
-  systems/m100/games/fsnsol.ba                         Four Seasons Solitaire
-  systems/m100/games/invmaze.ba                        Invisible Maze
-  systems/m100/games/prs.ba                            Paper, Rock, Scissors
-  systems/m100/games/rally.ba                          Road Rally
-  systems/m100/games/skydiver.ba                       Skydiver
-  systems/m100/games/slots.ba                          Slot Machine
-  systems/m100/games/wormhole.ba                       Worm Hole (Snake)
+  systems/m100/games/bowling.ba                            Bowling (1984)
+  systems/m100/games/codebrek.ba                           Codebreaker (1984)
+  systems/m100/games/eliza.ba                              ELIZA (1984)
+  systems/m100/games/fsnsol.ba                             Four Seasons Solitaire (1984)
+  systems/m100/games/invmaze.ba                            Invisible Maze (1984)
+  systems/m100/games/prs.ba                                Paper, Rock, Scissors (1984)
+  systems/m100/games/rally.ba                              Road Rally (1984)
+  systems/m100/games/skydiver.ba                           Skydiver (1984)
+  systems/m100/games/slots.ba                              Slot Machine (1984)
+  systems/m100/games/wormhole.ba                           Worm Hole (Snake) (1984)
 
 TRS-80 Model III
 ----------------
-  systems/trs80/disks/ld3-531.dsk                      firmware: LDOS 5.3.1 system disk
-  systems/trs80/disks/trsdos13.dmk                     firmware: TRSDOS 1.3 system disk
-  systems/trs80/model3.rom                             firmware: TRS-80 Model III ROM
-  systems/trs80/games/armored.cmd                      Armored Patrol (1981, Adventure Int'l)
-  systems/trs80/games/attack.cmd                       Attack Force (1980, Big Five)
-  systems/trs80/games/castle.cmd                       Space Castle (1982, Cornsoft)
-  systems/trs80/games/cosmic.cmd                       Cosmic Fighter (1980, Big Five)
-  systems/trs80/games/crazypnt.cmd                     Crazy Painter (1982, Cornsoft)
-  systems/trs80/games/defense.cmd                      Defense Command (1981, Big Five)
-  systems/trs80/games/galaxy.cmd                       Galaxy Invasion (1980, Big Five)
-  systems/trs80/games/robot.cmd                        Robot Attack (1981, Big Five)
-  systems/trs80/games/seadrgn.cmd                      Sea Dragon (1982, Adventure Int'l)
-  systems/trs80/games/supernov.cmd                     Super Nova (1980, Big Five)
+  systems/trs80/disks/ld3-531.dsk                          system disk: LDOS 5.3.1 (1991)
+  systems/trs80/disks/trsdos13.dmk                         system disk: TRSDOS 1.3 (1981)
+  systems/trs80/model3.rom                                 firmware: TRS-80 Model III ROM
+  systems/trs80/games/armored.cmd                          Armored Patrol (1981)
+  systems/trs80/games/attack.cmd                           Attack Force (1980)
+  systems/trs80/games/castle.cmd                           Space Castle (1982)
+  systems/trs80/games/cosmic.cmd                           Cosmic Fighter (1980)
+  systems/trs80/games/crazypnt.cmd                         Crazy Painter (1982)
+  systems/trs80/games/defense.cmd                          Defense Command (1981)
+  systems/trs80/games/galaxy.cmd                           Galaxy Invasion (1980)
+  systems/trs80/games/robot.cmd                            Robot Attack (1981)
+  systems/trs80/games/seadrgn.cmd                          Sea Dragon (1982)
+  systems/trs80/games/supernov.cmd                         Super Nova (1980)
 
 Tandy Color Computer / Dragon
 -----------------------------
-  systems/xroar/roms/canyonclimber.ccc                 Canyon Climber
-  systems/xroar/roms/daggorath.ccc                     Dungeons of Daggorath
-  systems/xroar/roms/demonattack.ccc                   Demon Attack
-  systems/xroar/roms/downland.ccc                      Downland
-  systems/xroar/roms/galactic.ccc                      Galactic Attack
-  systems/xroar/roms/megabug.ccc                       Mega-Bug
-  systems/xroar/roms/monstermaze.ccc                   Monster Maze
-  systems/xroar/roms/polaris.ccc                       Polaris
-  systems/xroar/roms/poltergeist.ccc                   Poltergeist
-  systems/xroar/roms/popcorn.ccc                       Popcorn
+  systems/xroar/roms/canyonclimber.ccc                     Canyon Climber (1982)
+  systems/xroar/roms/daggorath.ccc                         Dungeons of Daggorath (1982)
+  systems/xroar/roms/demonattack.ccc                       Demon Attack (1982)
+  systems/xroar/roms/downland.ccc                          Downland (1983)
+  systems/xroar/roms/galactic.ccc                          Galactic Attack (1983)
+  systems/xroar/roms/megabug.ccc                           Mega-Bug (1981)
+  systems/xroar/roms/monstermaze.ccc                       Monster Maze (1982)
+  systems/xroar/roms/polaris.ccc                           Polaris (1983)
+  systems/xroar/roms/poltergeist.ccc                       Poltergeist (1981)
+  systems/xroar/roms/popcorn.ccc                           Popcorn (1981)

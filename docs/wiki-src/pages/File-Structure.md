@@ -126,7 +126,7 @@ genx-dos/
 
 Every emulator-specific page can be told in one row. Where there's an integration story behind the layout, the engine article on the [[Emulators]] index goes into the detail.
 
-The **Game files** column describes the live site. The repository keeps only the ones an emulator's own maintainer shipped with it; the rest, and every BIOS we supplied ourselves, sit in the working tree untracked and are listed in `ROMS.txt`.
+The **Game files** column describes the live site. The repository keeps only the ones an emulator's own maintainer shipped with it; the rest, and every BIOS that didn't come with its emulator, sit in the working tree untracked and are listed in `ROMS.txt`.
 
 | Emulator | Runtime | Wrapper | Game files |
 |----------|---------|---------|------------|

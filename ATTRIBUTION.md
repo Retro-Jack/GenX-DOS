@@ -5,8 +5,8 @@ assets. This file is the canonical record of those components and the terms
 under which they are redistributed.
 
 The live site, genx-dos.fun, carries all of it. **This repository and the
-release zip carry none of the game ROMs, BIOS or firmware we supplied
-ourselves** — only what each emulator's own maintainer shipped with it.
+release zip carry no game ROMs, BIOS or firmware beyond what each
+emulator's own maintainer shipped with it.**
 Rows below for files that are absent here describe the site's copy;
 [ROMS.txt](ROMS.txt) lists them.
 

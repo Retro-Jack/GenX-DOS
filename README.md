@@ -9,7 +9,7 @@ A browser DOS prompt that boots emulators from numbered menus. Drop into a fake 
 
 Live at **[genx-dos.fun](https://genx-dos.fun/)**.
 
-**This repository carries the emulators, not the games we added.** The live site has everything; the repo and the release zip leave out every game, BIOS and firmware file we supplied ourselves. Anything an emulator's own maintainer shipped with it, firmware or software, is still here. **[ROMS.txt](ROMS.txt)** lists what's missing and exactly where each file goes, so a local copy can be completed. Sourcing is up to you, and for legal reasons we won't answer questions about it.
+**This repository carries the emulators, not the games we added.** The live site has everything; the repo and the release zip leave out every game, BIOS and firmware file that didn't come with its emulator. Anything an emulator's own maintainer shipped with it, firmware or software, is still here. **[ROMS.txt](ROMS.txt)** lists what's missing and exactly where each file goes, so a local copy can be completed. Sourcing is up to you, and for legal reasons we won't answer questions about it.
 
 We bundle 19 emulator engines covering 34 sub-systems between them, from the Apple I to a hundred arcade cabinets.
 
@@ -35,7 +35,7 @@ GenX-DOS has no backend, but it **must be hosted over HTTP** — the commands ab
 
 ## Download
 
-Every release ships a **[zip of the whole site](https://github.com/Retro-Jack/GenX-DOS/releases/latest)**, less the games and firmware we supplied (see [ROMS.txt](ROMS.txt), which is inside it too) — no clone, no build. Unzip it and run it:
+Every release ships a **[zip of the whole site](https://github.com/Retro-Jack/GenX-DOS/releases/latest)**, less the games and firmware that didn't come with an emulator (see [ROMS.txt](ROMS.txt), which is inside it too) — no clone, no build. Unzip it and run it:
 
 - **Linux / macOS:** `./GenX-DOS.sh`
 - **Windows:** double-click `GenX-DOS.bat`
