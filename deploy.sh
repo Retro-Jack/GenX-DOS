@@ -129,6 +129,10 @@ echo "  $(find "$STAGE_DIR" -type f | wc -l) files, $(du -sh "$STAGE_DIR" | cut 
 #   nc_assets, parking-page.shtml.old   Namecheap leftovers (live only)
 #   robots.txt     staging's noindex guard; the repo has no robots.txt, so
 #                  without this the first staging deploy makes it indexable
+#   systems/arcade/coin-drop.mp3   the arcade coin sound, a licensed library
+#                  file that exists only on the web host, in both public_html
+#                  and staging: uploaded there by hand, never in the repo or
+#                  the working tree, so every deploy would otherwise delete it
 # --chmod normalises permissions on the receiving side. Without it, -a
 # preserves whatever the local file happens to carry: prompt/img/ami-logo.png
 # sat at 600 locally, which git does not track and GitHub Pages ignores, so it
@@ -139,7 +143,8 @@ RSYNC_OPTS=(-az --delete --human-readable --chmod=D755,F644
     --filter='protect cgi-bin/'
     --filter='protect nc_assets/'
     --filter='protect parking-page.shtml.old'
-    --filter='protect robots.txt')
+    --filter='protect robots.txt'
+    --filter='protect systems/arcade/coin-drop.mp3')
 
 if [[ $DRYRUN -eq 1 ]]; then
     echo

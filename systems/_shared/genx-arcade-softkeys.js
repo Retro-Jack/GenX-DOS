@@ -136,9 +136,10 @@
     // restarts it rather than stacking a second copy on top.
     //
     // coin-drop.mp3 IS NOT IN THE REPOSITORY, on purpose. It is a licensed
-    // library sound, so it is gitignored and served by genx-dos.fun alone,
-    // the same way the games are; a clone or the release zip has no file
-    // here. That is harmless: play() simply fails, the failure is swallowed,
+    // library sound, so it exists only on the web host (live and staging),
+    // uploaded there by hand; deploy.sh protects it from the --delete that
+    // would otherwise remove it. A clone or the release zip has no file here,
+    // and that is harmless: play() simply fails, the failure is swallowed,
     // and the coin still goes in, silently.
     const drop = new Audio('coin-drop.mp3');
     drop.preload = 'auto';
