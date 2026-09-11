@@ -2,9 +2,9 @@ GenX-DOS: ROMs, BIOS and firmware
 =================================
 
 This copy of GenX-DOS has every emulator, but not the games we added, or the
-system firmware we supplied for the machines that need it before they will
-start. The public site at https://genx-dos.fun carries the full set. Copies
-from GitHub and the release package don't.
+system firmware some machines need before they will start. The public site
+at https://genx-dos.fun carries the full set. Copies from GitHub and the
+release package don't.
 
 Anything an emulator's own maintainer shipped with it, firmware or games, is
 still here and needs nothing from you. Everything else is listed below: the
