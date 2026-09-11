@@ -41,7 +41,7 @@
    "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n      <tr><td>X</td><td><kbd>Z</kbd></td><td>Fire &mdash; left base</td></tr>\n      <tr><td>Y</td><td><kbd>V</kbd></td><td>Fire &mdash; centre base</td></tr>\n      <tr><td>B</td><td><kbd>X</kbd></td><td>Fire &mdash; right base</td></tr>\n    </table>"
   },
   "paperboy": {
-   "why": "'Brake' corrects the core's 'Break', and Throw is on A. Not yet play-tested — check the throw button against the core's own labelling, which has it on button 2.",
+   "why": "'Brake' corrects the core's 'Break', and Throw is on A: play-tested 12/09/2026, A throws, although the core's labels put Throw on button 2. Written before the hold-a-direction step.",
    "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>The cabinet used handlebars; hold a direction to steer and to speed up or slow down.</li>",
    "controls": "    <p class=\"note-plain\">This cabinet used 2 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Accelerate / Brake</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Throw</td></tr>\n    </table>"
   },
@@ -73,6 +73,10 @@
   "tutankhm": {
    "why": "Fires left or right along its corridor from the right stick (see PANEL in systems/arcade/play.html).",
    "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move (4-way)</td></tr>\n      <tr><td>Right stick &larr; &rarr;</td><td><kbd>Z</kbd> <kbd>X</kbd></td><td>Fire Left / Fire Right</td></tr>\n      <tr><td>X</td><td><kbd>V</kbd></td><td>Flash</td></tr>\n    </table>"
+  },
+  "hangon": {
+   "why": "The core names no controls: throttle and brake are analogue axes Y and Z, not buttons. RT drives the throttle (bound to 'left stick up') and LT the brake (Z assigned to 'right stick down' by the default.cfg play.html writes at boot). Play-tested 12/09/2026.",
+   "controls": "    <p class=\"note-plain\">No buttons on this cabinet. You sat on a motorbike: turning the handlebars steered, twisting the grip was the throttle, and a lever was the brake &mdash; three analogue controls, which the triggers and the left stick stand in for here.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>Left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Steer &mdash; lean into the bend</td></tr>\n      <tr><td>RT</td><td><kbd>&uarr;</kbd></td><td>Throttle</td></tr>\n      <tr><td>LT</td><td><kbd>K</kbd></td><td>Brake</td></tr>\n    </table>"
   }
  }
 }

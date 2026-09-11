@@ -18,7 +18,7 @@ The arcade cabinet opened on MAME's copyright warning however `mame2003-plus_ski
 
 The controls on the hundred gamedocs are not recalled. The core ships per-game control labels, and they name the controls for 78 of the 100 — which is why Asteroids reads Rotate Left / Rotate Right rather than a stick, and Tempest's second button is the Superzapper. Its labels are not consistently written, though, so `tools/arcade-labels.py` corrects them as an explicit list, where a wrong correction is visible.
 
-The pages are generated, and can be regenerated from a clone. `tools/build-arcade-controls.py` reads the core's own `controls.c` and metadata XML at a pinned upstream commit into `tools/arcade-controls.json`; `tools/build-arcade-gamedoc.py` rebuilds every page around the copy it already carries and reports any page that has drifted from the data. Seventeen pages had their controls set by hand after generation — the diamond layouts, Battlezone's treads, the cabinets whose driver names buttons the labels don't — and `tools/arcade-gamedoc-overrides.json` keeps those blocks with the reason for each.
+The pages are generated, and can be regenerated from a clone. `tools/build-arcade-controls.py` reads the core's own `controls.c` and metadata XML at a pinned upstream commit into `tools/arcade-controls.json`; `tools/build-arcade-gamedoc.py` rebuilds every page around the copy it already carries and reports any page that has drifted from the data. Eighteen pages had their controls set by hand after generation — the diamond layouts, Battlezone's treads, Hang-On's throttle and brake, the cabinets whose driver names buttons the labels don't — and `tools/arcade-gamedoc-overrides.json` keeps those blocks with the reason for each.
 
 **MAME's button order is not panel order.** On Gun.Smoke and Missile Command, buttons 1 and 2 are the two *outer* positions and button 3 is the middle one. We measured it rather than read it: Missile Command prints LOW under a base that is nearly spent, so firing one button over and over names its base, and Gun.Smoke's shots visibly leave the sheriff to one side. Those two, and Punch-Out!!, fire from X, Y and B laid out as a diamond so each button sits where it points. Tutankham, which fires left or right along a corridor and nothing else, fires on the right stick.
 
@@ -29,6 +29,16 @@ Per-game controls needed a hook the boot glue did not have. Its `perGame` hook t
 ## Star Wars' yoke
 
 Star Wars is one of eight cabinets whose control the core's data calls an analogue stick rather than a joy-N-way, and the first of them we tested, so the left stick flies it proportionally. Released, the crosshair sprang back to a point a quarter of the way across rather than to the middle. The axis was never wrong: held hard over, the extremes sit symmetrically either side of centre. The rest position comes from the core's **Digital Joystick Centering**, which exists for driving an analogue port from a *digital* stick and pulls a real analogue stick off centre instead. It is off for this game, and the core's XY device, which defaults to the mouse, is off too, leaving the pad's stick as the only thing flying the crosshair.
+
+## Hang-On's brake, and a config file written at boot
+
+Hang-On's cabinet was a motorbike: handlebars that steer, a twist-grip throttle and a brake lever, all three analogue — MAME's AD Stick X, Y and Z — and no buttons at all. Steering and throttle came through on the defaults. The brake did not, because this MAME assigns AD Stick Z to nothing, and none of the core's options changes that.
+
+MAME 0.78 reads a global `default.cfg` that overrides default input assignments one input type at a time, and it takes an analogue port's axis from the first stick-axis code in its sequence. So the page writes a 20-byte `default.cfg` with a single record — "AD Stick Z, player 1: was nothing, is now right stick down" — and binds LT to "right stick down" and RT to "left stick up". MAME applies a record only when its stored old sequence matches the built-in one, which an empty sequence always does. The file is global to the core but harmless elsewhere, since Z was unassigned for every game.
+
+Where to put it was the fiddly part. EmulatorJS's own `externalFiles` writes its files first and then mounts the persistent save storage over `/data/saves`, which hides them. It fires a `saveDatabaseLoaded` event straight after that mount and before the game boots, so `genx-ejs-boot.js` writes any file a page lists in `window.GENX_EJS_SAVE_FILES` then.
+
+One more thing came out of play-testing: with RT holding full throttle, the bike still slowed down. The left stick's *down* was still bound, and it shares the throttle's axis, so the downward drift of a hand steering the stick read as easing off. For Hang-On the left stick now steers and nothing else.
 
 ## The coin door
 

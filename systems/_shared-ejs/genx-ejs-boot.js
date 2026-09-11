@@ -97,7 +97,10 @@ window.genxBootEJS = async function (config) {
   for (const player in config.defaultControls || {}) {
     controls[player] = {};
     for (const input in config.defaultControls[player]) {
-      controls[player][input] = Object.assign({}, config.defaultControls[player][input]);
+      controls[player][input] = Object.assign(
+        {},
+        config.defaultControls[player][input],
+      );
     }
   }
   if (typeof config.perGame === 'function') {
@@ -150,11 +153,39 @@ window.genxBootEJS = async function (config) {
     set: (e) => {
       ejsInstance = e;
       if (!e || typeof e.getCoreSettings !== 'function') return;
+
+      // FILES A CORE MUST FIND IN ITS SAVE FOLDER AT BOOT. A page lists them
+      // in window.GENX_EJS_SAVE_FILES as { absolute FS path: Uint8Array }.
+      // EmulatorJS's own externalFiles option cannot do this for /data/saves:
+      // it writes its files first and only then mounts the persistent save
+      // storage over /data/saves, which hides anything written there. It
+      // fires saveDatabaseLoaded straight after that mount and before the
+      // game starts, so they are written then, into the mounted folder.
+      const saveFiles = window.GENX_EJS_SAVE_FILES;
+      if (saveFiles && typeof e.on === 'function') {
+        e.on('saveDatabaseLoaded', (FS) => {
+          for (const path in saveFiles) {
+            let dir = '';
+            for (const seg of path.split('/').slice(1, -1)) {
+              dir += '/' + seg;
+              try {
+                FS.mkdir(dir);
+              } catch (_) {
+                /* already there */
+              }
+            }
+            FS.writeFile(path, saveFiles[path]);
+          }
+        });
+      }
       const orig = e.getCoreSettings.bind(e);
       e.getCoreSettings = () => {
         let rv = orig();
         for (const k in options) {
-          const line = new RegExp('^' + k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*=', 'm');
+          const line = new RegExp(
+            '^' + k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*=',
+            'm',
+          );
           if (line.test(rv)) continue;
           // quoted or bare exactly as EmulatorJS writes them, so the core
           // parses our lines the same way it parses its own
@@ -163,7 +194,7 @@ window.genxBootEJS = async function (config) {
         }
         return rv;
       };
-    }
+    },
   });
 
   const s = document.createElement('script');

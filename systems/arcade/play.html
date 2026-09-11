@@ -286,6 +286,43 @@
         // 2's inputs from the second pad, so Y on the first pad is watched by
         // genx-arcade-softkeys.js and pressed through the same path as the
         // on-screen 2P button.
+        // HANG-ON: steer on the left stick's left/right, throttle on
+        // RT, brake on LT. The board has no buttons -- steering, throttle and
+        // brake are three analogue axes (X, Y, Z). The core reads the throttle
+        // axis from the left stick's up/down, so RT stands in for "left stick
+        // up". The brake axis (MAME's AD Stick Z) is assigned to NOTHING in
+        // this MAME's defaults, and no core option changes that. So a MAME
+        // default.cfg is written into the core's config folder before the game
+        // boots (genx-ejs-boot.js does the writing), and LT stands in for
+        // "right stick down". Tested: LT brakes, RT holds full throttle.
+        //
+        // The file is MAME 0.78's MAMEDEF v7 format, big-endian, per
+        // src/config.c: the 8-byte header, then one record -- input type
+        // IPT_AD_STICK_Z (34, player 1), its built-in sequence (empty, length
+        // 0), and its new one (length 1: JOYCODE_1_RIGHT_DOWN, 316, saved as
+        // a standard code 0x10000000 | 316). MAME applies a record only when
+        // the stored old sequence matches its own, and takes an analogue
+        // port's axis from the first stick-axis code in its sequence, so this
+        // puts Z on the right stick's vertical. It is global to the core, but
+        // harmless elsewhere: Z was unassigned for every game.
+        if (key === 'hangon') {
+          controls[0][19].value2 = 'RIGHT_BOTTOM_SHOULDER'; // "left stick up"    = RT = throttle
+          controls[0][18].value2 = '';                      // the stick's own down is NOT the throttle
+          controls[0][22].value2 = 'LEFT_BOTTOM_SHOULDER';  // "right stick down" = LT = brake
+          // The left stick is steering only. Its down stays unbound because
+          // it shares the throttle's axis: steering never moves a stick purely
+          // sideways, and the slight downward drift of a hand on the stick was
+          // read as easing off, so the bike slowed with RT held flat.
+          window.GENX_EJS_SAVE_FILES = {
+            '/data/saves/MAME 2003-Plus/mame2003-plus/cfg/default.cfg': new Uint8Array([
+              0x4d, 0x41, 0x4d, 0x45, 0x44, 0x45, 0x46, 0x07, // "MAMEDEF" v7
+              0x00, 0x00, 0x00, 0x22,                         // type IPT_AD_STICK_Z
+              0x00, 0x00,                                     // old sequence: empty
+              0x00, 0x01, 0x10, 0x00, 0x01, 0x3c,             // new: JOYCODE_1_RIGHT_DOWN
+            ]),
+          };
+        }
+
         if (key === 'irobot') {
           controls[0][8].value2 = '';            // MAME 3: not on this board
           controls[0][9].value2 = '';            // MAME 4: not on this board

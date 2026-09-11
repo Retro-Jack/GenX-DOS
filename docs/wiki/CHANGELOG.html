@@ -39,6 +39,12 @@
 <h3 id="changed">Changed</h3>
 <ul>
 <li>
+<p><strong>Hang-On has a throttle and a brake.</strong> The cabinet was a motorbike: handlebars, a twist-grip throttle and a brake lever, all analogue (MAME's AD Stick X, Y and Z), and no buttons. Its gamedoc had said it had no buttons and a stick that moved; it now lists steering on the left stick, the throttle on RT and the brake on LT, or the arrows, up and K on the keyboard.
+  The brake needed a config file. This MAME assigns AD Stick Z to nothing, and no core option changes that, so the page writes a 20-byte MAME <code>default.cfg</code> at boot with one record, "AD Stick Z = right stick down", and LT stands in for that. EmulatorJS's own <code>externalFiles</code> could not place it, since it mounts the persistent save storage over <code>/data/saves</code> after writing them, so <code>genx-ejs-boot.js</code> gains a hook that writes a page's files on EmulatorJS's <code>saveDatabaseLoaded</code> event, straight after that mount and before the game starts.
+  Play-testing found the bike slowing with RT held flat: the left stick's down still shared the throttle's axis, so a hand steering the stick eased off without meaning to. On Hang-On the left stick now steers and nothing else.
+  Also tested: Paperboy centres, steers proportionally and the right way, and throws on A, as its page says; the core's labels put Throw on button 2.</p>
+</li>
+<li>
 <p><strong>A coin you can hear.</strong> A coin dropping through the slot mechanism plays when a coin goes in, from the coin door's slot or the 5 key. It is a licensed library sound (Hollywood Edge's Foley Sound Library, via SoundDogs.com), so it exists only on the web host: uploaded to the live and staging sites by hand, kept out of the repository and the release zip, protected in <code>deploy.sh</code> from the cleanup that would otherwise delete it, and credited in ATTRIBUTION. Without the file, the coin still goes in silently.
   Wiring the sound to the 5 key showed that the key could insert nothing at all. EmulatorJS reads keys only when they land inside its own game element, and focus is often elsewhere, including straight after the coin button itself, which gives up focus on purpose. A 5 pressed outside the game is now inserted by the coin door, through the same path as the slot; one pressed inside is left to EmulatorJS, so a coin is never counted twice.</p>
 </li>
