@@ -7,8 +7,8 @@
 # Usage: ./build-portable.sh [--no-roms] [target-dir]
 #        (default target: _Portable, the working copy)
 #
-# --no-roms is for the release zip. The games and firmware we supplied are not
-# in the repository; they sit in the working tree untracked, so deploy.sh and
+# --no-roms is for the release zip. Games and firmware that didn't come with
+# their emulators are not in the repository; they sit in the working tree untracked, so deploy.sh and
 # the working copy still carry them to genx-dos.fun. With --no-roms, every
 # untracked file under systems/ is left out and ROMS.txt goes in, so the zip
 # holds exactly what the repository does. Without it, ROMS.txt stays out: the

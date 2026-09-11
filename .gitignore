@@ -29,11 +29,11 @@ _paddiag.html
 # release artefacts — built at a cut, attached to the GitHub release
 GenX-DOS-v*.zip
 
-# Games and firmware we supplied ourselves. They are not in the repository:
-# they stay in the working tree, untracked, so deploy.sh still ships them to
-# genx-dos.fun, and build-portable.sh --no-roms leaves them out of the release
-# zip. ROMS.txt lists them for anyone completing a copy. Files an emulator's own
-# maintainer shipped with it are tracked as normal.
+# Games and firmware that didn't come with their emulators. They are not in the
+# repository: they stay in the working tree, untracked, so deploy.sh still
+# ships them to genx-dos.fun, and build-portable.sh --no-roms leaves them out
+# of the release zip. ROMS.txt lists them for anyone completing a copy. Files an
+# emulator's own maintainer shipped with it are tracked as normal.
 /systems/apple2/json/disks/archon.json
 /systems/apple2/json/disks/aztec.json
 /systems/apple2/json/disks/choplift.json
