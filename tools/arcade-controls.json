@@ -1,0 +1,958 @@
+{
+ "source": "https://github.com/libretro/mame2003-plus-libretro/tree/d3ac6c95f293a33b684402cf57fa56d9247d095a",
+ "games": {
+  "1942": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "altbeast": {
+   "control": "joy8way",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Punch",
+    "IPT_BUTTON2": "Kick ",
+    "IPT_BUTTON3": "Jump"
+   }
+  },
+  "arkanoid": {
+   "control": "dial",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_DIAL": "Left",
+    "IPT_DIAL + IPT_EXTENSION": "Right"
+   }
+  },
+  "asteroid": {
+   "control": "joy8way",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "FIRE",
+    "IPT_BUTTON2": "THRUST",
+    "IPT_BUTTON3": "HYPER SPACE",
+    "IPT_JOYSTICK_LEFT": "Rotate Left",
+    "IPT_JOYSTICK_RIGHT": "Rotate Right"
+   }
+  },
+  "bionicc": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Bionic Reach"
+   }
+  },
+  "blaster": {
+   "control": "stick",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Blast",
+    "IPT_BUTTON2": "Thrust",
+    "IPT_BUTTON3": "Unknown",
+    "IPT_AD_STICK_Y + IPT_EXTENSION": "Down",
+    "IPT_AD_STICK_Y": "Up",
+    "IPT_AD_STICK_X + IPT_EXTENSION": "Right",
+    "IPT_AD_STICK_X": "Left"
+   }
+  },
+  "blktiger": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Mace",
+    "IPT_BUTTON2": "Jump"
+   }
+  },
+  "bosco": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire"
+   }
+  },
+  "bubbles": {
+   "control": "joy8way",
+   "buttons": 0,
+   "labels_from": "own",
+   "labels": {}
+  },
+  "bublbobl": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Bubble",
+    "IPT_BUTTON2": "Jump"
+   }
+  },
+  "bzone": {
+   "control": "joy8way",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_JOYSTICKLEFT_UP": "Left Tread Forward",
+    "IPT_JOYSTICKLEFT_DOWN": "Left Tread Backward",
+    "IPT_JOYSTICKRIGHT_UP": "Right Tread Forward",
+    "IPT_JOYSTICKRIGHT_DOWN": "Right Tread Backward"
+   }
+  },
+  "centiped": {
+   "control": "trackball",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_TRACKBALL_X": "Left",
+    "IPT_TRACKBALL_X + IPT_EXTENSION": "Right",
+    "IPT_TRACKBALL_Y": "Up",
+    "IPT_TRACKBALL_Y + IPT_EXTENSION": "Down"
+   }
+  },
+  "chasehq": {
+   "control": "joy8way",
+   "buttons": 4,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "commando": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Machine Gun",
+    "IPT_BUTTON2": "Grenade"
+   }
+  },
+  "contra": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Shoot",
+    "IPT_BUTTON2": "Jump"
+   }
+  },
+  "defender": {
+   "control": "joy8way",
+   "buttons": 5,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "FIRE",
+    "IPT_BUTTON2": "THRUST",
+    "IPT_BUTTON3": "SMART BOMB",
+    "IPT_BUTTON4": "HYPERSPACE",
+    "IPT_BUTTON5": "REVERSE",
+    "IPT_JOYSTICK_DOWN": "Down",
+    "IPT_JOYSTICK_UP": "Up"
+   }
+  },
+  "digdug": {
+   "control": "joy4way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Pump"
+   }
+  },
+  "dkong": {
+   "control": "joy4way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Jump",
+    "IPT_JOYSTICK_LEFT": "Run Left",
+    "IPT_JOYSTICK_DOWN": "Climb Down Ladder",
+    "IPT_JOYSTICK_UP": "Climb Up Ladder",
+    "IPT_JOYSTICK_RIGHT": "Run Right"
+   }
+  },
+  "elevator": {
+   "control": "joy4way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Jump/Kick",
+    "IPT_JOYSTICK_RIGHT": "Right",
+    "IPT_JOYSTICK_LEFT": "Left",
+    "IPT_JOYSTICK_DOWN": "Kneel",
+    "IPT_JOYSTICK_UP": ""
+   }
+  },
+  "fantzone": {
+   "control": "joy8way",
+   "buttons": 3,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "ffight": {
+   "control": "joy8way",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Attack",
+    "IPT_BUTTON2": "Jump",
+    "IPT_BUTTON3": ""
+   }
+  },
+  "forgottn": {
+   "control": "dial",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Push to Fire",
+    "IPT_DIAL": "Left",
+    "IPT_DIAL + IPT_EXTENSION": "Right"
+   }
+  },
+  "frogger": {
+   "control": "joy4way",
+   "buttons": 0,
+   "labels_from": "own",
+   "labels": {}
+  },
+  "galaga": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire"
+   }
+  },
+  "galaxian": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire"
+   }
+  },
+  "gauntlet": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Magic / Start"
+   }
+  },
+  "gberet": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Weapon",
+    "IPT_BUTTON2": "Shoot"
+   }
+  },
+  "gng": {
+   "control": "joy4way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Jump"
+   }
+  },
+  "goldnaxe": {
+   "control": "joy8way",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Attack",
+    "IPT_BUTTON2": "Jump",
+    "IPT_BUTTON3": "Magic"
+   }
+  },
+  "gorf": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire"
+   }
+  },
+  "gunsmoke": {
+   "control": "joy8way",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire - Left",
+    "IPT_BUTTON2": "Fire - Center",
+    "IPT_BUTTON3": "Fire - Right"
+   }
+  },
+  "gyruss": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire"
+   }
+  },
+  "hangon": {
+   "control": "stick",
+   "buttons": 0,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "helifire": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "imgfight": {
+   "control": "joy8way",
+   "buttons": 4,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "inferno": {
+   "control": "doublejoy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_JOYSTICKLEFT_UP": "Up",
+    "IPT_JOYSTICKLEFT_DOWN": "Down",
+    "IPT_JOYSTICKLEFT_LEFT": "Left",
+    "IPT_JOYSTICKLEFT_RIGHT": "Right",
+    "IPT_JOYSTICKRIGHT_UP": "Fire Up",
+    "IPT_JOYSTICKRIGHT_DOWN": "Fire Down",
+    "IPT_JOYSTICKRIGHT_LEFT": "Fire Left",
+    "IPT_JOYSTICKRIGHT_RIGHT": "Fire Right",
+    "IPT_BUTTON1": "Fire"
+   }
+  },
+  "irobot": {
+   "control": "stick",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Not used",
+    "IPT_AD_STICK_X": "Left",
+    "IPT_AD_STICK_X + IPT_EXTENSION": "Right",
+    "IPT_AD_STICK_Y": "Up",
+    "IPT_AD_STICK_Y + IPT_EXTENSION": "Down"
+   }
+  },
+  "joust": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Flap"
+   }
+  },
+  "junglek": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Jump / Knife"
+   }
+  },
+  "kidniki": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "kungfum": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Kick",
+    "IPT_BUTTON2": "Punch",
+    "IPT_JOYSTICK_UP": "Jump",
+    "IPT_JOYSTICK_DOWN": "Stoop Down",
+    "IPT_JOYSTICK_LEFT": "Left",
+    "IPT_JOYSTICK_RIGHT": "Right"
+   }
+  },
+  "mappy": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Door Open / Close"
+   }
+  },
+  "marble": {
+   "control": "trackball",
+   "buttons": 0,
+   "labels_from": "own",
+   "labels": {
+    "IPT_TRACKBALL_X": "Left",
+    "IPT_TRACKBALL_X + IPT_EXTENSION": "Right",
+    "IPT_TRACKBALL_Y": "Up",
+    "IPT_TRACKBALL_Y + IPT_EXTENSION": "Down"
+   }
+  },
+  "mario": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Jump"
+   }
+  },
+  "missile": {
+   "control": "trackball",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire - Alpha Base",
+    "IPT_BUTTON2": "Fire - Delta Base",
+    "IPT_BUTTON3": "Fire - Omega Base",
+    "IPT_TRACKBALL_X": "Left",
+    "IPT_TRACKBALL_X + IPT_EXTENSION": "Right",
+    "IPT_TRACKBALL_Y": "Up",
+    "IPT_TRACKBALL_Y + IPT_EXTENSION": "Down"
+   }
+  },
+  "mpatrol": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Jump",
+    "IPT_JOYSTICK_LEFT": "Slower",
+    "IPT_JOYSTICK_RIGHT": "Faster"
+   }
+  },
+  "mspacman": {
+   "control": "joy4way",
+   "buttons": 0,
+   "labels_from": "own",
+   "labels": {}
+  },
+  "mysticm": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Jump"
+   }
+  },
+  "narc": {
+   "control": "joy8way",
+   "buttons": 4,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Jump",
+    "IPT_BUTTON3": "Crouch",
+    "IPT_BUTTON4": "Rocket Bomb"
+   }
+  },
+  "nemesis": {
+   "control": "joy8way",
+   "buttons": 3,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "nspirit": {
+   "control": "joy8way",
+   "buttons": 4,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "omegrace": {
+   "control": "dial",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Thrust",
+    "IPT_DIAL": "Left",
+    "IPT_DIAL + IPT_EXTENSION": "Right"
+   }
+  },
+  "opwolf": {
+   "control": "lightgun",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Rocket Gun",
+    "IPT_LIGHTGUN_X": "Aim Left",
+    "IPT_LIGHTGUN_X + IPT_EXTENSION": "Aim Right",
+    "IPT_LIGHTGUN_Y": "Aim Up",
+    "IPT_LIGHTGUN_Y + IPT_EXTENSION": "Aim Down"
+   }
+  },
+  "outrun": {
+   "control": "stick",
+   "buttons": 4,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "High / Low",
+    "IPT_PADDLE": "Left",
+    "IPT_PADDLE + IPT_EXTENSION": "Right",
+    "IPT_PEDAL": "Accelerate",
+    "IPT_PEDAL2": "Brake"
+   }
+  },
+  "paperboy": {
+   "control": "stick",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Throw",
+    "IPT_BUTTON2": "Throw",
+    "IPT_AD_STICK_X + IPT_EXTENSION": "Right",
+    "IPT_AD_STICK_X": "Left",
+    "IPT_AD_STICK_Y + IPT_EXTENSION": "Break",
+    "IPT_AD_STICK_Y": "Accelerate"
+   }
+  },
+  "pengo": {
+   "control": "joy4way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Push"
+   }
+  },
+  "polepos": {
+   "control": "dial",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "High / Low",
+    "IPT_DIAL + IPT_EXTENSION": "Right",
+    "IPT_DIAL": "Left",
+    "IPT_PEDAL": "Accelerate",
+    "IPT_PEDAL2": "Brake"
+   }
+  },
+  "popeye": {
+   "control": "joy4way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Punch"
+   }
+  },
+  "puckman": {
+   "control": "joy4way",
+   "buttons": 0,
+   "labels_from": "own",
+   "labels": {}
+  },
+  "punchout": {
+   "control": "joy4way",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Left Blow To Head/Body",
+    "IPT_BUTTON2": "Right Blow to Head/Body",
+    "IPT_BUTTON3": "Hook Uppercut",
+    "IPT_JOYSTICK_UP": "Guard Up",
+    "IPT_JOYSTICK_DOWN": "Guard Down",
+    "IPT_JOYSTICK_LEFT": "Dodge Left",
+    "IPT_JOYSTICK_RIGHT": "Dodge Right"
+   }
+  },
+  "qix": {
+   "control": "joy4way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fast Draw",
+    "IPT_BUTTON2": "Slow Draw"
+   }
+  },
+  "radarscp": {
+   "control": "joy4way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire"
+   }
+  },
+  "rallyx": {
+   "control": "joy4way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Smoke Screen",
+    "IPT_JOYSTICK_DOWN": "Down",
+    "IPT_JOYSTICK_UP": "Up"
+   }
+  },
+  "rampage": {
+   "control": "joy4way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Punch",
+    "IPT_BUTTON2": "Jump",
+    "IPT_JOYSTICK_UP": "Climb",
+    "IPT_JOYSTICK_DOWN": "Down",
+    "IPT_JOYSTICK_LEFT": "Left",
+    "IPT_JOYSTICK_RIGHT": "Right"
+   }
+  },
+  "rastan": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Attack",
+    "IPT_BUTTON2": "Jump"
+   }
+  },
+  "redalert": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "robotron": {
+   "control": "doublejoy8way",
+   "buttons": 0,
+   "labels_from": "own",
+   "labels": {
+    "IPT_JOYSTICKLEFT_UP": "Move Up",
+    "IPT_JOYSTICKLEFT_DOWN": "Move Down",
+    "IPT_JOYSTICKLEFT_LEFT": "Move Left",
+    "IPT_JOYSTICKLEFT_RIGHT": "Move Right",
+    "IPT_JOYSTICKRIGHT_UP": "Fire Up",
+    "IPT_JOYSTICKRIGHT_DOWN": "Fire Down",
+    "IPT_JOYSTICKRIGHT_LEFT": "Fire Left",
+    "IPT_JOYSTICKRIGHT_RIGHT": "Fire Right"
+   }
+  },
+  "rthunder": {
+   "control": "joy4way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Shoot",
+    "IPT_BUTTON2": "Jump"
+   }
+  },
+  "rtype": {
+   "control": "joy8way",
+   "buttons": 4,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Force"
+   }
+  },
+  "scramble": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Laser",
+    "IPT_BUTTON2": "Bombs",
+    "IPT_JOYSTICK_UP": "Up",
+    "IPT_JOYSTICK_DOWN": "Down",
+    "IPT_JOYSTICK_LEFT": "Slow",
+    "IPT_JOYSTICK_RIGHT": "Fast"
+   }
+  },
+  "seawolf": {
+   "control": "paddle",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire Torpedo",
+    "IPT_PADDLE": "Left",
+    "IPT_PADDLE + IPT_EXTENSION": "Right"
+   }
+  },
+  "sf1": {
+   "control": "joy8way",
+   "buttons": 6,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "sharrier": {
+   "control": "stick",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Shot",
+    "IPT_BUTTON2": "Shot",
+    "IPT_BUTTON3": "Shot",
+    "IPT_AD_STICK_X": "Left",
+    "IPT_AD_STICK_X + IPT_EXTENSION": "Right",
+    "IPT_AD_STICK_Y": "Up",
+    "IPT_AD_STICK_Y + IPT_EXTENSION": "Down"
+   }
+  },
+  "sheriff": {
+   "control": "doublejoy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_JOYSTICKLEFT_UP": "Up",
+    "IPT_JOYSTICKLEFT_DOWN": "Down",
+    "IPT_JOYSTICKLEFT_LEFT": "Left",
+    "IPT_JOYSTICKLEFT_RIGHT": "Right",
+    "IPT_JOYSTICKRIGHT_UP": "Aim Up",
+    "IPT_JOYSTICKRIGHT_DOWN": "Aim Down",
+    "IPT_JOYSTICKRIGHT_LEFT": "Aim Left",
+    "IPT_JOYSTICKRIGHT_RIGHT": "Aim Right"
+   }
+  },
+  "shinobi": {
+   "control": "joy8way",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Attack",
+    "IPT_BUTTON2": "Jump",
+    "IPT_BUTTON3": "Ninja Magic"
+   }
+  },
+  "shollow": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Shield"
+   }
+  },
+  "sinistar": {
+   "control": "stick",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Sinibomb",
+    "IPT_AD_STICK_X": "Left",
+    "IPT_AD_STICK_X + IPT_EXTENSION": "Right",
+    "IPT_AD_STICK_Y": "Up",
+    "IPT_AD_STICK_Y + IPT_EXTENSION": "Down"
+   }
+  },
+  "sitv": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "parent invaders",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_JOYSTICK_RIGHT": "Control Right",
+    "IPT_JOYSTICK_LEFT": "Control Left"
+   }
+  },
+  "skyskipr": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "spacefb": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Warp",
+    "IPT_JOYSTICK_LEFT": "Port (Left)",
+    "IPT_JOYSTICK_RIGHT": "Starboard (Right)"
+   }
+  },
+  "spacefev": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "splat": {
+   "control": "doublejoy8way",
+   "buttons": 0,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "spyhunt": {
+   "control": "paddle",
+   "buttons": 6,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "starwars": {
+   "control": "stick",
+   "buttons": 4,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Fire",
+    "IPT_BUTTON3": "Fire",
+    "IPT_BUTTON4": "Fire",
+    "IPT_AD_STICK_X": "Left",
+    "IPT_AD_STICK_X + IPT_EXTENSION": "Right",
+    "IPT_AD_STICK_Y": "Up",
+    "IPT_AD_STICK_Y + IPT_EXTENSION": "Down"
+   }
+  },
+  "strider": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Sword",
+    "IPT_BUTTON2": "Jump"
+   }
+  },
+  "tapper": {
+   "control": "joy4way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Pour / Serve"
+   }
+  },
+  "tempest": {
+   "control": "dial",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_BUTTON2": "Super Zapper",
+    "IPT_DIAL": "Left",
+    "IPT_DIAL + IPT_EXTENSION": "Right"
+   }
+  },
+  "timeplt": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire"
+   }
+  },
+  "tnzs": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "trackfld": {
+   "control": "unlisted",
+   "buttons": 4,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Run",
+    "IPT_BUTTON2": "Jump/Throw",
+    "IPT_BUTTON3": "Run"
+   }
+  },
+  "travrusa": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "tron": {
+   "control": "dial",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire",
+    "IPT_DIAL": "Aim Left",
+    "IPT_DIAL + IPT_EXTENSION": "Aim Right"
+   }
+  },
+  "turbo": {
+   "control": "dial",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Accelerate",
+    "IPT_BUTTON2": "Lo",
+    "IPT_BUTTON3": "Hi",
+    "IPT_DIAL": "Left",
+    "IPT_DIAL + IPT_EXTENSION": "Right"
+   }
+  },
+  "tutankhm": {
+   "control": "joy4way",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire Left",
+    "IPT_BUTTON2": "Fire Right",
+    "IPT_BUTTON3": "Flash"
+   }
+  },
+  "vigilant": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Punch",
+    "IPT_BUTTON2": "Kick",
+    "IPT_JOYSTICK_UP": "Jump",
+    "IPT_JOYSTICK_DOWN": "Duck",
+    "IPT_JOYSTICK_LEFT": "Left",
+    "IPT_JOYSTICK_RIGHT": "Right"
+   }
+  },
+  "wow": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire"
+   }
+  },
+  "xevious": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Zapper",
+    "IPT_BUTTON2": "Blaster"
+   }
+  },
+  "yard": {
+   "control": "joy8way",
+   "buttons": 2,
+   "labels_from": "none",
+   "labels": {}
+  },
+  "yiear": {
+   "control": "joy8way",
+   "buttons": 3,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Punch",
+    "IPT_BUTTON2": "Kick",
+    "IPT_JOYSTICK_UP": "Jump",
+    "IPT_JOYSTICK_DOWN": "Stoop Down",
+    "IPT_JOYSTICK_LEFT": "Left",
+    "IPT_JOYSTICK_RIGHT": "Right"
+   }
+  },
+  "zaxxon": {
+   "control": "joy8way",
+   "buttons": 1,
+   "labels_from": "own",
+   "labels": {
+    "IPT_BUTTON1": "Fire"
+   }
+  }
+ }
+}

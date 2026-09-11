@@ -16,7 +16,9 @@ The arcade cabinet opened on MAME's copyright warning however `mame2003-plus_ski
 
 ## Controls come from the core, and the numbering is wrong
 
-The controls on the hundred gamedocs are not recalled. The core ships per-game control labels, and they name the buttons for 82 of the 100 — which is why Asteroids reads Rotate Left / Rotate Right rather than a stick, and Tempest's second button is the Superzapper. Its labels are not consistently written, though, so `tools/arcade-labels.py` corrects them as an explicit list, where a wrong correction is visible.
+The controls on the hundred gamedocs are not recalled. The core ships per-game control labels, and they name the controls for 78 of the 100 — which is why Asteroids reads Rotate Left / Rotate Right rather than a stick, and Tempest's second button is the Superzapper. Its labels are not consistently written, though, so `tools/arcade-labels.py` corrects them as an explicit list, where a wrong correction is visible.
+
+The pages are generated, and can be regenerated from a clone. `tools/build-arcade-controls.py` reads the core's own `controls.c` and metadata XML at a pinned upstream commit into `tools/arcade-controls.json`; `tools/build-arcade-gamedoc.py` rebuilds every page around the copy it already carries and reports any page that has drifted from the data. Seventeen pages had their controls set by hand after generation — the diamond layouts, Battlezone's treads, the cabinets whose driver names buttons the labels don't — and `tools/arcade-gamedoc-overrides.json` keeps those blocks with the reason for each.
 
 **MAME's button order is not panel order.** On Gun.Smoke and Missile Command, buttons 1 and 2 are the two *outer* positions and button 3 is the middle one. We measured it rather than read it: Missile Command prints LOW under a base that is nearly spent, so firing one button over and over names its base, and Gun.Smoke's shots visibly leave the sheriff to one side. Those two, and Punch-Out!!, fire from X, Y and B laid out as a diamond so each button sits where it points. Tutankham, which fires left or right along a corridor and nothing else, fires on the right stick.
 
@@ -26,7 +28,7 @@ Per-game controls needed a hook the boot glue did not have. Its `perGame` hook t
 
 ## Star Wars' yoke
 
-Star Wars is the one genuinely analogue control in the lineup — the core's data calls it a stick, not a joy-N-way — so the left stick flies it proportionally. Released, the crosshair sprang back to a point a quarter of the way across rather than to the middle. The axis was never wrong: held hard over, the extremes sit symmetrically either side of centre. The rest position comes from the core's **Digital Joystick Centering**, which exists for driving an analogue port from a *digital* stick and pulls a real analogue stick off centre instead. It is off for this game, and the core's XY device, which defaults to the mouse, is off too, leaving the pad's stick as the only thing flying the crosshair.
+Star Wars is one of eight cabinets whose control the core's data calls an analogue stick rather than a joy-N-way, and the first of them we tested, so the left stick flies it proportionally. Released, the crosshair sprang back to a point a quarter of the way across rather than to the middle. The axis was never wrong: held hard over, the extremes sit symmetrically either side of centre. The rest position comes from the core's **Digital Joystick Centering**, which exists for driving an analogue port from a *digital* stick and pulls a real analogue stick off centre instead. It is off for this game, and the core's XY device, which defaults to the mouse, is off too, leaving the pad's stick as the only thing flying the crosshair.
 
 ## The coin door
 

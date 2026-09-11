@@ -1,12 +1,22 @@
 """Render one arcade gamedoc from the emulator's own data plus written copy.
 
 Controls are never hand-written: the button labels come from the core's control
-data (via ctrl_labels.json), tidied by arcade-labels.py, and the movement row is
-built from the same source so a two-way cabinet is not described as an 8-way
-stick. Copy — the one-line sub, the intro, scoring and strategy — is supplied
-per game by the caller.
+data (tools/arcade-controls.json, built by build-arcade-controls.py), tidied by
+arcade-labels.py, and the movement row is built from the same source so a
+two-way cabinet is not described as an 8-way stick. Copy — the one-line sub,
+the intro, scoring and strategy — is written per game.
+
+  python3 tools/build-arcade-gamedoc.py              check all 100 pages
+  python3 tools/build-arcade-gamedoc.py KEY ...      check just these
+  add --write to rewrite the pages instead of checking them
+
+Run from the command line, it takes each page's copy from the page as it stands
+and regenerates everything else around it, so a change to the control data or
+to this template reaches every page without the copy being retyped. Pages whose
+controls were corrected by hand are listed, with the reason, in
+tools/arcade-gamedoc-overrides.json, and keep those blocks as written.
 """
-import html, io, json, os
+import html, io, json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__)) if '__file__' in dir() else 'tools'
 exec(open(os.path.join(HERE, 'arcade-labels.py')).read())      # provides tidy()
@@ -62,7 +72,8 @@ def control_rows(key, labels, control):
         if good is None:                    # the core marks it unused or unnamed
             continue
         pad, k = PAD[ipt]
-        rows.append(_row(pad, f'<kbd>{k}</kbd>', html.escape(good, quote=False)))
+        # tidy() may hand back an entity (&mdash;); escape the text, not that.
+        rows.append(_row(pad, f'<kbd>{k}</kbd>', re.sub(r'&amp;(#?\w+;)', r'&\1', html.escape(good, quote=False))))
     return rows
 
 
@@ -150,3 +161,61 @@ def page(key, game, labels, control, buttons, sub, intro, extra_start=None,
 </body>
 </html>
 '''
+
+
+# ---- command line: regenerate pages around the copy they already carry ------
+
+ROOT = os.path.dirname(HERE)
+STD_STEPS = ('Insert a coin', 'Press 1 player start', 'The real cabinet used')
+
+
+def copy_from(page_html):
+    """The written parts of an existing page: everything this script cannot derive."""
+    def one(pattern):
+        m = re.search(pattern, page_html, re.S)
+        return m.group(1) if m else ''
+    steps = re.findall(r'      <li>(.*?)</li>', one(r'<ol>\n(.*?)\n    </ol>'), re.S)
+    extra = [s for s in steps if not s.startswith(STD_STEPS)]
+    return {'sub': one(r'<p class="sub">(.*?)</p>'),
+            'intro': one(r'<p class="intro">(.*?)</p>'),
+            'extra_start': extra[-1] if extra else None,
+            # Everything between the Controls table and the closing section:
+            # scoring, strategy, and on a few pages a note hung off the table.
+            'rest': one(r'<h2>Controls</h2>.*?\n    </table>\n(.*?)    <h2>Arcade controls</h2>')}
+
+
+def main(argv):
+    write = '--write' in argv
+    keys = [a for a in argv if not a.startswith('--')]
+    games = json.load(open(os.path.join(ROOT, 'systems', 'arcade', 'games.json')))
+    data = json.load(open(os.path.join(HERE, 'arcade-controls.json')))['games']
+    # Pages set by hand after generation: their steps / Controls block are kept
+    # verbatim, each with the reason it differs from what the data would give.
+    overrides = json.load(open(os.path.join(HERE, 'arcade-gamedoc-overrides.json')))['games']
+    differ = []
+    for key in keys or sorted(games):
+        path = os.path.join(ROOT, 'docs', 'games', 'arcade', key + '.html')
+        old = io.open(path, encoding='utf-8').read()
+        c = copy_from(old)
+        d = data[key]
+        rest = c['rest']
+        new = page(key, games[key], d['labels'], d['control'], d['buttons'],
+                   c['sub'], c['intro'], c['extra_start'], scoring=rest[1:] if rest.startswith('\n') else rest)
+        if not rest.startswith('\n'):      # a note sits directly under the table
+            new = new.replace('    </table>\n\n' + rest, '    </table>\n' + rest, 1)
+        o = overrides.get(key, {})
+        if 'steps' in o:
+            new = re.sub(r'(    <ol>\n).*?(\n    </ol>)', lambda m: m.group(1) + o['steps'] + m.group(2), new, count=1, flags=re.S)
+        if 'controls' in o:
+            new = re.sub(r'(    <h2>Controls</h2>\n).*?\n    </table>', lambda m: m.group(1) + o['controls'], new, count=1, flags=re.S)
+        if new != old:
+            differ.append(key)
+            if write:
+                io.open(path, 'w', encoding='utf-8').write(new)
+    done = 'rewrote' if write else 'differ from what the data would generate'
+    print(f'{len(differ)} of {len(keys or games)} pages {done}' + (f': {" ".join(differ)}' if differ else ''))
+    return 1 if differ and not write else 0
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))

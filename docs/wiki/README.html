@@ -61,8 +61,10 @@ check-doc-counts.sh       checks the counts quoted in the docs still match the t
                           and that no doc still names a file that has been renamed
 tools/                    developer tooling — not part of the shipping site
   build-softkey-map.py    generates systems/_shared/softkeys.json from the gamedocs
-  build-arcade-gamedoc.py renders an arcade gamedoc from the core's own control data,
-  arcade-labels.py          with the label corrections this one lists explicitly
+  build-arcade-controls.py  reads the arcade core's own control data into arcade-controls.json
+  build-arcade-gamedoc.py   rebuilds (or checks) the 100 arcade gamedocs from that data;
+  arcade-labels.py            label corrections, and arcade-gamedoc-overrides.json the pages
+                              whose controls were set by hand, each with its reason
   gamefaqs-lookup.js      console helper that pulls scoring tables out of GameFAQs guides
   bezel-test/             one BASIC test card per computer: white border, black
                           playfield, so the edge of an emulator's picture is
