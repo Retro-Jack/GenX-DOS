@@ -367,6 +367,12 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
 
 ---
 
+## Sound effects
+
+| File | What it is | Source |
+| --- | --- | --- |
+| `systems/arcade/coin-drop.mp3` | A coin dropping through a slot mechanism, played when a coin goes in through the arcade coin door's slot or the 5 key. Converted from the original WAV to MP3; otherwise unaltered. **On genx-dos.fun only** — a licensed library sound, so it is not in this repository or the release zip, and the coin works silently without it. | **Foley Sound Library** (FSL05_07), published by **Hollywood Edge**; vendor **SoundDogs.com** |
+
 ## Fonts
 
 - `systems/_shared/styles/VGA_font/f12.*.png` — 12×12 CP437 bitmap font sprites. Generated

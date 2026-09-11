@@ -148,3 +148,8 @@ GenX-DOS-v*.zip
 /systems/vic20/games/pacman.prg
 /systems/vic20/games/ratrace.prg
 /systems/xroar/roms/
+
+# Licensed library sounds. Served by genx-dos.fun only, like the games above:
+# deploy.sh ships them from the working tree, and they stay out of the
+# repository and the release zip. Credited in ATTRIBUTION.md.
+/systems/arcade/coin-drop.mp3

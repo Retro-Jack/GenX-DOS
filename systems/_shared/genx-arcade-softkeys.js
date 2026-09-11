@@ -130,10 +130,46 @@
     coin.type = 'button';
     coin.title = 'Insert coin (keyboard: 5)';
     coin.setAttribute('aria-label', 'Insert coin');
+    // A coin dropping through the slot mechanism, on the slot button and on
+    // the 5 key. Sound: Hollywood Edge Foley Sound Library, via SoundDogs.com
+    // (see ATTRIBUTION.md). A second coin before the first has finished
+    // restarts it rather than stacking a second copy on top.
+    //
+    // coin-drop.mp3 IS NOT IN THE REPOSITORY, on purpose. It is a licensed
+    // library sound, so it is gitignored and served by genx-dos.fun alone,
+    // the same way the games are; a clone or the release zip has no file
+    // here. That is harmless: play() simply fails, the failure is swallowed,
+    // and the coin still goes in, silently.
+    const drop = new Audio('coin-drop.mp3');
+    drop.preload = 'auto';
+    const clink = () => {
+      drop.currentTime = 0;
+      drop.play().catch(() => {});
+    };
     coin.addEventListener('click', () => {
       press(COIN);
+      clink();
       coin.blur();
     });
+    // The 5 key is the machine's coin input. EmulatorJS reads keys only when
+    // they land inside its own game element, though, and focus is often
+    // elsewhere -- after a reload, or after this very coin button, which gives
+    // focus up on purpose. The key then played the sound and inserted nothing.
+    // So a 5 that lands outside the game element is inserted here, through the
+    // same path as the slot; one that lands inside is left to EmulatorJS, so a
+    // coin is never counted twice. Digit5 alone, because that is the key
+    // play.html binds, and the numpad 5 inserts no coin. Held keys repeat; a
+    // coin is one press.
+    addEventListener(
+      'keydown',
+      (e) => {
+        if (e.code !== 'Digit5' || e.repeat) return;
+        const game = emu() && emu().elements && emu().elements.parent;
+        if (!game || !game.contains(e.target)) press(COIN);
+        clink();
+      },
+      true,
+    );
 
     const mk = (id, label, title, player) => {
       const b = document.createElement('button');

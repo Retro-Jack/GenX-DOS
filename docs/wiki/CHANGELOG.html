@@ -39,6 +39,10 @@
 <h3 id="changed">Changed</h3>
 <ul>
 <li>
+<p><strong>A coin you can hear.</strong> A coin dropping through the slot mechanism plays when a coin goes in, from the coin door's slot or the 5 key. It is a licensed library sound (Hollywood Edge's Foley Sound Library, via SoundDogs.com), so like the games it is served by genx-dos.fun alone: gitignored, left out of the release zip, and credited in ATTRIBUTION. Without the file, the coin still goes in silently.
+  Wiring the sound to the 5 key showed that the key could insert nothing at all. EmulatorJS reads keys only when they land inside its own game element, and focus is often elsewhere, including straight after the coin button itself, which gives up focus on purpose. A 5 pressed outside the game is now inserted by the coin door, through the same path as the slot; one pressed inside is left to EmulatorJS, so a coin is never counted twice.</p>
+</li>
+<li>
 <p><strong>I, Robot's camera is on the pad.</strong> The cabinet fired from the stick. Its two panel buttons were marked VIEW, and the game reads them through the start inputs: in play, 1P lowers the camera and 2P raises it. The game leans on them, too, since its Point of View killers cannot be shot and destroy a robot whose player has not moved the camera in time. Coin and start stay keyboard-only everywhere else, but on I, Robot X lowers the view and Y raises it. Y has to be pressed from code, because EmulatorJS reads player 2's start from a second pad. The gamedoc had said the panel's second button did nothing and listed Fire alone; it now lists the camera, with two strategy tips that depend on it. Also tested: I, Robot's stick centres on the core's defaults, so the Star Wars centring fix stays scoped to Star Wars, and button 2 is dead, as the core's data says.</p>
 </li>
 <li>
