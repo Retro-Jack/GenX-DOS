@@ -31,6 +31,11 @@
 <p>GenX-DOS bundles third-party emulators, libraries, system ROMs, and visual
 assets. This file is the canonical record of those components and the terms
 under which they are redistributed.</p>
+<p>The live site, genx-dos.fun, carries all of it. <strong>This repository and the
+release zip carry none of the game ROMs, BIOS or firmware we supplied
+ourselves</strong> — only what each emulator's own maintainer shipped with it.
+Rows below for files that are absent here describe the site's copy;
+<a href="https://github.com/Retro-Jack/GenX-DOS/blob/master/ROMS.txt">ROMS.txt</a> lists them.</p>
 <p>It is maintained alongside <a href="CHANGELOG.html">CHANGELOG.md</a>: whenever a new
 emulator, BIOS, ROM, bezel, font, or other asset is added or replaced, an
 entry is added here.</p>
@@ -185,12 +190,6 @@ fork rather than the bundle.</p>
 <td>TRS-80 Model III ROM (14 KB)</td>
 <td>© Tandy / Microsoft</td>
 <td>Bundled for emulator-only use; fetched by the page and written into the emulator's in-memory filesystem at boot</td>
-</tr>
-<tr>
-<td><code>systems/trs80/sdltrs.wasm</code> (embedded)</td>
-<td>TRS-80 Model I Level II BASIC ROM (12 KB)</td>
-<td>© Tandy / Microsoft</td>
-<td>Bundled for emulator-only use; embedded into the WASM at build time via <code>--embed-file</code>. Left in place from the Model I build; the bundle boots the Model III ROM above</td>
 </tr>
 <tr>
 <td><code>systems/js99er/</code></td>
@@ -447,8 +446,9 @@ for the same reason until the C128 was dropped on 03/09/2026.)</p>
   continuous Z80 loop yields once per timer tick and the page stays
   responsive. The bundle runs as a Model III (<code>-model 3</code>), whose ROM is
   fetched by the page and written into MEMFS at boot rather than embedded, so
-  the machine can change without an emscripten rebuild; the Model I Level II
-  BASIC ROM the build embeds via <code>--embed-file</code> is simply unused. sdltrs ships
+  the machine can change without an emscripten rebuild. The build still
+  embeds a <code>/level2.rom</code> from its Model I days, but those 12 KB are zeroed in
+  the shipped WASM, so it carries no Tandy firmware of its own. sdltrs ships
   a built-in save-state (<code>trs_state_save</code>/<code>trs_state_load</code>) that isn't wired to
   the page yet.</li>
 <li><strong>VirtualT (Tandy TRS-80 Model 100)</strong> — Stephen Hurd &amp; Ken Pettit's VirtualT
@@ -532,7 +532,9 @@ of two period disk operating systems instead.</p>
 </table>
 <hr />
 <h2 id="game-roms">Game ROMs</h2>
-<p>The repo bundles several hundred 8-bit-era game ROMs across all platforms.
+<p>The live site bundles several hundred 8-bit-era game ROMs across all platforms
+(the repo and release zip keep only those an emulator's maintainer shipped with
+it — see <a href="https://github.com/Retro-Jack/GenX-DOS/blob/master/ROMS.txt">ROMS.txt</a>).
 These remain the copyright of their original publishers and are included
 for historical preservation, emulator integration, and educational use.</p>
 <p>Notable inclusions where the rights holder has explicitly released the
@@ -559,7 +561,7 @@ software under permissive terms:</p>
   <code>-basic_rom</code>. Site policy is that firmware must be the manufacturer's
   own, not a reimplementation.</li>
 </ul>
-<p>For every other commercial title, redistribution within this repo is on a
+<p>For every other commercial title, redistribution on the live site is on a
 preservation / personal-use basis, and will be withdrawn the moment a rights
 holder asks — see <strong>Removal upon request</strong> at the top of this file.</p>
 <hr />

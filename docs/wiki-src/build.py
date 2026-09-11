@@ -67,6 +67,10 @@ def resolve(target):
     # exist -- while also reporting it as a dead link. One cause, both symptoms.
     base, _, frag = t.partition('#')
     anchor = ('#' + frag) if frag else ''
+    # ROMS.txt is kept off the site on purpose (the site has the files it lists
+    # as missing), so a relative link would 404 there. Send it to GitHub.
+    if base == 'ROMS.txt':
+        return GH + 'blob/master/ROMS.txt', False
     if '/' not in base and (base.endswith('.md') or base == 'LICENSE.TXT'):
         stem = file2slug(base)
         if stem in EXTRA: return stem + '.html' + anchor, False

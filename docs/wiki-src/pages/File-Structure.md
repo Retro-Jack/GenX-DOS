@@ -15,7 +15,10 @@ genx-dos/
 ├── favicon.ico
 ├── 404.html / 403.html / 500.html    error pages (mapped by .htaccess; 403 is
 │                             reachable because directory listings are off)
-├── build-portable.sh         builds the portable site (what the release zip + export contain)
+├── build-portable.sh         builds the portable site (what the release zip + export contain);
+│                             --no-roms for the release zip, which leaves out the files below
+├── ROMS.txt                  the games and firmware the repo and zip don't carry, and where
+│                             each goes (ships in the release zip only)
 ├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree,
 │                             and that no doc still names a renamed file
 ├── tools/                   developer tooling — excluded from the shipping file set
@@ -122,6 +125,8 @@ genx-dos/
 ## Per-emulator layout
 
 Every emulator-specific page can be told in one row. Where there's an integration story behind the layout, the engine article on the [[Emulators]] index goes into the detail.
+
+The **Game files** column describes the live site. The repository keeps only the ones an emulator's own maintainer shipped with it; the rest, and every BIOS we supplied ourselves, sit in the working tree untracked and are listed in `ROMS.txt`.
 
 | Emulator | Runtime | Wrapper | Game files |
 |----------|---------|---------|------------|

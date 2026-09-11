@@ -55,7 +55,7 @@ preRun: [m => {
 }],
 ```
 
-The embedded Level II ROM is still in the WASM — harmless, unreferenced, and not worth a rebuild to strip. If the bundle ever needs another TRS-80, it is now a change of two strings.
+The WASM still has a `/level2.rom` embedded, but we zeroed its 12 KB in place rather than rebuild: nothing reads it, and the file keeps its size and offsets, so the engine is otherwise byte-for-byte the one we tested. If the bundle ever needs another TRS-80, it is now a change of two strings.
 
 ## The `play.html` contract
 
@@ -149,7 +149,7 @@ sdltrs has a working save-state in C (`trs_state_save.c`), but it isn't wired to
 systems/trs80/
 ├── play.html
 ├── sdltrs.js
-├── sdltrs.wasm          ← Level II ROM embedded here (unused)
+├── sdltrs.wasm          ← embedded /level2.rom zeroed (unused)
 ├── model3.rom           ← the ROM actually booted
 ├── games.json
 ├── controls.html

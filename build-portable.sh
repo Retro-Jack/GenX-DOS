@@ -4,12 +4,39 @@
 # SOURCE OF TRUTH for the portable export folder and the release zip.
 # Change what ships by editing the excludes here.
 #
-# Usage: ./build-portable.sh [target-dir]      (default: _Portable, the working copy)
+# Usage: ./build-portable.sh [--no-roms] [target-dir]
+#        (default target: _Portable, the working copy)
+#
+# --no-roms is for the release zip. The games and firmware we supplied are not
+# in the repository; they sit in the working tree untracked, so deploy.sh and
+# the working copy still carry them to genx-dos.fun. With --no-roms, every
+# untracked file under systems/ is left out and ROMS.txt goes in, so the zip
+# holds exactly what the repository does. Without it, ROMS.txt stays out: the
+# site has the files that notice says are missing.
 set -euo pipefail
 
 cd "$(dirname "$(realpath "$0")")"
-TARGET="${1:-_Portable}"
+NO_ROMS=0
+ARGS=()
+for arg in "$@"; do
+  case "$arg" in
+    --no-roms) NO_ROMS=1 ;;
+    *) ARGS+=("$arg") ;;
+  esac
+done
+TARGET="${ARGS[0]:-_Portable}"
 mkdir -p "$TARGET"
+
+ROM_RULES=(--exclude='/ROMS.txt')
+if [[ $NO_ROMS == 1 ]]; then
+  ROM_LIST=$(mktemp)
+  trap 'rm -f "$ROM_LIST"' EXIT
+  # Anchored to the root, with rsync's wildcard characters escaped.
+  git ls-files --others -z -- systems |
+    while IFS= read -r -d '' f; do printf '/%s\n' "$f"; done |
+    sed 's/[][*?\\]/\\&/g' >"$ROM_LIST"
+  ROM_RULES=(--exclude-from="$ROM_LIST")
+fi
 
 # Everything NOT listed here ships. Excluded = dev tooling, build/meta, repo
 # docs (their content is served via the self-hosted wiki), and staging dirs.
@@ -32,6 +59,7 @@ mkdir -p "$TARGET"
 # doing exactly that since 18/08/2026. With this, the target is only ever the
 # set below, and adding an exclude actually removes what it names.
 rsync -a --delete --delete-excluded \
+  "${ROM_RULES[@]}" \
   --exclude='/.git' --exclude='/.github' --exclude='/.claude' \
   --exclude='/.gitignore' --exclude='/.gitattributes' \
   --exclude='/.dockerignore' --exclude='/.npmignore' \

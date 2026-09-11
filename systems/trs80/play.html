@@ -233,9 +233,9 @@
         }
 
         // Model III, 48K. The Model III ROM is fetched and written into MEMFS
-        // alongside the game rather than embedded in the wasm — the build bakes in
-        // the Model I ROM at /level2.rom, and swapping machines that way would mean
-        // a whole emscripten rebuild for a 14 KB file. -noled / -borderwidth 0
+        // alongside the game rather than embedded in the wasm. The build still
+        // carries an embedded /level2.rom from its Model I days, but its bytes
+        // are zeroed and nothing reads it. -noled / -borderwidth 0
         // give a clean 512x384 text area with nothing but the screen. The .cmd is
         // written to MEMFS and passed as the positional arg; trs_load_cmd jumps
         // straight into it (no disk boot needed). -scale 2 for crisp pixels.

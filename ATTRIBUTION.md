@@ -4,6 +4,12 @@ GenX-DOS bundles third-party emulators, libraries, system ROMs, and visual
 assets. This file is the canonical record of those components and the terms
 under which they are redistributed.
 
+The live site, genx-dos.fun, carries all of it. **This repository and the
+release zip carry none of the game ROMs, BIOS or firmware we supplied
+ourselves** — only what each emulator's own maintainer shipped with it.
+Rows below for files that are absent here describe the site's copy;
+[ROMS.txt](ROMS.txt) lists them.
+
 It is maintained alongside [CHANGELOG.md](CHANGELOG.md): whenever a new
 emulator, BIOS, ROM, bezel, font, or other asset is added or replaced, an
 entry is added here.
@@ -94,7 +100,6 @@ fork rather than the bundle.
 | `systems/xroar/` | XRoar (WASM) | Ciaran Anscomb | GPL-3.0-or-later |
 | `systems/trs80/` | sdltrs (SDL2 TRS-80 emulator), built from source to WASM | Mark Grebe / Jens Guenther (gitlab.com/jengun/sdltrs) | BSD-2-Clause |
 | `systems/trs80/model3.rom` | TRS-80 Model III ROM (14 KB) | © Tandy / Microsoft | Bundled for emulator-only use; fetched by the page and written into the emulator's in-memory filesystem at boot |
-| `systems/trs80/sdltrs.wasm` (embedded) | TRS-80 Model I Level II BASIC ROM (12 KB) | © Tandy / Microsoft | Bundled for emulator-only use; embedded into the WASM at build time via `--embed-file`. Left in place from the Model I build; the bundle boots the Model III ROM above |
 | `systems/js99er/` | Js99'er (vanilla-JS build) | Rasmus Moustgaard | GPL-2.0 |
 | `systems/js99er/carts/*.rpk` | TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983) | Texas Instruments / Imagic / Sega — original publishers | Distributed for retro-preservation; carts are 40+ years out of commerce. |
 | `systems/atari800/`, `systems/atari400/` | atari800 v5.2.0, built from source to WASM (same core shipped in two bundles — the 400 bundle boots OS-B, the 800XL bundle boots OS-XL) | atari800 project | GPL-2.0+ |
@@ -211,8 +216,9 @@ for the same reason until the C128 was dropped on 03/09/2026.)
   continuous Z80 loop yields once per timer tick and the page stays
   responsive. The bundle runs as a Model III (`-model 3`), whose ROM is
   fetched by the page and written into MEMFS at boot rather than embedded, so
-  the machine can change without an emscripten rebuild; the Model I Level II
-  BASIC ROM the build embeds via `--embed-file` is simply unused. sdltrs ships
+  the machine can change without an emscripten rebuild. The build still
+  embeds a `/level2.rom` from its Model I days, but those 12 KB are zeroed in
+  the shipped WASM, so it carries no Tandy firmware of its own. sdltrs ships
   a built-in save-state (`trs_state_save`/`trs_state_load`) that isn't wired to
   the page yet.
 - **VirtualT (Tandy TRS-80 Model 100)** — Stephen Hurd & Ken Pettit's VirtualT
@@ -259,7 +265,9 @@ of two period disk operating systems instead.
 
 ## Game ROMs
 
-The repo bundles several hundred 8-bit-era game ROMs across all platforms.
+The live site bundles several hundred 8-bit-era game ROMs across all platforms
+(the repo and release zip keep only those an emulator's maintainer shipped with
+it — see [ROMS.txt](ROMS.txt)).
 These remain the copyright of their original publishers and are included
 for historical preservation, emulator integration, and educational use.
 
@@ -287,7 +295,7 @@ software under permissive terms:
   `-basic_rom`. Site policy is that firmware must be the manufacturer's
   own, not a reimplementation.
 
-For every other commercial title, redistribution within this repo is on a
+For every other commercial title, redistribution on the live site is on a
 preservation / personal-use basis, and will be withdrawn the moment a rights
 holder asks — see **Removal upon request** at the top of this file.
 

@@ -67,7 +67,7 @@
   m.FS.writeFile('/model3.rom', romBytes);
 }],
 </code></pre>
-<p>The embedded Level II ROM is still in the WASM — harmless, unreferenced, and not worth a rebuild to strip. If the bundle ever needs another TRS-80, it is now a change of two strings.</p>
+<p>The WASM still has a <code>/level2.rom</code> embedded, but we zeroed its 12 KB in place rather than rebuild: nothing reads it, and the file keeps its size and offsets, so the engine is otherwise byte-for-byte the one we tested. If the bundle ever needs another TRS-80, it is now a change of two strings.</p>
 <h2 id="the-playhtml-contract">The <code>play.html</code> contract</h2>
 <pre><code class="language-js">createSDLTRS({
   canvas,
@@ -156,7 +156,7 @@ pattern (see <a href="Customising-the-Filesystem.html">Customising-the-Filesyste
 <pre><code>systems/trs80/
 ├── play.html
 ├── sdltrs.js
-├── sdltrs.wasm          ← Level II ROM embedded here (unused)
+├── sdltrs.wasm          ← embedded /level2.rom zeroed (unused)
 ├── model3.rom           ← the ROM actually booted
 ├── games.json
 ├── controls.html

@@ -1,6 +1,6 @@
 # GenX-DOS
 
-A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs client-side — no backend, no external network calls at runtime. Try it [here](https://genx-dos.fun/).
+A browser DOS prompt that boots emulators from numbered menus. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs client-side — no backend, no external network calls at runtime. Try it [here](https://genx-dos.fun/).
 
 <p align="center">
   <img src="docs/images/screenshot-menu.png" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
@@ -8,6 +8,8 @@ A browser DOS prompt that boots emulators from numbered menus, with bundled ROMs
 </p>
 
 Live at **[genx-dos.fun](https://genx-dos.fun/)**.
+
+**This repository carries the emulators, not the games we added.** The live site has everything; the repo and the release zip leave out every game, BIOS and firmware file we supplied ourselves. Anything an emulator's own maintainer shipped with it, firmware or software, is still here. **[ROMS.txt](ROMS.txt)** lists what's missing and exactly where each file goes, so a local copy can be completed. Sourcing is up to you, and for legal reasons we won't answer questions about it.
 
 We bundle 19 emulator engines covering 34 sub-systems between them, from the Apple I to a hundred arcade cabinets.
 
@@ -33,7 +35,7 @@ GenX-DOS has no backend, but it **must be hosted over HTTP** — the commands ab
 
 ## Download
 
-Every release ships a **[zip of the whole site](https://github.com/Retro-Jack/GenX-DOS/releases/latest)** — no clone, no build. Unzip it and run it:
+Every release ships a **[zip of the whole site](https://github.com/Retro-Jack/GenX-DOS/releases/latest)**, less the games and firmware we supplied (see [ROMS.txt](ROMS.txt), which is inside it too) — no clone, no build. Unzip it and run it:
 
 - **Linux / macOS:** `./GenX-DOS.sh`
 - **Windows:** double-click `GenX-DOS.bat`
@@ -140,7 +142,7 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | Magnavox Odyssey² | libretro/libretro-o2em + custom SDL2/emscripten frontend | `play.html?game=<key>` |
 | GCE Vectrex | DrSnuggles/jsvecx, our fork with the speech DAC added | `play.html?game=<key>` |
 
-ROMs are bundled locally — nothing is fetched at runtime.
+On genx-dos.fun, every ROM is served by the site itself — nothing is fetched from anywhere else at runtime.
 
 The five VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4) share a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to **Scroll Lock** + **Pause/Break** via `systems/_shared/genx-vice-softkeys.js` (RESTORE stays on the libretro default Page Up). The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing; see the wiki for the migration story.
 
