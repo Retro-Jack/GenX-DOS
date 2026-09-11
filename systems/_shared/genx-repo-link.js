@@ -32,6 +32,12 @@
       : '/';
   var LIC = ROOT + 'docs/wiki/LICENSE.html';
   var README = ROOT + 'docs/wiki/README.html';
+  // A rights holder arrives at a game, not at the home page. The removal
+  // statement was only linked from the landing page's footer, so every page
+  // they would actually land on offered no route to us — and the obvious
+  // next stop is the web host's abuse desk, which acts on the whole account
+  // rather than on one file. This puts the route on every play page.
+  var REMOVAL = ROOT + 'docs/wiki/ATTRIBUTION.html#removal-upon-request';
   var s = document.createElement('style');
   s.textContent =
     '.gx-repo-link{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);' +
@@ -54,7 +60,9 @@
     REPO +
     '" target="_blank" rel="noopener">source</a> · <a href="' +
     README +
-    '" target="_blank" rel="noopener">readme</a>';
+    '" target="_blank" rel="noopener">readme</a> · <a href="' +
+    REMOVAL +
+    '" target="_blank" rel="noopener">removal</a>';
   // The wordmark goes home. These pages are opened with window.open from the
   // prompt, so the tidy exit is to point the window that opened us at the home
   // page and close this one — otherwise the player is left with a spent
