@@ -364,13 +364,13 @@ Mattel Intellivision
 --------------------
   systems/intv/exec.bin                                    firmware: Intellivision Executive ROM
   systems/intv/grom.bin                                    firmware: Intellivision Graphics ROM
-  systems/intv/games/adventur.int                          Adventure (AD&D): Cloudy Mountain (1981)
+  systems/intv/games/adventur.int                          Adventure (AD&D): Cloudy Mountain (1982)
   systems/intv/games/astrosmash.int                        Astrosmash (1981)
   systems/intv/games/atlantis.int                          Atlantis (1982)
   systems/intv/games/b17.int                               B-17 Bomber (1981)
-  systems/intv/games/burgertime.int                        BurgerTime (1982)
+  systems/intv/games/burgertime.int                        BurgerTime (1983)
   systems/intv/games/lockchase.int                         Lock 'N' Chase (1982)
-  systems/intv/games/nightstk.int                          Night Stalker (1983)
+  systems/intv/games/nightstk.int                          Night Stalker (1982)
   systems/intv/games/snafu.int                             Snafu (1981)
   systems/intv/games/starstrk.int                          Star Strike (1981)
   systems/intv/games/tron.int                              TRON: Deadly Discs (1981)

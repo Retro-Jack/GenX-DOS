@@ -258,7 +258,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  NES  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Super Mario Bros.              (1985) º\necho                 º   2.  Castlevania                    (1987) º\necho                 º   3.  Kid Icarus                     (1987) º\necho                 º   4.  Mega Man                       (1987) º\necho                 º   5.  Metroid                        (1987) º\necho                 º   6.  Mike Tyson\'s P-O!!             (1987) º\necho                 º   7.  Zelda: Link\'s Awakening        (1987) º\necho                 º   8.  Contra                         (1988) º\necho                 º   9.  Tetris                         (1989) º\necho                 º  10.  Final Fantasy                  (1990) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             NINTENDO  NES  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Super Mario Bros.              (1985) º\necho                 º   2.  Castlevania                    (1987) º\necho                 º   3.  Kid Icarus                     (1987) º\necho                 º   4.  Mega Man                       (1987) º\necho                 º   5.  Metroid                        (1987) º\necho                 º   6.  Mike Tyson\'s P-O!!             (1987) º\necho                 º   7.  The Legend of Zelda            (1987) º\necho                 º   8.  Contra                         (1988) º\necho                 º   9.  Tetris                         (1989) º\necho                 º  10.  Final Fantasy                  (1990) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       {
                         name: '0.bat',
@@ -364,7 +364,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            INTELLIVISION  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Adventure                      (1981) º\necho                 º   2.  Astrosmash                     (1981) º\necho                 º   3.  B-17 Bomber                    (1981) º\necho                 º   4.  Snafu                          (1981) º\necho                 º   5.  Star Strike                    (1981) º\necho                 º   6.  TRON: Deadly Discs             (1981) º\necho                 º   7.  Atlantis                       (1982) º\necho                 º   8.  Lock 'N' Chase                 (1982) º\necho                 º   9.  Night Stalker                  (1982) º\necho                 º  10.  BurgerTime                     (1983) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
+                                data: "echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            INTELLIVISION  GAMES             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Astrosmash                     (1981) º\necho                 º   2.  B-17 Bomber                    (1981) º\necho                 º   3.  Snafu                          (1981) º\necho                 º   4.  Star Strike                    (1981) º\necho                 º   5.  TRON: Deadly Discs             (1981) º\necho                 º   6.  Adventure                      (1982) º\necho                 º   7.  Atlantis                       (1982) º\necho                 º   8.  Lock 'N' Chase                 (1982) º\necho                 º   9.  Night Stalker                  (1982) º\necho                 º  10.  BurgerTime                     (1983) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n",
                       },
                       {
                         name: '0.bat',
@@ -372,27 +372,27 @@ var fs = [
                       },
                       {
                         name: '1.bat',
-                        data: 'advent\n',
-                      },
-                      {
-                        name: '2.bat',
                         data: 'astro\n',
                       },
                       {
-                        name: '3.bat',
+                        name: '2.bat',
                         data: 'b-17\n',
                       },
                       {
-                        name: '4.bat',
+                        name: '3.bat',
                         data: 'snafu\n',
                       },
                       {
-                        name: '5.bat',
+                        name: '4.bat',
                         data: 'starstrk\n',
                       },
                       {
-                        name: '6.bat',
+                        name: '5.bat',
                         data: 'tron\n',
+                      },
+                      {
+                        name: '6.bat',
+                        data: 'advent\n',
                       },
                       {
                         name: '7.bat',
@@ -400,15 +400,15 @@ var fs = [
                       },
                       {
                         name: '8.bat',
-                        data: 'burger\n',
-                      },
-                      {
-                        name: '9.bat',
                         data: 'lockchas\n',
                       },
                       {
-                        name: '10.bat',
+                        name: '9.bat',
                         data: 'nightstk\n',
+                      },
+                      {
+                        name: '10.bat',
+                        data: 'burger\n',
                       },
                       {
                         name: 'astro.exe',
