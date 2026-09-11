@@ -25,4 +25,4 @@ This wiki is the long-form companion to the repo. The [README](https://github.co
 - [Booting a Museum in a Browser Tab](https://genx-dos.fun/docs/article/) — the feature article. *"A museum that boots in a tab — and you're allowed to touch everything."*
 - [CHANGELOG.md](https://github.com/Retro-Jack/GenX-DOS/blob/master/CHANGELOG.md) — release notes
 - [ATTRIBUTION.md](https://github.com/Retro-Jack/GenX-DOS/blob/master/ATTRIBUTION.md) — canonical record of every bundled third-party emulator, BIOS, ROM, bezel, and dependency
-- [Releases](https://github.com/Retro-Jack/GenX-DOS/releases) — each release ships a downloadable zip of the whole site, ready to unzip and run
+- [Releases](https://github.com/Retro-Jack/GenX-DOS/releases) — each release ships a downloadable zip of the site, ready to unzip and run, less the games and firmware that didn't come with an emulator (its `ROMS.txt` lists them)

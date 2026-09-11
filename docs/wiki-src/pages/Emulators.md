@@ -29,8 +29,9 @@
 | [[Emulator-WebMSX]] | MSX, MSX2 |
 | [[Emulator-JSSpeccy]] | ZX Spectrum |
 | [[Emulator-JtyOne]] | ZX81 |
+| [[Emulator-MAME-2003-Plus-Arcade]] | Arcade — 100 cabinets from ten makers |
 
-Fourteen of these share one copy of the EmulatorJS framework at `systems/_shared-ejs/` — the six VICE bundles, the Coleco bundle, the NES bundle, the Atari 2600 (Stella) bundle, the Atari 7800 (ProSystem) bundle, the Game Boy / GBC (gambatte) bundle, the Atari Lynx (handy) bundle, and the two Sega bundles — Master System and Game Gear — both on genesis_plus_gx. All the EJS-specific gotchas live in [[Emulator-VICE-family]]; the Coleco and NES articles assume that context and only document what's different.
+Fourteen of these share one copy of the EmulatorJS framework at `systems/_shared-ejs/` — the five VICE bundles, the Coleco bundle, the NES bundle, the Atari 2600 (Stella) bundle, the Atari 7800 (ProSystem) bundle, the Game Boy / GBC (gambatte) bundle, the Atari Lynx (handy) bundle, the two Sega bundles — Master System and Game Gear — both on genesis_plus_gx, and the arcade bundle on MAME 2003-Plus. All the EJS-specific gotchas live in [[Emulator-VICE-family]]; the Coleco and NES articles assume that context and only document what's different.
 
 ## How a game launches
 

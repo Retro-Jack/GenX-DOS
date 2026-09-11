@@ -119,6 +119,7 @@ fork rather than the bundle.
 | `systems/_shared-ejs/ejs/data/cores/` | handy libretro core (Atari Lynx) | libretro/libretro-handy (K. Wilkins) | zlib / GPL-compatible |
 | `systems/_shared-ejs/ejs/data/cores/` | genesis_plus_gx libretro core (Sega Game Gear / Master System / Mega Drive) | libretro/Genesis-Plus-GX (Eke-Eke) | non-commercial redistribution licence (see core) |
 | `systems/_shared-ejs/ejs/data/cores/` | prosystem libretro core (Atari 7800) | libretro/prosystem (Greg Stanton, libretro port) | GPL-2.0 |
+| `systems/_shared-ejs/ejs/data/cores/` | mame2003_plus libretro core (the arcade section) | Nicola Salmoria and the MAME Team; the Libretro MAME 2003 and MAME 2003-Plus teams | classic MAME non-commercial licence (MAME 0.78) |
 
 ### Corresponding source for the engine binaries
 
@@ -139,6 +140,7 @@ rebuild or inspect what we ship.
 | `handy` (zlib) | https://github.com/libretro/libretro-handy |
 | `genesis_plus_gx` (non-commercial redistribution licence) | https://github.com/libretro/Genesis-Plus-GX |
 | `prosystem` (GPL-2.0) | https://github.com/libretro/prosystem-libretro |
+| `mame2003_plus` (MAME non-commercial licence) | https://github.com/libretro/mame2003-plus-libretro |
 | `atari400/`, `atari800/` — `atari800.wasm` (GPL-2.0+) | built by us: https://github.com/Retro-Jack/atari800 (`build-wasm.sh`, `BUILDING-WASM.md`) |
 | `odyssey2/` — o2em core | built by us from https://github.com/libretro/libretro-o2em via `systems/odyssey2/build.sh`; our SDL2 frontend (`frontend.c`) sits beside it |
 | `bbcmicro/`, `bbcmaster/` — jsbeeb (GPL-3.0+) | our fork, changes in `GENX-CHANGES.md`: https://github.com/Retro-Jack/jsbeeb |

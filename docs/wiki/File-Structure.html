@@ -50,6 +50,11 @@
 │                             and that no doc still names a renamed file
 ├── tools/                   developer tooling — excluded from the shipping file set
 │   ├── build-softkey-map.py  generates _shared/softkeys.json from the gamedocs
+│   ├── build-arcade-gamedoc.py  renders an arcade gamedoc from the core's own
+│   │                        control data; arcade-labels.py holds the explicit
+│   │                        label corrections it applies
+│   ├── gamefaqs-lookup.js   console helper that pulls scoring tables out of
+│   │                        GameFAQs guides for the arcade gamedocs
 │   └── bezel-test/          one BASIC test card per computer (white border, black
 │                            playfield) for checking a bezel's fit — see the
 │                            README in that directory for per-machine status

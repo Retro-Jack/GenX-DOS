@@ -51,12 +51,16 @@ check-doc-counts.sh       checks the counts quoted in the docs still match the t
                           and that no doc still names a file that has been renamed
 tools/                    developer tooling — not part of the shipping site
   build-softkey-map.py    generates systems/_shared/softkeys.json from the gamedocs
+  build-arcade-gamedoc.py renders an arcade gamedoc from the core's own control data,
+  arcade-labels.py          with the label corrections this one lists explicitly
+  gamefaqs-lookup.js      console helper that pulls scoring tables out of GameFAQs guides
   bezel-test/             one BASIC test card per computer: white border, black
                           playfield, so the edge of an emulator's picture is
                           unambiguous when checking a bezel fits
 CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset
 LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)
+ROMS.txt                  the games and firmware this copy doesn't carry, and where each goes
 SECURITY.md               scope + private vulnerability reporting
 CONTRIBUTING.md           local setup + PR ground rules; CODE_OF_CONDUCT.md alongside
 AI-DISCLAIMER.md          how AI was used building this, and what it did not decide
@@ -66,7 +70,7 @@ prompt/                   the DOS terminal (HTML + JS, no build)
   index.html
   javascript/             terminal logic + virtual filesystem (fs.js)
   img/                    bitmap font sprite sheets + AMIBIOS logo
-systems/
+systems/                  game counts below describe the live site; see ROMS.txt
   _shared/                shared CSS + helpers (NumLock warn, VICE RUN/STOP key remap, BBC COPY button, save-state, ...)
   _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem
                           (13 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
@@ -104,6 +108,7 @@ systems/
   intv/                   Mattel Intellivision — jzIntv WASM (custom loader) + 10 carts
   cpc/                    Amstrad CPC         — floooh tiny8bit CPC WASM + 10 .dsk titles
   odyssey2/               Magnavox Odyssey²   — libretro-o2em + custom SDL2 frontend + 10 carts
+  arcade/                 Arcade              — EmulatorJS + MAME 2003-Plus + 100 romsets, ten makers
 ```
 
 ## Where the readable source is
@@ -141,6 +146,10 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | Amstrad CPC   | floooh/chips-test tiny8bit CPC WASM (Andre Weissflog) | `play.html?game=<key>` (rewrites to `?file=&input=` for sokol_args) |
 | Magnavox Odyssey² | libretro/libretro-o2em + custom SDL2/emscripten frontend | `play.html?game=<key>` |
 | GCE Vectrex | DrSnuggles/jsvecx, our fork with the speech DAC added | `play.html?game=<key>` |
+| Game Boy / GBC | EmulatorJS + gambatte libretro core | `play.html?game=<key>` |
+| Atari Lynx | EmulatorJS + handy libretro core | `play.html?game=<key>` |
+| Game Gear / Master System | EmulatorJS + genesis_plus_gx libretro core | `play.html?game=<key>` |
+| Arcade | EmulatorJS + MAME 2003-Plus libretro core | `play.html?game=<key>` |
 
 On genx-dos.fun, every ROM is served by the site itself — nothing is fetched from anywhere else at runtime.
 
@@ -199,10 +208,14 @@ The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.m
 - sdltrs: BSD-2-Clause (Mark Grebe / Jens Guenther, gitlab.com/jengun/sdltrs) — TRS-80 Model III, built from source to WASM; Model III ROM (©Tandy/Microsoft) bundled for emulation
 - Js99'er: GPL-2.0 (Rasmus Moustgaard) — vanilla-JS build
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); the machines run **genuine Atari ROMs** — OS-B on the 400, XL/XE OS Rev 2 on the 800XL, and Atari BASIC Rev C on both — supplied at runtime from `roms/` via `-osb_rom` / `-xlxe_rom` / `-basic_rom`. The build also contains Avery Lee's AltirraOS/AltirraBASIC reimplementations, but they are only a fallback for when no real ROM is present, and never load here
-- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 13 bundles via `systems/_shared-ejs/` — the five VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, Sega Master System, and the three handhelds (Game Boy/GBC, Lynx, Game Gear)
+- EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 14 bundles via `systems/_shared-ejs/` — the five VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, Sega Master System, the three handhelds (Game Boy/GBC, Lynx, Game Gear) and the arcade section
 - VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `xvic`, `xplus4`) mirrored from `cdn.emulatorjs.org/stable/`
 - pet2001: BSD-2-Clause (Thomas Skibo) — vanilla-JS PET 2001 emulator at `systems/pet/pet2001/`
 - gearcoleco: GPL-3.0 (Drhelius) — libretro ColecoVision core mirrored from `cdn.emulatorjs.org/stable/`
+- gambatte: GPL-2.0 (libretro Game Boy / Game Boy Color core, sinamas)
+- handy: zlib (libretro Atari Lynx core, K. Wilkins)
+- Genesis Plus GX: non-commercial redistribution licence (libretro core, Eke-Eke) — Master System and Game Gear
+- MAME 2003-Plus: classic MAME non-commercial licence, MAME 0.78 (libretro arcade core; the MAME Team and the Libretro MAME 2003-Plus team)
 - ColecoVision BIOS: ©1982 Coleco, bundled for emulator-only use
 - jzIntv: Joe Zbiciak (free-for-personal-use terms) — WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor)
 - Intellivision EXEC + GROM BIOS: ©1979 Mattel Electronics, bundled for emulator-only use
