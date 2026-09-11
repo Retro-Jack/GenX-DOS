@@ -24,12 +24,14 @@
 // is comfortably over a frame at 60Hz without feeling sticky.
 (function () {
   const COIN = 2;
-  const START = 3;          // button id, per this bundle's map in play.html
+  const START = 3; // button id, per this bundle's map in play.html
   const HOLD_MS = 120;
 
   const emu = () => window.EJS_emulator;
   const ready = () =>
-    emu() && emu().gameManager && emu().gameManager.functions &&
+    emu() &&
+    emu().gameManager &&
+    emu().gameManager.functions &&
     typeof emu().gameManager.functions.simulateInput === 'function';
 
   function press(id, player) {
@@ -39,6 +41,32 @@
     gm.functions.simulateInput(p, id, 1);
     setTimeout(() => gm.functions.simulateInput(p, id, 0), HOLD_MS);
   }
+
+  // A PAD BUTTON FOR 2P START, on the one cabinet that plays with it. On
+  // I, Robot the start buttons are the camera, so play.html names a first-pad
+  // button in window.GENX_ARCADE_PAD_START2. EmulatorJS reads player 2 from the
+  // second pad, so that button is watched here and mirrored onto player 2's
+  // START — held while it is held, since the game reads the button, not a tap.
+  // The flag is read every frame because play.html sets it during boot, which
+  // may land after this script has run.
+  (function padStart2() {
+    let held = false;
+    function tick() {
+      const idx = window.GENX_ARCADE_PAD_START2;
+      if (idx !== undefined && ready() && navigator.getGamepads) {
+        let down = false;
+        for (const pad of navigator.getGamepads()) {
+          if (pad && pad.buttons[idx] && pad.buttons[idx].pressed) down = true;
+        }
+        if (down !== held) {
+          held = down;
+          emu().gameManager.functions.simulateInput(1, START, down ? 1 : 0);
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
 
   function build() {
     const css = `
@@ -102,7 +130,10 @@
     coin.type = 'button';
     coin.title = 'Insert coin (keyboard: 5)';
     coin.setAttribute('aria-label', 'Insert coin');
-    coin.addEventListener('click', () => { press(COIN); coin.blur(); });
+    coin.addEventListener('click', () => {
+      press(COIN);
+      coin.blur();
+    });
 
     const mk = (id, label, title, player) => {
       const b = document.createElement('button');
@@ -111,15 +142,30 @@
       b.type = 'button';
       b.title = title;
       b.setAttribute('aria-label', label);
-      b.addEventListener('click', () => { press(START, player); b.blur(); });
+      b.addEventListener('click', () => {
+        press(START, player);
+        b.blur();
+      });
       return b;
     };
 
-    bar.appendChild(mk('genx-arcade-1p', '1 player start',
-      'One player start — needs a credit first (keyboard: 1)', 0));
+    bar.appendChild(
+      mk(
+        'genx-arcade-1p',
+        '1 player start',
+        'One player start — needs a credit first (keyboard: 1)',
+        0,
+      ),
+    );
     bar.appendChild(coin);
-    bar.appendChild(mk('genx-arcade-2p', '2 player start',
-      'Two player start, alternating — needs two credits (keyboard: 2)', 1));
+    bar.appendChild(
+      mk(
+        'genx-arcade-2p',
+        '2 player start',
+        'Two player start, alternating — needs two credits (keyboard: 2)',
+        1,
+      ),
+    );
     document.body.appendChild(bar);
     place(bar);
   }
@@ -130,9 +176,9 @@
   // if the browser's own metrics differ. Re-run on both.
   function place(bar) {
     const link = document.querySelector('.gx-corner-link.gx-left');
-    if (!link) return;                       // keyless boot: no link, stay in the corner
+    if (!link) return; // keyless boot: no link, stay in the corner
     const r = link.getBoundingClientRect();
-    bar.style.left = (r.right + 10) + 'px';
+    bar.style.left = r.right + 10 + 'px';
     bar.style.height = r.height + 'px';
   }
 
@@ -141,13 +187,17 @@
     if (bar) place(bar);
   };
   addEventListener('resize', replace);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(replace);
+  if (document.fonts && document.fonts.ready)
+    document.fonts.ready.then(replace);
 
   // EJS publishes its emulator object well after the page parses, and a control
   // delivered before the machine has booted is wasted, so wait rather than race.
   if (!ready()) {
     const timer = setInterval(() => {
-      if (ready()) { clearInterval(timer); build(); }
+      if (ready()) {
+        clearInterval(timer);
+        build();
+      }
     }, 250);
     setTimeout(() => clearInterval(timer), 30000);
   } else {

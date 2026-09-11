@@ -273,22 +273,32 @@
           for (var input in panel) controls[0][input].value2 = panel[input];
         }
 
-        // Star Wars is flown, not steered. Its cabinet is a yoke and the game
-        // reads it as a true analogue input -- the core's own data calls the
-        // control a "stick" rather than one of the joyNway kinds every other
-        // cabinet here uses -- so the left stick gives it real proportional
-        // pitch and roll rather than the digital approximation.
+        // I, ROBOT'S START BUTTONS ARE ITS CAMERA. The cabinet fired from the
+        // stick and its two panel buttons were marked VIEW: in play, 1P lowers
+        // the camera and 2P raises it, and the game is built around using
+        // them (its "Point of View" killers destroy a robot whose player has
+        // not changed the view in time). Coin and start are keyboard-only
+        // everywhere else on purpose, but here the starts are gameplay
+        // buttons, so the pad gets them: X lowers the view, Y raises it. The
+        // board has no third or fourth button, so X and Y are free.
         //
-        // A yoke is pulled BACK to climb, which is the opposite of a stick
-        // pushed forward, so the vertical axis is inverted. The swap is on the
-        // two analogue inputs rather than on the bindings because EmulatorJS
-        // picks between those two by the sign of the reading and never looks
-        // at which binding matched.
-        // Star Wars is flown, not steered. Its cabinet is a yoke and the
+        // 1P start binds directly. 2P start cannot: EmulatorJS reads player
+        // 2's inputs from the second pad, so Y on the first pad is watched by
+        // genx-arcade-softkeys.js and pressed through the same path as the
+        // on-screen 2P button.
+        if (key === 'irobot') {
+          controls[0][8].value2 = '';            // MAME 3: not on this board
+          controls[0][9].value2 = '';            // MAME 4: not on this board
+          controls[0][3].value2 = 'BUTTON_3';    // X = 1P start = camera down
+          window.GENX_ARCADE_PAD_START2 = 3;     // Y (standard pad button 3) = 2P start = camera up
+        }
+
+        // Star Wars is flown, not steered. Its cabinet is a yoke, and the
         // core's own data calls the control a "stick" rather than one of the
-        // joyNway kinds every other cabinet here uses, so the left stick gives
-        // it real proportional pitch and roll -- the one genuinely analogue
-        // control in the lineup.
+        // joyNway kinds, so the left stick gives it proportional pitch and
+        // roll. It is one of eight such cabinets; the others are tested one by
+        // one and only get these settings if they show the same fault.
+        // I, Robot was tested and centres correctly on the defaults.
         //
         // THE YOKE WOULD NOT RETURN TO CENTRE. Released, the crosshair sprang
         // back to a fixed point about a quarter of the way across rather than
@@ -296,7 +306,7 @@
         // extremes sit symmetrically either side of centre -- so it was the
         // rest position alone that was wrong, and it is this option that sets
         // it. "Digital Joystick Centering" is for driving an analogue port
-        // from a digital stick; with a real analogue stick on the port it
+        // from a digital stick; with a real analogue stick on this port it
         // pulls the rest position off centre instead. Off, the crosshair rests
         // dead centre on both axes.
         //
