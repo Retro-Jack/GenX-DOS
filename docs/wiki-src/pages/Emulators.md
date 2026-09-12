@@ -65,7 +65,7 @@ The pages link to each other as well: every gamedoc carries *System help* under 
 
 **Where the key comes from.** Normally the live URL. Four bundles have no usable key there by the time the deferred script runs: **apple2** rewrites `?game=` into the `?disk=` its engine expects, **cpc** folds it into sokol_args, and **bbcmicro** / **bbcmaster** launch from a keyless `?disc1=` and never carry one. Each of those pages sets `window.GENX_GAME_KEY` synchronously instead, and the shared script prefers it over the URL — the BBC bundles' `genx-gamedoc-link.js` already published that variable for the soft-key policy, so one disc-to-gamedoc map now serves both. They previously kept three inline copies of the link-building code, which had drifted.
 
-Both hrefs are resolved from the script's own `src`, not written relative to the page: the BBC entry points live at `systems/<bundle>/dist/index.html`, a directory deeper than every other bundle's, where a page-relative path lands a level short.
+Both hrefs are resolved from the script's own `src`, not written relative to the page: the BBC entry points live at `systems/<bundle>/dist/index.html`, a directory deeper than every other bundle's entry point, where a page-relative path lands a level short.
 
 The shared script still stands down whenever it finds a `.gx-corner-link` or legacy `.gx-controls-link` already in the page, so a bundle that needs its own placement can opt out by providing one; `genx-controls-link.css` keeps the old rule for that case.
 

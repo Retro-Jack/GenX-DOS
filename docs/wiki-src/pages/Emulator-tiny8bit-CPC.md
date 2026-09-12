@@ -57,7 +57,7 @@ In `floooh/chips-test`'s `examples/emus/cpc.c`:
 
 (The forward declaration of `draw_status_bar` then gets `__attribute__((unused))` so the dead function doesn't trip `-Werror`.)
 
-Building it is its own small adventure: floooh has moved chips-test onto **fibs**, his Deno/TypeScript successor to fips, so there's no plain CMakeLists to point `emcc` at. The dance is — install Deno, symlink an existing emsdk in where fibs expects its own (`ln -sfn $HOME/emsdk .fibs/sdks/emsdk`), then `fibs config emsc-ninja-release` and `fibs build cpc`. The two artifacts drop into `.fibs/dist/emsc-ninja-release/` and we copy `cpc.js` + `cpc.wasm` over the bundle's. The full recipe lives in the repo at `systems/cpc/BUILDING-WASM.md`.
+Building it is its own small adventure: floooh has moved chips-test onto **fibs**, his Deno/TypeScript successor to fips, so there's no plain CMakeLists to point `emcc` at. The dance is — install Deno, symlink an existing emsdk in where fibs expects its own (`ln -sfn $HOME/emsdk .fibs/sdks/emsdk`), then `fibs config emsc-ninja-release` and `fibs build cpc`. The two artifacts drop into `.fibs/dist/emsc-ninja-release/` and we copy `cpc.js` + `cpc.wasm` over the bundle's copies. The full recipe lives in the repo at `systems/cpc/BUILDING-WASM.md`.
 
 ## Save / load state — exporting the chips snapshot
 

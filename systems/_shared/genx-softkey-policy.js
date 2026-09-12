@@ -24,7 +24,7 @@
 //     if (ok) build();
 //   });
 (function () {
-  // Resolve softkeys.json against THIS script's own URL rather than the page's.
+  // Resolve softkeys.json against THIS script's own URL rather than the page URL.
   // The pages that use it sit at different depths — systems/trs80/play.html and
   // systems/bbcmicro/dist/index.html — so a path relative to the document would
   // have to differ per bundle, which is exactly the sort of thing that rots.

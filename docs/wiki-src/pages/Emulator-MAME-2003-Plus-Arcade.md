@@ -4,7 +4,7 @@ The arcade section is a hundred cabinets from ten makers, ten each, at `C:\SYSTE
 
 The makers are listed alphabetically, matching the CONSOLE menu — a menu ordered by anyone's private ranking isn't self-evident to a player — and games run year ascending within each maker. Every launcher is named after its romset, the way the site's other launchers are named after their files.
 
-## Romsets are the core's, not a modern set's
+## Romsets must match the core, not a modern set
 
 A 0.78-era core wants exactly what its own data file lists: the member names, the split between parent and clone archives, the CRC of every chip. A romset built for a current MAME disagrees with it constantly on filenames and occasionally on which archive a chip lives in, and the core refuses the game rather than guess. So all hundred sets were built by CRC against the core's own metadata and then verified member by member — every file decompressed and its CRC recomputed — with no absent, wrong or extra file in any of them.
 
@@ -46,4 +46,4 @@ A cabinet has no keyboard, so the coin slot and the two start buttons are soft k
 
 ## Cabinets and marquees
 
-Each game's orientation is read from the core's metadata, so the vertical and horizontal cabinets each get the right screen without a per-game setting. Every cabinet carries its marquee, normalised to one 674×145 canvas. The libretro artwork covered 97 of them; the other three are Irem's, and Traverse USA had no marquee of its own anywhere, so its marquee is built from the untitled artwork with the game's own title lockup lifted from its attract screen.
+Each game's orientation is read from the core's metadata, so the vertical and horizontal cabinets each get the right screen without a per-game setting. Every cabinet carries its marquee, normalised to one 674×145 canvas. The libretro artwork covered 97 of them; the other three are Irem cabinets, and Traverse USA had no marquee of its own anywhere, so its marquee is built from the untitled artwork with the game's own title lockup lifted from its attract screen.

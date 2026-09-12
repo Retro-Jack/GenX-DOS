@@ -105,7 +105,7 @@ Several titles are joystick-only — Galactic Attack says "PRESS FIRE BUTTON TO 
 Two traps:
 
 - **A keyboard joystick consumes those keys.** Binding `kjoy0` (cursors + Alt) to a port takes the cursor keys away from the machine, so wiring one to a keyboard-controlled game *breaks* it. Poltergeist shipped that way and was fixed by removing its joystick.
-- **`joyport` is this stack's numbering, not the manual's.** Polaris's manual says "the right joystick is for one player"; setting it to right gives a pad that does nothing, and `left` is what works. Set the field from testing, never from the documentation.
+- **`joyport` is this stack's numbering, not the manual's numbering.** Polaris's manual says "the right joystick is for one player"; setting it to right gives a pad that does nothing, and `left` is what works. Set the field from testing, never from the documentation.
 
 **A physical pad works, and XRoar asks SDL for the joystick list once at startup.** A browser reveals a gamepad only after a button is pressed on a focused page, so a pad that arrives late is missed -- click the screen and press again. If a browser sees no pad at all, check whether it is sandboxed: a Flatpak or Snap build without the host's `/run/udev` enumerates none, since udev is how a browser finds them on Linux.
 

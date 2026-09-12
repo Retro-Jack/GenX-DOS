@@ -98,7 +98,7 @@ cpc.html   (the demo shell — not used; play.html is our shell)
 
 ## Install
 
-Copy the two artifacts over the bundle's:
+Copy the two artifacts over the bundle's copies:
 
 ```sh
 cp .fibs/dist/emsc-ninja-release/cpc.js   <genx-dos>/systems/cpc/cpc.js

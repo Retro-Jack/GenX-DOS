@@ -235,9 +235,9 @@
       // standing in, only ever left or right, and an axis says that better
       // than a pair of buttons.
       //
-      // Input ids are the core's: it walks B, Y, A, X, L, R and hands them to
+      // Input ids come from the core: it walks B, Y, A, X, L, R and hands them to
       // MAME buttons 1..6, so MAME 1 = 0, MAME 2 = 1, MAME 3 = 8. Pad names
-      // are EmulatorJS's: BUTTON_2 = B, BUTTON_3 = X, BUTTON_4 = Y.
+      // come from EmulatorJS: BUTTON_2 = B, BUTTON_3 = X, BUTTON_4 = Y.
       //
       // Each of these cabinets has exactly three buttons, so MAME 4 and 5 are
       // cleared. They are unused by the board but still carry this bundle's
@@ -321,6 +321,24 @@
               0x00, 0x01, 0x10, 0x00, 0x01, 0x3c,             // new: JOYCODE_1_RIGHT_DOWN
             ]),
           };
+        }
+
+        // OUT RUN (TRIAL): laid out like Hang-On -- steer on the left stick,
+        // accelerate on RT, brake on LT -- with the gears on the shoulders.
+        // In this driver accelerate and brake are ONE axis ("Accel / Decel",
+        // AD Stick Y: up to go, down to slow), so RT and LT stand in for the
+        // left stick's up and down, and the stick itself steers and nothing
+        // else (its up/down would fight the triggers, as on Hang-On). The
+        // shifter is two inputs the driver latches: button 3 selects low gear
+        // and button 4 high (outrun.c, or_io_service_r), so RB shifts up and
+        // LB down, like paddle shifters. Under test.
+        if (key === 'outrun') {
+          controls[0][19].value2 = 'RIGHT_BOTTOM_SHOULDER'; // "left stick up"   = RT = accelerate
+          controls[0][18].value2 = 'LEFT_BOTTOM_SHOULDER';  // "left stick down" = LT = brake
+          controls[0][9].value2 = 'RIGHT_TOP_SHOULDER';     // MAME 4 = RB = high gear
+          controls[0][8].value2 = 'LEFT_TOP_SHOULDER';      // MAME 3 = LB = low gear
+          controls[0][1].value2 = '';                       // MAME 2 was on RB
+          controls[0][11].value2 = '';                      // MAME 6 was on LB
         }
 
         if (key === 'irobot') {

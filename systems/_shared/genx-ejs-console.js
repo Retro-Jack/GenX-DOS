@@ -138,7 +138,7 @@
       color: rgba(255, 176, 0, 0.75);
       /* Buttons do not inherit font by default — without this the switch
          legends fell back to the UA's button face while the press legends used
-         the panel's, and the two rows of labels did not match. */
+         the panel's font, and the two rows of labels did not match. */
       font: inherit; letter-spacing: 0.06em;
       cursor: pointer;
     }
