@@ -11,9 +11,10 @@ fixes, and small improvements are very welcome.
   reproducible.
 - **Security concerns:** see [SECURITY.md](SECURITY.md) — please report
   privately.
-- **Rights holders:** if you want anything of yours removed, open an issue —
-  see the takedown note in [ATTRIBUTION.md](ATTRIBUTION.md). Removal requests
-  are honoured.
+- **Rights holders:** if you want anything of yours removed, open an issue, or
+  email admin@genx-dos.fun if you would rather it were not public — see
+  **Removal upon request** in [ATTRIBUTION.md](ATTRIBUTION.md). Removal
+  requests are honoured.
 
 ## Running it locally
 
@@ -22,7 +23,10 @@ fixes, and small improvements are very welcome.
 ```
 
 Open <http://127.0.0.1:8765/prompt/>. There is no build step — edit, refresh,
-done. One gotcha: browsers cache `prompt/javascript/fs.js` aggressively, so
+done. A clone carries the emulators but not the games, or the firmware some
+machines need to start: **[ROMS.txt](ROMS.txt)** lists every missing file and
+where it goes, so the menus will be there but most entries won't load until you
+put those files in place. One gotcha: browsers cache `prompt/javascript/fs.js` aggressively, so
 hard-refresh (Ctrl+Shift+R) after editing the virtual filesystem.
 
 ## Ground rules for pull requests

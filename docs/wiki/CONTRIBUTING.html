@@ -38,15 +38,19 @@ fixes, and small improvements are very welcome.</p>
   reproducible.</li>
 <li><strong>Security concerns:</strong> see <a href="SECURITY.html">SECURITY.md</a> — please report
   privately.</li>
-<li><strong>Rights holders:</strong> if you want anything of yours removed, open an issue —
-  see the takedown note in <a href="ATTRIBUTION.html">ATTRIBUTION.md</a>. Removal requests
-  are honoured.</li>
+<li><strong>Rights holders:</strong> if you want anything of yours removed, open an issue, or
+  email admin@genx-dos.fun if you would rather it were not public — see
+  <strong>Removal upon request</strong> in <a href="ATTRIBUTION.html">ATTRIBUTION.md</a>. Removal
+  requests are honoured.</li>
 </ul>
 <h2 id="running-it-locally">Running it locally</h2>
 <pre><code class="language-sh">./GenX-DOS.sh          # or: python3 -m http.server 8765
 </code></pre>
 <p>Open <a href="http://127.0.0.1:8765/prompt/">http://127.0.0.1:8765/prompt/</a>. There is no build step — edit, refresh,
-done. One gotcha: browsers cache <code>prompt/javascript/fs.js</code> aggressively, so
+done. A clone carries the emulators but not the games, or the firmware some
+machines need to start: <strong><a href="https://github.com/Retro-Jack/GenX-DOS/blob/master/ROMS.txt">ROMS.txt</a></strong> lists every missing file and
+where it goes, so the menus will be there but most entries won't load until you
+put those files in place. One gotcha: browsers cache <code>prompt/javascript/fs.js</code> aggressively, so
 hard-refresh (Ctrl+Shift+R) after editing the virtual filesystem.</p>
 <h2 id="ground-rules-for-pull-requests">Ground rules for pull requests</h2>
 <p>Keep PRs small and focused. A few project conventions:</p>

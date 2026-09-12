@@ -6,8 +6,9 @@ GenX-DOS is a **static site with no backend** — no accounts, no cookies, no an
 | **Model 100 battery-backed RAM** — the 32 KB base RAM behind the Startup Menu (your TEXT / ADRS / SCHEDL data and files) | **localStorage** — key `genx-m100-ram` (base64) | **Automatically** — every 10 seconds *and* on tab close; bare-boot Model 100 only (loaded games stay ephemeral) | Tandy TRS-80 Model 100 (`m100`) |
 | **In-game cartridge saves** — a game's own SRAM / battery save (e.g. *Phantasy Star*) | **IndexedDB** — EmulatorJS's IDBFS save database (synced with `syncfs`) | **Automatically** — when the game itself writes its save RAM | EmulatorJS bundles *(handled by the bundled engine)* |
 | **Emulator settings** — control mappings, volume, video / shader options | **localStorage** — `ejs-settings…` | **Automatically** — when you change a setting in the EmulatorJS menu | EmulatorJS bundles *(handled by the bundled engine)* |
+| **Arcade input config** — one 20-byte file that puts Hang-On's brake on a pad axis, which the emulator reads at startup | **IndexedDB** — the same EmulatorJS save database, at `MAME 2003-Plus/mame2003-plus/cfg/default.cfg` | **Automatically** — written at boot, on the Hang-On cabinet only | Arcade (`arcade`) |
 
-The first two rows are GenX-DOS's own code (`genx-savestate.js` / `genx-savestate-std.js`, and the Model 100 page wrapper); the last two are the bundled **EmulatorJS** engine doing what it normally does. Save-state slots — the first row — can be exported to a file and restored; see [below](#backing-up-your-saves--and-moving-them-between-addresses).
+The first two rows and the last are GenX-DOS's own code (`genx-savestate.js` / `genx-savestate-std.js`, the Model 100 page wrapper, and `genx-ejs-boot.js` for the arcade config); the middle two are the bundled **EmulatorJS** engine doing what it normally does. Save-state slots — the first row — can be exported to a file and restored; see [below](#backing-up-your-saves--and-moving-them-between-addresses).
 
 ## What isn't stored
 
@@ -30,7 +31,7 @@ So if you've been playing at one address and the site moves to another, **export
 
 ## Clearing it
 
-All of it is wiped by your browser's **"clear site data"** (or by clearing history / cookies + site data) for the GenX-DOS origin. Clearing it removes your save-state slots, Model 100 memory, in-game cartridge saves and emulator settings — there is no copy anywhere else, so use **backup → export all saves** first if you want to keep them.
+All of it is wiped by your browser's **"clear site data"** (or by clearing history / cookies + site data) for the GenX-DOS origin. Clearing it removes your save-state slots, Model 100 memory, in-game cartridge saves, emulator settings and the arcade input config — there is no copy anywhere else, so use **backup → export all saves** first if you want to keep them.
 
 ---
 

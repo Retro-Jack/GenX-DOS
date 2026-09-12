@@ -62,9 +62,15 @@
 <td><strong>Automatically</strong> — when you change a setting in the EmulatorJS menu</td>
 <td>EmulatorJS bundles <em>(handled by the bundled engine)</em></td>
 </tr>
+<tr>
+<td><strong>Arcade input config</strong> — one 20-byte file that puts Hang-On's brake on a pad axis, which the emulator reads at startup</td>
+<td><strong>IndexedDB</strong> — the same EmulatorJS save database, at <code>MAME 2003-Plus/mame2003-plus/cfg/default.cfg</code></td>
+<td><strong>Automatically</strong> — written at boot, on the Hang-On cabinet only</td>
+<td>Arcade (<code>arcade</code>)</td>
+</tr>
 </tbody>
 </table>
-<p>The first two rows are GenX-DOS's own code (<code>genx-savestate.js</code> / <code>genx-savestate-std.js</code>, and the Model 100 page wrapper); the last two are the bundled <strong>EmulatorJS</strong> engine doing what it normally does. Save-state slots — the first row — can be exported to a file and restored; see <a href="#backing-up-your-saves--and-moving-them-between-addresses">below</a>.</p>
+<p>The first two rows and the last are GenX-DOS's own code (<code>genx-savestate.js</code> / <code>genx-savestate-std.js</code>, the Model 100 page wrapper, and <code>genx-ejs-boot.js</code> for the arcade config); the middle two are the bundled <strong>EmulatorJS</strong> engine doing what it normally does. Save-state slots — the first row — can be exported to a file and restored; see <a href="#backing-up-your-saves--and-moving-them-between-addresses">below</a>.</p>
 <h2 id="what-isnt-stored">What isn't stored</h2>
 <p>No cookies, no login, no personal data, no telemetry — the site has no server to send any of it to. Everything in the table lives only in your browser, scoped to the GenX-DOS origin, and never leaves your machine.</p>
 <h2 id="backing-up-your-saves--and-moving-them-between-addresses">Backing up your saves — and moving them between addresses</h2>
@@ -78,7 +84,7 @@
 <p>Browsers scope storage to the <strong>origin</strong> — the exact address in the bar. IndexedDB cannot be read across origins by design, so saves made at one address are simply not visible from another. They aren't deleted; they're unreachable, and they stay that way.</p>
 <p>So if you've been playing at one address and the site moves to another, <strong>export before you switch and restore afterwards</strong>, or your slots stay behind at the old one. (The old address keeps working for as long as it exists, so there's no rush — but nothing carries across on its own.)</p>
 <h2 id="clearing-it">Clearing it</h2>
-<p>All of it is wiped by your browser's <strong>"clear site data"</strong> (or by clearing history / cookies + site data) for the GenX-DOS origin. Clearing it removes your save-state slots, Model 100 memory, in-game cartridge saves and emulator settings — there is no copy anywhere else, so use <strong>backup → export all saves</strong> first if you want to keep them.</p>
+<p>All of it is wiped by your browser's <strong>"clear site data"</strong> (or by clearing history / cookies + site data) for the GenX-DOS origin. Clearing it removes your save-state slots, Model 100 memory, in-game cartridge saves, emulator settings and the arcade input config — there is no copy anywhere else, so use <strong>backup → export all saves</strong> first if you want to keep them.</p>
 <hr />
 <p>See also the <a href="Project-Overview.html#save--load-state">Save / load state</a> section of the Project Overview, and the repository's <code>SECURITY.md</code>.</p>
   </main>

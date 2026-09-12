@@ -69,6 +69,9 @@ echo "Counts quoted in the docs:"
 for f in README.md docs/wiki-src/pages/*.md; do
   check_phrase "$f" '[0-9]+ sub-systems'  "$SUBSYS" "sub-systems"
 done
+# AI-DISCLAIMER says "N systems" rather than "sub-systems", so it needs its own
+# line — it was left at 33 for the six days after the arcade section landed.
+check_phrase AI-DISCLAIMER.md                      '[0-9]+ systems' "$SUBSYS" "systems"
 check_phrase docs/wiki-src/pages/Roadmap.md        '[0-9]+ pages' "$GAMES"  "gamedoc pages"
 check_phrase docs/wiki-src/pages/File-Structure.md '[0-9]+ pages' "$SHARED" "gamedocs+controls"
 echo

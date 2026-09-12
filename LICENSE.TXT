@@ -39,8 +39,9 @@ This does NOT relicense any third-party component, and it does not make the
 whole repository GPL. 
 
 All bundled third-party elements (including, but not limited to, the underlying 
-LGR terminal framework, jQuery libraries, system ROMs, and vendored WASM 
-emulators) are explicitly excluded from this License. You must consult 
+LGR terminal framework, jQuery libraries, vendored WASM emulators, and the game 
+files and system ROMs served by the live site) are explicitly excluded from this 
+License. You must consult 
 ATTRIBUTION.md and individual bundle subdirectories for the authoritative 
 upstream licensing terms governing those components.
 

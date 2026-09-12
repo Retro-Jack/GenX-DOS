@@ -26,9 +26,11 @@ does, and you raise an identified copyright or intellectual-property concern,
 the material in question will be removed immediately.** Not debated, not defended,
 not delayed pending a formal process.
 
-This applies to everything in the repository, not only games: software titles,
-system ROMs and BIOS images, emulator code, artwork, fonts, documentation,
-trade marks and names.
+This applies to everything on the site and in this repository, not only games:
+software titles, system ROMs and BIOS images, emulator code, artwork, fonts,
+documentation, trade marks and names. Note that the games and the firmware we
+supplied are served by genx-dos.fun and are not in the repository at all — see
+[ROMS.txt](ROMS.txt).
 
 **What a request must contain.** Three things, so that nothing is pulled on an
 anonymous say-so:

@@ -4,7 +4,8 @@
 
 GenX-DOS is a static, client-side site — no server, no backend, no accounts,
 and no personal data is collected. Anything the site keeps (save-states, the
-Model 100's battery RAM, emulator settings) lives only in your own browser and
+Model 100's battery RAM, emulator settings, one arcade input-config file) lives
+only in your own browser and
 never leaves your machine — see
 [Your Data](https://github.com/Retro-Jack/GenX-DOS/wiki/Your-Data) for the full
 list and when each is written. The realistic security surface is:
@@ -44,6 +45,7 @@ looked at, and credited if you'd like.
 
 ## Not a security issue
 
-Bundled game ROMs and system BIOS images are a copyright/preservation matter,
-not a security one. For takedown requests, use the issue tracker as described
-in [README.md](README.md) and [ATTRIBUTION.md](ATTRIBUTION.md).
+Game ROMs and system BIOS images served by the site are a copyright/preservation
+matter, not a security one. For removal requests, see **Removal upon request**
+in [ATTRIBUTION.md](ATTRIBUTION.md): open an issue, or email admin@genx-dos.fun
+if you would rather it were not public. Either way the material comes down.
