@@ -47,5 +47,6 @@ looked at, and credited if you'd like.
 
 Game ROMs and system BIOS images served by the site are a copyright/preservation
 matter, not a security one. For removal requests, see **Removal upon request**
-in [ATTRIBUTION.md](ATTRIBUTION.md): open an issue, or email admin@genx-dos.fun
-if you would rather it were not public. Either way the material comes down.
+in [ATTRIBUTION.md](ATTRIBUTION.md), or the page it is published on,
+[REMOVAL.md](REMOVAL.md): email admin@genx-dos.fun, or open an issue if you
+would rather it were public. Either way the material comes down.

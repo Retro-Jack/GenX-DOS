@@ -6,10 +6,15 @@ labels: takedown
 assignees: ''
 ---
 
-GenX-DOS bundles historical software on a preservation / personal-use basis
-(see ATTRIBUTION.md). If you hold rights in anything here — a title, a ROM or
-BIOS image, code, artwork, a font, a name or mark — or you legally represent
-someone who does, it will be removed immediately upon request.
+genx-dos.fun serves historical software on a preservation / personal-use basis
+(see ATTRIBUTION.md and REMOVAL.md). If you hold rights in anything here — a
+title, a ROM or BIOS image, code, artwork, a font, a sound, a name or mark — or
+you legally represent someone who does, it comes down as soon as your request is
+read. This is a one-person hobby project, so that means hours rather than
+minutes, but it is not conditional on anything.
+
+**You do not have to use this form.** An email to admin@genx-dos.fun saying the
+same things is equally good, and needs no account anywhere.
 
 So that nothing is pulled on an anonymous say-so, a request needs to say who is
 asking and on what basis. This template covers it — no registration

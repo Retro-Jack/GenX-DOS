@@ -46,9 +46,11 @@ registration certificates, chain-of-title documents or legal citations — a few
 sentences covering those three points will be taken in good faith and acted on.
 
 **Where to send it**
-- Open an issue: <https://github.com/Retro-Jack/GenX-DOS/issues> (there is a
-  "Content removal request" template, but a plain issue is fine)
-- Or, if you would rather it were not public: admin@genx-dos.fun
+- Email admin@genx-dos.fun — the shortest route, and it needs no account
+  anywhere
+- Or open an issue, if you would rather it were public:
+  <https://github.com/Retro-Jack/GenX-DOS/issues> (there is a "Content removal
+  request" template, but a plain issue is fine)
 
 The same procedure is published on its own page — [REMOVAL.md](REMOVAL.md) — for
 anyone who would rather not read it inside an attribution file. It adds what we

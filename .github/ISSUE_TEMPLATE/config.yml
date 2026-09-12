@@ -1,5 +1,8 @@
 blank_issues_enabled: true
 contact_links:
+  - name: Content removal request (by email, no account needed)
+    url: mailto:admin@genx-dos.fun?subject=Removal%20request
+    about: Rights holders — email is the shortest route, and nothing here has to be a form.
   - name: Security vulnerability
     url: https://github.com/Retro-Jack/GenX-DOS/security/advisories/new
     about: Please report security issues privately, not as public issues.

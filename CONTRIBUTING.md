@@ -11,9 +11,9 @@ fixes, and small improvements are very welcome.
   reproducible.
 - **Security concerns:** see [SECURITY.md](SECURITY.md) — please report
   privately.
-- **Rights holders:** if you want anything of yours removed, open an issue, or
-  email admin@genx-dos.fun if you would rather it were not public — see
-  **Removal upon request** in [ATTRIBUTION.md](ATTRIBUTION.md). Removal
+- **Rights holders:** if you want anything of yours removed, email
+  admin@genx-dos.fun — no account needed — or open an issue if you would rather
+  it were public. The whole procedure is in [REMOVAL.md](REMOVAL.md). Removal
   requests are honoured.
 
 ## Running it locally

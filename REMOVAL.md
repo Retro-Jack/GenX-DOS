@@ -35,9 +35,12 @@ outcome.
 
 ## Where to send it
 
-- **Open an issue:** <https://github.com/Retro-Jack/GenX-DOS/issues> — there is a
-  *Content removal request* template, though a plain issue is fine.
-- **Or by email, if you would rather it were not public:** admin@genx-dos.fun
+- **Email <admin@genx-dos.fun>.** This is the shortest route and needs no
+  account anywhere. A few sentences are enough.
+- **Or open an issue**, if you would rather it were public:
+  <https://github.com/Retro-Jack/GenX-DOS/issues> — there is a *Content removal
+  request* template, though a plain issue, or an email saying the same thing,
+  is equally fine.
 
 ## What happens then
 
