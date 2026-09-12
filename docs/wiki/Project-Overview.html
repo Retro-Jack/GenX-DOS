@@ -54,9 +54,10 @@
 <p>Every shipped system has the <em>feel</em> of an 8-bit machine — sprite-based, chiptune, low-res. The test is the aesthetic, not the calendar year or strict CPU bit-width. (Updated 14/06/2026 from the earlier "8-bit era, ~1975-1990" framing.) Intellivision (CP1610, 16-bit ALU) is in because it plays like an 8-bit-era console. The 8-bit-feel handhelds — Game Boy / GBC, Game Gear, Lynx — are in even where they run into the late 90s (a colour GBC game from 2002 still feels 8-bit). Sega Genesis (1988) is out: it defined the 16-bit look-and-sound leap, even though the calendar year overlaps.</p>
 <p>DOS is the prompt host. See <a href="Roadmap.html">Roadmap</a> for the full in/out list and what's still on the slate.</p>
 <h2 id="the-lineup">The lineup</h2>
-<p>20 emulators ship under <code>systems/</code>, driving 34 sub-systems:</p>
+<p>19 emulator engines ship under <code>systems/</code>, driving 34 sub-systems:</p>
 <ul>
 <li>Consoles: Atari 2600, Atari 7800, ColecoVision, Intellivision, NES, Magnavox Odyssey², Sega Master System, GCE Vectrex</li>
+<li>Arcade: 100 cabinets from ten makers — Atari, Capcom, Irem, Konami, Midway, Namco, Nintendo, Sega, Taito, Williams — ten each</li>
 <li>Handheld: Game Boy / Game Boy Color, Atari Lynx, Sega Game Gear</li>
 <li>Apple: Apple I, Apple ][+</li>
 <li>Acorn: BBC Micro, BBC Master 128 (same jsbeeb engine, shipped as two bundles — <code>bbcmicro/</code> boots Model B, <code>bbcmaster/</code> boots <code>?model=Master</code>), Electron</li>
@@ -64,11 +65,11 @@
 <li>Commodore: VIC-20, MAX, C64, C16, Plus/4 (five sub-systems off three VICE libretro cores); PET on its own (Thomas Skibo's pet2001, vanilla JS)</li>
 <li>Sinclair: ZX81, ZX Spectrum</li>
 <li>Amstrad: CPC</li>
-<li>Tandy: CoCo, TRS-80 Model I, TRS-80 Model 100</li>
+<li>Tandy: CoCo, TRS-80 Model III, TRS-80 Model 100</li>
 <li>Texas Instruments: TI-99/4A</li>
 <li>MSX: MSX1, MSX2</li>
 </ul>
-<p>Fourteen of these (the six VICE bundles, ColecoVision, NES, the Atari 2600, the Atari 7800, the Sega Master System, and the three handhelds — Game Boy/GBC, Lynx, Game Gear) share one copy of the EmulatorJS framework via <code>systems/_shared-ejs/</code>. Intellivision, Electron, Odyssey², and the PET stand alone — jzIntv, ElkJS, libretro-o2em, and Skibo's pet2001 respectively, each with its own custom loader.</p>
+<p>Fourteen of these (the five VICE bundles, ColecoVision, NES, the Atari 2600, the Atari 7800, the Sega Master System, the arcade, and the three handhelds — Game Boy/GBC, Lynx, Game Gear) share one copy of the EmulatorJS framework via <code>systems/_shared-ejs/</code>. Intellivision, Electron, Odyssey², and the PET stand alone — jzIntv, ElkJS, libretro-o2em, and Skibo's pet2001 respectively, each with its own custom loader.</p>
 <p>See <a href="Emulators.html">Emulators</a> for the index and individual integration stories.</p>
   </main>
 </div>

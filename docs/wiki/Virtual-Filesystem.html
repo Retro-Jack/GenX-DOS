@@ -31,19 +31,25 @@
 <h2 id="top-level-layout">Top-level layout</h2>
 <pre><code>C:\
 ├── AUTOEXEC.BAT          runs on boot — calls `menu`
+├── COMMAND.COM           the interpreter: prints its banner; on the PATH
+├── VER.COM               prints the version line; on the PATH
 ├── menu.bat              `cd systems\nmenu` (drops straight into the EMULATOR LAUNCHER)
-└── SYSTEMS\              EMULATOR LAUNCHER: 1 HOMECOMP / 2 CONSOLE / 3 HANDHELD / 4 WIKI / 0 Exit
+└── SYSTEMS\              EMULATOR LAUNCHER: 1 HOMECOMP / 2 CONSOLE / 3 HANDHELD /
+    │                     4 ARCADE / 5 WIKI / 0 Exit
     ├── HOMECOMP\         ACORN (BBC / ELECTRON / MASTER) / AMSTRAD (CPC) /
     │                     APPLE (APPLE1 / APPLEII) / ATARI (400 / 800XL) /
     │                     COMMODRE (PET / VIC20 / MAX / C64 / C16 / PLUS4) /
     │                     MSX (MSX1 / MSX2) / SINCLAIR (SPECTRUM / ZX81) /
-    │                     TANDY (TRS80 / COCO) / TI99
+    │                     TANDY (COCO / TRS80 / M100) / TI99
     ├── CONSOLE\          ATARI (2600 / 7800) / CVISION / INTV / NES /
-    │                     ODYSSEY2 / SMS
-    └── HANDHELD\         GAMEBOY (Game Boy / Color) / LYNX / GAMEGEAR
+    │                     ODYSSEY2 / SMS / VECTREX
+    ├── HANDHELD\         GAMEBOY (Game Boy / Color) / LYNX / GAMEGEAR
+    └── ARCADE\           ten makers, ten cabinets each: ATARI / CAPCOM / IREM /
+                          KONAMI / MIDWAY / NAMCO / NINTENDO / SEGA / TAITO /
+                          WILLIAMS
 </code></pre>
 <h2 id="which-menus-map-to-which-emulators">Which menus map to which emulators</h2>
-<p>All 32 bundled sub-systems run their games locally — every byte of game data is on the same origin.</p>
+<p>All 34 bundled sub-systems run their games locally — every byte of game data is on the same origin.</p>
 <table>
 <thead>
 <tr>
@@ -89,6 +95,11 @@
 <td>o2rom.bin BIOS bundled</td>
 </tr>
 <tr>
+<td>CONSOLE → VECTREX</td>
+<td>jsvecx, our fork with the speech DAC added</td>
+<td>per-game screen overlay, chosen by key</td>
+</tr>
+<tr>
 <td>HANDHELD → GAMEBOY</td>
 <td>EmulatorJS + gambatte (nightly)</td>
 <td>Game Boy + Game Boy Color, one <code>gbc/</code> menu</td>
@@ -102,6 +113,11 @@
 <td>HANDHELD → GAMEGEAR</td>
 <td>EmulatorJS + genesis_plus_gx</td>
 <td></td>
+</tr>
+<tr>
+<td>ARCADE → <MAKER></td>
+<td>EmulatorJS + MAME 2003-Plus</td>
+<td>ten makers, ten cabinets each; launchers are named after their romsets</td>
 </tr>
 <tr>
 <td>HOMECOMP → ACORN → BBC</td>
@@ -257,7 +273,8 @@ keep <code>.bat</code> and use <code>data:</code>.</p>
 <p><code>TYPE</code> on an <code>.exe</code> does what DOS did: prints the file's bytes as CP437 glyphs,
 starting <code>MZ</code>, and stops at the first Ctrl-Z. The bytes are generated from the
 filename rather than stored, so each program has its own stable garbage and
-<code>fs.js</code> doesn't carry 351 blobs of noise.</p>
+<code>fs.js</code> doesn't carry 351 blobs of noise. The two <code>.COM</code> files in the root get
+the same treatment without the <code>MZ</code>, a <code>.COM</code> having no header at all.</p>
 <h2 id="the-no-html-files-rule">The no-<code>.html</code>-files rule</h2>
 <p>The virtual filesystem only lists <code>.exe</code> launchers and the <code>.bat</code> menu scripts and numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's <code>controls.html</code>, future bezels, etc.) live on disk under <code>systems/&lt;name&gt;/</code> but are reached from inside the emulator's entry HTML via the top-corner links, not from the DOS prompt.</p>
 <p>This is period-correct: a DOS user typing <code>dir</code> shouldn't see <code>.html</code>.</p>

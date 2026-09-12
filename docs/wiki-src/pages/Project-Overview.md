@@ -40,9 +40,10 @@ DOS is the prompt host. See [[Roadmap]] for the full in/out list and what's stil
 
 ## The lineup
 
-20 emulators ship under `systems/`, driving 34 sub-systems:
+19 emulator engines ship under `systems/`, driving 34 sub-systems:
 
 - Consoles: Atari 2600, Atari 7800, ColecoVision, Intellivision, NES, Magnavox Odyssey², Sega Master System, GCE Vectrex
+- Arcade: 100 cabinets from ten makers — Atari, Capcom, Irem, Konami, Midway, Namco, Nintendo, Sega, Taito, Williams — ten each
 - Handheld: Game Boy / Game Boy Color, Atari Lynx, Sega Game Gear
 - Apple: Apple I, Apple ][+
 - Acorn: BBC Micro, BBC Master 128 (same jsbeeb engine, shipped as two bundles — `bbcmicro/` boots Model B, `bbcmaster/` boots `?model=Master`), Electron
@@ -50,10 +51,10 @@ DOS is the prompt host. See [[Roadmap]] for the full in/out list and what's stil
 - Commodore: VIC-20, MAX, C64, C16, Plus/4 (five sub-systems off three VICE libretro cores); PET on its own (Thomas Skibo's pet2001, vanilla JS)
 - Sinclair: ZX81, ZX Spectrum
 - Amstrad: CPC
-- Tandy: CoCo, TRS-80 Model I, TRS-80 Model 100
+- Tandy: CoCo, TRS-80 Model III, TRS-80 Model 100
 - Texas Instruments: TI-99/4A
 - MSX: MSX1, MSX2
 
-Fourteen of these (the six VICE bundles, ColecoVision, NES, the Atari 2600, the Atari 7800, the Sega Master System, and the three handhelds — Game Boy/GBC, Lynx, Game Gear) share one copy of the EmulatorJS framework via `systems/_shared-ejs/`. Intellivision, Electron, Odyssey², and the PET stand alone — jzIntv, ElkJS, libretro-o2em, and Skibo's pet2001 respectively, each with its own custom loader.
+Fourteen of these (the five VICE bundles, ColecoVision, NES, the Atari 2600, the Atari 7800, the Sega Master System, the arcade, and the three handhelds — Game Boy/GBC, Lynx, Game Gear) share one copy of the EmulatorJS framework via `systems/_shared-ejs/`. Intellivision, Electron, Odyssey², and the PET stand alone — jzIntv, ElkJS, libretro-o2em, and Skibo's pet2001 respectively, each with its own custom loader.
 
 See [[Emulators]] for the index and individual integration stories.

@@ -5,21 +5,27 @@ The simulated `C:` drive lives in `prompt/javascript/fs.js` as a JS object tree.
 ```
 C:\
 ├── AUTOEXEC.BAT          runs on boot — calls `menu`
+├── COMMAND.COM           the interpreter: prints its banner; on the PATH
+├── VER.COM               prints the version line; on the PATH
 ├── menu.bat              `cd systems\nmenu` (drops straight into the EMULATOR LAUNCHER)
-└── SYSTEMS\              EMULATOR LAUNCHER: 1 HOMECOMP / 2 CONSOLE / 3 HANDHELD / 4 WIKI / 0 Exit
+└── SYSTEMS\              EMULATOR LAUNCHER: 1 HOMECOMP / 2 CONSOLE / 3 HANDHELD /
+    │                     4 ARCADE / 5 WIKI / 0 Exit
     ├── HOMECOMP\         ACORN (BBC / ELECTRON / MASTER) / AMSTRAD (CPC) /
     │                     APPLE (APPLE1 / APPLEII) / ATARI (400 / 800XL) /
     │                     COMMODRE (PET / VIC20 / MAX / C64 / C16 / PLUS4) /
     │                     MSX (MSX1 / MSX2) / SINCLAIR (SPECTRUM / ZX81) /
-    │                     TANDY (TRS80 / COCO) / TI99
+    │                     TANDY (COCO / TRS80 / M100) / TI99
     ├── CONSOLE\          ATARI (2600 / 7800) / CVISION / INTV / NES /
-    │                     ODYSSEY2 / SMS
-    └── HANDHELD\         GAMEBOY (Game Boy / Color) / LYNX / GAMEGEAR
+    │                     ODYSSEY2 / SMS / VECTREX
+    ├── HANDHELD\         GAMEBOY (Game Boy / Color) / LYNX / GAMEGEAR
+    └── ARCADE\           ten makers, ten cabinets each: ATARI / CAPCOM / IREM /
+                          KONAMI / MIDWAY / NAMCO / NINTENDO / SEGA / TAITO /
+                          WILLIAMS
 ```
 
 ## Which menus map to which emulators
 
-All 32 bundled sub-systems run their games locally — every byte of game data is on the same origin.
+All 34 bundled sub-systems run their games locally — every byte of game data is on the same origin.
 
 | Menu path | Backing emulator | Notes |
 |---|---|---|
@@ -30,9 +36,11 @@ All 32 bundled sub-systems run their games locally — every byte of game data i
 | CONSOLE → CVISION | EmulatorJS + gearcoleco | colecovision.rom BIOS bundled |
 | CONSOLE → INTV | jzIntv WASM | exec.bin + grom.bin BIOS bundled |
 | CONSOLE → ODYSSEY2 | libretro-o2em → WASM + custom SDL2 frontend | o2rom.bin BIOS bundled |
+| CONSOLE → VECTREX | jsvecx, our fork with the speech DAC added | per-game screen overlay, chosen by key |
 | HANDHELD → GAMEBOY | EmulatorJS + gambatte (nightly) | Game Boy + Game Boy Color, one `gbc/` menu |
 | HANDHELD → LYNX | EmulatorJS + handy | lynxboot.img bundled |
 | HANDHELD → GAMEGEAR | EmulatorJS + genesis_plus_gx | |
+| ARCADE → <MAKER> | EmulatorJS + MAME 2003-Plus | ten makers, ten cabinets each; launchers are named after their romsets |
 | HOMECOMP → ACORN → BBC | jsbeeb | |
 | HOMECOMP → ACORN → ELECTRON | ElkJS | UEF snapshots |
 | HOMECOMP → ACORN → MASTER | jsbeeb (`?model=Master`) | Elite uses DSD for drive 2 |
@@ -98,7 +106,8 @@ keep `.bat` and use `data:`.
 `TYPE` on an `.exe` does what DOS did: prints the file's bytes as CP437 glyphs,
 starting `MZ`, and stops at the first Ctrl-Z. The bytes are generated from the
 filename rather than stored, so each program has its own stable garbage and
-`fs.js` doesn't carry 351 blobs of noise.
+`fs.js` doesn't carry 351 blobs of noise. The two `.COM` files in the root get
+the same treatment without the `MZ`, a `.COM` having no header at all.
 
 ## The no-`.html`-files rule
 

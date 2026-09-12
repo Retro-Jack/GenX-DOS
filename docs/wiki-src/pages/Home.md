@@ -18,6 +18,8 @@ This wiki is the long-form companion to the repo. The [README](https://github.co
 | [[Emulators]] | Index of every engine, each with its own page |
 | [[Customising the Filesystem]] | Adding directories, files, menus |
 | [[Roadmap]] | What's shipped, what's next, what won't be |
+| [[Legal]] | Where the project stands on licences, ROMs and removal |
+| [[Your Data]] | What the site stores, and where |
 
 ## In the repo
 
