@@ -117,9 +117,12 @@ registerCmd('echo.', function () {
 registerCmd('type', function (cmd) {
   type(cmd);
 });
-registerCmd('cls', function () {
+function clearScreen() {
   promptEl.innerHTML = '<div id="cursor" class="font f-95 f-cursor"></div>';
   cursorEl = document.getElementById('cursor');
+}
+registerCmd('cls', function () {
+  clearScreen();
 });
 registerCmd('dir', function (cmd) {
   dir(cmd);
@@ -213,6 +216,11 @@ var HELP_TEXT = (function () {
 })();
 
 function showFullHelp() {
-  echo('');
+  // Clear first. The reference fills the screen, so it reads as a page of its
+  // own rather than as output pushed up by whatever came before it, and it
+  // always lands in the same place. A blank line after it keeps the returning
+  // prompt off the last row of the table.
+  clearScreen();
   for (var i = 0; i < HELP_TEXT.length; i++) echo(HELP_TEXT[i]);
+  echo('');
 }
