@@ -28,7 +28,7 @@ not delayed pending a formal process.
 
 This applies to everything on the site and in this repository, not only games:
 software titles, system ROMs and BIOS images, emulator code, artwork, fonts,
-documentation, trade marks and names. Note that the games and the firmware we
+sound, documentation, trade marks and names. Note that the games and the firmware we
 supplied are served by genx-dos.fun and are not in the repository at all — see
 [ROMS.txt](ROMS.txt).
 
@@ -95,6 +95,8 @@ fork rather than the bundle.
 | `systems/jsnes/` | EmulatorJS + FCEUmm libretro core | EmulatorJS team; libretro/libretro-fceumm | GPL-3.0 (EmulatorJS), GPL-2.0 (FCEUmm) |
 | `systems/stella/` | EmulatorJS + Stella (`stella2014`) libretro core | EmulatorJS team; stella-emu / libretro | GPL-3.0 (EmulatorJS), GPL-2.0 (Stella) |
 | `systems/js7800/` | EmulatorJS + ProSystem (`prosystem`) libretro core | EmulatorJS team; libretro/prosystem | GPL-3.0 (EmulatorJS), GPL-2.0 (ProSystem) |
+| `systems/arcade/` | EmulatorJS + MAME 2003-Plus (`mame2003_plus`) libretro core | EmulatorJS team; Nicola Salmoria and the MAME Team; the Libretro MAME 2003-Plus team | GPL-3.0 (EmulatorJS), classic MAME non-commercial licence (MAME 0.78) |
+| `systems/arcade/games/*.zip` | Arcade romsets — 100 cabinets, 1976-1989, ten manufacturers (Atari, Capcom, Irem, Konami, Midway, Namco, Nintendo, Sega, Taito, Williams) | the original manufacturers, or whoever holds those rights now | Served by the live site for historical preservation; the boards have been out of production for 30+ years. The core's own licence is non-commercial, as this project is |
 | `systems/msx1/`, `systems/msx2/` | WebMSX (same engine in two bundles — the MSX1 bundle boots `M=MSX1`, the MSX2 bundle boots `M=MSX2`) | Paulo Peccin | MIT |
 | `systems/jsspeccy/` | JSSpeccy 3.2 | Matt Westcott (gasman) | GPL-3.0 |
 | `systems/jsvecx/` | JSVecX (fork of raz0red's port of Valavan Manohararajah's VecX), with the speech DAC added | Retro-Jack fork of DrSnuggles | GPL-3.0 |
@@ -269,9 +271,10 @@ of two period disk operating systems instead.
 
 ## Game ROMs
 
-The live site bundles several hundred 8-bit-era game ROMs across all platforms
-(the repo and release zip keep only those an emulator's maintainer shipped with
-it — see [ROMS.txt](ROMS.txt)).
+The live site bundles several hundred 8-bit-era game ROMs across all platforms,
+plus the hundred arcade romsets of the ARCADE section (the repo and release zip
+keep only those an emulator's maintainer shipped with it — see
+[ROMS.txt](ROMS.txt)).
 These remain the copyright of their original publishers and are included
 for historical preservation, emulator integration, and educational use.
 
