@@ -30,6 +30,8 @@ Per-game controls needed a hook the boot glue did not have. Its `perGame` hook t
 
 Star Wars is one of eight cabinets whose control the core's data calls an analogue stick rather than a joy-N-way, and the first of them we tested, so the left stick flies it proportionally. Released, the crosshair sprang back to a point a quarter of the way across rather than to the middle. The axis was never wrong: held hard over, the extremes sit symmetrically either side of centre. The rest position comes from the core's **Digital Joystick Centering**, which exists for driving an analogue port from a *digital* stick and pulls a real analogue stick off centre instead. It is off for this game, and the core's XY device, which defaults to the mouse, is off too, leaving the pad's stick as the only thing flying the crosshair.
 
+The other seven are played rather than assumed, and only get the same settings if they show the same fault. Five are done: I, Robot centres correctly on the defaults and needed something else entirely — its two VIEW buttons are read through the start inputs, so they sit on X and Y — Paperboy steers proportionally and throws on A, and Hang-On and Out Run have their own sections. Blaster, Space Harrier and Sinistar are still to play.
+
 ## Hang-On's brake, and a config file written at boot
 
 Hang-On's cabinet was a motorbike: handlebars that steer, a twist-grip throttle and a brake lever, all three analogue — MAME's AD Stick X, Y and Z — and no buttons at all. Steering and throttle came through on the defaults. The brake did not, because this MAME assigns AD Stick Z to nothing, and none of the core's options changes that.

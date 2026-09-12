@@ -37,6 +37,9 @@ GAMES=$(find docs/games -name '*.html' | wc -l)
 SUBSYS=$(find docs/games -mindepth 1 -maxdepth 1 -type d | wc -l)
 CONTROLS=$(find systems -name 'controls.html' | wc -l)
 SHARED=$((GAMES + CONTROLS))
+# Bundles sharing the one EmulatorJS framework. The wiki and README both quote
+# it, and both sat at 13 for the six days after the arcade bundle joined them.
+EJSB=$(grep -l "_shared-ejs" systems/*/play.html 2>/dev/null | wc -l)
 # Anchored to ./ on purpose: a bare --exclude=dist matches by basename at any
 # depth and would drop systems/*/dist (the jsbeeb bundles), understating the
 # site by ~50 MB. These four are the repo-root build/staging dirs only.
@@ -72,6 +75,8 @@ done
 # AI-DISCLAIMER says "N systems" rather than "sub-systems", so it needs its own
 # line — it was left at 33 for the six days after the arcade section landed.
 check_phrase AI-DISCLAIMER.md                      '[0-9]+ systems' "$SUBSYS" "systems"
+check_phrase README.md                             '[0-9]+ bundles via' "$EJSB" "EmulatorJS bundles"
+check_phrase docs/wiki-src/pages/File-Structure.md '[0-9]+ bundles share' "$EJSB" "EmulatorJS bundles"
 check_phrase docs/wiki-src/pages/Roadmap.md        '[0-9]+ pages' "$GAMES"  "gamedoc pages"
 check_phrase docs/wiki-src/pages/File-Structure.md '[0-9]+ pages' "$SHARED" "gamedocs+controls"
 echo
