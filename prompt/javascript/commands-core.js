@@ -97,14 +97,33 @@ function dir(sw) {
 
 // ============================================================
 // FILESYSTEM COMMANDS — attemptExec
-// Tries to run a file in the current directory by name.
-// Returns: 0=not found, 1=link opened, 2=batch executed.
+// Tries to run a file by name, in the current directory and then on
+// the PATH.
+// Returns: 0=not found, 1=link opened, 2=batch executed, 3=COMMAND.COM.
 // ============================================================
 function attemptExec(file) {
   file = file.toLowerCase();
   var fsc = fs[path[0]];
   for (var i = 1; i < path.length; i++) fsc = fsc.directories[path[i]];
 
+  // Current directory first, then each directory on the PATH — the order
+  // DOS used, and the reason COMMAND.COM answers from anywhere on C:.
+  var r = execIn(fsc, file);
+  if (r) return r;
+  for (var i = 0; i < GENX_PATH.length; i++) {
+    var dirNode = dirFromSpec(GENX_PATH[i]);
+    if (dirNode && dirNode !== fsc) {
+      r = execIn(dirNode, file);
+      if (r) return r;
+    }
+  }
+  return 0;
+}
+
+// Runs `file` if it exists in one directory node. Returns 0 for no match,
+// 1 for a launcher opened in a tab, 2 for a batch file (which prints its
+// own prompt), 3 for COMMAND.COM.
+function execIn(fsc, file) {
   for (var i = 0; i < fsc.files.length; i++) {
     var fname = fsc.files[i].name.toLowerCase();
     var fbase = fname.split('.')[0];
@@ -129,9 +148,43 @@ function attemptExec(file) {
         executeBatch(fsc.files[i].data);
         return 2;
       }
+      if (fsc.files[i].com) {
+        comBanner();
+        return 3;
+      }
     }
   }
   return 0;
+}
+
+// Resolves a PATH entry such as "C:\" to its directory node, or null.
+function dirFromSpec(spec) {
+  var parts = spec.replace(/^[a-z]:/i, '').split('\\');
+  var node = fs[0];
+  for (var i = 0; i < parts.length; i++) {
+    if (!parts[i]) continue;
+    var found = null;
+    for (var j = 0; j < node.directories.length; j++)
+      if (node.directories[j].name.toLowerCase() === parts[i].toLowerCase())
+        found = node.directories[j];
+    if (!found) return null;
+    node = found;
+  }
+  return node;
+}
+
+// ============================================================
+// COMMAND.COM — the start-up banner
+// DOS's interpreter announced itself with its name, version and
+// copyright. The terminal this one runs on is not our work, so the
+// credit goes where it belongs: the LGR base. The "C" of "(C)" is the
+// font sheet's smiley, char code 2 — the sheet is indexed by char code,
+// so the character is the sprite.
+// ============================================================
+function comBanner() {
+  echo('GenX-DOS Version ' + GENX_VERSION);
+  echo('(\u0002)Copyleft Mike @ LGR - Lazy Game Reviews');
+  echo('');
 }
 
 // ============================================================
@@ -225,7 +278,14 @@ function type(file) {
         typeof fsc.files[i].link !== 'undefined' &&
         fname.split('.')[1] === 'exe'
       ) {
-        typeExe(fname);
+        typeExe(fname, 'MZ');
+        return true;
+      }
+      // A .COM is not an .EXE: it has no header at all. DOS loaded one at
+      // offset 0x100 and jumped straight into it, so the first byte on
+      // screen is already code.
+      if (fsc.files[i].com) {
+        typeExe(fname, '');
         return true;
       }
       if (typeof fsc.files[i].link !== 'undefined') {
@@ -238,9 +298,8 @@ function type(file) {
   return false;
 }
 
-
 // ============================================================
-// TYPE on an .EXE — the DOS behaviour, reproduced.
+// TYPE on a program file — the DOS behaviour, reproduced.
 // Real MS-DOS printed the file's bytes to screen; the terminal rendered
 // each one as its CP437 glyph, and TYPE stopped dead at the first 0x1A
 // (Ctrl-Z), the end-of-file marker. So you saw "MZ", a burst of noise,
@@ -249,9 +308,10 @@ function type(file) {
 // Deliberately NOT included: "This program cannot be run in DOS mode."
 // That string belongs to the Windows PE stub and would be an anachronism
 // on a machine pretending to be a DOS box — a real DOS executable is
-// just MZ followed by binary.
+// just MZ followed by binary. A .COM has no header of any kind, so it
+// gets the same noise with nothing in front of it.
 // ============================================================
-function typeExe(name) {
+function typeExe(name, header) {
   var seed = 0;
   for (var i = 0; i < name.length; i++)
     seed = (seed * 31 + name.charCodeAt(i)) >>> 0;
@@ -261,7 +321,7 @@ function typeExe(name) {
   }
 
   var eof = 60 + (nextByte() % 220); // where this file's Ctrl-Z happens to sit
-  var line = 'MZ';
+  var line = header; // 'MZ' for an .EXE; a .COM has no header
   for (var n = 0; n < eof; n++) {
     var b = nextByte();
     if (b === 26) break; // Ctrl-Z reached early: DOS stops here too
@@ -313,7 +373,6 @@ function find(query) {
     return;
   }
 
-
   // One pass over node.files collecting:
   //   byNum:         { rowNumber -> title }      menu rows keyed by their N.
   //   launcherTitle: { launcher  -> title }      via the numbered .bat
@@ -357,7 +416,12 @@ function find(query) {
         if (!line) continue;
         var bits = line.split(/\s+/);
         var tok = bits[0].toLowerCase();
-        if (tok === 'echo' || tok === 'echo.' || tok === 'cls' || tok === 'menu')
+        if (
+          tok === 'echo' ||
+          tok === 'echo.' ||
+          tok === 'cls' ||
+          tok === 'menu'
+        )
           continue;
         // `cd bbc` — this row opens a sub-directory. `cd ..` goes back and
         // names nothing, so keep looking.
@@ -395,13 +459,15 @@ function find(query) {
   // untouched. Indexed from 128, covering CP437's accented-letter block.
   var CP437_FOLD =
     'cueaaaaceeeiiiaaeAAooouuyOU   f' + // 128-158, then 159 (ƒ)
-    'aioun';                           // 160-164
+    'aioun'; // 160-164
   function searchable(str) {
     var outp = '';
     for (var i = 0; i < str.length; i++) {
       var code = str.charCodeAt(i);
-      if (code === 253) outp += '2'; // ² — the Odyssey² trick
-      else if (code === 252) outp += 'n'; // ⁿ
+      if (code === 253)
+        outp += '2'; // ² — the Odyssey² trick
+      else if (code === 252)
+        outp += 'n'; // ⁿ
       else if (code >= 128 && code - 128 < CP437_FOLD.length)
         outp += CP437_FOLD.charAt(code - 128);
       else outp += str.charAt(i);

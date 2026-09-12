@@ -1,4 +1,20 @@
 // ============================================================
+// VERSION
+// What COMMAND.COM reports. Keep it in step with the newest release
+// heading in CHANGELOG.md — check-doc-counts.sh compares the two.
+// ============================================================
+var GENX_VERSION = '1.8.1';
+
+// ============================================================
+// PATH
+// DOS looked for a program in the current directory first and then in
+// each directory named by the PATH environment variable, which
+// AUTOEXEC.BAT set. Ours is fixed and holds the drive root, where
+// COMMAND.COM sits, so the interpreter answers from anywhere on C:.
+// ============================================================
+var GENX_PATH = ['C:\\'];
+
+// ============================================================
 // PALETTE
 // 16-color CGA/EGA palette (indices 0-15)
 // ============================================================

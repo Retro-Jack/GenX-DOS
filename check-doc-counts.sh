@@ -226,6 +226,25 @@ done
 [ "$retired_hits" = 0 ] && ok "retired assets" "no references to renamed files"
 echo
 
+# ---- COMMAND.COM's version banner --------------------------------------
+# The prompt's COMMAND.COM prints a version number, and nothing else in the
+# tree derives it, so it can sit at a released version for months without
+# anyone noticing it is a release behind. It must equal the newest release
+# heading in CHANGELOG.md -- [Unreleased] is skipped, because the banner
+# reports what shipped, not what is pending.
+VERBAN=$(grep -oE "GENX_VERSION = '[0-9]+\.[0-9]+\.[0-9]+'" prompt/javascript/globals.js \
+           | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+VERLOG=$(grep -oE '^## \[[0-9]+\.[0-9]+\.[0-9]+\]' CHANGELOG.md \
+           | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+if [ -z "$VERBAN" ] || [ -z "$VERLOG" ]; then
+  bad "version banner" "could not read GENX_VERSION or the newest CHANGELOG release"
+elif [ "$VERBAN" != "$VERLOG" ]; then
+  bad "version banner" "COMMAND.COM says $VERBAN, CHANGELOG's newest release is $VERLOG"
+else
+  ok "version banner" "COMMAND.COM reports $VERBAN, the current release"
+fi
+echo
+
 # ---- social card: an image, so just restate what it should read ---------
 echo "Social card (docs/images/genx-social.png) — cannot be parsed; its stats"
 echo "  line should read:  $GAMES games · $SUBSYS systems · 100% self-hosted"
