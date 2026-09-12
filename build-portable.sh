@@ -27,6 +27,28 @@ done
 TARGET="${ARGS[0]:-_Portable}"
 mkdir -p "$TARGET"
 
+# ---- the prompt's version banner must match the newest release -----------
+# COMMAND.COM and VER.COM print GENX_VERSION, and nothing in the tree derives
+# it, so it is the one number that can sit a release behind without anyone
+# noticing. This is the choke point for everything that leaves the repo --
+# deploy.sh builds through it for staging and live, the portable copy comes
+# from it, and so does the release zip -- so the mismatch is caught here
+# rather than trusting anyone to run check-doc-counts.sh first. The fix is to
+# edit GENX_VERSION, or to add the release's heading to CHANGELOG.md.
+VER_BANNER=$(grep -oE "GENX_VERSION = '[0-9]+\.[0-9]+\.[0-9]+'" prompt/javascript/globals.js |
+  head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' || true)
+VER_CHANGELOG=$(grep -oE '^## \[[0-9]+\.[0-9]+\.[0-9]+\]' CHANGELOG.md |
+  head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' || true)
+if [[ -z $VER_BANNER || -z $VER_CHANGELOG ]]; then
+  echo "build-portable: cannot read GENX_VERSION or the newest CHANGELOG release" >&2
+  exit 1
+fi
+if [[ $VER_BANNER != "$VER_CHANGELOG" ]]; then
+  echo "build-portable: the prompt says version $VER_BANNER, CHANGELOG's newest release is $VER_CHANGELOG" >&2
+  echo "  fix prompt/javascript/globals.js (GENX_VERSION) or CHANGELOG.md before shipping" >&2
+  exit 1
+fi
+
 ROM_RULES=(--exclude='/ROMS.txt')
 if [[ $NO_ROMS == 1 ]]; then
   ROM_LIST=$(mktemp)

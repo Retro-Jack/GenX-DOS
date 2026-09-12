@@ -99,7 +99,7 @@ function dir(sw) {
 // FILESYSTEM COMMANDS — attemptExec
 // Tries to run a file by name, in the current directory and then on
 // the PATH.
-// Returns: 0=not found, 1=link opened, 2=batch executed, 3=COMMAND.COM.
+// Returns: 0=not found, 1=link opened, 2=batch executed, 3=a .COM ran.
 // ============================================================
 function attemptExec(file) {
   file = file.toLowerCase();
@@ -122,7 +122,7 @@ function attemptExec(file) {
 
 // Runs `file` if it exists in one directory node. Returns 0 for no match,
 // 1 for a launcher opened in a tab, 2 for a batch file (which prints its
-// own prompt), 3 for COMMAND.COM.
+// own prompt), 3 for a .COM.
 function execIn(fsc, file) {
   for (var i = 0; i < fsc.files.length; i++) {
     var fname = fsc.files[i].name.toLowerCase();
@@ -148,8 +148,8 @@ function execIn(fsc, file) {
         executeBatch(fsc.files[i].data);
         return 2;
       }
-      if (fsc.files[i].com) {
-        comBanner();
+      if (fsc.files[i].com && COM_PROGRAMS[fsc.files[i].com]) {
+        COM_PROGRAMS[fsc.files[i].com]();
         return 3;
       }
     }
@@ -174,19 +174,35 @@ function dirFromSpec(spec) {
 }
 
 // ============================================================
-// COMMAND.COM — the start-up banner
-// DOS's interpreter announced itself with its name, version and
-// copyright. The terminal this one runs on is not our work, so the
-// credit goes where it belongs: the LGR base. The "C" of "(C)" is the
-// font sheet's smiley, char code 1 — the sheet is indexed by char code,
-// so the character is the sprite. The copyright line is indented under
-// the version line, the way MS-DOS set its own banner out.
+// The .COM programs on C:
+// Each file in the filesystem carries `com: '<key>'` naming the routine
+// that runs when you type its name; the key is what makes a .COM a
+// program rather than a file, and TYPE keys off the same field to print
+// it as header-less noise.
+//
+// COMMAND.COM is the interpreter announcing itself with its name,
+// version and copyright, as DOS's did. The terminal it runs on is not
+// our work, so the credit goes where it belongs: the LGR base. The "C"
+// of "(C)" is the font sheet's smiley, char code 1 — the sheet is
+// indexed by char code, so the character is the sprite. The copyright
+// line is indented under the version line, the way MS-DOS set its own
+// banner out.
+//
+// VER.COM is the version line on its own. In real DOS, VER was internal
+// to COMMAND.COM rather than a file of its own; here it is a file,
+// because every other program on this drive is one.
 // ============================================================
-function comBanner() {
-  echo('GenX-DOS Version ' + GENX_VERSION);
-  echo('         (\u0001)Copyleft Mike @ LGR - Lazy Game Reviews');
-  echo('');
-}
+var COM_PROGRAMS = {
+  banner: function () {
+    echo('GenX-DOS Version ' + GENX_VERSION);
+    echo('         (\u0001)Copyleft Mike @ LGR - Lazy Game Reviews');
+    echo('');
+  },
+  ver: function () {
+    echo('GenX-DOS Version ' + GENX_VERSION);
+    echo('');
+  },
+};
 
 // ============================================================
 // FILESYSTEM COMMANDS — cd

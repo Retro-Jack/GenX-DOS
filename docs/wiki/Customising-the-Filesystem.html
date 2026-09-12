@@ -56,9 +56,17 @@
 <td><code>{ name, data }</code></td>
 <td>a "file" whose <code>data</code> is run as a batch script when executed</td>
 </tr>
+<tr>
+<td><code>{ name, com }</code></td>
+<td>a program: <code>com</code> names a routine in <code>COM_PROGRAMS</code> to call when executed</td>
+</tr>
 </tbody>
 </table>
 <p><code>hidden: true</code> on a node hides it from <code>dir</code> output (still navigable via <code>cd</code>).</p>
+<p><code>C:\</code> holds two <code>com</code> files, <code>COMMAND.COM</code> and <code>VER.COM</code>, and both are on the
+PATH: a program is looked for in the current directory first and then in each
+directory listed in <code>GENX_PATH</code>, which is how DOS searched. <code>TYPE</code> on a <code>com</code>
+or on an <code>.exe</code> prints the bytes of a program rather than its contents.</p>
 <hr />
 <h2 id="adding-a-link-file">Adding a link file</h2>
 <pre><code class="language-js">{ name: 'GITHUB.COM', link: 'https://github.com/yourname' }

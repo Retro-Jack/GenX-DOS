@@ -17,8 +17,14 @@ A node is one of:
 | `{ name, directories, files }` | a directory |
 | `{ name, link }` | a "file" that opens a URL when executed |
 | `{ name, data }` | a "file" whose `data` is run as a batch script when executed |
+| `{ name, com }` | a program: `com` names a routine in `COM_PROGRAMS` to call when executed |
 
 `hidden: true` on a node hides it from `dir` output (still navigable via `cd`).
+
+`C:\` holds two `com` files, `COMMAND.COM` and `VER.COM`, and both are on the
+PATH: a program is looked for in the current directory first and then in each
+directory listed in `GENX_PATH`, which is how DOS searched. `TYPE` on a `com`
+or on an `.exe` prints the bytes of a program rather than its contents.
 
 ---
 

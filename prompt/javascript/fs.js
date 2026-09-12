@@ -4678,12 +4678,17 @@ var fs = [
       },
     ],
     files: [
-      // The command interpreter. `com: true` marks it a .COM: running it
-      // prints the start-up banner, TYPE prints header-less garbage, and
-      // it is on the PATH, so it answers from any directory.
+      // The two .COM programs. `com` names the routine in COM_PROGRAMS
+      // that runs when you type the name; TYPE prints header-less
+      // garbage for either, and both are on the PATH, so they answer
+      // from any directory.
       {
         name: 'command.com',
-        com: true,
+        com: 'banner',
+      },
+      {
+        name: 'ver.com',
+        com: 'ver',
       },
       {
         name: 'autoexec.bat',
