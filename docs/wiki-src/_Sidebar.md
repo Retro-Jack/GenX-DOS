@@ -5,6 +5,7 @@
 - [Roadmap](Roadmap)
 - [Readme](README)
 - [Attribution](ATTRIBUTION)
+- [Removal](REMOVAL)
 - [Changelog](CHANGELOG.md)
 - [Contributing](CONTRIBUTING.md)
 - [Security](SECURITY.md)

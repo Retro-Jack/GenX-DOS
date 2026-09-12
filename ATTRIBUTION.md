@@ -50,6 +50,11 @@ sentences covering those three points will be taken in good faith and acted on.
   "Content removal request" template, but a plain issue is fine)
 - Or, if you would rather it were not public: admin@genx-dos.fun
 
+The same procedure is published on its own page — [REMOVAL.md](REMOVAL.md) — for
+anyone who would rather not read it inside an attribution file. It adds what we
+can and cannot reach: our site and repository, but not other people's copies or
+third-party archives.
+
 Removal will happen as soon as such a request reaches me. GenX-DOS is a
 non-commercial preservation project run by one person; nothing here is worth
 anyone's legal costs, mine included, and no title in it matters more than a

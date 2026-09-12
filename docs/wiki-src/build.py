@@ -22,6 +22,7 @@ EXTRA = {'README':          (os.path.join(ROOT, 'README.md'),          'md'),
          'SECURITY':        (os.path.join(ROOT, 'SECURITY.md'),        'md'),
          'CODE_OF_CONDUCT': (os.path.join(ROOT, 'CODE_OF_CONDUCT.md'), 'md'),
          'AI-DISCLAIMER':   (os.path.join(ROOT, 'AI-DISCLAIMER.md'),   'md'),
+         'REMOVAL':         (os.path.join(ROOT, 'REMOVAL.md'),         'md'),
          'LICENSE':         (os.path.join(ROOT, 'LICENSE.TXT'),        'license')}
 # Map a repo-root filename to its imported slug (LICENSE.TXT -> LICENSE, X.md -> X).
 FILE2SLUG = {'LICENSE.TXT': 'LICENSE'}
