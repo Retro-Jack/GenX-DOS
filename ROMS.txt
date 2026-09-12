@@ -44,6 +44,18 @@ Apple ][+
 
 Arcade
 ------
+  These run MAME 2003-Plus, the libretro port of MAME 0.78, so the romsets have
+  to be of that era. A set built for a current MAME disagrees with it constantly
+  on filenames, and occasionally on which archive a chip belongs in, and the
+  core refuses the game rather than guess. Each file below is named after its
+  romset, and every one here was built by CRC against the core's own metadata
+  (metadata/mame2003-plus.xml in libretro/mame2003-plus-libretro, at commit
+  d3ac6c95) and then verified member by member, with no absent, wrong or extra
+  file in any of them.
+
+  One of the hundred is a clone set: sitv, the TV version of Space Invaders.
+  Its four files are all in the one zip, so the parent set is not needed.
+
   systems/arcade/games/1942.zip                            1942 (1984)
   systems/arcade/games/altbeast.zip                        Altered Beast (1988)
   systems/arcade/games/arkanoid.zip                        Arkanoid (1986)
@@ -188,7 +200,7 @@ Atari 7800
 Atari 800XL
 -----------
   systems/atari800/roms/ataribas.rom                       firmware: Atari BASIC (rev. C)
-  systems/atari800/roms/atarixl.rom                        firmware: Atari XL/XE OS
+  systems/atari800/roms/atarixl.rom                        firmware: Atari XL/XE OS (rev. 2)
   systems/atari800/roms/archon.atr                         Archon (1983)
   systems/atari800/roms/ballblzr.atr                       Ballblazer (1985)
   systems/atari800/roms/boulder.atr                        Boulder Dash (1984)
