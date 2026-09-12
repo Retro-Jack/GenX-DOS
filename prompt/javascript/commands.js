@@ -148,38 +148,68 @@ registerCmd('setcol', function (cmd) {
 // FULL HELP (F1) — text imported from the wiki Commands page
 // (the wiki — docs/wiki/Commands.html).
 // ============================================================
-var HELP_TEXT = [
-  'GENX-DOS COMMAND REFERENCE',
-  '(case-insensitive; chain commands with " && ")',
-  '',
+// The prompt is a fixed 80x25 grid and rolls up like VGA: the buffer keeps
+// growing but only the last 25 rows are ever visible, and there is no
+// scrollback to reach the rest. A one-per-line reference ran to 31 rows, so
+// its first third had scrolled off before the reader saw it. Two columns fit
+// the whole reference on one screen, and the columns are padded here rather
+// than typed as spaces so a longer description cannot silently misalign them.
+var HELP_LEFT = [
   'NAVIGATION',
-  '  dir              List the current directory',
-  '  dir /w           Wide view',
-  '  dir /o           Alphabetical order',
-  '  dir /w /o        Wide + sorted',
-  '  cd <dir>         Change directory',
-  '  cd ..            Go up one level',
-  '  cd \\             Jump to drive root',
-  '  cls              Clear the screen',
+  '  dir             List the directory',
+  '  dir /w          Wide view',
+  '  dir /o          Alphabetical order',
+  '  dir /w /o       Wide + sorted',
+  '  cd <dir>        Change directory',
+  '  cd ..           Up one level',
+  '  cd \\            Jump to drive root',
+  '  cls             Clear the screen',
   '',
   'FILES',
-  '  <filename>       Execute (.exe launches, .bat runs as batch)',
-  "  type <file>      Print the file's data",
-  '  find <word>      Search games + emulator menus by name or code',
-  '  find "<phrase>"  Quote multi-word queries',
-  '',
+  '  <filename>      Execute (.exe, .bat)',
+  "  type <file>     Print a file's data",
+  '  find <word>     Search games + menus',
+  '  find "<words>"  Quote a phrase',
+];
+// Padded with blanks so each heading sits level with the one beside it:
+// DISPLAY opposite NAVIGATION, KEYBOARD opposite FILES.
+var HELP_RIGHT = [
   'DISPLAY',
-  '  echo <text>      Print text',
-  '  echo off         Suppress C:\\> prompt re-render until end of batch',
-  '  echo on          Re-enable echo and drop to a fresh C:\\> prompt',
-  '  echo.            Print a blank line and re-enable prompt re-render',
-  '  setcol <BF>      Set background + foreground hex colour',
+  '  echo <text>     Print text',
+  '  echo off        Hide prompt in a batch',
+  '  echo on         Show it again',
+  '  echo.           Blank line, echo on',
+  '  setcol <BF>     Colours, hex bg+fg',
+  '',
+  '',
+  '',
   '',
   'KEYBOARD',
-  '  Enter            Submit',
-  '  Backspace        Delete last character',
-  '  Up / Down        Step through command history',
+  '  Enter           Submit',
+  '  Backspace       Delete last character',
+  '  Up / Down       Command history',
 ];
+var HELP_COL = 40; // left column width, of the grid's 80
+
+function helpPad(s) {
+  while (s.length < HELP_COL) s += ' ';
+  return s;
+}
+
+var HELP_TEXT = (function () {
+  var out = [
+    helpPad('GENX-DOS COMMAND REFERENCE') +
+      'case-insensitive; chain with " && "',
+    '',
+  ];
+  var rows = Math.max(HELP_LEFT.length, HELP_RIGHT.length);
+  for (var i = 0; i < rows; i++) {
+    var left = HELP_LEFT[i] || '';
+    var right = HELP_RIGHT[i] || '';
+    out.push(right ? helpPad(left) + right : left);
+  }
+  return out;
+})();
 
 function showFullHelp() {
   echo('');

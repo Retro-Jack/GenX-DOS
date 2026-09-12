@@ -121,6 +121,9 @@
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>
+<p><strong><code>help</code> ran off the top of the screen.</strong> The prompt is a fixed 80x25 grid that rolls up like VGA — the buffer keeps growing but only the last 25 rows are ever visible, and there is no scrollback to reach the rest — and the reference was 31 rows one command per line, so a third of it had gone before the reader saw it. It is two columns now, 18 rows, the whole thing on one screen with the prompt still under it: NAVIGATION beside DISPLAY, FILES beside KEYBOARD. The columns are padded in code rather than typed as spaces, so a longer description cannot quietly knock them out of line.</p>
+</li>
+<li>
 <p><strong>Short wiki tables sat in a full-width box with an empty strip beside every row.</strong> The Commands page's <em>Navigation</em> and <em>Keyboard</em> tables were the clearest case: eight short rows, then half the column's width of nothing. A wiki table is <code>display:block</code> so a wide one can scroll inside its own box rather than squeezing the page — but a block box takes the full width the shared stylesheet gives a table, while the rows inside shrink to their content, so the border ran on long after the cells stopped. The box is sized to its content now and capped at the column, which leaves the wide ones exactly as they were, still scrolling when their content will not fit.</p>
 </li>
 <li>
