@@ -77,7 +77,11 @@ def resolve(target):
         if stem in EXTRA: return stem + '.html' + anchor, False
         if stem in KNOWN: return out_name(stem) + anchor, False
         return '../../' + base + anchor, False
-    if re.match(r'^(https?:)?//', t) or t.startswith('mailto:') or t.startswith('/') \
+    # markdown obfuscates an autolinked address into entities
+    # (&#109;&#97;&#105;... for mailto:), so test a decoded copy but emit the
+    # original — the obfuscation is the point of it.
+    probe = html.unescape(t)
+    if re.match(r'^(https?:)?//', probe) or probe.startswith('mailto:') or t.startswith('/') \
        or t.startswith('../') or t.startswith('#'):
         return t, False
     page, _, frag = t.partition('#')
