@@ -32,12 +32,15 @@
       : '/';
   var LIC = ROOT + 'docs/wiki/LICENSE.html';
   var README = ROOT + 'docs/wiki/README.html';
-  // A rights holder arrives at a game, not at the home page. The removal
-  // statement was only linked from the landing page's footer, so every page
-  // they would actually land on offered no route to us — and the obvious
-  // next stop is the web host's abuse desk, which acts on the whole account
-  // rather than on one file. This puts the route on every play page.
-  var REMOVAL = ROOT + 'docs/wiki/ATTRIBUTION.html#removal-upon-request';
+  // A rights holder arrives at a game, not at the home page. The route to us
+  // was only linked from the landing page's footer, so every page they would
+  // actually land on offered none — and the obvious next stop is the web
+  // host's abuse desk, which acts on the whole account rather than on one
+  // file. This puts it on every play page. It points at the legal position
+  // rather than at the removal procedure alone, because someone who has just
+  // found their own work here wants to know where we stand as well as how to
+  // ask; that page opens with the position and links the procedure.
+  var LEGAL = ROOT + 'docs/wiki/Legal.html';
   var s = document.createElement('style');
   s.textContent =
     '.gx-repo-link{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);' +
@@ -61,8 +64,8 @@
     '" target="_blank" rel="noopener">source</a> · <a href="' +
     README +
     '" target="_blank" rel="noopener">readme</a> · <a href="' +
-    REMOVAL +
-    '" target="_blank" rel="noopener">removal</a>';
+    LEGAL +
+    '" target="_blank" rel="noopener">legal</a>';
   // The wordmark goes home. These pages are opened with window.open from the
   // prompt, so the tidy exit is to point the window that opened us at the home
   // page and close this one — otherwise the player is left with a spent
@@ -83,5 +86,4 @@
     window.close();
   });
   document.body.appendChild(d);
-
 })();

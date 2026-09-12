@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The legal position — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="../../styles/genx-doc.css">
+<link rel="stylesheet" href="../../styles/wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="Search.html">Search</a><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li><li><a href="README.html">Readme</a></li><li><a href="ATTRIBUTION.html">Attribution</a></li><li><a href="Legal.html" class="active">Legal position</a></li><li><a href="REMOVAL.html">Removal</a></li><li><a href="CHANGELOG.html">Changelog</a></li><li><a href="CONTRIBUTING.html">Contributing</a></li><li><a href="SECURITY.html">Security</a></li><li><a href="CODE_OF_CONDUCT.html">Code of Conduct</a></li><li><a href="AI-DISCLAIMER.html">On the use of AI</a></li><li><a href="LICENSE.html">License</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="the-legal-position">The legal position</h1>
+<p>Where GenX-DOS stands, and why, in one place. The detail lives in
+<a href="ATTRIBUTION.html">ATTRIBUTION</a>, <a href="LICENSE.html">LICENSE</a> and <a href="REMOVAL.html">REMOVAL</a>; this page is the reasoning that
+connects them. It is a statement of position, not legal advice.</p>
+<h2 id="what-it-rests-on">What it rests on</h2>
+<p>GenX-DOS is a one-person, non-commercial preservation project. It is a static
+site: no server code, no accounts, no payments, no advertising, no sponsorship,
+no analytics and no telemetry. Nothing about it earns money, and there is no
+mechanism by which it could without being rebuilt.</p>
+<p>Since 11/09/2026 its two public surfaces hold different things:</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>What is there</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>genx-dos.fun</strong></td>
+<td>The whole site: the emulators, and the games, BIOS and firmware they run</td>
+</tr>
+<tr>
+<td><strong>The GitHub repository</strong></td>
+<td>Code, documentation and artwork only — no games, and no firmware we supplied, in the working tree, the history, or the release zip</td>
+</tr>
+</tbody>
+</table>
+<p>That split is deliberate. A concern about content belongs where the content is,
+and cannot take the code, the documentation or the project's history with it.</p>
+<h2 id="the-two-licences-on-original-work">The two licences on original work</h2>
+<p>Original material is <strong>CC BY-NC 4.0</strong>, except the emulator-facing glue —
+<code>systems/_shared/genx-*.js</code>, <code>systems/_shared-ejs/genx-*.js</code> and each bundle's
+<code>play.html</code> — which is <strong>GPL-3.0-or-later</strong>. Fifty files carry an SPDX header
+saying which.</p>
+<p>The split exists because those glue files drive GPL engines in the same browser
+context, so they are best treated as part of a combined work with them. The GPL
+forbids further restrictions, and NonCommercial is a further restriction, so the
+glue is GPL and the conflict disappears at the one point it arises. Everything
+worth protecting — the prompt, the writing, the artwork, the instruction pages —
+stays NonCommercial.</p>
+<p>One inherited obligation: the DOS terminal derives from the LGR terminal
+framework, and a clear credit to LGR must survive in any derivative.</p>
+<h2 id="third-party-code">Third-party code</h2>
+<p>Every engine, core and library here is someone else's work, under its own terms —
+GPL-2.0, GPL-3.0, MIT, BSD-2-Clause, zlib, Artistic-2.0 — and <a href="ATTRIBUTION.html">ATTRIBUTION</a> is
+the canonical record. Every binary we ship names its corresponding source, so the
+GPL's offer is met by a link rather than a request; our three forks are public,
+with their changes described in prose; no upstream code is relicensed, and
+vendored code is kept byte-faithful.</p>
+<p>Two cores are non-commercial-only: MAME 2003-Plus, under the classic MAME 0.78
+terms, and Genesis Plus GX. They suit the project as it is — and they are a hard
+constraint on it ever becoming commercial. CC BY-NC draws the same line.</p>
+<h2 id="games-bios-and-firmware">Games, BIOS and firmware</h2>
+<p>The site serves several hundred home-computer and console titles, a hundred
+arcade romsets, and the manufacturer BIOS and firmware images some machines need
+to start. None of it is in the repository, its history, or the release zip, and
+we publish no guidance on where to find any of it.</p>
+<p><strong>Where there is permission</strong>, it is named: GCE Vectrex, under Smith
+Engineering's standing non-commercial permission; LDOS 5.3.1, under Roy
+Soltoff's grant, with the notice retained; <em>Attack of the PETSCII Robots</em>, as
+its author's shareware release; public-domain and homebrew type-ins, and free
+reimplementations such as AltirraOS where those are what we ship.</p>
+<p><strong>Where there is none</strong> — the several hundred commercial titles, the arcade
+romsets, the manufacturer firmware — the position is preservation and personal
+use: machines 30 to 45 years out of production, software long out of commerce.
+That is a justification, not a permission, and we would not pretend otherwise. A
+rights holder who objects is within their rights, and the answer is not to argue
+but to remove it. Several of the publishers represented here still license their
+catalogues actively, and that is understood rather than overlooked.</p>
+<p>What that rests on in practice: the project is non-commercial in fact and by
+licence; removal is promised on request, at a deliberately low bar, from a link
+on every page; and there are no directory listings and no sourcing guidance.</p>
+<h2 id="sound-and-artwork">Sound and artwork</h2>
+<p>The one sound effect, the arcade coin drop, is licensed for this project — bought
+from its vendor — so it is used by right rather than on any preservation basis.</p>
+<p>Bezel photography, wallpapers and screen art are not attribution-tracked as a
+matter of policy, with one exception that carries a share-alike obligation and is
+credited in the page that uses it. That is a known gap rather than a considered
+position, and the removal promise covers artwork like everything else.</p>
+<h2 id="removal-upon-request">Removal upon request</h2>
+<p>If you hold rights in anything here, or represent someone who does, it comes down
+as soon as the request is read — not debated, not defended, not delayed pending a
+formal process. A request needs three things: who you are, your standing, and
+what and why. No notice format, no legal citations, no documents.</p>
+<p><strong>Email admin@genx-dos.fun.</strong> No account is needed anywhere, and a few sentences
+are enough. <a href="REMOVAL.html">REMOVAL</a> is the whole procedure, including what we can and cannot
+reach.</p>
+<h2 id="trade-marks-and-naming">Trade marks and naming</h2>
+<p>Machine, publisher and game names are used descriptively, to identify the
+software a page is about. No endorsement, affiliation or authorisation is claimed
+or implied, and no logo is used as a badge of origin for this project. The
+project's own name is GenX-DOS; the terminal it derives from is credited to LGR.</p>
+<h2 id="personal-data">Personal data</h2>
+<p>None is collected. No accounts, no cookies, no analytics, no telemetry, and every
+served page carries a Content-Security-Policy that blocks off-site requests at
+source. What the site stores lives only in your own browser — save states, the
+Model 100's battery RAM, emulator settings, in-game cartridge saves, and one
+20-byte arcade input config — and <a href="Your-Data.html">Your-Data</a> is the complete list of each and
+when it is written. The web host keeps its own access logs, which we neither read
+nor use.</p>
+<h2 id="known-gaps">Known gaps</h2>
+<p>Stated because a position that only lists its strengths is not a position.</p>
+<ul>
+<li>Nothing tells search engines to stay out of the game directories, and nothing
+  invites them in either.</li>
+<li>Graphics attribution is policy-free apart from the one share-alike item above.</li>
+<li>No lawyer has read any of this. For a hobby project that is a reasonable place
+  to stop; it is worth saying that it is where we have stopped.</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

@@ -5,6 +5,7 @@
 - [Roadmap](Roadmap)
 - [Readme](README)
 - [Attribution](ATTRIBUTION)
+- [Legal position](Legal)
 - [Removal](REMOVAL)
 - [Changelog](CHANGELOG.md)
 - [Contributing](CONTRIBUTING.md)
