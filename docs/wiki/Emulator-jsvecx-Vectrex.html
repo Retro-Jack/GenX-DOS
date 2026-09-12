@@ -58,6 +58,17 @@
 <h2 id="what-we-pruned">What we pruned</h2>
 <p>The bundle-add prune paid out again — five files, 43 KB. <code>css/seamless.css</code> was never linked; <code>js/dnd.js</code> was referenced by nothing; <code>js/audioWorkletWrapper.js</code> is one of the three <code>e8910()</code> definitions above, and the silent one.</p>
 <p>The interesting one was the <strong>ROM picker</strong> (<code>js/romList.js</code> + <code>js/table.js</code>, 22 KB). It was hidden behind CSS and unreachable, but still ran on every load and populated <strong>486 entries</strong> for ROMs the bundle does not ship. Upstream used that table's existence as <code>doinit()</code>'s "already initialised" flag, so removing it needed a boolean in its place. The tell was console output — "486 roms in list" on every load — not a file scan. Worth remembering: an orphan that still executes will not show up as an unreferenced file.</p>
+<p>An earlier prune left a loose end, found by the September orphan audit. The
+touch overlay's two files — <code>css/touch.css</code> and <code>overlay_touch.html</code> — went with
+the rest of the upstream chrome, but the line that asks for them stayed: on the
+first touch anywhere on the page, <code>js/input.js</code> fetched both, and both were
+gone. A desktop never noticed. The listener is no longer registered, which takes
+the whole touch path out in one line, since nothing in it runs until that
+listener fires; the disabled line is left in place, commented, with the reason
+beside it. Restoring touch controls means restoring both files <em>and</em> that line.</p>
+<p>The bundle has one other dangling fetch, deliberately left: <code>toggleRTM()</code> loads
+<code>js/rtm.js</code>, also pruned, but only when a URL carries <code>?rtm=true</code> — an upstream
+debug switch nothing here sets and no player will type.</p>
 <h2 id="the-overlays">The overlays</h2>
 <p>Vectrex games shipped with a printed plastic screen cover, because the display is monochrome — the colour you remember is physical. We ship the eleven overlays and lay each one in front of the vectors inside the bezel aperture, which is why <em>Spike</em> has a blue sky and a red logo on a machine that could only ever draw white lines.</p>
 <h2 id="the-bezel">The bezel</h2>

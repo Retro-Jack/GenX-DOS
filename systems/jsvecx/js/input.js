@@ -230,7 +230,16 @@ var input = (function() {
         });
       });
     };
-    addEventListener("touchstart", my.onFirstTouch, {passive:false});
+    // GenX-DOS: not registered. onFirstTouch fetches css/touch.css and
+    // overlay_touch.html, and both went with the rest of the upstream chrome
+    // in the June 2026 bundle sweep -- so the first touch on any touchscreen
+    // asked the server for two files that are not there. Nothing downstream
+    // runs unless this listener fires, so dropping it takes the whole touch
+    // overlay out cleanly. The site does not offer itself to touch devices
+    // (see systems/_shared/styles/genx-noscript.css), which is why the files
+    // were pruned rather than kept. Restore both files and this line together
+    // if the touch overlay is ever wanted.
+    // addEventListener("touchstart", my.onFirstTouch, {passive:false});
 
     // https://jsfiddle.net/aa0et7tr/5/
 

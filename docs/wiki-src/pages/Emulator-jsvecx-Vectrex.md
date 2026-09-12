@@ -55,6 +55,19 @@ The bundle-add prune paid out again — five files, 43 KB. `css/seamless.css` wa
 
 The interesting one was the **ROM picker** (`js/romList.js` + `js/table.js`, 22 KB). It was hidden behind CSS and unreachable, but still ran on every load and populated **486 entries** for ROMs the bundle does not ship. Upstream used that table's existence as `doinit()`'s "already initialised" flag, so removing it needed a boolean in its place. The tell was console output — "486 roms in list" on every load — not a file scan. Worth remembering: an orphan that still executes will not show up as an unreferenced file.
 
+An earlier prune left a loose end, found by the September orphan audit. The
+touch overlay's two files — `css/touch.css` and `overlay_touch.html` — went with
+the rest of the upstream chrome, but the line that asks for them stayed: on the
+first touch anywhere on the page, `js/input.js` fetched both, and both were
+gone. A desktop never noticed. The listener is no longer registered, which takes
+the whole touch path out in one line, since nothing in it runs until that
+listener fires; the disabled line is left in place, commented, with the reason
+beside it. Restoring touch controls means restoring both files *and* that line.
+
+The bundle has one other dangling fetch, deliberately left: `toggleRTM()` loads
+`js/rtm.js`, also pruned, but only when a URL carries `?rtm=true` — an upstream
+debug switch nothing here sets and no player will type.
+
 ## The overlays
 
 Vectrex games shipped with a printed plastic screen cover, because the display is monochrome — the colour you remember is physical. We ship the eleven overlays and lay each one in front of the vectors inside the bezel aperture, which is why *Spike* has a blue sky and a red logo on a machine that could only ever draw white lines.
