@@ -34,9 +34,9 @@
   var README = ROOT + 'docs/wiki/README.html';
   // A rights holder arrives at a game, not at the home page. The route to us
   // was only linked from the landing page's footer, so every page they would
-  // actually land on offered none — and the obvious next stop is the web
-  // host's abuse desk, which acts on the whole account rather than on one
-  // file. This puts it on every play page. It points at the legal position
+  // actually land on offered none, which left the one person we most want to
+  // hear from with the least obvious way to reach us. This puts it on every
+  // play page, one click from anywhere. It points at the legal position
   // rather than at the removal procedure alone, because someone who has just
   // found their own work here wants to know where we stand as well as how to
   // ask; that page opens with the position and links the procedure.
