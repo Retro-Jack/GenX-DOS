@@ -30,7 +30,6 @@
           '',
         )
       : '/';
-  var LIC = ROOT + 'docs/wiki/LICENSE.html';
   var README = ROOT + 'docs/wiki/README.html';
   // A rights holder arrives at a game, not at the home page. The route to us
   // was only linked from the landing page's footer, so every page they would
@@ -58,8 +57,6 @@
     '<a href="' +
     ROOT +
     '" class="gx-home-link">GenX-DOS</a> · <a href="' +
-    LIC +
-    '" target="_blank" rel="noopener">licence</a> · <a href="' +
     REPO +
     '" target="_blank" rel="noopener">source</a> · <a href="' +
     README +
