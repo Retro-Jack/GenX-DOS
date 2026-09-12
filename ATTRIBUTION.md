@@ -454,7 +454,7 @@ beside it, which is what the GPL asks for:
 
 | File | Covers |
 |---|---|
-| `systems/_shared-ejs/COPYING` (GPL-3.0) | the EmulatorJS runtime, and with it all 13 bundles that share it — none of them carries its own core binary |
+| `systems/_shared-ejs/COPYING` (GPL-3.0) | the EmulatorJS runtime, and with it all 14 bundles that share it — none of them carries its own core binary |
 | `systems/_shared-ejs/ejs/data/cores/COPYING` (GPL-2.0) | the libretro cores sitting in that directory |
 | `systems/jsspeccy/COPYING`, `systems/xroar/COPYING` (GPL-3.0) | those engines |
 | `systems/jtyone/COPYING`, `systems/js99er/COPYING` (GPL-2.0) | those engines |

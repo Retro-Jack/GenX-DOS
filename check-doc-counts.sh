@@ -70,14 +70,29 @@ check_phrase() {  # file  regex-with-one-capture  want  human-label
 
 echo "Counts quoted in the docs:"
 for f in README.md docs/wiki-src/pages/*.md; do
-  check_phrase "$f" '[0-9]+ sub-systems'  "$SUBSYS" "sub-systems"
+  # "bundled sub-systems" is the same claim with a word in the way; the
+  # Virtual Filesystem page sat at 32 for two days behind that word.
+  check_phrase "$f" '[0-9]+ (bundled )?sub-systems'  "$SUBSYS" "sub-systems"
 done
 # AI-DISCLAIMER says "N systems" rather than "sub-systems", so it needs its own
 # line — it was left at 33 for the six days after the arcade section landed.
 check_phrase AI-DISCLAIMER.md                      '[0-9]+ systems' "$SUBSYS" "systems"
-check_phrase README.md                             '[0-9]+ bundles via' "$EJSB" "EmulatorJS bundles"
-check_phrase docs/wiki-src/pages/File-Structure.md '[0-9]+ bundles share' "$EJSB" "EmulatorJS bundles"
+# Every count of EmulatorJS bundles, whatever the sentence around it. The two
+# rules here used to name the exact phrasings "bundles via" and "bundles
+# share", so three other ways of writing the same number -- in the README, in
+# ATTRIBUTION and on the Roadmap -- sat a release behind unseen. The regex
+# refuses a number preceded by "/" or by a letter, so neither "the Atari
+# 400/800 bundles" nor "the ZX81 bundles" is read as a count.
+for f in README.md ATTRIBUTION.md AI-DISCLAIMER.md index.html \
+         docs/article/index.html docs/wiki-src/pages/*.md; do
+  check_phrase "$f" '(^|[^0-9A-Za-z/])[0-9]+ bundles' "$EJSB" "EmulatorJS bundles"
+done
 check_phrase docs/wiki-src/pages/Roadmap.md        '[0-9]+ pages' "$GAMES"  "gamedoc pages"
+# The landing page says the number twice in prose -- the meta description and
+# the article link -- where no generated slot reaches it. Both sat at 33 after
+# the arcade landed, on the page every visitor sees first.
+check_phrase index.html '[0-9]+ classic computers'  "$SUBSYS" "landing prose · systems"
+check_phrase index.html '[0-9]+-system'             "$SUBSYS" "landing prose · systems"
 check_phrase docs/wiki-src/pages/File-Structure.md '[0-9]+ pages' "$SHARED" "gamedocs+controls"
 echo
 

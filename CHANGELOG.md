@@ -20,6 +20,10 @@
 - **Three unreferenced images from the Apple ][+ bundle.** `img/logoicon.png` and the two `webapp-*.png` touch icons came with apple2js and are reached only from its own `index.html`, which we do not ship. Nothing in the tree names them. The bundle's other six images are all referenced by `play.html`, the stylesheet or the app bundle, and stay.
 
 ### Changed
+- **The landing page said 33 systems.** Twice — in the meta description search engines quote, and in the line under the feature-article link — on the first page anyone sees, two days after the arcade made it 34. No generated slot reached either, because both are prose; the count checker now reads them.
+
+- **The EJS bundle count was a release behind in three places.** The arcade joined the fourteen bundles sharing `systems/_shared-ejs/` on 06/09, and `README.md`, `ATTRIBUTION.md` and the wiki's Roadmap still said thirteen. The count checker only looked for the two exact phrasings it was taught, so three other wordings of the same number drifted unseen; it now checks the number wherever it appears next to the word *bundles*.
+
 - **Both favicons are LGR's, and now say so.** `favicon.ico` and `animated_favicon1.gif` came in with the terminal on day one and had never been credited. `ATTRIBUTION.md` and the README name them now, and the GIF turns out to have been doing the job all along: its six frames hold on `C:\` for two seconds, cross-fade to **LGR** for two, and fade back — the tab icon has been a credit since the beginning.
 
 - **The legal page stops calling the prompt ours.** Its list of what stays NonCommercial opened with *the prompt*, which is the one part of the site that is not ours to license: the terminal, the virtual filesystem and the font system are the LGR base. The list now names the menu trees and the POST animation, and the paragraph below it says plainly why the prompt is not in it. Same correction in the local legal-position document.

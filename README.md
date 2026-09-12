@@ -76,7 +76,7 @@ prompt/                   the DOS terminal (HTML + JS, no build)
 systems/                  game counts below describe the live site; see ROMS.txt
   _shared/                shared CSS + helpers (NumLock warn, VICE RUN/STOP key remap, BBC COPY button, save-state, ...)
   _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem
-                          (13 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
+                          (14 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
   apple1/                 Apple I             — apple1js + 10 cassette tapes
   bbcmicro/               BBC Micro           — jsbeeb Vite dist (Model B) + BBC disks
   bbcmaster/              BBC Master 128      — jsbeeb Vite dist (model=Master) + Master-enhanced disks
