@@ -30,7 +30,11 @@ body{margin:0;background:var(--crt);color:var(--paper);
   -webkit-font-smoothing:antialiased}
 
 h1{font-family:'Michroma',sans-serif;color:var(--amber);margin:0;font-size:1.5rem;font-weight:400;letter-spacing:.01em;line-height:1.2}
-h2{font-family:'Michroma',sans-serif;color:var(--amber);font-size:.85rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;
+/* A smaller h1 rather than a tracked-out uppercase label: uppercase Michroma
+   at label size sets an uneven line, the caps being drawn to different heights
+   and the wide tracking spacing them apart. Same face, case and tracking as the
+   page title, one step down in size. */
+h2{font-family:'Michroma',sans-serif;color:var(--amber);font-size:1.1rem;font-weight:400;letter-spacing:.01em;line-height:1.2;
   display:flex;align-items:center;gap:1rem;margin:2.3rem 0 .9rem}
 h2::after{content:"";flex:1;height:1px;background:var(--line)}
 /* Subheadings are the landing page's card headings: mono, amber, at reading
