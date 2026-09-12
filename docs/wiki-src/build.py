@@ -473,8 +473,17 @@ a.hit:hover{border-left-color:var(--amber);background:rgba(255,176,0,.05)}
 
 /* A wiki table is prose and can be wide, so it scrolls inside its own box
    rather than squeezing the page. The look is genx-doc.css's; only the
-   scrolling and the boxed cells are local. */
-.content table{display:block;overflow-x:auto;border:1px solid var(--line);margin:0 0 1.3rem}
+   scrolling and the boxed cells are local.
+
+   display:block is what makes the scrolling possible, and it is also why the
+   box needs sizing: a block box takes the full width from genx-doc.css's
+   table{width:100%} while the rows inside it shrink to their content, so a
+   short table (Commands' Navigation and Keyboard) sat in a full-width border
+   with a wide empty strip beside every row. width:max-content sizes the box
+   to the table, and max-width keeps a wide one inside the column, still
+   scrolling. */
+.content table{display:block;overflow-x:auto;width:max-content;max-width:100%;
+  border:1px solid var(--line);margin:0 0 1.3rem}
 .content th,.content td{border:1px solid var(--line);padding:.5rem .7rem}
 
 .foot{border-top:1px solid var(--line);color:var(--dim);text-align:center;
