@@ -1,82 +1,96 @@
 {
- "note": "Pages whose Getting-started steps or Controls block were set by hand after generation. build-arcade-gamedoc.py uses these verbatim in place of what it would derive; everything else on the page is still generated.",
- "games": {
-  "bzone": {
-   "why": "Two sticks, one per tread, and each only goes forward and back; the core's labels give each stick left and right as well.",
-   "controls": "    <p class=\"note-plain\">Battlezone has <strong>two sticks, one per tread</strong>, and both are mapped. Push both the same way to drive; push one only, or push them opposite ways, to turn on the spot. Fire is the one button that matters.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>Left stick</td><td><kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left tread forward / backward</td></tr>\n      <tr><td>Right stick</td><td><kbd>I</kbd> <kbd>K</kbd></td><td>Right tread forward / backward</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n    </table>"
-  },
-  "centiped": {
-   "why": "Written before the template gained the hold-a-direction step for analogue cabinets.",
-   "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>Hold a direction rather than tapping it &mdash; this cabinet had a trackball, so movement is continuous while held.</li>"
-  },
-  "chasehq": {
-   "why": "The core names none of the four buttons; the driver's comments do, so the page uses those, with the wheel described as a wheel.",
-   "controls": "    <p class=\"note-plain\">The emulator&rsquo;s driver comments name all four of this cabinet&rsquo;s buttons, so these are its own labels rather than numbers.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Steer &mdash; a wheel on the real cabinet</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Accelerate</td></tr>\n      <tr><td>RB</td><td><kbd>X</kbd></td><td>Brake</td></tr>\n      <tr><td>X</td><td><kbd>V</kbd></td><td>Turbo &mdash; three per round</td></tr>\n      <tr><td>Y</td><td><kbd>A</kbd></td><td>Gear shift</td></tr>\n    </table>"
-  },
-  "gunsmoke": {
-   "why": "The three fire buttons sit on the pad's diamond (see PANEL in systems/arcade/play.html), with their labels in plain words.",
-   "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move (8-way)</td></tr>\n      <tr><td>X</td><td><kbd>Z</kbd></td><td>Fire &mdash; Left</td></tr>\n      <tr><td>Y</td><td><kbd>V</kbd></td><td>Fire &mdash; Centre</td></tr>\n      <tr><td>B</td><td><kbd>X</kbd></td><td>Fire &mdash; Right</td></tr>\n    </table>"
-  },
-  "helifire": {
-   "why": "The core names no buttons; one button, and the stick moves the submarine vertically as well as along the surface.",
-   "controls": "    <p class=\"note-plain\">One button. The driver gives the stick all four directions, so the submarine moves vertically as well as along the surface.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n    </table>"
-  },
-  "imgfight": {
-   "why": "The core lists four unnamed buttons; Irem's flyer names the two the game uses, plus the pair pressed together.",
-   "controls": "    <p class=\"note-plain\">The emulator lists four buttons but Irem&rsquo;s own flyer names two, and those are the two the game uses.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move (8-way)</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n      <tr><td>RB</td><td><kbd>X</kbd></td><td>Speed change &mdash; steps through four speeds</td></tr>\n      <tr><td>A and RB together</td><td><kbd>Z</kbd> + <kbd>X</kbd></td><td>Launch the pods as a shot, when you have them</td></tr>\n    </table>"
-  },
-  "irobot": {
-   "why": "The panel's two buttons were VIEW buttons wired to the start inputs, so the camera rows come from the game, not the core's labels (which list only Fire and an unused button 2; RB tested dead). Written before the hold-a-direction step.",
-   "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>The cabinet used an analogue stick, so hold a direction rather than tapping.</li>",
-   "controls": "    <p class=\"note-plain\">Fire is on the stick. The panel&rsquo;s two buttons were the camera, which the game reads through the start buttons, so in play 1P lowers the view and 2P raises it.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n      <tr><td>X</td><td><kbd>1</kbd></td><td>Camera down</td></tr>\n      <tr><td>Y</td><td><kbd>2</kbd></td><td>Camera up</td></tr>\n    </table>"
-  },
-  "marble": {
-   "why": "No-button note worded for the trackball; written before the hold-a-direction step.",
-   "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>Hold a direction rather than tapping it &mdash; the real cabinet had a trackball, and a tap is too brief to register as a roll.</li>",
-   "controls": "    <p class=\"note-plain\">This cabinet had no buttons at all &mdash; the trackball was the whole control panel.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n    </table>"
-  },
-  "missile": {
-   "why": "The three bases fire from the pad's diamond, named by position (left, centre, right) rather than by the core's Alpha / Delta / Omega.",
-   "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>Hold a direction to move the crosshair; it was a trackball on the real machine, so it travels while held.</li>",
-   "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n      <tr><td>X</td><td><kbd>Z</kbd></td><td>Fire &mdash; left base</td></tr>\n      <tr><td>Y</td><td><kbd>V</kbd></td><td>Fire &mdash; centre base</td></tr>\n      <tr><td>B</td><td><kbd>X</kbd></td><td>Fire &mdash; right base</td></tr>\n    </table>"
-  },
-  "paperboy": {
-   "why": "'Brake' corrects the core's 'Break', and Throw is on A: play-tested 12/09/2026, A throws, although the core's labels put Throw on button 2. Written before the hold-a-direction step.",
-   "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>The cabinet used handlebars; hold a direction to steer and to speed up or slow down.</li>",
-   "controls": "    <p class=\"note-plain\">This cabinet used 2 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Accelerate / Brake</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Throw</td></tr>\n    </table>"
-  },
-  "punchout": {
-   "why": "The two blows and the uppercut sit on the pad's diamond (see PANEL in systems/arcade/play.html).",
-   "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move (4-way)</td></tr>\n      <tr><td>X</td><td><kbd>Z</kbd></td><td>Left blow to head / body</td></tr>\n      <tr><td>B</td><td><kbd>X</kbd></td><td>Right blow to head / body</td></tr>\n      <tr><td>Y</td><td><kbd>V</kbd></td><td>Hook Uppercut</td></tr>\n    </table>"
-  },
-  "sf1": {
-   "why": "The core names no buttons; the driver reads them as two pressure-sensitive groups of three, set out as punches and kicks.",
-   "controls": "    <p class=\"note-plain\">Six buttons in two groups of three. The emulator&rsquo;s driver reads buttons 1&ndash;3 as one control and 4&ndash;6 as another, each passing through the same pressure scale &mdash; so within a group the three buttons are the same attack at light, medium and heavy. That is Capcom&rsquo;s six-button layout: punches on the first group, kicks on the second.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move, jump and crouch</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Light punch</td></tr>\n      <tr><td>RB</td><td><kbd>X</kbd></td><td>Medium punch</td></tr>\n      <tr><td>X</td><td><kbd>V</kbd></td><td>Heavy punch</td></tr>\n      <tr><td>Y</td><td><kbd>A</kbd></td><td>Light kick</td></tr>\n      <tr><td>B</td><td><kbd>C</kbd></td><td>Medium kick</td></tr>\n      <tr><td>LB</td><td><kbd>S</kbd></td><td>Heavy kick</td></tr>\n    </table>"
-  },
-  "spacefev": {
-   "why": "The core names no buttons; one button and a two-way stick, plus a note on the Game A / B / C buttons.",
-   "controls": "    <p class=\"note-plain\">One button, and a two-way stick rather than a four-way one.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Move</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n    </table>"
-  },
-  "spyhunt": {
-   "why": "The core names none of the six buttons; the driver does, and the wheel and pedal are described as what they were.",
-   "controls": "    <p class=\"note-plain\">Unusually for this section, the emulator&rsquo;s driver names every button on this panel, so these are the cabinet&rsquo;s own labels rather than numbers.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Steer &mdash; a wheel on the real cabinet</td></tr>\n      <tr><td>&mdash;</td><td><kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Accelerate and brake &mdash; a foot pedal on the real cabinet</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Machine guns</td></tr>\n      <tr><td>RB</td><td><kbd>X</kbd></td><td>Smoke screen</td></tr>\n      <tr><td>X</td><td><kbd>V</kbd></td><td>Weapon truck &mdash; call it in to rearm</td></tr>\n      <tr><td>Y</td><td><kbd>A</kbd></td><td>Oil slick</td></tr>\n      <tr><td>B</td><td><kbd>C</kbd></td><td>Missiles</td></tr>\n      <tr><td>LB</td><td><kbd>S</kbd></td><td>Gear shift &mdash; a toggle, not a hold</td></tr>\n    </table>"
-  },
-  "starwars": {
-   "why": "Four identical triggers shown as one row; written before the hold-a-direction step, which a proportional stick does not need.",
-   "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>The cabinet used a flight yoke, and the <strong>left stick</strong> is a real stand-in for it: the aim is proportional, so how far you push is how far the crosshair travels, and it returns to the centre when you let go. The movement keys and the D-pad aim it too, but at a fixed rate. Any of the four fire buttons shoots.</li>",
-   "controls": "    <p class=\"note-plain\">This cabinet used 4 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n      <tr><td>A, RB, X or Y</td><td><kbd>Z</kbd> <kbd>X</kbd> <kbd>V</kbd> <kbd>A</kbd></td><td>Fire &mdash; the cabinet had four triggers, all the same</td></tr>\n    </table>"
-  },
-  "tempest": {
-   "why": "Written before the template gained the hold-a-direction step for analogue cabinets.",
-   "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>Hold left or right to slide around the rim &mdash; the cabinet used a spinner, so the claw moves while the key is held.</li>"
-  },
-  "tutankhm": {
-   "why": "Fires left or right along its corridor from the right stick (see PANEL in systems/arcade/play.html).",
-   "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move (4-way)</td></tr>\n      <tr><td>Right stick &larr; &rarr;</td><td><kbd>Z</kbd> <kbd>X</kbd></td><td>Fire Left / Fire Right</td></tr>\n      <tr><td>X</td><td><kbd>V</kbd></td><td>Flash</td></tr>\n    </table>"
-  },
-  "hangon": {
-   "why": "The core names no controls: throttle and brake are analogue axes Y and Z, not buttons. RT drives the throttle (bound to 'left stick up') and LT the brake (Z assigned to 'right stick down' by the default.cfg play.html writes at boot). Play-tested 12/09/2026.",
-   "controls": "    <p class=\"note-plain\">No buttons on this cabinet. You sat on a motorbike: turning the handlebars steered, twisting the grip was the throttle, and a lever was the brake &mdash; three analogue controls, which the triggers and the left stick stand in for here.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>Left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Steer &mdash; lean into the bend</td></tr>\n      <tr><td>RT</td><td><kbd>&uarr;</kbd></td><td>Throttle</td></tr>\n      <tr><td>LT</td><td><kbd>K</kbd></td><td>Brake</td></tr>\n    </table>"
+  "note": "Pages whose Getting-started steps or Controls block were set by hand after generation. build-arcade-gamedoc.py uses these verbatim in place of what it would derive; everything else on the page is still generated.",
+  "games": {
+    "bzone": {
+      "why": "Two sticks, one per tread, and each only goes forward and back; the core's labels give each stick left and right as well.",
+      "controls": "    <p class=\"note-plain\">Battlezone has <strong>two sticks, one per tread</strong>, and both are mapped. Push both the same way to drive; push one only, or push them opposite ways, to turn on the spot. Fire is the one button that matters.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>Left stick</td><td><kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left tread forward / backward</td></tr>\n      <tr><td>Right stick</td><td><kbd>I</kbd> <kbd>K</kbd></td><td>Right tread forward / backward</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n    </table>"
+    },
+    "centiped": {
+      "why": "Written before the template gained the hold-a-direction step for analogue cabinets.",
+      "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>Hold a direction rather than tapping it &mdash; this cabinet had a trackball, so movement is continuous while held.</li>"
+    },
+    "chasehq": {
+      "why": "The core names none of the four buttons; the driver's comments do, so the page uses those, with the wheel described as a wheel.",
+      "controls": "    <p class=\"note-plain\">The emulator&rsquo;s driver comments name all four of this cabinet&rsquo;s buttons, so these are its own labels rather than numbers.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Steer &mdash; a wheel on the real cabinet</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Accelerate</td></tr>\n      <tr><td>RB</td><td><kbd>X</kbd></td><td>Brake</td></tr>\n      <tr><td>X</td><td><kbd>V</kbd></td><td>Turbo &mdash; three per round</td></tr>\n      <tr><td>Y</td><td><kbd>A</kbd></td><td>Gear shift</td></tr>\n    </table>"
+    },
+    "gunsmoke": {
+      "why": "The three fire buttons sit on the pad's diamond (see PANEL in systems/arcade/play.html), with their labels in plain words.",
+      "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move (8-way)</td></tr>\n      <tr><td>X</td><td><kbd>Z</kbd></td><td>Fire &mdash; Left</td></tr>\n      <tr><td>Y</td><td><kbd>V</kbd></td><td>Fire &mdash; Centre</td></tr>\n      <tr><td>B</td><td><kbd>X</kbd></td><td>Fire &mdash; Right</td></tr>\n    </table>"
+    },
+    "helifire": {
+      "why": "The core names no buttons; one button, and the stick moves the submarine vertically as well as along the surface.",
+      "controls": "    <p class=\"note-plain\">One button. The driver gives the stick all four directions, so the submarine moves vertically as well as along the surface.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n    </table>"
+    },
+    "imgfight": {
+      "why": "The core lists four unnamed buttons; Irem's flyer names the two the game uses, plus the pair pressed together.",
+      "controls": "    <p class=\"note-plain\">The emulator lists four buttons but Irem&rsquo;s own flyer names two, and those are the two the game uses.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move (8-way)</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n      <tr><td>RB</td><td><kbd>X</kbd></td><td>Speed change &mdash; steps through four speeds</td></tr>\n      <tr><td>A and RB together</td><td><kbd>Z</kbd> + <kbd>X</kbd></td><td>Launch the pods as a shot, when you have them</td></tr>\n    </table>"
+    },
+    "irobot": {
+      "why": "The panel's two buttons were VIEW buttons wired to the start inputs, so the camera rows come from the game, not the core's labels (which list only Fire and an unused button 2; RB tested dead). Written before the hold-a-direction step.",
+      "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>The cabinet used an analogue stick, so hold a direction rather than tapping.</li>",
+      "controls": "    <p class=\"note-plain\">Fire is on the stick. The panel&rsquo;s two buttons were the camera, which the game reads through the start buttons, so in play 1P lowers the view and 2P raises it.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n      <tr><td>X</td><td><kbd>1</kbd></td><td>Camera down</td></tr>\n      <tr><td>Y</td><td><kbd>2</kbd></td><td>Camera up</td></tr>\n    </table>"
+    },
+    "marble": {
+      "why": "No-button note worded for the trackball; written before the hold-a-direction step.",
+      "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>Hold a direction rather than tapping it &mdash; the real cabinet had a trackball, and a tap is too brief to register as a roll.</li>",
+      "controls": "    <p class=\"note-plain\">This cabinet had no buttons at all &mdash; the trackball was the whole control panel.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n    </table>"
+    },
+    "missile": {
+      "why": "The three bases fire from the pad's diamond, named by position (left, centre, right) rather than by the core's Alpha / Delta / Omega.",
+      "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>Hold a direction to move the crosshair; it was a trackball on the real machine, so it travels while held.</li>",
+      "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n      <tr><td>X</td><td><kbd>Z</kbd></td><td>Fire &mdash; left base</td></tr>\n      <tr><td>Y</td><td><kbd>V</kbd></td><td>Fire &mdash; centre base</td></tr>\n      <tr><td>B</td><td><kbd>X</kbd></td><td>Fire &mdash; right base</td></tr>\n    </table>"
+    },
+    "paperboy": {
+      "why": "'Brake' corrects the core's 'Break', and Throw is on A: play-tested 12/09/2026, A throws, although the core's labels put Throw on button 2. Written before the hold-a-direction step.",
+      "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>The cabinet used handlebars; hold a direction to steer and to speed up or slow down.</li>",
+      "controls": "    <p class=\"note-plain\">This cabinet used 2 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Accelerate / Brake</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Throw</td></tr>\n    </table>"
+    },
+    "punchout": {
+      "why": "The two blows and the uppercut sit on the pad's diamond (see PANEL in systems/arcade/play.html).",
+      "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move (4-way)</td></tr>\n      <tr><td>X</td><td><kbd>Z</kbd></td><td>Left blow to head / body</td></tr>\n      <tr><td>B</td><td><kbd>X</kbd></td><td>Right blow to head / body</td></tr>\n      <tr><td>Y</td><td><kbd>V</kbd></td><td>Hook Uppercut</td></tr>\n    </table>"
+    },
+    "sf1": {
+      "why": "The core names no buttons; the driver reads them as two pressure-sensitive groups of three, set out as punches and kicks.",
+      "controls": "    <p class=\"note-plain\">Six buttons in two groups of three. The emulator&rsquo;s driver reads buttons 1&ndash;3 as one control and 4&ndash;6 as another, each passing through the same pressure scale &mdash; so within a group the three buttons are the same attack at light, medium and heavy. That is Capcom&rsquo;s six-button layout: punches on the first group, kicks on the second.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move, jump and crouch</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Light punch</td></tr>\n      <tr><td>RB</td><td><kbd>X</kbd></td><td>Medium punch</td></tr>\n      <tr><td>X</td><td><kbd>V</kbd></td><td>Heavy punch</td></tr>\n      <tr><td>Y</td><td><kbd>A</kbd></td><td>Light kick</td></tr>\n      <tr><td>B</td><td><kbd>C</kbd></td><td>Medium kick</td></tr>\n      <tr><td>LB</td><td><kbd>S</kbd></td><td>Heavy kick</td></tr>\n    </table>"
+    },
+    "spacefev": {
+      "why": "The core names no buttons; one button and a two-way stick, plus a note on the Game A / B / C buttons.",
+      "controls": "    <p class=\"note-plain\">One button, and a two-way stick rather than a four-way one.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Move</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n    </table>"
+    },
+    "spyhunt": {
+      "why": "The core names none of the six buttons; the driver does, and the wheel and pedal are described as what they were.",
+      "controls": "    <p class=\"note-plain\">Unusually for this section, the emulator&rsquo;s driver names every button on this panel, so these are the cabinet&rsquo;s own labels rather than numbers.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Steer &mdash; a wheel on the real cabinet</td></tr>\n      <tr><td>&mdash;</td><td><kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Accelerate and brake &mdash; a foot pedal on the real cabinet</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Machine guns</td></tr>\n      <tr><td>RB</td><td><kbd>X</kbd></td><td>Smoke screen</td></tr>\n      <tr><td>X</td><td><kbd>V</kbd></td><td>Weapon truck &mdash; call it in to rearm</td></tr>\n      <tr><td>Y</td><td><kbd>A</kbd></td><td>Oil slick</td></tr>\n      <tr><td>B</td><td><kbd>C</kbd></td><td>Missiles</td></tr>\n      <tr><td>LB</td><td><kbd>S</kbd></td><td>Gear shift &mdash; a toggle, not a hold</td></tr>\n    </table>"
+    },
+    "starwars": {
+      "why": "Four identical triggers shown as one row; written before the hold-a-direction step, which a proportional stick does not need.",
+      "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>The cabinet used a flight yoke, and the <strong>left stick</strong> is a real stand-in for it: the aim is proportional, so how far you push is how far the crosshair travels, and it returns to the centre when you let go. The movement keys and the D-pad aim it too, but at a fixed rate. Any of the four fire buttons shoots.</li>",
+      "controls": "    <p class=\"note-plain\">This cabinet used 4 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n      <tr><td>A, RB, X or Y</td><td><kbd>Z</kbd> <kbd>X</kbd> <kbd>V</kbd> <kbd>A</kbd></td><td>Fire &mdash; the cabinet had four triggers, all the same</td></tr>\n    </table>"
+    },
+    "tempest": {
+      "why": "Written before the template gained the hold-a-direction step for analogue cabinets.",
+      "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>Hold left or right to slide around the rim &mdash; the cabinet used a spinner, so the claw moves while the key is held.</li>"
+    },
+    "tutankhm": {
+      "why": "Fires left or right along its corridor from the right stick (see PANEL in systems/arcade/play.html).",
+      "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Move (4-way)</td></tr>\n      <tr><td>Right stick &larr; &rarr;</td><td><kbd>Z</kbd> <kbd>X</kbd></td><td>Fire Left / Fire Right</td></tr>\n      <tr><td>X</td><td><kbd>V</kbd></td><td>Flash</td></tr>\n    </table>"
+    },
+    "hangon": {
+      "why": "The core names no controls: throttle and brake are analogue axes Y and Z, not buttons. RT drives the throttle (bound to 'left stick up') and LT the brake (Z assigned to 'right stick down' by the default.cfg play.html writes at boot). Play-tested 12/09/2026.",
+      "controls": "    <p class=\"note-plain\">No buttons on this cabinet. You sat on a motorbike: turning the handlebars steered, twisting the grip was the throttle, and a lever was the brake &mdash; three analogue controls, which the triggers and the left stick stand in for here.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>Left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Steer &mdash; lean into the bend</td></tr>\n      <tr><td>RT</td><td><kbd>&uarr;</kbd></td><td>Throttle</td></tr>\n      <tr><td>LT</td><td><kbd>K</kbd></td><td>Brake</td></tr>\n    </table>"
+    },
+    "blaster": {
+      "why": "Play-tested 13/09/2026. Centres correctly on the core's defaults, so no option changes: it is not one of the cabinets that needs digital_joy_centering off. Steering is proportional. The third button the core's data cannot name is a second Thrust, confirmed at the pad, so it has a row rather than being left off the page.",
+      "controls": "    <p class=\"note-plain\">This cabinet used 3 buttons, two of them the same.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Blast</td></tr>\n      <tr><td>RB, or X</td><td><kbd>X</kbd>, or <kbd>V</kbd></td><td>Thrust</td></tr>\n    </table>"
+    },
+    "sharrier": {
+      "why": "Play-tested 13/09/2026. Centres correctly on the core's defaults, and the stick is proportional, so the generic hold-a-direction step is wrong for it — that step is for a cabinet whose analogue port is driven from a D-pad. The core's data labels all three buttons Shot; only the first one fires, which matches the cabinet's single trigger, so the page lists one.",
+      "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>The cabinet was a flight stick, and the <strong>left stick</strong> stands in for it properly: how far you push is how fast Harrier moves, and he stops where you leave him when you let go. The movement keys and the D-pad steer him too, but at one fixed speed. <kbd>Z</kbd>, or A on the pad, fires.</li>",
+      "controls": "    <p class=\"note-plain\">The cabinet had a single trigger on its flight stick. The emulator&rsquo;s data lists three buttons, all named Shot, but only the first one fires.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Shot</td></tr>\n    </table>"
+    },
+    "sinistar": {
+      "why": "Play-tested 13/09/2026. Centres correctly on the core's defaults and steers proportionally, so no option changes and no hold-a-direction step. The Sinibomb was documented on RB and does nothing there: the core binds this game's Button 2 to retropad L, which this site's pad map sends to B on the pad and C on the keyboard. Read out of the core's own input list in MAME's setup menu, then confirmed at the pad. The page's own map assumes MAME button 2 arrives on retropad Y, which is true of other cabinets but not this one.",
+      "steps": "      <li>Insert a coin &mdash; the coin slot at the top left, or <kbd>5</kbd>.</li>\n      <li>Press 1 player start &mdash; the 1P button, or <kbd>1</kbd>.</li>\n      <li>The cabinet used a 49-way stick, and the <strong>left stick</strong> stands in for it: how far you push is how fast the ship flies, and it holds its heading when you let go. The movement keys and the D-pad fly it too, but at one fixed speed. <kbd>Z</kbd> fires; <kbd>C</kbd> throws a Sinibomb.</li>",
+      "controls": "    <p class=\"note-plain\">This cabinet used 2 buttons.</p>\n    <table>\n      <tr><th>Gamepad</th><th>Keyboard</th><th>Action</th></tr>\n      <tr><td>D-pad, or the left stick</td><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td><td>Left / Right / Up / Down</td></tr>\n      <tr><td>A</td><td><kbd>Z</kbd></td><td>Fire</td></tr>\n      <tr><td>B</td><td><kbd>C</kbd></td><td>Sinibomb</td></tr>\n    </table>"
+    }
   }
- }
 }
