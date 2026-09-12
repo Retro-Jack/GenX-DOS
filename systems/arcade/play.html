@@ -305,6 +305,22 @@
         // port's axis from the first stick-axis code in its sequence, so this
         // puts Z on the right stick's vertical. It is global to the core, but
         // harmless elsewhere: Z was unassigned for every game.
+        if (key === 'blaster') {
+          // Blaster has no NVRAM handler in this 0.78-era core. Every other
+          // Williams board here keeps its settings in a .nv file the core
+          // writes -- defender, robotron and sinistar all have one -- but
+          // Blaster's CMOS is never written by anything, so the board fails
+          // its own checksum on every boot and stops at HIGH SCORE TABLE
+          // RESET / FACTORY SETTINGS RESTORED. A reload does not clear it,
+          // because nothing was kept to clear. A soft reset does: the board
+          // comes up on the CMOS it just initialised and runs.
+          //
+          // So the page does it, once, a moment after boot. A player who is
+          // handed a dead-looking screen and no instructions has no way to
+          // know a reset is what it wants. The flicker is the cabinet's own
+          // power-on, which is roughly what the real one did.
+          window.GENX_EJS_BOOT_RESET = 20000;
+        }
         if (key === 'hangon') {
           controls[0][19].value2 = 'RIGHT_BOTTOM_SHOULDER'; // "left stick up"    = RT = throttle
           controls[0][18].value2 = '';                      // the stick's own down is NOT the throttle

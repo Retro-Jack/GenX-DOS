@@ -178,6 +178,90 @@ window.genxBootEJS = async function (config) {
           }
         });
       }
+      // KEEPING WHAT A CORE WRITES. A core's own save files -- cartridge
+      // battery saves, and the NVRAM an arcade board keeps its settings and
+      // high scores in -- only reach storage when something calls
+      // gameManager.saveSaveFiles(). The runtime wires that to its "exit"
+      // event and nowhere else, and a tab that is simply closed never fires
+      // it, so the file lives in memory and dies with the page. Blaster is
+      // what showed it up: MAME initialised its CMOS, printed FACTORY
+      // SETTINGS RESTORED, and every reload started over, because the CMOS
+      // was never kept. /data/saves is IDBFS mounted with autoPersist, so a
+      // flush is the only thing missing.
+      //
+      // Flushed when the page is hidden or being left -- the two moments a
+      // player actually stops -- and on a slow timer as a backstop for a tab
+      // that crashes. visibilitychange is what fires on a phone or on a tab
+      // switch; pagehide is the one that survives bfcache, where unload does
+      // not.
+      if (typeof e.on === 'function') {
+        e.on('start', () => {
+          const flush = () => {
+            try {
+              if (e.gameManager && !e.failedToStart)
+                e.gameManager.saveSaveFiles();
+            } catch (_) {
+              /* nothing worth interrupting a game for */
+            }
+          };
+          document.addEventListener('visibilitychange', () => {
+            if (document.hidden) flush();
+          });
+          window.addEventListener('pagehide', flush);
+          setInterval(flush, 30000);
+
+          // A BOARD THAT NEEDS A KICK. A page sets GENX_EJS_BOOT_RESET to the
+          // number of milliseconds after boot at which to soft-reset the
+          // machine once -- for a board whose settings memory the core never
+          // writes, and which therefore stops on its own power-on error every
+          // single time. See systems/arcade/play.html, Blaster.
+          //
+          // The delay has to clear the board's own power-on sequence: reset it
+          // before it has finished writing the settings it is about to
+          // complain about, and it simply repeats the complaint. Later is
+          // safe, because the reset is skipped once the player has touched
+          // anything -- nobody's game gets restarted underneath them.
+          const kick = window.GENX_EJS_BOOT_RESET;
+          if (kick) {
+            const delays = Array.isArray(kick) ? kick : [kick];
+            let acted = false;
+            const noteAction = () => {
+              acted = true;
+            };
+            for (const ev of ['keydown', 'mousedown', 'touchstart']) {
+              window.addEventListener(ev, noteAction, {
+                once: true,
+                capture: true,
+              });
+            }
+            const padPoll = setInterval(() => {
+              const pads = navigator.getGamepads ? navigator.getGamepads() : [];
+              for (const p of pads) {
+                if (p && p.buttons.some((b) => b.pressed)) noteAction();
+              }
+            }, 250);
+            window.__genxBootReset = { fired: 0, skipped: false };
+            delays.forEach((ms, i) => {
+              setTimeout(() => {
+                if (i === delays.length - 1) clearInterval(padPoll);
+                if (acted) {
+                  window.__genxBootReset.skipped = true;
+                  return;
+                }
+                try {
+                  if (e.gameManager) {
+                    e.gameManager.restart();
+                    window.__genxBootReset.fired++;
+                  }
+                } catch (err) {
+                  window.__genxBootReset.error = String(err);
+                }
+              }, ms);
+            });
+          }
+        });
+      }
+
       const orig = e.getCoreSettings.bind(e);
       e.getCoreSettings = () => {
         let rv = orig();
