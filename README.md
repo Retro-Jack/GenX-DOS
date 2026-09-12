@@ -197,6 +197,7 @@ Prefer a narrative read? **[Booting a Museum in a Browser Tab](https://genx-dos.
 The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.md](ATTRIBUTION.md)** is the canonical record of every bundled third-party component (source URLs, authors, BIOS/ROM provenance, bezel artwork licences, and BY-SA share-alike obligations). Summary below.
 
 - DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system by Mike, written informally for **LGR — Lazy Game Reviews** (Clint Basinger, <http://www.lazygamereviews.com>)
+- Both favicons — `favicon.ico` and the six-frame `animated_favicon1.gif`, which cross-fades between `C:\` and **LGR** — are from the same LGR base
 - AMIBIOS POST animation, emulator integration wrappers, menu tree, and bundled-emulator-specific code by Retro-Jack
 - jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb)
 - ElkJS: (c) Darren Coles 2013 (dmcoles/elkjs) — 6502 core ported from Elkulator by Tom Walker

@@ -75,6 +75,15 @@ rights holder's wishes about their own work.
   layout, the command dispatcher, and the CP437 sprite font and renderer
   originate from **LGR-DOS** (the "LGR-DOS Command Prompt"), LGR's
   in-browser DOS-prompt project. GenX-DOS extends that base.
+- **Both favicons** — `favicon.ico` (32×32) and `animated_favicon1.gif`
+  (16×16) — also LGR's, part of the same initial import. The `.ico` is
+  the green `C:\` prompt; the GIF is the same icon in six frames, which
+  hold on `C:\` for two seconds, cross-fade to **LGR** for two, and
+  fade back. The tab icon has been crediting LGR the whole time. Both
+  are served from the site root, from `prompt/` and from
+  `systems/_shared/`, and every copy is byte-identical to the original.
+  (The `favicon.ico` under `systems/bbcmicro/dist/` and
+  `systems/bbcmaster/dist/` is a different file, and comes from jsbeeb.)
 - **AMIBIOS POST animation, emulator integration wrappers, menu tree,
   and all bundled-emulator-specific code** — © Retro-Jack. Original work
   added on top of the LGR terminal base.

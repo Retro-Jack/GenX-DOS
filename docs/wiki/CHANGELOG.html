@@ -31,6 +31,10 @@
 <h3 id="added">Added</h3>
 <ul>
 <li>
+<p><strong><code>COMMAND.COM</code> is on the drive, and it credits LGR.</strong> The interpreter was the one file a DOS C: root always had and ours did not. It sits in the root now, and running it prints the start-up banner: <code>GenX-DOS Version 1.8.1</code>, then <code>(☻)Copyleft Mike @ LGR - Lazy Game Reviews</code>, then a blank line — where the "C" of "(C)" is the font sheet's smiley, character 2, the sheet being indexed by character code. The credit is the point of it: the terminal, the virtual filesystem and the font system are the LGR base written by Mike for Lazy Game Reviews, not our work, and the interpreter's own banner is where DOS always put that line. <code>TYPE COMMAND.COM</code> gives the same seeded garbage the launchers give, minus the <code>MZ</code> — a .COM has no header at all; DOS loaded one at offset 0x100 and jumped straight in, so the first byte on screen is already code.
+  It answers from any directory because there is a PATH now: <code>GENX_PATH</code> holds the drive root, and <code>attemptExec</code> searches the current directory first and then each entry on it, which is the order DOS searched in. <code>check-doc-counts.sh</code> ties the banner's version to the newest release heading here, since nothing else in the tree derives that number and it would sit a release behind unnoticed.</p>
+</li>
+<li>
 <p><strong>The legal position is a page now, and the pill points at it.</strong> The reasoning behind the licences, the ROMs, the artwork and the data was spread across five documents, none of which said how the parts fit together; the wiki's <strong>Legal position</strong> page does. The credit pill on every play page used to read <em>removal</em> and open the removal section inside the attribution file — it now reads <strong>legal</strong> and opens that page, because someone who has just found their own work here wants to know where we stand as well as how to ask, and the page opens with the position and links the procedure. It is also honest about the gaps, which is the point of publishing it: no robots policy, graphics attribution left to a single share-alike case, and no lawyer behind any of it.</p>
 </li>
 <li>
@@ -46,6 +50,9 @@
 </ul>
 <h3 id="changed">Changed</h3>
 <ul>
+<li>
+<p><strong>Leaving the launcher leaves a blank line.</strong> <code>\SYSTEMS\0.bat</code> — the menu's <em>Exit</em> — printed its title, its rule and "Type help or menu to continue" and then dropped straight onto the prompt. It ends on <code>echo.</code> rather than <code>echo on</code> now, which prints the blank line and re-enables the prompt in one, so the three lines read as a block with the cursor clear of them.</p>
+</li>
 <li>
 <p><strong>Doc accuracy pass.</strong> Four things the tree had moved past: the prompt's own comment still called the credit strip <em>licence · source</em>, hours after the licence came off it; the wiki's file map still had 13 bundles sharing the EmulatorJS framework, where the arcade made 14 six days ago; and neither root listing named <code>REMOVAL.md</code>. The arcade page now says where the analogue cabinets stand — five played, three to go — rather than leaving Star Wars as the only one anyone had checked. <code>check-doc-counts.sh</code> gained the bundle count, since that is exactly the kind of number that goes stale quietly.</p>
 </li>
@@ -121,7 +128,7 @@
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>
-<p><strong><code>help</code> ran off the top of the screen.</strong> The prompt is a fixed 80x25 grid that rolls up like VGA — the buffer keeps growing but only the last 25 rows are ever visible, and there is no scrollback to reach the rest — and the reference was 31 rows one command per line, so a third of it had gone before the reader saw it. It is two columns now, 18 rows, the whole thing on one screen with the prompt still under it: NAVIGATION beside DISPLAY, FILES beside KEYBOARD. The columns are padded in code rather than typed as spaces, so a longer description cannot quietly knock them out of line.</p>
+<p><strong><code>help</code> ran off the top of the screen.</strong> The prompt is a fixed 80x25 grid that rolls up like VGA — the buffer keeps growing but only the last 25 rows are ever visible, and there is no scrollback to reach the rest — and the reference was 31 rows one command per line, so a third of it had gone before the reader saw it. It is two columns now, the whole thing on one screen with the prompt still under it: NAVIGATION beside DISPLAY, FILES beside KEYBOARD, under a title that carries the two rules of the prompt on one line and a full-width rule in the menus' own <code>Ä</code>. It clears the screen first, so it reads as a page of its own and always lands in the same place, and leaves a blank line before the prompt returns. The columns are padded in code rather than typed as spaces, so a longer description cannot quietly knock them out of line.</p>
 </li>
 <li>
 <p><strong>Short wiki tables sat in a full-width box with an empty strip beside every row.</strong> The Commands page's <em>Navigation</em> and <em>Keyboard</em> tables were the clearest case: eight short rows, then half the column's width of nothing. A wiki table is <code>display:block</code> so a wide one can scroll inside its own box rather than squeezing the page — but a block box takes the full width the shared stylesheet gives a table, while the rows inside shrink to their content, so the border ran on long after the cells stopped. The box is sized to its content now and capped at the column, which leaves the wide ones exactly as they were, still scrolling when their content will not fit.</p>

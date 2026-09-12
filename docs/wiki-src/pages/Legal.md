@@ -32,11 +32,16 @@ The split exists because those glue files drive GPL engines in the same browser
 context, so they are best treated as part of a combined work with them. The GPL
 forbids further restrictions, and NonCommercial is a further restriction, so the
 glue is GPL and the conflict disappears at the one point it arises. Everything
-worth protecting — the prompt, the writing, the artwork, the instruction pages —
-stays NonCommercial.
+worth protecting — the menu trees, the POST animation, the writing, the artwork,
+the instruction pages — stays NonCommercial.
 
-One inherited obligation: the DOS terminal derives from the LGR terminal
-framework, and a clear credit to LGR must survive in any derivative.
+One inherited obligation, and the reason the list above does not say *the
+prompt*: the DOS terminal, the virtual filesystem and the font system are the
+LGR terminal framework, written by Mike for LGR — Lazy Game Reviews. They are
+not ours to license, they are excluded from both licences above, and a clear
+credit to LGR must survive in any derivative. `COMMAND.COM` prints that credit
+at the prompt, and the site's own favicon has carried it from the start: its
+six frames cross-fade between `C:\` and **LGR**.
 
 ## Third-party code
 

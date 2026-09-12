@@ -178,12 +178,13 @@ function dirFromSpec(spec) {
 // DOS's interpreter announced itself with its name, version and
 // copyright. The terminal this one runs on is not our work, so the
 // credit goes where it belongs: the LGR base. The "C" of "(C)" is the
-// font sheet's smiley, char code 2 — the sheet is indexed by char code,
-// so the character is the sprite.
+// font sheet's heart, char code 3 — the sheet is indexed by char code,
+// so the character is the sprite. The copyright line is indented under
+// the version line, the way MS-DOS set its own banner out.
 // ============================================================
 function comBanner() {
   echo('GenX-DOS Version ' + GENX_VERSION);
-  echo('(\u0002)Copyleft Mike @ LGR - Lazy Game Reviews');
+  echo('         (\u0003)Copyleft Mike @ LGR - Lazy Game Reviews');
   echo('');
 }
 
