@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [1.9.0] - 2026-09-13
+
 ### Added
 - **`COMMAND.COM` is on the drive, and it credits LGR.** The interpreter was the one file a DOS C: root always had and ours did not. It sits in the root now, and running it prints the start-up banner: `GenX-DOS Version 1.8.1`, then `(☺)Copyleft Mike @ LGR - Lazy Game Reviews`, then a blank line — where the "C" of "(C)" is the font sheet's smiley, character 1, the sheet being indexed by character code. The credit is the point of it: the terminal, the virtual filesystem and the font system are the LGR base written by Mike for Lazy Game Reviews, not our work, and the interpreter's own banner is where DOS always put that line. `TYPE COMMAND.COM` gives the same seeded garbage the launchers give, minus the `MZ` — a .COM has no header at all; DOS loaded one at offset 0x100 and jumped straight in, so the first byte on screen is already code.
   The copyright line is indented under the version line, the way MS-DOS set its own banner out. It answers from any directory because there is a PATH now: `GENX_PATH` holds the drive root, and `attemptExec` searches the current directory first and then each entry on it, which is the order DOS searched in. **`VER.COM`** sits beside it and prints the version line alone, then a blank line — in real DOS, VER was internal to COMMAND.COM rather than a file, but every other program on this drive is a file. Both carry a `com` key naming what they run, so adding a third is a line in the filesystem and a function beside the other two.

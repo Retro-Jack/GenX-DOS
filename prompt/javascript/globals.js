@@ -3,7 +3,7 @@
 // What COMMAND.COM reports. Keep it in step with the newest release
 // heading in CHANGELOG.md — check-doc-counts.sh compares the two.
 // ============================================================
-var GENX_VERSION = '1.8.1';
+var GENX_VERSION = '1.9.0';
 
 // ============================================================
 // PATH
