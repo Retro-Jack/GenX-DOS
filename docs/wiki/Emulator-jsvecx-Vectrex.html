@@ -66,6 +66,14 @@ gone. A desktop never noticed. The listener is no longer registered, which takes
 the whole touch path out in one line, since nothing in it runs until that
 listener fires; the disabled line is left in place, commented, with the reason
 beside it. Restoring touch controls means restoring both files <em>and</em> that line.</p>
+<p>Testing that fix with a cartridge rather than the built-in <em>Mine Storm</em> turned
+up a second one, on a path that runs every time: upstream keeps an optional
+<code>&lt;key&gt;.txt</code> beside each ROM and shows it before the game starts, and
+<code>loadNotice()</code> asked for it on every load. We ship the ten <code>.bin</code> files and no
+notices, so every game boot 404'd. A missing notice was always handled — the
+404 set <code>waitForNotice</code> false and the game started — so the function now returns
+that state directly. Put a <code>&lt;key&gt;.txt</code> in <code>games/</code> and delete three lines to
+turn notices back on.</p>
 <p>The bundle has one other dangling fetch, deliberately left: <code>toggleRTM()</code> loads
 <code>js/rtm.js</code>, also pruned, but only when a URL carries <code>?rtm=true</code> — an upstream
 debug switch nothing here sets and no player will type.</p>

@@ -339,6 +339,16 @@ function doinit() {
 };
 var waitForNotice = false;
 function loadNotice(){
+  // GenX-DOS: no notices are shipped. Upstream keeps an optional per-game
+  // <key>.txt beside each ROM and shows it before the game starts; we ship the
+  // ten .bin files and nothing else, so this asked the server for a file that
+  // is never there -- a 404 on every single game load. A missing notice was
+  // always handled (the 404 set waitForNotice false and the game started), so
+  // this returns the same state without the request. Ship a <key>.txt and
+  // delete these three lines to turn notices back on.
+  waitForNotice = false;
+  return;
+  /* eslint-disable no-unreachable */
   if (lastURL.toLowerCase().indexOf(".zip") !== -1) return;
   var url = lastURL.replace(".bin",".txt");
   url = url.replace(".rom",".txt");
@@ -360,6 +370,7 @@ function loadNotice(){
   } else {
     waitForNotice = false;
   }
+  /* eslint-enable no-unreachable */
 }
 function showNotice(txt){
   vecx.stop(); // pause, but also need to wait in loadRom
