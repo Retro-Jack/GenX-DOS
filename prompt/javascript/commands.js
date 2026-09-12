@@ -197,10 +197,11 @@ function helpPad(s) {
 }
 
 var HELP_TEXT = (function () {
+  var rule = '';
+  while (rule.length < 80) rule += '\u00C4'; // CP437 single horizontal, as the menus use
   var out = [
-    helpPad('GENX-DOS COMMAND REFERENCE') +
-      'case-insensitive; chain with " && "',
-    '',
+    'GENX-DOS COMMAND REFERENCE - case-insensitive; chain with " && "',
+    rule,
   ];
   var rows = Math.max(HELP_LEFT.length, HELP_RIGHT.length);
   for (var i = 0; i < rows; i++) {
