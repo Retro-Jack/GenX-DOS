@@ -4672,7 +4672,7 @@ var fs = [
           },
           {
             name: '0.bat',
-            data: 'echo off\ncls\necho GenX-DOS (2026)\necho ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ\necho Type "help" or "menu" to continue.\necho on\n',
+            data: 'echo off\ncls\necho GenX-DOS (2026)\necho ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ\necho Type "help" or "menu" to continue.\necho.\n',
           },
         ],
       },
