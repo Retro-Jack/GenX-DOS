@@ -53,6 +53,7 @@ GAMES (7)
 |---------|--------------|
 | `echo <text>` | Print text |
 | `echo off` | Suppress the `C:\>` prompt re-render until the end of the current batch (or until `echo.`) |
+| `@<command>` | Accepted at the start of a batch line and dropped — batch files are written `@echo off` |
 | `echo.` | Print a blank line **and** restore prompt re-render — used at the end of menu batches so the `C:\>` appears under the menu |
 | `setcol <BF>` | Set background + foreground colour by two hex digits (e.g. `07` = black bg, white fg) |
 

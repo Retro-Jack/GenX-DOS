@@ -75,7 +75,7 @@ or on an <code>.exe</code> prints the bytes of a program rather than its content
 <hr />
 <h2 id="adding-a-batch-file">Adding a batch file</h2>
 <pre><code class="language-js">{ name: 'HELLO.BAT',
-  data: 'echo off\nsetcol 2e\necho Hello, world!\nsetcol 07\necho.' }
+  data: '@echo off\nsetcol 2e\necho Hello, world!\nsetcol 07\necho.' }
 </code></pre>
 <p>Lines are separated by <code>\n</code>. Supported batch commands: anything in <a href="Commands.html">Commands</a> plus any filename present in the current directory.</p>
 <hr />
@@ -91,8 +91,8 @@ or on an <code>.exe</code> prints the bytes of a program rather than its content
 <h2 id="adding-a-system-menu-numbered-list">Adding a system menu (numbered list)</h2>
 <p>The standard pattern for a system with several titles is a directory whose <code>menu.bat</code> prints a box-drawn menu, plus numbered <code>.bat</code> shortcuts that each run a named <code>.exe</code> launcher.</p>
 <pre><code class="language-js">{ name: 'GAMES', directories: [], files: [
-    { name: 'menu.bat', data: 'echo off\ncls\necho ╔═══...╗\n...echo.\n' },
-    { name: '0.bat',    data: 'echo off\ncd ..\ncd ..\nmenu\n' },
+    { name: 'menu.bat', data: '@echo off\ncls\necho ╔═══...╗\n...echo.\n' },
+    { name: '0.bat',    data: '@echo off\ncd ..\ncd ..\nmenu\n' },
     { name: '1.bat',    data: 'mario\n' },
     { name: '2.bat',    data: 'contra\n' },
     { name: 'mario.exe',  link: '../systems/jsnes/play.html?game=mario' },
@@ -145,7 +145,7 @@ or on an <code>.exe</code> prints the bytes of a program rather than its content
 <pre><code class="language-js">{ name: 'autoexec.bat', data: 'cd systems\\console\\nes\\games\ncls\ndir/w/o\n' }
 </code></pre>
 <p>To set colours at boot, prepend <code>setcol</code>:</p>
-<pre><code class="language-js">{ name: 'autoexec.bat', data: 'echo off\nsetcol 02\nc:\ncls\nmenu\n' }
+<pre><code class="language-js">{ name: 'autoexec.bat', data: '@echo off\nsetcol 02\nc:\ncls\nmenu\n' }
 </code></pre>
 <p>Common combos:</p>
 <table>

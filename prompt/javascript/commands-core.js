@@ -593,6 +593,15 @@ function registerCmd(name, method, replace) {
 }
 
 function handleCmd(cmd) {
+  // A batch line may start with "@", as DOS's could. It is accepted and
+  // dropped: the line then runs exactly as it would have without it.
+  // In DOS the "@" suppressed the echo of that one line, which is why
+  // every batch file opens "@echo off" — the "echo off" line itself would
+  // otherwise print before taking effect. Nothing echoes a batch line
+  // here, so there is nothing left for it to suppress; it is accepted
+  // because that is how a batch file is written.
+  if (cmd.charAt(0) === '@') cmd = cmd.substr(1);
+
   // Handle command chaining with ' && '
   if (cmd.split(' && ').length > 1) {
     var cmds = cmd.split(' && ');

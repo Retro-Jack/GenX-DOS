@@ -42,7 +42,7 @@ Drop it into any directory's `files` array. The user can `cd` into the directory
 
 ```js
 { name: 'HELLO.BAT',
-  data: 'echo off\nsetcol 2e\necho Hello, world!\nsetcol 07\necho.' }
+  data: '@echo off\nsetcol 2e\necho Hello, world!\nsetcol 07\necho.' }
 ```
 
 Lines are separated by `\n`. Supported batch commands: anything in [[Commands]] plus any filename present in the current directory.
@@ -68,8 +68,8 @@ The standard pattern for a system with several titles is a directory whose `menu
 
 ```js
 { name: 'GAMES', directories: [], files: [
-    { name: 'menu.bat', data: 'echo off\ncls\necho ╔═══...╗\n...echo.\n' },
-    { name: '0.bat',    data: 'echo off\ncd ..\ncd ..\nmenu\n' },
+    { name: 'menu.bat', data: '@echo off\ncls\necho ╔═══...╗\n...echo.\n' },
+    { name: '0.bat',    data: '@echo off\ncd ..\ncd ..\nmenu\n' },
     { name: '1.bat',    data: 'mario\n' },
     { name: '2.bat',    data: 'contra\n' },
     { name: 'mario.exe',  link: '../systems/jsnes/play.html?game=mario' },
@@ -141,7 +141,7 @@ To boot to a different starting place, override `menu.bat` (or `autoexec.bat`):
 To set colours at boot, prepend `setcol`:
 
 ```js
-{ name: 'autoexec.bat', data: 'echo off\nsetcol 02\nc:\ncls\nmenu\n' }
+{ name: 'autoexec.bat', data: '@echo off\nsetcol 02\nc:\ncls\nmenu\n' }
 ```
 
 Common combos:

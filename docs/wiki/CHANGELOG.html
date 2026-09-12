@@ -59,6 +59,10 @@
 <p><strong>The legal page stops calling the prompt ours.</strong> Its list of what stays NonCommercial opened with <em>the prompt</em>, which is the one part of the site that is not ours to license: the terminal, the virtual filesystem and the font system are the LGR base. The list now names the menu trees and the POST animation, and the paragraph below it says plainly why the prompt is not in it. Same correction in the local legal-position document.</p>
 </li>
 <li>
+<p><strong>Batch files open <code>@echo off</code>, the way they always did.</strong> A line may start with <code>@</code> now: it is accepted and dropped, and the line then runs exactly as it would have without it. In DOS the <code>@</code> suppressed the echo of that one line — without it the <code>echo off</code> line itself printed before taking effect — and nothing echoes a batch line here, so there is nothing left for it to suppress. It is accepted because that is how a batch file is written, and all 127 <code>echo off</code> lines in the filesystem are <code>@echo off</code>.
+  Proved rather than assumed: every one of the 659 batch files in the tree was run through the real <code>executeBatch</code> and <code>handleCmd</code>, before and after, with everything reaching the screen recorded — the newline keypresses included. All 659 produce identical output.</p>
+</li>
+<li>
 <p><strong>The launcher's Exit sign-off runs <code>VER</code>.</strong> <code>\SYSTEMS\0.bat</code> printed its own hand-written header — <code>GenX-DOS (2026)</code> and a rule under it — which was a second place for the project's name and year to go stale. It calls <code>ver</code> instead, so the sign-off is the real version line from the one constant that has to be right, and the hard-coded year is gone. What is left is the version, a blank line, "Type help or menu to continue.", and the blank line that clears the cursor.</p>
 </li>
 <li>
