@@ -321,6 +321,17 @@
           // power-on, which is roughly what the real one did.
           window.GENX_EJS_BOOT_RESET = 20000;
         }
+        if (key === 'sinistar') {
+          // The Sinibomb wants a thumb, not a shoulder: it is thrown in a
+          // hurry while the other hand is still flying the ship. It is MAME
+          // button 2, which arrives on retropad A, so that is the binding that
+          // moves -- onto B. MAME 5's binding is cleared with it, because it
+          // owns B by default and this cabinet has no fifth button to lose.
+          controls[0][8].value = 'c';
+          controls[0][8].value2 = 'BUTTON_2';
+          controls[0][10].value = '';
+          controls[0][10].value2 = '';
+        }
         if (key === 'hangon') {
           controls[0][19].value2 = 'RIGHT_BOTTOM_SHOULDER'; // "left stick up"    = RT = throttle
           controls[0][18].value2 = '';                      // the stick's own down is NOT the throttle
@@ -437,12 +448,29 @@
           // Keys follow the same frequency order along the row, keeping the
           // site's usual Z/X for the first two so players moving between
           // systems are not relearning.
-          0:  { value: 'z', value2: 'BUTTON_1' },            // MAME 1  fire
-          1:  { value: 'x', value2: 'RIGHT_TOP_SHOULDER' },  // MAME 2  thrust
-          10: { value: 'c', value2: 'BUTTON_2' },            // MAME 5  reverse
-          8:  { value: 'v', value2: 'BUTTON_3' },            // MAME 3  smart bomb
-          9:  { value: 'a', value2: 'BUTTON_4' },            // MAME 4  hyperspace
-          11: { value: 's', value2: 'LEFT_TOP_SHOULDER' },   // MAME 6  unused here
+          // The comments name which of MAME's buttons arrives at each of these
+          // retropad positions. They come from the core's Classic layout
+          // (mame2003.c, EMIT_RETROPAD_CLASSIC), which binds MAME 1-6 to
+          // retropad B, A, Y, X, L, R in that order -- NOT in pad-button
+          // order. MAME 2 and MAME 3 were named the wrong way round here, and
+          // in the gamedoc generator's table, until 13/09/2026.
+          // Which of MAME's buttons arrives where. The core's Classic layout
+          // binds MAME 1-6 to retropad B, A, Y, X, L, R in that order
+          // (mame2003.c, EMIT_RETROPAD_CLASSIC) -- NOT in pad-button order,
+          // which is the trap: retropad index 1 is Y, and Y carries MAME 3.
+          //
+          // Until 13/09/2026 MAME 2 was bound here as though it arrived on
+          // index 1, so the button every page called RB was really MAME 3, and
+          // MAME 2 answered on X. Found when Sinistar's Sinibomb would not
+          // fire on the RB its page named. The pages were right about the
+          // intent -- button 2 under the index finger, because the cabinets
+          // that use it tend to hold it down -- so the binding is what moves.
+          0:  { value: 'z', value2: 'BUTTON_1' },            // retro B = MAME 1  fire
+          8:  { value: 'x', value2: 'RIGHT_TOP_SHOULDER' },  // retro A = MAME 2  thrust
+          1:  { value: 'v', value2: 'BUTTON_3' },            // retro Y = MAME 3  smart bomb
+          9:  { value: 'a', value2: 'BUTTON_4' },            // retro X = MAME 4  hyperspace
+          10: { value: 'c', value2: 'BUTTON_2' },            // retro L = MAME 5  reverse
+          11: { value: 's', value2: 'LEFT_TOP_SHOULDER' },   // retro R = MAME 6  unused here
 
           // Five of these cabinets have TWO sticks, one per hand: Robotron and
           // Splat! move with the left and fire with the right, Battlezone and
