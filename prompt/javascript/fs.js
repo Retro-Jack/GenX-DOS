@@ -4672,7 +4672,7 @@ var fs = [
           },
           {
             name: '0.bat',
-            data: 'echo off\ncls\nver\necho Type "help" or "menu" to continue\necho.\n',
+            data: 'echo off\ncls\nver\necho Type "help" or "menu" to continue.\necho.\n',
           },
         ],
       },
