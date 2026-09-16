@@ -1,3 +1,12 @@
+// ============================================================
+// TERMINAL OUTPUT
+// Nothing here draws directly. Every character the terminal prints — the
+// prompt, command output, recalled history — is fed through
+// document.onkeypress as a synthetic keystroke, exactly as if it had been
+// typed, and code 13 is a new line. promptMode tells the handler that the
+// terminal, not the user, is typing (see globals.js).
+// ============================================================
+
 // Simulate typing a string into the prompt
 function enterCmd(d) {
   for (var i = 0; i < d.length; i++) {

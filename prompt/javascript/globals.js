@@ -39,14 +39,14 @@ var pal = [
 
 // ============================================================
 // FONT SYSTEM
-// Generates CSS background-position rules for each character
-// in the 16x16 bitmap font sprite sheet, then loads per-color
-// font images into a hidden #fonts div.
+// URL of the font sheet in each palette colour, indexed like pal.
+// Filled by goFontGo() in goFontGo.js.
 // ============================================================
 var fontSrc = [];
 
 // ============================================================
-// KEYBOARD STATE & COLOR
+// TEXT COLOUR
+// Palette indices that newly drawn characters take. SETCOL changes them.
 // ============================================================
 var txtPal = {
   bg: 0,
@@ -54,24 +54,34 @@ var txtPal = {
 }; // current foreground/background palette indices
 
 // ============================================================
-// KEYBOARD HANDLER — keyup
-// Resets arrow-key held state.
+// ARROW KEYS
+// True while Up or Down is held. Their key codes, 38 and 40, are also
+// the codes of '&' and '(', so the keypress handler ignores those codes
+// while an arrow is down rather than typing the character. Set in
+// doKeyDown, cleared in doKeyUp (keyboard.js).
 // ============================================================
 var kUp = false,
   kDown = false;
 
 // ============================================================
-// INITIALIZATION
-// Wires up the DOM, starts the cursor blink interval,
-// renders the prompt, and runs AUTOEXEC.BAT if present.
+// SCREEN
+// promptEl is #prompt, which every character is drawn into; cursorEl is
+// the blinking cursor, and new characters are inserted just before it.
+// Both are set up in init.js.
 // ============================================================
 var cursorEl, promptEl;
 
-// Current directory path as array of indices into fs[0].directories
+// Current directory as a list of indices: path[0] picks the drive in fs,
+// and each later entry picks a child of the directory before it.
 var path = [0];
 
 // ============================================================
 // PROMPT & DISPLAY
+// promptMode is true while the terminal writes its own text. That text is
+// typed through the keypress handler like anything else, and promptMode
+// marks those characters as protected (class 'p'), so pressing Enter
+// reads back only what the user typed after them.
+// bEchoOff is ECHO OFF: no prompt and no echoed Enter between commands.
 // ============================================================
 var promptMode = false;
 
@@ -88,5 +98,5 @@ var commands = {};
 // ============================================================
 var cmdStack = []; // history of entered commands
 var cmdStackIdx = -1; // current position in history (for up/down navigation)
-var ctxStack = []; // active program context stack (for context-aware input)
+var ctxStack = []; // running programs; the top one receives each entered line
 var curItvl; // cursor blink interval handle

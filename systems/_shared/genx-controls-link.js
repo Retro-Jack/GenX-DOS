@@ -68,13 +68,29 @@
     a.target = '_blank';
     a.rel = 'noopener';
     a.className = 'gx-corner-link ' + cls;
-    a.innerHTML = '<span class="gx-l1">' + l1 + '</span>' +
-                  '<span class="gx-l2">' + l2 + ICON + '</span>';
+    a.innerHTML =
+      '<span class="gx-l1">' +
+      l1 +
+      '</span>' +
+      '<span class="gx-l2">' +
+      l2 +
+      ICON +
+      '</span>';
     document.body.appendChild(a);
   }
 
   if (key) {
-    link('gx-left', ROOT + 'docs/games/' + platform + '/' + key + '.html', 'Gameplay', 'controls');
+    link(
+      'gx-left',
+      ROOT + 'docs/games/' + platform + '/' + key + '.html',
+      'Gameplay',
+      'controls',
+    );
   }
-  link('gx-right', ROOT + 'systems/' + platform + '/controls.html', 'System', 'help');
+  link(
+    'gx-right',
+    ROOT + 'systems/' + platform + '/controls.html',
+    'System',
+    'help',
+  );
 })();

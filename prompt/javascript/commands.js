@@ -1,6 +1,13 @@
 // ============================================================
 // BUILT-IN COMMANDS
+// Each is registered by name with registerCmd and receives whatever was
+// typed after the name. The real work of DIR, CD, TYPE and FIND lives in
+// commands-core.js; this file holds the thin wrappers, the jokes and the
+// help screen.
 // ============================================================
+
+// Real DOS commands that would be destructive or meaningless on this
+// drive answer with a joke instead of "Bad command or file name".
 registerCmd('exit', function () {
   echo("I'm sorry, Dave. I'm afraid I can't do that.");
   echo('');
@@ -51,6 +58,11 @@ registerCmd('quit', function () {
   echo('');
 });
 
+// The Dopefish, drawn in text. Every cell is character 220, the lower
+// half block, so its background colour paints the top half of the cell
+// and its glyph colour the bottom: two pixels per character. The array
+// holds 32 rows of 17 palette indices, read in pairs, so each even row
+// is a line's backgrounds and the odd row after it that line's glyphs.
 registerCmd('dopefish', function () {
   echo('Lives!');
   var dope = [
@@ -117,6 +129,7 @@ registerCmd('echo.', function () {
 registerCmd('type', function (cmd) {
   type(cmd);
 });
+// Empty the screen by rebuilding #prompt with nothing in it but the cursor.
 function clearScreen() {
   promptEl.innerHTML = '<div id="cursor" class="font f-95 f-cursor"></div>';
   cursorEl = document.getElementById('cursor');
@@ -134,6 +147,8 @@ registerCmd('cd', function (cmd) {
 registerCmd('find', function (cmd) {
   find(cmd);
 });
+// SETCOL <BF>: two hex digits, background then foreground, each a palette
+// index 0-F. Applies to text drawn from here on.
 registerCmd('setcol', function (cmd) {
   if (cmd.length != 2) {
     echo('invalid command');

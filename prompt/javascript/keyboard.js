@@ -1,7 +1,9 @@
 // ============================================================
 // KEYBOARD HANDLER — keypress
-// Handles printable character input, Enter, and Backspace.
-// Each keystroke renders a font div into the prompt area.
+// Handles printable characters and Enter. Each keystroke becomes a font
+// div inserted before the cursor, carrying its character in a `v`
+// attribute so a command can be read back off the screen. The terminal's
+// own output arrives here too, as synthetic keypresses (see terminal.js).
 // ============================================================
 document.onkeypress = function (e) {
   if (typeof e === 'undefined') e = event;
@@ -10,10 +12,14 @@ document.onkeypress = function (e) {
   addClass(c, 'font');
   var k = e.keyCode || e.charCode;
 
+  // '&' and '(' share their codes with Up and Down; see kUp in globals.js.
   if (k == 38 && kUp == true) return;
   if (k == 40 && kDown == true) return;
 
-  // Enter key — submit command
+  // Enter key — submit command. Typed by the user, it reads the command
+  // back from the cursor to the last protected character and runs it; the
+  // new line is then drawn by the command's own output. Typed by the
+  // terminal, it is just a new line (.f-n).
   if (k == 13) {
     if (!promptMode) {
       var strCMD = '';
@@ -69,8 +75,8 @@ document.onkeypress = function (e) {
 
 // ============================================================
 // KEYBOARD HANDLER — keydown
-// Handles Backspace (Firefox fix), and Up/Down arrow
-// history navigation through the command stack.
+// Handles Backspace, and Up/Down arrow history navigation through the
+// command stack. Neither produces a keypress in current browsers.
 // ============================================================
 function doKeyDown(e) {
   if (typeof e === 'undefined') e = event;

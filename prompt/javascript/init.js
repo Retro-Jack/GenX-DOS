@@ -1,5 +1,9 @@
 // ============================================================
 // AMIBIOS BOOT TABLE — extended-ASCII System Configuration
+// The font sheet is indexed by character code (see goFontGo.js), so the
+// box is written in whichever characters have the codes of the CP437
+// box-drawing glyphs: É is 201, which the sheet draws as ╔; Í is 205, ═;
+// º is 186, ║. It reads as noise here and as a frame on screen.
 // ============================================================
 var AMIBIOS_TABLE = [
   'ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»',
@@ -43,6 +47,8 @@ function bootLine(container, segments) {
   bootNewline(container);
 }
 
+// Text segments for bootLine: bootG in the default grey (the .font
+// background, palette 7), bootW in bright white (palette 15).
 function bootG(t) {
   return {
     text: t,
