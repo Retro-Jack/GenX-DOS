@@ -47,8 +47,11 @@ list and when each is written. The realistic security surface is:</p>
 third-party network requests, and there is no analytics or telemetry of any
 kind. This is enforced, not merely intended: every served page carries a strict
 <strong>Content-Security-Policy</strong> — <code>default-src 'self'</code> and <code>connect-src 'self'</code>,
-with <code>blob:</code> / <code>data:</code> and <code>'unsafe-eval'</code> allowed only where WebAssembly, Web
-Workers and audio worklets require them — so the browser blocks any off-site
+with <code>blob:</code> / <code>data:</code> allowed only where WebAssembly, Web Workers and audio
+worklets require them. Pages that run an emulator may also compile code; where
+the engine has been shown to run without it, that is narrowed to WebAssembly
+alone (<code>'wasm-unsafe-eval'</code>), and the full <code>'unsafe-eval'</code> stays only where an
+engine builds JavaScript from strings — so the browser blocks any off-site
 request at the source. With the policy in place the DevTools Network panel shows
 zero external requests. A served page that can reach an external origin is
 itself a security issue worth reporting.</p>

@@ -21,8 +21,11 @@ Every emulator, core, ROM, font and asset is self-hosted — the site makes no
 third-party network requests, and there is no analytics or telemetry of any
 kind. This is enforced, not merely intended: every served page carries a strict
 **Content-Security-Policy** — `default-src 'self'` and `connect-src 'self'`,
-with `blob:` / `data:` and `'unsafe-eval'` allowed only where WebAssembly, Web
-Workers and audio worklets require them — so the browser blocks any off-site
+with `blob:` / `data:` allowed only where WebAssembly, Web Workers and audio
+worklets require them. Pages that run an emulator may also compile code; where
+the engine has been shown to run without it, that is narrowed to WebAssembly
+alone (`'wasm-unsafe-eval'`), and the full `'unsafe-eval'` stays only where an
+engine builds JavaScript from strings — so the browser blocks any off-site
 request at the source. With the policy in place the DevTools Network panel shows
 zero external requests. A served page that can reach an external origin is
 itself a security issue worth reporting.

@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 ### Changed
+- **Twelve pages can compile WebAssembly but no longer evaluate strings as JavaScript.** The DOS prompt, Apple I, Apple ][+, Atari 400 and 800, CPC, Electron, Intellivision, TI-99/4A, Vectrex, ZX81 and Model 100 now carry `'wasm-unsafe-eval'` in place of `'unsafe-eval'`, each booted to a running game under the narrower policy. The EmulatorJS bundles keep `'unsafe-eval'`: its `.7z` and `.zip` unpackers call `eval()` inside a worker, so a core that is not already cached stalls at "Download Game Core 100%" with nothing in the page's console — which is also why an earlier attempt at this looked safe on a browser that had the cores cached. jsbeeb builds its CPU from strings, so both BBC bundles keep it too.
 - **`ROMS.txt` says which MAME the arcade sets are for.** Anyone completing a copy of the site had the hundred filenames and no way to know that a current MAME set will not load: the cabinets run MAME 2003-Plus, the libretro port of **MAME 0.78**, and a modern set disagrees with it on filenames and on which archive a chip belongs in. The Arcade section now says so, names the metadata the sets were built and verified against (`metadata/mame2003-plus.xml` at commit `d3ac6c95`), and notes the one clone set among them — `sitv`, whose four files are all in its own zip, so the parent is not needed. The Atari XL/XE firmware line gains its revision, which every other firmware line already carried.
 
 ## [1.9.0] - 2026-09-13
