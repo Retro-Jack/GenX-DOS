@@ -127,7 +127,7 @@
   }
 
   // The mirrored EJS cores are an older build: they expose save_state_info
-  // (returns "ptr|len|status", state read from the WASM HEAP), NOT the newer
+  // (returns "len|ptr|status", state read from the WASM HEAP), NOT the newer
   // Module.EmulatorJSGetState() that the bundled GameManager src calls — so the
   // src getState() throws here. Read the state directly from the core instead.
   function getStateBytes() {
@@ -164,6 +164,8 @@
     return r;
   }
 
+  // --- Save and load ---------------------------------------------------------
+  // Show a short result on a button in place of its label, then put it back.
   function flash(btn, msg) {
     var label = btn.dataset.label,
       t = btn.querySelector('.gx-state-txt');
@@ -175,6 +177,8 @@
     }, 850);
   }
 
+  // Keep the state in memory for this session and write it to IndexedDB, so
+  // the slot survives a reload.
   async function doSave(n, btn) {
     try {
       var st = getStateBytes();
@@ -193,6 +197,7 @@
     }
     refocus();
   }
+  // Prefer this session's copy of the slot; fall back to IndexedDB.
   async function doLoad(n, btn) {
     var st = mem[n];
     if (!st) {
@@ -274,6 +279,8 @@
     return wrap;
   }
 
+  // Build the bar at once, then mark which slots hold a save as soon as
+  // IndexedDB answers.
   async function init() {
     if (document.querySelector('.gx-state-bar')) return;
     var bar = document.createElement('div');
@@ -289,6 +296,7 @@
     renderStatus();
   }
 
+  // Wait for EmulatorJS to finish starting the core before offering saves.
   var tries = 0;
   var iv = setInterval(function () {
     if (ready()) {

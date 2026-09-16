@@ -3,12 +3,14 @@
 // engines, so it is GPL-3.0-or-later rather than the repo's CC BY-NC.
 // Common "fetch games.json + look up game by ?game=KEY" helper used by
 // every play.html that follows the GenX-DOS pattern. Returns
-// {key, game} on success; on failure, renders an error message into
-// `errorTarget` (a CSS selector, default '#game') and returns null.
+// {key, game, fail} on success, where fail(msg) shows a later error the
+// same way; on failure, renders an error message into `errorTarget` (a CSS
+// selector, default '#game') and returns null. Also sets the tab title to
+// the game's title.
 //
 //   const r = await window.genxLoadGame();
 //   if (!r) return;             // error already shown
-//   const { key, game } = r;
+//   const { key, game, fail } = r;
 //   // ... emulator-specific setup using game.rom, game.title, etc.
 window.genxLoadGame = async function (errorTarget) {
   const target = errorTarget || '#game';

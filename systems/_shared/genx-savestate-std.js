@@ -173,6 +173,8 @@
     });
   }
 
+  // --- Save and load ---------------------------------------------------------
+  // Show a short result on a button in place of its label, then put it back.
   function flash(btn, msg) {
     var label = btn.dataset.label,
       t = btn.querySelector('.gx-state-txt');
@@ -205,6 +207,7 @@
     }
     refocus();
   }
+  // Prefer this session's copy of the slot; fall back to IndexedDB.
   async function doLoad(n, btn) {
     var st = mem[n];
     if (st === null || st === undefined) {
@@ -287,6 +290,8 @@
     return wrap;
   }
 
+  // Build the bar at once, then mark which slots hold a save as soon as
+  // IndexedDB answers.
   async function init() {
     if (document.querySelector('.gx-state-bar')) return;
     var bar = document.createElement('div');
@@ -302,6 +307,7 @@
     renderStatus();
   }
 
+  // Wait for the bundle's adapter to report the engine ready.
   var tries = 0;
   var iv = setInterval(function () {
     if (ready()) {
