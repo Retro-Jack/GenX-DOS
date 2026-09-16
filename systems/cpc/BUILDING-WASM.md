@@ -106,3 +106,12 @@ cp .fibs/dist/emsc-ninja-release/cpc.wasm <genx-dos>/systems/cpc/cpc.wasm
 ```
 
 `play.html` and `cpc.html` are unrelated — we only take `cpc.js` + `cpc.wasm`.
+
+Then format the glue and put its provenance banner back, from the repo root:
+
+```sh
+tools/beautify-glue.sh systems/cpc/cpc.js
+```
+
+It arrives as minified lines nobody can read or diff; the script only changes
+layout and comments, never the code.

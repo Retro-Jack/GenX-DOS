@@ -50,6 +50,8 @@
 ├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree,
 │                             and that no doc still names a renamed file
 ├── tools/                   developer tooling — excluded from the shipping file set
+│   ├── beautify-glue.sh     formats the Emscripten glue we compile ourselves and adds a
+│   │                        provenance banner; upstream-built glue is left alone
 │   ├── build-softkey-map.py  generates _shared/softkeys.json from the gamedocs
 │   ├── build-arcade-controls.py  reads the arcade core's own control data
 │   │                        (controls.c + metadata XML, pinned) into arcade-controls.json
