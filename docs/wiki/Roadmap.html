@@ -30,7 +30,7 @@
 <p>What we've shipped, what's next, and what we've ruled out. This page is the project's running ledger — when a candidate comes up, the answer is here.</p>
 <h2 id="the-scope-rule-8-bit-feel">The scope rule: 8-bit feel</h2>
 <p>Every shipped system has the <em>feel</em> of an 8-bit machine — sprite-based, chiptune, low-res. The test is the aesthetic, not the calendar year or strict CPU bit-width. (Updated 14/06/2026 from the earlier "8-bit era, ~1975-1990" framing.)</p>
-<p><strong>In:</strong> the classic 8-bit machines — Apple I/II, Atari 2600 / 400 / 800XL / 7800, BBC Micro / Master / Electron, Commodore PET / VIC-20 / MAX / 64 / 16 / Plus/4 / 128, MSX1 / MSX2, NES, Sega Master System, ColecoVision, Intellivision, ZX81 / Spectrum, Amstrad CPC, Tandy CoCo / TRS-80 / Model 100, TI-99/4A — plus the 8-bit-feel handhelds: Game Boy / Game Boy Color, Sega Game Gear, Atari Lynx.</p>
+<p><strong>In:</strong> the classic 8-bit machines — Apple I/II, Atari 2600 / 400 / 800XL / 7800, BBC Micro / Master / Electron, Commodore PET / VIC-20 / MAX / 64 / 16 / Plus/4, MSX1 / MSX2, NES, Sega Master System, ColecoVision, Intellivision, ZX81 / Spectrum, Amstrad CPC, Tandy CoCo / TRS-80 / Model 100, TI-99/4A — plus the 8-bit-feel handhelds: Game Boy / Game Boy Color, Sega Game Gear, Atari Lynx.</p>
 <p><strong>Out:</strong> systems that defined the 16-bit GUI/console leap (Atari ST, Amiga, Macintosh, Archimedes, Sega Genesis, SNES, PC-Engine), and anything 32-bit+ (Saturn, N64, PlayStation, Neo Geo). The rule is about <em>feel</em>, not the calendar year — Genesis (1988) doesn't have the 8-bit feel and is out, while a late GBC game (2002) does and is in.</p>
 <p><strong>Intellivision</strong> (CP1610, 16-bit ALU) is the technical edge case the feel framing handles cleanly: Mattel marketed it as "the first 16-bit console", but it's universally grouped with 8-bit-era consoles (1979 launch, Atari 2600 contemporary). In.</p>
 <hr />
@@ -116,7 +116,7 @@
 <td>Apple I</td>
 <td>1976</td>
 <td><code>apple1/</code></td>
-<td>scullin/apple1js</td>
+<td>whscullin/apple1js (our fork)</td>
 <td>10 tapes (Integer BASIC + 6502 asm)</td>
 </tr>
 <tr>
@@ -172,8 +172,8 @@
 <td>PET</td>
 <td>1977</td>
 <td><code>pet/</code></td>
-<td>Thomas Skibo's pet2001 (vanilla JS)</td>
-<td>PET 2001 / BASIC 2 / 32 K</td>
+<td>Thomas Skibo's pet2001 (vanilla JS, our fork)</td>
+<td>PET 2001 / BASIC 2 / 32 K; drive 8 reads <code>.d64</code></td>
 </tr>
 <tr>
 <td>Commodore</td>
@@ -341,6 +341,7 @@
 - <strong>Sinclair NewBrain</strong> (1982) — MAME driver broken (VFD doesn't get data)
 - <strong>Sinclair MK14</strong> (1977) — MAME-only, very obscure (256-byte RAM kit)
 - <strong>Microvision</strong> (1979) — split-CPU emulators don't pair with available ROMs
+- <strong>Commodore 128</strong> (1985) — shipped, then dropped 03/09/2026. In native mode it was never really a games machine: of its ten slots, only <em>Star Fleet I</em> was a commercial C128 title, two were C64 games, and six were BASIC type-ins. The 80-column library is mostly Infocom multi-disk sets the launcher cannot mount.
 - <strong>Commodore CBM-II / B-series</strong> (1982-84) — VICE cores exist but the library is ~5 commercial games + business productivity. Not enough content for a 10-entry bundle.</p>
 <h3 id="out-of-scope-16-bit-removed">Out of scope (16-bit, removed)</h3>
 <ul>

@@ -126,8 +126,8 @@ fork rather than the bundle.</p>
 <tbody>
 <tr>
 <td><code>systems/apple1/</code></td>
-<td>apple1js</td>
-<td>whscullin</td>
+<td>apple1js, built from the <a href="https://github.com/Retro-Jack/apple1js"><code>Retro-Jack/apple1js</code></a> fork (local changes in the fork's <code>GENX-CHANGES.md</code>)</td>
+<td>Will Scullin (whscullin)</td>
 <td>MIT</td>
 </tr>
 <tr>
@@ -276,7 +276,7 @@ fork rather than the bundle.</p>
 </tr>
 <tr>
 <td><code>systems/pet/pet2001/</code></td>
-<td>pet2001 (vanilla-JS PET 2001 emulator)</td>
+<td>pet2001 (vanilla-JS PET 2001 emulator), from the <a href="https://github.com/Retro-Jack/pet2001"><code>Retro-Jack/pet2001</code></a> fork (local changes in the fork's <code>GENX-CHANGES.md</code>)</td>
 <td>Thomas Skibo</td>
 <td>BSD-2-Clause</td>
 </tr>
@@ -403,6 +403,10 @@ rebuild or inspect what we ship.</p>
 <tr>
 <td><code>odyssey2/</code> — o2em core</td>
 <td>built by us from https://github.com/libretro/libretro-o2em via <code>systems/odyssey2/build.sh</code>; our SDL2 frontend (<code>frontend.c</code>) sits beside it</td>
+</tr>
+<tr>
+<td><code>apple1/</code> — Will Scullin's apple1js (MIT)</td>
+<td>our fork, <code>genx</code> branch, changes and build steps in <code>GENX-CHANGES.md</code>: https://github.com/Retro-Jack/apple1js</td>
 </tr>
 <tr>
 <td><code>bbcmicro/</code>, <code>bbcmaster/</code> — jsbeeb (GPL-3.0+)</td>
@@ -584,6 +588,11 @@ for historical preservation, emulator integration, and educational use.</p>
 <p>Notable inclusions where the rights holder has explicitly released the
 software under permissive terms:</p>
 <ul>
+<li><strong>Attack of the PETSCII Robots</strong> (David Murray, The 8-Bit Guy, 2021) — the
+  free shareware release, on the C64 (<code>systems/c64/games/petrobot.d64</code>) and the
+  PET (<code>systems/pet/games/petrobot.d64</code>). Its own start-up screen says the
+  shareware version is free to distribute; the full game is sold at
+  <a href="https://www.the8bitguy.com/">the8bitguy.com</a>.</li>
 <li><strong>Apple I cassette tapes</strong> — Integer BASIC era homebrew + Apple's own
   30th Anniversary demo by Brian Wiser. Sourced from the
   <a href="https://www.applefritter.com/apple1">Apple I Project</a> archive.</li>
@@ -786,9 +795,11 @@ beside it, which is what the GPL asks for:</p>
 </tr>
 </tbody>
 </table>
-<p>The permissively-licensed bundles — <code>apple1/</code>, <code>apple2/</code>, <code>msx1/</code>, <code>msx2/</code>,
-<code>cpc/</code> (MIT), <code>pet/</code>, <code>trs80/</code> (BSD-2-Clause) — do <strong>not</strong> carry their notice
-files. Those licences do ask for the copyright notice to travel with the code,
+<p><code>apple1/</code> carries apple1js's MIT notice as <code>systems/apple1/LICENSE</code>, taken from
+the fork, and every pet2001 source file in <code>systems/pet/pet2001/</code> carries Thomas
+Skibo's BSD notice in its header. The other permissively-licensed bundles —
+<code>apple2/</code>, <code>msx1/</code>, <code>msx2/</code>, <code>cpc/</code> (MIT), <code>trs80/</code> (BSD-2-Clause) — do <strong>not</strong>
+carry their notice files. Those licences do ask for the copyright notice to travel with the code,
 and the notice includes a per-project copyright line that cannot be
 reconstructed from here, so it has to come from upstream rather than be written
 locally. Until it does, the table above and its upstream links are the record.

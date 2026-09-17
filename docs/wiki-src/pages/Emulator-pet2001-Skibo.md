@@ -19,7 +19,7 @@ The fix would be either to recompile the libretro core (multi-hour rabbit hole w
 
 ## What Skibo gives us
 
-Thomas Skibo published a vanilla JS PET 2001 emulator in 2012, BSD-2-Clause licensed. Pure JavaScript — no WASM, no libretro, no EmulatorJS. Nine files, 285 KB total (215 KB of which is ROM data baked into a JS array). The emulator targets the original PET 2001, not the 3032/4032 — but the 2001 hardware is a strict subset of the 3032 (same 6502, same 40-column screen, same Graphics keyboard), and the only thing we lose is BASIC 4 (which only matters for `DLOAD` / `DIRECTORY` shortcuts that no game in the bundle uses).
+Thomas Skibo published a vanilla JS PET 2001 emulator in 2012, BSD-2-Clause licensed. Pure JavaScript — no WASM, no libretro, no EmulatorJS. Nine files, 319 KB total (223 KB of which is ROM data baked into a JS array). The emulator targets the original PET 2001, not the 3032/4032 — but the 2001 hardware is a strict subset of the 3032 (same 6502, same 40-column screen, same Graphics keyboard), and the only thing we lose is BASIC 4 (which only matters for `DLOAD` / `DIRECTORY` shortcuts that no game in the bundle uses).
 
 The integration shape is unrecognisable next to EmulatorJS:
 

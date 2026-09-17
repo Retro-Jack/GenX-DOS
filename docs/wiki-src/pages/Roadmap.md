@@ -4,7 +4,7 @@ What we've shipped, what's next, and what we've ruled out. This page is the proj
 
 Every shipped system has the *feel* of an 8-bit machine — sprite-based, chiptune, low-res. The test is the aesthetic, not the calendar year or strict CPU bit-width. (Updated 14/06/2026 from the earlier "8-bit era, ~1975-1990" framing.)
 
-**In:** the classic 8-bit machines — Apple I/II, Atari 2600 / 400 / 800XL / 7800, BBC Micro / Master / Electron, Commodore PET / VIC-20 / MAX / 64 / 16 / Plus/4 / 128, MSX1 / MSX2, NES, Sega Master System, ColecoVision, Intellivision, ZX81 / Spectrum, Amstrad CPC, Tandy CoCo / TRS-80 / Model 100, TI-99/4A — plus the 8-bit-feel handhelds: Game Boy / Game Boy Color, Sega Game Gear, Atari Lynx.
+**In:** the classic 8-bit machines — Apple I/II, Atari 2600 / 400 / 800XL / 7800, BBC Micro / Master / Electron, Commodore PET / VIC-20 / MAX / 64 / 16 / Plus/4, MSX1 / MSX2, NES, Sega Master System, ColecoVision, Intellivision, ZX81 / Spectrum, Amstrad CPC, Tandy CoCo / TRS-80 / Model 100, TI-99/4A — plus the 8-bit-feel handhelds: Game Boy / Game Boy Color, Sega Game Gear, Atari Lynx.
 
 **Out:** systems that defined the 16-bit GUI/console leap (Atari ST, Amiga, Macintosh, Archimedes, Sega Genesis, SNES, PC-Engine), and anything 32-bit+ (Saturn, N64, PlayStation, Neo Geo). The rule is about *feel*, not the calendar year — Genesis (1988) doesn't have the 8-bit feel and is out, while a late GBC game (2002) does and is in.
 
@@ -24,14 +24,14 @@ Every shipped system has the *feel* of an 8-bit machine — sprite-based, chiptu
 | Console | GCE Vectrex | 1982 | `jsvecx/` | JSVecX (our fork — speech DAC added) | vector display; game overlays; removed 04/07/2026, restored 04/09/2026 |
 | Console | NES | 1983 | `jsnes/` | EmulatorJS + FCEUmm libretro | dir name predates migration |
 | Console | Atari 7800 | 1986 | `js7800/` | EmulatorJS + ProSystem | migrated from JS7800 for the bezel |
-| Apple | Apple I | 1976 | `apple1/` | scullin/apple1js | 10 tapes (Integer BASIC + 6502 asm) |
+| Apple | Apple I | 1976 | `apple1/` | whscullin/apple1js (our fork) | 10 tapes (Integer BASIC + 6502 asm) |
 | Apple | Apple ][+ | 1977 | `apple2/` | whscullin/apple2js (webpack) | URL rewrite `?game=` → `?disk=` |
 | Acorn | BBC Micro | 1981 | `bbcmicro/` | mattgodbolt/jsbeeb (Retro-Jack fork) | Model B; fork adds d-pad remap + monitor inset |
 | Acorn | Acorn Electron | 1983 | `electron/` | dmcoles/elkjs | row-doubling display fix |
 | Acorn | BBC Master 128 | 1986 | `bbcmaster/` | jsbeeb (Retro-Jack fork) `?model=Master` | full copy of the fork build |
 | Atari | Atari 400 | 1979 | `atari400/` | atari800 WASM (self-built) | boots OS-B |
 | Atari | Atari 800XL | 1983 | `atari800/` | atari800 WASM (self-built) | boots OS-XL; full copy of the same build |
-| Commodore | PET | 1977 | `pet/` | Thomas Skibo's pet2001 (vanilla JS) | PET 2001 / BASIC 2 / 32 K |
+| Commodore | PET | 1977 | `pet/` | Thomas Skibo's pet2001 (vanilla JS, our fork) | PET 2001 / BASIC 2 / 32 K; drive 8 reads `.d64` |
 | Commodore | VIC-20 | 1980 | `vic20/` | EmulatorJS + VICE xvic | `memory_expansions='all'` |
 | Commodore | MAX Machine | 1982 | `max/` | EmulatorJS + VICE x64 (Ultimax mode) | Japan-only |
 | Commodore | C64 | 1982 | `c64/` | EmulatorJS + VICE x64 | |
@@ -83,6 +83,7 @@ Listed for clarity — these are the 16-bit/32-bit transition and beyond.
 - **Sinclair NewBrain** (1982) — MAME driver broken (VFD doesn't get data)
 - **Sinclair MK14** (1977) — MAME-only, very obscure (256-byte RAM kit)
 - **Microvision** (1979) — split-CPU emulators don't pair with available ROMs
+- **Commodore 128** (1985) — shipped, then dropped 03/09/2026. In native mode it was never really a games machine: of its ten slots, only *Star Fleet I* was a commercial C128 title, two were C64 games, and six were BASIC type-ins. The 80-column library is mostly Infocom multi-disk sets the launcher cannot mount.
 - **Commodore CBM-II / B-series** (1982-84) — VICE cores exist but the library is ~5 commercial games + business productivity. Not enough content for a 10-entry bundle.
 
 ### Out of scope (16-bit, removed)

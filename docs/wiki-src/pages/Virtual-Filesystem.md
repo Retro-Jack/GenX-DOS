@@ -45,11 +45,11 @@ All 34 bundled sub-systems run their games locally — every byte of game data i
 | HOMECOMP → ACORN → ELECTRON | ElkJS | UEF snapshots |
 | HOMECOMP → ACORN → MASTER | jsbeeb (`?model=Master`) | Elite uses DSD for drive 2 |
 | HOMECOMP → AMSTRAD → CPC | floooh tiny8bit CPC WASM | sokol_args URL params |
-| HOMECOMP → APPLE → APPLE1 | apple1js | tapes + Woz Monitor |
+| HOMECOMP → APPLE → APPLE1 | apple1js, our fork | tapes + Woz Monitor |
 | HOMECOMP → APPLE → APPLEII | apple2js | `.dsk` images converted to JSON |
 | HOMECOMP → ATARI → 400 | `atari400/` bundle — atari800 WASM (genuine Atari OS-B) | |
 | HOMECOMP → ATARI → 800XL | `atari800/` bundle — atari800 WASM (genuine Atari XL/XE OS Rev 2) | full copy of the same build |
-| HOMECOMP → COMMODRE → PET | Thomas Skibo's pet2001 (vanilla JS) | PET 2001 / BASIC 2 / 32 K |
+| HOMECOMP → COMMODRE → PET | Thomas Skibo's pet2001 (vanilla JS), our fork | PET 2001 / BASIC 2 / 32 K |
 | HOMECOMP → COMMODRE → VIC20 | EmulatorJS + VICE xvic | `memory_expansions='all'` |
 | HOMECOMP → COMMODRE → MAX | EmulatorJS + VICE x64 (Ultimax mode) | Japan-only 1982 console |
 | HOMECOMP → COMMODRE → C64 | EmulatorJS + VICE x64 | real-time IEC loading |

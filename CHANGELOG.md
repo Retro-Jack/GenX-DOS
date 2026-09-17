@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 ### Changed
+- **The wiki caught up with the forks and the Commodore 128's departure.** The apple1js page had the wrong licence (it is MIT), the wrong launch parameter (`?tape=`) and no word of the fork; File-Structure, Virtual-Filesystem and the Roadmap now name the Apple I and PET forks, and the PET page's size is current. The Roadmap's scope list still named the C128, dropped on 03/09/2026; it now has a Rejected entry saying why.
 - **ATTRIBUTION records PETSCII Robots and the new forks.** The shareware game ships on the C64 and the PET but had no entry among the titles released by their authors; it has one now. The Apple I and PET rows name their forks. `systems/apple1/LICENSE` carries apple1js's MIT notice, taken from the fork, and the note on notice files now says the PET's travels in its source headers.
 - **The README credits every engine and names its forks.** The licence list had no line for apple1js, JSVecX or VirtualT; the Apple I, jsbeeb and PET lines now say they are built from our forks, the PET's layout line counts nine `.prg` and a `.d64`, and the Apple I's upstream was misnamed `scullin`.
 - **The feature article's size and TRS-80 were out of date.** Its prose said 138 MB beside a numbers box reading 186, and the rebuilt-by-hand box named the TRS-80 Model I where the site runs a Model III. The prose figure is now a slot `check-doc-counts.sh` keeps in step with the tree.

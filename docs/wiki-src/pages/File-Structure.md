@@ -98,7 +98,7 @@ genx-dos/
     │                        shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem cores
     │                        + mame2003_plus
     │                        (14 bundles share; saves ~25 MB vs per-bundle copies)
-    ├── apple1/              Apple I            (copied from scullin/apple1js)
+    ├── apple1/              Apple I            (whscullin/apple1js, our fork)
     ├── apple2/              Apple ][+          (copied from whscullin/apple2js)
     ├── bbcmicro/            BBC Micro          (jsbeeb, Model B — copied from mattgodbolt/jsbeeb)
     ├── bbcmaster/           BBC Master 128     (jsbeeb, model=Master — full copy of the same build)
@@ -121,7 +121,7 @@ genx-dos/
     ├── js99er/              TI-99/4A           (copied from Rasmus-M/js99er — vanilla-JS build)
     ├── atari400/            Atari 400          (atari800 WASM, boots OS-B)
     ├── atari800/            Atari 800XL        (atari800 WASM, boots OS-XL — same build)
-    ├── pet/                 Commodore PET      (Thomas Skibo's pet2001 — vanilla JS)
+    ├── pet/                 Commodore PET      (Thomas Skibo's pet2001 — vanilla JS, our fork)
     ├── vic20/               Commodore VIC-20   (EmulatorJS + VICE xvic)
     ├── max/                 Commodore MAX      (EmulatorJS + VICE x64 in Ultimax mode)
     ├── c64/                 Commodore 64       (EmulatorJS + VICE x64)
@@ -143,7 +143,7 @@ The **Game files** column describes the live site. The repository keeps only the
 |----------|---------|---------|------------|
 | `bbcmicro/`, `bbcmaster/` | `dist/` (Vite build; a full copy in each) | the dist's own `index.html` (URL-driven; Master adds `?model=Master`) | `dist/discs/<publisher>/*.ssd` |
 | `electron/` | ElkJS pure-JS + jQuery | `play.html` (`?game=<key>`) | 6× `.uef` snapshots (from the set ElkJS ships) |
-| `apple1/` | apple1js pure-JS | `play.html` (`?game=<key>`) | `tapes/*.js` |
+| `apple1/` | apple1js pure-JS (our fork) | `play.html` (`?tape=<key>`) | `tapes/*.js` |
 | `apple2/` | apple2js webpack dist | `play.html` (rewrites `?game=` → apple2js `?disk=`) | `json/disks/*.json` |
 | `jsnes/`  | EmulatorJS + FCEUmm libretro core | `play.html` (`?game=<key>`) | `roms/*.nes` |
 | `stella/` | EmulatorJS (shared `_shared-ejs/`) | `play.html` | `roms/*.a26` |
@@ -161,7 +161,7 @@ The **Game files** column describes the live site. The repository keeps only the
 | `m100/` | `virtualt.js` + `virtualt.wasm` (M100 ROM embedded) + `src/` (build source) | `play.html` | `games/*.ba` |
 | `js99er/` | vanilla-JS modules + `lib/` (jQuery + zip.js) | `play.html` (`.rpk` first, `.bin` fallback) | `carts/*.rpk` |
 | `atari400/`, `atari800/` | `atari800.js` + `atari800.wasm` (a full copy in each) | `play.html` (`?game=<key>`; 400 boots OS-B, 800XL boots OS-XL, both from genuine Atari ROMs in `roms/`) | `roms/*.atr` + `*.rom` |
-| `pet/` | Thomas Skibo's pet2001 (vanilla JS, `pet2001/` modules) | `play.html` (`?game=<key>`, IEEE-488 PRG injection) | `games/*.prg` |
+| `pet/` | Thomas Skibo's pet2001 (vanilla JS, `pet2001/` modules, our fork) | `play.html` (`?game=<key>`, IEEE-488 drive 8: one PRG, or files by name from a `.d64`) | `games/*.prg`, `games/*.d64` |
 | `vic20`, `max`, `c64`, `c16`, `plus4` | EmulatorJS framework + VICE libretro core (shared) | `play.html` (per-game `model`/`video` overrides) | `games/*.prg`/`*.d64`/`*.crt` |
 | `coleco/` | EmulatorJS + gearcoleco + `colecovision.rom` BIOS | `play.html` (`EJS_defaultControls` numpad remap) | `games/*.col` |
 | `cpc/` | floooh/tiny8bit CPC WASM | `play.html` (URL rewrite to sokol_args `?file=&input=`) | `games/*.dsk` |

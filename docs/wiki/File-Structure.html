@@ -125,7 +125,7 @@
     │                        shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem cores
     │                        + mame2003_plus
     │                        (14 bundles share; saves ~25 MB vs per-bundle copies)
-    ├── apple1/              Apple I            (copied from scullin/apple1js)
+    ├── apple1/              Apple I            (whscullin/apple1js, our fork)
     ├── apple2/              Apple ][+          (copied from whscullin/apple2js)
     ├── bbcmicro/            BBC Micro          (jsbeeb, Model B — copied from mattgodbolt/jsbeeb)
     ├── bbcmaster/           BBC Master 128     (jsbeeb, model=Master — full copy of the same build)
@@ -148,7 +148,7 @@
     ├── js99er/              TI-99/4A           (copied from Rasmus-M/js99er — vanilla-JS build)
     ├── atari400/            Atari 400          (atari800 WASM, boots OS-B)
     ├── atari800/            Atari 800XL        (atari800 WASM, boots OS-XL — same build)
-    ├── pet/                 Commodore PET      (Thomas Skibo's pet2001 — vanilla JS)
+    ├── pet/                 Commodore PET      (Thomas Skibo's pet2001 — vanilla JS, our fork)
     ├── vic20/               Commodore VIC-20   (EmulatorJS + VICE xvic)
     ├── max/                 Commodore MAX      (EmulatorJS + VICE x64 in Ultimax mode)
     ├── c64/                 Commodore 64       (EmulatorJS + VICE x64)
@@ -186,8 +186,8 @@
 </tr>
 <tr>
 <td><code>apple1/</code></td>
-<td>apple1js pure-JS</td>
-<td><code>play.html</code> (<code>?game=&lt;key&gt;</code>)</td>
+<td>apple1js pure-JS (our fork)</td>
+<td><code>play.html</code> (<code>?tape=&lt;key&gt;</code>)</td>
 <td><code>tapes/*.js</code></td>
 </tr>
 <tr>
@@ -294,9 +294,9 @@
 </tr>
 <tr>
 <td><code>pet/</code></td>
-<td>Thomas Skibo's pet2001 (vanilla JS, <code>pet2001/</code> modules)</td>
-<td><code>play.html</code> (<code>?game=&lt;key&gt;</code>, IEEE-488 PRG injection)</td>
-<td><code>games/*.prg</code></td>
+<td>Thomas Skibo's pet2001 (vanilla JS, <code>pet2001/</code> modules, our fork)</td>
+<td><code>play.html</code> (<code>?game=&lt;key&gt;</code>, IEEE-488 drive 8: one PRG, or files by name from a <code>.d64</code>)</td>
+<td><code>games/*.prg</code>, <code>games/*.d64</code></td>
 </tr>
 <tr>
 <td><code>vic20</code>, <code>max</code>, <code>c64</code>, <code>c16</code>, <code>plus4</code></td>
