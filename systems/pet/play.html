@@ -91,9 +91,12 @@
       var INTERVAL_MS = 50;
       setInterval(function () { pet2001.cycle(1000 * INTERVAL_MS); }, INTERVAL_MS);
 
-      // Keyboard — Skibo wires keydown + keypress only; release is auto on a timer.
+      // Keyboard. By default a key is pressed for 50 ms and released on a
+      // timer; games that set heldKeys keep it down for as long as it is held
+      // (petkeys.js), which keyup releases.
       window.onkeydown = petkeyOnKeyDown;
       window.onkeypress = petkeyOnKeyPress;
+      window.onkeyup = petkeyOnKeyUp;
 
       // Video blank-timeout hook: pet2001video.js schedules a call to a global
       // blankTimeoutFunc, which pet2001main.js would normally define.
@@ -122,6 +125,8 @@
       // Programs written on a 2001-N / 3000-series PET expect that machine's
       // character ROM; on the original ROM their text-mode case is inverted.
       if (game.newCharRom) pet2001.setNewCharRom(true);
+      // Arcade-style games that watch the keyboard directly, or fire with SHIFT.
+      if (game.heldKeys) petkeySetHeldMode(true);
       if (!game.rom) return;
 
       // PRG format: first 2 bytes are little-endian load address, rest is data.

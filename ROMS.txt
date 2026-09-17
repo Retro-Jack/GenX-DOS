@@ -297,13 +297,13 @@ Commodore PET 2001
 ------------------
   systems/pet/games/advland.prg                            Adventureland (1979)
   systems/pet/games/android_nim.prg                        Android NIM (1979)
-  systems/pet/games/computerspace2001.prg                  ComputerSpace 2001 (1981)
   systems/pet/games/crazy_balloon.prg                      Crazy Balloon (1981)
   systems/pet/games/frog.prg                               Frog (1981)
   systems/pet/games/hangman.prg                            Hangman (1980)
   systems/pet/games/invader.prg                            Space Invaders (1980)
   systems/pet/games/lunar.prg                              Lunar Lander (1979)
   systems/pet/games/pacman.prg                             Pac-Man (1982)
+  systems/pet/games/space.prg                              Space! (1979)
   systems/pet/games/startrek.prg                           Star Trek (1977)
 
 Commodore Plus/4

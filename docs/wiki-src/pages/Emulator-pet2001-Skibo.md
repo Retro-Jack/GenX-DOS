@@ -77,7 +77,7 @@ Each string became a function making the same call — `setTimeout(function () {
 
 ## Where the changes live
 
-Every change to Skibo's code is carried in our fork, [`Retro-Jack/pet2001`](https://github.com/Retro-Jack/pet2001), on its `genx` branch, with the reasons written out in `GENX-CHANGES.md`. Skibo publishes the emulator in the repository behind his website, [`skibo/skibo.github.io`](https://github.com/skibo/skibo.github.io); the `genx` branch starts from his March 2021 commit `55d18e4`, which is the version we copied, and adds four changes: the `via_t2ll` declaration, a typo in the VIA reset (`var_t1_undf` for `via_t1_undf`, which left timer 1's underflow flag uncleared), the string timers, and our two presentation choices (a green phosphor for the screen, and the on-screen keyboard picture's click areas scaled for 600 pixels, which the bundle does not currently show). The files in `systems/pet/pet2001/` are copied from that branch unchanged. The three general fixes were offered back to Skibo as [skibo/skibo.github.io#1](https://github.com/skibo/skibo.github.io/pull/1).
+Every change to Skibo's code is carried in our fork, [`Retro-Jack/pet2001`](https://github.com/Retro-Jack/pet2001), on its `genx` branch, with the reasons written out in `GENX-CHANGES.md`. Skibo publishes the emulator in the repository behind his website, [`skibo/skibo.github.io`](https://github.com/skibo/skibo.github.io); the `genx` branch starts from his March 2021 commit `55d18e4`, which is the version we copied, and adds its changes on top: the `via_t2ll` declaration, a typo in the VIA reset (`var_t1_undf` for `via_t1_undf`, which left timer 1's underflow flag uncleared), the string timers, a choice of character ROM for text mode (the original PET 2001 ROM and the later one show upper and lower case the other way round, so each game gets the one it was written for — `newCharRom` in `games.json`), a held-key mode in which a key stays down on the PET for as long as it is held and either Shift key presses the PET's SHIFT on its own (`heldKeys`), and our two presentation choices (a green phosphor for the screen, and the on-screen keyboard picture's click areas scaled for 600 pixels, which the bundle does not currently show). The files in `systems/pet/pet2001/` are copied from that branch unchanged. The three general fixes were offered back to Skibo as [skibo/skibo.github.io#1](https://github.com/skibo/skibo.github.io/pull/1).
 
 ## The lowercase-letters gotcha
 
@@ -120,8 +120,9 @@ If anyone ports PETSCII Robots back to PET 2001 (BASIC 2, 32 K, single PRG, no d
 - Android NIM (1979) — Leo Christopherson's animated NIM with shifting LED faces
 - Lunar Lander (1979)
 - Adventureland (1979) — Scott Adams' first text adventure
+- Space! (1979) — Greg Erker's first-person space shooter from CURSOR tape 8
 - Hangman (1980), Space Invaders (1980)
-- Crazy Balloon (1981), ComputerSpace 2001 (1981), Frog (1981, year unverified)
+- Crazy Balloon (1981), Frog (1981, year unverified)
 - Pac-Man (1982)
 
 All eleven entries auto-LOAD and auto-RUN from BASIC. Total bundle size including the emulator is under 400 KB.
