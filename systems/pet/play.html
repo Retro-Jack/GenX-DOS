@@ -119,6 +119,9 @@
         return;
       }
       document.title = 'Commodore PET';
+      // Programs written on a 2001-N / 3000-series PET expect that machine's
+      // character ROM; on the original ROM their text-mode case is inverted.
+      if (game.newCharRom) pet2001.setNewCharRom(true);
       if (!game.rom) return;
 
       // PRG format: first 2 bytes are little-endian load address, rest is data.

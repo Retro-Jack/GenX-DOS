@@ -29,6 +29,8 @@ function Pet2001Video(context) {
 
     var ctx = context;
     var charset = petCharRom1;
+    var textMode = false;   // true while the PET shows its lower/upper case set
+    var newCharRom = false; // use the later character ROM's text set
     var blank = false;
 
     // Draw a character from character ROM to canvas.
@@ -107,7 +109,16 @@ function Pet2001Video(context) {
 
     // Called in response to character set signal change.
     this.setCharset = function(flag) {
-        charset = flag ? petCharRom2 : petCharRom1;
+        textMode = flag;
+        charset = flag ? (newCharRom ? petCharRom3 : petCharRom2) : petCharRom1;
         redrawScreen(this.vidram);
+    }
+
+    // Choose which character ROM's text set to show: false for the original
+    // PET 2001 ROM, true for the later one. Takes effect at once if the
+    // screen is already in text mode.
+    this.setNewCharRom = function(flag) {
+        newCharRom = flag;
+        this.setCharset(textMode);
     }
 }

@@ -7,7 +7,8 @@
   "invader": { "title": "Space Invaders (1980)", "rom": "games/invader.prg" },
   "crzballn": {
     "title": "Crazy Balloon (1981)",
-    "rom": "games/crazy_balloon.prg"
+    "rom": "games/crazy_balloon.prg",
+    "newCharRom": true
   },
   "cs2001": {
     "title": "ComputerSpace 2001 (1981)",

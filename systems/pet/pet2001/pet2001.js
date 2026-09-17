@@ -70,6 +70,11 @@ function Pet2001(context) {
         hw.ieeeLoadData(addr, bytes);
     }
 
+    // Use the later character ROM's text set (see pet2001video.js).
+    this.setNewCharRom = function(flag) {
+        video.setNewCharRom(flag);
+    }
+
     this.blankTimeoutFunc = function() {
         video.blankTimeoutFunc();
     }
