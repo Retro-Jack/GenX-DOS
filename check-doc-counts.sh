@@ -261,9 +261,22 @@ else
 fi
 echo
 
-# ---- social card: an image, so just restate what it should read ---------
-echo "Social card (docs/images/genx-social.png) — cannot be parsed; its stats"
-echo "  line should read:  $GAMES games · $SUBSYS systems · 100% self-hosted"
+# ---- social card: drawn from the font sheet by tools/social-card.py -----
+# The card's text rows are the prompt's CP437 sheet scaled up, so the tool can
+# draw them exactly and compare. Its stats line measures docs/games/ the same
+# way GAMES and SUBSYS are measured above.
+echo "Social card (docs/images/genx-social.png):"
+if ! command -v python3 >/dev/null || ! python3 -c 'import PIL' 2>/dev/null; then
+  bad "social card" "python3 with Pillow is needed to check it"
+else
+  [ "$WRITE" = 1 ] && python3 tools/social-card.py | sed 's/^/  /'
+  if card_out=$(python3 tools/social-card.py --check); then
+    ok "social card" "$GAMES games · $SUBSYS systems, and every menu row as drawn"
+  else
+    bad "social card" "rows differ — run tools/social-card.py (or --write):"
+    printf '%s\n' "$card_out" | sed 's/^/                                     /'
+  fi
+fi
 echo
 
 [ "$fail" = 0 ] && echo "All documented counts match." || echo "Drift found — fix the files above (and re-run docs/wiki-src/build.py if a wiki page changed)."

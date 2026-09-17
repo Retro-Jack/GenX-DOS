@@ -57,8 +57,8 @@
 <h2 id="what-youll-find-in-the-repo">What you'll find in the repo</h2>
 <pre><code>index.html                home page — intro, spec sheet, links, and the way into prompt/
 GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the home page
-check-doc-counts.sh       checks the counts quoted in the docs still match the tree,
-                          and that no doc still names a file that has been renamed
+check-doc-counts.sh       checks the counts quoted in the docs (and on the social card)
+                          still match the tree, and that no doc names a renamed file
 tools/                    developer tooling — not part of the shipping site
   build-softkey-map.py    generates systems/_shared/softkeys.json from the gamedocs
   build-arcade-controls.py  reads the arcade core's own control data into arcade-controls.json
@@ -66,6 +66,8 @@ tools/                    developer tooling — not part of the shipping site
   arcade-labels.py            label corrections, and arcade-gamedoc-overrides.json the pages
                               whose controls were set by hand, each with its reason
   gamefaqs-lookup.js      console helper that pulls scoring tables out of GameFAQs guides
+  social-card.py          draws docs/images/genx-social.png's menu rows and stats line in
+                          the prompt's own CP437 font, with the counts measured from the tree
   bezel-test/             one BASIC test card per computer: white border, black
                           playfield, so the edge of an emulator's picture is
                           unambiguous when checking a bezel fits

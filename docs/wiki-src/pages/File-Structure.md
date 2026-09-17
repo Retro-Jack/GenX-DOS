@@ -20,8 +20,8 @@ genx-dos/
 │                             --no-roms for the release zip, which leaves out the files below
 ├── ROMS.txt                  the games and firmware the repo and zip don't carry, and where
 │                             each goes (ships in the release zip only)
-├── check-doc-counts.sh       verifies the counts quoted in the docs still match the tree,
-│                             and that no doc still names a renamed file
+├── check-doc-counts.sh       verifies the counts quoted in the docs and on the social card
+│                             still match the tree, and that no doc still names a renamed file
 ├── tools/                   developer tooling — excluded from the shipping file set
 │   ├── beautify-glue.sh     formats the Emscripten glue we compile ourselves and adds a
 │   │                        provenance banner; upstream-built glue is left alone
@@ -33,6 +33,8 @@ genx-dos/
 │   │                        arcade-gamedoc-overrides.json the hand-set pages and why
 │   ├── gamefaqs-lookup.js   console helper that pulls scoring tables out of
 │   │                        GameFAQs guides for the arcade gamedocs
+│   ├── social-card.py       draws the social card's menu rows and stats line from the
+│   │                        prompt's CP437 font sheet; counts measured from docs/games/
 │   └── bezel-test/          one BASIC test card per computer (white border, black
 │                            playfield) for checking a bezel's fit — see the
 │                            README in that directory for per-machine status
