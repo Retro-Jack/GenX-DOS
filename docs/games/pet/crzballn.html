@@ -13,35 +13,48 @@
     <div class="head">
       <div class="system">Home Computer · Commodore PET</div>
       <h1>Crazy Balloon</h1>
-      <p class="sub">1981 — PET port of Taito's 1980 maze arcade. Guide a balloon through a maze of pins without popping. Reach the flag for the bonus and next level.</p>
+      <p class="sub">1981 (unverified) — a PET version of Taito's 1980 arcade game. Steer a swaying balloon on a string through a maze of prickly stars to the goal without bursting it.</p>
     </div>
 
     <p class="gx-crosslink"><a href="../../../systems/pet/controls.html">System help — the Commodore PET controls</a></p>
 
-    <p class="intro">A maze of pins, spikes, and moving needles. You're a balloon — touch anything sharp and you pop. Steer towards the exit flag. Each level adds more hazards; some levels move the maze elements while you're navigating.</p>
+    <p class="intro">The balloon starts at the bottom right of a maze of stars, and the GOAL is on the left. The balloon sways on its string as it goes, so its top and bottom swing from side to side — touch a star with either and it bursts. One star also moves, sliding back and forth along its row, and it bursts the balloon too. The walls of the maze bounce you back. Lines across the maze score points as you pass through them, and the sooner you reach the goal the more it's worth. You have four balloons.</p>
+
+    <p class="note-plain">The program names no author and gives no date, so the 1981 in the menu is unconfirmed.</p>
 
     <h2>Getting started</h2>
     <ol>
-      <li>Click the game area to enable sound and controls.</li>
-      <li>Press a key past the title to spawn the balloon at the start.</li>
+      <li>Click the game area to enable controls.</li>
+      <li><em>DO YOU WANT INSTRUCTIONS?</em> — press <kbd>Y</kbd> for two pages of instructions (press any key to turn each), or any other key to start straight away. <kbd>E</kbd> ends the program.</li>
     </ol>
 
     <h2>Controls</h2>
     <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported.</p>
     <table>
       <tr><th>Keyboard</th><th>Action</th></tr>
-      <tr><td><kbd>8</kbd> / <kbd>2</kbd></td><td>Up / down</td></tr>
-      <tr><td><kbd>4</kbd> / <kbd>6</kbd></td><td>Left / right</td></tr>
-      <tr><td>Two adjacent (e.g. <kbd>4</kbd>+<kbd>8</kbd>)</td><td>Move diagonally</td></tr>
+      <tr><td><kbd>8</kbd></td><td>Up</td></tr>
+      <tr><td><kbd>2</kbd></td><td>Down</td></tr>
+      <tr><td><kbd>4</kbd></td><td>Left</td></tr>
+      <tr><td><kbd>6</kbd></td><td>Right</td></tr>
+      <tr><td><kbd>4</kbd>+<kbd>8</kbd>, <kbd>6</kbd>+<kbd>8</kbd>, <kbd>4</kbd>+<kbd>2</kbd>, <kbd>6</kbd>+<kbd>2</kbd></td><td>Diagonally — hold both keys together</td></tr>
     </table>
-    <p class="note">PET ports of Crazy Balloon use one of the two standard PETSCII keyboard layouts; the title screen shows the build's specific keymap.</p>
+    <p class="note">The balloon moves only while a key is held down. Don't leave it still: as the game warns, it bursts if it stays put for five seconds or so.</p>
 
-    <h2>Strategy</h2>
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Event</th><th>Points</th></tr>
+      <tr><td>Passing through the first kind of line</td><td>150</td></tr>
+      <tr><td>Passing through the second kind</td><td>100</td></tr>
+      <tr><td>Passing through both on the way to the goal</td><td>250, plus a 500 bonus at the goal</td></tr>
+      <tr><td>Reaching the goal</td><td>A countdown that starts at 1000 and falls the longer you take, never below 100</td></tr>
+    </table>
+    <p class="note">An extra balloon comes at 4,000 points. The level rises at 4,000, 6,000, 7,000 and 8,000 points, and beyond 9,000 random stars are added to the maze. When your last balloon bursts with a new high score the game asks for your name — type one (up to 12 letters) before pressing <kbd>Return</kbd>, because <kbd>Return</kbd> on its own stops the program; type <kbd>RUN</kbd> to start again if it does.</p>
+
+    <h2>Tips</h2>
     <ul>
-      <li><strong>Slow movement only.</strong> A balloon drifts — corrections take time. Plan two tiles ahead, not one.</li>
-      <li><strong>Hug the safe-side wall.</strong> Maze-runner rule: pick a wall, follow it, you'll always reach the exit eventually (in static mazes).</li>
-      <li><strong>Don't backtrack through moving needles.</strong> The needle returns on the same pattern; once you've crossed, the safe window has closed.</li>
-      <li><strong>Bonus flag matters.</strong> Speed bonuses scale; sit-and-think levels score lower even with no deaths.</li>
+      <li><strong>Mind the sway, not just the balloon.</strong> The string swings as well, so leave a clear space either side of a gap before you go through it.</li>
+      <li><strong>Walls are safe, stars are not.</strong> Bumping a wall only bounces you back, so hug the walls where the stars are thick.</li>
+      <li><strong>Keep moving.</strong> Short steps count as movement and stop the balloon bursting while you line up the next gap.</li>
     </ul>
     <div class="footer">
       part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> ·

@@ -9,7 +9,8 @@
   "crzballn": {
     "title": "Crazy Balloon (1981)",
     "rom": "games/crazy_balloon.prg",
-    "newCharRom": true
+    "newCharRom": true,
+    "heldKeys": true
   },
   "frog": { "title": "Frog (1981)", "rom": "games/frog.prg", "heldKeys": true },
   "pacman": { "title": "Pac-Man (1982)", "rom": "games/pacman.prg" },
