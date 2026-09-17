@@ -163,6 +163,7 @@ rebuild or inspect what we ship.
 | `mame2003_plus` (MAME non-commercial licence) | https://github.com/libretro/mame2003-plus-libretro |
 | `atari400/`, `atari800/` — `atari800.wasm` (GPL-2.0+) | built by us: https://github.com/Retro-Jack/atari800 (`build-wasm.sh`, `BUILDING-WASM.md`) |
 | `odyssey2/` — o2em core | built by us from https://github.com/libretro/libretro-o2em via `systems/odyssey2/build.sh`; our SDL2 frontend (`frontend.c`) sits beside it |
+| `apple1/` — Will Scullin's apple1js (MIT) | our fork, `genx` branch, changes and build steps in `GENX-CHANGES.md`: https://github.com/Retro-Jack/apple1js |
 | `bbcmicro/`, `bbcmaster/` — jsbeeb (GPL-3.0+) | our fork, changes in `GENX-CHANGES.md`: https://github.com/Retro-Jack/jsbeeb |
 | `pet/` — Thomas Skibo's pet2001 (BSD-2-Clause) | our fork of https://github.com/skibo/skibo.github.io, `genx` branch, changes in `GENX-CHANGES.md`: https://github.com/Retro-Jack/pet2001 |
 | `m100/` — VirtualT (BSD) | `systems/m100/src/` in this repo |
