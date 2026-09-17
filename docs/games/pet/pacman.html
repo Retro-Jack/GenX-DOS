@@ -13,42 +13,48 @@
     <div class="head">
       <div class="system">Home Computer · Commodore PET</div>
       <h1>Pac-Man</h1>
-      <p class="sub">1982 — PETSCII clone of Namco's 1980 arcade. Eat the dots, dodge the ghosts, eat the power pellets, chase the ghosts.</p>
+      <p class="sub">1982 (unverified) — on screen it's <em>PET-MAN</em>, created by Paul Gummersall with coding changes by Jim Butterfield. Eat every dot in the maze while four guards hunt you, and turn the tables with an energizer.</p>
     </div>
 
     <p class="gx-crosslink"><a href="../../../systems/pet/controls.html">System help — the Commodore PET controls</a></p>
 
-    <p class="intro">Standard Pac-Man maze rules but with PETSCII glyphs and monochrome rendering. Four ghosts patrol; four power pellets flip them blue for a few seconds. Clear all dots to advance.</p>
+    <p class="intro">PET-MAN moves through a maze of dots, and four guards chase him. Eat an energizer (<kbd>*</kbd>) and for ten seconds the guards appear in reverse and can be caught instead. Clear every dot and the next round starts, faster. There is only one life: the first time a guard catches you, it's <em>CAPTURE</em> and the game is over.</p>
+
+    <p class="note-plain">The program credits its authors but gives no date, so the 1982 in the menu is unconfirmed.</p>
 
     <h2>Getting started</h2>
     <ol>
-      <li>Click the game area to enable sound and controls.</li>
-      <li>Press a key past the title to start.</li>
+      <li>Click the game area to enable controls.</li>
+      <li><em>DO YOU WANT INSTRUCTIONS — YES OR NO</em> — press <kbd>Y</kbd> or <kbd>N</kbd>. After the instructions, <em>ARE YOU READY TO PLAY</em> wants <kbd>Y</kbd>.</li>
+      <li><em>EASY, HARD, OR NO CHANCE (EHN)</em> — press <kbd>E</kbd>, <kbd>H</kbd> or <kbd>N</kbd>. The harder the setting, the more eagerly the guards move.</li>
+      <li>The maze is drawn and the game begins.</li>
     </ol>
 
     <h2>Controls</h2>
     <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported.</p>
     <table>
       <tr><th>Keyboard</th><th>Action</th></tr>
-      <tr><td><kbd>8</kbd> / <kbd>2</kbd></td><td>Up / down</td></tr>
-      <tr><td><kbd>4</kbd> / <kbd>6</kbd></td><td>Left / right</td></tr>
+      <tr><td><kbd>8</kbd></td><td>Go up</td></tr>
+      <tr><td><kbd>2</kbd></td><td>Go down</td></tr>
+      <tr><td><kbd>4</kbd></td><td>Go left</td></tr>
+      <tr><td><kbd>6</kbd></td><td>Go right</td></tr>
+      <tr><td><kbd>Y</kbd> / <kbd>N</kbd></td><td>At <em>DO YOU WANT TO PLAY AGAIN?</em></td></tr>
     </table>
+    <p class="note">Press a direction once: PET-MAN keeps going that way until he meets a wall or you choose another. A direction into a wall is ignored. The passage through the side of the maze wraps round to the other side.</p>
 
-    <h2>Ghost behaviour (true to arcade)</h2>
+    <h2>Scoring</h2>
     <table>
-      <tr><th>Ghost</th><th>AI tendency</th></tr>
-      <tr><td>Blinky (red)</td><td>Direct chase — always targets your current tile</td></tr>
-      <tr><td>Pinky (pink)</td><td>Ambush — targets four tiles ahead of you</td></tr>
-      <tr><td>Inky (cyan)</td><td>Flanking — geometry-based pincer with Blinky</td></tr>
-      <tr><td>Clyde (orange)</td><td>Random when close, retreats when too near you</td></tr>
+      <tr><th>Event</th><th>Points</th></tr>
+      <tr><td>Each dot</td><td>5</td></tr>
+      <tr><td>Catching a guard while an energizer lasts</td><td>100</td></tr>
     </table>
+    <p class="note">An energizer lasts ten seconds, and the guards you catch return to the middle of the maze when it wears off. At the end the game shows your score, the high score and how many guards you caught.</p>
 
-    <h2>Strategy</h2>
+    <h2>Tips</h2>
     <ul>
-      <li><strong>Power pellets aren't free.</strong> Trigger them only when at least two ghosts are within chase distance — chasing for one is bad ROI on the timer.</li>
-      <li><strong>Corners are slow.</strong> Pac turns at junctions in zero time but the ghosts do too — pre-buffer the input one tile early on tight chases.</li>
-      <li><strong>The fruit bonus appears twice per level.</strong> Worth the side-quest in the early levels, not worth dying for after wave 5.</li>
-      <li><strong>Cruise elroy.</strong> When dots are scarce, Blinky speeds up to your speed — corners become your only escape.</li>
+      <li><strong>You only get one go.</strong> With a single life, keep your distance from the guards rather than trusting a narrow escape.</li>
+      <li><strong>Save the energizers for when you're cornered.</strong> Four guards bearing down is the time to eat one — and a caught guard is worth twenty dots.</li>
+      <li><strong>Start on Easy.</strong> On Easy a guard moves about one turn in ten; on No Chance it's more than every other turn. Easy gives you room to learn the maze.</li>
     </ul>
     <div class="footer">
       part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> ·
