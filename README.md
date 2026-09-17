@@ -77,7 +77,7 @@ systems/                  game counts below describe the live site; see ROMS.txt
   _shared/                shared CSS + helpers (NumLock warn, VICE RUN/STOP key remap, BBC COPY button, save-state, ...)
   _shared-ejs/            shared EmulatorJS framework + 4 VICE cores + gearcoleco + FCEUmm + Stella + gambatte + handy + genesis_plus_gx + prosystem
                           (14 bundles share one ~3 MB framework; saves ~25 MB vs per-bundle copies)
-  apple1/                 Apple I             — apple1js + 10 cassette tapes
+  apple1/                 Apple I             — apple1js (our fork) + 10 cassette tapes
   bbcmicro/               BBC Micro           — jsbeeb Vite dist (Model B) + BBC disks
   bbcmaster/              BBC Master 128      — jsbeeb Vite dist (model=Master) + Master-enhanced disks
   electron/               Acorn Electron      — ElkJS + 6 UEF snapshots
@@ -101,7 +101,7 @@ systems/                  game counts below describe the live site; see ROMS.txt
   js99er/                 TI-99/4A            — vanilla-JS js99er + 10 .rpk carts
   atari400/               Atari 400           — atari800 WASM, boots OS-B
   atari800/               Atari 800XL         — atari800 WASM, boots OS-XL
-  pet/                    Commodore PET       — Thomas Skibo's pet2001 (vanilla JS) + 10 .prg
+  pet/                    Commodore PET       — Thomas Skibo's pet2001 (vanilla JS, our fork) + 9 .prg + 1 .d64
   vic20/                  Commodore VIC-20    — EmulatorJS + VICE xvic + 10 cart .prg
   max/                    Commodore MAX       — EmulatorJS + VICE x64 in Ultimax mode + 10 .crt
   c64/                    Commodore 64        — EmulatorJS + VICE x64 + 10 .d64
@@ -118,7 +118,7 @@ systems/                  game counts below describe the live site; see ROMS.txt
 
 The hand-written GenX-DOS code lives in `prompt/javascript/`, `systems/_shared/`, `systems/_shared-ejs/`, each emulator's `play.html` wrapper, and `systems/m100/src/` (the Model 100's headless VirtualT build units + recipe) — all formatted for reading.
 
-Everything else under `systems/<name>/` is upstream: emscripten WASM glue (`xroar.js`, `atari800.js`, `o2em.js`, `jzintv.js`), webpack production bundles (`apple1.js`, `apple2/dist/*.bundle.js`, `jsspeccy.js`), the stock WebMSX engine (`msx1/wmsx.js`, `msx2/wmsx.js`), or hand-written JS from the upstream project (ElkJS, js99er's `emu/`). For the readable source of those, follow the upstream link in [ATTRIBUTION.md](ATTRIBUTION.md) or the per-engine integration story on the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators).
+Everything else under `systems/<name>/` is upstream: emscripten WASM glue (`xroar.js`, `atari800.js`, `o2em.js`, `jzintv.js`), webpack production bundles (`apple1.js` — built from our apple1js fork — `apple2/dist/*.bundle.js`, `jsspeccy.js`), the stock WebMSX engine (`msx1/wmsx.js`, `msx2/wmsx.js`), or hand-written JS from the upstream project (ElkJS, js99er's `emu/`). For the readable source of those, follow the upstream link in [ATTRIBUTION.md](ATTRIBUTION.md) or the per-engine integration story on the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators).
 
 ## The emulator lineup
 
@@ -126,7 +126,7 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 
 | System    | Copied from                          | URL pattern                              |
 |-----------|--------------------------------------|------------------------------------------|
-| Apple I   | scullin/apple1js                     | `play.html?tape=<key>`                   |
+| Apple I   | whscullin/apple1js, our fork         | `play.html?tape=<key>`                   |
 | BBC Micro | mattgodbolt/jsbeeb                   | `?disc1=<path>.ssd&autoboot`             |
 | BBC Master | mattgodbolt/jsbeeb (same build)     | `?model=Master&disc1=<path>.ssd&autoboot` |
 | Acorn Electron | dmcoles/elkjs                   | `play.html?game=<key>`                   |
@@ -143,7 +143,7 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | TI-99/4A  | Rasmus-M/js99er (vanilla-JS build)   | `play.html?game=<key>`                   |
 | Atari 400 / 800XL | atari800/atari800 (our own WASM build; split into `atari400/` + `atari800/` bundles) | `play.html?game=<key>` |
 | VIC-20 / MAX / C64 / C16 / Plus/4 | EmulatorJS + VICE libretro family | `play.html?game=<key>` |
-| PET       | Thomas Skibo's pet2001 (vanilla JS)  | `play.html?game=<key>`                   |
+| PET       | Thomas Skibo's pet2001 (vanilla JS), our fork | `play.html?game=<key>`          |
 | ColecoVision | EmulatorJS + gearcoleco (Drhelius) libretro | `play.html?game=<key>` |
 | Intellivision | jzIntv (Joe Zbiciak) WASM, custom emscripten loader | `play.html?game=<key>` |
 | Amstrad CPC   | floooh/chips-test tiny8bit CPC WASM (Andre Weissflog) | `play.html?game=<key>` (rewrites to `?file=&input=` for sokol_args) |
@@ -156,7 +156,7 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 
 On genx-dos.fun, every ROM is served by the site itself — nothing is fetched from anywhere else at runtime.
 
-The five VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4) share a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to **Scroll Lock** + **Pause/Break** via `systems/_shared/genx-vice-softkeys.js` (RESTORE stays on the libretro default Page Up). The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing; see the wiki for the migration story.
+The five VICE-family bundles (VIC-20, MAX, C64, C16, Plus/4) share a unified input config (`keyboardInput` enabled + `vice_joyport_type='1'` Numpad) so typing and joystick coexist. Numpad 8/4/6/2 = joystick directions, 0/5 = fire, everything else types. Esc is browser-captured (exits pointer-lock/fullscreen) so we remap RUN/STOP to **Scroll Lock** + **Pause/Break** via `systems/_shared/genx-vice-softkeys.js` (RESTORE stays on the libretro default Page Up). The PET sits separately on Thomas Skibo's pet2001 (vanilla JS, BSD-2-Clause) — keyboard-only and unrelated to the VICE plumbing, with Esc as its RUN/STOP since nothing there captures it; see the wiki for the migration story.
 
 Soft keys are **per game**: the button appears only where that game's gamedoc names the key in its Controls table, via `systems/_shared/genx-softkey-policy.js` and a `softkeys.json` generated by `tools/build-softkey-map.py` — six of the ten TRS-80 games use CLEAR, four of the twenty BBC games use COPY, and the rest show nothing. The BBC bundles (jsbeeb) add a **COPY** button under the machine via `systems/_shared/genx-bbc-copykey.js` — the BBC COPY key maps to the PC End key, which isn't obvious, so titles that use it (as an in-game "continue" or action key) get a click target. The TRS-80 Model III (sdltrs) likewise adds a **CLEAR** button, under the machine, via `systems/_shared/genx-trs80-softkeys.js`.
 
@@ -199,7 +199,8 @@ The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.m
 - DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system by Mike, written informally for **LGR — Lazy Game Reviews** (Clint Basinger, <http://www.lazygamereviews.com>)
 - Both favicons — `favicon.ico` and the six-frame `animated_favicon1.gif`, which cross-fades between `C:\` and **LGR** — are from the same LGR base
 - AMIBIOS POST animation, emulator integration wrappers, menu tree, and bundled-emulator-specific code by Retro-Jack
-- jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb)
+- apple1js: MIT (whscullin/apple1js) — built from our fork, Retro-Jack/apple1js
+- jsbeeb: GPL-3.0-or-later (mattgodbolt/jsbeeb) — built from our fork, Retro-Jack/jsbeeb
 - ElkJS: (c) Darren Coles 2013 (dmcoles/elkjs) — 6502 core ported from Elkulator by Tom Walker
 - apple2js: MIT (whscullin/apple2js)
 - FCEUmm: GPL-2.0 (libretro NES core) — mirrored from `cdn.emulatorjs.org/stable/`
@@ -214,7 +215,9 @@ The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.m
 - atari800: GPL-2.0+ (atari800/atari800 v5.2.0, built from source to WASM); the machines run **genuine Atari ROMs** — OS-B on the 400, XL/XE OS Rev 2 on the 800XL, and Atari BASIC Rev C on both — supplied at runtime from `roms/` via `-osb_rom` / `-xlxe_rom` / `-basic_rom`. The build also contains Avery Lee's AltirraOS/AltirraBASIC reimplementations, but they are only a fallback for when no real ROM is present, and never load here
 - EmulatorJS: GPL-3.0 (EmulatorJS/EmulatorJS) — modern fork of emularity; shared across 14 bundles via `systems/_shared-ejs/` — the five VICE-family bundles, ColecoVision, NES, Atari 2600, Atari 7800, Sega Master System, the three handhelds (Game Boy/GBC, Lynx, Game Gear) and the arcade section
 - VICE: GPL-2.0 (vice-emu.sourceforge.net) — libretro cores (`x64`, `xvic`, `xplus4`) mirrored from `cdn.emulatorjs.org/stable/`
-- pet2001: BSD-2-Clause (Thomas Skibo) — vanilla-JS PET 2001 emulator at `systems/pet/pet2001/`
+- pet2001: BSD-2-Clause (Thomas Skibo) — vanilla-JS PET 2001 emulator at `systems/pet/pet2001/`, from our fork, Retro-Jack/pet2001
+- JSVecX: GPL-3.0 (DrSnuggles/jsvecx, after raz0red's port of VecX) — our fork, Retro-Jack/jsvecx, adds the speech DAC
+- VirtualT: BSD (Ken Pettit and Stephen Hurd) — core extracted and built to WASM by us; source and recipe in `systems/m100/src/`
 - gearcoleco: GPL-3.0 (Drhelius) — libretro ColecoVision core mirrored from `cdn.emulatorjs.org/stable/`
 - gambatte: GPL-2.0 (libretro Game Boy / Game Boy Color core, sinamas)
 - handy: zlib (libretro Atari Lynx core, K. Wilkins)
