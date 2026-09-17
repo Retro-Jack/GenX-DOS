@@ -13,18 +13,18 @@
     <div class="head">
       <div class="system">Home Computer · Commodore PET</div>
       <h1>Hangman</h1>
-      <p class="sub">Raymond Toy, 1980 — the canonical PET BASIC port of the schoolyard guessing game. PETSCII gallows, single-letter guesses, eight wrong before the figure is complete.</p>
+      <p class="sub">1980 — by Raymond Toy, shared through SOFTSWAP, the educational software exchange run by the San Mateo County Office of Education and Computer-Using Educators. Guess the PET's word one letter at a time before the gallows are finished.</p>
     </div>
 
     <p class="gx-crosslink"><a href="../../../systems/pet/controls.html">System help — the Commodore PET controls</a></p>
 
-    <p class="intro">The PET picks a word from its internal list. You guess letters one at a time; correct letters appear in their positions; wrong letters add a piece to the gallows figure. Eight wrong guesses = game over. Solve the word before the final piece.</p>
+    <p class="intro">The PET picks a word from a list of 215 and shows a blank for each letter. Every letter you guess is added after <em>YOUR GUESSES:</em>; a right guess fills in each place it appears, and a wrong one adds to the drawing of the gallows. You are allowed ten wrong guesses — the eleventh hangs you. The PET won't give you the same word twice in one session.</p>
 
     <h2>Getting started</h2>
     <ol>
-      <li>Click the game area to enable sound and controls.</li>
-      <li>Press a key past the title to start.</li>
-      <li>Type a letter (A–Z) and press <kbd>Return</kbd>. Repeat until you win or hang.</li>
+      <li>Click the game area to enable controls.</li>
+      <li><em>Do you want instructions (Y/N)?</em> — press <kbd>Y</kbd> or <kbd>N</kbd>. On the instruction pages, press any key to go on.</li>
+      <li>At <em>MY WORD IS:</em> start guessing.</li>
     </ol>
 
     <h2>Controls</h2>
@@ -32,16 +32,22 @@
     <table>
       <tr><th>Keyboard</th><th>Action</th></tr>
       <tr><td><kbd>A</kbd> – <kbd>Z</kbd></td><td>Guess that letter</td></tr>
-      <tr><td><kbd>Return</kbd></td><td>Submit the guess</td></tr>
-      <tr><td>Word guess (if prompted)</td><td>Type the whole word for one big risk/reward</td></tr>
+      <tr><td><kbd>Y</kbd> / <kbd>N</kbd></td><td>At <em>ANOTHER WORD (Y/N)?</em> — play again, or stop</td></tr>
     </table>
+    <p class="note">Each guess is a single key — as the game's own instructions put it, do not press the Return key. Guess a letter you've already tried and it just says <em>LETTER REPEATED</em>; it doesn't count against you.</p>
 
-    <h2>Strategy</h2>
+    <h2>Winning and losing</h2>
     <ul>
-      <li><strong>ETAOIN SHRDLU.</strong> The 12 most common English letters — guess them roughly in order; almost every word has at least one in it.</li>
-      <li><strong>Vowels first.</strong> Three or four vowels narrow the word skeleton dramatically.</li>
-      <li><strong>Don't guess the same letter twice.</strong> The PET will accept it and waste a turn on most versions.</li>
-      <li><strong>Word lists are short.</strong> Re-playing the same build, you'll start to recognise words from 2-3 letters; that's the BASIC dictionary, not luck.</li>
+      <li>Fill in the whole word and the PET says <em>YOU'VE GOT IT!</em></li>
+      <li>On the eleventh wrong guess you are hanged: the PET shows <em>MY WORD IS:</em> with the answer, and <em>YOU LOSE!</em></li>
+      <li>Either way it asks <em>ANOTHER WORD (Y/N)?</em></li>
+    </ul>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Start with the common letters.</strong> E, T, A, O, I and N turn up in most words and fill in the shape fastest.</li>
+      <li><strong>Vowels narrow things down.</strong> Once you know where the vowels are, the word's pattern usually suggests the rest.</li>
+      <li><strong>The word list isn't simple.</strong> It includes words like <em>turpitude</em>, <em>tangential</em> and <em>angstrom</em> — ten wrong guesses go quicker than you'd think.</li>
     </ul>
     <div class="footer">
       part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> ·
