@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 ### Changed
+- **ATTRIBUTION records PETSCII Robots and the new forks.** The shareware game ships on the C64 and the PET but had no entry among the titles released by their authors; it has one now. The Apple I and PET rows name their forks. `systems/apple1/LICENSE` carries apple1js's MIT notice, taken from the fork, and the note on notice files now says the PET's travels in its source headers.
 - **The README credits every engine and names its forks.** The licence list had no line for apple1js, JSVecX or VirtualT; the Apple I, jsbeeb and PET lines now say they are built from our forks, the PET's layout line counts nine `.prg` and a `.d64`, and the Apple I's upstream was misnamed `scullin`.
 - **The feature article's size and TRS-80 were out of date.** Its prose said 138 MB beside a numbers box reading 186, and the rebuilt-by-hand box named the TRS-80 Model I where the site runs a Model III. The prose figure is now a slot `check-doc-counts.sh` keeps in step with the tree.
 - **The PET and the Apple I share one phosphor green, `#11cf00`.** The PET's screen was a softer `#60d0a0`; the Apple I's text was near-white, and now starts in green (Green Screen ticked, still switchable). The Apple I's emulator is a fork now, [`Retro-Jack/apple1js`](https://github.com/Retro-Jack/apple1js): its two older changes — reset on Pause/Break instead of F1, and a reset shortly after start-up so the monitor runs — had been hand edits to the built file, and are now source in the fork beside the colour.

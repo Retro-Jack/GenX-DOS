@@ -104,7 +104,7 @@ fork rather than the bundle.
 
 | Bundle directory | Upstream project | Author(s) | Licence |
 | --- | --- | --- | --- |
-| `systems/apple1/` | apple1js | whscullin | MIT |
+| `systems/apple1/` | apple1js, built from the [`Retro-Jack/apple1js`](https://github.com/Retro-Jack/apple1js) fork (local changes in the fork's `GENX-CHANGES.md`) | Will Scullin (whscullin) | MIT |
 | `systems/apple2/` | apple2js | whscullin | MIT |
 | `systems/bbcmicro/`, `systems/bbcmaster/` | jsbeeb, built from the [`Retro-Jack/jsbeeb`](https://github.com/Retro-Jack/jsbeeb) fork (same engine in two bundles — the Micro bundle boots Model B, the Master bundle boots `model=Master`; local changes in the fork's `GENX-CHANGES.md`) | Matt Godbolt | GPL-3.0-or-later |
 | `systems/electron/` | ElkJS | Darren Coles (6502 core ported from Tom Walker's Elkulator) | © Darren Coles 2013 (no SPDX header in source) |
@@ -129,7 +129,7 @@ fork rather than the bundle.
 | `systems/intv/` | jzIntv (WASM build) | Joe Zbiciak | Free for personal/non-commercial use. WASM build mirrored from [mholzinger/intellivision-overlay-editor](https://github.com/mholzinger/intellivision-overlay-editor) |
 | `systems/odyssey2/` | libretro-o2em, custom SDL2/emscripten frontend | original o2em by Daniel Boris + Andre de la Rocha; libretro fork by libretro authors; frontend by Retro-Jack | Artistic-2.0 (libretro-o2em, verified against upstream); frontend bundled under repo terms |
 | `systems/cpc/` | floooh's tiny8bit CPC WASM — locally rebuilt from `floooh/chips-test` (status bar + muted-speaker icon patched out, plus `gx_state_*` save-state wrappers; see `systems/cpc/BUILDING-WASM.md`) | Andre Weissflog | MIT |
-| `systems/pet/pet2001/` | pet2001 (vanilla-JS PET 2001 emulator) | Thomas Skibo | BSD-2-Clause |
+| `systems/pet/pet2001/` | pet2001 (vanilla-JS PET 2001 emulator), from the [`Retro-Jack/pet2001`](https://github.com/Retro-Jack/pet2001) fork (local changes in the fork's `GENX-CHANGES.md`) | Thomas Skibo | BSD-2-Clause |
 | `systems/_shared-ejs/` | EmulatorJS framework | EmulatorJS team | GPL-3.0 |
 | `systems/_shared-ejs/ejs/data/cores/` | VICE libretro cores (`x64`, `xvic`, `xplus4`) | vice-emu.sourceforge.net | GPL-2.0 |
 | `systems/_shared-ejs/ejs/data/cores/` | gearcoleco libretro core (ColecoVision) | Drhelius | GPL-3.0 |
@@ -299,6 +299,11 @@ for historical preservation, emulator integration, and educational use.
 Notable inclusions where the rights holder has explicitly released the
 software under permissive terms:
 
+- **Attack of the PETSCII Robots** (David Murray, The 8-Bit Guy, 2021) — the
+  free shareware release, on the C64 (`systems/c64/games/petrobot.d64`) and the
+  PET (`systems/pet/games/petrobot.d64`). Its own start-up screen says the
+  shareware version is free to distribute; the full game is sold at
+  [the8bitguy.com](https://www.the8bitguy.com/).
 - **Apple I cassette tapes** — Integer BASIC era homebrew + Apple's own
   30th Anniversary demo by Brian Wiser. Sourced from the
   [Apple I Project](https://www.applefritter.com/apple1) archive.
@@ -463,9 +468,11 @@ beside it, which is what the GPL asks for:
 | `atari400/`, `atari800/` (GPL-2.0), `bbcmicro/`, `bbcmaster/` (GPL-3.0), `odyssey2/` | shipped with the builds we compiled ourselves |
 | `m100/src/LICENSE` | VirtualT, BSD |
 
-The permissively-licensed bundles — `apple1/`, `apple2/`, `msx1/`, `msx2/`,
-`cpc/` (MIT), `pet/`, `trs80/` (BSD-2-Clause) — do **not** carry their notice
-files. Those licences do ask for the copyright notice to travel with the code,
+`apple1/` carries apple1js's MIT notice as `systems/apple1/LICENSE`, taken from
+the fork, and every pet2001 source file in `systems/pet/pet2001/` carries Thomas
+Skibo's BSD notice in its header. The other permissively-licensed bundles —
+`apple2/`, `msx1/`, `msx2/`, `cpc/` (MIT), `trs80/` (BSD-2-Clause) — do **not**
+carry their notice files. Those licences do ask for the copyright notice to travel with the code,
 and the notice includes a per-project copyright line that cannot be
 reconstructed from here, so it has to come from upstream rather than be written
 locally. Until it does, the table above and its upstream links are the record.
