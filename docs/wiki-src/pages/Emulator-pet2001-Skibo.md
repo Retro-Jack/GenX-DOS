@@ -57,7 +57,7 @@ Uncaught ReferenceError: via_t2ll is not defined
 
 The VIA chip's Timer 2 latch low register (`via_t2ll`) is read at line 679 of `pet2001io.js` and written at line 552, but never declared with `var`. In sloppy mode the write at 552 would create an implicit global on first execution — but Frogger reads the register *before* writing to it, so the read crashes. None of the other titles in the bundle exercise this code path early enough to trigger the bug.
 
-We patched the upstream file in place:
+The fix declares it (it lives in our fork now; see *Where the changes live* below):
 
 ```js
 var via_t1ll = 0xff;
@@ -69,9 +69,19 @@ var via_t2ch = 0xff;
 
 Plus the matching line in the reset routine. Two lines total, fixes Frogger and any future title that reads T2 before writing.
 
+## Timers that were strings
+
+Skibo's emulator scheduled its timers the old way, handing `setTimeout` a string of code: `setTimeout("petkeyKeypressTimeout()", …)` releases each key a moment after it is pressed, and `setTimeout("blankTimeoutFunc()", 100)` blanks the display. A browser has to compile that string, and the site's Content-Security-Policy allows WebAssembly compilation but not string evaluation. So the timers never fired — silently. The PET booted to `READY.` and the autostart's `load"*",8` and `run` sat in the keyboard queue, every key pressed and none released; anything typed would have gone the same way.
+
+Each string became a function making the same call — `setTimeout(function () { petkeyKeypressTimeout(); }, …)` — which reaches the same global function, and `play.html`'s own autostart timer does the same. That let the PET drop `'unsafe-eval'` from its policy.
+
+## Where the changes live
+
+Every change to Skibo's code is carried in our fork, [`Retro-Jack/pet2001`](https://github.com/Retro-Jack/pet2001), on its `genx` branch, with the reasons written out in `GENX-CHANGES.md`. Skibo publishes the emulator in the repository behind his website, [`skibo/skibo.github.io`](https://github.com/skibo/skibo.github.io); the `genx` branch starts from his March 2021 commit `55d18e4`, which is the version we copied, and adds three changes: the `via_t2ll` declaration, the string timers, and our two presentation choices (a green phosphor for the screen, and the on-screen keyboard picture's click areas scaled for 600 pixels, which the bundle does not currently show). The files in `systems/pet/pet2001/` are copied from that branch unchanged.
+
 ## The lowercase-letters gotcha
 
-The PET keyboard has no shift-lock equivalent for ASCII case — pressing the key labelled `L` always produces character code 76 ("L"). Skibo's keyboard table in `petkeys-600.js` only maps PC ASCII codes 97–122 (`a`–`z`) to PET key matrix positions; codes 65–90 (`A`–`Z`) all map to `-1` and are silently dropped.
+The PET keyboard has no shift-lock equivalent for ASCII case — pressing the key labelled `L` always produces character code 76 ("L"). Skibo's keyboard table in `petkeys.js` only maps PC ASCII codes 97–122 (`a`–`z`) to PET key matrix positions; codes 65–90 (`A`–`Z`) all map to `-1` and are silently dropped.
 
 This caught us when we wrote the autostart sequence as `LOAD"*",8\r RUN\r` and the PET showed only `"*",8` — the four uppercase letters of `LOAD` got dropped, the punctuation went through, and BASIC threw `?SYNTAX ERROR`. Fix is to lowercase the autostart strings: `load"*",8\r run\r`. The PET still displays them as uppercase because the chargen has no lowercase glyphs in graphics mode.
 
@@ -124,14 +134,14 @@ systems/pet/
 ├── controls.html
 ├── games.json         ← 11 entries, optional autostart override
 ├── games/             ← *.prg files
-└── pet2001/           ← Skibo's 9-file emulator (BSD-2-Clause)
+└── pet2001/           ← Skibo's 9-file emulator (BSD-2-Clause), copied from Retro-Jack/pet2001
     ├── cpu6502.js
-    ├── petkeys-600.js
+    ├── petkeys.js
     ├── pet2001roms.js
     ├── pet2001hw.js
     ├── pet2001ieee.js
     ├── pet2001io.js
-    ├── pet2001video-mod.js
+    ├── pet2001video.js
     ├── pet2001.js
     └── pet2001main.js (unused — replaced by play.html boot logic)
 ```

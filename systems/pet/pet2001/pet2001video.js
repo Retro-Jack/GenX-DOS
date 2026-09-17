@@ -92,7 +92,7 @@ function Pet2001Video(context) {
     this.setVideoBlank = function(flag) {
         if (flag && !blank) {
             if (!blankTimeout)
-                blankTimeout = setTimeout("blankTimeoutFunc()", 100);
+                blankTimeout = setTimeout(function () { blankTimeoutFunc(); }, 100);
             blank = true;
         }
         else if (blank && !flag) {

@@ -91,6 +91,7 @@ function petkeyReleaseAll() {
 //
 function petkeyOnMouseDown(img, event) {
     var x, y;
+
     if (event.pageX || event.pageY) {
         x = event.pageX;
         y = event.pageY;
@@ -103,6 +104,7 @@ function petkeyOnMouseDown(img, event) {
     }
     x -= img.offsetLeft;
     y -= img.offsetTop;
+
     if (((x >= (13*0.75) && x < (547*0.75)) || (x >= (594*0.75) && x < (788*0.75))) &&
         (y >= (13*0.75) && y < (257*0.75))) {
         var col = Math.floor((x - (13*0.75)) / (48.5*0.75));
@@ -194,7 +196,7 @@ function petkeyKeypressTimeout() {
                         ascii_to_pet_row[code], false);
 
         petkeyKeypressTimeoutHandle =
-            setTimeout("petkeyKeypressTimeout()", petkeyKeypressTimeoutTime);
+            setTimeout(function () { petkeyKeypressTimeout(); }, petkeyKeypressTimeoutTime);
     }
     else
         petkeyKeypressTimeoutHandle = null;
@@ -218,7 +220,7 @@ function petkeyOnKeyPress(event) {
                         ascii_to_pet_row[code], false);
 
             petkeyKeypressTimeoutHandle =
-                setTimeout("petkeyKeypressTimeout()",
+                setTimeout(function () { petkeyKeypressTimeout(); },
                            petkeyKeypressTimeoutTime);
         }
         else {

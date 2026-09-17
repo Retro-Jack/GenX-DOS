@@ -40,7 +40,7 @@ function petIntervalFunc() {
     pet2001.cycle(1000 * petIntervalTime);
 }
 
-var petIntervalHandle = window.setInterval("petIntervalFunc()",
+var petIntervalHandle = window.setInterval(function () { petIntervalFunc(); },
                                            petIntervalTime);
 
 function resetButton() {
@@ -54,7 +54,7 @@ function pauseButton() {
         document.getElementById('pausebutton').value = 'Resume';
     }
     else {
-        petIntervalHandle = window.setInterval("petIntervalFunc()",
+        petIntervalHandle = window.setInterval(function () { petIntervalFunc(); },
                                                petIntervalTime);
         document.getElementById('pausebutton').value = 'Pause ';
     }

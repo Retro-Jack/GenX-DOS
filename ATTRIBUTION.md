@@ -164,6 +164,7 @@ rebuild or inspect what we ship.
 | `atari400/`, `atari800/` — `atari800.wasm` (GPL-2.0+) | built by us: https://github.com/Retro-Jack/atari800 (`build-wasm.sh`, `BUILDING-WASM.md`) |
 | `odyssey2/` — o2em core | built by us from https://github.com/libretro/libretro-o2em via `systems/odyssey2/build.sh`; our SDL2 frontend (`frontend.c`) sits beside it |
 | `bbcmicro/`, `bbcmaster/` — jsbeeb (GPL-3.0+) | our fork, changes in `GENX-CHANGES.md`: https://github.com/Retro-Jack/jsbeeb |
+| `pet/` — Thomas Skibo's pet2001 (BSD-2-Clause) | our fork of https://github.com/skibo/skibo.github.io, `genx` branch, changes in `GENX-CHANGES.md`: https://github.com/Retro-Jack/pet2001 |
 | `m100/` — VirtualT (BSD) | `systems/m100/src/` in this repo |
 | `trs80/` — sdltrs (BSD-2-Clause) | https://gitlab.com/jengun/sdltrs |
 

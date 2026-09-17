@@ -63,7 +63,7 @@ window.onkeypress = petkeyOnKeyPress;
     at PetIO.cycle (pet2001io.js:679:13)
 </code></pre>
 <p>The VIA chip's Timer 2 latch low register (<code>via_t2ll</code>) is read at line 679 of <code>pet2001io.js</code> and written at line 552, but never declared with <code>var</code>. In sloppy mode the write at 552 would create an implicit global on first execution — but Frogger reads the register <em>before</em> writing to it, so the read crashes. None of the other titles in the bundle exercise this code path early enough to trigger the bug.</p>
-<p>We patched the upstream file in place:</p>
+<p>The fix declares it (it lives in our fork now; see <em>Where the changes live</em> below):</p>
 <pre><code class="language-js">var via_t1ll = 0xff;
 var via_t1lh = 0xff;
 var via_t2ll = 0xff;   // ← added
@@ -71,8 +71,13 @@ var via_t2cl = 0xff;
 var via_t2ch = 0xff;
 </code></pre>
 <p>Plus the matching line in the reset routine. Two lines total, fixes Frogger and any future title that reads T2 before writing.</p>
+<h2 id="timers-that-were-strings">Timers that were strings</h2>
+<p>Skibo's emulator scheduled its timers the old way, handing <code>setTimeout</code> a string of code: <code>setTimeout("petkeyKeypressTimeout()", …)</code> releases each key a moment after it is pressed, and <code>setTimeout("blankTimeoutFunc()", 100)</code> blanks the display. A browser has to compile that string, and the site's Content-Security-Policy allows WebAssembly compilation but not string evaluation. So the timers never fired — silently. The PET booted to <code>READY.</code> and the autostart's <code>load"*",8</code> and <code>run</code> sat in the keyboard queue, every key pressed and none released; anything typed would have gone the same way.</p>
+<p>Each string became a function making the same call — <code>setTimeout(function () { petkeyKeypressTimeout(); }, …)</code> — which reaches the same global function, and <code>play.html</code>'s own autostart timer does the same. That let the PET drop <code>'unsafe-eval'</code> from its policy.</p>
+<h2 id="where-the-changes-live">Where the changes live</h2>
+<p>Every change to Skibo's code is carried in our fork, <a href="https://github.com/Retro-Jack/pet2001"><code>Retro-Jack/pet2001</code></a>, on its <code>genx</code> branch, with the reasons written out in <code>GENX-CHANGES.md</code>. Skibo publishes the emulator in the repository behind his website, <a href="https://github.com/skibo/skibo.github.io"><code>skibo/skibo.github.io</code></a>; the <code>genx</code> branch starts from his March 2021 commit <code>55d18e4</code>, which is the version we copied, and adds three changes: the <code>via_t2ll</code> declaration, the string timers, and our two presentation choices (a green phosphor for the screen, and the on-screen keyboard picture's click areas scaled for 600 pixels, which the bundle does not currently show). The files in <code>systems/pet/pet2001/</code> are copied from that branch unchanged.</p>
 <h2 id="the-lowercase-letters-gotcha">The lowercase-letters gotcha</h2>
-<p>The PET keyboard has no shift-lock equivalent for ASCII case — pressing the key labelled <code>L</code> always produces character code 76 ("L"). Skibo's keyboard table in <code>petkeys-600.js</code> only maps PC ASCII codes 97–122 (<code>a</code>–<code>z</code>) to PET key matrix positions; codes 65–90 (<code>A</code>–<code>Z</code>) all map to <code>-1</code> and are silently dropped.</p>
+<p>The PET keyboard has no shift-lock equivalent for ASCII case — pressing the key labelled <code>L</code> always produces character code 76 ("L"). Skibo's keyboard table in <code>petkeys.js</code> only maps PC ASCII codes 97–122 (<code>a</code>–<code>z</code>) to PET key matrix positions; codes 65–90 (<code>A</code>–<code>Z</code>) all map to <code>-1</code> and are silently dropped.</p>
 <p>This caught us when we wrote the autostart sequence as <code>LOAD"*",8\r RUN\r</code> and the PET showed only <code>"*",8</code> — the four uppercase letters of <code>LOAD</code> got dropped, the punctuation went through, and BASIC threw <code>?SYNTAX ERROR</code>. Fix is to lowercase the autostart strings: <code>load"*",8\r run\r</code>. The PET still displays them as uppercase because the chargen has no lowercase glyphs in graphics mode.</p>
 <h2 id="autostart-pattern">Autostart pattern</h2>
 <p>After the PRG fetches and queues, the bundle schedules two synthesised keystroke sequences via <code>petkeyKeyQueue</code>:</p>
@@ -110,14 +115,14 @@ setTimeout(() =&gt; queueChars(game.autostart || 'run\r'), BOOT_MS + LOAD_WAIT_M
 ├── controls.html
 ├── games.json         ← 11 entries, optional autostart override
 ├── games/             ← *.prg files
-└── pet2001/           ← Skibo's 9-file emulator (BSD-2-Clause)
+└── pet2001/           ← Skibo's 9-file emulator (BSD-2-Clause), copied from Retro-Jack/pet2001
     ├── cpu6502.js
-    ├── petkeys-600.js
+    ├── petkeys.js
     ├── pet2001roms.js
     ├── pet2001hw.js
     ├── pet2001ieee.js
     ├── pet2001io.js
-    ├── pet2001video-mod.js
+    ├── pet2001video.js
     ├── pet2001.js
     └── pet2001main.js (unused — replaced by play.html boot logic)
 </code></pre>
