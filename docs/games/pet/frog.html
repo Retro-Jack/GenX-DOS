@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frog — Commodore PET — GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Computer · Commodore PET</div>
+      <h1>Frog</h1>
+      <p class="sub">1981 (unverified) — by P.J. Fellner. Get your frog across a busy road and a stream into one of the home bays along the top, for one or two players taking turns.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/pet/controls.html">System help — the Commodore PET controls</a></p>
+
+    <p class="intro">The frog starts at the bottom of the screen. Cars run along the road in the lower half; the stream in the upper half carries dead snakes and square lilypads. A safe strip across the middle, with FROG spelled out on it, separates the two. Ten home bays line the top, and a timer runs down while you play. You get three frogs.</p>
+
+    <p class="note-plain">The program names its author, P.J. Fellner, but gives no year, and no dated listing or catalogue entry for it has turned up — so the 1981 in the menu is unconfirmed.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Click the game area to enable sound and controls.</li>
+      <li>The title, credits and instructions play first. The instructions are typed out slowly; press <kbd>]</kbd> to skip ahead — one press can skip more than one page.</li>
+      <li>At <em>PUSH 1 OR 2 PLAYER BUTTON</em>, press <kbd>1</kbd> or <kbd>2</kbd> for the number of players. With two, players swap each time a frog is lost.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported.</p>
+    <p class="note-plain">Hold a direction for a moment rather than tapping it. The game only sees a key that is down at the instant it checks, so a quick tap can be missed.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>8</kbd></td><td>Hop up</td></tr>
+      <tr><td><kbd>2</kbd></td><td>Hop down</td></tr>
+      <tr><td><kbd>4</kbd></td><td>Hop left</td></tr>
+      <tr><td><kbd>6</kbd></td><td>Hop right</td></tr>
+      <tr><td><kbd>1</kbd> / <kbd>2</kbd></td><td>One or two players, at the start</td></tr>
+      <tr><td><kbd>]</kbd></td><td>Skip ahead through the instructions</td></tr>
+    </table>
+
+    <h2>Losing a frog</h2>
+    <ul>
+      <li>Being hit by a car, a dead snake or a square lilypad.</li>
+      <li>Bumping into the wall between two home bays — it still scores 250, but the frog is gone.</li>
+      <li>Letting the timer run out.</li>
+    </ul>
+
+    <h2>Scoring</h2>
+    <table>
+      <tr><th>Event</th><th>Points</th></tr>
+      <tr><td>Each hop</td><td>1</td></tr>
+      <tr><td>Reaching the middle strip, past the road</td><td>250</td></tr>
+      <tr><td>Hitting the wall between home bays (frog lost)</td><td>250</td></tr>
+      <tr><td>Getting home</td><td>1000</td></tr>
+      <tr><td>Time left, on getting home</td><td>5 per unit</td></tr>
+    </table>
+    <p class="note">A bonus frog every 10,000 points. The timer starts at 200 for each new frog. Getting home carries the time left over to the next frog with 25 more, and never less than 75.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Line up before the last hop.</strong> The walls between the bays cost a frog, so move sideways to face an empty bay before hopping in.</li>
+      <li><strong>The middle strip is safe.</strong> Nothing moves along it, so it's the place to wait for a gap in the stream.</li>
+      <li><strong>Speed pays twice.</strong> Time left is worth 5 points a unit when you get home, and it carries over to the next frog.</li>
+      <li><strong>Filled bays stay filled.</strong> Each player keeps their own; once all ten are full, the game clears them the next time a frog is lost.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> ·
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> ·
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

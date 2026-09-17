@@ -13,7 +13,7 @@
     "title": "ComputerSpace 2001 (1981)",
     "rom": "games/computerspace2001.prg"
   },
-  "frogger": { "title": "Frogger (1981)", "rom": "games/frogger.prg" },
+  "frog": { "title": "Frog (1981)", "rom": "games/frog.prg" },
   "pacman": { "title": "Pac-Man (1982)", "rom": "games/pacman.prg" },
   "basic": { "title": "Commodore PET BASIC 2", "rom": "games/empty.prg" }
 }

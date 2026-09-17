@@ -52,17 +52,17 @@ window.onkeypress = petkeyOnKeyPress;
 </code></pre>
 <p>Five lines for the whole runtime. Compare to the seventy lines of <code>EJS_*</code> globals + framework boot we needed under EmulatorJS.</p>
 <h2 id="the-32-k-bump">The 32 K bump</h2>
-<p><code>Pet2001</code> defaults to an 8 KB PET 2001 — what the very first 1977 units shipped with. Adventureland, Frogger, and most other titles in our bundle were authored against 32 KB 3032s and overrun BASIC's zero-page pointers when LOADed into 8 KB. The symptom is silent — <code>LOAD</code> completes, <code>READY.</code> appears, then the cursor stops blinking and the keyboard is dead. There's no error, just a wedged CPU.</p>
+<p><code>Pet2001</code> defaults to an 8 KB PET 2001 — what the very first 1977 units shipped with. Adventureland, Frog, and most other titles in our bundle were authored against 32 KB 3032s and overrun BASIC's zero-page pointers when LOADed into 8 KB. The symptom is silent — <code>LOAD</code> completes, <code>READY.</code> appears, then the cursor stops blinking and the keyboard is dead. There's no error, just a wedged CPU.</p>
 <p>The fix is one line:</p>
 <pre><code class="language-js">pet2001.setRamSize(32 * 1024);
 </code></pre>
 <p>This must run <em>before</em> the PRG is queued onto the IEEE bus, because <code>setRamSize</code> triggers a reset that wipes RAM. The bundle calls it immediately after construction.</p>
 <h2 id="the-undeclared-via_t2ll-bug">The undeclared <code>via_t2ll</code> bug</h2>
-<p>Frogger hangs on boot with:</p>
+<p>Frog — P.J. Fellner's frog-crossing game, which the menu once listed as Frogger — hangs on boot with:</p>
 <pre><code>Uncaught ReferenceError: via_t2ll is not defined
     at PetIO.cycle (pet2001io.js:679:13)
 </code></pre>
-<p>The VIA chip's Timer 2 latch low register (<code>via_t2ll</code>) is read at line 679 of <code>pet2001io.js</code> and written at line 552, but never declared with <code>var</code>. In sloppy mode the write at 552 would create an implicit global on first execution — but Frogger reads the register <em>before</em> writing to it, so the read crashes. None of the other titles in the bundle exercise this code path early enough to trigger the bug.</p>
+<p>The VIA chip's Timer 2 latch low register (<code>via_t2ll</code>) is read at line 679 of <code>pet2001io.js</code> and written at line 552, but never declared with <code>var</code>. In sloppy mode the write at 552 would create an implicit global on first execution — but Frog reads the register <em>before</em> writing to it, so the read crashes. None of the other titles in the bundle exercise this code path early enough to trigger the bug.</p>
 <p>The fix declares it (it lives in our fork now; see <em>Where the changes live</em> below):</p>
 <pre><code class="language-js">var via_t1ll = 0xff;
 var via_t1lh = 0xff;
@@ -70,7 +70,7 @@ var via_t2ll = 0xff;   // ← added
 var via_t2cl = 0xff;
 var via_t2ch = 0xff;
 </code></pre>
-<p>Plus the matching line in the reset routine. Two lines total, fixes Frogger and any future title that reads T2 before writing.</p>
+<p>Plus the matching line in the reset routine. Two lines total, fixes Frog and any future title that reads T2 before writing.</p>
 <h2 id="timers-that-were-strings">Timers that were strings</h2>
 <p>Skibo's emulator scheduled its timers the old way, handing <code>setTimeout</code> a string of code: <code>setTimeout("petkeyKeypressTimeout()", …)</code> releases each key a moment after it is pressed, and <code>setTimeout("blankTimeoutFunc()", 100)</code> blanks the display. A browser has to compile that string, and the site's Content-Security-Policy allows WebAssembly compilation but not string evaluation. So the timers never fired — silently. The PET booted to <code>READY.</code> and the autostart's <code>load"*",8</code> and <code>run</code> sat in the keyboard queue, every key pressed and none released; anything typed would have gone the same way.</p>
 <p>Each string became a function making the same call — <code>setTimeout(function () { petkeyKeypressTimeout(); }, …)</code> — which reaches the same global function, and <code>play.html</code>'s own autostart timer does the same. That let the PET drop <code>'unsafe-eval'</code> from its policy.</p>
@@ -105,7 +105,7 @@ setTimeout(() =&gt; queueChars(game.autostart || 'run\r'), BOOT_MS + LOAD_WAIT_M
 <li>Lunar Lander (1979)</li>
 <li>Adventureland (1979) — Scott Adams' first text adventure</li>
 <li>Hangman (1980), Space Invaders (1980)</li>
-<li>Crazy Balloon (1981), ComputerSpace 2001 (1981), Frogger (1981)</li>
+<li>Crazy Balloon (1981), ComputerSpace 2001 (1981), Frog (1981, year unverified)</li>
 <li>Pac-Man (1982)</li>
 </ul>
 <p>All eleven entries auto-LOAD and auto-RUN from BASIC. Total bundle size including the emulator is under 400 KB.</p>

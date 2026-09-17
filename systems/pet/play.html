@@ -83,7 +83,7 @@
       var ctx = document.getElementById('petscreen').getContext('2d');
       window.pet2001 = new Pet2001(ctx);
       // PET 2001 shipped with 4/8K; bump to 32K so BASIC programs that
-      // expect a 3032-era machine (e.g. Adventureland, Frogger) don't
+      // expect a 3032-era machine (e.g. Adventureland, Frog) don't
       // overrun zero-page on LOAD.
       pet2001.setRamSize(32 * 1024);
 

@@ -36,7 +36,7 @@ Five lines for the whole runtime. Compare to the seventy lines of `EJS_*` global
 
 ## The 32 K bump
 
-`Pet2001` defaults to an 8 KB PET 2001 — what the very first 1977 units shipped with. Adventureland, Frogger, and most other titles in our bundle were authored against 32 KB 3032s and overrun BASIC's zero-page pointers when LOADed into 8 KB. The symptom is silent — `LOAD` completes, `READY.` appears, then the cursor stops blinking and the keyboard is dead. There's no error, just a wedged CPU.
+`Pet2001` defaults to an 8 KB PET 2001 — what the very first 1977 units shipped with. Adventureland, Frog, and most other titles in our bundle were authored against 32 KB 3032s and overrun BASIC's zero-page pointers when LOADed into 8 KB. The symptom is silent — `LOAD` completes, `READY.` appears, then the cursor stops blinking and the keyboard is dead. There's no error, just a wedged CPU.
 
 The fix is one line:
 
@@ -48,14 +48,14 @@ This must run *before* the PRG is queued onto the IEEE bus, because `setRamSize`
 
 ## The undeclared `via_t2ll` bug
 
-Frogger hangs on boot with:
+Frog — P.J. Fellner's frog-crossing game, which the menu once listed as Frogger — hangs on boot with:
 
 ```
 Uncaught ReferenceError: via_t2ll is not defined
     at PetIO.cycle (pet2001io.js:679:13)
 ```
 
-The VIA chip's Timer 2 latch low register (`via_t2ll`) is read at line 679 of `pet2001io.js` and written at line 552, but never declared with `var`. In sloppy mode the write at 552 would create an implicit global on first execution — but Frogger reads the register *before* writing to it, so the read crashes. None of the other titles in the bundle exercise this code path early enough to trigger the bug.
+The VIA chip's Timer 2 latch low register (`via_t2ll`) is read at line 679 of `pet2001io.js` and written at line 552, but never declared with `var`. In sloppy mode the write at 552 would create an implicit global on first execution — but Frog reads the register *before* writing to it, so the read crashes. None of the other titles in the bundle exercise this code path early enough to trigger the bug.
 
 The fix declares it (it lives in our fork now; see *Where the changes live* below):
 
@@ -67,7 +67,7 @@ var via_t2cl = 0xff;
 var via_t2ch = 0xff;
 ```
 
-Plus the matching line in the reset routine. Two lines total, fixes Frogger and any future title that reads T2 before writing.
+Plus the matching line in the reset routine. Two lines total, fixes Frog and any future title that reads T2 before writing.
 
 ## Timers that were strings
 
@@ -121,7 +121,7 @@ If anyone ports PETSCII Robots back to PET 2001 (BASIC 2, 32 K, single PRG, no d
 - Lunar Lander (1979)
 - Adventureland (1979) — Scott Adams' first text adventure
 - Hangman (1980), Space Invaders (1980)
-- Crazy Balloon (1981), ComputerSpace 2001 (1981), Frogger (1981)
+- Crazy Balloon (1981), ComputerSpace 2001 (1981), Frog (1981, year unverified)
 - Pac-Man (1982)
 
 All eleven entries auto-LOAD and auto-RUN from BASIC. Total bundle size including the emulator is under 400 KB.
