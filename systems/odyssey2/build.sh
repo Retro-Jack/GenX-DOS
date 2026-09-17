@@ -73,4 +73,7 @@ emcc -O2 -s USE_SDL=2 \
   "$HERE/frontend.c" "$CORE/libo2em.a" \
   "${COMMON_SRCS[@]}"
 
+# Format the glue and restore its provenance banner.
+"$HERE/../../tools/beautify-glue.sh" systems/odyssey2/o2em.js
+
 echo "OK — built $HERE/o2em.{js,wasm}"

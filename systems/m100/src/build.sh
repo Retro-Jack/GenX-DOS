@@ -58,4 +58,7 @@ emcc "$WB"/obj/*.o -O2 -sUSE_SDL=2 -sASYNCIFY -sALLOW_MEMORY_GROWTH=1 \
 
 # 5. Drop the engine into the bundle.
 cp "$WB/virtualt.js" "$WB/virtualt.wasm" "$BUNDLE/"
+
+# 6. Format the glue and restore its provenance banner.
+"$BUNDLE/../../tools/beautify-glue.sh" systems/m100/virtualt.js
 echo "built: $BUNDLE/virtualt.js + virtualt.wasm"

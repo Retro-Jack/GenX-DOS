@@ -10,7 +10,9 @@ compiled to WebAssembly behind a small headless SDL2 frontend. With an activated
 
 It clones upstream VirtualT (`git.code.sf.net/p/virtualt/code` — which also
 tracks the 32 KB M100 ROM), compiles the core plus the five units in this
-directory, and drops `virtualt.js` + `virtualt.wasm` into `systems/m100/`.
+directory, and drops `virtualt.js` + `virtualt.wasm` into `systems/m100/`. The
+last step runs `tools/beautify-glue.sh` over `virtualt.js`, so the committed glue
+is readable and carries a banner saying where it came from.
 
 This is an **acknowledgement of VirtualT, not a fork.** VirtualT is a full FLTK
 desktop app — emulator *plus* an IDE and debugger. We keep only its portable
