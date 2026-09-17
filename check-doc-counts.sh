@@ -109,6 +109,7 @@ docs/article/index.html|(<span><b>GAMES:</b> )[0-9]+|$GAMES|article byline · Ga
 docs/article/index.html|(<li><span>Systems</span><b>)[0-9]+|$SUBSYS|article numbers · Systems
 docs/article/index.html|(<li><span>Games</span><b>)[0-9]+|$GAMES|article numbers · Games
 docs/article/index.html|(<li><span>Size on disk</span><b>)[0-9]+|$SIZE|article numbers · Size on disk
+docs/article/index.html|(pleasantly heavy: about )[0-9]+|$SIZE|article prose · Size on disk
 SLOTS
 }
 
