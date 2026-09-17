@@ -15,23 +15,25 @@
       <h1>Commodore PET — Controls</h1>
     </div>
 
-    <p class="intro">This bundle runs in your browser, emulating a PET 2001 (Commodore's first computer, January 1977) with 32&nbsp;KB RAM and BASIC 2 (the 1979 "Upgrade" ROM). Click the game area to enable sound and controls.</p>
+    <p class="intro">This bundle runs in your browser, emulating a PET 2001 (Commodore's first computer, January 1977) with 32&nbsp;KB RAM and BASIC 2 (the 1979 "Upgrade" ROM). Click the game area to enable controls. This emulator doesn't play the PET's sound.</p>
 
-    <p class="note">Each game auto-types <code>load"*",8</code> into BASIC about a second and a half after the page loads, then auto-types <code>run</code> (or <code>sys 768</code> for machine-code titles) a few seconds later. Watch the boot screen for the typing — that's the auto-start in action, not user keyboard. Once the game is up, all your keystrokes go straight to the PET.</p>
+    <p class="note">Each game auto-types <code>load"*",8</code> into BASIC about a second and a half after the page loads, then auto-types <code>run</code> a few seconds later. Watch the boot screen for the typing — that's the auto-start in action, not user keyboard. Once the game is up, all your keystrokes go straight to the PET.</p>
 
     <h2>Keyboard</h2>
-    <p>The PET has no joystick port. All games are keyboard-controlled. This emulator maps the PET keyboard symbolically — letters / numbers / punctuation type as themselves. Two PC keys remap:</p>
+    <p>The PET has no built-in joystick port, so every game here is played on the keyboard. Letters, numbers and punctuation type as themselves, and two PC keys stand in for PET ones:</p>
     <table>
       <tr><th>PC key</th><th>PET key</th></tr>
       <tr><td><kbd>Enter</kbd></td><td>RETURN</td></tr>
       <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
     </table>
-    <p>Per-game movement keys vary. Most older PET titles use <kbd>;</kbd> <kbd>'</kbd> <kbd>,</kbd> <kbd>.</kbd> for directional input (near the right hand) or number rows. <kbd>Space</kbd> tends to fire / pick up / pause. Read the on-screen instructions when the game boots.</p>
+    <p>The arcade games — Space!, Space Invaders, Crazy Balloon and Frog — keep a key pressed on the PET for exactly as long as you hold it, and in those games either <kbd>Shift</kbd> key works on its own as the PET's SHIFT, which Space! uses to fire. Most of them move with the number keys. The typing games — Star Trek, Adventureland, Lunar Lander and the rest — take keys one press at a time. Each game's page lists its keys.</p>
+
+    <p class="note">In a BASIC game that asks a question and waits for <kbd>Return</kbd>, type an answer first: on the PET, <kbd>Return</kbd> on its own can stop the program at <code>READY.</code> If that happens, type <code>RUN</code> and press <kbd>Return</kbd>.</p>
 
     <p class="note">The PET's STOP key isn't mapped to a PC key in this emulator. To break out of a hung BASIC program, refresh the browser tab — boot time is under two seconds, then auto-start re-runs the game.</p>
 
     <h2>What the bundle ships</h2>
-    <p>Ten PRG titles from 1977 to 1982, plus the empty stub that drops you at BASIC's <code>READY.</code> prompt. Each game's own page has its background and controls — open a game from the menu, then click the <strong>controls</strong> link in the corner.</p>
+    <p>Ten PRG titles from 1978 to 1982, plus the empty stub that drops you at BASIC's <code>READY.</code> prompt. Each game's own page has its background and controls — open a game from the menu, then click the <strong>controls</strong> link in the corner.</p>
 
     <p class="note">Shipped locally from this site; no network calls at runtime.</p>
 
