@@ -13,34 +13,37 @@
     <div class="head">
       <div class="system">Home Computer · Commodore PET</div>
       <h1>Android NIM</h1>
-      <p class="sub">Commodore, 1979 — one of the original PET bundle games. Three rows of androids on a battlefield; you and the PET take turns removing them. Last one to remove an android loses.</p>
+      <p class="sub">1979 — by Don Dennis of Toronto. The game of Nim played against three animated executioner androids: take turns destroying the androids in three rows, and whoever gets the last one wins.</p>
     </div>
 
     <p class="gx-crosslink"><a href="../../../systems/pet/controls.html">System help — the Commodore PET controls</a></p>
 
-    <p class="intro">Classic Nim with PETSCII androids in three rows of seven, five, and three. On each turn, choose a row and how many androids to remove from it (must be at least one). You and the PET alternate. The player forced to take the last android loses.</p>
+    <p class="intro">Three rows of androids stand on the screen — seven, five and three of them — watched over by three executioners labelled A, B and C, who talk to you across the top of the screen. On your turn you choose a row and how many androids to destroy from it, and the executioners carry it out. Then the PET takes its turn. Whoever destroys the very last android wins.</p>
 
     <h2>Getting started</h2>
     <ol>
-      <li>Click the game area to enable sound and controls.</li>
-      <li>Press any key past the title to start. Pick "Easy" or "Hard" for the PET's play strength.</li>
+      <li>Click the game area to enable controls.</li>
+      <li><em>Do you need instructions?</em> — press <kbd>Y</kbd> or <kbd>N</kbd>.</li>
+      <li><em>Do you want to play first?</em> — press <kbd>Y</kbd> or <kbd>N</kbd>.</li>
     </ol>
+    <p class="note">Every answer is a single key — there is no need to press Return. Wait until a question has finished appearing before you answer; a key pressed while the androids are still talking can be lost. Take too long and they nag you.</p>
 
     <h2>Controls</h2>
     <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported.</p>
     <table>
       <tr><th>Keyboard</th><th>Action</th></tr>
-      <tr><td><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></td><td>Pick row (top / middle / bottom)</td></tr>
-      <tr><td>Digit</td><td>Number of androids to remove from that row</td></tr>
-      <tr><td><kbd>Return</kbd></td><td>Confirm</td></tr>
+      <tr><td><kbd>A</kbd> <kbd>B</kbd> <kbd>C</kbd></td><td>At <em>WHICH ROW?</em> — pick the row, by the executioner standing over it</td></tr>
+      <tr><td><kbd>1</kbd> – <kbd>9</kbd></td><td>At <em>HOW MANY ANDROIDS?</em> — how many to destroy from that row</td></tr>
+      <tr><td><kbd>Y</kbd> / <kbd>N</kbd></td><td>Answer the yes-or-no questions</td></tr>
     </table>
+    <p class="note">Ask for more androids than the row has left and the executioner tells you how many there are; pick an empty row and it refuses. An answer that isn't a row or a number gets <em>YOUR ANSWER DOES NOT MAKE SENSE.</em></p>
 
-    <h2>Strategy (optimal Nim)</h2>
+    <h2>Strategy</h2>
     <ul>
-      <li><strong>Misère Nim with three heaps.</strong> Unlike standard Nim, last-takes-loses inverts the endgame: leave your opponent with an odd number of single-android rows.</li>
-      <li><strong>XOR-sum.</strong> Compute the bitwise XOR of all three pile sizes; if non-zero you're in a winning position. Make a move that reduces the XOR to zero.</li>
-      <li><strong>Endgame inversion.</strong> When two rows are empty, take from the remaining row to leave exactly 1 — forcing the opponent to take the last.</li>
-      <li><strong>The "Hard" PET plays optimally.</strong> Your only chance is forcing a win from move 1; otherwise the opening was symmetric and you lose.</li>
+      <li><strong>This is ordinary Nim.</strong> Taking the last android wins, so there is no end-game twist to plan for.</li>
+      <li><strong>Balance the rows.</strong> Write each row's count in binary and combine them with exclusive-or. If the result is not zero, some move makes it zero — make that move, and keep doing it, and you can't lose.</li>
+      <li><strong>Leave matching rows.</strong> Leave two equal rows with the third empty, then copy whatever the PET takes from one row in the other, and the last android is yours.</li>
+      <li><strong>Going first matters.</strong> Seven, five and three combine to a non-zero result, so the first player can always win with perfect play. Say yes to playing first.</li>
     </ul>
     <div class="footer">
       part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> ·

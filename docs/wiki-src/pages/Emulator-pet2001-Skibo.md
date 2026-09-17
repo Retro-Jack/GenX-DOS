@@ -117,7 +117,7 @@ If anyone ports PETSCII Robots back to PET 2001 (BASIC 2, 32 K, single PRG, no d
 10 PRG titles spanning 1977–1982, plus an empty stub for the BASIC prompt:
 
 - Star Trek (1978) — Version 17 of the BASIC space-strategy classic, with one-letter commands
-- Android NIM (1979) — Leo Christopherson's animated NIM with shifting LED faces
+- Android NIM (1979) — Don Dennis's Nim against three talking executioner androids
 - Lunar Lander (1979)
 - Adventureland (1979) — Scott Adams' first text adventure
 - Space! (1979) — Greg Erker's first-person space shooter from CURSOR tape 8
