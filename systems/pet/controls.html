@@ -20,20 +20,21 @@
     <p class="note">Each game auto-types <code>load"*",8</code> into BASIC about a second and a half after the page loads, then auto-types <code>run</code> a few seconds later. Watch the boot screen for the typing — that's the auto-start in action, not user keyboard. Once the game is up, all your keystrokes go straight to the PET.</p>
 
     <h2>Keyboard</h2>
-    <p>The PET has no built-in joystick port, so every game here is played on the keyboard. Letters, numbers and punctuation type as themselves, and two PC keys stand in for PET ones:</p>
+    <p>The PET has no built-in joystick port, so every game here is played on the keyboard. Letters, numbers and punctuation type as themselves, and three PC keys stand in for PET ones:</p>
     <table>
       <tr><th>PC key</th><th>PET key</th></tr>
       <tr><td><kbd>Enter</kbd></td><td>RETURN</td></tr>
       <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>RUN/STOP</td></tr>
     </table>
-    <p>The arcade games — Space!, Space Invaders, Crazy Balloon and Frog — keep a key pressed on the PET for exactly as long as you hold it, and in those games either <kbd>Shift</kbd> key works on its own as the PET's SHIFT, which Space! uses to fire. Most of them move with the number keys. The typing games — Star Trek, Adventureland, Lunar Lander and the rest — take keys one press at a time. Each game's page lists its keys.</p>
+    <p>The arcade games — Space Invaders, Crazy Balloon, Frog and PETSCII Robots — keep a key pressed on the PET for exactly as long as you hold it, and in those games either <kbd>Shift</kbd> key works on its own as the PET's SHIFT. All four move with the number keys. The PET has its own <kbd>&lt;</kbd> and <kbd>&gt;</kbd> keys; in these games type them as usual, with <kbd>Shift</kbd> and <kbd>,</kbd> or <kbd>.</kbd>. The typing games — Star Trek, Adventureland, Lunar Lander and the rest — take keys one press at a time. Each game's page lists its keys.</p>
 
     <p class="note">In a BASIC game that asks a question and waits for <kbd>Return</kbd>, type an answer first: on the PET, <kbd>Return</kbd> on its own can stop the program at <code>READY.</code> If that happens, type <code>RUN</code> and press <kbd>Return</kbd>.</p>
 
-    <p class="note">The PET's STOP key isn't mapped to a PC key in this emulator. To break out of a hung BASIC program, refresh the browser tab — boot time is under two seconds, then auto-start re-runs the game.</p>
+    <p class="note">To break into a BASIC program, press <kbd>Esc</kbd> (RUN/STOP): the PET stops at <code>BREAK</code> and <code>READY.</code>, and <code>RUN</code> starts the program again from the top. Refreshing the browser tab also restarts the game.</p>
 
     <h2>What the bundle ships</h2>
-    <p>Ten PRG titles from 1978 to 1982, plus the empty stub that drops you at BASIC's <code>READY.</code> prompt. Each game's own page has its background and controls — open a game from the menu, then click the <strong>controls</strong> link in the corner.</p>
+    <p>Nine PRG titles from 1978 to 1982, PETSCII Robots (2021) on its own disk, and the empty stub that drops you at BASIC's <code>READY.</code> prompt. Each game's own page has its background and controls — open a game from the menu, then click the <strong>controls</strong> link in the corner.</p>
 
     <p class="note">Shipped locally from this site; no network calls at runtime.</p>
 
@@ -45,12 +46,12 @@
       <li><a href="../../docs/games/pet/andnim.html">Android NIM</a></li>
       <li><a href="../../docs/games/pet/lunar.html">Lunar Lander</a></li>
       <li><a href="../../docs/games/pet/advland.html">Adventureland</a></li>
-      <li><a href="../../docs/games/pet/space.html">Space!</a></li>
       <li><a href="../../docs/games/pet/hangman.html">Hangman</a></li>
       <li><a href="../../docs/games/pet/invader.html">Space Invaders</a></li>
       <li><a href="../../docs/games/pet/crzballn.html">Crazy Balloon</a></li>
       <li><a href="../../docs/games/pet/frog.html">Frog</a></li>
       <li><a href="../../docs/games/pet/petman.html">PET-MAN</a></li>
+      <li><a href="../../docs/games/pet/petrobot.html">Attack of the PETSCII Robots</a></li>
     </ul>
 
 <div class="footer">

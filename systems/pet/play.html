@@ -127,16 +127,23 @@
       if (game.newCharRom) pet2001.setNewCharRom(true);
       // Arcade-style games that watch the keyboard directly, or fire with SHIFT.
       if (game.heldKeys) petkeySetHeldMode(true);
-      if (!game.rom) return;
+      if (!game.rom && !game.disk) return;
 
-      // PRG format: first 2 bytes are little-endian load address, rest is data.
       try {
-        var buf = new Uint8Array(await (await fetch(game.rom)).arrayBuffer());
-        var addr = buf[0] | (buf[1] << 8);
-        var bytes = Array.from(buf.subarray(2));
-        pet2001.ieeeLoadData(addr, bytes);
+        if (game.disk) {
+          // A .d64 disk image in drive 8: LOAD finds each file by name, so a
+          // game can load more of itself as it runs; "*" is the first file.
+          var disk = new Uint8Array(await (await fetch(game.disk)).arrayBuffer());
+          pet2001.ieeeLoadDisk(Array.from(disk));
+        } else {
+          // PRG format: first 2 bytes are little-endian load address, rest is data.
+          var buf = new Uint8Array(await (await fetch(game.rom)).arrayBuffer());
+          var addr = buf[0] | (buf[1] << 8);
+          var bytes = Array.from(buf.subarray(2));
+          pet2001.ieeeLoadData(addr, bytes);
+        }
       } catch (e) {
-        console.warn('PRG load failed:', e);
+        console.warn('Game load failed:', e);
         return;
       }
 

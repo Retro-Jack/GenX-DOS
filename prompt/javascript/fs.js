@@ -1536,7 +1536,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  PET  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Star Trek                      (1978) º\necho                 º   2.  Adventureland                  (1979) º\necho                 º   3.  Android NIM                    (1979) º\necho                 º   4.  Lunar Lander                   (1979) º\necho                 º   5.  Space!                         (1979) º\necho                 º   6.  Hangman                        (1980) º\necho                 º   7.  Space Invaders                 (1980) º\necho                 º   8.  Crazy Balloon                  (1981) º\necho                 º   9.  Frog                           (1981) º\necho                 º  10.  PET-MAN                        (1982) º\necho                 º                                             º\necho                 º  11.  BASIC 2 prompt                        º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  PET  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Star Trek                      (1978) º\necho                 º   2.  Adventureland                  (1979) º\necho                 º   3.  Android NIM                    (1979) º\necho                 º   4.  Lunar Lander                   (1979) º\necho                 º   5.  Hangman                        (1980) º\necho                 º   6.  Space Invaders                 (1980) º\necho                 º   7.  Crazy Balloon                  (1981) º\necho                 º   8.  Frog                           (1981) º\necho                 º   9.  PET-MAN                        (1982) º\necho                 º  10.  PETSCII Robots                 (2021) º\necho                 º                                             º\necho                 º  11.  BASIC 2 prompt                        º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1560,27 +1560,27 @@ var fs = [
                           },
                           {
                             name: '5.bat',
-                            data: 'space\n',
-                          },
-                          {
-                            name: '6.bat',
                             data: 'hangman\n',
                           },
                           {
-                            name: '7.bat',
+                            name: '6.bat',
                             data: 'invader\n',
                           },
                           {
-                            name: '8.bat',
+                            name: '7.bat',
                             data: 'crzballn\n',
                           },
                           {
-                            name: '9.bat',
+                            name: '8.bat',
                             data: 'frog\n',
                           },
                           {
-                            name: '10.bat',
+                            name: '9.bat',
                             data: 'petman\n',
+                          },
+                          {
+                            name: '10.bat',
+                            data: 'petrobot\n',
                           },
                           {
                             name: '11.bat',
@@ -1603,10 +1603,6 @@ var fs = [
                             link: '../systems/pet/play.html?game=advland',
                           },
                           {
-                            name: 'space.exe',
-                            link: '../systems/pet/play.html?game=space',
-                          },
-                          {
                             name: 'hangman.exe',
                             link: '../systems/pet/play.html?game=hangman',
                           },
@@ -1625,6 +1621,10 @@ var fs = [
                           {
                             name: 'petman.exe',
                             link: '../systems/pet/play.html?game=petman',
+                          },
+                          {
+                            name: 'petrobot.exe',
+                            link: '../systems/pet/play.html?game=petrobot',
                           },
                           {
                             name: 'basic.exe',

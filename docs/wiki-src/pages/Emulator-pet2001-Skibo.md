@@ -77,7 +77,7 @@ Each string became a function making the same call — `setTimeout(function () {
 
 ## Where the changes live
 
-Every change to Skibo's code is carried in our fork, [`Retro-Jack/pet2001`](https://github.com/Retro-Jack/pet2001), on its `genx` branch, with the reasons written out in `GENX-CHANGES.md`. Skibo publishes the emulator in the repository behind his website, [`skibo/skibo.github.io`](https://github.com/skibo/skibo.github.io); the `genx` branch starts from his March 2021 commit `55d18e4`, which is the version we copied, and adds its changes on top: the `via_t2ll` declaration, a typo in the VIA reset (`var_t1_undf` for `via_t1_undf`, which left timer 1's underflow flag uncleared), the string timers, a choice of character ROM for text mode (the original PET 2001 ROM and the later one show upper and lower case the other way round, so each game gets the one it was written for — `newCharRom` in `games.json`), a held-key mode in which a key stays down on the PET for as long as it is held and either Shift key presses the PET's SHIFT on its own (`heldKeys`), and our two presentation choices (a green phosphor for the screen, and the on-screen keyboard picture's click areas scaled for 600 pixels, which the bundle does not currently show). The files in `systems/pet/pet2001/` are copied from that branch unchanged. The three general fixes were offered back to Skibo as [skibo/skibo.github.io#1](https://github.com/skibo/skibo.github.io/pull/1).
+Every change to Skibo's code is carried in our fork, [`Retro-Jack/pet2001`](https://github.com/Retro-Jack/pet2001), on its `genx` branch, with the reasons written out in `GENX-CHANGES.md`. Skibo publishes the emulator in the repository behind his website, [`skibo/skibo.github.io`](https://github.com/skibo/skibo.github.io); the `genx` branch starts from his March 2021 commit `55d18e4`, which is the version we copied, and adds its changes on top: the `via_t2ll` declaration, a typo in the VIA reset (`var_t1_undf` for `via_t1_undf`, which left timer 1's underflow flag uncleared), the string timers, a choice of character ROM for text mode (the original PET 2001 ROM and the later one show upper and lower case the other way round, so each game gets the one it was written for — `newCharRom` in `games.json`), a held-key mode in which a key stays down on the PET for as long as it is held and either Shift key presses the PET's SHIFT on its own (`heldKeys`), a `.d64` disk image in drive 8 so a game can load its own files (`disk`), Escape as RUN/STOP, Shift+comma and Shift+full stop as the PET's `<` and `>` in held-key mode, and our two presentation choices (a green phosphor for the screen, and the on-screen keyboard picture's click areas scaled for 600 pixels, which the bundle does not currently show). The files in `systems/pet/pet2001/` are copied from that branch unchanged. The three general fixes were offered back to Skibo as [skibo/skibo.github.io#1](https://github.com/skibo/skibo.github.io/pull/1).
 
 ## The lowercase-letters gotcha
 
@@ -98,34 +98,34 @@ setTimeout(() => queueChars(game.autostart || 'run\r'), BOOT_MS + LOAD_WAIT_MS);
 
 The 1.5 s boot wait covers PET RAM-clear and the BASIC banner; the 6 s LOAD wait covers an 18 KB PRG injection (the largest title in the bundle is Adventureland at 18 136 bytes). Per-game `autostart` overrides in `games.json` allow machine-code titles to use `sys768\r` or similar in place of `run\r`.
 
-## Why PETSCII Robots isn't included
+## PETSCII Robots, from its disk
 
-[PETSCII Robots](https://www.the8bitguy.com/product/petscii-robots/) is the 2022 survival/strategy title by Dave Murray ("The 8-Bit Guy") — a remarkable demonstration that the 32 K PET still attracts commercial-grade game development 45 years after launch. We carried it as the headline modern title in the original VICE-family PET bundle. After the migration to Skibo, we had to drop it. Three hard blockers stack:
+[Attack of the PETSCII Robots](https://www.the8bitguy.com/product/petscii-robots/) is David Murray's ("The 8-Bit Guy") 2021 action-strategy game, and the PET is the machine it was written on. We carried it in the old VICE-family PET bundle and dropped it in the move to Skibo, listing three blockers: it comes on a `.d64` disk image, it "needs BASIC 4", and it loads more files as it runs. We use the free shareware release, which its author distributes as a `.d64`.
 
-1. **`.d64` disk image, not PRG.** Skibo's emulator only handles single-PRG injection through a simulated IEEE-488 bus. There's no 1541 drive emulation at all — no track/sector reads, no disk catalog, no file system. The official PETSCII Robots release ships as a 175 KB `.d64`, and no PRG extract exists because…
-2. **PETSCII Robots targets BASIC 4 / PET 4032.** Skibo only ships BASIC 1 and BASIC 2 ROMs (the original 1977 / 1978 PET 2001 firmware). The 4032's BASIC 4 Editor ROM with 40-column / Business-keyboard layout isn't present and isn't trivially droppable in.
-3. **Multi-file runtime loader.** Even if we extracted just the boot PRG from the disk image, the game LOADs tile assets, level data, and music drivers off the disk during play. With no disk emulation, those LOAD calls hit empty IEEE and the game wedges on the first level transition.
+Taking the program apart showed that only one of those was real:
 
-None of these are solvable in the Skibo emulator without writing significant new emulator code (a full 1541 drive, a BASIC 4 ROM, a multi-file IEEE handler). The combined work is comparable to porting a separate emulator from scratch.
+1. **BASIC 4 isn't required.** At start-up the program checks a byte of the BASIC ROM, and on a BASIC 2 machine it rewrites its own calls to the ROM's LOAD routine (`$F322` rather than BASIC 4's `$F356`) and prints *BASIC V2 DETECTED!*. Its interrupt hook chains to whatever vector it found, so nothing else is tied to BASIC 4. Its stated requirement is 32 KB — "a 4032 or a Mini-PET" — which our PET already has.
+2. **The extra files load through the ROM, by name.** It asks drive 8 for `TILESET.PET`, then `LEVEL-A` or `LEVEL-B` for the chosen map, with the same LOAD that BASIC uses. Skibo's drive answered every LOAD with the same program, whatever it was asked for.
+3. **So the disk image was the whole job.** Our fork's drive 8 now reads a `.d64`: it walks the directory on track 18 and follows the named file's sector chain. `*` and `?` match as they do on a real drive. That's about ninety lines, and `games.json` gives the game a `disk` in place of a `rom`.
 
-The trade-off felt worth it: we lose the one modern PET title in exchange for a working keyboard on every other game. PETSCII Robots also has a C64 build, so adding it to the C64 bundle is a possible future move — but we don't ship it on any sub-system today.
+Two keyboard changes came with it. The PET's RUN/STOP had no PC key, and the game pauses on it, so **Escape is now RUN/STOP** everywhere on the PET. The game also switches weapons and items with the PET's own `<` and `>` keys. In held-key mode, Shift arrived on the PET as SHIFT, so Shift+comma became a graphics character. **Shift+comma and Shift+full stop now press `<` and `>`**, with SHIFT let go.
 
-If anyone ports PETSCII Robots back to PET 2001 (BASIC 2, 32 K, single PRG, no disk), we'll add it.
+A name that matches nothing on the disk gets no reply. BASIC 2's LOAD then keeps waiting, as it would with a real drive, until RUN/STOP (Escape) breaks in. The game plays without sound, like every PET title here.
 
 ## What the bundle ships
 
-10 PRG titles spanning 1977–1982, plus an empty stub for the BASIC prompt:
+9 PRG titles from 1978 to 1982, one disk-image title from 2021, and an empty stub for the BASIC prompt:
 
 - Star Trek (1978) — Version 17 of the BASIC space-strategy classic, with one-letter commands
 - Android NIM (1979) — Don Dennis's Nim against three talking executioner androids
 - Lunar Lander (1979)
 - Adventureland (1979) — Scott Adams' first text adventure
-- Space! (1979) — Greg Erker's first-person space shooter from CURSOR tape 8
 - Hangman (1980), Space Invaders (1980)
 - Crazy Balloon (1981), Frog (1981, year unverified)
 - PET-MAN (1982) — Paul Gummersall's maze game, with coding changes by Jim Butterfield
+- Attack of the PETSCII Robots (2021) — David Murray's shareware release, loaded from its own disk image
 
-All eleven entries auto-LOAD and auto-RUN from BASIC. Total bundle size including the emulator is under 400 KB.
+All eleven entries auto-LOAD and auto-RUN from BASIC. Total bundle size including the emulator is under 600 KB.
 
 ## Bundle layout
 
@@ -134,7 +134,7 @@ systems/pet/
 ├── play.html          ← ~90 lines; constructs Pet2001, drives keys + cycle loop
 ├── controls.html
 ├── games.json         ← 11 entries, optional autostart override
-├── games/             ← *.prg files
+├── games/             ← *.prg files, and petrobot.d64
 └── pet2001/           ← Skibo's 9-file emulator (BSD-2-Clause), copied from Retro-Jack/pet2001
     ├── cpu6502.js
     ├── petkeys.js

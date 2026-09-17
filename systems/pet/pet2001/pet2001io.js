@@ -747,4 +747,8 @@ function PetIO(_hw, vid) {
     this.ieeeLoadData = function(addr, bytes) {
         ieee.ieeeLoadData(addr, bytes);
     }
+
+    this.ieeeLoadDisk = function(bytes) {
+        ieee.ieeeLoadDisk(bytes);
+    }
 }

@@ -63,6 +63,89 @@ function PetIEEE(_hw) {
         load_data = [ addr & 0xff, addr >> 8 ].concat(bytes);
     }
 
+    /////////////////////////// Disk images (GenX-DOS) ///////////////////////
+    //
+    // With a .d64 disk image attached, LOAD reads the file it names from the
+    // disk -- so a program can load further files of its own -- in place of
+    // the single program given to ieeeLoadData. Only LOAD is served: there is
+    // no directory listing, SAVE still goes to saveFile(), and the disk is
+    // never written to.
+
+    var disk = null;
+
+    this.ieeeLoadDisk = function(bytes) {
+        disk = bytes;
+    }
+
+    // Offset in the image of a track (1-35, or up to 40) and sector.
+    function diskOffset(track, sector) {
+        var offset = 0;
+        for (var t = 1; t < track; t++)
+            offset += t <= 17 ? 21 : t <= 24 ? 19 : t <= 30 ? 18 : 17;
+        return (offset + sector) * 256;
+    }
+
+    // A file name pattern as the drive reads it: an optional drive number
+    // ("0:") is dropped, "?" matches any one character, and "*" matches the
+    // rest of the name.
+    function diskNameMatches(pattern, name) {
+        pattern = pattern.replace(/^[0-9]?:/, "");
+        for (var i = 0; i < pattern.length; i++) {
+            if (pattern[i] == "*")
+                return true;
+            if (i >= name.length ||
+                (pattern[i] != "?" && pattern[i] != name[i]))
+                return false;
+        }
+        return pattern.length == name.length;
+    }
+
+    // The bytes of the first file on the disk whose name matches, load
+    // address first, or null if there is none. The directory starts at track
+    // 18 sector 1; each sector links to the next by its first two bytes.
+    function diskFind(pattern) {
+        var track = 18, sector = 1, seen = 0;
+        while (track != 0 && seen++ < 20) {
+            var dir = diskOffset(track, sector);
+            if (dir + 256 > disk.length)
+                return null;
+            for (var e = 2; e < 256; e += 32) {
+                var type = disk[dir + e];
+                // A closed SEQ, PRG or USR file.
+                if ((type & 0x80) == 0 || (type & 0x07) < 1 ||
+                    (type & 0x07) > 3)
+                    continue;
+                var name = "";
+                for (var i = 3; i < 19 && disk[dir + e + i] != 0xa0; i++)
+                    name += String.fromCharCode(disk[dir + e + i]);
+                if (diskNameMatches(pattern, name))
+                    return diskReadFile(disk[dir + e + 1], disk[dir + e + 2]);
+            }
+            track = disk[dir];
+            sector = disk[dir + 1];
+        }
+        return null;
+    }
+
+    // Follow a file's chain of sectors. A sector whose link track is 0 is the
+    // last, and its link sector is then the index of its last byte.
+    function diskReadFile(track, sector) {
+        var bytes = [], seen = 0;
+        while (seen++ < 800) {
+            var at = diskOffset(track, sector);
+            if (at + 256 > disk.length)
+                break;
+            var last = disk[at] == 0 ? disk[at + 1] : 255;
+            for (var i = 2; i <= last; i++)
+                bytes.push(disk[at + i]);
+            if (disk[at] == 0)
+                break;
+            track = disk[at];
+            sector = disk[at + 1];
+        }
+        return bytes;
+    }
+
     function dataIn(d8) {
         // console.log("Data: " + d8.toString(16) + " ATN: " +
         //           atn.toString() + " EOI: " + (eoi_i && eoi_o).toString());
@@ -112,8 +195,14 @@ function PetIEEE(_hw) {
                 break;
             case STATE_FNAME:
                 // UNListen
-                if (d8 == 0x3f)
+                if (d8 == 0x3f) {
+                    // The name is complete: fetch that file from the disk.
+                    if (disk) {
+                        var bytes = diskFind(filename);
+                        load_data = bytes && bytes.length > 2 ? bytes : [];
+                    }
                     state = STATE_IDLE;
+                }
                 break;
             case STATE_LOAD:
                 // UNTalk
@@ -248,7 +337,7 @@ function PetIEEE(_hw) {
         }
         else if (!atn && flag) {
             // Positive transition of ATN
-            if (state == STATE_LOAD && nrfd_o) {
+            if (state == STATE_LOAD && nrfd_o && load_data.length > 0) {
                 // Put first data on bus.
                 dio = load_data[0] ^ 0xff;
                 dav_i = false;

@@ -161,7 +161,7 @@ document.addEventListener('touchend', function (event) {
 ///////////////////////////// Keyboard events ////////////////////////////
 
 var ascii_to_pet_row = [
-        -1,-1,-1,-1,-1,-1,-1,-1,0,-1,-1,-1,-1,3,-1,-1,
+        -1,-1,-1,4,-1,-1,-1,-1,0,-1,-1,-1,-1,3,-1,-1,
         -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
         4,0,0,0,0,0,0,0,0,0,2,3,3,4,4,1,
         4,3,3,3,2,2,2,1,1,1,2,3,4,4,4,3,
@@ -171,7 +171,7 @@ var ascii_to_pet_row = [
         1,1,1,2,1,1,3,1,3,1,3,-1,-1,-1,-1,-1,
 ];
 var ascii_to_pet_col = [
-        -1,-1,-1,-1,-1,-1,-1,-1,15,-1,-1,-1,-1,10,-1,-1,
+        -1,-1,-1,9,-1,-1,-1,-1,15,-1,-1,-1,-1,10,-1,-1,
         -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
         6,0,1,2,3,4,6,5,8,9,15,15,7,14,13,15,
         12,12,13,14,12,13,14,12,13,14,9,8,7,15,8,9,
@@ -255,6 +255,12 @@ function petkeyOnKeyDown(event) {
 	return false;
     }
 
+    // Escape is RUN/STOP, which the key tables hold as code 3 (GenX-DOS).
+    if (code == 27) {
+        petkeyOnKeyPress({ charCode: 3 });
+        return false;
+    }
+
     return true;
 }
 
@@ -276,11 +282,26 @@ function petkeyOnKeyDown(event) {
 // unaffected and still works in either mode.
 
 var petkeyHeldMode = false;
-var petkeyHeld = {};        // event.code -> [col, row] of the PET key held down
+var petkeyHeld = {};        // event.code -> [col, row, unshifted] of the PET key
 var petkeyShiftsHeld = 0;   // number of host Shift keys held down
+var petkeyUnshifted = 0;    // keys held that need the PET's SHIFT let go
+
+// With Shift, the host's comma and full stop keys type < and >. The PET has
+// keys of their own for those, which are pressed without SHIFT.
+var petkeyShiftedCodeAscii = { Comma: 60, Period: 62 };
+
+// Hold the PET's left SHIFT down while a host Shift is, unless a key held
+// needs it let go.
+function petkeyUpdateShift() {
+    if (petkeyShiftsHeld > 0 && petkeyUnshifted == 0)
+        keyrows[8] &= 0xfe;
+    else
+        keyrows[8] |= 0x01;
+    pet2001.setKeyrows(keyrows);
+}
 
 var petkeyCodeAscii = {
-    Space: 32, Enter: 13, NumpadEnter: 13, Backspace: 8,
+    Space: 32, Enter: 13, NumpadEnter: 13, Backspace: 8, Escape: 3,
     Comma: 44, Period: 46, Slash: 47, Semicolon: 59, Minus: 45, Equal: 61,
     BracketLeft: 91, BracketRight: 93,
     NumpadAdd: 43, NumpadSubtract: 45, NumpadMultiply: 42,
@@ -312,6 +333,7 @@ function petkeySetHeldMode(flag) {
 function petkeyReleaseHeld() {
     petkeyHeld = {};
     petkeyShiftsHeld = 0;
+    petkeyUnshifted = 0;
     petkeyReleaseAll();
 }
 
@@ -322,8 +344,7 @@ function petkeyHeldDown(event) {
     if (event.code == "ShiftLeft" || event.code == "ShiftRight") {
         if (!event.repeat) {
             petkeyShiftsHeld++;
-            keyrows[8] &= 0xfe;
-            pet2001.setKeyrows(keyrows);
+            petkeyUpdateShift();
         }
         event.preventDefault();
         return false;
@@ -335,9 +356,17 @@ function petkeyHeldDown(event) {
 
     // Auto-repeat changes nothing: the key is already down on the PET.
     if (!petkeyHeld[event.code]) {
-        var key = [ascii_to_pet_col[a], ascii_to_pet_row[a]];
+        var unshift = petkeyShiftsHeld > 0 &&
+            petkeyShiftedCodeAscii.hasOwnProperty(event.code);
+        if (unshift)
+            a = petkeyShiftedCodeAscii[event.code];
+        var key = [ascii_to_pet_col[a], ascii_to_pet_row[a], unshift];
         petkeyHeld[event.code] = key;
         petKeypress(key[0], key[1], false);
+        if (unshift) {
+            petkeyUnshifted++;
+            petkeyUpdateShift();
+        }
     }
     event.preventDefault();
     return false;
@@ -348,10 +377,8 @@ function petkeyOnKeyUp(event) {
         return true;
 
     if (event.code == "ShiftLeft" || event.code == "ShiftRight") {
-        if (petkeyShiftsHeld > 0 && --petkeyShiftsHeld == 0) {
-            keyrows[8] |= 0x01;
-            pet2001.setKeyrows(keyrows);
-        }
+        if (petkeyShiftsHeld > 0 && --petkeyShiftsHeld == 0)
+            petkeyUpdateShift();
         return false;
     }
 
@@ -359,6 +386,10 @@ function petkeyOnKeyUp(event) {
     if (!key)
         return true;
     delete petkeyHeld[event.code];
+    if (key[2]) {
+        petkeyUnshifted--;
+        petkeyUpdateShift();
+    }
 
     // Digit8 and Numpad8 share one PET key: only let go when neither is held.
     for (var other in petkeyHeld)

@@ -95,6 +95,10 @@ function Pet2001hw(vid) {
         io.ieeeLoadData(addr, bytes);
     }
 
+    this.ieeeLoadDisk = function(bytes) {
+        io.ieeeLoadDisk(bytes);
+    }
+
     this.read = function(addr) {
         var d8;
 

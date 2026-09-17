@@ -70,6 +70,11 @@ function Pet2001(context) {
         hw.ieeeLoadData(addr, bytes);
     }
 
+    // Attach a .d64 disk image (an array of bytes) as drive 8.
+    this.ieeeLoadDisk = function(bytes) {
+        hw.ieeeLoadDisk(bytes);
+    }
+
     // Use the later character ROM's text set (see pet2001video.js).
     this.setNewCharRom = function(flag) {
         video.setNewCharRom(flag);
