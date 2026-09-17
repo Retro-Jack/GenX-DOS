@@ -13,43 +13,57 @@
     <div class="head">
       <div class="system">Home Computer · Commodore PET</div>
       <h1>Star Trek</h1>
-      <p class="sub">1977 — the BASIC space-strategy classic. Mike Mayfield wrote the original on a Sigma 7 in 1971; it spread through HP and DEC minicomputers as <em>Super Star Trek</em> before landing on the PET. Command the Enterprise and clear the galaxy of Klingons before the star date runs out.</p>
+      <p class="sub">1978 — <em>Version 17</em>, dated 23/07/78, one of the many BASIC descendants of the 1971 Star Trek game. Hunt down every Klingon warship in the galaxy within 40 stardates, using six one-letter commands and a control panel that stays on screen.</p>
     </div>
 
     <p class="gx-crosslink"><a href="../../../systems/pet/controls.html">System help — the Commodore PET controls</a></p>
 
-    <p class="intro">The galaxy is an 8&times;8 grid of quadrants, each itself an 8&times;8 grid of sectors. You start with a fixed number of star dates and a galaxy seeded with Klingon warships, starbases (for refit) and stars (obstacles). You win by destroying every Klingon before time expires; you lose if the clock runs out, your energy is exhausted, or the Enterprise is destroyed. Everything is driven by three-letter typed commands.</p>
+    <p class="intro">The galaxy is 64 quadrants in an 8&times;8 grid, and each quadrant is 64 sectors, again 8&times;8. The left of the screen shows the quadrant you are in — the Enterprise, stars, starbases and any Klingons — and the right shows the stardate, your condition, quadrant and sector, energy, shields, torpedoes and the number of Klingons left. Time passes and energy drains as you travel and fight.</p>
 
     <h2>Getting started</h2>
     <ol>
-      <li>Click the game area to enable sound and controls.</li>
-      <li>Read the mission briefing (Klingon count + star date limit), then press <kbd>Enter</kbd> past it.</li>
-      <li>At the <code>COMMAND?</code> prompt type a three-letter command and press <kbd>Enter</kbd>.</li>
+      <li>Click the game area to enable controls.</li>
+      <li><em>Do you need instructions?</em> — type <kbd>Y</kbd> or <kbd>N</kbd> and press <kbd>Return</kbd>. The instructions are several pages; press any key to turn each one.</li>
+      <li>The game tells you how many Klingons to destroy and how many starbases there are. At <em>Are you ready?</em> type <kbd>Y</kbd> and press <kbd>Return</kbd>.</li>
+      <li>At <em>COMMAND?</em> type a command letter and press <kbd>Return</kbd>.</li>
     </ol>
+    <p class="note">Always type something before pressing <kbd>Return</kbd> at a prompt. On the PET, <kbd>Return</kbd> on its own at a question stops the program and drops you to BASIC's <em>READY.</em> — if that happens, type <kbd>RUN</kbd> and press <kbd>Return</kbd> to start a new game.</p>
 
     <h2>Commands</h2>
-    <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported.</p>
+    <p class="note-plain">This emulator is keyboard-only — USB gamepads aren't supported. Only the first letter of a command counts.</p>
     <table>
       <tr><th>Type</th><th>Action</th></tr>
-      <tr><td><kbd>NAV</kbd></td><td>Navigate — enter course (1–9, compass dial) then warp factor</td></tr>
-      <tr><td><kbd>SRS</kbd></td><td>Short-range scan — map of the current quadrant</td></tr>
-      <tr><td><kbd>LRS</kbd></td><td>Long-range scan — the three quadrants around you</td></tr>
-      <tr><td><kbd>PHA</kbd></td><td>Phasers — enter energy to fire; split across all enemies in range</td></tr>
-      <tr><td><kbd>TOR</kbd></td><td>Photon torpedo — enter a course; travels in a straight line</td></tr>
-      <tr><td><kbd>SHE</kbd></td><td>Shields — transfer energy in or out</td></tr>
-      <tr><td><kbd>DAM</kbd></td><td>Damage control report</td></tr>
-      <tr><td><kbd>COM</kbd></td><td>Library computer (galaxy map, status, course calculator)</td></tr>
-      <tr><td><kbd>XXX</kbd></td><td>Resign the command</td></tr>
+      <tr><td><kbd>N</kbd></td><td>Navigate. At <em>COURSE,DISTANCE</em> type both, separated by a comma — e.g. <kbd>90,1</kbd> — and press Return. Distance is in quadrants; small values such as <kbd>.3</kbd> move within the quadrant.</td></tr>
+      <tr><td><kbd>T</kbd></td><td>Fire a photon torpedo. At <em>COURSE</em> type a direction in degrees.</td></tr>
+      <tr><td><kbd>L</kbd></td><td>Long-range sensors: the eight quadrants around you as three digits each — Klingons, starbases, stars.</td></tr>
+      <tr><td><kbd>M</kbd></td><td>Galaxy map, built from what the long-range sensors have recorded. It only updates when you use <kbd>L</kbd>.</td></tr>
+      <tr><td><kbd>S</kbd></td><td>Shield control. At <em>UNITS TO SHIELDS</em> type how much energy the shields should hold.</td></tr>
+      <tr><td><kbd>R</kbd></td><td>Redraw the control panel if the screen gets in a mess.</td></tr>
     </table>
-    <p class="note">Course is a compass dial: 1 is east, then anticlockwise — 3 north, 5 west, 7 south, back to 9 (= 1). Decimals work, so 1.5 is north-east. Warp 1 crosses one quadrant.</p>
+    <p class="note">Courses are in degrees, anticlockwise from the right: <kbd>0</kbd> is right, <kbd>90</kbd> up, <kbd>180</kbd> left, <kbd>270</kbd> down, and any angle from 0 to 359 works.</p>
 
-    <h2>Strategy</h2>
+    <h2>Condition</h2>
+    <table>
+      <tr><th>Shows</th><th>Meaning</th></tr>
+      <tr><td>GREEN</td><td>No Klingons around</td></tr>
+      <tr><td>RED</td><td>Combat zone — beware</td></tr>
+      <tr><td>DOCKED</td><td>Alongside a starbase</td></tr>
+      <tr><td>AMBER</td><td>Energy very low</td></tr>
+    </table>
+
+    <h2>Winning and losing</h2>
     <ul>
-      <li><strong>Scan before you move.</strong> Run <kbd>LRS</kbd> every quadrant — the digits report Klingons / starbases / stars so you can plot a path that avoids being outnumbered.</li>
-      <li><strong>Shields up before a fight, down to manoeuvre.</strong> Klingons hit your shields each turn; but raising shields and firing both drain the same energy pool, so drop them to navigate or recharge.</li>
-      <li><strong>Torpedoes are free but aimed.</strong> They cost no energy but need an exact course and a clear line — a star in the way absorbs the hit. Phasers always connect but split their damage across every enemy present.</li>
-      <li><strong>Dock for a full refit.</strong> Sit adjacent to a starbase and shields restore, energy refills, and torpedoes reload — the only way to recover, so know where the nearest base is.</li>
-      <li><strong>Watch the star date.</strong> Every warp and every repair burns time. Plan the shortest tour that still lets you refit; dawdling loses the game as surely as a destroyed ship.</li>
+      <li>You start with 3000 energy and 15 torpedoes. Destroy every Klingon within 40 stardates and the game declares <em>YOU'VE WON!!</em></li>
+      <li>Klingons fire on you in battle; their hits come off your shields and damage the ship's systems. A hit your shields can't take destroys the Enterprise.</li>
+      <li>Run past the 40 stardates and it's <em>TIME'S UP!!!</em> Destroy the last starbase in the galaxy yourself and you're told <em>YOU'RE FIRED!!!</em></li>
+    </ul>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Dock to recover.</strong> Move into a sector next to a starbase: energy and torpedoes are refilled, damage is repaired, and while you're docked the starbase's shields protect you. Docking costs a stardate.</li>
+      <li><strong>Scan before you jump.</strong> Use <kbd>L</kbd> in each new quadrant, then <kbd>M</kbd> to plan a route to the Klingons and the nearest starbase.</li>
+      <li><strong>Raise shields before a fight.</strong> Shields and movement draw on the same energy, so put enough into the shields to survive a volley without stranding yourself.</li>
+      <li><strong>Mind what's in the line of fire.</strong> A torpedo travels in a straight line and stops at the first thing it meets — including a starbase you may need later.</li>
     </ul>
     <div class="footer">
       part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> ·

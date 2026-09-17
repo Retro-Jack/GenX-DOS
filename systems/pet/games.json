@@ -1,5 +1,5 @@
 {
-  "startrek": { "title": "Star Trek (1977)", "rom": "games/startrek.prg" },
+  "startrek": { "title": "Star Trek (1978)", "rom": "games/startrek.prg" },
   "andnim": { "title": "Android NIM (1979)", "rom": "games/android_nim.prg" },
   "lunar": { "title": "Lunar Lander (1979)", "rom": "games/lunar.prg" },
   "advland": { "title": "Adventureland (1979)", "rom": "games/advland.prg" },
