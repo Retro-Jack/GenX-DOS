@@ -151,7 +151,7 @@ function PetIO(_hw, vid) {
         via_t1cl =      0xff;
         via_t1ch =      0xff;
         via_t1_1shot =  0;
-        var_t1_undf =   0;
+        via_t1_undf =   0;
         via_t1ll =      0xff;
         via_t1lh =      0xff;
         via_t2ll =      0xff;
