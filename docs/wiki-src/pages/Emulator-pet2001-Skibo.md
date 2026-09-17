@@ -123,7 +123,7 @@ If anyone ports PETSCII Robots back to PET 2001 (BASIC 2, 32 K, single PRG, no d
 - Space! (1979) — Greg Erker's first-person space shooter from CURSOR tape 8
 - Hangman (1980), Space Invaders (1980)
 - Crazy Balloon (1981), Frog (1981, year unverified)
-- Pac-Man (1982)
+- PET-MAN (1982) — Paul Gummersall's maze game, with coding changes by Jim Butterfield
 
 All eleven entries auto-LOAD and auto-RUN from BASIC. Total bundle size including the emulator is under 400 KB.
 

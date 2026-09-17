@@ -302,7 +302,7 @@ Commodore PET 2001
   systems/pet/games/hangman.prg                            Hangman (1980)
   systems/pet/games/invader.prg                            Space Invaders (1980)
   systems/pet/games/lunar.prg                              Lunar Lander (1979)
-  systems/pet/games/pacman.prg                             Pac-Man (1982)
+  systems/pet/games/petman.prg                             PET-MAN (1982)
   systems/pet/games/space.prg                              Space! (1979)
   systems/pet/games/startrek.prg                           Star Trek (1978)
 

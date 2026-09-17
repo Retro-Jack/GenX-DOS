@@ -13,6 +13,6 @@
     "heldKeys": true
   },
   "frog": { "title": "Frog (1981)", "rom": "games/frog.prg", "heldKeys": true },
-  "pacman": { "title": "Pac-Man (1982)", "rom": "games/pacman.prg" },
+  "petman": { "title": "PET-MAN (1982)", "rom": "games/petman.prg" },
   "basic": { "title": "Commodore PET BASIC 2", "rom": "games/empty.prg" }
 }

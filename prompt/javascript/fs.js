@@ -1536,7 +1536,7 @@ var fs = [
                         files: [
                           {
                             name: 'menu.bat',
-                            data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  PET  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Star Trek                      (1978) º\necho                 º   2.  Adventureland                  (1979) º\necho                 º   3.  Android NIM                    (1979) º\necho                 º   4.  Lunar Lander                   (1979) º\necho                 º   5.  Space!                         (1979) º\necho                 º   6.  Hangman                        (1980) º\necho                 º   7.  Space Invaders                 (1980) º\necho                 º   8.  Crazy Balloon                  (1981) º\necho                 º   9.  Frog                           (1981) º\necho                 º  10.  Pac-Man                        (1982) º\necho                 º                                             º\necho                 º  11.  BASIC 2 prompt                        º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                            data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º            COMMODORE  PET  GAMES            º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Star Trek                      (1978) º\necho                 º   2.  Adventureland                  (1979) º\necho                 º   3.  Android NIM                    (1979) º\necho                 º   4.  Lunar Lander                   (1979) º\necho                 º   5.  Space!                         (1979) º\necho                 º   6.  Hangman                        (1980) º\necho                 º   7.  Space Invaders                 (1980) º\necho                 º   8.  Crazy Balloon                  (1981) º\necho                 º   9.  Frog                           (1981) º\necho                 º  10.  PET-MAN                        (1982) º\necho                 º                                             º\necho                 º  11.  BASIC 2 prompt                        º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                           },
                           {
                             name: '0.bat',
@@ -1580,7 +1580,7 @@ var fs = [
                           },
                           {
                             name: '10.bat',
-                            data: 'pacman\n',
+                            data: 'petman\n',
                           },
                           {
                             name: '11.bat',
@@ -1623,8 +1623,8 @@ var fs = [
                             link: '../systems/pet/play.html?game=frog',
                           },
                           {
-                            name: 'pacman.exe',
-                            link: '../systems/pet/play.html?game=pacman',
+                            name: 'petman.exe',
+                            link: '../systems/pet/play.html?game=petman',
                           },
                           {
                             name: 'basic.exe',
