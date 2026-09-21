@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>js-dos — IBM PC — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="../../styles/genx-doc.css">
+<link rel="stylesheet" href="../../styles/wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="Search.html">Search</a><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li><li><a href="README.html">Readme</a></li><li><a href="ATTRIBUTION.html">Attribution</a></li><li><a href="Legal.html">Legal position</a></li><li><a href="REMOVAL.html">Removal</a></li><li><a href="CHANGELOG.html">Changelog</a></li><li><a href="CONTRIBUTING.html">Contributing</a></li><li><a href="SECURITY.html">Security</a></li><li><a href="CODE_OF_CONDUCT.html">Code of Conduct</a></li><li><a href="AI-DISCLAIMER.html">On the use of AI</a></li><li><a href="LICENSE.html">License</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="js-dos--ibm-pc">js-dos — IBM PC</h1>
+<p>The machine the site had been dressed as since the beginning. The DOS prompt boots into an IBM 5153 monitor, and for a long time there was nothing behind it: the DOS was set dressing for a launcher. This bundle puts a real one there.</p>
+<h2 id="not-the-js-dos-player">Not the js-dos player</h2>
+<p><a href="https://js-dos.com/">js-dos</a> ships a complete DOS player — UI, canvas, save handling, cloud features — and we use none of it. The bundle takes the layer underneath, the <code>emulators</code> package, for three reasons that only became clear once the player was tried:</p>
+<ol>
+<li><strong>The player hard-depends on OPFS.</strong> It calls <code>navigator.storage.estimate()</code> and <code>getDirectory()</code> at start-up, which need a secure context. On staging, which is plain HTTP, it threw on both and never produced a canvas. The <code>emulators</code> layer has no such dependency and starts happily on an insecure origin.</li>
+<li><strong>It brings a UI we would only have hidden</strong>, the way apple2js's header is hidden.</li>
+<li><strong>It owns its canvas.</strong> The bezel here needs a canvas we control, sized to the prompt's screen geometry to the decimal.</li>
+</ol>
+<p>What <code>emulators</code> gives instead is a frame stream, a key sink and a sound queue. <code>genx-dos-player.js</code> wires those to our own canvas. Upstream's own README points this way: <em>if you want to build a custom DOS player, use the emulators package instead</em>.</p>
+<pre><code class="language-js">emulators.pathPrefix = 'jsdos/emulators/';
+const ci = await emulators.dosboxDirect([
+  { dosboxConf: conf, jsdosConf: { version: '8' } },
+  { path: 'DIGGER.COM', contents: bytes },
+]);
+</code></pre>
+<p>Vendored: <code>emulators.js</code>, <code>wdosbox.js</code>, <code>wdosbox.wasm</code> — about 1.7 MB. Not <code>js-dos.js</code> or <code>js-dos.css</code>, which are the player.</p>
+<h2 id="the-bezel-is-a-constraint-not-a-finish">The bezel is a constraint, not a finish</h2>
+<p>Arriving from the launcher must not move the monitor, so the bundle copies the prompt's geometry rather than deriving its own:</p>
+<pre><code class="language-css">.bezel-wrap { width: min(100vw, calc(100vh * 1815 / 1300));
+              aspect-ratio: 1815 / 1300; }     /* NOT 100dvh - 120px */
+.screen-bg  { inset: 5%; }
+.screen     { left: 15.1%; top: 17.3%; width: 60.1%; height: 61.3%; }
+</code></pre>
+<p>Four things have to match or the seam shows: the same <code>IBM-5153.png</code> by the same path so it comes from cache; the same wrap expression (the Electron page reserves a 120px footer strip, the CPC multiplies by 1.05 — either would resize the monitor mid-transition); the prompt's <em>tuned</em> hole coordinates rather than the raw cutout at 13.5/15.7/63.25/64.5; and the same wallpaper painted before first paint. The aperture is 1.369:1 and CGA is 1.6:1, so the canvas is stretched to fill in both axes, exactly as the prompt stretches its 80x25 character grid.</p>
+<h2 id="the-start-up-banner-and-how-it-is-hidden">The start-up banner, and how it is hidden</h2>
+<p>DOSBox prints its own greeting before <code>[autoexec]</code> runs, and this build has no <code>startbanner</code> setting — the string is compiled into the wasm. So nothing is drawn until DOS has wiped it away: the player holds every frame until one arrives that is essentially all black, which is what the <code>cls</code> in each autoexec produces, with a four-second backstop.</p>
+<p>An earlier version waited for a video-mode change instead. That looked correct until Kingdom of Kroz arrived, which is a text-mode game and never changes mode — it sat black for the full backstop. <strong>The blank screen is the signal, not the mode change.</strong></p>
+<p>Each autoexec also carries <code>@echo off</code> and <code>mount c . &gt; nul</code>, so the mount confirmation and the command echo never appear either.</p>
+<h2 id="each-game-gets-the-machine-it-was-written-for">Each game gets the machine it was written for</h2>
+<p>The per-game <code>dosbox.conf</code> is ours and is in the repo; the games are not. Three machine types and five cycle counts, taken from configurations the games themselves shipped with rather than guessed:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Games</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>machine=cga</code></td>
+<td>Paratrooper, Digger, Beast, Alley Cat, Sopwith, Rogue, Round 42, Kingdom of Kroz</td>
+</tr>
+<tr>
+<td><code>machine=ega</code></td>
+<td>Captain Comic, Commander Keen</td>
+</tr>
+<tr>
+<td><code>cycles=fixed 400</code></td>
+<td>Digger</td>
+</tr>
+<tr>
+<td><code>cycles=fixed 200</code></td>
+<td>Sopwith</td>
+</tr>
+<tr>
+<td><code>cycles=fixed 300</code></td>
+<td>Beast</td>
+</tr>
+<tr>
+<td><code>cycles=fixed 600</code></td>
+<td>Rogue, Kingdom of Kroz</td>
+</tr>
+</tbody>
+</table>
+<p>Without the fixed counts those five run at a speed nobody can play.</p>
+<h2 id="keyboard">Keyboard</h2>
+<p><code>KeyboardEvent.code</code> maps to DOSBox key codes from the <code>emulators</code> package's own <code>src/keys.ts</code> — fetched, not derived (F1 is 290, the arrows 262-265, Ctrl 341/345, Alt 342/346). Ctrl and Alt reach the game rather than the browser, because they are Commander Keen's jump and pogo. A <code>blur</code> handler releases everything held, or a game walks into a wall for ever.</p>
+<h2 id="csp">CSP</h2>
+<p>This page needs <code>script-src 'self' 'unsafe-eval'</code>, not the narrower <code>'wasm-unsafe-eval'</code> the standalone bundles use: wdosbox evaluates strings at start-up. That puts it with the EmulatorJS bundles rather than the nineteen narrowed ones.</p>
+<h2 id="licensing">Licensing</h2>
+<p>js-dos declares <strong>GPL-2.0</strong> in its <code>package.json</code> and on npm, but the upstream <code>8.xx</code> branch ships no LICENSE file while <code>7.xx</code> carries the full GPL-2 text. Worth resolving upstream.</p>
+<h2 id="bundle-layout">Bundle layout</h2>
+<pre><code>systems/dos/
+  play.html              bezel + canvas, CSP, corner links, pill
+  genx-dos-player.js     renderer, keyboard, sound
+  controls.html          system help
+  games.json             title + file list per game
+  jsdos/emulators/       emulators.js, wdosbox.js, wdosbox.wasm
+  games/&lt;key&gt;/           dosbox.conf (ours) — the games themselves are not in the repo
+</code></pre>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="Emulators.html">Emulators</a> — the index</li>
+<li><a href="Virtual-Filesystem.html">Virtual-Filesystem</a> — where <code>C:\SYSTEMS\PC\IBM</code> sits</li>
+</ul>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

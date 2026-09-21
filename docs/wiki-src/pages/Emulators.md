@@ -18,6 +18,7 @@
 | [[Emulator-elkjs-Electron]] | Acorn Electron |
 | [[Emulator-js99er-TI-99-4A]] | TI-99/4A |
 | [[Emulator-apple1js]] | Apple I |
+| [[Emulator-js-dos-IBM-PC]] | IBM PC |
 | [[Emulator-jsbeeb]] | BBC Micro, BBC Master 128 |
 | [[Emulator-EmulatorJS-NES-FCEUmm]] | NES |
 | [[Emulator-Stella]] | Atari 2600 |
@@ -110,8 +111,8 @@ drives paddles 0 and 1 straight off the left stick and maps pad `A`/`LB` to Appl
 button 0, `B`/`RB` to button 1 (`dist/main2.bundle.js`, default map
 `{A:0, B:1, L1:0, R1:1}`).
 
-Machines with no pad support at all — Apple I, Atari 400/800, TI-99/4A, Model
-100, MSX1/2, PET, TRS-80, Intellivision, Odyssey² — carry two columns. The last
+Machines with no pad support at all — Apple I, IBM PC, Atari 400/800, TI-99/4A,
+Model 100, MSX1/2, PET, TRS-80, Intellivision, Odyssey² — carry two columns. The last
 two are worth naming because their tables used to *have* a Gamepad column that
 described the original console's controller rather than a USB one. For the
 Atari, TRS-80, Model 100 and MSX the SDL builds do carry Emscripten's gamepad
