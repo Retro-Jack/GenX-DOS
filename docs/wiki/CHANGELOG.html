@@ -30,7 +30,7 @@
 <h2 id="unreleased">[Unreleased]</h2>
 <h3 id="added">Added</h3>
 <ul>
-<li><strong>The home page has a support button.</strong> A <em>Buy me a coffee</em> link to Ko-fi sits in the footer, under the closing line and above the licence notes. It is a plain link wearing the site's own clothes — amber rather than green, so <em>Enter the museum</em> stays the one call to action on the page — and deliberately <strong>not</strong> Ko-fi's button, badge or widget: <code>index.html</code> declares <code>default-src 'none'</code>, loads no JavaScript at all, and the site makes no network calls at runtime. Nothing is fetched until you click it.</li>
+<li><strong><code>deploy.sh</code> can overlay the footer.</strong> It already appended a fragment to the pill script and spliced one into the home page's card list; it now also splices one into the footer, anchored on the closing line so the fragment lands above the licence notes. A no-op when the file is absent, so a fresh clone still builds exactly the repo and the release zip is untouched.</li>
 </ul>
 <h3 id="changed">Changed</h3>
 <ul>

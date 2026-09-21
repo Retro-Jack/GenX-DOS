@@ -120,6 +120,21 @@ PYEOF
     echo "  + local home-page overlay applied (not in the repo)"
 fi
 
+# The same again for the footer, anchored on the closing line's paragraph so
+# the fragment lands above the licence notes rather than below them.
+FOOTER_EXTRA="${HOME}/.config/genx-dos/home-footer-extra.html"
+if [[ -f "$FOOTER_EXTRA" ]]; then
+    python3 - "$STAGE_DIR/index.html" "$FOOTER_EXTRA" <<'PYEOF'
+import sys, pathlib
+page, frag = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2]).read_text()
+s = page.read_text()
+# The first paragraph inside <footer> is the closing line; splice after it.
+i = s.index('\n', s.index('</p>', s.index('<footer>'))) + 1
+page.write_text(s[:i] + frag + s[i:])
+PYEOF
+    echo "  + local footer overlay applied (not in the repo)"
+fi
+
 echo "  $(find "$STAGE_DIR" -type f | wc -l) files, $(du -sh "$STAGE_DIR" | cut -f1)"
 
 # ---- deploy -------------------------------------------------------------
