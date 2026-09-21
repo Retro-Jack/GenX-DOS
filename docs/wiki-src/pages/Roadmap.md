@@ -60,6 +60,62 @@ See [[Emulators]] for the per-platform integration stories.
 
 ## ⏳ Still to go
 
+### Under investigation
+
+- **IBM PC / MS-DOS** (1981) — opened 21/09/2026. The one machine the site already wears the clothes of without emulating: the prompt boots into an `IBM-5153.png` bezel, and nothing runs behind it. In scope under the 8-bit-feel rule on the same grounds as every other entry — an 8088 drawing CGA's four colours at 320x200, or EGA's sixteen, with a one-bit speaker doing the music. **The cut is the hardware generation, not the year:** CGA and EGA in, VGA's 256 colours and Sound Blaster digital audio out. That puts the boundary around 1990, with *Commander Keen* the last thing through the door and everything that needed a 386 outside it.
+
+  **Engine:** js-dos. No other browser DOS emulator is turn-key.
+
+  **The bezel is a hard constraint, not a finish.** Launching a game from the prompt must not move the monitor, so the prompt's own geometry is the bundle's specification, copied rather than re-derived:
+
+  ```css
+  .bezel-wrap { width: min(100vw, calc(100vh * 1815 / 1300));
+                aspect-ratio: 1815 / 1300; }     /* NOT 100dvh - 120px */
+  .screen-bg  { inset: 5%; }
+  .screen     { left: 15.1%; top: 17.3%; width: 60.1%; height: 61.3%; }
+  ```
+
+  Four things have to match or the seam shows: the same `IBM-5153.png` by the same path, so it comes from cache and never re-decodes; the same wrap expression (the Electron page reserves a 120px footer strip and the CPC multiplies by 1.05 — either would resize the monitor mid-transition); the prompt's *tuned* hole coordinates rather than the raw cutout at 13.5/15.7/63.25/64.5; and the same body wallpaper, painted before first paint. The hole is 1.369:1 and CGA's 320x200 is 1.6:1, so the canvas wants `object-fit: fill` (or a non-uniform `scale`) exactly as the prompt's 80x25 grid already does — letterboxing it would leave the picture visibly smaller than the text it replaced, which is the seam we are avoiding.
+
+  **Eight candidate games**, weighted towards titles born on the PC rather than ported to it, and checked against all 343 titles already on the site so none duplicates an existing entry:
+
+  | Title | Year | Author / publisher | Video | Status |
+  |---|---|---|---|---|
+  | Paratrooper | 1982 | Greg Kuperberg / Orion Software | CGA | Commercial |
+  | Digger | 1983 | Windmill Software | CGA | See note |
+  | Alley Cat | 1984 | Bill Williams / Synapse, published by IBM | CGA | Commercial |
+  | Sopwith | 1984 | David L. Clark / BMB Compuscience | CGA | **GPL** |
+  | Montezuma's Revenge | 1984 | Robert Jaeger / Parker Brothers | CGA | Commercial |
+  | Round 42 | 1986 | Elven Software Company | CGA | **Shareware, complete** |
+  | The Adventures of Captain Comic | 1988 | Michael A. Denio | EGA | **Shareware, complete** |
+  | Commander Keen: Marooned on Mars | 1990 | id Software / Apogee | EGA | **Shareware, episode 1** |
+
+  Two places remain to fill — see *Rejected from the shortlist* below.
+
+  **Licensing is unusually kind here,** and it bears on the ROM-free repo policy. Sopwith's source was released by its author in 2000, latterly under the GNU GPL, and Round 42, Captain Comic and Keen episode 1 are shareware that was always meant to be passed around complete. Four of the eight could sit in the repo rather than in ROMS.txt — a position no other system on the site is in. *Digger* is the awkward one: the original instructions carry a plain 1983 Windmill copyright and say nothing about redistribution, and what circulates freely is Andrew Jenner's 1998 reverse-engineered *Digger Remastered*, whose source is variously public-domain, BSD and GPL. If Digger ships it should be the remaster, named as such.
+
+  **Controls**, researched from manuals and contemporary documentation rather than recalled. All eight are unambiguous and keyboard-only:
+
+  - **Paratrooper** — Left/Right rotate the turret, Up fires. An analogue joystick is optionally supported. *(Every source describes the scheme; none names the keys outright. Confirm from the original manual before the gamedoc.)*
+  - **Digger** — Arrows or keypad 2/4/6/8 with Num Lock off to move; F1 fires; Space pauses; F7 music, F9 all sound, F10 title screen; Ctrl with < and > re-centres the picture.
+  - **Alley Cat** — Left/Right walk, Up jumps, Down drops off a clothesline or fence; run and then hold Up with a direction for a running jump. A digital joystick is an alternative; there is no analogue support.
+  - **Sopwith** — `,` elevator up, `/` elevator down, `.` flip the plane, Space machine gun, B bomb, X accelerate, Z decelerate, H autopilot home, S sound.
+  - **Montezuma's Revenge** — directions move and climb, a jump key leaps; keypad 7 and 9 jump diagonally and 5 jumps straight up. *(The DOS-specific key list still wants pinning from the manual.)*
+  - **Round 42** — the numeric keypad moves, F1 fires, F2 fires the phasor.
+  - **Captain Comic** — Left/Right move. *(Jump, fire and item selection are in `COMIC.DOC`, which ships with the game; the two documentation sites holding it are bot-gated, so read it from the distribution itself.)*
+  - **Commander Keen** — Left/Right or keypad 4/6 move, Ctrl jumps, Alt toggles the pogo stick, Ctrl+Alt fires the raygun; Space status and pause, F1 help, F2 sound, F3 redefine keys, F4 joystick, F5 save at the level map.
+
+  **Rejected from the shortlist**
+
+  - **Thexder** (1987, Game Arts / Sierra) — the DOS key list is not documented anywhere findable; the Apple II and Amiga manuals disagree with each other and neither is the PC. It fails the no-ambiguous-controls rule at the research stage, which is the cheap place to find out.
+  - **Dangerous Dave** (1988, John Romero / Softdisk) — the same problem, and a murkier one besides: it was an example program in the *UpTime* disk magazine rather than shareware, so it has neither documented controls nor a distribution footing.
+
+  **Open questions before this becomes a decision**
+
+  1. A DOS prompt reached from a DOS prompt — charming, or does it muddle the conceit the whole site rests on? It affects the naming too: `PC` reads as the shell, `IBM PC/XT` as a machine.
+  2. Two shortlist places to fill, now that Thexder and Dangerous Dave are out.
+  3. Whether the shareware and GPL titles ship in the repo, which would make this the first system partly playable from a clone.
+
 ### Out of scope under the 8-bit-feel rule
 Listed for clarity — these are the 16-bit/32-bit transition and beyond.
 
