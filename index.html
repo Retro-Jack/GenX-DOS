@@ -158,6 +158,25 @@
   footer{border-top:1px solid var(--line);padding:3rem 0 3.5rem;text-align:center}
   footer .close{font-size:1.05rem;color:var(--paper);max-width:44ch;margin:0 auto 1.4rem;line-height:1.6}
   footer .lic{font-size:12px;color:var(--dim);letter-spacing:.04em}
+  /* Support button — amber, not green: "Enter the museum" stays the one
+     green call to action on the page and this doesn't compete with it.
+     No Ko-fi widget, badge or script: index.html declares default-src 'none'
+     and loads no JavaScript, and the site makes no network calls at runtime.
+     It is a plain link wearing the site's own clothes. */
+  footer .support{
+    display:inline-flex;align-items:center;gap:.6em;
+    font-family:'VGA437','IBM Plex Mono',monospace;font-size:.95rem;
+    letter-spacing:.04em;text-transform:uppercase;
+    color:var(--amber);background:transparent;
+    border:2px solid var(--line);border-radius:2px;
+    padding:.6rem 1.4rem;text-decoration:none;margin:0 0 1.8rem;
+    transition:background .16s ease, color .16s ease, border-color .16s ease;
+  }
+  footer .support:hover, footer .support:focus-visible{
+    background:var(--amber);color:var(--crt);border-color:var(--amber);
+  }
+  footer .support .heart{color:var(--green);font-size:1.05em;line-height:1}
+  footer .support:hover .heart, footer .support:focus-visible .heart{color:var(--crt)}
 
   /* ---------- responsive ---------- */
   /* ---------- touch / no-keyboard gate ---------- */
@@ -297,6 +316,9 @@
 
 <footer>
   <p class="close">A museum that boots in a tab — and unlike most museums, you're allowed to touch everything.</p>
+  <p><a class="support" href="https://ko-fi.com/retro_jack" target="_blank" rel="noopener">
+    <span class="heart" aria-hidden="true">&#9829;</span> Buy me a coffee
+  </a></p>
   <p class="lic"><a href="docs/wiki/AI-DISCLAIMER.html">On the use of AI</a></p>
   <p class="lic">Rights holders: anything here can be <a href="docs/wiki/ATTRIBUTION.html#removal-upon-request">removed upon request</a>.</p>
   <p class="lic">The GenX-DOS work is <a href="https://creativecommons.org/licenses/by-nc/4.0/legalcode" rel="license">CC BY-NC 4.0</a> · the bundled emulators keep their own licences.</p>
