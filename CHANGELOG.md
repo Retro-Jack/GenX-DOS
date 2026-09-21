@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+### Changed
+- **The maker menus show how long each machine was made for.** A maker row used to carry the year its earliest machine appeared, which is the span of its *launches* rather than of its manufacturing. Each row now runs from the first of our machines going on sale to the last of them leaving production — only the machines actually on the shelf, so Apple reads 1976-1982 for the Apple I and the ][+ rather than 1993 for an Apple II line we don't run, Atari reads 1979-1985 for the 400 and the 800XL, and Texas Instruments reads 1981-1984 for the 99/4A rather than 1979 for the 99/4 before it. Where one machine sold in several regions, the widest is used: the Master System's 1996 is its European tail, and the Famicom's 2003 is a decade after the NES left the West. Sourced per machine rather than recalled — Wikipedia's own infobox for the TI-99/4A gives June 1981, which belongs to the 99/4. The arcade rows are unchanged: a cabinet's production run is the game, and they already said so.
+- **The IBM row reads *IBM / IBM Compatible*.** Almost nothing on that shelf was written for an IBM-badged machine specifically, and by 1985 most of the people playing these were doing it on something built by someone else.
+
+
 ## [1.10.0] - 2026-09-22
 
 ### Added
