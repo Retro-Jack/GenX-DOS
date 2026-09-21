@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+### Added
+- **The home page has a support button.** A *Buy me a coffee* link to Ko-fi sits in the footer, under the closing line and above the licence notes. It is a plain link wearing the site's own clothes — amber rather than green, so *Enter the museum* stays the one call to action on the page — and deliberately **not** Ko-fi's button, badge or widget: `index.html` declares `default-src 'none'`, loads no JavaScript at all, and the site makes no network calls at runtime. Nothing is fetched until you click it.
+
 ### Changed
 - **The social card has a generator, and lists the arcade.** `tools/social-card.py` draws the card's menu rows and stats line in the prompt's own CP437 font sheet — which reproduces the existing rows pixel for pixel — and measures the stats from `docs/games/`, so `check-doc-counts.sh` now checks the card (and `--write` redraws it) instead of only restating what it should say. Row 7 reads *Arcade (Coin-op)* in place of Amstrad CPC, and the home page's description of the card follows.
 - **The wiki caught up with the forks and the Commodore 128's departure.** The apple1js page had the wrong licence (it is MIT), the wrong launch parameter (`?tape=`) and no word of the fork; File-Structure, Virtual-Filesystem and the Roadmap now name the Apple I and PET forks, and the PET page's size is current. The Roadmap's scope list still named the C128, dropped on 03/09/2026; it now has a Rejected entry saying why.
