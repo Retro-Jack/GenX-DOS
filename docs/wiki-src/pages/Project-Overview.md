@@ -40,7 +40,7 @@ DOS is the prompt host. See [[Roadmap]] for the full in/out list and what's stil
 
 ## The lineup
 
-19 emulator engines ship under `systems/`, driving 34 sub-systems:
+20 emulator engines ship under `systems/`, driving 35 sub-systems:
 
 - Consoles: Atari 2600, Atari 7800, ColecoVision, Intellivision, NES, Magnavox Odyssey², Sega Master System, GCE Vectrex
 - Arcade: 100 cabinets from ten makers — Atari, Capcom, Irem, Konami, Midway, Namco, Nintendo, Sega, Taito, Williams — ten each

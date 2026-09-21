@@ -34,11 +34,11 @@
 ├── COMMAND.COM           the interpreter: prints its banner; on the PATH
 ├── VER.COM               prints the version line; on the PATH
 ├── menu.bat              `cd systems\nmenu` (drops straight into the EMULATOR LAUNCHER)
-└── SYSTEMS\              EMULATOR LAUNCHER: 1 HOMECOMP / 2 CONSOLE / 3 HANDHELD /
+└── SYSTEMS\              EMULATOR LAUNCHER: 1 PC / 2 CONSOLE / 3 HANDHELD /
     │                     4 ARCADE / 5 WIKI / 0 Exit
-    ├── HOMECOMP\         ACORN (BBC / ELECTRON / MASTER) / AMSTRAD (CPC) /
+    ├── PC\               ACORN (BBC / ELECTRON / MASTER) / AMSTRAD (CPC) /
     │                     APPLE (APPLE1 / APPLEII) / ATARI (400 / 800XL) /
-    │                     COMMODRE (PET / VIC20 / MAX / C64 / C16 / PLUS4) /
+    │                     COMMODRE (PET / VIC20 / MAX / C64 / C16 / PLUS4) / IBM /
     │                     MSX (MSX1 / MSX2) / SINCLAIR (SPECTRUM / ZX81) /
     │                     TANDY (COCO / TRS80 / M100) / TI99
     ├── CONSOLE\          ATARI (2600 / 7800) / CVISION / INTV / NES /
@@ -49,7 +49,7 @@
                           WILLIAMS
 </code></pre>
 <h2 id="which-menus-map-to-which-emulators">Which menus map to which emulators</h2>
-<p>All 34 bundled sub-systems run their games locally — every byte of game data is on the same origin.</p>
+<p>All 35 bundled sub-systems run their games locally — every byte of game data is on the same origin.</p>
 <table>
 <thead>
 <tr>
@@ -120,107 +120,107 @@
 <td>ten makers, ten cabinets each; launchers are named after their romsets</td>
 </tr>
 <tr>
-<td>HOMECOMP → ACORN → BBC</td>
+<td>PC → ACORN → BBC</td>
 <td>jsbeeb</td>
 <td></td>
 </tr>
 <tr>
-<td>HOMECOMP → ACORN → ELECTRON</td>
+<td>PC → ACORN → ELECTRON</td>
 <td>ElkJS</td>
 <td>UEF snapshots</td>
 </tr>
 <tr>
-<td>HOMECOMP → ACORN → MASTER</td>
+<td>PC → ACORN → MASTER</td>
 <td>jsbeeb (<code>?model=Master</code>)</td>
 <td>Elite uses DSD for drive 2</td>
 </tr>
 <tr>
-<td>HOMECOMP → AMSTRAD → CPC</td>
+<td>PC → AMSTRAD → CPC</td>
 <td>floooh tiny8bit CPC WASM</td>
 <td>sokol_args URL params</td>
 </tr>
 <tr>
-<td>HOMECOMP → APPLE → APPLE1</td>
+<td>PC → APPLE → APPLE1</td>
 <td>apple1js, our fork</td>
 <td>tapes + Woz Monitor</td>
 </tr>
 <tr>
-<td>HOMECOMP → APPLE → APPLEII</td>
+<td>PC → APPLE → APPLEII</td>
 <td>apple2js</td>
 <td><code>.dsk</code> images converted to JSON</td>
 </tr>
 <tr>
-<td>HOMECOMP → ATARI → 400</td>
+<td>PC → ATARI → 400</td>
 <td><code>atari400/</code> bundle — atari800 WASM (genuine Atari OS-B)</td>
 <td></td>
 </tr>
 <tr>
-<td>HOMECOMP → ATARI → 800XL</td>
+<td>PC → ATARI → 800XL</td>
 <td><code>atari800/</code> bundle — atari800 WASM (genuine Atari XL/XE OS Rev 2)</td>
 <td>full copy of the same build</td>
 </tr>
 <tr>
-<td>HOMECOMP → COMMODRE → PET</td>
+<td>PC → COMMODRE → PET</td>
 <td>Thomas Skibo's pet2001 (vanilla JS), our fork</td>
 <td>PET 2001 / BASIC 2 / 32 K</td>
 </tr>
 <tr>
-<td>HOMECOMP → COMMODRE → VIC20</td>
+<td>PC → COMMODRE → VIC20</td>
 <td>EmulatorJS + VICE xvic</td>
 <td><code>memory_expansions='all'</code></td>
 </tr>
 <tr>
-<td>HOMECOMP → COMMODRE → MAX</td>
+<td>PC → COMMODRE → MAX</td>
 <td>EmulatorJS + VICE x64 (Ultimax mode)</td>
 <td>Japan-only 1982 console</td>
 </tr>
 <tr>
-<td>HOMECOMP → COMMODRE → C64</td>
+<td>PC → COMMODRE → C64</td>
 <td>EmulatorJS + VICE x64</td>
 <td>real-time IEC loading</td>
 </tr>
 <tr>
-<td>HOMECOMP → COMMODRE → C16</td>
+<td>PC → COMMODRE → C16</td>
 <td>EmulatorJS + VICE xplus4 (C16 mode)</td>
 <td></td>
 </tr>
 <tr>
-<td>HOMECOMP → COMMODRE → PLUS4</td>
+<td>PC → COMMODRE → PLUS4</td>
 <td>EmulatorJS + VICE xplus4</td>
 <td></td>
 </tr>
 <tr>
-<td>HOMECOMP → MSX → MSX1 / MSX2</td>
+<td>PC → MSX → MSX1 / MSX2</td>
 <td>WebMSX — <code>msx1/</code> (<code>?M=MSX1</code>) + <code>msx2/</code> (<code>?M=MSX2</code>) bundles</td>
 <td>full copy of the engine in each</td>
 </tr>
 <tr>
-<td>HOMECOMP → SINCLAIR → SPECTRUM</td>
+<td>PC → SINCLAIR → SPECTRUM</td>
 <td>JSSpeccy 3</td>
 <td></td>
 </tr>
 <tr>
-<td>HOMECOMP → SINCLAIR → ZX81</td>
+<td>PC → SINCLAIR → ZX81</td>
 <td>JtyOne</td>
 <td></td>
 </tr>
 <tr>
-<td>HOMECOMP → TANDY → TRS80</td>
+<td>PC → TANDY → TRS80</td>
 <td>sdltrs (our own WASM build)</td>
 <td>Model III; ROM fetched into MEMFS at boot</td>
 </tr>
 <tr>
-<td>HOMECOMP → TANDY → M100</td>
+<td>PC → TANDY → M100</td>
 <td>VirtualT (our core-only WASM build)</td>
 <td>Model 100; live clock + battery-backed RAM</td>
 </tr>
 <tr>
-<td>HOMECOMP → TANDY → COCO</td>
+<td>PC → TANDY → COCO</td>
 <td>XRoar</td>
 <td>Tandy Color Computer</td>
 </tr>
 <tr>
-<td>HOMECOMP → TI99</td>
+<td>PC → TI99</td>
 <td>js99er (vanilla JS build)</td>
 <td></td>
 </tr>
@@ -237,7 +237,7 @@
 └── &lt;key&gt;.exe             one per title, with link: → emulator URL
 </code></pre>
 <p>How a user gets from the prompt to a game (NES example):</p>
-<pre><code>1   → cd systems / menu        (EMULATOR LAUNCHER → CONSOLE / HOMECOMP)
+<pre><code>1   → cd systems / menu        (EMULATOR LAUNCHER → CONSOLE / PC)
 2   → cd console / menu          (CONSOLE SYSTEMS)
 2   → cd nes / menu              (NES GAMES — auto-cd into games)
 3   → contra                     (opens systems/jsnes/play.html?game=contra)

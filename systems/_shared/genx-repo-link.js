@@ -40,6 +40,13 @@
   // found their own work here wants to know where we stand as well as how to
   // ask; that page opens with the position and links the procedure.
   var LEGAL = ROOT + 'docs/wiki/Legal.html';
+  // Back to the prompt the game was launched from. The wordmark goes to the
+  // landing page, which is a different journey: one leaves the museum, the
+  // other returns to the menu you came in by.
+  var MENU = ROOT + 'prompt/';
+  // The prompt carries this pill too, where a link back to the prompt would
+  // be a link to itself. Drop it there rather than offer a no-op.
+  var ON_MENU = location.href.indexOf(MENU) === 0;
   var s = document.createElement('style');
   s.textContent =
     '.gx-repo-link{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);' +
@@ -56,7 +63,9 @@
   d.innerHTML =
     '<a href="' +
     ROOT +
-    '" class="gx-home-link">GenX-DOS</a> · <a href="' +
+    '" class="gx-home-link">GenX-DOS</a> · ' +
+    (ON_MENU ? '' : '<a href="' + MENU + '" class="gx-menu-link">menu</a> · ') +
+    '<a href="' +
     REPO +
     '" target="_blank" rel="noopener">source</a> · <a href="' +
     README +
@@ -69,18 +78,37 @@
   // emulator tab and the prompt sitting behind it. A direct visit has no
   // opener, so the click is left alone and the href navigates as normal, which
   // also keeps it working if the listener never runs.
-  d.querySelector('.gx-home-link').addEventListener('click', function (e) {
-    var opener = null;
+  function opener() {
     try {
-      opener = window.opener && !window.opener.closed ? window.opener : null;
-    } catch (x) {}
-    if (!opener) return;
+      return window.opener && !window.opener.closed ? window.opener : null;
+    } catch (x) {
+      return null;
+    }
+  }
+  d.querySelector('.gx-home-link').addEventListener('click', function (e) {
+    var w = opener();
+    if (!w) return;
     e.preventDefault();
     try {
-      opener.location.href = ROOT;
-      opener.focus();
+      w.location.href = ROOT;
+      w.focus();
     } catch (x) {}
     window.close();
   });
+  // The opener IS the prompt, so menu only has to hand the window back and
+  // get out of the way. Deliberately not setting its location: that would
+  // reload the prompt and throw away whichever directory the player had
+  // navigated to, which is the one thing someone pressing "menu" wants kept.
+  var menuLink = d.querySelector('.gx-menu-link');
+  if (menuLink)
+    menuLink.addEventListener('click', function (e) {
+      var w = opener();
+      if (!w) return;
+      e.preventDefault();
+      try {
+        w.focus();
+      } catch (x) {}
+      window.close();
+    });
   document.body.appendChild(d);
 })();

@@ -932,9 +932,9 @@ var fs = [
             ],
           },
 
-          // ── HOME COMPUTERS ───────────────────────────────────────────────────
+          // ── PERSONAL COMPUTERS ───────────────────────────────────────────────────
           {
-            name: 'HOMECOMP',
+            name: 'PC',
             directories: [
               // ACORN (BBC Micro 1981 + Electron 1983)
               {
@@ -2238,6 +2238,111 @@ var fs = [
                   {
                     name: '0.bat',
                     data: 'cd ..\nmenu\n',
+                  },
+                ],
+              },
+              {
+                name: 'IBM',
+                directories: [
+                  {
+                    name: 'GAMES',
+                    directories: [],
+                    files: [
+                      {
+                        name: 'menu.bat',
+                        data: '@echo off\ncls\necho                  ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                  º              IBM  PC  GAMES                 º\necho                  ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                  º                                             º\necho                  º   1.  Paratrooper                    (1982) º\necho                  º   2.  Digger                         (1983) º\necho                  º   3.  Beast                          (1984) º\necho                  º   4.  Alley Cat                      (1984) º\necho                  º   5.  Sopwith                        (1984) º\necho                  º   6.  Rogue                          (1986) º\necho                  º   7.  Round 42                       (1986) º\necho                  º   8.  Kingdom of Kroz                (1987) º\necho                  º   9.  Captain Comic                  (1988) º\necho                  º  10.  Commander Keen                 (1990) º\necho                  º                                             º\necho                  º   0.  Back                                  º\necho                  º                                             º\necho                  ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                  º        Type a number and press ENTER        º\necho                  ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                      },
+                      {
+                        name: '0.bat',
+                        data: '@echo off\\ncd ..\\ncd ..\\nmenu\\n',
+                      },
+                      {
+                        name: '1.bat',
+                        data: 'paratroo\\n',
+                      },
+                      {
+                        name: '2.bat',
+                        data: 'digger\\n',
+                      },
+                      {
+                        name: '3.bat',
+                        data: 'beast\\n',
+                      },
+                      {
+                        name: '4.bat',
+                        data: 'alleycat\\n',
+                      },
+                      {
+                        name: '5.bat',
+                        data: 'sopwith\\n',
+                      },
+                      {
+                        name: '6.bat',
+                        data: 'rogue\\n',
+                      },
+                      {
+                        name: '7.bat',
+                        data: 'round42\\n',
+                      },
+                      {
+                        name: '8.bat',
+                        data: 'kroz\\n',
+                      },
+                      {
+                        name: '9.bat',
+                        data: 'comic\\n',
+                      },
+                      {
+                        name: '10.bat',
+                        data: 'keen\\n',
+                      },
+                      {
+                        name: 'paratroo.exe',
+                        link: '../systems/dos/play.html?game=paratroop',
+                      },
+                      {
+                        name: 'digger.exe',
+                        link: '../systems/dos/play.html?game=digger',
+                      },
+                      {
+                        name: 'beast.exe',
+                        link: '../systems/dos/play.html?game=beast',
+                      },
+                      {
+                        name: 'alleycat.exe',
+                        link: '../systems/dos/play.html?game=alleycat',
+                      },
+                      {
+                        name: 'sopwith.exe',
+                        link: '../systems/dos/play.html?game=sopwith',
+                      },
+                      {
+                        name: 'rogue.exe',
+                        link: '../systems/dos/play.html?game=rogue',
+                      },
+                      {
+                        name: 'round42.exe',
+                        link: '../systems/dos/play.html?game=round42',
+                      },
+                      {
+                        name: 'kroz.exe',
+                        link: '../systems/dos/play.html?game=kroz',
+                      },
+                      {
+                        name: 'comic.exe',
+                        link: '../systems/dos/play.html?game=comic',
+                      },
+                      {
+                        name: 'keen.exe',
+                        link: '../systems/dos/play.html?game=keen1',
+                      },
+                    ],
+                  },
+                ],
+                files: [
+                  {
+                    name: 'menu.bat',
+                    data: '@echo off\\ncd games\\nmenu\\necho.\\n',
                   },
                 ],
               },
@@ -3654,7 +3759,7 @@ var fs = [
             files: [
               {
                 name: 'menu.bat',
-                data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º               HOME  COMPUTERS               º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Acorn                     (1981-1986) º\necho                 º   2.  Amstrad                        (1984) º\necho                 º   3.  Apple                     (1976-1977) º\necho                 º   4.  Atari                     (1979-1983) º\necho                 º   5.  Commodore                 (1977-1984) º\necho                 º   6.  MSX                       (1983-1986) º\necho                 º   7.  Sinclair                  (1981-1982) º\necho                 º   8.  Tandy                     (1980-1983) º\necho                 º   9.  Texas Instruments              (1979) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             PERSONAL  COMPUTERS             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Acorn                     (1981-1986) º\necho                 º   2.  Amstrad                        (1984) º\necho                 º   3.  Apple                     (1976-1977) º\necho                 º   4.  Atari                     (1979-1983) º\necho                 º   5.  Commodore                 (1977-1984) º\necho                 º   6.  IBM                            (1981) º\necho                 º   7.  MSX                       (1983-1986) º\necho                 º   8.  Sinclair                  (1981-1982) º\necho                 º   9.  Tandy                     (1980-1983) º\necho                 º  10.  Texas Instruments              (1979) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
               },
               {
                 name: '1.bat',
@@ -3678,18 +3783,22 @@ var fs = [
               },
               {
                 name: '6.bat',
-                data: 'cd msx\nmenu\n',
+                data: 'cd ibm\nmenu\n',
               },
               {
                 name: '7.bat',
-                data: 'cd sinclair\nmenu\n',
+                data: 'cd msx\nmenu\n',
               },
               {
                 name: '8.bat',
-                data: 'cd tandy\nmenu\n',
+                data: 'cd sinclair\nmenu\n',
               },
               {
                 name: '9.bat',
+                data: 'cd tandy\nmenu\n',
+              },
+              {
+                name: '10.bat',
                 data: 'cd ti99\ncd games\nmenu\n',
               },
               {
@@ -4653,11 +4762,11 @@ var fs = [
         files: [
           {
             name: 'menu.bat',
-            data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             EMULATOR  LAUNCHER              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Home Computers                        º\necho                 º                                             º\necho                 º   2.  Games Consoles                        º\necho                 º                                             º\necho                 º   3.  Handheld Consoles                     º\necho                 º                                             º\necho                 º   4.  Arcade Machines                       º\necho                 º                                             º\necho                 º                                             º\necho                 º   5.  GenX-DOS Wiki                         º\necho                 º                                             º\necho                 º   0.  Exit                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+            data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             EMULATOR  LAUNCHER              º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Personal Computers                    º\necho                 º                                             º\necho                 º   2.  Games Consoles                        º\necho                 º                                             º\necho                 º   3.  Handheld Consoles                     º\necho                 º                                             º\necho                 º   4.  Arcade Machines                       º\necho                 º                                             º\necho                 º                                             º\necho                 º   5.  GenX-DOS Wiki                         º\necho                 º                                             º\necho                 º   0.  Exit                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
           },
           {
             name: '1.bat',
-            data: 'cd homecomp\nmenu\n',
+            data: 'cd pc\nmenu\n',
           },
           {
             name: '2.bat',

@@ -121,6 +121,7 @@ fork rather than the bundle.
 | `systems/trs80/` | sdltrs (SDL2 TRS-80 emulator), built from source to WASM | Mark Grebe / Jens Guenther (gitlab.com/jengun/sdltrs) | BSD-2-Clause |
 | `systems/trs80/model3.rom` | TRS-80 Model III ROM (14 KB) | © Tandy / Microsoft | Bundled for emulator-only use; fetched by the page and written into the emulator's in-memory filesystem at boot |
 | `systems/js99er/` | Js99'er (vanilla-JS build) | Rasmus Moustgaard | GPL-2.0 |
+| `systems/dos/jsdos/` | js-dos 8.4.1 — the `emulators` layer only (`emulators.js`, `wdosbox.js`, `wdosbox.wasm`), wrapping DOSBox compiled to WASM. The js-dos player itself is not used. | Alexander Guryanov (caiiiycuk), on DOSBox by the DOSBox team | GPL-2.0 — declared in the package's own `package.json` and on npm; note the upstream `8.xx` branch ships no LICENSE file, while `7.xx` carries the full GPL-2 text |
 | `systems/js99er/carts/*.rpk` | TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983) | Texas Instruments / Imagic / Sega — original publishers | Distributed for retro-preservation; carts are 40+ years out of commerce. |
 | `systems/atari800/`, `systems/atari400/` | atari800 v5.2.0, built from source to WASM (same core shipped in two bundles — the 400 bundle boots OS-B, the 800XL bundle boots OS-XL) | atari800 project | GPL-2.0+ |
 | `systems/atari400/roms/atariosb.rom` | Atari OS-B (400/800) | Atari, Inc. | © 1980 Atari. The genuine ROM, assembled from its three chips. Replaced Avery Lee's AltirraOS on 02/09/2026 |
@@ -330,6 +331,27 @@ preservation / personal-use basis, and will be withdrawn the moment a rights
 holder asks — see **Removal upon request** at the top of this file.
 
 ---
+
+### IBM PC (`systems/dos/games/`)
+
+Ten DOS games, 1982–1990. Their standing differs game by game, and the differences matter more here than on most shelves:
+
+| Game | Year | Author / publisher | Standing |
+|---|---|---|---|
+| Paratrooper | 1982 | Greg Kuperberg / Orion Software | Commercial; long out of commerce |
+| Digger | 1983 | Windmill Software | Commercial; the original documentation grants no redistribution, and Windmill is long gone |
+| Beast | 1984 | Dan Baker, Alan Brown, Mark Hamilton, Derrick Shadel | **Free to copy and give away** — stated on the game's own title screen, with a $20 contribution requested |
+| Alley Cat | 1984 | Bill Williams / Synapse, published by IBM | Commercial; a port of the 1983 Atari 8-bit original |
+| Sopwith | 1984 | David L. Clark / BMB Compuscience | **GNU GPL** — the author released the source in 2000, latterly under the GPL |
+| Rogue | 1986 | Michael C. Toy, Kenneth C.R.C. Arnold; PC port by Jon Lane, design by Glenn Wichman | Binary identifies itself as the **public domain version**; the title screen still carries the 1983 A.I. Design copyright |
+| Round 42 | 1986 | Elven Software Company | **Shareware** — the program's own notice grants a limited licence to copy it on a non-commercial basis, provided no fee is charged and the notice is not removed |
+| Kingdom of Kroz | 1987 | Scott Miller / Apogee Software | **Freeware** since Apogee's release of March 2009; Apogee explicitly retained all rights |
+| The Adventures of Captain Comic | 1988 | Michael A. Denio | **Shareware**, complete |
+| Commander Keen: Marooned on Mars | 1990 | id Software / Apogee Software | **Shareware**, episode one — the freely distributable one |
+
+Where a game states its own terms on screen or in its own documentation, those terms are what is recorded above rather than a third party's summary of them.
+
+**None of these files are in this repository or in the release zip**, in keeping with the rule that the repo carries the emulators and not the games we added. `ROMS.txt` lists every filename and the folder it belongs in. Each game's `dosbox.conf` *is* here, because we wrote it.
 
 ## Research and reference sources
 

@@ -227,6 +227,12 @@ fork rather than the bundle.</p>
 <td>GPL-2.0</td>
 </tr>
 <tr>
+<td><code>systems/dos/jsdos/</code></td>
+<td>js-dos 8.4.1 — the <code>emulators</code> layer only (<code>emulators.js</code>, <code>wdosbox.js</code>, <code>wdosbox.wasm</code>), wrapping DOSBox compiled to WASM. The js-dos player itself is not used.</td>
+<td>Alexander Guryanov (caiiiycuk), on DOSBox by the DOSBox team</td>
+<td>GPL-2.0 — declared in the package's own <code>package.json</code> and on npm; note the upstream <code>8.xx</code> branch ships no LICENSE file, while <code>7.xx</code> carries the full GPL-2 text</td>
+</tr>
+<tr>
 <td><code>systems/js99er/carts/*.rpk</code></td>
 <td>TI-99/4A cartridge ROMs (10 commercial titles, 1980-1983)</td>
 <td>Texas Instruments / Imagic / Sega — original publishers</td>
@@ -618,6 +624,82 @@ software under permissive terms:</p>
 preservation / personal-use basis, and will be withdrawn the moment a rights
 holder asks — see <strong>Removal upon request</strong> at the top of this file.</p>
 <hr />
+<h3 id="ibm-pc-systemsdosgames">IBM PC (<code>systems/dos/games/</code>)</h3>
+<p>Ten DOS games, 1982–1990. Their standing differs game by game, and the differences matter more here than on most shelves:</p>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Year</th>
+<th>Author / publisher</th>
+<th>Standing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paratrooper</td>
+<td>1982</td>
+<td>Greg Kuperberg / Orion Software</td>
+<td>Commercial; long out of commerce</td>
+</tr>
+<tr>
+<td>Digger</td>
+<td>1983</td>
+<td>Windmill Software</td>
+<td>Commercial; the original documentation grants no redistribution, and Windmill is long gone</td>
+</tr>
+<tr>
+<td>Beast</td>
+<td>1984</td>
+<td>Dan Baker, Alan Brown, Mark Hamilton, Derrick Shadel</td>
+<td><strong>Free to copy and give away</strong> — stated on the game's own title screen, with a $20 contribution requested</td>
+</tr>
+<tr>
+<td>Alley Cat</td>
+<td>1984</td>
+<td>Bill Williams / Synapse, published by IBM</td>
+<td>Commercial; a port of the 1983 Atari 8-bit original</td>
+</tr>
+<tr>
+<td>Sopwith</td>
+<td>1984</td>
+<td>David L. Clark / BMB Compuscience</td>
+<td><strong>GNU GPL</strong> — the author released the source in 2000, latterly under the GPL</td>
+</tr>
+<tr>
+<td>Rogue</td>
+<td>1986</td>
+<td>Michael C. Toy, Kenneth C.R.C. Arnold; PC port by Jon Lane, design by Glenn Wichman</td>
+<td>Binary identifies itself as the <strong>public domain version</strong>; the title screen still carries the 1983 A.I. Design copyright</td>
+</tr>
+<tr>
+<td>Round 42</td>
+<td>1986</td>
+<td>Elven Software Company</td>
+<td><strong>Shareware</strong> — the program's own notice grants a limited licence to copy it on a non-commercial basis, provided no fee is charged and the notice is not removed</td>
+</tr>
+<tr>
+<td>Kingdom of Kroz</td>
+<td>1987</td>
+<td>Scott Miller / Apogee Software</td>
+<td><strong>Freeware</strong> since Apogee's release of March 2009; Apogee explicitly retained all rights</td>
+</tr>
+<tr>
+<td>The Adventures of Captain Comic</td>
+<td>1988</td>
+<td>Michael A. Denio</td>
+<td><strong>Shareware</strong>, complete</td>
+</tr>
+<tr>
+<td>Commander Keen: Marooned on Mars</td>
+<td>1990</td>
+<td>id Software / Apogee Software</td>
+<td><strong>Shareware</strong>, episode one — the freely distributable one</td>
+</tr>
+</tbody>
+</table>
+<p>Where a game states its own terms on screen or in its own documentation, those terms are what is recorded above rather than a third party's summary of them.</p>
+<p><strong>None of these files are in this repository or in the release zip</strong>, in keeping with the rule that the repo carries the emulators and not the games we added. <code>ROMS.txt</code> lists every filename and the folder it belongs in. Each game's <code>dosbox.conf</code> <em>is</em> here, because we wrote it.</p>
 <h2 id="research-and-reference-sources">Research and reference sources</h2>
 <p>Reference works — not bundled code — consulted to get the per-game gamedocs
 right (control schemes and in-game behaviour). The project leans on them and is

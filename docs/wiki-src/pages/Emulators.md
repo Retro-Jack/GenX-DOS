@@ -1,4 +1,4 @@
-19 emulator engines ship with GenX-DOS, driving 34 sub-systems between them. Some of the integrations were one-liners; others took a week of trial and failure. Every engine — plus each libretro core the shared EmulatorJS framework hosts — has its own integration story, so the index below runs to more rows than the engine count: one row per story page.
+20 emulator engines ship with GenX-DOS, driving 35 sub-systems between them. Some of the integrations were one-liners; others took a week of trial and failure. Every engine — plus each libretro core the shared EmulatorJS framework hosts — has its own integration story, so the index below runs to more rows than the engine count: one row per story page.
 
 ## The engines
 
@@ -135,9 +135,9 @@ Same recipe each time:
 
 ## Multi-model platforms
 
-Some platforms host multiple machines under the same vendor — ATARI has 2600 / 7800 as siblings under CONSOLE and 400 / 800XL as siblings under HOMECOMP; MSX has MSX1 and MSX2; SINCLAIR has SPECTRUM and ZX81. The hierarchical pattern: a parent menu with `1.<MODEL1>` / `2.<MODEL2>` rows, each pointing into its own GAMES dir. See `prompt/javascript/fs.js` for the exact tree.
+Some platforms host multiple machines under the same vendor — ATARI has 2600 / 7800 as siblings under CONSOLE and 400 / 800XL as siblings under PC; MSX has MSX1 and MSX2; SINCLAIR has SPECTRUM and ZX81. The hierarchical pattern: a parent menu with `1.<MODEL1>` / `2.<MODEL2>` rows, each pointing into its own GAMES dir. See `prompt/javascript/fs.js` for the exact tree.
 
-Single-platform manufacturers (NES, INTV, CVISION, ODYSSEY2, SMS, COCO) sit directly under their CONSOLE or HOMECOMP parent — no manufacturer middle level.
+Single-platform manufacturers (NES, INTV, CVISION, ODYSSEY2, SMS, COCO) sit directly under their CONSOLE or PC parent — no manufacturer middle level.
 
 Note: Atari 400 + 800XL run the **same atari800 engine** but ship as two self-contained bundles — `systems/atari400/` (boots OS-B) and `systems/atari800/` (boots OS-XL) — so each game's URL names the machine. MSX and BBC are split the same way: `msx1/`+`msx2/` and `bbcmicro/`+`bbcmaster/`.
 

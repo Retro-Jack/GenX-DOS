@@ -46,6 +46,11 @@ GenX-DOS-v*.zip
 /systems/apple2/json/disks/wolf.json
 /systems/apple2/woz/
 /systems/arcade/games/
+
+# IBM PC — the ten DOS games are ours to serve, not ours to redistribute.
+# See ROMS.txt. The per-game dosbox.conf is authored configuration and stays.
+/systems/dos/games/*/*
+!/systems/dos/games/*/dosbox.conf
 /systems/atari400/roms/
 /systems/atari800/roms/
 /systems/bbcmaster/dist/discs/4thDimension/Nevryon.ssd

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; connect-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../_shared/favicon.ico">
+  <title>IBM PC</title>
+  <link rel="stylesheet" href="../_shared/styles/genx-frame.css">
+  <link rel="stylesheet" href="../_shared/styles/genx-noscript.css">
+  <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css">
+  <style>
+    /* The bezel is the DOS prompt's, copied rather than re-derived: coming
+       here from the prompt must not move the monitor. The wrap expression and
+       the four hole numbers are the prompt's own — note 100vh, not
+       100dvh - 120px, because the prompt reserves no footer strip. */
+    html, body { background: #8c561c url('../_shared/textures/ibm-bg.jpg') repeat; background-size: 584px; }
+    .bezel-wrap {
+      position: relative;
+      width: min(100vw, calc(100vh * 1815 / 1300));
+      aspect-ratio: 1815 / 1300;
+    }
+    .screen-bg { position: absolute; inset: 5%; background: #000; z-index: 1; }
+    .screen {
+      position: absolute;
+      left: 15.1%; top: 17.3%; width: 60.1%; height: 61.3%;
+      background: #000; overflow: hidden; z-index: 2;
+    }
+    /* CGA's 320x200 is 1.6:1 inside a 1.369:1 aperture, so the picture is
+       stretched to fill in both axes — exactly what the prompt does to its
+       80x25 character grid, and what a 5153 did to the signal. Letterboxing
+       would leave the picture smaller than the text it replaced. */
+    #screen {
+      width: 100%; height: 100%; display: block;
+      image-rendering: pixelated;
+    }
+    .loading {
+      position: absolute; inset: 0; z-index: 4;
+      display: flex; align-items: center; justify-content: center;
+      color: #c0c0c0; font: 14px monospace; text-align: center; padding: 20px;
+      pointer-events: none;
+    }
+    body.running .loading { display: none; }
+    .bezel-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: contain; pointer-events: none; z-index: 3;
+    }
+  </style>
+</head>
+<body>
+  <div class="bezel-wrap">
+    <div class="screen-bg"></div>
+    <div class="screen"><canvas id="screen" width="320" height="200"></canvas></div>
+    <img class="bezel-img" src="../_shared/bezels/IBM-5153.png" alt="">
+    <!-- Empty on purpose: a real PC shows a dark screen until it has something
+         to draw, and so does this one. The element is here for the failure
+         message, which is the only thing that ever fills it. -->
+    <p class="loading"></p>
+  </div>
+  <noscript><div class="genx-noscript">This page needs JavaScript to run the emulator.</div></noscript>
+  <script src="jsdos/emulators/emulators.js"></script>
+  <script src="genx-dos-player.js"></script>
+  <script defer src="../_shared/genx-controls-link.js"></script>
+  <script defer src="../_shared/genx-repo-link.js"></script>
+</body>
+</html>

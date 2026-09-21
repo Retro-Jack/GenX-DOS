@@ -80,7 +80,7 @@ genx-dos/
 │       └── ami-logo.png      AMIBIOS POST logo   (f12.* sheets now live in systems/_shared/styles/VGA_font/)
 │
 └── systems/
-    ├── _shared/             shared JS + CSS + assets for every gamedoc + controls.html (462 pages) + play.html
+    ├── _shared/             shared JS + CSS + assets for every gamedoc + controls.html (473 pages) + play.html
     │   ├── genx-*.js        controls-link, game-loader, numlock-warn, vice-softkeys,
     │   │                    apple2-flipdisk (two-sided disks),
     │   │                    atari-console (OPTION/SELECT/START buttons),

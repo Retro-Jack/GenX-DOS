@@ -8,11 +8,11 @@ C:\
 ├── COMMAND.COM           the interpreter: prints its banner; on the PATH
 ├── VER.COM               prints the version line; on the PATH
 ├── menu.bat              `cd systems\nmenu` (drops straight into the EMULATOR LAUNCHER)
-└── SYSTEMS\              EMULATOR LAUNCHER: 1 HOMECOMP / 2 CONSOLE / 3 HANDHELD /
+└── SYSTEMS\              EMULATOR LAUNCHER: 1 PC / 2 CONSOLE / 3 HANDHELD /
     │                     4 ARCADE / 5 WIKI / 0 Exit
-    ├── HOMECOMP\         ACORN (BBC / ELECTRON / MASTER) / AMSTRAD (CPC) /
+    ├── PC\               ACORN (BBC / ELECTRON / MASTER) / AMSTRAD (CPC) /
     │                     APPLE (APPLE1 / APPLEII) / ATARI (400 / 800XL) /
-    │                     COMMODRE (PET / VIC20 / MAX / C64 / C16 / PLUS4) /
+    │                     COMMODRE (PET / VIC20 / MAX / C64 / C16 / PLUS4) / IBM /
     │                     MSX (MSX1 / MSX2) / SINCLAIR (SPECTRUM / ZX81) /
     │                     TANDY (COCO / TRS80 / M100) / TI99
     ├── CONSOLE\          ATARI (2600 / 7800) / CVISION / INTV / NES /
@@ -25,7 +25,7 @@ C:\
 
 ## Which menus map to which emulators
 
-All 34 bundled sub-systems run their games locally — every byte of game data is on the same origin.
+All 35 bundled sub-systems run their games locally — every byte of game data is on the same origin.
 
 | Menu path | Backing emulator | Notes |
 |---|---|---|
@@ -41,27 +41,27 @@ All 34 bundled sub-systems run their games locally — every byte of game data i
 | HANDHELD → LYNX | EmulatorJS + handy | lynxboot.img bundled |
 | HANDHELD → GAMEGEAR | EmulatorJS + genesis_plus_gx | |
 | ARCADE → <MAKER> | EmulatorJS + MAME 2003-Plus | ten makers, ten cabinets each; launchers are named after their romsets |
-| HOMECOMP → ACORN → BBC | jsbeeb | |
-| HOMECOMP → ACORN → ELECTRON | ElkJS | UEF snapshots |
-| HOMECOMP → ACORN → MASTER | jsbeeb (`?model=Master`) | Elite uses DSD for drive 2 |
-| HOMECOMP → AMSTRAD → CPC | floooh tiny8bit CPC WASM | sokol_args URL params |
-| HOMECOMP → APPLE → APPLE1 | apple1js, our fork | tapes + Woz Monitor |
-| HOMECOMP → APPLE → APPLEII | apple2js | `.dsk` images converted to JSON |
-| HOMECOMP → ATARI → 400 | `atari400/` bundle — atari800 WASM (genuine Atari OS-B) | |
-| HOMECOMP → ATARI → 800XL | `atari800/` bundle — atari800 WASM (genuine Atari XL/XE OS Rev 2) | full copy of the same build |
-| HOMECOMP → COMMODRE → PET | Thomas Skibo's pet2001 (vanilla JS), our fork | PET 2001 / BASIC 2 / 32 K |
-| HOMECOMP → COMMODRE → VIC20 | EmulatorJS + VICE xvic | `memory_expansions='all'` |
-| HOMECOMP → COMMODRE → MAX | EmulatorJS + VICE x64 (Ultimax mode) | Japan-only 1982 console |
-| HOMECOMP → COMMODRE → C64 | EmulatorJS + VICE x64 | real-time IEC loading |
-| HOMECOMP → COMMODRE → C16 | EmulatorJS + VICE xplus4 (C16 mode) | |
-| HOMECOMP → COMMODRE → PLUS4 | EmulatorJS + VICE xplus4 | |
-| HOMECOMP → MSX → MSX1 / MSX2 | WebMSX — `msx1/` (`?M=MSX1`) + `msx2/` (`?M=MSX2`) bundles | full copy of the engine in each |
-| HOMECOMP → SINCLAIR → SPECTRUM | JSSpeccy 3 | |
-| HOMECOMP → SINCLAIR → ZX81 | JtyOne | |
-| HOMECOMP → TANDY → TRS80 | sdltrs (our own WASM build) | Model III; ROM fetched into MEMFS at boot |
-| HOMECOMP → TANDY → M100 | VirtualT (our core-only WASM build) | Model 100; live clock + battery-backed RAM |
-| HOMECOMP → TANDY → COCO | XRoar | Tandy Color Computer |
-| HOMECOMP → TI99 | js99er (vanilla JS build) | |
+| PC → ACORN → BBC | jsbeeb | |
+| PC → ACORN → ELECTRON | ElkJS | UEF snapshots |
+| PC → ACORN → MASTER | jsbeeb (`?model=Master`) | Elite uses DSD for drive 2 |
+| PC → AMSTRAD → CPC | floooh tiny8bit CPC WASM | sokol_args URL params |
+| PC → APPLE → APPLE1 | apple1js, our fork | tapes + Woz Monitor |
+| PC → APPLE → APPLEII | apple2js | `.dsk` images converted to JSON |
+| PC → ATARI → 400 | `atari400/` bundle — atari800 WASM (genuine Atari OS-B) | |
+| PC → ATARI → 800XL | `atari800/` bundle — atari800 WASM (genuine Atari XL/XE OS Rev 2) | full copy of the same build |
+| PC → COMMODRE → PET | Thomas Skibo's pet2001 (vanilla JS), our fork | PET 2001 / BASIC 2 / 32 K |
+| PC → COMMODRE → VIC20 | EmulatorJS + VICE xvic | `memory_expansions='all'` |
+| PC → COMMODRE → MAX | EmulatorJS + VICE x64 (Ultimax mode) | Japan-only 1982 console |
+| PC → COMMODRE → C64 | EmulatorJS + VICE x64 | real-time IEC loading |
+| PC → COMMODRE → C16 | EmulatorJS + VICE xplus4 (C16 mode) | |
+| PC → COMMODRE → PLUS4 | EmulatorJS + VICE xplus4 | |
+| PC → MSX → MSX1 / MSX2 | WebMSX — `msx1/` (`?M=MSX1`) + `msx2/` (`?M=MSX2`) bundles | full copy of the engine in each |
+| PC → SINCLAIR → SPECTRUM | JSSpeccy 3 | |
+| PC → SINCLAIR → ZX81 | JtyOne | |
+| PC → TANDY → TRS80 | sdltrs (our own WASM build) | Model III; ROM fetched into MEMFS at boot |
+| PC → TANDY → M100 | VirtualT (our core-only WASM build) | Model 100; live clock + battery-backed RAM |
+| PC → TANDY → COCO | XRoar | Tandy Color Computer |
+| PC → TI99 | js99er (vanilla JS build) | |
 
 Each system menu lists 10 games (the Acorn Electron is the exception, with 6 — from the set ElkJS ships). Command-line machines add an 11th entry that boots a clean `PROMPT` / `BASIC`. MSX has 10 + 10 (MSX1 + MSX2 sub-menus). On the ZX81, the **1K Chess** slot opens a small sub-menu to pick the computer's opening — king's pawn or queen's pawn — the first per-game sub-menu in the tree.
 
@@ -82,7 +82,7 @@ GAMES\
 How a user gets from the prompt to a game (NES example):
 
 ```
-1   → cd systems / menu        (EMULATOR LAUNCHER → CONSOLE / HOMECOMP)
+1   → cd systems / menu        (EMULATOR LAUNCHER → CONSOLE / PC)
 2   → cd console / menu          (CONSOLE SYSTEMS)
 2   → cd nes / menu              (NES GAMES — auto-cd into games)
 3   → contra                     (opens systems/jsnes/play.html?game=contra)

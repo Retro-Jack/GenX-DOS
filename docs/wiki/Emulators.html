@@ -27,7 +27,7 @@
 <ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
   </nav>
   <main class="content">
-<p>19 emulator engines ship with GenX-DOS, driving 34 sub-systems between them. Some of the integrations were one-liners; others took a week of trial and failure. Every engine — plus each libretro core the shared EmulatorJS framework hosts — has its own integration story, so the index below runs to more rows than the engine count: one row per story page.</p>
+<p>20 emulator engines ship with GenX-DOS, driving 35 sub-systems between them. Some of the integrations were one-liners; others took a week of trial and failure. Every engine — plus each libretro core the shared EmulatorJS framework hosts — has its own integration story, so the index below runs to more rows than the engine count: one row per story page.</p>
 <h2 id="the-engines">The engines</h2>
 <table>
 <thead>
@@ -266,8 +266,8 @@ cannot support: test with a real pad before adding one.</p>
 <li><strong>Wire <code>fs.js</code></strong>: each game's <code>.exe</code> gets a <code>link:</code> field pointing at the URL pattern above. Per-system <code>GAMES</code> menu follows the 45-char box format (see <a href="Customising-the-Filesystem.html">Customising the Filesystem</a>) with 10 titles + a PROMPT or BASIC entry.</li>
 </ol>
 <h2 id="multi-model-platforms">Multi-model platforms</h2>
-<p>Some platforms host multiple machines under the same vendor — ATARI has 2600 / 7800 as siblings under CONSOLE and 400 / 800XL as siblings under HOMECOMP; MSX has MSX1 and MSX2; SINCLAIR has SPECTRUM and ZX81. The hierarchical pattern: a parent menu with <code>1.&lt;MODEL1&gt;</code> / <code>2.&lt;MODEL2&gt;</code> rows, each pointing into its own GAMES dir. See <code>prompt/javascript/fs.js</code> for the exact tree.</p>
-<p>Single-platform manufacturers (NES, INTV, CVISION, ODYSSEY2, SMS, COCO) sit directly under their CONSOLE or HOMECOMP parent — no manufacturer middle level.</p>
+<p>Some platforms host multiple machines under the same vendor — ATARI has 2600 / 7800 as siblings under CONSOLE and 400 / 800XL as siblings under PC; MSX has MSX1 and MSX2; SINCLAIR has SPECTRUM and ZX81. The hierarchical pattern: a parent menu with <code>1.&lt;MODEL1&gt;</code> / <code>2.&lt;MODEL2&gt;</code> rows, each pointing into its own GAMES dir. See <code>prompt/javascript/fs.js</code> for the exact tree.</p>
+<p>Single-platform manufacturers (NES, INTV, CVISION, ODYSSEY2, SMS, COCO) sit directly under their CONSOLE or PC parent — no manufacturer middle level.</p>
 <p>Note: Atari 400 + 800XL run the <strong>same atari800 engine</strong> but ship as two self-contained bundles — <code>systems/atari400/</code> (boots OS-B) and <code>systems/atari800/</code> (boots OS-XL) — so each game's URL names the machine. MSX and BBC are split the same way: <code>msx1/</code>+<code>msx2/</code> and <code>bbcmicro/</code>+<code>bbcmaster/</code>.</p>
 <h2 id="testing-changes">Testing changes</h2>
 <pre><code class="language-sh">./GenX-DOS.sh        # or: python3 -m http.server 8765

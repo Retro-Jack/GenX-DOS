@@ -1,0 +1,159 @@
+{
+  "paratroop": {
+    "title": "Paratrooper (1982)",
+    "files": [
+      "TROOPER.COM"
+    ]
+  },
+  "digger": {
+    "title": "Digger (1983)",
+    "files": [
+      "DIGGER.COM"
+    ]
+  },
+  "beast": {
+    "title": "Beast (1984)",
+    "files": [
+      "BEAST.COM"
+    ]
+  },
+  "alleycat": {
+    "title": "Alley Cat (1984)",
+    "files": [
+      "CAT.EXE"
+    ]
+  },
+  "sopwith": {
+    "title": "Sopwith (1984)",
+    "files": [
+      "SOPWITH.EXE",
+      "SOPWITH0.DTA"
+    ]
+  },
+  "rogue": {
+    "title": "Rogue (1986)",
+    "files": [
+      "ROGUE.EXE",
+      "ROGUE.OPT"
+    ]
+  },
+  "round42": {
+    "title": "Round 42 (1986)",
+    "files": [
+      "ROUND42.COM"
+    ]
+  },
+  "kroz": {
+    "title": "Kingdom of Kroz (1987)",
+    "files": [
+      "KINGDOM.COM",
+      "KINGDOM.000"
+    ]
+  },
+  "comic": {
+    "title": "The Adventures of Captain Comic (1988)",
+    "files": [
+      "BALL.SHP",
+      "BASE.TT2",
+      "BASE0.PT",
+      "BASE1.PT",
+      "BASE2.PT",
+      "BEE.SHP",
+      "BIRD.SHP",
+      "BIRD2.SHP",
+      "BUG.SHP",
+      "CASTLE.TT2",
+      "CASTLE0.PT",
+      "CASTLE1.PT",
+      "CASTLE2.PT",
+      "CAVE.TT2",
+      "CAVE0.PT",
+      "CAVE1.PT",
+      "CAVE2.PT",
+      "COMIC.EXE",
+      "COMP.TT2",
+      "COMP0.PT",
+      "COMP1.PT",
+      "COMP2.PT",
+      "CUBE.SHP",
+      "FB.SHP",
+      "FOREST.TT2",
+      "FOREST0.PT",
+      "FOREST1.PT",
+      "FOREST2.PT",
+      "FROG.SHP",
+      "GLOBE.SHP",
+      "LAKE.TT2",
+      "LAKE0.PT",
+      "LAKE1.PT",
+      "LAKE2.PT",
+      "ROCK.SHP",
+      "SAUCER.SHP",
+      "SHED.TT2",
+      "SHED0.PT",
+      "SHED1.PT",
+      "SHED2.PT",
+      "SPACE.TT2",
+      "SPACE0.PT",
+      "SPACE1.PT",
+      "SPACE2.PT",
+      "STAR1.SHP",
+      "STAR2.SHP",
+      "STAR3.SHP",
+      "SYS000.EGA",
+      "SYS001.EGA",
+      "SYS002.EGA",
+      "SYS003.EGA",
+      "SYS004.EGA",
+      "SYS005.EGA",
+      "FILE_ID.DIZ"
+    ]
+  },
+  "keen1": {
+    "title": "Commander Keen: Marooned on Mars (1990)",
+    "files": [
+      "CTLPANEL.CK1",
+      "EGAHEAD.CK1",
+      "EGALATCH.CK1",
+      "EGASPRIT.CK1",
+      "ENDTEXT.CK1",
+      "FINALE.CK1",
+      "HELPTEXT.CK1",
+      "KEEN1.EXE",
+      "LEVEL01.CK1",
+      "LEVEL02.CK1",
+      "LEVEL03.CK1",
+      "LEVEL04.CK1",
+      "LEVEL05.CK1",
+      "LEVEL06.CK1",
+      "LEVEL07.CK1",
+      "LEVEL08.CK1",
+      "LEVEL09.CK1",
+      "LEVEL10.CK1",
+      "LEVEL11.CK1",
+      "LEVEL12.CK1",
+      "LEVEL13.CK1",
+      "LEVEL14.CK1",
+      "LEVEL15.CK1",
+      "LEVEL16.CK1",
+      "LEVEL80.CK1",
+      "LEVEL81.CK1",
+      "LEVEL90.CK1",
+      "PREVIEW2.CK1",
+      "PREVIEW3.CK1",
+      "PREVIEWS.CK1",
+      "SAVED1.CK1",
+      "SAVED2.CK1",
+      "SAVED3.CK1",
+      "SAVED4.CK1",
+      "SAVED5.CK1",
+      "SAVED6.CK1",
+      "SAVED7.CK1",
+      "SAVED8.CK1",
+      "SAVED9.CK1",
+      "SCORES.CK1",
+      "SOUNDS.CK1",
+      "STORYTXT.CK1"
+    ]
+  }
+}
