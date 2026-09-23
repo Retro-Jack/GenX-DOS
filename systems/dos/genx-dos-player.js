@@ -75,36 +75,29 @@
     let image = null;
 
     // DOSBox greets you with its own banner, and this build has no setting to
-    // turn it off, so nothing is drawn until DOS has wiped it away. Two things
-    // matter here, and Sopwith taught us the second one.
+    // turn it off, so it has to be kept off the glass. The picture is always
+    // painted; what changes is whether the canvas is visible.
     //
-    // First, what to wait for. Every game's autoexec ends its preamble with
-    // cls, so a frame that is entirely black is the signal. Waiting on a
-    // video-mode change instead looked right until a text-mode game came along
-    // and never changed mode at all.
-    //
-    // Second, and the part that was wrong: the frames may simply stop. DOSBox
-    // sends a frame when the picture changes, so a game that draws a menu and
-    // waits for a key sends two frames and then nothing. Sopwith does exactly
-    // that, and neither of its two frames is black — the banner, the clear and
-    // the menu all land inside them — so the screen stayed dark for ever while
-    // the game sat there waiting. The last frame is therefore kept, and drawn
-    // the moment we decide to show it, rather than waiting for a next one that
-    // may never come. Once the picture has been still for a moment, there is
-    // nothing left to hide.
+    // Painting always is the important part. An earlier version held the
+    // frames back and drew the last one at the moment of reveal, which sounds
+    // equivalent and is not: the emulator sends a frame only when the picture
+    // changes, so a game that draws a menu and waits for a key sends two
+    // frames and then nothing, and the reveal is left holding a copy it must
+    // remember to use. Worse, the decision to reveal rests on a timer, and a
+    // browser throttles timers hard in a background tab — so the picture
+    // arrived, the timer did not, and the screen stayed black. Now a late
+    // timer costs nothing: the canvas already has the right picture on it and
+    // only needs uncovering.
     let show = false;
-    let pending = null;
-    let settle = null;
-
     function reveal() {
+      if (show) return;
       show = true;
       clearTimeout(settle);
       clearTimeout(fallback);
-      if (pending) {
-        draw(pending);
-        pending = null;
-      }
+      canvas.style.visibility = "visible";
     }
+    canvas.style.visibility = "hidden";
+    let settle = null;
     const fallback = setTimeout(reveal, 4000);
 
     // Cheap enough to run on every frame until it fires: it samples rather
@@ -138,17 +131,15 @@
 
     ci.events().onFrame((rgb) => {
       if (!rgb || !image) return;
-      if (show) {
-        draw(rgb);
-        return;
-      }
+      draw(rgb);
+      if (show) return;
+      // The blank screen the autoexec's cls leaves is the clearest signal
+      // that DOS has finished talking. Where a game gives us no blank frame,
+      // a picture that has stopped changing does just as well.
       if (cleared(rgb)) {
         reveal();
         return;
       }
-      // Hold this one back, but keep it: if the picture then stops changing,
-      // this is the picture, and it is what gets drawn.
-      pending = rgb.slice();
       clearTimeout(settle);
       settle = setTimeout(reveal, 700);
     });
