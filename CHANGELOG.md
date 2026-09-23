@@ -1,9 +1,8 @@
 ## [Unreleased]
 
 ### Changed
-- **Sopwith's page says the sound starts off.** It does, and the key that turns it on is <kbd>S</kbd> — the same key that picks a one-player game on the opening screen, which is exactly why it catches people out. The page now says so where you would look for it, and names the opening screen's three choices. Nothing about the game is altered: it is 1984's behaviour and it stays.
-
-### Changed
+- **Sopwith's sound is on from the start, because we now ship the build where its author fixed that.** The 1984 release begins silent and wants <kbd>S</kbd> pressed in flight — the same key that picks a one-player game on the opening screen, which is why it caught people out. David Clark fixed it himself: his own *Author's Edition* of 2000 starts with the sound on and takes `-q` to turn it off, and his GPL source shows the same default. That is the build on the shelf now (`SW.EXE`), credited as the Author's Edition in ATTRIBUTION and ROMS.txt. Nothing is patched by us; the game is as its author last left it.
+- **Sopwith's page names the opening screen's three choices.** <kbd>S</kbd> for one player, <kbd>C</kbd> against the computer, <kbd>M</kbd> for a network game that has nothing to answer here.
 - **`.htaccess` says what the host actually does about compression.** The block naming the types to compress is not what compresses them here: this host runs LiteSpeed, which uses its own server-wide list — hence CSS and JS arriving as brotli rather than deflate, and `application/wasm` not being compressed at all despite being named. The directives stay — the release zip is meant to be served by whatever the person downloading it has, Apache included, where they do work — with a note so the next reader doesn't take them at face value here.
 
 ### Fixed

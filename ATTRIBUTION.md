@@ -342,7 +342,7 @@ Ten DOS games, 1982–1990. Their standing differs game by game, and the differe
 | Digger | 1983 | Windmill Software | Commercial; the original documentation grants no redistribution, and Windmill is long gone |
 | Beast | 1984 | Dan Baker, Alan Brown, Mark Hamilton, Derrick Shadel | **Free to copy and give away** — stated on the game's own title screen, with a $20 contribution requested |
 | Alley Cat | 1984 | Bill Williams / Synapse, published by IBM | Commercial; a port of the 1983 Atari 8-bit original |
-| Sopwith | 1984 | David L. Clark / BMB Compuscience | **GNU GPL** — the author released the source in 2000, latterly under the GPL |
+| Sopwith, The Author's Edition | 1984&ndash;2000 | David L. Clark / BMB Compuscience | **GNU GPL** — the author released the source in 2000, latterly under the GPL. We ship his own 2000 DOS build (`SW.EXE`) rather than the 1984 one, because he fixed the sound default in it |
 | Rogue | 1986 | Michael C. Toy, Kenneth C.R.C. Arnold; PC port by Jon Lane, design by Glenn Wichman | Binary identifies itself as the **public domain version**; the title screen still carries the 1983 A.I. Design copyright |
 | Round 42 | 1986 | Elven Software Company | **Shareware** — the program's own notice grants a limited licence to copy it on a non-commercial basis, provided no fee is charged and the notice is not removed |
 | Kingdom of Kroz | 1987 | Scott Miller / Apogee Software | **Freeware** since Apogee's release of March 2009; Apogee explicitly retained all rights |
