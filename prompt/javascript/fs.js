@@ -3783,7 +3783,7 @@ var fs = [
               },
               {
                 name: '6.bat',
-                data: 'cd ibm\nmenu\n',
+                data: 'cd ibm\ncd games\nmenu\n',
               },
               {
                 name: '7.bat',
