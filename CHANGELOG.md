@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+### Fixed
+- **The IBM menu's batch files ran as one line.** Every `.bat` in the IBM directory had its newlines written as the two characters `\` and `n` rather than as line breaks, so the DOS prompt read each file as a single command and echoed the rest back: `off\ncd games\nmenu\necho.\n`. Picking IBM from the Personal Computers menu printed that instead of opening the games list. Twelve files, all of them in the IBM directory added with the DOS games; the site's other 662 batch files were written correctly and are untouched.
+
 ## [1.10.0] - 2026-09-22
 
 ### Added

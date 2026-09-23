@@ -28,6 +28,10 @@
   </nav>
   <main class="content">
 <h2 id="unreleased">[Unreleased]</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li><strong>The IBM menu's batch files ran as one line.</strong> Every <code>.bat</code> in the IBM directory had its newlines written as the two characters <code>\</code> and <code>n</code> rather than as line breaks, so the DOS prompt read each file as a single command and echoed the rest back: <code>off\ncd games\nmenu\necho.\n</code>. Picking IBM from the Personal Computers menu printed that instead of opening the games list. Twelve files, all of them in the IBM directory added with the DOS games; the site's other 662 batch files were written correctly and are untouched.</li>
+</ul>
 <h2 id="1100---2026-09-22">[1.10.0] - 2026-09-22</h2>
 <h3 id="added">Added</h3>
 <ul>
@@ -190,7 +194,7 @@
   Nothing from a cheats, codes or secrets section was used: Space Invaders' saucer trick and Ghosts'n Goblins' tombstone exploit were both found and both left out, and the extractor skips those sections outright.</p>
 </li>
 </ul>
-<h3 id="fixed">Fixed</h3>
+<h3 id="fixed_1">Fixed</h3>
 <ul>
 <li><strong>Every arcade cabinet had MAME's buttons 2 and 3 the wrong way round.</strong> The core binds MAME buttons 1-6 to retropad <strong>B, A, Y, X, L, R</strong> — not in pad-button order, which is the trap: retropad index 1 is Y, and Y carries button <strong>3</strong>. The page bound MAME 2 as though it arrived on index 1, so for a week the button all 44 affected pages called RB was really MAME 3, and MAME 2 answered on X. Found when Sinistar's Sinibomb would not fire on the RB its page named.
   The <strong>binding</strong> moved rather than the pages, because the pages were right about the intent: the arcade help page has always said button 2 sits under the index finger on RB, since the cabinets that use it tend to hold it down. One line in <code>systems/arcade/play.html</code> fixes all hundred cabinets, and every gamedoc goes back to saying what it said.
@@ -259,7 +263,7 @@
   Deliberately absent: <em>This program cannot be run in DOS mode.</em> That string belongs to the Windows PE stub, and a machine pretending to be a DOS box has no business printing it.</p>
 </li>
 </ul>
-<h3 id="fixed_1">Fixed</h3>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li>
 <p><strong>Twelve vendored images that nothing used were shipping to every BBC visitor.</strong> jsbeeb's own web UI has an example screenshot, a sidebar, a bottom bar, two disc-drive icons and an app icon; our embedded build uses none of them &mdash; its page asks only for the cub monitor and a placeholder &mdash; but all six were in the tree twice, once per BBC machine, and all twelve reached the web host. Removed. They will come back if the fork is ever re-vendored, so the re-vendor recipe should strip them.</p>

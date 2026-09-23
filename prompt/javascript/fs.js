@@ -2254,47 +2254,47 @@ var fs = [
                       },
                       {
                         name: '0.bat',
-                        data: '@echo off\\ncd ..\\ncd ..\\nmenu\\n',
+                        data: '@echo off\ncd ..\ncd ..\nmenu\n',
                       },
                       {
                         name: '1.bat',
-                        data: 'paratroo\\n',
+                        data: 'paratroo\n',
                       },
                       {
                         name: '2.bat',
-                        data: 'digger\\n',
+                        data: 'digger\n',
                       },
                       {
                         name: '3.bat',
-                        data: 'beast\\n',
+                        data: 'beast\n',
                       },
                       {
                         name: '4.bat',
-                        data: 'alleycat\\n',
+                        data: 'alleycat\n',
                       },
                       {
                         name: '5.bat',
-                        data: 'sopwith\\n',
+                        data: 'sopwith\n',
                       },
                       {
                         name: '6.bat',
-                        data: 'rogue\\n',
+                        data: 'rogue\n',
                       },
                       {
                         name: '7.bat',
-                        data: 'round42\\n',
+                        data: 'round42\n',
                       },
                       {
                         name: '8.bat',
-                        data: 'kroz\\n',
+                        data: 'kroz\n',
                       },
                       {
                         name: '9.bat',
-                        data: 'comic\\n',
+                        data: 'comic\n',
                       },
                       {
                         name: '10.bat',
-                        data: 'keen\\n',
+                        data: 'keen\n',
                       },
                       {
                         name: 'paratroo.exe',
@@ -2342,7 +2342,7 @@ var fs = [
                 files: [
                   {
                     name: 'menu.bat',
-                    data: '@echo off\\ncd games\\nmenu\\necho.\\n',
+                    data: '@echo off\ncd games\nmenu\necho.\n',
                   },
                 ],
               },
