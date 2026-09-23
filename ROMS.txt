@@ -338,7 +338,7 @@ IBM PC
   systems/dos/games/digger/DIGGER.COM                      Digger (1983)
   systems/dos/games/beast/BEAST.COM                        Beast (1984)
   systems/dos/games/alleycat/CAT.EXE                       Alley Cat (1984)
-  systems/dos/games/sopwith/SW.EXE                         Sopwith, The Author's Edition (2000)
+  systems/dos/games/sopwith/SOPWITH2.EXE                   Sopwith (1984) — our build, see ATTRIBUTION
   systems/dos/games/sopwith/SOPWITH0.DTA                   Sopwith (1984)
   systems/dos/games/rogue/ROGUE.EXE                        Rogue (1986)
   systems/dos/games/rogue/ROGUE.OPT                        Rogue (1986)
