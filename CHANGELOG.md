@@ -1,6 +1,9 @@
 ## [Unreleased]
 
 ### Changed
+- **Sopwith's page says the sound starts off.** It does, and the key that turns it on is <kbd>S</kbd> — the same key that picks a one-player game on the opening screen, which is exactly why it catches people out. The page now says so where you would look for it, and names the opening screen's three choices. Nothing about the game is altered: it is 1984's behaviour and it stays.
+
+### Changed
 - **`.htaccess` says what the host actually does about compression.** The block naming the types to compress is not what compresses them here: this host runs LiteSpeed, which uses its own server-wide list — hence CSS and JS arriving as brotli rather than deflate, and `application/wasm` not being compressed at all despite being named. The directives stay — the release zip is meant to be served by whatever the person downloading it has, Apache included, where they do work — with a note so the next reader doesn't take them at face value here.
 
 ### Fixed
