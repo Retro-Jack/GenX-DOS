@@ -117,8 +117,9 @@ Options -Indexes
 # the DOS games' binaries. A <FilesMatch> + SetOutputFilter was tried and is
 # ignored too. Compressing those would mean shipping pre-compressed copies and
 # serving them by rewrite; worth it only if the bytes ever start to matter,
-# which after the parallel-fetch fix they do not. The block stays for a move to
-# a host that honours it.
+# which after the parallel-fetch fix they do not. The block stays because the
+# release zip is meant to be served by whatever the person downloading it has
+# — Apache included, where these directives do work.
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
     AddOutputFilterByType DEFLATE application/javascript application/json

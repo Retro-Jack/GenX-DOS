@@ -1,7 +1,7 @@
 ## [Unreleased]
 
 ### Changed
-- **`.htaccess` says what the host actually does about compression.** The block naming the types to compress is not what compresses them here: this host runs LiteSpeed, which uses its own server-wide list — hence CSS and JS arriving as brotli rather than deflate, and `application/wasm` not being compressed at all despite being named. The directives stay for a move to a host that honours them, with a note so the next reader doesn't take them at face value.
+- **`.htaccess` says what the host actually does about compression.** The block naming the types to compress is not what compresses them here: this host runs LiteSpeed, which uses its own server-wide list — hence CSS and JS arriving as brotli rather than deflate, and `application/wasm` not being compressed at all despite being named. The directives stay — the release zip is meant to be served by whatever the person downloading it has, Apache included, where they do work — with a note so the next reader doesn't take them at face value here.
 
 ### Fixed
 - **The bigger DOS games took half a minute to start.** Each game's files were fetched one after another, and while the games are small — a quarter of a megabyte at worst — *Captain Comic* is 54 separate files and *Commander Keen* 42. A round trip to the host costs far more than the bytes do, so the wait was almost entirely spent asking. They are now all requested together and arrive down one multiplexed connection: Captain Comic's 54 files took **29 seconds** in turn and now take **under half a second**.

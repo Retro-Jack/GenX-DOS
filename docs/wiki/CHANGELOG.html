@@ -30,7 +30,7 @@
 <h2 id="unreleased">[Unreleased]</h2>
 <h3 id="changed">Changed</h3>
 <ul>
-<li><strong><code>.htaccess</code> says what the host actually does about compression.</strong> The block naming the types to compress is not what compresses them here: this host runs LiteSpeed, which uses its own server-wide list — hence CSS and JS arriving as brotli rather than deflate, and <code>application/wasm</code> not being compressed at all despite being named. The directives stay for a move to a host that honours them, with a note so the next reader doesn't take them at face value.</li>
+<li><strong><code>.htaccess</code> says what the host actually does about compression.</strong> The block naming the types to compress is not what compresses them here: this host runs LiteSpeed, which uses its own server-wide list — hence CSS and JS arriving as brotli rather than deflate, and <code>application/wasm</code> not being compressed at all despite being named. The directives stay — the release zip is meant to be served by whatever the person downloading it has, Apache included, where they do work — with a note so the next reader doesn't take them at face value here.</li>
 </ul>
 <h3 id="fixed">Fixed</h3>
 <ul>
