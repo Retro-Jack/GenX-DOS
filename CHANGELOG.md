@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 ### Fixed
+- **The IBM games menu sat a column right of every other menu.** Its box was indented eighteen spaces where the site's other 896 box rows use seventeen, so the frame jogged sideways as you moved between it and any other list. Twenty rows, now in step.
 - **The IBM menu's batch files ran as one line.** Every `.bat` in the IBM directory had its newlines written as the two characters `\` and `n` rather than as line breaks, so the DOS prompt read each file as a single command and echoed the rest back: `off\ncd games\nmenu\necho.\n`. Picking IBM from the Personal Computers menu printed that instead of opening the games list. Twelve files, all of them in the IBM directory added with the DOS games; the site's other 662 batch files were written correctly and are untouched.
 
 ## [1.10.0] - 2026-09-22
