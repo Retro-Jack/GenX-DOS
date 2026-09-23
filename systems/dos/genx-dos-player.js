@@ -75,15 +75,37 @@
     let image = null;
 
     // DOSBox greets you with its own banner, and this build has no setting to
-    // turn it off, so nothing is drawn until DOS has wiped it away. Every
-    // game's autoexec ends its preamble with cls, so the signal we wait for
-    // is the blank screen that produces: the first frame that is essentially
-    // all black. Waiting on a video-mode change instead looked right until a
-    // text-mode game came along and never changed mode at all. The timer is
-    // only a backstop.
+    // turn it off, so nothing is drawn until DOS has wiped it away. Two things
+    // matter here, and Sopwith taught us the second one.
+    //
+    // First, what to wait for. Every game's autoexec ends its preamble with
+    // cls, so a frame that is entirely black is the signal. Waiting on a
+    // video-mode change instead looked right until a text-mode game came along
+    // and never changed mode at all.
+    //
+    // Second, and the part that was wrong: the frames may simply stop. DOSBox
+    // sends a frame when the picture changes, so a game that draws a menu and
+    // waits for a key sends two frames and then nothing. Sopwith does exactly
+    // that, and neither of its two frames is black — the banner, the clear and
+    // the menu all land inside them — so the screen stayed dark for ever while
+    // the game sat there waiting. The last frame is therefore kept, and drawn
+    // the moment we decide to show it, rather than waiting for a next one that
+    // may never come. Once the picture has been still for a moment, there is
+    // nothing left to hide.
     let show = false;
-    const reveal = () => { show = true; clearTimeout(fallback); };
-    const fallback = setTimeout(() => { show = true; }, 4000);
+    let pending = null;
+    let settle = null;
+
+    function reveal() {
+      show = true;
+      clearTimeout(settle);
+      clearTimeout(fallback);
+      if (pending) {
+        draw(pending);
+        pending = null;
+      }
+    }
+    const fallback = setTimeout(reveal, 4000);
 
     // Cheap enough to run on every frame until it fires: it samples rather
     // than reads every pixel, and stops mattering the moment the screen is up.
@@ -105,17 +127,30 @@
     resize(ci.width(), ci.height());
     ci.events().onFrameSize(resize);
 
-    ci.events().onFrame((rgb) => {
-      if (!rgb || !image) return;
-      if (!show) {
-        if (!cleared(rgb)) return;
-        reveal();
-      }
+    function draw(rgb) {
+      if (!image) return;
       const d = image.data;
       for (let i = 0, j = 0; i < rgb.length; i += 3, j += 4) {
         d[j] = rgb[i]; d[j + 1] = rgb[i + 1]; d[j + 2] = rgb[i + 2];
       }
       ctx.putImageData(image, 0, 0);
+    }
+
+    ci.events().onFrame((rgb) => {
+      if (!rgb || !image) return;
+      if (show) {
+        draw(rgb);
+        return;
+      }
+      if (cleared(rgb)) {
+        reveal();
+        return;
+      }
+      // Hold this one back, but keep it: if the picture then stops changing,
+      // this is the picture, and it is what gets drawn.
+      pending = rgb.slice();
+      clearTimeout(settle);
+      settle = setTimeout(reveal, 700);
     });
   }
 
