@@ -85,12 +85,12 @@ genx-dos/
     │   │                    apple2-flipdisk (two-sided disks),
     │   │                    atari-console (OPTION/SELECT/START buttons),
     │   │                    ejs-console (2600/7800 switch buttons),
-    │   │                    savestate(-std), savestate-transfer (export/restore),
+    │   │                    savestate, savestate-std, savestate-transfer (export/restore),
     │   │                    bezel-ready (holds the screen until the bezel lands),
     │   │                    audio-banner, bbc-copykey, trs80-softkeys, gamepad-keys, repo-link,
     │   │                    softkey-policy (+ softkeys.json: which games show which
     │   │                    soft key, generated from the gamedocs),
-    │   │                    gamepad-browser-notice (Chrome cannot see a pad)
+    │   │                    arcade-softkeys (coin-op panel buttons)
     │   ├── styles/          play-page CSS only (frame/noscript/savestate/controls-link.css)
     │   │   └── VGA_font/    DOS-prompt CP437 sheets f12.<0-15>.png + make_fonts.py generator
     │   ├── bezels/          PNG monitor frames (every platform now bezeled)
@@ -132,7 +132,9 @@ genx-dos/
     ├── coleco/              ColecoVision       (EmulatorJS + gearcoleco + BIOS)
     ├── intv/                Intellivision      (jzIntv WASM + custom loader + BIOS)
     ├── odyssey2/            Magnavox Odyssey²  (libretro-o2em + custom SDL2 frontend + BIOS)
-    └── cpc/                 Amstrad CPC        (floooh/chips-test tiny8bit CPC WASM)
+    ├── cpc/                 Amstrad CPC        (floooh/chips-test tiny8bit CPC WASM)
+    ├── arcade/              Arcade cabinets    (EmulatorJS + MAME 2003-Plus, 100 machines)
+    └── dos/                 IBM PC             (js-dos `emulators` layer + DOSBox → WASM)
 ```
 
 ## Per-emulator layout
