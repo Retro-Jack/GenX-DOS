@@ -1,3 +1,11 @@
+## [Unreleased]
+
+### Changed
+- **The MS-DOS launcher in the filesystem is `MSDOS4.COM`, not `MSDOS4.EXE`.** It is the one entry on the shelf that is a DOS system rather than a game, and a `.COM` is what that would have been. The prompt already knew the difference — `TYPE` prints an `MZ` header for an `.EXE` and a headerless image for a `.COM`, because DOS loaded one at offset 0x100 and jumped straight in — so two places needed teaching that a *launcher* can be a `.COM` as well: `TYPE` would otherwise have printed the link's URL, and `FIND` indexed `.exe` only, so the machine would have quietly stopped being findable. Running it is unaffected either way; the prompt matches a command on the name before the dot.
+
+### Fixed
+- **MS-DOS 4.00 sat in the IBM PC menu as though it were a game.** It was added as row eleven inside the numbered games, carrying a `(1988)` after Commander Keen's `(1990)` — which broke the year order the list is sorted by, and read as an eleventh game on a shelf of ten. Every other machine that offers its own firmware already had the answer: seventeen of them put it at row eleven, below a blank row, with no year — `BBC BASIC prompt`, `Woz Monitor prompt`, `Applesoft BASIC`. The IBM row now reads `MS-DOS 4.00 prompt` in that position, and the menu is row-for-row identical in shape to the BBC Micro's. The year is off the page title too, so the tab reads `MS-DOS 4.00` as the other elevenths do.
+
 ## [1.11.0] - 2026-09-24
 
 ### Added

@@ -293,9 +293,9 @@ function type(file) {
       // garbage is stable and its own.
       if (
         typeof fsc.files[i].link !== 'undefined' &&
-        fname.split('.')[1] === 'exe'
+        (fname.split('.')[1] === 'exe' || fname.split('.')[1] === 'com')
       ) {
-        typeExe(fname, 'MZ');
+        typeExe(fname, fname.split('.')[1] === 'exe' ? 'MZ' : '');
         return true;
       }
       // A .COM is not an .EXE: it has no header at all. DOS loaded one at
@@ -520,9 +520,11 @@ function find(query) {
       var f = node.files[i];
       if (typeof f.link === 'undefined') continue;
       var fname = f.name.toLowerCase();
-      // Launchers are .exe (they carry a link); .bat is kept for the
+      // Launchers carry a link and are .exe, or .com where the entry is the
+      // machine's own system prompt rather than a game; .bat is kept for the
       // numbered aliases and menus, which are not games.
-      if (fname.indexOf('.exe') === -1) continue;
+      var lext = fname.split('.').pop();
+      if (lext !== 'exe' && lext !== 'com') continue;
       // No digit filter here: the numbered aliases carry `data`, not `link`,
       // so the check above has already skipped them — and Capcom's 1942 is a
       // launcher whose name really is a number.

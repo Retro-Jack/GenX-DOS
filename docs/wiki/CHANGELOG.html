@@ -27,6 +27,15 @@
 <ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
   </nav>
   <main class="content">
+<h2 id="unreleased">[Unreleased]</h2>
+<h3 id="changed">Changed</h3>
+<ul>
+<li><strong>The MS-DOS launcher in the filesystem is <code>MSDOS4.COM</code>, not <code>MSDOS4.EXE</code>.</strong> It is the one entry on the shelf that is a DOS system rather than a game, and a <code>.COM</code> is what that would have been. The prompt already knew the difference — <code>TYPE</code> prints an <code>MZ</code> header for an <code>.EXE</code> and a headerless image for a <code>.COM</code>, because DOS loaded one at offset 0x100 and jumped straight in — so two places needed teaching that a <em>launcher</em> can be a <code>.COM</code> as well: <code>TYPE</code> would otherwise have printed the link's URL, and <code>FIND</code> indexed <code>.exe</code> only, so the machine would have quietly stopped being findable. Running it is unaffected either way; the prompt matches a command on the name before the dot.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li><strong>MS-DOS 4.00 sat in the IBM PC menu as though it were a game.</strong> It was added as row eleven inside the numbered games, carrying a <code>(1988)</code> after Commander Keen's <code>(1990)</code> — which broke the year order the list is sorted by, and read as an eleventh game on a shelf of ten. Every other machine that offers its own firmware already had the answer: seventeen of them put it at row eleven, below a blank row, with no year — <code>BBC BASIC prompt</code>, <code>Woz Monitor prompt</code>, <code>Applesoft BASIC</code>. The IBM row now reads <code>MS-DOS 4.00 prompt</code> in that position, and the menu is row-for-row identical in shape to the BBC Micro's. The year is off the page title too, so the tab reads <code>MS-DOS 4.00</code> as the other elevenths do.</li>
+</ul>
 <h2 id="1110---2026-09-24">[1.11.0] - 2026-09-24</h2>
 <h3 id="added">Added</h3>
 <ul>
@@ -35,7 +44,7 @@
 <li><strong>It is not counted as a game.</strong> It has a page like everything else on the shelf, but the site's tally is of games and this is an operating system, so <code>check-doc-counts.sh</code> and the social card both hold a named list of pages that are not games and subtract it. The landing page and the article still read 438. The one number that did move is the page count in <code>File-Structure.md</code>, which counts pages rather than games and is now 474.</li>
 <li><strong>The boot sector wants <code>IO.SYS</code> and <code>MSDOS.SYS</code> as the first two root directory entries</strong>, so the image is formatted without a volume label — a label takes entry zero, and the disk answers <code>Non-System disk or disk error</code>, which is pleasingly the exact message the line-ending fix had just restored.</li>
 </ul>
-<h3 id="changed">Changed</h3>
+<h3 id="changed_1">Changed</h3>
 <ul>
 <li><strong>Three DOS games offer a joystick, and their pages now say it leads nowhere.</strong> <em>Alley Cat</em> asks outright — <em>Do you want to use a joystick (Y/N)?</em> — and <em>Paratrooper</em> and <em>Captain Comic</em> each name one as an option, Comic with a calibration screen that will sit waiting for a stick that never answers. Nothing can be done about it at our end: the layer the DOS games run through can send keys and a mouse and has no path for a joystick at all. Each page now says so in its own words, at the step where you meet it. Sopwith is not among them — it names joysticks too, but on a screen it is launched past.</li>
 <li><strong>The IBM monitor has been redrawn.</strong> Same photograph, cleaner edges. The screen cutout is unchanged to two decimal places in both bounds, so the prompt and the IBM PC bundle need no adjustment and arriving at a game from the launcher still moves nothing.</li>
@@ -44,7 +53,7 @@
 <li><strong>Sopwith can be flown with the cursor keys.</strong> Up climbs, Down descends, Left slows and Right accelerates — and <code>,</code> <code>/</code> <code>X</code> <code>Z</code> and <code>.</code> still do exactly what they always did, so the game's own manual stays correct. This is not a translation laid over the game: it is twelve lines in the game, in the keyboard interrupt handler, compiled with Turbo C 2.01 and A86 the way it was in 1984 and linked into a DOS executable. The source is GPL — David Clark released it and later relicensed it — so the modified source, notices saying what changed and when, and the recipe for building it are published at <a href="https://github.com/Retro-Jack/sopwith-genx"><code>Retro-Jack/sopwith-genx</code></a>. It starts straight in a single-player game now, rather than asking twice first, and the sound is on from the first frame, which is the source's own default.</li>
 <li><strong><code>.htaccess</code> says what the host actually does about compression.</strong> The block naming the types to compress is not what compresses them here: this host runs LiteSpeed, which uses its own server-wide list — hence CSS and JS arriving as brotli rather than deflate, and <code>application/wasm</code> not being compressed at all despite being named. The directives stay — the release zip is meant to be served by whatever the person downloading it has, Apache included, where they do work — with a note so the next reader doesn't take them at face value here.</li>
 </ul>
-<h3 id="fixed">Fixed</h3>
+<h3 id="fixed_1">Fixed</h3>
 <ul>
 <li><strong>The picture is painted whether or not it is being shown yet.</strong> The start-up banner is hidden by covering the screen rather than by withholding the frames, so a decision to uncover it that arrives late — which a browser makes likely, since it throttles timers in a tab you are not looking at — finds the right picture already there instead of an empty canvas waiting for a frame that may never come.</li>
 <li><strong>Sopwith sat on a black screen.</strong> It was running the whole time, waiting at its own menu — the screen was simply never drawn. The emulator sends a frame when the picture changes, so a game that draws a menu and waits for a key sends a couple of frames and then nothing at all; the start-up banner, the clear and the menu all landed inside those, none of them was the blank screen we were waiting for, and once they stopped there was never another frame to draw. The last frame is now kept and drawn the moment the picture is shown, and a picture that has been still for a moment is taken as ready. Anything that keeps moving, like Paratrooper's title, was never affected.</li>
@@ -61,7 +70,7 @@
 <li><strong>A <code>menu</code> link in the credit pill.</strong> It sits between the wordmark and <code>source</code>, and goes back to the prompt. The two are different journeys: the wordmark leaves for the landing page, <code>menu</code> hands the window back to the launcher you came in by — and deliberately does not reload it, so whichever directory you had navigated to is still there. The prompt carries the pill too, where the link would point at itself, so it is left off there.</li>
 <li><strong><code>deploy.sh</code> can overlay the footer.</strong> It already appended a fragment to the pill script and spliced one into the home page's card list; it now also splices one into the footer, anchored on the closing line so the fragment lands above the licence notes. A no-op when the file is absent, so a fresh clone still builds exactly the repo and the release zip is untouched.</li>
 </ul>
-<h3 id="changed_1">Changed</h3>
+<h3 id="changed_2">Changed</h3>
 <ul>
 <li><strong>The documentation caught up with the IBM PC.</strong> The feature article still counted thirty-four machines and named the launcher's first entry <em>Home Computers</em>; it now counts thirty-five, says <em>Personal Computers</em>, and has a paragraph on the machine the site had been impersonating all along. The README lists the bundle and the engine in both its tables, the AI disclaimer's engine count was one behind, and the wiki gained <a href="Emulator-js-dos-IBM-PC.html">Emulator-js-dos-IBM-PC</a> — why the js-dos <em>player</em> is not used, how the banner is hidden, the per-game machine settings, and the CSP it needs. The TI-99 controls page was the last page anywhere still headed <em>Home Computer</em>.</li>
 <li><strong>The maker menus show how long each machine was made for.</strong> A maker row used to carry the year its earliest machine appeared, which is the span of its <em>launches</em> rather than of its manufacturing. Each row now runs from the first of our machines going on sale to the last of them leaving production — only the machines actually on the shelf, so Apple reads 1976-1982 for the Apple I and the ][+ rather than 1993 for an Apple II line we don't run, Atari reads 1979-1985 for the 400 and the 800XL, and Texas Instruments reads 1981-1984 for the 99/4A rather than 1979 for the 99/4 before it. Where one machine sold in several regions, the widest is used: the Master System's 1996 is its European tail, and the Famicom's 2003 is a decade after the NES left the West. Sourced per machine rather than recalled — Wikipedia's own infobox for the TI-99/4A gives June 1981, which belongs to the 99/4. The arcade rows are unchanged: a cabinet's production run is the game, and they already said so.</li>
@@ -113,7 +122,7 @@
 <ul>
 <li><strong>Three unreferenced images from the Apple ][+ bundle.</strong> <code>img/logoicon.png</code> and the two <code>webapp-*.png</code> touch icons came with apple2js and are reached only from its own <code>index.html</code>, which we do not ship. Nothing in the tree names them. The bundle's other six images are all referenced by <code>play.html</code>, the stylesheet or the app bundle, and stay.</li>
 </ul>
-<h3 id="changed_2">Changed</h3>
+<h3 id="changed_3">Changed</h3>
 <ul>
 <li>
 <p><strong>The wiki had never heard of the arcade.</strong> Three pages that describe the whole site — Project Overview, Virtual Filesystem and the <code>C:</code> tree on it — went two days without a word about the hundred cabinets, which is the largest thing on the site. The launcher listing still read <em>4 WIKI</em>, where the arcade has sat at 4 since it launched; the <code>C:</code> tree had no ARCADE branch, and the menu-to-emulator table had no arcade row. All three now do, with the ten makers named.
@@ -215,7 +224,7 @@
   Nothing from a cheats, codes or secrets section was used: Space Invaders' saucer trick and Ghosts'n Goblins' tombstone exploit were both found and both left out, and the extractor skips those sections outright.</p>
 </li>
 </ul>
-<h3 id="fixed_1">Fixed</h3>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li><strong>Every arcade cabinet had MAME's buttons 2 and 3 the wrong way round.</strong> The core binds MAME buttons 1-6 to retropad <strong>B, A, Y, X, L, R</strong> — not in pad-button order, which is the trap: retropad index 1 is Y, and Y carries button <strong>3</strong>. The page bound MAME 2 as though it arrived on index 1, so for a week the button all 44 affected pages called RB was really MAME 3, and MAME 2 answered on X. Found when Sinistar's Sinibomb would not fire on the RB its page named.
   The <strong>binding</strong> moved rather than the pages, because the pages were right about the intent: the arcade help page has always said button 2 sits under the index finger on RB, since the cabinets that use it tend to hold it down. One line in <code>systems/arcade/play.html</code> fixes all hundred cabinets, and every gamedoc goes back to saying what it said.
@@ -254,7 +263,7 @@
 </li>
 </ul>
 <h2 id="181---2026-09-11">[1.8.1] - 2026-09-11</h2>
-<h3 id="changed_3">Changed</h3>
+<h3 id="changed_4">Changed</h3>
 <ul>
 <li>
 <p><strong>The repository no longer carries games, BIOS or firmware that didn't come with an emulator.</strong> genx-dos.fun is unchanged and still has every one. The repo, its whole history and the release zip now hold the emulators, plus anything an emulator's own maintainer shipped with it. 382 files leave the tree and 544 file versions leave history, 644 MB in all.
@@ -284,7 +293,7 @@
   Deliberately absent: <em>This program cannot be run in DOS mode.</em> That string belongs to the Windows PE stub, and a machine pretending to be a DOS box has no business printing it.</p>
 </li>
 </ul>
-<h3 id="fixed_2">Fixed</h3>
+<h3 id="fixed_3">Fixed</h3>
 <ul>
 <li>
 <p><strong>Twelve vendored images that nothing used were shipping to every BBC visitor.</strong> jsbeeb's own web UI has an example screenshot, a sidebar, a bottom bar, two disc-drive icons and an app icon; our embedded build uses none of them &mdash; its page asks only for the cub monitor and a placeholder &mdash; but all six were in the tree twice, once per BBC machine, and all twelve reached the web host. Removed. They will come back if the fork is ever re-vendored, so the re-vendor recipe should strip them.</p>
