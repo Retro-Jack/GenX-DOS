@@ -61,8 +61,13 @@ def stats_row():
     games_dir = os.path.join(ROOT, "docs/games")
     systems = [d for d in os.listdir(games_dir)
                if os.path.isdir(os.path.join(games_dir, d))]
-    games = sum(len([f for f in files if f.endswith(".html")])
-                for _, _, files in os.walk(games_dir))
+    # MS-DOS 4.00 has a page on the IBM PC shelf but is the operating system,
+    # not a game. check-doc-counts.sh keeps the same list; both must agree.
+    nongames = {os.path.join(ROOT, "docs/games/dos/msdos4.html")}
+    games = sum(1
+                for root, _, files in os.walk(games_dir)
+                for f in files
+                if f.endswith(".html") and os.path.join(root, f) not in nongames)
     # CP437 0xFA is the middle dot; the line is centred on the card.
     text = "%d games \xfa %d systems \xfa 100%% self-hosted" % (games, len(systems))
     x = (1280 - 24 * len(text)) // 2

@@ -2250,7 +2250,7 @@ var fs = [
                     files: [
                       {
                         name: 'menu.bat',
-                        data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              IBM  PC  GAMES                 º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Paratrooper                    (1982) º\necho                 º   2.  Digger                         (1983) º\necho                 º   3.  Beast                          (1984) º\necho                 º   4.  Alley Cat                      (1984) º\necho                 º   5.  Sopwith                        (1984) º\necho                 º   6.  Rogue                          (1986) º\necho                 º   7.  Round 42                       (1986) º\necho                 º   8.  Kingdom of Kroz                (1987) º\necho                 º   9.  Captain Comic                  (1988) º\necho                 º  10.  Commander Keen                 (1990) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                        data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º              IBM  PC  GAMES                 º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Paratrooper                    (1982) º\necho                 º   2.  Digger                         (1983) º\necho                 º   3.  Beast                          (1984) º\necho                 º   4.  Alley Cat                      (1984) º\necho                 º   5.  Sopwith                        (1984) º\necho                 º   6.  Rogue                          (1986) º\necho                 º   7.  Round 42                       (1986) º\necho                 º   8.  Kingdom of Kroz                (1987) º\necho                 º   9.  Captain Comic                  (1988) º\necho                 º  10.  Commander Keen                 (1990) º\necho                 º  11.  MS-DOS 4.00                    (1988) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
                       },
                       {
                         name: '0.bat',
@@ -2297,6 +2297,10 @@ var fs = [
                         data: 'keen\n',
                       },
                       {
+                        name: '11.bat',
+                        data: 'msdos4\n',
+                      },
+                      {
                         name: 'paratroo.exe',
                         link: '../systems/dos/play.html?game=paratroop',
                       },
@@ -2335,6 +2339,10 @@ var fs = [
                       {
                         name: 'keen.exe',
                         link: '../systems/dos/play.html?game=keen1',
+                      },
+                      {
+                        name: 'msdos4.exe',
+                        link: '../systems/dos/play.html?game=msdos4',
                       },
                     ],
                   },

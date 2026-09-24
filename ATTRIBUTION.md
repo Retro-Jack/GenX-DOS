@@ -334,7 +334,7 @@ holder asks — see **Removal upon request** at the top of this file.
 
 ### IBM PC (`systems/dos/games/`)
 
-Ten DOS games, 1982–1990. Their standing differs game by game, and the differences matter more here than on most shelves:
+Ten DOS games, 1982–1990, and the operating system they ran on. Their standing differs entry by entry, and the differences matter more here than on most shelves:
 
 | Game | Year | Author / publisher | Standing |
 |---|---|---|---|
@@ -348,10 +348,11 @@ Ten DOS games, 1982–1990. Their standing differs game by game, and the differe
 | Kingdom of Kroz | 1987 | Scott Miller / Apogee Software | **Freeware** since Apogee's release of March 2009; Apogee explicitly retained all rights |
 | The Adventures of Captain Comic | 1988 | Michael A. Denio | **Shareware**, complete |
 | Commander Keen: Marooned on Mars | 1990 | id Software / Apogee Software | **Shareware**, episode one — the freely distributable one |
+| MS-DOS 4.00 | 1988 | Microsoft Corporation, jointly developed with IBM | **MIT licence** — Microsoft released the MS-DOS 4.00 source in 2024 at [`microsoft/MS-DOS`](https://github.com/microsoft/MS-DOS). The disk here is **our own build** of that source: the boot sector, `IO.SYS`, `MSDOS.SYS`, `COMMAND.COM` and the thirty utilities on it were all compiled from it with the period tools the release includes. `CONFIG.SYS` is ours, and there is deliberately no `AUTOEXEC.BAT`, so it boots the way a 1988 floppy did. Building it needed two repairs to the published source, both described in the wiki |
 
 Where a game states its own terms on screen or in its own documentation, those terms are what is recorded above rather than a third party's summary of them.
 
-**None of these files are in this repository or in the release zip**, in keeping with the rule that the repo carries the emulators and not the games we added. `ROMS.txt` lists every filename and the folder it belongs in. Each game's `dosbox.conf` *is* here, because we wrote it. Sopwith is the one that could be — it is our own build of GPL source, and we publish that source — but it is held out with the rest so the rule stays one rule rather than a rule with an exception.
+**None of these files are in this repository or in the release zip**, in keeping with the rule that the repo carries the emulators and not the games we added. `ROMS.txt` lists every filename and the folder it belongs in. Each game's `dosbox.conf` *is* here, because we wrote it. Sopwith and MS-DOS 4.00 are the two that could be — both are our own builds of released source, and we publish that source — but they are held out with the rest so the rule stays one rule rather than a rule with two exceptions.
 
 ## Research and reference sources
 

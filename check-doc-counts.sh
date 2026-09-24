@@ -33,10 +33,20 @@ bad()  { printf '  \033[31mMISMATCH\033[0m  %-24s %s\n' "$1" "$2"; fail=1; }
 ok()   { printf '  \033[32mok\033[0m        %-24s %s\n' "$1" "$2"; }
 
 # ---- ground truth, measured from the tree -------------------------------
-GAMES=$(find docs/games -name '*.html' | wc -l)
+# Not every page under docs/games/ is a game. MS-DOS 4.00 is the operating
+# system itself, on the IBM PC shelf since 24/09/2026: it needs a page like
+# anything else, but it is not counted on the games tally. Listed by name on
+# purpose, so a future non-game has to be added here deliberately rather than
+# quietly inflating the number the landing page and the card both quote.
+NONGAME_DOCS='docs/games/dos/msdos4.html'
+DOCPAGES=$(find docs/games -name '*.html' | wc -l)
+NONGAMES=0
+for f in $NONGAME_DOCS; do [ -f "$f" ] && NONGAMES=$((NONGAMES + 1)); done
+GAMES=$((DOCPAGES - NONGAMES))
 SUBSYS=$(find docs/games -mindepth 1 -maxdepth 1 -type d | wc -l)
 CONTROLS=$(find systems -name 'controls.html' | wc -l)
-SHARED=$((GAMES + CONTROLS))
+# SHARED is a page count, not a games count, so the non-game pages belong in it.
+SHARED=$((DOCPAGES + CONTROLS))
 # Bundles sharing the one EmulatorJS framework. The wiki and README both quote
 # it, and both sat at 13 for the six days after the arcade bundle joined them.
 EJSB=$(grep -l "_shared-ejs" systems/*/play.html 2>/dev/null | wc -l)
@@ -47,6 +57,7 @@ SIZE=$(du -sm --exclude=./.git --exclude=./_Portable --exclude=./dist --exclude=
 
 echo "Measured from the tree:"
 note "gamedocs (games)"        "$GAMES"
+note "gamedoc pages (incl. non-games)" "$DOCPAGES"
 note "sub-systems"             "$SUBSYS"
 note "controls.html"           "$CONTROLS"
 note "gamedocs + controls"     "$SHARED"

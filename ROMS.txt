@@ -441,6 +441,7 @@ IBM PC
   systems/dos/games/keen1/SCORES.CK1                       Commander Keen: Marooned on Mars (1990)
   systems/dos/games/keen1/SOUNDS.CK1                       Commander Keen: Marooned on Mars (1990)
   systems/dos/games/keen1/STORYTXT.CK1                     Commander Keen: Marooned on Mars (1990)
+  systems/dos/games/msdos4/MSDOS400.IMG                    MS-DOS 4.00 (1988) — our build, see ATTRIBUTION
 
   Each game's dosbox.conf is in the repo — it is ours. The files above are
   not, and the per-game folder they belong in is named after the key in

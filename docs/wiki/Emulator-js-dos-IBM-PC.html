@@ -57,7 +57,7 @@ const ci = await emulators.dosboxDirect([
 <p>It was twice wrong before it was right, and both mistakes are worth keeping in mind. Waiting for a <em>video-mode change</em> looked correct until a text-mode game arrived and never changed mode. Then holding the frames back and drawing the last one at the moment of reveal looked correct until Sopwith, which draws its menu and waits for a key: two frames, neither of them blank, and then nothing. The reveal rested on a timer, and a browser throttles timers hard in a tab nobody is looking at — measured here, <code>setTimeout(0)</code> fired ten times in three seconds. The frame arrived, the timer did not, and the screen stayed black with a perfectly healthy game behind it. <strong>Paint always; hide the canvas, not the picture.</strong></p>
 <p>Each autoexec also carries <code>@echo off</code> and <code>mount c . &gt; nul</code>, so the mount confirmation and the command echo never appear either.</p>
 <h2 id="each-game-gets-the-machine-it-was-written-for">Each game gets the machine it was written for</h2>
-<p>The per-game <code>dosbox.conf</code> is ours and is in the repo; the games are not. Three machine types and five cycle counts, taken from configurations the games themselves shipped with rather than guessed:</p>
+<p>The per-game <code>dosbox.conf</code> is ours and is in the repo; the games are not. Four machine types and five cycle counts, taken from configurations the games themselves shipped with rather than guessed:</p>
 <table>
 <thead>
 <tr>
@@ -73,6 +73,10 @@ const ci = await emulators.dosboxDirect([
 <tr>
 <td><code>machine=ega</code></td>
 <td>Captain Comic, Commander Keen</td>
+</tr>
+<tr>
+<td><code>machine=vga</code></td>
+<td>MS-DOS 4.00</td>
 </tr>
 <tr>
 <td><code>cycles=fixed 400</code></td>
@@ -97,6 +101,16 @@ const ci = await emulators.dosboxDirect([
 <p>Sopwith is the one game here that is not the binary someone else released. Its source is GPL — David Clark released it and later relicensed it — so it could be changed at the source rather than worked around in the player, and it was: twelve lines, so the plane flies on the cursor keys as well as on <code>,</code> <code>/</code> <code>X</code> <code>Z</code>. Up climbs, Down descends, Left slows, Right accelerates; the original keys are untouched, so the game's own manual stays correct.</p>
 <p>The change is in <code>keybint()</code>, the keyboard interrupt handler, with the four scancodes added to <code>def.h</code>. It was built with Turbo C 2.01 and A86 under DOSBox, linked with <code>tlink</code> in place of the <code>otlink</code> the original makefile wants and which cannot be had. The modified source, notices of what changed and when, and the build recipe are published at <a href="https://github.com/Retro-Jack/sopwith-genx"><code>Retro-Jack/sopwith-genx</code></a>, which is what the licence asks of us.</p>
 <p>It runs as <code>SOPWITH2.EXE -s -i -k</code>: straight into a single-player game on the IBM keyboard path, which is the path the change lives in, instead of asking for a game mode and a keyboard type first. The sound is on from the first frame — the source has always inverted <code>soundflag</code>, so on is the default and <code>-q</code> is what turns it off.</p>
+<h2 id="ms-dos-400-is-our-own-build-too">MS-DOS 4.00 is our own build too</h2>
+<p>Entry eleven is not a game but the operating system, booted from a 720K floppy image — banners, the date and time prompts, and a bare <code>A&gt;</code>, with no <code>AUTOEXEC.BAT</code> to short-circuit any of it. Microsoft released the MS-DOS 4.00 source under the MIT licence in 2024, and <code>v4.0/src/</code> is a complete tree: unlike the v1.25 and v2.0 releases, which ship the kernel but not the machine-specific <code>IO.SYS</code>, this one contains <code>BOOT/</code> and <code>BIOS/</code> as well, so a bootable disk can be built rather than assembled around someone else's binary. It goes through <code>imgmount a</code> then <code>boot -l a</code>, which wdosbox supports.</p>
+<p>The published source needed two repairs before it would build, both artefacts of how it was packaged rather than anything wrong in 1988:</p>
+<ul>
+<li><strong>Line endings had been normalised to LF.</strong> The DOS tools are not all equally forgiving: <code>nmake</code> and MASM read LF-only files without complaint, which is why the build gets 55 objects in before anything goes wrong. <code>nosrvbld</code> does not — it parses the <code>:use</code> line of a <code>.skl</code> expecting CRLF, fails to find the group name, and reports <code>Can not find  in index file</code> with the name missing. Nor does the linker's response-file parser, which reads four modules out of <code>msbio.lnk</code> and then sits at an <code>Object Modules [.OBJ]:</code> prompt waiting for a keyboard that, in a scripted build, is never coming. Converting the <code>.skl</code>, <code>.msg</code> and <code>.lnk</code> files to CRLF fixes both. The makefiles were left alone, since nmake was never the thing complaining.</li>
+<li><strong><code>SETENV.BAT</code> points <code>INCLUDE</code> and <code>LIB</code> at directories that do not exist</strong> — <code>tools\inc</code> and <code>tools\lib</code>, where the release actually puts them under <code>tools\bld\</code>. Everything written in assembler builds regardless; everything written in C fails at <code>cannot open include file 'stdio.h'</code>, which is most of the utilities.</li>
+</ul>
+<p>With those two fixed the whole tree builds: the boot sector, <code>IO.SYS</code>, <code>MSDOS.SYS</code>, <code>COMMAND.COM</code> and around forty-five utilities. The image carries thirty of them — the ones that do something useful on a single floppy with no printer, no second drive and no hard disk.</p>
+<p>Laying out the disk has one requirement worth recording: the boot sector looks for <code>IO.SYS</code> and <code>MSDOS.SYS</code> as the <strong>first two root directory entries</strong>, so the image must be formatted without a volume label. A label takes entry zero, pushes <code>IO.SYS</code> to entry one, and the disk answers <code>Non-System disk or disk error</code> — which is, pleasingly, the very message the CRLF fix restored.</p>
+<p>A boot can be verified without looking at a screen by letting the booted system report on itself: an <code>AUTOEXEC.BAT</code> that runs <code>VER</code>, <code>MEM</code> and <code>CHKDSK</code> redirected to a file on <code>A:</code> leaves its evidence inside the image, readable afterwards with mtools.</p>
 <h2 id="keyboard">Keyboard</h2>
 <p><code>KeyboardEvent.code</code> maps to DOSBox key codes from the <code>emulators</code> package's own <code>src/keys.ts</code> — fetched, not derived (F1 is 290, the arrows 262-265, Ctrl 341/345, Alt 342/346). Ctrl and Alt reach the game rather than the browser, because they are Commander Keen's jump and pogo. A <code>blur</code> handler releases everything held, or a game walks into a wall for ever.</p>
 <h2 id="csp">CSP</h2>

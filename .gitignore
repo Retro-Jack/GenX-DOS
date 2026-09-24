@@ -47,7 +47,7 @@ GenX-DOS-v*.zip
 /systems/apple2/woz/
 /systems/arcade/games/
 
-# IBM PC — the ten DOS games are ours to serve, not ours to redistribute.
+# IBM PC — the shelf is ours to serve, not ours to redistribute.
 # See ROMS.txt. The per-game dosbox.conf is authored configuration and stays.
 /systems/dos/games/*/*
 !/systems/dos/games/*/dosbox.conf

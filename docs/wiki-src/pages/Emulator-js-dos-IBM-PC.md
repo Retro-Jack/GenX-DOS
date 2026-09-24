@@ -45,12 +45,13 @@ Each autoexec also carries `@echo off` and `mount c . > nul`, so the mount confi
 
 ## Each game gets the machine it was written for
 
-The per-game `dosbox.conf` is ours and is in the repo; the games are not. Three machine types and five cycle counts, taken from configurations the games themselves shipped with rather than guessed:
+The per-game `dosbox.conf` is ours and is in the repo; the games are not. Four machine types and five cycle counts, taken from configurations the games themselves shipped with rather than guessed:
 
 | Setting | Games |
 |---|---|
 | `machine=cga` | Paratrooper, Digger, Beast, Alley Cat, Sopwith, Rogue, Round 42, Kingdom of Kroz |
 | `machine=ega` | Captain Comic, Commander Keen |
+| `machine=vga` | MS-DOS 4.00 |
 | `cycles=fixed 400` | Digger |
 | `cycles=fixed 200` | Sopwith |
 | `cycles=fixed 300` | Beast |
@@ -65,6 +66,21 @@ Sopwith is the one game here that is not the binary someone else released. Its s
 The change is in `keybint()`, the keyboard interrupt handler, with the four scancodes added to `def.h`. It was built with Turbo C 2.01 and A86 under DOSBox, linked with `tlink` in place of the `otlink` the original makefile wants and which cannot be had. The modified source, notices of what changed and when, and the build recipe are published at [`Retro-Jack/sopwith-genx`](https://github.com/Retro-Jack/sopwith-genx), which is what the licence asks of us.
 
 It runs as `SOPWITH2.EXE -s -i -k`: straight into a single-player game on the IBM keyboard path, which is the path the change lives in, instead of asking for a game mode and a keyboard type first. The sound is on from the first frame — the source has always inverted `soundflag`, so on is the default and `-q` is what turns it off.
+
+## MS-DOS 4.00 is our own build too
+
+Entry eleven is not a game but the operating system, booted from a 720K floppy image — banners, the date and time prompts, and a bare `A>`, with no `AUTOEXEC.BAT` to short-circuit any of it. Microsoft released the MS-DOS 4.00 source under the MIT licence in 2024, and `v4.0/src/` is a complete tree: unlike the v1.25 and v2.0 releases, which ship the kernel but not the machine-specific `IO.SYS`, this one contains `BOOT/` and `BIOS/` as well, so a bootable disk can be built rather than assembled around someone else's binary. It goes through `imgmount a` then `boot -l a`, which wdosbox supports.
+
+The published source needed two repairs before it would build, both artefacts of how it was packaged rather than anything wrong in 1988:
+
+- **Line endings had been normalised to LF.** The DOS tools are not all equally forgiving: `nmake` and MASM read LF-only files without complaint, which is why the build gets 55 objects in before anything goes wrong. `nosrvbld` does not — it parses the `:use` line of a `.skl` expecting CRLF, fails to find the group name, and reports `Can not find  in index file` with the name missing. Nor does the linker's response-file parser, which reads four modules out of `msbio.lnk` and then sits at an `Object Modules [.OBJ]:` prompt waiting for a keyboard that, in a scripted build, is never coming. Converting the `.skl`, `.msg` and `.lnk` files to CRLF fixes both. The makefiles were left alone, since nmake was never the thing complaining.
+- **`SETENV.BAT` points `INCLUDE` and `LIB` at directories that do not exist** — `tools\inc` and `tools\lib`, where the release actually puts them under `tools\bld\`. Everything written in assembler builds regardless; everything written in C fails at `cannot open include file 'stdio.h'`, which is most of the utilities.
+
+With those two fixed the whole tree builds: the boot sector, `IO.SYS`, `MSDOS.SYS`, `COMMAND.COM` and around forty-five utilities. The image carries thirty of them — the ones that do something useful on a single floppy with no printer, no second drive and no hard disk.
+
+Laying out the disk has one requirement worth recording: the boot sector looks for `IO.SYS` and `MSDOS.SYS` as the **first two root directory entries**, so the image must be formatted without a volume label. A label takes entry zero, pushes `IO.SYS` to entry one, and the disk answers `Non-System disk or disk error` — which is, pleasingly, the very message the CRLF fix restored.
+
+A boot can be verified without looking at a screen by letting the booted system report on itself: an `AUTOEXEC.BAT` that runs `VER`, `MEM` and `CHKDSK` redirected to a file on `A:` leaves its evidence inside the image, readable afterwards with mtools.
 
 ## Keyboard
 

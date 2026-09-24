@@ -155,5 +155,11 @@
       "SOUNDS.CK1",
       "STORYTXT.CK1"
     ]
+  },
+  "msdos4": {
+    "title": "MS-DOS 4.00 (1988)",
+    "files": [
+      "MSDOS400.IMG"
+    ]
   }
 }

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MS-DOS 4.00 &mdash; IBM PC &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; IBM PC</div>
+      <h1>MS-DOS 4.00</h1>
+      <p class="sub">1988 &mdash; Microsoft and IBM. Not a game: the operating system itself, and the only entry here you are expected to talk back to.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/dos/controls.html">System help &mdash; the IBM PC controls</a></p>
+
+    <p class="intro">Every other entry in this bundle is a program that DOS would have loaded for you. This one is DOS. It boots from a 720K floppy into a command prompt and waits, exactly as a PC did in 1988, and everything you do happens inside the tab &mdash; nothing is written to your machine and nothing survives a reload.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>It boots, names itself, and asks for the date and then the time. Press <kbd>Enter</kbd> twice to accept what it has — the machine thinks it is January 1980 and nothing here minds.</li>
+      <li>You land at <code>A&gt;</code>. That is the prompt; type at it.</li>
+      <li><kbd>D</kbd><kbd>I</kbd><kbd>R</kbd> then <kbd>Enter</kbd> lists what is on the disk.</li>
+      <li>Typing the name of a program runs it. <code>MEM</code> and <code>CHKDSK</code> are good first pokes.</li>
+      <li>Nothing you type can hurt anything. Reload the page and the disk is back as it was.</li>
+    </ol>
+
+    <h2>Commands built into the prompt</h2>
+    <p class="note-plain">These live inside the shell, so they work with no program on the disk at all.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><code>DIR</code></td><td>List the disk. <code>DIR /W</code> goes wide, <code>DIR /P</code> pauses a page at a time</td></tr>
+      <tr><td><code>TYPE</code></td><td>Print a text file &mdash; try <code>TYPE CONFIG.SYS</code></td></tr>
+      <tr><td><code>CD</code> <code>MD</code> <code>RD</code></td><td>Change, make and remove a directory</td></tr>
+      <tr><td><code>COPY</code> <code>REN</code> <code>DEL</code></td><td>Copy, rename and delete files</td></tr>
+      <tr><td><code>CLS</code></td><td>Clear the screen</td></tr>
+      <tr><td><code>VER</code></td><td>Ask which DOS this is</td></tr>
+      <tr><td><code>DATE</code> <code>TIME</code></td><td>Show or set the clock</td></tr>
+      <tr><td><code>SET</code> <code>PATH</code> <code>PROMPT</code></td><td>The environment, the search path, and the shape of the prompt itself</td></tr>
+      <tr><td><code>ECHO</code></td><td>Print a line &mdash; the building block of every batch file</td></tr>
+      <tr><td><code>VOL</code></td><td>The disk label and serial number</td></tr>
+    </table>
+
+    <h2>Programs on the disk</h2>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><code>MEM</code></td><td>Where the 640K went</td></tr>
+      <tr><td><code>CHKDSK</code></td><td>Check the disk and report what is on it</td></tr>
+      <tr><td><code>TREE</code></td><td>Draw the directory structure</td></tr>
+      <tr><td><code>DEBUG</code></td><td>The assembler-level debugger. <code>?</code> for its commands, <code>Q</code> to leave</td></tr>
+      <tr><td><code>EDLIN</code></td><td>The line editor, from before anyone had a screen editor. <code>E</code> to end</td></tr>
+      <tr><td><code>ATTRIB</code></td><td>Read-only, hidden and system flags</td></tr>
+      <tr><td><code>FIND</code> <code>SORT</code> <code>MORE</code></td><td>The filters &mdash; pipe things through them with <code>|</code></td></tr>
+      <tr><td><code>FC</code> <code>COMP</code></td><td>Compare two files</td></tr>
+      <tr><td><code>XCOPY</code> <code>REPLACE</code></td><td>The cleverer copiers</td></tr>
+      <tr><td><code>LABEL</code></td><td>Name the disk</td></tr>
+      <tr><td><code>MODE</code> <code>KEYB</code> <code>GRAFTABL</code></td><td>Display, keyboard and character-set settings</td></tr>
+    </table>
+    <p class="note">Some programs on the disk expect hardware this emulator has no reason to provide &mdash; a printer for <code>PRINT</code>, a second drive for <code>DISKCOPY</code>, a hard disk for <code>FDISK</code>. They are on the disk because they shipped with DOS, not because they will do much here.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Pipes and redirection work.</strong> <code>DIR | SORT</code>, <code>DIR &gt; LIST.TXT</code>, <code>TYPE LIST.TXT | MORE</code> &mdash; all of it behaves as you would hope.</li>
+      <li><strong><kbd>F3</kbd> repeats the last line.</strong> That was the whole command history, and it is why DOS users typed so carefully.</li>
+      <li><strong>Write a batch file.</strong> <code>COPY CON GO.BAT</code>, type your lines, then <kbd>Ctrl</kbd>+<kbd>Z</kbd> and <kbd>Enter</kbd>. Now type <code>GO</code>.</li>
+      <li><strong>Filenames get eight characters and three.</strong> There is no way round it and nothing here will pretend otherwise.</li>
+    </ul>
+
+    <h2>What you are actually running</h2>
+    <p class="note-plain">Microsoft published the MS-DOS 4.00 source code under the MIT licence in 2024. This disk is that source, compiled with the period tools that came with it, so <code>IO.SYS</code>, <code>MSDOS.SYS</code>, <code>COMMAND.COM</code>, the boot sector and every program listed above were built here rather than copied from a 1988 disk. The three-line <code>CONFIG.SYS</code> is ours. There is deliberately no <code>AUTOEXEC.BAT</code>: without one, DOS asks for the date and the time and leaves you at a bare <code>A&gt;</code>, which is what a boot floppy did in 1988 and what it should look like here.</p>
+
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>
