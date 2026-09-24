@@ -351,7 +351,7 @@ Ten DOS games, 1982–1990. Their standing differs game by game, and the differe
 
 Where a game states its own terms on screen or in its own documentation, those terms are what is recorded above rather than a third party's summary of them.
 
-**None of these files are in this repository or in the release zip**, in keeping with the rule that the repo carries the emulators and not the games we added. `ROMS.txt` lists every filename and the folder it belongs in. Each game's `dosbox.conf` *is* here, because we wrote it.
+**None of these files are in this repository or in the release zip**, in keeping with the rule that the repo carries the emulators and not the games we added. `ROMS.txt` lists every filename and the folder it belongs in. Each game's `dosbox.conf` *is* here, because we wrote it. Sopwith is the one that could be — it is our own build of GPL source, and we publish that source — but it is held out with the rest so the rule stays one rule rather than a rule with an exception.
 
 ## Research and reference sources
 
