@@ -35,6 +35,29 @@
 // Skipped entirely if a `.gx-corner-link` or legacy `.gx-controls-link`
 // element already exists, so a bundle that needs its own placement can opt
 // out by providing one.
+//
+// FIRMWARE PROMPTS GET NO GAMEPLAY LINK. A handful of launchers carry a key
+// that names a machine's own firmware rather than a game -- BASIC on the
+// Commodore and Atari machines, LDOS and TRSDOS on the TRS-80. They are not
+// games, they have no gamedoc, and a left-hand link built for them pointed at
+// a page that does not exist: ten launchers, ten 404s, live and unnoticed
+// because the corner link looks the same whether or not its target is there.
+// Listed as platform/key so a real game called `basic` on some future machine
+// would still get its link. check-doc-counts.sh holds this list to the tree,
+// so adding a firmware entry without a gamedoc fails the check rather than
+// shipping another dead link.
+var NO_GAMEDOC = [
+  'atari400/basic',
+  'atari800/basic',
+  'c16/basic',
+  'c64/basic',
+  'max/basic',
+  'pet/basic',
+  'plus4/basic',
+  'vic20/basic',
+  'trs80/ldos',
+  'trs80/trsdos',
+];
 (function () {
   if (document.querySelector('.gx-corner-link, .gx-controls-link')) return;
 
@@ -79,7 +102,7 @@
     document.body.appendChild(a);
   }
 
-  if (key) {
+  if (key && NO_GAMEDOC.indexOf(platform + '/' + key) === -1) {
     link(
       'gx-left',
       ROOT + 'docs/games/' + platform + '/' + key + '.html',

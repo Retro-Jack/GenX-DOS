@@ -272,6 +272,44 @@ else
 fi
 echo
 
+# ---- corner links: every launcher key must have a gamedoc to point at ---
+# genx-controls-link.js builds the top-left "Gameplay controls" link whenever
+# the launch URL carries a key. Ten launchers named a machine's own firmware
+# (BASIC, LDOS, TRSDOS), which has no gamedoc, so the link 404'd on the live
+# site for months -- a dead corner link looks exactly like a live one. The
+# script now skips those, listed as platform/key in NO_GAMEDOC; this holds
+# that list to the tree in both directions.
+echo "Corner links (genx-controls-link.js):"
+link_out=$(python3 - <<'PYEOF'
+import re, pathlib
+root = pathlib.Path(".")
+fs = (root / "prompt/javascript/fs.js").read_text(encoding="utf-8")
+js = (root / "systems/_shared/genx-controls-link.js").read_text(encoding="utf-8")
+
+m = re.search(r"var NO_GAMEDOC = \[(.*?)\];", js, re.S)
+listed = set(re.findall(r"'([^']+)'", m.group(1))) if m else set()
+
+launched = set()
+for mm in re.finditer(r"\.\./systems/([a-z0-9_]+)/[^'\"]*?[?&](?:game|tape|rom)=([A-Za-z0-9_.\-]+)", fs):
+    launched.add((mm.group(1), mm.group(2)))
+
+missing = {f"{b}/{k}" for b, k in launched if not (root / "docs/games" / b / f"{k}.html").exists()}
+
+for x in sorted(missing - listed):
+    print(f"UNLISTED {x} is launched, has no gamedoc, and is not in NO_GAMEDOC")
+for x in sorted(listed - missing):
+    print(f"STALE    {x} is in NO_GAMEDOC but now has a gamedoc (or is never launched)")
+print(f"OK {len(launched)} keyed launchers, {len(listed)} firmware keys without a gamedoc")
+PYEOF
+)
+if printf '%s' "$link_out" | grep -qE '^(UNLISTED|STALE)'; then
+  bad "corner links" "NO_GAMEDOC is out of step with the tree:"
+  printf '%s\n' "$link_out" | grep -E '^(UNLISTED|STALE)' | sed 's/^/                                     /'
+else
+  ok "corner links" "$(printf '%s' "$link_out" | sed -n 's/^OK //p')"
+fi
+echo
+
 # ---- social card: drawn from the font sheet by tools/social-card.py -----
 # The card's text rows are the prompt's CP437 sheet scaled up, so the tool can
 # draw them exactly and compare. Its stats line measures docs/games/ the same
