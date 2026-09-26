@@ -111,7 +111,7 @@ the same treatment without the `MZ`, a `.COM` having no header at all.
 
 ## The no-`.html`-files rule
 
-The virtual filesystem only lists `.exe` launchers and the `.bat` menu scripts and numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's `controls.html`, future bezels, etc.) live on disk under `systems/<name>/` but are reached from inside the emulator's entry HTML via the top-corner links, not from the DOS prompt.
+The virtual filesystem only lists launchers — 461 `.exe` and, for the IBM PC's MS-DOS 4.00, one `.com`, because a DOS system is what a `.com` would have been — and the `.bat` menu scripts and numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's `controls.html`, future bezels, etc.) live on disk under `systems/<name>/` but are reached from inside the emulator's entry HTML via the top-corner links, not from the DOS prompt.
 
 This is period-correct: a DOS user typing `dir` shouldn't see `.html`.
 

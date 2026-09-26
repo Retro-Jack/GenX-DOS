@@ -19,7 +19,7 @@ The prompt understands a small subset of DOS commands. Commands are case-insensi
 |---------|--------------|
 | `<filename>` | Execute. `link:` opens the URL in a new tab; `data:` runs as a batch script |
 | `type <file>` | Print the file's `data` (or `link`) to the screen. On an `.exe` it prints the program's bytes as CP437 glyphs — `MZ` then noise — and stops at the first Ctrl-Z, exactly as DOS did |
-| `find <word>` | Search the whole virtual FS for games (`.exe` launchers) and emulator menus (sub-directories) whose name matches the query at a word boundary. Reports two sections — `GAMES` and `MENUS` — each with launcher + title + full path. Cross-references the numbered `.bat` shortcuts against the menu they sit beside, so `smb.exe` is findable by the title the menu shows for it (`Super Mario Bros.`). |
+| `find <word>` | Search the whole virtual FS for games (`.exe` launchers, and the one `.com`) and emulator menus (sub-directories) whose name matches the query at a word boundary. Reports two sections — `GAMES` and `MENUS` — each with launcher + title + full path. Cross-references the numbered `.bat` shortcuts against the menu they sit beside, so `smb.exe` is findable by the title the menu shows for it (`Super Mario Bros.`). |
 | `find "<phrase>"` | Multi-word queries must be wrapped in double quotes. Bare-spaced input is rejected with a hint that re-quotes the input. |
 
 ### What `find` looks like in practice

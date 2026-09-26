@@ -60,7 +60,7 @@ Every emulator directory has a `controls.html` documenting its keyboard / joysti
 
 **Per-game instruction pages** live at `docs/games/<platform>/<key>.html`. They do not replace `controls.html` — the two answer different questions, and a play page offers both at once.
 
-`genx-controls-link.js` puts **two links in the top corners** of every emulator page: **gameplay controls** on the left, resolved from `?game=`, `?tape=` or `?rom=` in the live URL, and **system help** on the right, always `controls.html`. A keyless URL boots the bare machine, which has no game page, so only the right-hand link appears. Each is a two-line label in IBM Plex Mono on a pill of the wallpaper's own brown; the banners are pinned to the bottom of the screen so nothing ever displaces them.
+`genx-controls-link.js` puts **two links in the top corners** of every emulator page: **gameplay controls** on the left, resolved from `?game=`, `?tape=` or `?rom=` in the live URL, and **system help** on the right, always `controls.html`. A keyless URL boots the bare machine, which has no game page, so only the right-hand link appears — and so do the ten launchers whose key names a machine's own firmware rather than a game (BASIC on the Commodore and Atari machines, LDOS and TRSDOS on the TRS-80). Those are listed as `platform/key` in the script's `NO_GAMEDOC`, because a left-hand link built for them pointed at a page that does not exist; `check-doc-counts.sh` holds the list to the tree in both directions, so a new firmware entry fails the check rather than shipping another dead link. Each is a two-line label in IBM Plex Mono on a pill of the wallpaper's own brown; the banners are pinned to the bottom of the screen so nothing ever displaces them.
 
 The pages link to each other as well: every gamedoc carries *System help* under its header, and every `controls.html` ends with a **Gameplay controls** list of that system's games in menu order. Both page types run under `default-src 'none'` with no `script-src`, so this is static HTML — a controls page cannot know which game you arrived from, which is why it lists them all.
 
@@ -70,7 +70,7 @@ Both hrefs are resolved from the script's own `src`, not written relative to the
 
 The shared script still stands down whenever it finds a `.gx-corner-link` or legacy `.gx-controls-link` already in the page, so a bundle that needs its own placement can opt out by providing one; `genx-controls-link.css` keeps the old rule for that case.
 
-None of these pages are in the virtual filesystem; the DOS prompt's `dir` output shows only `.exe` launchers and `.bat` menu scripts, never raw `.html` files.
+None of these pages are in the virtual filesystem; the DOS prompt's `dir` output shows only launchers and `.bat` menu scripts, never raw `.html` files.
 
 ### The controls table — the house layout
 
@@ -153,6 +153,6 @@ After editing `fs.js` or any emulator wrapper, hard-refresh the prompt page (Ctr
 ## Related
 
 - [[Project Overview]] — what the site does
-- [[Virtual Filesystem]] — how `.exe` launchers reach `play.html`
+- [[Virtual Filesystem]] — how launchers reach `play.html`
 - [[File Structure]] — where bundles sit in the repo
 - [[Roadmap]] — what's shipped, what's next

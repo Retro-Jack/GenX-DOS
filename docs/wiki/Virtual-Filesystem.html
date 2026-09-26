@@ -276,7 +276,7 @@ filename rather than stored, so each program has its own stable garbage and
 <code>fs.js</code> doesn't carry 351 blobs of noise. The two <code>.COM</code> files in the root get
 the same treatment without the <code>MZ</code>, a <code>.COM</code> having no header at all.</p>
 <h2 id="the-no-html-files-rule">The no-<code>.html</code>-files rule</h2>
-<p>The virtual filesystem only lists <code>.exe</code> launchers and the <code>.bat</code> menu scripts and numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's <code>controls.html</code>, future bezels, etc.) live on disk under <code>systems/&lt;name&gt;/</code> but are reached from inside the emulator's entry HTML via the top-corner links, not from the DOS prompt.</p>
+<p>The virtual filesystem only lists launchers — 461 <code>.exe</code> and, for the IBM PC's MS-DOS 4.00, one <code>.com</code>, because a DOS system is what a <code>.com</code> would have been — and the <code>.bat</code> menu scripts and numbered shortcuts that route between them. Auxiliary HTML pages (each emulator's <code>controls.html</code>, future bezels, etc.) live on disk under <code>systems/&lt;name&gt;/</code> but are reached from inside the emulator's entry HTML via the top-corner links, not from the DOS prompt.</p>
 <p>This is period-correct: a DOS user typing <code>dir</code> shouldn't see <code>.html</code>.</p>
 <p>See <a href="Customising-the-Filesystem.html">Customising the Filesystem</a> for worked examples of adding entries.</p>
   </main>
