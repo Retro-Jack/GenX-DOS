@@ -44,7 +44,7 @@ One more thing came out of play-testing: with RT holding full throttle, the bike
 
 ## The coin door
 
-A cabinet has no keyboard, so the coin slot and the two start buttons are soft keys — 1P, coin, 2P, in that order — in a box beside the *Gameplay controls* link, matched to it in colour, rule and height. The height is measured off the link at runtime rather than written down, because the label is two lines of a webfont whose height isn't known until the font arrives.
+A cabinet has no keyboard, so the coin slot and the two start buttons are soft keys — 1P, coin, 2P, in that order — in a box beside the *Program controls* link, matched to it in colour, rule and height. The height is measured off the link at runtime rather than written down, because the label is two lines of a webfont whose height isn't known until the font arrives.
 
 ## Cabinets and marquees
 
