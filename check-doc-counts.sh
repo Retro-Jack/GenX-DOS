@@ -33,12 +33,24 @@ bad()  { printf '  \033[31mMISMATCH\033[0m  %-24s %s\n' "$1" "$2"; fail=1; }
 ok()   { printf '  \033[32mok\033[0m        %-24s %s\n' "$1" "$2"; }
 
 # ---- ground truth, measured from the tree -------------------------------
-# Not every page under docs/games/ is a game. MS-DOS 4.00 is the operating
-# system itself, on the IBM PC shelf since 24/09/2026: it needs a page like
-# anything else, but it is not counted on the games tally. Listed by name on
-# purpose, so a future non-game has to be added here deliberately rather than
-# quietly inflating the number the landing page and the card both quote.
-NONGAME_DOCS='docs/games/dos/msdos4.html'
+# Not every page under docs/games/ is a game. The row-11 entries are each
+# machine's own firmware -- MS-DOS 4.00, BASIC on the Commodore and Atari
+# machines, LDOS and TRSDOS on the TRS-80. They need a page like anything else
+# but are not counted on the games tally. Listed by name on purpose, so a
+# future non-game has to be added here deliberately rather than quietly
+# inflating the number the landing page and the card both quote. Mine Storm is
+# NOT here: it sits in the same menu row on the Vectrex but is a real game.
+NONGAME_DOCS='docs/games/dos/msdos4.html \
+             docs/games/atari400/basic.html \
+             docs/games/atari800/basic.html \
+             docs/games/c16/basic.html \
+             docs/games/c64/basic.html \
+             docs/games/max/basic.html \
+             docs/games/pet/basic.html \
+             docs/games/plus4/basic.html \
+             docs/games/vic20/basic.html \
+             docs/games/trs80/ldos.html \
+             docs/games/trs80/trsdos.html'
 DOCPAGES=$(find docs/games -name '*.html' | wc -l)
 NONGAMES=0
 for f in $NONGAME_DOCS; do [ -f "$f" ] && NONGAMES=$((NONGAMES + 1)); done
@@ -273,7 +285,7 @@ fi
 echo
 
 # ---- corner links: every launcher key must have a gamedoc to point at ---
-# genx-controls-link.js builds the top-left "Gameplay controls" link whenever
+# genx-controls-link.js builds the top-left "Program controls" link whenever
 # the launch URL carries a key. Ten launchers named a machine's own firmware
 # (BASIC, LDOS, TRSDOS), which has no gamedoc, so the link 404'd on the live
 # site for months -- a dead corner link looks exactly like a live one. The

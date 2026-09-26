@@ -63,7 +63,19 @@ def stats_row():
                if os.path.isdir(os.path.join(games_dir, d))]
     # MS-DOS 4.00 has a page on the IBM PC shelf but is the operating system,
     # not a game. check-doc-counts.sh keeps the same list; both must agree.
-    nongames = {os.path.join(ROOT, "docs/games/dos/msdos4.html")}
+    nongames = {
+                 os.path.join(ROOT, "docs/games/dos/msdos4.html"),
+                 os.path.join(ROOT, "docs/games/atari400/basic.html"),
+                 os.path.join(ROOT, "docs/games/atari800/basic.html"),
+                 os.path.join(ROOT, "docs/games/c16/basic.html"),
+                 os.path.join(ROOT, "docs/games/c64/basic.html"),
+                 os.path.join(ROOT, "docs/games/max/basic.html"),
+                 os.path.join(ROOT, "docs/games/pet/basic.html"),
+                 os.path.join(ROOT, "docs/games/plus4/basic.html"),
+                 os.path.join(ROOT, "docs/games/vic20/basic.html"),
+                 os.path.join(ROOT, "docs/games/trs80/ldos.html"),
+                 os.path.join(ROOT, "docs/games/trs80/trsdos.html"),
+    }
     games = sum(1
                 for root, _, files in os.walk(games_dir)
                 for f in files

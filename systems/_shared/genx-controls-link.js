@@ -4,8 +4,9 @@
 //
 // Injects the two top-corner links into every emulator's entry HTML:
 //
-//   top-left   gameplay controls -> this game's gamedoc       (how to play
-//                               the loaded title)
+//   top-left   program controls -> this entry's gamedoc        (how to drive
+//                               whatever is loaded: a game, or a machine's
+//                               own BASIC or DOS prompt)
 //   top-right  system help   -> this bundle's controls.html  (the machine:
 //                               keyboard map, soft keys, quirks)
 //
@@ -36,28 +37,14 @@
 // element already exists, so a bundle that needs its own placement can opt
 // out by providing one.
 //
-// FIRMWARE PROMPTS GET NO GAMEPLAY LINK. A handful of launchers carry a key
-// that names a machine's own firmware rather than a game -- BASIC on the
-// Commodore and Atari machines, LDOS and TRSDOS on the TRS-80. They are not
-// games, they have no gamedoc, and a left-hand link built for them pointed at
-// a page that does not exist: ten launchers, ten 404s, live and unnoticed
-// because the corner link looks the same whether or not its target is there.
-// Listed as platform/key so a real game called `basic` on some future machine
-// would still get its link. check-doc-counts.sh holds this list to the tree,
-// so adding a firmware entry without a gamedoc fails the check rather than
-// shipping another dead link.
-var NO_GAMEDOC = [
-  'atari400/basic',
-  'atari800/basic',
-  'c16/basic',
-  'c64/basic',
-  'max/basic',
-  'pet/basic',
-  'plus4/basic',
-  'vic20/basic',
-  'trs80/ldos',
-  'trs80/trsdos',
-];
+// EVERY LAUNCHER KEY NOW HAS A PAGE. This list was the ten firmware prompts --
+// BASIC on the Commodore and Atari machines, LDOS and TRSDOS on the TRS-80 --
+// whose left-hand link pointed at a gamedoc that did not exist, so it 404'd.
+// They have pages of their own now and the list is empty, but it stays as the
+// mechanism: an entry here is `platform/key`, and check-doc-counts.sh holds it
+// to the tree in both directions, so a launcher added without a page fails the
+// check rather than shipping another dead link.
+var NO_GAMEDOC = [];
 (function () {
   if (document.querySelector('.gx-corner-link, .gx-controls-link')) return;
 
@@ -106,7 +93,7 @@ var NO_GAMEDOC = [
     link(
       'gx-left',
       ROOT + 'docs/games/' + platform + '/' + key + '.html',
-      'Gameplay',
+      'Program',
       'controls',
     );
   }

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LDOS 5.3.1 &mdash; Tandy TRS-80 Model III &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; Tandy TRS-80 Model III</div>
+      <h1>LDOS 5.3.1</h1>
+      <p class="sub">1991, MISOSYS &mdash; the operating system people bought because Tandy's was not good enough, still being updated a decade on.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/trs80/controls.html">System help &mdash; the Tandy TRS-80 Model III controls</a></p>
+
+    <p class="intro">LDOS is what a serious TRS-80 owner replaced TRSDOS with, and the version here is a late one &mdash; released in 1991, years after Tandy had moved on, and the last of the line. That it existed at all tells you something about the people who used it. It does everything TRSDOS does and rather more: job control files, a proper text editor, filters you can put between a program and the screen, and a <code>HELP</code> command that actually helps.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>It boots to the LDOS prompt, and may ask for the date.</li>
+      <li>Type <code>HELP</code> and press <kbd>Enter</kbd> &mdash; this disk carries its own help.</li>
+      <li><code>DIR</code> lists the disk; <code>FREE</code> shows what is left.</li>
+      <li><code>BASIC</code> for Disk BASIC, <code>TED</code> for the text editor. <kbd>Esc</kbd> is BREAK.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The Model III's own BREAK key is the one to know.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Esc</kbd></td><td>BREAK &mdash; interrupts a running program and returns you to the prompt</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>ENTER</td></tr>
+      <tr><td><kbd>Shift</kbd></td><td>SHIFT. The Model III has lower case as standard, which the Model I did not</td></tr>
+    </table>
+
+    <h2>Programs on this disk</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>HELP</code></td><td>The built-in help &mdash; start here</td></tr>
+      <tr><td><code>DIR</code></td><td>The disk directory</td></tr>
+      <tr><td><code>FREE</code></td><td>How much space is left</td></tr>
+      <tr><td><code>BASIC</code></td><td>Disk BASIC</td></tr>
+      <tr><td><code>TED</code></td><td>The text editor</td></tr>
+      <tr><td><code>FED</code></td><td>The file editor &mdash; edit a file byte by byte</td></tr>
+      <tr><td><code>CMDFILE</code></td><td>Inspect and split executable files</td></tr>
+      <tr><td><code>FORMAT</code> <code>BACKUP</code> <code>QFB</code></td><td>Prepare and copy disks, the last one quickly</td></tr>
+      <tr><td><code>REPAIR</code></td><td>Fix a disk that has gone wrong</td></tr>
+      <tr><td><code>PATCH</code></td><td>Apply patches to files &mdash; how LDOS was maintained</td></tr>
+      <tr><td><code>LOG</code></td><td>Record what was done</td></tr>
+      <tr><td><code>CONV</code> <code>DATECONV</code></td><td>Bring files and dates across from elsewhere</td></tr>
+      <tr><td><code>LCOMM</code></td><td>The terminal program</td></tr>
+      <tr><td><code>HITAPE</code></td><td>Tape at the higher speed</td></tr>
+    </table>
+    <p class="note">The list above was read off the disk image this page actually boots. There is a <code>README/TXT</code> on it as well, which you can read at the prompt.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong><code>HELP</code> is not decoration.</strong> LDOS shipped its documentation on the disk, which in 1991 was still unusual.</li>
+      <li><strong>Filters are the clever bit.</strong> LDOS lets you put a filter between a program and a device &mdash; the ancestor of piping, on a machine with 48K.</li>
+      <li><strong><code>TED</code> is a real editor</strong>, not a line editor. After <code>EDLIN</code> on the DOS shelf it feels like the future.</li>
+      <li><strong>Nothing is kept.</strong> Write to the disk freely; a reload puts it back.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

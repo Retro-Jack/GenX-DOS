@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atari BASIC &mdash; Atari 800XL &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; Atari 800XL</div>
+      <h1>Atari BASIC</h1>
+      <p class="sub">1983 &mdash; the handsome later model, with a keyboard you could actually type on. The BASIC is Atari's own, and it has opinions.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/atari800/controls.html">System help &mdash; the Atari 800XL controls</a></p>
+
+    <p class="intro">Atari BASIC is unlike the others on this site in one immediately obvious way: it will not let you enter a line with a mistake in it. Press <kbd>Enter</kbd> and it checks the line there and then, and if it does not like it the offending part comes back at you in inverse video. People either loved that or found it insufferable. It also has real commands for graphics and sound, which the Commodore 64 sitting a few rows up does not.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>You get <code>READY</code> and a cursor.</li>
+      <li><code>PRINT 2+2</code>, then <kbd>Enter</kbd>.</li>
+      <li><code>10 PRINT "HELLO"</code>, <code>20 GOTO 10</code>, <code>RUN</code>.</li>
+      <li><kbd>F8</kbd> is BREAK and stops it.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The console keys down the side of the real machine, and the BREAK key, are on the function row here.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>F8</kbd></td><td>BREAK &mdash; stops a running program and returns you to <code>READY</code></td></tr>
+      <tr><td><kbd>F5</kbd></td><td>RESET (a warm reset)</td></tr>
+      <tr><td><kbd>F2</kbd> <kbd>F3</kbd> <kbd>F4</kbd></td><td>The OPTION, SELECT and START console keys</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>TAB</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>ESC</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the program. <code>LIST 10,100</code> shows part of it</td></tr>
+      <tr><td><code>RUN</code></td><td>Start it</td></tr>
+      <tr><td><code>NEW</code></td><td>Throw it away</td></tr>
+      <tr><td><code>PRINT</code></td><td>Print something, or work as a calculator</td></tr>
+      <tr><td><code>GRAPHICS</code></td><td>Pick a screen mode &mdash; <code>GRAPHICS 8</code> is the high-resolution one</td></tr>
+      <tr><td><code>PLOT</code> <code>DRAWTO</code></td><td>Draw a point, then a line to another</td></tr>
+      <tr><td><code>COLOR</code> <code>SETCOLOR</code></td><td>Choose what you are drawing with</td></tr>
+      <tr><td><code>SOUND</code></td><td>One of four voices: channel, pitch, distortion, volume</td></tr>
+      <tr><td><code>POSITION</code></td><td>Move the cursor before printing</td></tr>
+      <tr><td><code>FOR</code> &hellip; <code>NEXT</code>, <code>IF</code> &hellip; <code>THEN</code>, <code>GOTO</code>, <code>GOSUB</code></td><td>The usual machinery</td></tr>
+      <tr><td><code>INPUT</code> <code>GET</code></td><td>Ask the keyboard</td></tr>
+      <tr><td><code>PEEK</code> <code>POKE</code></td><td>Straight at the hardware</td></tr>
+      <tr><td><code>CONT</code></td><td>Carry on after a stop</td></tr>
+      <tr><td><code>CSAVE</code> <code>CLOAD</code></td><td>Tape, if there were one</td></tr>
+    </table>
+    <p class="note">Without BASIC switched in, one of these machines with nothing in the cartridge slot comes up in the Memo Pad &mdash; a screen you can type on that does nothing whatsoever with what you type. Every other entry on this shelf boots with BASIC out of the way, because a game wants the memory.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>It checks each line as you type it.</strong> Press <kbd>Enter</kbd> on a line with a mistake and it comes straight back with the bad part in inverse video. No other BASIC here does that.</li>
+      <li><strong><code>GRAPHICS 8</code> then <code>PLOT</code> and <code>DRAWTO</code></strong> is the quickest way to get something on screen worth looking at.</li>
+      <li><strong>Line numbers decide the order.</strong> Number in tens and leave yourself room.</li>
+      <li><strong>Nothing is kept.</strong> Close the tab and the program is gone.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

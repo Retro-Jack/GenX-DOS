@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MAX BASIC &mdash; Commodore MAX Machine &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Home Console &middot; Commodore MAX Machine</div>
+      <h1>MAX BASIC</h1>
+      <p class="sub">1982 &mdash; BASIC on a games console that was never sold with any, plugged in from a cartridge.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/max/controls.html">System help &mdash; the Commodore MAX Machine controls</a></p>
+
+    <p class="intro">The MAX Machine is the odd one out: a cut-down, cartridge-only Commodore released in 1982 and sold only in Japan. Its cartridge slot is compatible with the 64's, which is the family resemblance; whether it counts as the 64's predecessor is argued about and we will not settle it here. It had no BASIC of its own &mdash; switch a MAX on with nothing in the slot and there is nothing to talk to. BASIC arrived as a cartridge you bought separately, and that is what is loaded here. With 2K of RAM it is the most cramped BASIC on the site, which is rather the point.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>BASIC is already in the slot, so you get a prompt and a cursor.</li>
+      <li><code>PRINT 2+2</code>, then <kbd>Enter</kbd>.</li>
+      <li><code>10 PRINT "HI"</code>, <code>20 GOTO 10</code>, <code>RUN</code>.</li>
+      <li><kbd>Scroll Lock</kbd> is RUN/STOP.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">A PC keyboard is not a Commodore one, so a handful of keys have been put somewhere sensible.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Scroll Lock</kbd> or <kbd>Pause</kbd></td><td>RUN/STOP &mdash; stops a running program. The browser eats <kbd>Esc</kbd> before the machine sees it, so it lives here instead</td></tr>
+      <tr><td><kbd>Page Up</kbd></td><td>RESTORE. With RUN/STOP held, a warm reset</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>L Ctrl</kbd></td><td>The Commodore key</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>&pound;</td></tr>
+      <tr><td><kbd>Delete</kbd></td><td>The up-arrow key</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the program in memory. <code>LIST 10-100</code> shows part of it</td></tr>
+      <tr><td><code>RUN</code></td><td>Start it</td></tr>
+      <tr><td><code>NEW</code></td><td>Throw it away and start again</td></tr>
+      <tr><td><code>PRINT</code></td><td>Print something. <code>PRINT 2+2</code> works as a calculator</td></tr>
+      <tr><td><code>GOTO</code> <code>GOSUB</code> <code>RETURN</code></td><td>Jump about</td></tr>
+      <tr><td><code>IF</code> &hellip; <code>THEN</code></td><td>Decide</td></tr>
+      <tr><td><code>FOR</code> &hellip; <code>NEXT</code></td><td>Loop</td></tr>
+      <tr><td><code>INPUT</code> <code>GET</code></td><td>Ask the person at the keyboard</td></tr>
+      <tr><td><code>PEEK</code> <code>POKE</code></td><td>Read and write memory directly &mdash; how this machine does graphics and sound</td></tr>
+      <tr><td><code>SYS</code></td><td>Call machine code</td></tr>
+      <tr><td><code>CONT</code></td><td>Carry on after a stop</td></tr>
+      <tr><td><code>LOAD</code> <code>SAVE</code></td><td>Tape and disk. Nothing survives closing the tab</td></tr>
+    </table>
+    <p class="note">There is very little memory here. Long programs will run out of room in a way they would not on a 64, and that is the machine rather than the emulator.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>It is a calculator too.</strong> <code>PRINT 2+2</code> and press <kbd>Enter</kbd>. No program required.</li>
+      <li><strong>Line numbers decide the order</strong>, not the order you typed them. Number in tens so there is room to squeeze lines in later.</li>
+      <li><strong>Editing is done on screen.</strong> Move the cursor up to a listed line, change it, press <kbd>Enter</kbd> on it. That re-enters the whole line.</li>
+      <li><strong>Nothing is kept.</strong> <code>SAVE</code> works, and the result goes when the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodore Plus/4 BASIC 3.5 &mdash; Commodore Plus/4 &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; Commodore Plus/4</div>
+      <h1>Commodore Plus/4 BASIC 3.5</h1>
+      <p class="sub">1984 &mdash; &ldquo;the productivity computer with software built in&rdquo; &mdash; a four-program office suite in ROM that the magazines were merciless about. Its BASIC, though, is far better than the 64's.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/plus4/controls.html">System help &mdash; the Commodore Plus/4 controls</a></p>
+
+    <p class="intro">This is the BASIC Commodore should arguably have put in the 64. Where the 64 makes you <code>POKE</code> numbers into addresses to draw a line or make a noise, BASIC 3.5 has actual commands for both &mdash; <code>CIRCLE</code>, <code>PAINT</code>, <code>SOUND</code> &mdash; along with loops that do not need line numbers, a renumber command, a tracer for when a program misbehaves, and disk commands you can read out loud. The machines sold badly. The BASIC deserved better.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The cursor is waiting after the startup message.</li>
+      <li><code>PRINT 2+2</code>, then <kbd>Enter</kbd>.</li>
+      <li>Try the graphics: <code>GRAPHIC 1</code>, then <code>CIRCLE 1,160,100,60</code>.</li>
+      <li><code>GRAPHIC 0</code> puts the text screen back. <kbd>Scroll Lock</kbd> is RUN/STOP.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">A PC keyboard is not a Commodore one. This machine has no Commodore key, so that row is simply absent.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Scroll Lock</kbd> or <kbd>Pause</kbd></td><td>RUN/STOP &mdash; stops a running program. The browser eats <kbd>Esc</kbd> before the machine sees it, so it lives here instead</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>CTRL</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>CLR/HOME</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>INST/DEL</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>&pound;</td></tr>
+      <tr><td><kbd>Delete</kbd></td><td>The up-arrow key</td></tr>
+      <tr><td><kbd>`</kbd></td><td>The left-arrow key</td></tr>
+      <tr><td><kbd>F1</kbd>&ndash;<kbd>F8</kbd></td><td>The machine's own function keys</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the program in memory. <code>LIST 10-100</code> shows part of it</td></tr>
+      <tr><td><code>RUN</code></td><td>Start it</td></tr>
+      <tr><td><code>NEW</code></td><td>Throw it away and start again</td></tr>
+      <tr><td><code>PRINT</code></td><td>Print something. <code>PRINT 2+2</code> works as a calculator</td></tr>
+      <tr><td><code>GOTO</code> <code>GOSUB</code> <code>RETURN</code></td><td>Jump about</td></tr>
+      <tr><td><code>IF</code> &hellip; <code>THEN</code></td><td>Decide</td></tr>
+      <tr><td><code>FOR</code> &hellip; <code>NEXT</code></td><td>Loop</td></tr>
+      <tr><td><code>INPUT</code> <code>GET</code></td><td>Ask the person at the keyboard</td></tr>
+      <tr><td><code>PEEK</code> <code>POKE</code></td><td>Read and write memory directly &mdash; how this machine does graphics and sound</td></tr>
+      <tr><td><code>SYS</code></td><td>Call machine code</td></tr>
+      <tr><td><code>CONT</code></td><td>Carry on after a stop</td></tr>
+      <tr><td><code>LOAD</code> <code>SAVE</code></td><td>Tape and disk. Nothing survives closing the tab</td></tr>
+      <tr><td>&mdash;</td><td><em>and the ones the 64 never had:</em></td></tr>
+      <tr><td><code>GRAPHIC</code> <code>DRAW</code> <code>CIRCLE</code> <code>BOX</code> <code>PAINT</code></td><td>Drawing, without a single POKE</td></tr>
+      <tr><td><code>COLOR</code> <code>SCNCLR</code></td><td>Colour and clear the screen</td></tr>
+      <tr><td><code>SOUND</code> <code>VOL</code></td><td>Noise, likewise</td></tr>
+      <tr><td><code>DO</code> <code>LOOP</code> <code>WHILE</code> <code>UNTIL</code> <code>EXIT</code></td><td>Loops without line numbers</td></tr>
+      <tr><td><code>AUTO</code> <code>RENUMBER</code> <code>DELETE</code></td><td>Write and tidy a program</td></tr>
+      <tr><td><code>TRON</code> <code>TROFF</code></td><td>Trace it when it misbehaves</td></tr>
+      <tr><td><code>DIRECTORY</code> <code>DLOAD</code> <code>DSAVE</code> <code>SCRATCH</code></td><td>Disk, in words rather than incantations</td></tr>
+      <tr><td><code>DEC</code> <code>HEX$</code> <code>JOY</code></td><td>Number bases, and the joystick</td></tr>
+      <tr><td><code>MONITOR</code></td><td>Drop into the built-in machine-code monitor</td></tr>
+    </table>
+    <p class="note">There is a <code>HELP</code> command, which is more than most machines of the period offered: run a program that fails and <code>HELP</code> lists the line it failed on with the offending part in flashing characters.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>It is a calculator too.</strong> <code>PRINT 2+2</code> and press <kbd>Enter</kbd>. No program required.</li>
+      <li><strong>Line numbers decide the order</strong>, not the order you typed them. Number in tens so there is room to squeeze lines in later.</li>
+      <li><strong>Editing is done on screen.</strong> Move the cursor up to a listed line, change it, press <kbd>Enter</kbd> on it. That re-enters the whole line.</li>
+      <li><strong>Nothing is kept.</strong> <code>SAVE</code> works, and the result goes when the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

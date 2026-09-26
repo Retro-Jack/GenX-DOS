@@ -70,7 +70,7 @@
 
   function build() {
     const css = `
-      /* A second corner box, beside the Gameplay controls link rather than
+      /* A second corner box, beside the Program controls link rather than
          floating under it. Same background, border, radius and padding, and
          its height is measured off that link at runtime — the label is two
          lines of a webfont, so its height is not a number that can be written
@@ -207,7 +207,7 @@
     place(bar);
   }
 
-  // Sit the box immediately right of the Gameplay controls link and match its
+  // Sit the box immediately right of the Program controls link and match its
   // height. Measured rather than assumed: the link's height comes from two
   // lines of IBM Plex Mono, so it changes when the webfont arrives and again
   // if the browser's own metrics differ. Re-run on both.
