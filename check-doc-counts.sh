@@ -40,17 +40,29 @@ ok()   { printf '  \033[32mok\033[0m        %-24s %s\n' "$1" "$2"; }
 # future non-game has to be added here deliberately rather than quietly
 # inflating the number the landing page and the card both quote. Mine Storm is
 # NOT here: it sits in the same menu row on the Vectrex but is a real game.
-NONGAME_DOCS='docs/games/dos/msdos4.html \
+NONGAME_DOCS='docs/games/apple1/monitor.html \
+             docs/games/apple2/basic.html \
              docs/games/atari400/basic.html \
              docs/games/atari800/basic.html \
+             docs/games/bbcmaster/basic.html \
+             docs/games/bbcmicro/basic.html \
              docs/games/c16/basic.html \
              docs/games/c64/basic.html \
+             docs/games/cpc/basic.html \
+             docs/games/dos/msdos4.html \
+             docs/games/js99er/basic.html \
+             docs/games/jsspeccy/basic.html \
+             docs/games/jtyone/basic.html \
+             docs/games/m100/menu.html \
              docs/games/max/basic.html \
+             docs/games/msx1/basic.html \
+             docs/games/msx2/basic.html \
              docs/games/pet/basic.html \
              docs/games/plus4/basic.html \
-             docs/games/vic20/basic.html \
              docs/games/trs80/ldos.html \
-             docs/games/trs80/trsdos.html'
+             docs/games/trs80/trsdos.html \
+             docs/games/vic20/basic.html \
+             docs/games/xroar/basic.html'
 DOCPAGES=$(find docs/games -name '*.html' | wc -l)
 NONGAMES=0
 for f in $NONGAME_DOCS; do [ -f "$f" ] && NONGAMES=$((NONGAMES + 1)); done
@@ -311,12 +323,22 @@ for x in sorted(missing - listed):
     print(f"UNLISTED {x} is launched, has no gamedoc, and is not in NO_GAMEDOC")
 for x in sorted(listed - missing):
     print(f"STALE    {x} is in NO_GAMEDOC but now has a gamedoc (or is never launched)")
-print(f"OK {len(launched)} keyed launchers, {len(listed)} firmware keys without a gamedoc")
+
+# BARE_KEY stands in when a launch carries no key at all -- the bare machine,
+# which on these twelve is its own BASIC, monitor or startup menu.
+bare = re.search(r"var BARE_KEY = \{(.*?)\};", js, re.S)
+pairs = dict(re.findall(r"([A-Za-z0-9_]+):\s*'([^']+)'", bare.group(1))) if bare else {}
+for b, k in sorted(pairs.items()):
+    if not (root / "docs/games" / b / f"{k}.html").exists():
+        print(f"BAREMISS {b}/{k} in BARE_KEY, but docs/games/{b}/{k}.html does not exist")
+    if not (root / "systems" / b).is_dir():
+        print(f"BAREBAD  {b} in BARE_KEY is not a bundle")
+print(f"OK {len(launched)} keyed launchers, {len(listed)} suppressed, {len(pairs)} bare-machine keys")
 PYEOF
 )
-if printf '%s' "$link_out" | grep -qE '^(UNLISTED|STALE)'; then
+if printf '%s' "$link_out" | grep -qE '^(UNLISTED|STALE|BAREMISS|BAREBAD)'; then
   bad "corner links" "NO_GAMEDOC is out of step with the tree:"
-  printf '%s\n' "$link_out" | grep -E '^(UNLISTED|STALE)' | sed 's/^/                                     /'
+  printf '%s\n' "$link_out" | grep -E '^(UNLISTED|STALE|BAREMISS|BAREBAD)' | sed 's/^/                                     /'
 else
   ok "corner links" "$(printf '%s' "$link_out" | sed -n 's/^OK //p')"
 fi

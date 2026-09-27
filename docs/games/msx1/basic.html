@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MSX BASIC &mdash; MSX1 &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; MSX1</div>
+      <h1>MSX BASIC</h1>
+      <p class="sub">1983 &mdash; the standard that nearly happened: one BASIC across machines from a dozen manufacturers.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/msx1/controls.html">System help &mdash; the MSX1 controls</a></p>
+
+    <p class="intro">MSX was an attempt to do for home computers what VHS did for video recorders &mdash; one specification, many makers, software that ran on all of them. It largely failed in Britain and thoroughly succeeded in Japan. The BASIC is Microsoft's, and a good one: proper graphics and sound commands, sprites you can address from BASIC, and a row of function-key labels along the bottom of the screen that tells you what the keys do.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The machine comes up at a BASIC prompt with the function-key labels along the bottom.</li>
+      <li><code>PRINT 2+2</code>, then <kbd>Enter</kbd>.</li>
+      <li><code>SCREEN 2</code> gives you graphics; <code>SCREEN 0</code> puts text back.</li>
+      <li><kbd>Page Up</kbd> twice, quickly, breaks out of a program that has hung.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The bottom line of the screen is a live key legend, which is the MSX's own idea and rather a good one.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Page Up</kbd></td><td>STOP. Press it twice quickly to break out of a hung program</td></tr>
+      <tr><td><kbd>F1</kbd>&ndash;<kbd>F5</kbd></td><td>The function keys, labelled along the bottom of the screen</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>RETURN</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the program</td></tr>
+      <tr><td><code>RUN</code></td><td>Start it</td></tr>
+      <tr><td><code>NEW</code></td><td>Throw it away</td></tr>
+      <tr><td><code>SCREEN n</code></td><td>Pick a display mode &mdash; <code>0</code> text, <code>2</code> graphics</td></tr>
+      <tr><td><code>COLOR</code></td><td>Foreground, background and border</td></tr>
+      <tr><td><code>LINE</code> <code>CIRCLE</code> <code>PAINT</code> <code>PSET</code></td><td>Drawing, as commands rather than POKEs</td></tr>
+      <tr><td><code>SPRITE$</code> <code>PUT SPRITE</code></td><td>Sprites, from BASIC</td></tr>
+      <tr><td><code>PLAY</code></td><td>Music, written as a string of notes</td></tr>
+      <tr><td><code>SOUND</code></td><td>Straight at the sound chip's registers</td></tr>
+      <tr><td><code>KEY</code></td><td>Redefine what the function keys type</td></tr>
+      <tr><td><code>FOR</code> &hellip; <code>NEXT</code>, <code>IF</code> &hellip; <code>THEN</code>, <code>GOSUB</code></td><td>The usual</td></tr>
+    </table>
+    <p class="note"><code>PLAY "CDEFGAB"</code> is the quickest way to get a tune out of one of these. The string is a little language of its own &mdash; notes, octaves, tempo and length all go in it.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Watch the bottom line.</strong> It shows what the function keys are set to, and <code>KEY</code> changes them.</li>
+      <li><strong><code>SCREEN 2</code> then <code>CIRCLE (128,96),50</code></strong> proves the graphics in two lines.</li>
+      <li><strong>Sprites are a BASIC feature here</strong>, which on most machines of the period they were not.</li>
+      <li><strong>Nothing is kept</strong> once the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

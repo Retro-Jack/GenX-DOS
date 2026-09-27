@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Woz Monitor &mdash; Apple I &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple &middot; Apple I</div>
+      <h1>The Woz Monitor</h1>
+      <p class="sub">1976 &mdash; 256 bytes of ROM by Steve Wozniak, and the entire user interface of the first Apple.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/apple1/controls.html">System help &mdash; the Apple I controls</a></p>
+
+    <p class="intro">There is no operating system here and no BASIC until you load one. What the Apple I gives you is a backslash prompt and a monitor that does three things: show memory, change memory, and jump to an address. Woz wrote it in 256 bytes. Everything the machine did in 1976 was done through these few characters, and working that way for five minutes explains the next decade of home computing rather well.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The screen shows a <code>\</code> prompt and a cursor.</li>
+      <li>Type <code>FF00</code> and press <kbd>Enter</kbd> to see the byte at that address.</li>
+      <li>Type <code>0:A9 41 20 EF FF</code> to write five bytes at address 0.</li>
+      <li>Type <code>0R</code> to run what you just wrote.</li>
+      <li>For a language, load Integer BASIC from the menu and type <code>E000R</code>.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The monitor is the whole interface; these are its keys.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Enter</kbd></td><td>Submit the line. The monitor answers immediately</td></tr>
+      <tr><td><kbd>Pause</kbd></td><td>Reset the machine, which is how the real Apple I did it</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>Break out of a running BASIC program once one is loaded</td></tr>
+    </table>
+
+    <h2>What the monitor understands</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>XXXX</code></td><td>Show the byte at hex address XXXX</td></tr>
+      <tr><td><code>XXXX.YYYY</code></td><td>Show the range XXXX to YYYY, eight bytes to a row</td></tr>
+      <tr><td><code>.YYYY</code></td><td>Carry the previous range on up to YYYY</td></tr>
+      <tr><td><code>XXXX: DD DD DD</code></td><td>Write those byte values starting at XXXX</td></tr>
+      <tr><td><code>: DD DD DD</code></td><td>Carry on writing after the last byte stored</td></tr>
+      <tr><td><code>XXXXR</code></td><td>Run &mdash; jump to hex address XXXX. <code>E000R</code> enters Integer BASIC once it is loaded</td></tr>
+    </table>
+    <p class="note">Everything is hexadecimal and there is no error message worth the name: a line the monitor does not understand simply does nothing. That is not this emulator being unhelpful, it is 256 bytes of ROM having no room to be polite.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Addresses and values are hex.</strong> There is no decimal anywhere in the monitor.</li>
+      <li><strong><code>R</code> is the whole of &lsquo;run&rsquo;.</strong> There is no <code>LIST</code>, no <code>SAVE</code>, and no undo.</li>
+      <li><strong>Integer BASIC is a separate load.</strong> The Apple I shipped with nothing; BASIC came on tape and went in at <code>E000</code>.</li>
+      <li><strong>Nothing is kept.</strong> Reload the page and the memory is blank again.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

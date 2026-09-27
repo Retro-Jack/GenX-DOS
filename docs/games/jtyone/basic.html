@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZX81 BASIC &mdash; Sinclair ZX81 &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; Sinclair ZX81</div>
+      <h1>ZX81 BASIC</h1>
+      <p class="sub">1981 &mdash; black and white, 16K, and the machine that put a computer in a British house for under a hundred pounds.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/jtyone/controls.html">System help &mdash; the Sinclair ZX81 controls</a></p>
+
+    <p class="intro">The ZX81 is the Spectrum's older, sparser parent: no colour, no sound, and a membrane keyboard that does not so much click as relent. It uses the same single-keypress keywords, driven by a cursor letter that tells you what the next key will do. Everything about it was built down to a price, and it worked &mdash; this is the machine a great many people in Britain met first.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The cursor shows a letter. <strong>K</strong> means the next key is a keyword.</li>
+      <li>Press <kbd>P</kbd>. <code>PRINT</code> appears whole.</li>
+      <li>Type <code>2+2</code> and press <kbd>Enter</kbd>.</li>
+      <li><kbd>Space</kbd> is BREAK and stops a running program.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The cursor letter tells you what the next keypress produces &mdash; the same system the Spectrum inherited.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><strong>K</strong> cursor</td><td>Keyword &mdash; the first letter of a keyword types the whole word (<kbd>P</kbd> gives <code>PRINT</code>, <kbd>L</kbd> gives <code>LET</code>)</td></tr>
+      <tr><td><strong>L</strong> cursor</td><td>Letters type as themselves, which is what you want after the keyword</td></tr>
+      <tr><td><strong>F</strong> cursor</td><td>Function mode &mdash; reached with <kbd>Shift</kbd>+<kbd>Enter</kbd>, for things like <code>SIN</code> and <code>RND</code></td></tr>
+      <tr><td><strong>G</strong> cursor</td><td>Graphics blocks &mdash; <kbd>Shift</kbd>+<kbd>9</kbd> in and out</td></tr>
+      <tr><td><kbd>Space</kbd></td><td>BREAK</td></tr>
+      <tr><td><kbd>5</kbd> <kbd>6</kbd> <kbd>7</kbd> <kbd>8</kbd></td><td>The cursor keys, as Sinclair's key overlays had them</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>PRINT</code> (<kbd>P</kbd>)</td><td>Print, or calculate</td></tr>
+      <tr><td><code>LIST</code> (<kbd>K</kbd>)</td><td>Show the program</td></tr>
+      <tr><td><code>RUN</code> (<kbd>R</kbd>)</td><td>Start it</td></tr>
+      <tr><td><code>NEW</code> (<kbd>A</kbd>)</td><td>Throw it away</td></tr>
+      <tr><td><code>LET</code> (<kbd>L</kbd>)</td><td>Assign a variable &mdash; required, as on the Spectrum</td></tr>
+      <tr><td><code>GOTO</code> (<kbd>G</kbd>)</td><td>Jump</td></tr>
+      <tr><td><code>FOR</code> / <code>NEXT</code></td><td>Loop</td></tr>
+      <tr><td><code>PLOT</code> <code>UNPLOT</code></td><td>The chunky 64&times;44 graphics</td></tr>
+      <tr><td><code>SLOW</code> / <code>FAST</code></td><td>Whether the machine keeps drawing the screen while it thinks</td></tr>
+    </table>
+    <p class="note"><code>SLOW</code> and <code>FAST</code> have no equivalent anywhere else here. The ZX81's processor generates the picture itself, so in <code>FAST</code> mode the screen goes blank while the program runs and comes back when it stops.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Watch the cursor letter.</strong> Nothing about the keyboard makes sense without it.</li>
+      <li><strong>Every key is live BASIC.</strong> There is no such thing as an inert keypress at this prompt.</li>
+      <li><strong><code>FAST</code> blanks the screen</strong> and roughly quadruples the speed. It is not a fault.</li>
+      <li><strong>Nothing is kept</strong> once the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

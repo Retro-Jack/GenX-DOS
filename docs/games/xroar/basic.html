@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color BASIC &mdash; Tandy Color Computer &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; Tandy Color Computer</div>
+      <h1>Color BASIC</h1>
+      <p class="sub">1980 &mdash; Microsoft BASIC in 8K of ROM, on the machine everybody called the CoCo.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/xroar/controls.html">System help &mdash; the Tandy Color Computer controls</a></p>
+
+    <p class="intro">This is the plain Color BASIC, and the thing to know about it is what is missing: it has <strong>no graphics commands at all</strong>. The high-resolution screen, <code>PMODE</code>, <code>LINE</code>, <code>CIRCLE</code>, <code>PAINT</code> and <code>DRAW</code> all belong to Extended Color BASIC, which was a different ROM you paid more for. What this one gives you is text, a 64&times;32 grid of coloured blocks, and sound &mdash; and a great deal of CoCo software was written inside exactly those limits.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The machine comes up with <code>OK</code> and a cursor.</li>
+      <li><code>PRINT 2+2</code>, then <kbd>Enter</kbd>.</li>
+      <li><code>CLS 3</code> clears the screen to a colour.</li>
+      <li><code>SET(10,10,4)</code> puts a coloured block on the screen.</li>
+      <li><kbd>Break</kbd> stops a running program.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">Colour here is blocks on the text screen, not pixels &mdash; that is Color BASIC rather than a limitation of this emulator.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Esc</kbd> or <kbd>Break</kbd></td><td>Stop a running program</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>ENTER</td></tr>
+      <tr><td><kbd>Shift</kbd>+<kbd>0</kbd></td><td>Lock to lower case on the real machine</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the program</td></tr>
+      <tr><td><code>RUN</code></td><td>Start it</td></tr>
+      <tr><td><code>NEW</code></td><td>Throw it away</td></tr>
+      <tr><td><code>CLS n</code></td><td>Clear the screen to one of nine colours</td></tr>
+      <tr><td><code>PRINT@ n,</code></td><td>Print at a screen position</td></tr>
+      <tr><td><code>SET(x,y,c)</code></td><td>Put a coloured block on the 64&times;32 grid</td></tr>
+      <tr><td><code>RESET(x,y)</code></td><td>Take one away</td></tr>
+      <tr><td><code>POINT(x,y)</code></td><td>Ask what colour a block is</td></tr>
+      <tr><td><code>SOUND p,d</code></td><td>A pitch and a duration</td></tr>
+      <tr><td><code>FOR</code> &hellip; <code>NEXT</code>, <code>IF</code> &hellip; <code>THEN</code>, <code>GOSUB</code></td><td>The usual</td></tr>
+      <tr><td><code>PEEK</code> <code>POKE</code> <code>EXEC</code></td><td>Memory, and machine code</td></tr>
+      <tr><td><code>CSAVE</code> <code>CLOAD</code></td><td>Tape, if there were one</td></tr>
+    </table>
+    <p class="note">If you try <code>PMODE</code> or <code>CIRCLE</code> here you will get an error, and that is correct: those came with Extended Color BASIC, a separate ROM. This is the 1980 machine as it shipped.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong><code>SET</code> and <code>RESET</code> are the graphics.</strong> A 64&times;32 grid of blocks in nine colours, and that is your lot.</li>
+      <li><strong><code>CLS</code> with a number</strong> gives you a whole screen of one colour, which is the fastest way to see the palette.</li>
+      <li><strong>The CoCo's real trick was artefact colour</strong> &mdash; abusing the video signal to get colours the hardware does not officially have.</li>
+      <li><strong>Nothing is kept</strong> once the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

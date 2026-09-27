@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sinclair BASIC &mdash; ZX Spectrum &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; ZX Spectrum</div>
+      <h1>Sinclair BASIC</h1>
+      <p class="sub">1982 &mdash; the 48K Spectrum, where you do not type the keywords: you press them.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/jsspeccy/controls.html">System help &mdash; the ZX Spectrum controls</a></p>
+
+    <p class="intro">The Spectrum's party trick is that <code>PRINT</code> is one keypress. Sinclair BASIC puts a keyword on every key and the machine decides, from what it is expecting, whether your keypress means a letter or a whole word. Press <kbd>P</kbd> when it wants a command and <code>PRINT</code> appears complete. It saved memory and it saved typing, and it means that anyone arriving from a normal keyboard spends their first five minutes baffled.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The cursor shows a letter telling you what mode it is in. A <strong>K</strong> means the next key is a keyword.</li>
+      <li>Press <kbd>P</kbd>. The whole word <code>PRINT</code> appears.</li>
+      <li>Now type <code>2+2</code> and press <kbd>Enter</kbd>.</li>
+      <li>For a program: <kbd>1</kbd> <kbd>0</kbd> then <kbd>P</kbd>, then the text, then <kbd>Enter</kbd>.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The cursor letter is the whole system. It tells you what the next keypress will produce.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><strong>K</strong> cursor</td><td>Keyword mode &mdash; one key gives a whole keyword. This is what you get at the start of a line</td></tr>
+      <tr><td><strong>L</strong> cursor</td><td>Letter mode &mdash; keys type themselves, which is what you want after the keyword</td></tr>
+      <tr><td><strong>C</strong> cursor</td><td>Capitals</td></tr>
+      <tr><td><strong>E</strong> cursor</td><td>Extended mode, for the keywords printed above and below the keys</td></tr>
+      <tr><td><strong>G</strong> cursor</td><td>Graphics characters</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>PRINT</code> (<kbd>P</kbd>)</td><td>Print, or calculate</td></tr>
+      <tr><td><code>LIST</code> (<kbd>K</kbd>)</td><td>Show the program</td></tr>
+      <tr><td><code>RUN</code> (<kbd>R</kbd>)</td><td>Start it</td></tr>
+      <tr><td><code>NEW</code> (<kbd>A</kbd>)</td><td>Throw it away</td></tr>
+      <tr><td><code>LET</code> (<kbd>L</kbd>)</td><td>Assign a variable &mdash; Sinclair BASIC insists on it</td></tr>
+      <tr><td><code>GO TO</code> (<kbd>G</kbd>)</td><td>Jump. Note the space: it is two words here</td></tr>
+      <tr><td><code>FOR</code> / <code>NEXT</code></td><td>Loop</td></tr>
+      <tr><td><code>INK</code> <code>PAPER</code> <code>BORDER</code></td><td>Colour</td></tr>
+      <tr><td><code>PLOT</code> <code>DRAW</code> <code>CIRCLE</code></td><td>Graphics, 256&times;192</td></tr>
+      <tr><td><code>BEEP</code></td><td>The one-bit speaker</td></tr>
+    </table>
+    <p class="note"><code>LET</code> is not optional on a Spectrum. <code>A=1</code> will not do; it has to be <code>LET A=1</code>, and the <code>LET</code> is a single keypress anyway.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Watch the cursor letter, not the keyboard.</strong> It tells you whether the next key is a word or a letter.</li>
+      <li><strong><code>GO TO</code> is two words</strong> on a Spectrum, and one keypress.</li>
+      <li><strong>Colour is per character square</strong>, which is why Spectrum graphics have that famous clash.</li>
+      <li><strong>Nothing is kept</strong> once the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -64,17 +64,29 @@ def stats_row():
     # MS-DOS 4.00 has a page on the IBM PC shelf but is the operating system,
     # not a game. check-doc-counts.sh keeps the same list; both must agree.
     nongames = {
-                 os.path.join(ROOT, "docs/games/dos/msdos4.html"),
+                 os.path.join(ROOT, "docs/games/apple1/monitor.html"),
+                 os.path.join(ROOT, "docs/games/apple2/basic.html"),
                  os.path.join(ROOT, "docs/games/atari400/basic.html"),
                  os.path.join(ROOT, "docs/games/atari800/basic.html"),
+                 os.path.join(ROOT, "docs/games/bbcmaster/basic.html"),
+                 os.path.join(ROOT, "docs/games/bbcmicro/basic.html"),
                  os.path.join(ROOT, "docs/games/c16/basic.html"),
                  os.path.join(ROOT, "docs/games/c64/basic.html"),
+                 os.path.join(ROOT, "docs/games/cpc/basic.html"),
+                 os.path.join(ROOT, "docs/games/dos/msdos4.html"),
+                 os.path.join(ROOT, "docs/games/js99er/basic.html"),
+                 os.path.join(ROOT, "docs/games/jsspeccy/basic.html"),
+                 os.path.join(ROOT, "docs/games/jtyone/basic.html"),
+                 os.path.join(ROOT, "docs/games/m100/menu.html"),
                  os.path.join(ROOT, "docs/games/max/basic.html"),
+                 os.path.join(ROOT, "docs/games/msx1/basic.html"),
+                 os.path.join(ROOT, "docs/games/msx2/basic.html"),
                  os.path.join(ROOT, "docs/games/pet/basic.html"),
                  os.path.join(ROOT, "docs/games/plus4/basic.html"),
-                 os.path.join(ROOT, "docs/games/vic20/basic.html"),
                  os.path.join(ROOT, "docs/games/trs80/ldos.html"),
                  os.path.join(ROOT, "docs/games/trs80/trsdos.html"),
+                 os.path.join(ROOT, "docs/games/vic20/basic.html"),
+                 os.path.join(ROOT, "docs/games/xroar/basic.html"),
     }
     games = sum(1
                 for root, _, files in os.walk(games_dir)

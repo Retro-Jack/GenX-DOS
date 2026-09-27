@@ -45,6 +45,30 @@
 // to the tree in both directions, so a launcher added without a page fails the
 // check rather than shipping another dead link.
 var NO_GAMEDOC = [];
+
+// A KEYLESS URL IS THE BARE MACHINE, AND THAT HAS A PAGE TOO. Twelve entries
+// launch with no key at all -- the BBC pages go out as `?disc1=blank.ssd`, the
+// rest as a plain `play.html` -- because the bare machine is the point: it
+// comes up in its own BASIC, monitor or startup menu. That is a program like
+// any other and is documented like one, so when nothing else supplies a key
+// these stand in. Bundles that publish `window.GENX_GAME_KEY` for a real game
+// still win, and the three that publish an empty string or null when there is
+// no game (apple2, cpc, and the two BBC mappers) fall through to here exactly
+// as intended. check-doc-counts.sh holds this map to the tree.
+var BARE_KEY = {
+  apple1: 'monitor',
+  apple2: 'basic',
+  bbcmaster: 'basic',
+  bbcmicro: 'basic',
+  cpc: 'basic',
+  js99er: 'basic',
+  jsspeccy: 'basic',
+  jtyone: 'basic',
+  m100: 'menu',
+  msx1: 'basic',
+  msx2: 'basic',
+  xroar: 'basic',
+};
 (function () {
   if (document.querySelector('.gx-corner-link, .gx-controls-link')) return;
 
@@ -55,15 +79,16 @@ var NO_GAMEDOC = [];
       : '../../';
 
   var p = new URLSearchParams(location.search);
+  var platform = location.pathname
+    .replace(/.*\/systems\//, '')
+    .replace(/\/.*/, '');
   var key =
     (typeof window.GENX_GAME_KEY === 'string' && window.GENX_GAME_KEY) ||
     p.get('game') ||
     p.get('tape') ||
     p.get('rom') ||
+    BARE_KEY[platform] ||
     '';
-  var platform = location.pathname
-    .replace(/.*\/systems\//, '')
-    .replace(/\/.*/, '');
 
   // the box-arrow used on both, matching the old single link
   var ICON =

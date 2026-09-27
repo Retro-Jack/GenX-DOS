@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Startup Menu &mdash; Tandy TRS-80 Model 100 &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Portable Computer &middot; Tandy TRS-80 Model 100</div>
+      <h1>The Startup Menu</h1>
+      <p class="sub">1983 &mdash; the first properly portable computer, and the last thing Bill Gates wrote code for himself.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/m100/controls.html">System help &mdash; the Tandy TRS-80 Model 100 controls</a></p>
+
+    <p class="intro">The Model 100 does not boot to a prompt. It boots to a menu of the programs living in its ROM, because that is what a machine with a built-in modem and eight lines of screen was for: journalists filed copy from it for a decade. Everything here is instant &mdash; there is no loading, the applications are already in ROM, and the machine remembers your documents when you switch it off.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The menu lists the ROM applications with the cursor on one of them.</li>
+      <li>Move the cursor with the arrow keys and press <kbd>Enter</kbd> to run one.</li>
+      <li><code>BASIC</code> gives you a BASIC prompt; <code>TEXT</code> is the word processor.</li>
+      <li><kbd>F8</kbd> comes back to this menu from inside an application.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The function keys along the bottom of the screen change with whatever you are in; the labels are on screen at all times.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td>Arrow keys</td><td>Move the selection on the menu</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>Run the selected application</td></tr>
+      <tr><td><kbd>F8</kbd></td><td>Return to this menu, saving as it goes</td></tr>
+      <tr><td><kbd>F1</kbd>&ndash;<kbd>F7</kbd></td><td>Whatever the current application says they are, on the bottom line</td></tr>
+    </table>
+
+    <h2>What is on the menu</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>BASIC</code></td><td>Microsoft BASIC, at a prompt</td></tr>
+      <tr><td><code>TEXT</code></td><td>The text editor. <kbd>F1</kbd> finds, <kbd>F7</kbd> selects, <kbd>F5</kbd> and <kbd>F6</kbd> copy and cut</td></tr>
+      <tr><td><code>TELCOM</code></td><td>The terminal program, for the built-in modem</td></tr>
+      <tr><td><code>ADDRSS</code></td><td>The address book &mdash; a text file the machine searches for you</td></tr>
+      <tr><td><code>SCHEDL</code></td><td>The diary, same idea</td></tr>
+      <tr><td>Files below the line</td><td>Documents and programs in memory. Select one to open it</td></tr>
+    </table>
+    <p class="note"><code>ADDRSS</code> and <code>SCHEDL</code> are not databases. They search a plain text file for a string, which is why the format is whatever you decide it is.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>There is no loading.</strong> Everything on the menu is in ROM and starts the instant you press <kbd>Enter</kbd>.</li>
+      <li><strong><code>TEXT</code> saves as you leave</strong> &mdash; <kbd>F8</kbd> stores the document and returns here.</li>
+      <li><strong>The cassette options do nothing in the browser.</strong> There is no tape deck to talk to.</li>
+      <li><strong>Nothing is kept</strong> once the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

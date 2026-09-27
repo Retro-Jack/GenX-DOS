@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TI BASIC &mdash; Texas Instruments TI-99/4A &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; Texas Instruments TI-99/4A</div>
+      <h1>TI BASIC</h1>
+      <p class="sub">1981 &mdash; the BASIC in the TI-99/4A's ROM, reached through the title screen.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/js99er/controls.html">System help &mdash; the Texas Instruments TI-99/4A controls</a></p>
+
+    <p class="intro">The TI-99/4A does almost everything through one keyword. Graphics, sound, the keyboard, the sprites &mdash; all of it arrives as <code>CALL</code> followed by a name, because Texas Instruments built the machine's extras as subroutines rather than as language. It makes for programs that read like instructions to somebody else, and it is the reason TI BASIC looks unlike any other on this site.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>You land on the TI title screen first.</li>
+      <li>Press <kbd>1</kbd> or <kbd>Enter</kbd> for TI BASIC.</li>
+      <li>The <code>&gt;</code> prompt takes commands. Try <code>PRINT 2+2</code>.</li>
+      <li><code>CALL CLEAR</code> clears the screen &mdash; note that it is a <code>CALL</code>, not a command.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The 4A's own control keys live behind FCTN on the real machine; this emulator maps them to PC modifiers so typing stays natural.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Enter</kbd></td><td>ENTER</td></tr>
+      <tr><td><kbd>1</kbd> at the title screen</td><td>Choose TI BASIC</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>Break out of a running program</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the program</td></tr>
+      <tr><td><code>RUN</code></td><td>Start it</td></tr>
+      <tr><td><code>NEW</code></td><td>Throw it away</td></tr>
+      <tr><td><code>CALL CLEAR</code></td><td>Clear the screen</td></tr>
+      <tr><td><code>CALL SCREEN(n)</code></td><td>Set the screen colour</td></tr>
+      <tr><td><code>CALL COLOR</code></td><td>Colour a character set</td></tr>
+      <tr><td><code>CALL HCHAR</code> / <code>CALL VCHAR</code></td><td>Repeat a character across or down the screen</td></tr>
+      <tr><td><code>CALL SOUND</code></td><td>Duration, then frequency and volume &mdash; up to three tones and a noise</td></tr>
+      <tr><td><code>CALL KEY</code></td><td>Read the keyboard without waiting</td></tr>
+      <tr><td><code>PRINT</code> <code>INPUT</code></td><td>The usual</td></tr>
+      <tr><td><code>FOR</code> &hellip; <code>NEXT</code>, <code>IF</code> &hellip; <code>THEN</code>, <code>GOSUB</code></td><td>And the rest of it</td></tr>
+    </table>
+    <p class="note">One oddity worth knowing before it confuses you: in <code>CALL SOUND</code> the volume runs from <strong>0 as loudest to 30 as quietest</strong>. Everywhere else in computing that number goes the other way.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Nearly everything is a <code>CALL</code>.</strong> If you are looking for a command to do something to the screen or the speaker, it is a <code>CALL</code>.</li>
+      <li><strong><code>CALL SOUND(1000,440,0)</code></strong> plays a concert A for a second at full volume.</li>
+      <li><strong>TI BASIC is slow</strong>, and the machine's owners knew it &mdash; the faster route was Extended BASIC on a cartridge.</li>
+      <li><strong>Nothing is kept</strong> once the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

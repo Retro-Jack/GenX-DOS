@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Applesoft BASIC &mdash; Apple ][ &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Apple &middot; Apple ][</div>
+      <h1>Applesoft BASIC</h1>
+      <p class="sub">1977 &mdash; Microsoft BASIC in the Apple ][+'s ROM, and the prompt a generation of American schools learned on.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/apple2/controls.html">System help &mdash; the Apple ][ controls</a></p>
+
+    <p class="intro">This is the Apple ][+ with no disk in the drive. Applesoft is Microsoft's BASIC with Apple's graphics bolted on, and unlike the Commodore machines it does have commands for the screen: <code>HGR</code> for high-resolution graphics, <code>HPLOT</code> to draw on it, <code>GR</code> for the chunky colour mode. What it does not have is any way to talk to a disk without the controller card, which is why so much Apple software begins by booting a disk rather than being typed.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>With no disk inserted the ROM looks for one for about three seconds, then gives up and drops to the <code>]</code> prompt.</li>
+      <li>Type <code>PRINT 2+2</code> and press <kbd>Enter</kbd>.</li>
+      <li>Try <code>10 PRINT "HELLO": GOTO 10</code>, then <code>RUN</code>.</li>
+      <li><kbd>Ctrl</kbd>+<kbd>C</kbd> stops it.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The prompt is <code>]</code> rather than the <code>&gt;</code> most machines use, which is how you know an Apple at a glance.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>Break out of a running program</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>G</kbd></td><td>Beep</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>RETURN</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the program</td></tr>
+      <tr><td><code>RUN</code></td><td>Start it</td></tr>
+      <tr><td><code>NEW</code></td><td>Throw it away</td></tr>
+      <tr><td><code>PRINT</code></td><td>Print, or calculate</td></tr>
+      <tr><td><code>HOME</code></td><td>Clear the screen</td></tr>
+      <tr><td><code>GR</code> <code>COLOR=</code> <code>PLOT</code></td><td>Low-resolution colour blocks</td></tr>
+      <tr><td><code>HGR</code> <code>HCOLOR=</code> <code>HPLOT</code></td><td>High-resolution graphics, 280&times;192</td></tr>
+      <tr><td><code>TEXT</code></td><td>Back to the text screen</td></tr>
+      <tr><td><code>FOR</code> &hellip; <code>NEXT</code>, <code>IF</code> &hellip; <code>THEN</code>, <code>GOSUB</code></td><td>The usual machinery</td></tr>
+      <tr><td><code>PEEK</code> <code>POKE</code> <code>CALL</code></td><td>Memory, and machine code</td></tr>
+      <tr><td><code>HTAB</code> <code>VTAB</code></td><td>Place the cursor before printing</td></tr>
+    </table>
+    <p class="note">The three-second pause at start-up is the disk controller hunting for a disk that is not there. It is the machine behaving correctly, not the page being slow.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong><code>HGR</code> then <code>HPLOT 0,0 TO 279,159</code></strong> draws a line and proves the graphics work.</li>
+      <li><strong><code>HOME</code> clears the screen</strong>, not <code>CLS</code>. Applesoft is full of small differences like that.</li>
+      <li><strong>Applesoft is slow at graphics</strong> and everyone knew it; the fast stuff was machine code called from BASIC.</li>
+      <li><strong>Nothing is kept</strong> once the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

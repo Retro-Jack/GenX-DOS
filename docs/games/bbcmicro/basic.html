@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BBC BASIC &mdash; BBC Micro &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; BBC Micro</div>
+      <h1>BBC BASIC</h1>
+      <p class="sub">1981 &mdash; the machine the BBC put its name to and British schools filled up with. Widely held to be the best BASIC of the eight-bit era, and with reason.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/bbcmicro/controls.html">System help &mdash; the BBC Micro controls</a></p>
+
+    <p class="intro">Sophie Wilson's BASIC is the one that makes the others look dated. It has named procedures and functions, <code>REPEAT</code>&hellip;<code>UNTIL</code> and <code>WHILE</code>&hellip;<code>ENDWHILE</code> loops, local variables, a real <code>ELSE</code>, and &mdash; the part nobody else attempted &mdash; a 6502 assembler built into the language, so you can drop into assembly in the middle of a BASIC program and call it as a procedure. If you learned to program on one of these, every BASIC you met afterwards was a step down.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>You get a <code>&gt;</code> prompt.</li>
+      <li><code>PRINT 2+2</code>, then <kbd>Enter</kbd>.</li>
+      <li><code>MODE 1</code> changes the screen; <code>MODE 7</code> is teletext.</li>
+      <li>Type <code>*CAT</code> to catalogue the disc. Commands beginning with <code>*</code> go to the operating system rather than to BASIC.</li>
+      <li><kbd>Esc</kbd> stops a running program.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The star commands are the thing to know: an asterisk hands the rest of the line to the machine's operating system.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Stop a running program</td></tr>
+      <tr><td><kbd>F10</kbd></td><td>The machine's own <code>f0</code> key &mdash; a PC keyboard has no F0</td></tr>
+      <tr><td><kbd>F1</kbd>&ndash;<kbd>F9</kbd></td><td>The machine's <code>f1</code> to <code>f9</code></td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the program</td></tr>
+      <tr><td><code>RUN</code></td><td>Start it</td></tr>
+      <tr><td><code>NEW</code></td><td>Throw it away</td></tr>
+      <tr><td><code>MODE n</code></td><td>Change screen mode &mdash; <code>MODE 7</code> is the teletext one</td></tr>
+      <tr><td><code>DEF PROC</code> / <code>ENDPROC</code></td><td>Named procedures, called by name</td></tr>
+      <tr><td><code>DEF FN</code></td><td>Named functions</td></tr>
+      <tr><td><code>REPEAT</code> &hellip; <code>UNTIL</code></td><td>A loop that tests at the bottom</td></tr>
+      <tr><td><code>WHILE</code> &hellip; <code>ENDWHILE</code></td><td>And one that tests at the top</td></tr>
+      <tr><td><code>LOCAL</code></td><td>Variables that belong to one procedure</td></tr>
+      <tr><td><code>VDU</code></td><td>Send control codes straight to the screen driver</td></tr>
+      <tr><td><code>[</code> &hellip; <code>]</code></td><td>Inline 6502 assembly, in the middle of a BASIC program</td></tr>
+      <tr><td><code>*CAT</code></td><td>Catalogue the disc &mdash; an operating-system command, hence the star</td></tr>
+      <tr><td><code>CHAIN "name"</code></td><td>Load and run a program from disc</td></tr>
+    </table>
+    <p class="note">A disc that starts at the <code>&gt;</code> prompt instead of running something can usually be started with <code>*EXEC !BOOT</code>.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong>Procedures, not <code>GOSUB</code>.</strong> <code>DEF PROCname</code> and call it as <code>PROCname</code>. It is why BBC BASIC programs are readable.</li>
+      <li><strong><code>MODE 7</code> costs almost no memory</strong> &mdash; it is the teletext chip doing the work, which is why so much BBC software used it.</li>
+      <li><strong>The assembler is part of the language.</strong> Square brackets, 6502 mnemonics, and BASIC variables as labels.</li>
+      <li><strong>Nothing is kept</strong> once the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

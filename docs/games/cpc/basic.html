@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Locomotive BASIC &mdash; Amstrad CPC &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; Amstrad CPC</div>
+      <h1>Locomotive BASIC 1.1</h1>
+      <p class="sub">1985 &mdash; the CPC 6128's BASIC, and one of the tidiest of the era.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/cpc/controls.html">System help &mdash; the Amstrad CPC controls</a></p>
+
+    <p class="intro">Locomotive BASIC came from a British firm that wrote it in a hurry and got it right anyway. It has proper interrupt-driven timers (<code>EVERY</code> and <code>AFTER</code> run a subroutine on a clock, which almost nothing else of the period offered from BASIC), windows you can define and print into, and sensible graphics and sound commands. The disc side is bolted on through AMSDOS, whose commands are prefixed with a bar.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The machine comes up with <code>Ready</code> and a cursor.</li>
+      <li><code>PRINT 2+2</code>, then <kbd>Enter</kbd>.</li>
+      <li><code>CAT</code> catalogues the disc; <code>|DIR</code> lists it alphabetically.</li>
+      <li><code>RUN"name"</code> loads and runs a program from disc.</li>
+      <li><kbd>Esc</kbd> twice stops a running program.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The bar commands are the ones to know. The bar is typed as <kbd>Shift</kbd>+<kbd>\</kbd> on the real machine; here it is wherever your keyboard puts it.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Press twice to stop a running program</td></tr>
+      <tr><td><kbd>Page Up</kbd> / <kbd>Page Down</kbd></td><td>The fire button, when something wants one</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the program</td></tr>
+      <tr><td><code>RUN</code></td><td>Start it</td></tr>
+      <tr><td><code>NEW</code></td><td>Throw it away</td></tr>
+      <tr><td><code>MODE 0/1/2</code></td><td>16, 4 or 2 colours &mdash; the CPC trades colours for resolution</td></tr>
+      <tr><td><code>INK</code> <code>PAPER</code> <code>PEN</code> <code>BORDER</code></td><td>Colour, in words</td></tr>
+      <tr><td><code>PLOT</code> <code>DRAW</code> <code>MOVE</code></td><td>Draw on the screen</td></tr>
+      <tr><td><code>SOUND</code> <code>ENV</code></td><td>Three channels with envelopes</td></tr>
+      <tr><td><code>WINDOW</code></td><td>Define a region of the screen and print into it</td></tr>
+      <tr><td><code>EVERY</code> <code>AFTER</code></td><td>Run a subroutine on a timer, while the program carries on</td></tr>
+      <tr><td><code>CAT</code></td><td>Catalogue the disc, with file sizes</td></tr>
+      <tr><td><code>|DIR</code></td><td>List the disc alphabetically, without sizes</td></tr>
+      <tr><td><code>|ERA</code> <code>|REN</code></td><td>Erase and rename, through AMSDOS</td></tr>
+      <tr><td><code>RUN"name"</code> / <code>LOAD"name"</code></td><td>From disc</td></tr>
+    </table>
+    <p class="note">The difference between <code>CAT</code> and <code>|DIR</code> is real and catches people out: the first is BASIC's own and shows sizes in the order it finds them, the second is AMSDOS's and sorts alphabetically without them.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong><code>EVERY 50,1 GOSUB 1000</code></strong> runs a subroutine once a second while the rest of the program carries on. Very little else from this era could.</li>
+      <li><strong><code>MODE 2</code> gives you 80 columns</strong> in two colours &mdash; the reason CPCs got used for work as well as games.</li>
+      <li><strong>Bar commands come from the disc ROM</strong>, not from BASIC, which is why they look different.</li>
+      <li><strong>Nothing is kept</strong> once the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>
