@@ -273,6 +273,7 @@ copyright holders.
 | `systems/lynx/lynxboot.img` | Atari Lynx boot ROM (512 bytes) | © 1989 Atari Corp. (required by the handy core to start games) |
 | `systems/intv/exec.bin`, `grom.bin` | Intellivision EXEC + GROM | © 1979 Mattel Electronics |
 | `systems/odyssey2/o2rom.bin` | Magnavox Odyssey² (MD5 562d5ebf…) | © 1978 Magnavox/Philips. |
+| `systems/max/games/maxbasic.crt` | Commodore MAX Machine BASIC cartridge | © 1982 Commodore. The MAX had no BASIC in ROM — it arrived on a cartridge, which is what the menu's eleventh entry loads. Not in this repository; see [ROMS.txt](ROMS.txt) |
 | embedded in `systems/jsvecx/js/seamless.js` | GCE Vectrex boot ROM, 8 KB — base64 in the engine rather than a file, so a file-level audit will not find it | © 1982 Smith Engineering. Covered by the non-commercial permission described under **Game ROMs**; Mine Storm lives in this ROM, which is why it needs no cartridge |
 
 ### Disk operating systems
