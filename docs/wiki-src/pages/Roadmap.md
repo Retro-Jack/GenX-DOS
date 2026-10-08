@@ -37,7 +37,7 @@ Every shipped system has the *feel* of an 8-bit machine — sprite-based, chiptu
 | Commodore | C64 | 1982 | `c64/` | EmulatorJS + VICE x64 | |
 | Commodore | C16 | 1984 | `c16/` | EmulatorJS + VICE xplus4 (`c16pal` mode) | shares xplus4 core |
 | Commodore | Plus/4 | 1984 | `plus4/` | EmulatorJS + VICE xplus4 | |
-| IBM | IBM PC | 1981 | `dos/` | js-dos (`emulators` layer) + DOSBox → WASM | Ten games, CGA and EGA; the prompt's own bezel and geometry, so arriving from the launcher moves nothing |
+| IBM | IBM PC | 1981 | `dos/` | js-dos (`emulators` layer) + DOSBox → WASM | Ten games, CGA and EGA, plus MS-DOS 4.00 on VGA built from Microsoft's own source; the prompt's own bezel and geometry, so arriving from the launcher moves nothing |
 | MSX | MSX1 | 1983 | `msx1/` | ppeccin/WebMSX | boots `?M=MSX1` |
 | MSX | MSX2 | 1986 | `msx2/` | ppeccin/WebMSX | full copy; boots `?M=MSX2` |
 | Sinclair | ZX81 | 1981 | `jtyone/` | Simon Holdsworth/JtyOne | |
