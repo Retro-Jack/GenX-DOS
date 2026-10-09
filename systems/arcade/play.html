@@ -106,6 +106,27 @@
   .screen-bg { background: #000; z-index: 2; }
   #game { z-index: 3; }
 
+  /* PEPPER'S GHOST. A few uprights did not point you at the tube at all. The
+     monitor lay face-up in the bottom of the cabinet and you looked at a
+     half-silvered mirror, which reflected the picture while letting you see a
+     painted backdrop behind it — so the sprites appeared to float in front of
+     the painting. A mirror only ever adds light, never takes it away, which is
+     exactly what the screen blend mode does: black parts of the picture leave
+     the painting untouched and lit pixels add over it. The canvas has to blend
+     against something inside its own stacking context, and #game is it — EJS
+     adds .ejs_parent to that same element and paints it black, so the backdrop
+     replaces that rather than going on .screen-bg behind it. The artwork is
+     pre-darkened to stand in for the half-silvered glass, which passed only
+     part of the backdrop's light. */
+  html.gx-ghost #game {
+    background-image: var(--gx-backdrop);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  html.gx-ghost #game canvas {
+    mix-blend-mode: screen;
+  }
+
   .bezel-img {
     position: absolute;
     inset: 0;
@@ -164,6 +185,15 @@
       if (mq) {
         mq.onerror = function () { this.hidden = true; };
         mq.src = 'marquees/' + key + '.png';
+      }
+      // A game with a backdrop is a mirror cabinet rather than a direct-view
+      // one; the CSS above turns the picture into a reflection over it.
+      if (g.backdrop) {
+        document.documentElement.style.setProperty(
+          '--gx-backdrop',
+          'url("' + g.backdrop + '")',
+        );
+        document.documentElement.classList.add('gx-ghost');
       }
       if (g.orientation !== 'vertical') return;
       document.documentElement.classList.add('gx-vert');
@@ -272,6 +302,12 @@
         if (panel) {
           for (var input in panel) controls[0][input].value2 = panel[input];
         }
+
+        // The core paints its own colour gel over the black-and-white boards —
+        // the green and red cellophane strips a distributor taped to the glass.
+        // A mirror cabinet had no gel to tape anything to, so a game carrying a
+        // backdrop turns the core's artwork off and reflects a clean picture.
+        if (game.backdrop) options['mame2003-plus_display_artwork'] = 'disabled';
 
         // I, ROBOT'S START BUTTONS ARE ITS CAMERA. The cabinet fired from the
         // stick and its two panel buttons were marked VIEW: in play, 1P lowers

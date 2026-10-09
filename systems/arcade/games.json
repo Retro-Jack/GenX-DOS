@@ -402,7 +402,8 @@
   "sitv": {
     "title": "Space Invaders (1978 Taito)",
     "rom": "games/sitv.zip",
-    "orientation": "vertical"
+    "orientation": "vertical",
+    "backdrop": "backdrops/sitv.jpg"
   },
   "qix": {
     "title": "Qix (1981 Taito)",
