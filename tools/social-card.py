@@ -74,6 +74,7 @@ def stats_row():
                  os.path.join(ROOT, "docs/games/c64/basic.html"),
                  os.path.join(ROOT, "docs/games/cpc/basic.html"),
                  os.path.join(ROOT, "docs/games/dos/msdos4.html"),
+                 os.path.join(ROOT, "docs/games/electron/basic.html"),
                  os.path.join(ROOT, "docs/games/js99er/basic.html"),
                  os.path.join(ROOT, "docs/games/jsspeccy/basic.html"),
                  os.path.join(ROOT, "docs/games/jtyone/basic.html"),

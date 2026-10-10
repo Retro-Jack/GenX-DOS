@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../../../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../../../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BBC BASIC &mdash; Acorn Electron &mdash; GenX-DOS</title>
+  <link rel="stylesheet" href="../../../styles/genx-doc.css">
+</head>
+<body class="acorn">
+  <a class="gx-home" href="../../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Personal Computer &middot; Acorn Electron</div>
+      <h1>BBC BASIC</h1>
+      <p class="sub">1983 &mdash; Acorn's cut-down BBC for the home. The same language, on a machine with rather less underneath it.</p>
+    </div>
+
+    <p class="gx-crosslink"><a href="../../../systems/electron/controls.html">System help &mdash; the Acorn Electron controls</a></p>
+
+    <p class="intro">The Electron carries BBC BASIC II in ROM, the same language the BBC Micro made its name with: named procedures and functions, <code>REPEAT</code>&hellip;<code>UNTIL</code> and <code>WHILE</code>&hellip;<code>ENDWHILE</code>, local variables, a real <code>ELSE</code>, and a 6502 assembler built into the language. What Acorn cut to reach the price was the hardware around it &mdash; one chip doing the work of several, no teletext, no disc interface, no second processor &mdash; so the language is the Model B's and the machine under it is not.</p>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>The machine comes up saying <code>Acorn Electron</code>, then <code>BASIC</code>, then gives you a <code>&gt;</code> prompt.</li>
+      <li><code>PRINT 2+2</code>, then <kbd>Enter</kbd>.</li>
+      <li><code>MODE 1</code> changes the screen. The Electron has modes 0 to 6.</li>
+      <li><kbd>Esc</kbd> stops a running program.</li>
+      <li><kbd>F12</kbd> is BREAK, which resets the machine &mdash; the same as reaching for the real one's BREAK key.</li>
+    </ol>
+
+    <h2>Keys that are not where you expect them</h2>
+    <p class="note-plain">The Electron's keyboard is read by position, so a few of its keys land somewhere else on a PC one. The orange FUNC key is the one to know: it is how the machine reaches the function keys it has no room for.</p>
+    <table>
+      <tr><th>Keyboard</th><th>Action</th></tr>
+      <tr><td><kbd>Alt</kbd></td><td>FUNC, the orange key &mdash; <kbd class="fkey">f<sub>7</sub></kbd> is <kbd>Alt</kbd>+<kbd>7</kbd>, and so on for <kbd class="fkey">f<sub>0</sub></kbd> to <kbd class="fkey">f<sub>9</sub></kbd></td></tr>
+      <tr><td><kbd class="dual"><span>:</span><span>*</span></kbd> is <kbd>'</kbd></td><td>The colon and asterisk key sits on the apostrophe. <kbd>Shift</kbd>+<kbd>'</kbd> gives you the <code>*</code> that starts an operating-system command</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>COPY</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>DELETE</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>ESCAPE &mdash; stop a running program</td></tr>
+      <tr><td><kbd>F12</kbd></td><td>BREAK &mdash; reset</td></tr>
+    </table>
+
+    <h2>What you can type</h2>
+    <table>
+      <tr><th>Type</th><th>What it does</th></tr>
+      <tr><td><code>LIST</code></td><td>Show the program</td></tr>
+      <tr><td><code>RUN</code></td><td>Start it</td></tr>
+      <tr><td><code>NEW</code></td><td>Throw it away</td></tr>
+      <tr><td><code>MODE n</code></td><td>Change screen mode, 0 to 6 &mdash; <code>MODE 6</code> is the cheapest text one</td></tr>
+      <tr><td><code>DEF PROC</code> / <code>ENDPROC</code></td><td>Named procedures, called by name</td></tr>
+      <tr><td><code>DEF FN</code></td><td>Named functions</td></tr>
+      <tr><td><code>REPEAT</code> &hellip; <code>UNTIL</code></td><td>A loop that tests at the bottom</td></tr>
+      <tr><td><code>WHILE</code> &hellip; <code>ENDWHILE</code></td><td>And one that tests at the top</td></tr>
+      <tr><td><code>LOCAL</code></td><td>Variables that belong to one procedure</td></tr>
+      <tr><td><code>VDU</code></td><td>Send control codes straight to the screen driver</td></tr>
+      <tr><td><code>[</code> &hellip; <code>]</code></td><td>Inline 6502 assembly, in the middle of a BASIC program</td></tr>
+      <tr><td><code>HIMEM</code></td><td>Where the screen starts &mdash; it moves with the mode, and it is how you can tell which mode you really got</td></tr>
+      <tr><td><code>*TAPE</code></td><td>Select the cassette filing system, which on this machine is the only one</td></tr>
+    </table>
+
+    <h2>Tips</h2>
+    <ul>
+      <li><strong><code>MODE 7</code> is not teletext here.</strong> Ask for it and the machine quietly gives you <code>MODE 6</code> instead: the Electron has no teletext chip and its operating system substitutes rather than refuses. You can watch it happen &mdash; type <code>MODE 7</code> and then <code>PRINT HIMEM</code> and you get 24576, the <code>MODE 6</code> figure, where a BBC Micro would answer 31744. Plenty of BBC listings open with <code>MODE 7</code>, and this is why they look wrong here.</li>
+      <li><strong>Procedures, not <code>GOSUB</code>.</strong> <code>DEF PROCname</code> and call it as <code>PROCname</code>. It is why BBC BASIC programs are readable.</li>
+      <li><strong>The assembler is part of the language.</strong> Square brackets, 6502 mnemonics, and BASIC variables as labels.</li>
+      <li><strong>There is no disc, so there is nothing to <code>*CAT</code>.</strong> The Electron saved to cassette, and the games on this site are memory snapshots the launcher drops straight into RAM rather than tapes it plays in.</li>
+      <li><strong>Nothing is kept</strong> once the tab closes.</li>
+    </ul>
+    <div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

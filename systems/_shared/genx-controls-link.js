@@ -46,7 +46,7 @@
 // check rather than shipping another dead link.
 var NO_GAMEDOC = [];
 
-// A KEYLESS URL IS THE BARE MACHINE, AND THAT HAS A PAGE TOO. Twelve entries
+// A KEYLESS URL IS THE BARE MACHINE, AND THAT HAS A PAGE TOO. Thirteen entries
 // launch with no key at all -- the BBC pages go out as `?disc1=blank.ssd`, the
 // rest as a plain `play.html` -- because the bare machine is the point: it
 // comes up in its own BASIC, monitor or startup menu. That is a program like
@@ -61,6 +61,7 @@ var BARE_KEY = {
   bbcmaster: 'basic',
   bbcmicro: 'basic',
   cpc: 'basic',
+  electron: 'basic',
   js99er: 'basic',
   jsspeccy: 'basic',
   jtyone: 'basic',

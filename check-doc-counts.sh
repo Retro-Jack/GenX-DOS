@@ -50,6 +50,7 @@ NONGAME_DOCS='docs/games/apple1/monitor.html \
              docs/games/c64/basic.html \
              docs/games/cpc/basic.html \
              docs/games/dos/msdos4.html \
+             docs/games/electron/basic.html \
              docs/games/js99er/basic.html \
              docs/games/jsspeccy/basic.html \
              docs/games/jtyone/basic.html \
@@ -325,7 +326,7 @@ for x in sorted(listed - missing):
     print(f"STALE    {x} is in NO_GAMEDOC but now has a gamedoc (or is never launched)")
 
 # BARE_KEY stands in when a launch carries no key at all -- the bare machine,
-# which on these twelve is its own BASIC, monitor or startup menu.
+# which on these thirteen is its own BASIC, monitor or startup menu.
 bare = re.search(r"var BARE_KEY = \{(.*?)\};", js, re.S)
 pairs = dict(re.findall(r"([A-Za-z0-9_]+):\s*'([^']+)'", bare.group(1))) if bare else {}
 for b, k in sorted(pairs.items()):
