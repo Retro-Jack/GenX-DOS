@@ -46,6 +46,34 @@ One more thing came out of play-testing: with RT holding full throttle, the bike
 
 A cabinet has no keyboard, so the coin slot and the two start buttons are soft keys — 1P, coin, 2P, in that order — in a box beside the *Program controls* link, matched to it in colour, rule and height. The height is measured off the link at runtime rather than written down, because the label is two lines of a webfont whose height isn't known until the font arrives.
 
+## Two of them are mirror cabinets
+
+Space Invaders and Omega Race did not point you at the tube at all. The monitor
+lay face-up in the bottom of the cabinet and what you looked at was a
+half-silvered mirror, which reflected the picture while letting you see a
+painted backdrop behind it — a moonscape on the Taito upright, an airbrushed
+nebula on the Midway one — so the sprites appeared to float in front of the
+painting. Both are done the same way, by a `backdrop` key in `games.json`: the
+artwork goes on `#game` and the canvas blends over it with
+`mix-blend-mode: screen`, because a mirror only ever adds light. Black parts of
+the picture leave the painting untouched and lit pixels add over it.
+
+Two details are easy to get wrong. The core's own artwork is switched off for a
+game with a backdrop (`mame2003-plus_display_artwork: disabled`) — that option
+is where Space Invaders' green-and-red cellophane gel comes from, and a mirror
+cabinet had no glass to tape it to. And the artwork is stored in the game's
+*unrotated* orientation, so a vertical game needs a 90° turn before it is
+cropped: Space Invaders' driver is ROT270 and its backdrop is stored portrait,
+while Omega Race is ROT0 and needs no turn at all. The art is pre-darkened to
+stand in for the half-silvered glass — 45% for Space Invaders, 30% for Omega
+Race, because a vector tube is empty except for thin strokes and far less light
+comes the other way.
+
+Sea Wolf is the third machine here built around a mirror and does **not** get a
+backdrop. Its mirror only folds the face-up monitor up into the periscope;
+there is nothing painted behind the glass, and the colour over the picture is
+the blue water gel, which stays.
+
 ## Cabinets and marquees
 
 Each game's orientation is read from the core's metadata, so the vertical and horizontal cabinets each get the right screen without a per-game setting. Every cabinet carries its marquee, normalised to one 674×145 canvas. The libretro artwork covered 97 of them; the other three are Irem cabinets, and Traverse USA had no marquee of its own anywhere, so its marquee is built from the untitled artwork with the game's own title lockup lifted from its attract screen.
