@@ -222,7 +222,8 @@
   "omegrace": {
     "title": "Omega Race (1981 Midway)",
     "rom": "games/omegrace.zip",
-    "orientation": "horizontal"
+    "orientation": "horizontal",
+    "backdrop": "backdrops/omegrace.jpg"
   },
   "shollow": {
     "title": "Satan's Hollow (1981 Midway)",
