@@ -43,6 +43,22 @@
 });
 </code></pre>
 <p>The <code>handy</code> <strong>stable</strong> core works fine — no nightly swap needed (unlike <code>gambatte</code> and <code>vice_x128</code>).</p>
+<h2 id="the-refresh-rate-is-a-core-option-and-its-default-drops-frames">The refresh rate is a core option, and its default drops frames</h2>
+<p>The Lynx's LCD refresh is programmable: a game sets its own rate, anywhere up
+to 75 Hz. handy ties emulation speed to the rate it reports to the front end
+rather than to the machine, and that rate comes from its <code>handy_refresh_rate</code>
+option — which defaults to <strong>60</strong>. Anything drawing faster than 60 therefore
+has frames thrown away, and the result reads as lag rather than as a speed
+change, because the game itself still runs at the right pace.</p>
+<p>California Games is the case you notice: its intro and menus run at the full
+75. The bundle asks for <code>handy_refresh_rate: '75'</code> in <code>defaultOptions</code>. That is
+the hardware ceiling, so no Lynx game can out-run the setting, and a game
+drawing slower is unaffected — the core repeats frames rather than speeding the
+machine up.</p>
+<p>Worth measuring rather than eyeballing, because a dropped-frame problem and a
+too-slow-to-run problem look alike. <code>EJS_emulator.gameManager.getFrameNum()</code>
+sampled over a few seconds gives the real figure: 60.2 fps before the change,
+75.2 after.</p>
 <h2 id="controls">Controls</h2>
 <p>Arrows = d-pad, <strong>X</strong> = A, <strong>Z</strong> = B, <strong>Shift</strong> = Option 1, <strong>Ctrl</strong> = Option 2, <strong>Enter</strong> = Pause. The Lynx had no fixed orientation and games used A/B/Option however they liked, so each gamedoc spells out the per-game meaning. (handy also has a <code>handy_rot</code> option for the games meant to be played rotated — none of the bundled 10 are.)</p>
 <h2 id="library">Library</h2>
