@@ -156,7 +156,7 @@ One layout wrinkle worth noting: the VICE bundles inject a NumLock-off warning b
 systems/_shared-ejs/
 └── ejs/data/
     ├── src/         ← runtime-required, do not strip
-    ├── cores/       ← 4 VICE cores + gearcoleco + FCEUmm
+    ├── cores/       ← 3 VICE cores + gearcoleco + FCEUmm
     └── …
 
 systems/c64/        (and vic20, max, c16, plus4)

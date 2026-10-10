@@ -39,7 +39,7 @@ X stays A, Z stays B. Anyone who learned the old build doesn't have to relearn.
 
 ## A documentation gotcha
 
-When adding new emulator-list claims to README / ATTRIBUTION / Roadmap / File-Structure, the current set of EmulatorJS libretro cores is: **FCEUmm + gearcoleco + stella2014 + gambatte + handy + genesis_plus_gx + prosystem + 3 VICE cores (x64, xvic, xplus4)** — ten in all. FCEUmm is easy to forget when listing them — the dir name "jsnes" doesn't suggest a libretro core lives behind it. The PET used to ride along on `vice_xpet` but was migrated out in June 2026; see [[Emulator-pet2001-Skibo]].
+When adding new emulator-list claims to README / ATTRIBUTION / Roadmap / File-Structure, the current set of EmulatorJS libretro cores is: **FCEUmm + gearcoleco + stella2014 + gambatte + handy + genesis_plus_gx + prosystem + mame2003_plus + 3 VICE cores (x64, xvic, xplus4)** — eleven in all. FCEUmm is easy to forget when listing them — the dir name "jsnes" doesn't suggest a libretro core lives behind it. The PET used to ride along on `vice_xpet` but was migrated out in June 2026; see [[Emulator-pet2001-Skibo]]. `vice_x128` went with the C128 in September 2026, which is why the VICE count is three and not four — three docs were still saying four in October.
 
 ## Bundle layout
 
