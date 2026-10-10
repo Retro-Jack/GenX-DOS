@@ -3,8 +3,8 @@
 A browser DOS prompt that boots emulators from numbered menus. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs client-side — no backend, no external network calls at runtime. Try it [here](https://genx-dos.fun/).
 
 <p align="center">
-  <img src="docs/images/screenshot-menu.png" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
-  <img src="docs/images/screenshot.png" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
+  <img src="docs/images/screenshot-menu.jpg" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
+  <img src="docs/images/screenshot.jpg" width="49%" alt="GenX-DOS running California Games (Atari Lynx) in a browser, framed in a handheld bezel">
 </p>
 
 Live at **[genx-dos.fun](https://genx-dos.fun/)**.
