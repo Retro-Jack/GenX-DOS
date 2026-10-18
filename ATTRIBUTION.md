@@ -87,10 +87,13 @@ rights holder's wishes about their own work.
 - **AMIBIOS POST animation, emulator integration wrappers, menu tree,
   and all bundled-emulator-specific code** — © Retro-Jack. Original work
   added on top of the LGR terminal base.
-- Retro-Jack's original work (above) is licensed **CC BY-NC 4.0** — see
-  `LICENSE.TXT`. The LGR terminal base is explicitly **excluded** from
-  that licence and stays under LGR's own terms: source-available, with a
-  clear credit to the LGR base required in any derivative work.
+- Retro-Jack's original work (above) is licensed **CC BY-NC 4.0**, with one
+  exception: the emulator integration wrappers named above are the
+  emulator-facing glue, and that is **GPL-3.0-or-later** — see `LICENSE.TXT`
+  for the split and the reasoning, and `COPYING` for the GPL text. The LGR
+  terminal base is explicitly **excluded** from both and stays under LGR's own
+  terms: source-available, with a clear credit to the LGR base required in any
+  derivative work.
 
 ---
 
@@ -314,8 +317,9 @@ software under permissive terms:
   to a widespread claim. What Smith granted, from the mid-1990s, is standing
   permission to reproduce and distribute the software Smith Engineering
   published, on a **non-commercial, non-profit** basis. GenX-DOS is
-  non-commercial by licence (CC BY-NC 4.0) as well as in fact, so the bundle
-  sits inside that permission rather than relying on the preservation basis
+  non-commercial in fact, and the work this bundle sits in — the menu, the
+  instruction pages and the site around them — is CC BY-NC 4.0 by licence, so
+  the bundle sits inside that permission rather than relying on the preservation basis
   below. The permission covers the software; it is not a transfer of rights,
   and **Removal upon request** at the top of this file applies as it does
   everywhere else.

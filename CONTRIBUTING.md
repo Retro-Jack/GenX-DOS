@@ -58,7 +58,11 @@ integration recipe is on the
 
 ## Licensing
 
-By contributing you agree your contribution is licensed under the repo's
-terms: **CC BY-NC 4.0** for the original GenX-DOS work, with the LGR terminal
-base and all bundled third-party components keeping their upstream licences —
-see [LICENSE.TXT](LICENSE.TXT) and [ATTRIBUTION.md](ATTRIBUTION.md).
+By contributing you agree your contribution is licensed under the terms that
+already apply to the file you are changing. The original GenX-DOS work is
+**CC BY-NC 4.0**, except the emulator-facing glue — `systems/_shared/genx-*.js`,
+`systems/_shared-ejs/genx-*.js` and `systems/*/play.html` — which is
+**GPL-3.0-or-later**; each of those files carries an SPDX header saying so, and
+a new one needs the same header. The LGR terminal base and all bundled
+third-party components keep their upstream licences — see
+[LICENSE.TXT](LICENSE.TXT) and [ATTRIBUTION.md](ATTRIBUTION.md).
