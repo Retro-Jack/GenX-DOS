@@ -73,7 +73,8 @@ tools/                    developer tooling — not part of the shipping site
                           unambiguous when checking a bezel fits
 CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset
-LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)
+LICENSE.TXT               the two licences the original work is under (third-party excluded)
+COPYING                   GPL-3.0 text, for the emulator-facing glue
 ROMS.txt                  the games and firmware this copy doesn't carry, and where each goes
 SECURITY.md               scope + private vulnerability reporting
 REMOVAL.md                removal upon request: what it covers, and how to ask
@@ -307,7 +308,9 @@ systems/                  game counts below describe the live site; see ROMS.txt
 <h2 id="removal-upon-request">Removal upon request</h2>
 <p><strong>If you hold rights in anything bundled here — or legally represent someone who does — and you raise an identified copyright or IP concern, it will be removed immediately.</strong> A request needs three things: who you are, your standing (rights holder, or who you represent and in what capacity), and what the material is with the basis of the concern. No notice format, registration certificate or legal citation is required — that is simply so nothing is pulled on an anonymous say-so. Email admin@genx-dos.fun — no account needed anywhere — or open an issue at <a href="https://github.com/Retro-Jack/GenX-DOS/issues">https://github.com/Retro-Jack/GenX-DOS/issues</a> if you'd rather it were public. Applies to everything here, not just games: titles, ROMs and BIOS images, emulator code, artwork, fonts, docs, names and marks. Full statement in <a href="ATTRIBUTION.html#removal-upon-request">ATTRIBUTION.md</a>.</p>
 <h2 id="license">License</h2>
-<p>The full licence text is in <strong><a href="LICENSE.html">LICENSE.TXT</a></strong>, and <strong><a href="ATTRIBUTION.html">ATTRIBUTION.md</a></strong> is the canonical record of every bundled third-party component (source URLs, authors, BIOS/ROM provenance, bezel artwork licences, and BY-SA share-alike obligations). Summary below.</p>
+<p>The original work is under <strong>two</strong> licences. Nearly all of it — the DOS prompt and its filesystem, the AMIBIOS POST animation, the menu tree, the home page, the feature article, the wiki, the instruction pages, the artwork and the prose — is <strong>CC BY-NC 4.0</strong>. The emulator-facing glue is <strong>GPL-3.0-or-later</strong>: <code>systems/_shared/genx-*.js</code>, <code>systems/_shared-ejs/genx-*.js</code> and <code>systems/*/play.html</code>, each carrying an SPDX header saying so, with the licence text in <a href="../../COPYING">COPYING</a>.</p>
+<p>The split exists because that glue loads and drives GPL engines in the same browser context, which makes it part of a combined work with them — and the GPL does not allow the further restriction that NonCommercial would impose. It does not relicense any third-party component, and it does not make the repository as a whole GPL.</p>
+<p>The full text is in <strong><a href="LICENSE.html">LICENSE.TXT</a></strong>, and <strong><a href="ATTRIBUTION.html">ATTRIBUTION.md</a></strong> is the canonical record of every bundled third-party component (source URLs, authors, BIOS/ROM provenance, bezel artwork licences, and BY-SA share-alike obligations). Summary below.</p>
 <ul>
 <li>DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system by Mike, written informally for <strong>LGR — Lazy Game Reviews</strong> (Clint Basinger, <a href="http://www.lazygamereviews.com">http://www.lazygamereviews.com</a>)</li>
 <li>Both favicons — <code>favicon.ico</code> and the six-frame <code>animated_favicon1.gif</code>, which cross-fades between <code>C:\</code> and <strong>LGR</strong> — are from the same LGR base</li>

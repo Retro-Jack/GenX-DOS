@@ -491,6 +491,7 @@ beside it, which is what the GPL asks for:
 | `systems/jtyone/COPYING`, `systems/js99er/COPYING` (GPL-2.0) | those engines |
 | `atari400/`, `atari800/` (GPL-2.0), `bbcmicro/`, `bbcmaster/` (GPL-3.0), `odyssey2/` | shipped with the builds we compiled ourselves |
 | `m100/src/LICENSE` | VirtualT, BSD |
+| `COPYING` at the repo root (GPL-3.0) | not a third-party file — this is **our own** emulator-facing glue, which is GPL-3.0-or-later rather than CC BY-NC. See LICENSE.TXT |
 
 `apple1/` carries apple1js's MIT notice as `systems/apple1/LICENSE`, taken from
 the fork, and every pet2001 source file in `systems/pet/pet2001/` carries Thomas

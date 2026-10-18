@@ -63,7 +63,8 @@ tools/                    developer tooling — not part of the shipping site
                           unambiguous when checking a bezel fits
 CHANGELOG.md              release notes
 ATTRIBUTION.md            canonical record of every bundled third-party asset
-LICENSE.TXT               CC BY-NC 4.0 for the original work (third-party excluded)
+LICENSE.TXT               the two licences the original work is under (third-party excluded)
+COPYING                   GPL-3.0 text, for the emulator-facing glue
 ROMS.txt                  the games and firmware this copy doesn't carry, and where each goes
 SECURITY.md               scope + private vulnerability reporting
 REMOVAL.md                removal upon request: what it covers, and how to ask
@@ -198,7 +199,11 @@ Prefer a narrative read? **[Booting a Museum in a Browser Tab](https://genx-dos.
 
 ## License
 
-The full licence text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.md](ATTRIBUTION.md)** is the canonical record of every bundled third-party component (source URLs, authors, BIOS/ROM provenance, bezel artwork licences, and BY-SA share-alike obligations). Summary below.
+The original work is under **two** licences. Nearly all of it — the DOS prompt and its filesystem, the AMIBIOS POST animation, the menu tree, the home page, the feature article, the wiki, the instruction pages, the artwork and the prose — is **CC BY-NC 4.0**. The emulator-facing glue is **GPL-3.0-or-later**: `systems/_shared/genx-*.js`, `systems/_shared-ejs/genx-*.js` and `systems/*/play.html`, each carrying an SPDX header saying so, with the licence text in [COPYING](https://github.com/Retro-Jack/GenX-DOS/blob/master/COPYING).
+
+The split exists because that glue loads and drives GPL engines in the same browser context, which makes it part of a combined work with them — and the GPL does not allow the further restriction that NonCommercial would impose. It does not relicense any third-party component, and it does not make the repository as a whole GPL.
+
+The full text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.md](ATTRIBUTION.md)** is the canonical record of every bundled third-party component (source URLs, authors, BIOS/ROM provenance, bezel artwork licences, and BY-SA share-alike obligations). Summary below.
 
 - DOS terminal, virtual filesystem, and 12×12 CP437 font sprite system by Mike, written informally for **LGR — Lazy Game Reviews** (Clint Basinger, <http://www.lazygamereviews.com>)
 - Both favicons — `favicon.ico` and the six-frame `animated_favicon1.gif`, which cross-fades between `C:\` and **LGR** — are from the same LGR base
