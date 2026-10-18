@@ -23,6 +23,9 @@ genx-dos/
 │                             each goes (ships in the release zip only)
 ├── check-doc-counts.sh       verifies the counts quoted in the docs and on the social card
 │                             still match the tree, and that no doc still names a renamed file
+├── _paddiag.html             gamepad probe — reads the Gamepad API and prints what the
+│                             browser reports, for working out a pad's button numbering.
+│                             Repo only: build-portable.sh excludes it from the ship
 ├── tools/                   developer tooling — excluded from the shipping file set
 │   ├── beautify-glue.sh     formats the Emscripten glue we compile ourselves and adds a
 │   │                        provenance banner; upstream-built glue is left alone
@@ -61,7 +64,8 @@ genx-dos/
 │   ├── wiki.css             the wiki frame only: sidebar, top bar, search
 │   ├── error.css            404/403/500 layout — kept out of the pages so the
 │   │                        three cannot drift, and so they need no inline styles
-│   └── fonts/               self-hosted woff2 — Michroma, IBM Plex Mono, VGA437
+│   └── fonts/               self-hosted — Michroma and IBM Plex Mono as woff2,
+│                             VGA437 as woff (the only format it ships in)
 │
 ├── prompt/                   the DOS terminal
 │   ├── index.html
