@@ -240,7 +240,8 @@ The full text is in **[LICENSE.TXT](LICENSE.TXT)**, and **[ATTRIBUTION.md](ATTRI
 - Magnavox Odyssey² BIOS (`o2rom.bin`): ©1978 Magnavox/Philips, bundled for emulator-only use
 
 [![License: CC BY-NC 4.0](docs/badges/license-cc-by-nc-4.0.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![Glue: GPL-3.0-or-later](docs/badges/license-gpl-3.0-or-later.svg)](https://github.com/Retro-Jack/GenX-DOS/blob/master/COPYING)
 
-The original orchestration code, menu trees, and AMIBIOS POST animations authored by Jack Horton are licensed under **Creative Commons Attribution-NonCommercial 4.0 International** — see **[LICENSE.TXT](LICENSE.TXT)** for the full terms.
+The menu trees, AMIBIOS POST animation, prompt, writing and artwork authored by Jack Horton are licensed under **Creative Commons Attribution-NonCommercial 4.0 International**. The emulator-facing glue — `systems/_shared/genx-*.js`, `systems/_shared-ejs/genx-*.js` and `systems/*/play.html` — is **GPL-3.0-or-later**, because it drives GPL engines in the same browser context and NonCommercial would be a further restriction the GPL does not allow. See **[LICENSE.TXT](LICENSE.TXT)** for the full terms of both.
 
-Please note that GenX-DOS is a composite project containing bundled emulators, assets, and the LGR terminal base framework. These components are explicitly excluded from the CC license and remain bound by their original upstream terms. See [ATTRIBUTION.md](ATTRIBUTION.md) for full compliance details.
+Please note that GenX-DOS is a composite project containing bundled emulators, assets, and the LGR terminal base framework. These components are explicitly excluded from both licences above and remain bound by their original upstream terms. See [ATTRIBUTION.md](ATTRIBUTION.md) for full compliance details.
