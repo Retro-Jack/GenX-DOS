@@ -12,7 +12,9 @@ A quick `du -sh` shows ~25 MB, which raises eyebrows on a static site. Two-third
 
 - **`dist/teletext/` is 21 MB.** Four `txt0..3.dat` files, referenced by `dist/assets/index-*.js` via the URL pattern `teletext/txt${n}`. No GenX-DOS menu path triggers teletext mode. The data is there because upstream jsbeeb keeps Ceefax viewer alive (F12 menu inside jsbeeb). Removing it is safe iff no one ever hits the teletext button. Defensible for our use, but it counts as a feature regression, not a cleanup.
 
-- **`dist/roms/{atom,tube,compact,b1770,a01,us,b,bp}/`** — system ROMs for BBC variants we don't expose (Acorn Atom, Tube co-processors, Master Compact, 1770 disc controller, BBC A01 / B early-OS / B+, US BBC). All referenced by `assets/index-*.js`'s model picker, so they're technically not orphans even though we only ever launch Model B and Master 128. ~150 KB total.
+- **`dist/roms/{atom,tube,b1770,b,bp,master}/`** — system ROMs for BBC variants we don't expose (Acorn Atom, a 6502 Tube co-processor, the 1770 disc controller, B early-OS and B+). Every one is named in the model table's `os:[]` arrays, so the picker can select the machine that needs it, even though we only ever launch Model B and Master 128.
+
+  The `compact/`, `a01/` and `us/` directories, and a dozen loose ROMs, **were removed in October 2026**: no entry of that table named them, so neither our launcher nor jsbeeb's own picker could ask for them. An earlier note here claimed all of these were picker-referenced; that was wrong. 592 KB across the two bundles.
 
 The teletext blob is the only one that would meaningfully shrink the bundle if removed.
 
@@ -61,7 +63,7 @@ systems/bbcmicro/   (and an identical systems/bbcmaster/)
 │   ├── assets/                 ← Vite-built bundle (this is most of jsbeeb)
 │   ├── discs/                  ← bundled disc images (each bundle carries only its own menu's discs)
 │   ├── images/, sounds/        ← jsbeeb chrome
-│   ├── roms/                   ← BBC variant system ROMs (most unused)
+│   ├── roms/                   ← BBC variant system ROMs (reachable via the model picker)
 │   ├── teletext/               ← 21 MB Ceefax data, kept for completeness
 │   └── tapes/
 ├── controls.html               ← thin wrapper page (retitled per machine)

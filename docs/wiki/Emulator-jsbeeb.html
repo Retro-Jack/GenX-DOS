@@ -38,9 +38,10 @@
 <p><strong><code>dist/teletext/</code> is 21 MB.</strong> Four <code>txt0..3.dat</code> files, referenced by <code>dist/assets/index-*.js</code> via the URL pattern <code>teletext/txt${n}</code>. No GenX-DOS menu path triggers teletext mode. The data is there because upstream jsbeeb keeps Ceefax viewer alive (F12 menu inside jsbeeb). Removing it is safe iff no one ever hits the teletext button. Defensible for our use, but it counts as a feature regression, not a cleanup.</p>
 </li>
 <li>
-<p><strong><code>dist/roms/{atom,tube,compact,b1770,a01,us,b,bp}/</code></strong> — system ROMs for BBC variants we don't expose (Acorn Atom, Tube co-processors, Master Compact, 1770 disc controller, BBC A01 / B early-OS / B+, US BBC). All referenced by <code>assets/index-*.js</code>'s model picker, so they're technically not orphans even though we only ever launch Model B and Master 128. ~150 KB total.</p>
+<p><strong><code>dist/roms/{atom,tube,b1770,b,bp,master}/</code></strong> — system ROMs for BBC variants we don't expose (Acorn Atom, a 6502 Tube co-processor, the 1770 disc controller, B early-OS and B+). Every one is named in the model table's <code>os:[]</code> arrays, so the picker can select the machine that needs it, even though we only ever launch Model B and Master 128.</p>
 </li>
 </ul>
+<p>The <code>compact/</code>, <code>a01/</code> and <code>us/</code> directories, and a dozen loose ROMs, <strong>were removed in October 2026</strong>: no entry of that table named them, so neither our launcher nor jsbeeb's own picker could ask for them. An earlier note here claimed all of these were picker-referenced; that was wrong. 592 KB across the two bundles.</p>
 <p>The teletext blob is the only one that would meaningfully shrink the bundle if removed.</p>
 <h2 id="how-the-two-bundles-work">How the two bundles work</h2>
 <p>Each bundle is a full copy of the jsbeeb <code>dist/</code>. The BBC Micro menu launches <code>systems/bbcmicro/dist/?disc1=&lt;Title&gt;.ssd&amp;autoboot</code> (jsbeeb defaults to Model B); the BBC Master menu launches <code>systems/bbcmaster/dist/?model=Master&amp;disc1=&lt;Title&gt;.dsd&amp;autoboot</code>. Same engine, two honest paths — the only functional difference is the <code>?model=Master</code> param the Master menu adds.</p>
@@ -99,7 +100,7 @@
 │   ├── assets/                 ← Vite-built bundle (this is most of jsbeeb)
 │   ├── discs/                  ← bundled disc images (each bundle carries only its own menu's discs)
 │   ├── images/, sounds/        ← jsbeeb chrome
-│   ├── roms/                   ← BBC variant system ROMs (most unused)
+│   ├── roms/                   ← BBC variant system ROMs (reachable via the model picker)
 │   ├── teletext/               ← 21 MB Ceefax data, kept for completeness
 │   └── tapes/
 ├── controls.html               ← thin wrapper page (retitled per machine)
