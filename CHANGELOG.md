@@ -1,5 +1,12 @@
 ## [Unreleased]
 
+### Removed
+- **Thirty-eight BBC ROMs that no model can ask for.** jsbeeb builds every ROM path as `roms/` plus a name taken from its model table's `os:[]` arrays. Nineteen files in each of the two BBC bundles appear in no entry of that table, and nowhere else in the bundle, so nothing can request them &mdash; not our launcher, and not jsbeeb's own model picker, which can only offer the models the table defines. They are the Acorn Atom word processor, the Master Compact, the Tube co-processors, the US BBC, and the B+ and A01 OS/BASIC variants: machines the build does not wire up. 592&nbsp;KB, and the size on disk falls from 189 to 188&nbsp;MB.
+
+  An earlier audit looked at exactly these files and recorded them as *referenced by the model picker, so technically not orphans*. That was wrong, and the note has been corrected: the picker reads the same table, so a ROM absent from it is absent from the picker too.
+
+  **`dist/teletext/` stays**, though a basename scan flags it the same way and it is 21&nbsp;MB per bundle. The bundle assembles that path as `teletext/txt` + *n* + `.dat`, so no filename ever appears whole; and because the BBC entries launch jsbeeb's own `index.html` rather than a stripped player, a reader really can open the Ceefax viewer. Reachable, if rarely reached, is not orphaned.
+
 ## [1.12.1] - 2026-10-18
 
 ### Fixed

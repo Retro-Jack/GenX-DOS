@@ -28,6 +28,12 @@
   </nav>
   <main class="content">
 <h2 id="unreleased">[Unreleased]</h2>
+<h3 id="removed">Removed</h3>
+<ul>
+<li><strong>Thirty-eight BBC ROMs that no model can ask for.</strong> jsbeeb builds every ROM path as <code>roms/</code> plus a name taken from its model table's <code>os:[]</code> arrays. Nineteen files in each of the two BBC bundles appear in no entry of that table, and nowhere else in the bundle, so nothing can request them &mdash; not our launcher, and not jsbeeb's own model picker, which can only offer the models the table defines. They are the Acorn Atom word processor, the Master Compact, the Tube co-processors, the US BBC, and the B+ and A01 OS/BASIC variants: machines the build does not wire up. 592&nbsp;KB, and the size on disk falls from 189 to 188&nbsp;MB.</li>
+</ul>
+<p>An earlier audit looked at exactly these files and recorded them as <em>referenced by the model picker, so technically not orphans</em>. That was wrong, and the note has been corrected: the picker reads the same table, so a ROM absent from it is absent from the picker too.</p>
+<p><strong><code>dist/teletext/</code> stays</strong>, though a basename scan flags it the same way and it is 21&nbsp;MB per bundle. The bundle assembles that path as <code>teletext/txt</code> + <em>n</em> + <code>.dat</code>, so no filename ever appears whole; and because the BBC entries launch jsbeeb's own <code>index.html</code> rather than a stripped player, a reader really can open the Ceefax viewer. Reachable, if rarely reached, is not orphaned.</p>
 <h2 id="1121---2026-10-18">[1.12.1] - 2026-10-18</h2>
 <h3 id="fixed">Fixed</h3>
 <ul>
@@ -148,7 +154,7 @@
   Formerly, 97 of the 100 carried marquee artwork, normalised to the same 674x145 canvas as the originals. Gauntlet's is the one that needed cutting: the scan is a <em>blank</em> marquee, the version with an empty white instruction panel below the logo, so it is clipped to the wordmark. Every other candidate turned out to be legitimate artwork whose whiteness is clouds, star fields or a white ground — a whiteness test flags nine of them, and cropping on that basis removed Space Fever's title outright. What actually distinguishes a blank panel is a large featureless white block low down on a coloured ground with the art above it, and exactly one of the 91 matches that. The three without are all Irem — Traverse USA, Image Fight, Ninja Spirit — and a cabinet with no art shows an unlit marquee, which is a thing you actually saw in an arcade, rather than a broken-image icon, which is not.</p>
 </li>
 </ul>
-<h3 id="removed">Removed</h3>
+<h3 id="removed_1">Removed</h3>
 <ul>
 <li><strong>Three unreferenced images from the Apple ][+ bundle.</strong> <code>img/logoicon.png</code> and the two <code>webapp-*.png</code> touch icons came with apple2js and are reached only from its own <code>index.html</code>, which we do not ship. Nothing in the tree names them. The bundle's other six images are all referenced by <code>play.html</code>, the stylesheet or the app bundle, and stay.</li>
 </ul>
