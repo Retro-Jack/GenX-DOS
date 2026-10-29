@@ -419,6 +419,8 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
 
 **Exception — `Amstrad.png`** is properly source-cleared and carries a binding obligation: cropped from [File:Amstrad_CPC464.jpg](https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg) (Wikimedia Commons) by Bill Bertram (username Pixel8), 7 May 2005, **CC-BY-SA 2.5**. Modifications inherit share-alike; `systems/cpc/play.html` carries the author + licence as an attribution comment.
 
+**Exception — `NewBrain.png`** is likewise source-cleared in part and carries a binding obligation: the machine's body and VF tube are cropped from [File:New Brain IMG 4244.jpg](https://commons.wikimedia.org/wiki/File:New_Brain_IMG_4244.jpg) (Wikimedia Commons) by **Rama & Musée Bolo**, of a machine on display at the Musée Bolo, EPFL, Lausanne, **CC BY-SA 2.0 FR** (or CeCILL v2 at the user's choice). Modifications inherit share-alike. That photograph is of a French machine, so its AZERTY keyboard was replaced with one from the Home Computer Museum's [NewBrain page](https://www.homecomputermuseum.nl/en/collectie/grundy-business-systems-ltd/grundy-newbrain/) — a bezel is where a reader looks to find a key, and the emulator maps QWERTY. That site states no licence and credits no photographer, so that part is not source-cleared and falls under the policy above.
+
 (Note: jsbeeb's CUB monitor frame lives inside `systems/bbcmicro/dist/` and `systems/bbcmaster/dist/` as part of the upstream build, not this shared set.)
 
 ---

@@ -3,6 +3,9 @@
 ### Added
 - **A NewBrain bezel, with an English keyboard.** `systems/_shared/bezels/NewBrain.png` has sat in the tree untracked since the machine's artwork was first composed, waiting for the system itself. It is committed now, and in a corrected form: the photograph it had been built from is a French NewBrain, AZERTY across the top row with QSDFGHJKLM below it. A bezel is the one place a reader looks to find out where a key is, so a picture of the wrong keyboard is worse than no picture — and the emulator maps a QWERTY matrix regardless of what the artwork shows. Nothing references the file yet; it is an asset held for when the machine arrives.
 
+### Changed
+- **The NewBrain bezel's provenance is recorded.** Its body and VF tube come from a Wikimedia Commons photograph by Rama & Musée Bolo, **CC BY-SA 2.0 FR**, which is a binding obligation of the same kind `Amstrad.png` already carries — so ATTRIBUTION names it and the share-alike is inherited. The replacement keyboard is from the Home Computer Museum, which states no licence and credits no photographer; that part falls under the usual bezel policy and is written down rather than left unsaid.
+
 ### Removed
 - **Thirty-eight BBC ROMs that no model can ask for.** jsbeeb builds every ROM path as `roms/` plus a name taken from its model table's `os:[]` arrays. Nineteen files in each of the two BBC bundles appear in no entry of that table, and nowhere else in the bundle, so nothing can request them &mdash; not our launcher, and not jsbeeb's own model picker, which can only offer the models the table defines. They are the Acorn Atom word processor, the Master Compact, the Tube co-processors, the US BBC, and the B+ and A01 OS/BASIC variants: machines the build does not wire up. 592&nbsp;KB, and the size on disk falls from 189 to 188&nbsp;MB.
 
