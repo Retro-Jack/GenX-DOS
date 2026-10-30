@@ -146,6 +146,12 @@ fork rather than the bundle.</p>
 <td>GPL-3.0-or-later</td>
 </tr>
 <tr>
+<td><code>systems/newbrain/</code></td>
+<td>ours — an original Grundy NewBrain emulator (Z80 memory map and video, COP420 core, cassette codec), also published standalone at <a href="https://github.com/Retro-Jack/newbrain-js"><code>Retro-Jack/newbrain-js</code></a></td>
+<td>GenX-DOS</td>
+<td>GPL-3.0-or-later</td>
+</tr>
+<tr>
 <td><code>systems/electron/</code></td>
 <td>ElkJS</td>
 <td>Darren Coles (6502 core ported from Tom Walker's Elkulator)</td>
@@ -776,6 +782,7 @@ glad to say so.</p>
 <p><code>systems/_shared/bezels/</code> holds the transparent PNG monitor/console frames used by the CRT-bezel overlays. <strong>Every platform is now wired to a bezel</strong> (the per-emulator integration pass is complete).</p>
 <p>Per maintainer policy, bezel / wallpaper / texture artwork is <strong>not provenance-tracked</strong> — these are anonymous hardware shots or generic CRT frames sourced from public web archives where the original photographer is no longer reachable, then processed locally (alpha-keying, screen cutout) in GIMP. Source-code dependencies stay fully tracked (above). Wired bezels ship without credit comments.</p>
 <p><strong>Exception — <code>Amstrad.png</code></strong> is properly source-cleared and carries a binding obligation: cropped from <a href="https://commons.wikimedia.org/wiki/File:Amstrad_CPC464.jpg">File:Amstrad_CPC464.jpg</a> (Wikimedia Commons) by Bill Bertram (username Pixel8), 7 May 2005, <strong>CC-BY-SA 2.5</strong>. Modifications inherit share-alike; <code>systems/cpc/play.html</code> carries the author + licence as an attribution comment.</p>
+<p><strong>Exception — <code>NewBrain.png</code></strong> is likewise source-cleared in part and carries a binding obligation: the machine's body and VF tube are cropped from <a href="https://commons.wikimedia.org/wiki/File:New_Brain_IMG_4244.jpg">File:New Brain IMG 4244.jpg</a> (Wikimedia Commons) by <strong>Rama &amp; Musée Bolo</strong>, of a machine on display at the Musée Bolo, EPFL, Lausanne, <strong>CC BY-SA 2.0 FR</strong> (or CeCILL v2 at the user's choice). Modifications inherit share-alike. That photograph is of a French machine, so its AZERTY keyboard was replaced with one from the Home Computer Museum's <a href="https://www.homecomputermuseum.nl/en/collectie/grundy-business-systems-ltd/grundy-newbrain/">NewBrain page</a> — a bezel is where a reader looks to find a key, and the emulator maps QWERTY. That site states no licence and credits no photographer, so that part is not source-cleared and falls under the policy above.</p>
 <p>(Note: jsbeeb's CUB monitor frame lives inside <code>systems/bbcmicro/dist/</code> and <code>systems/bbcmaster/dist/</code> as part of the upstream build, not this shared set.)</p>
 <hr />
 <h2 id="sound-effects">Sound effects</h2>
@@ -801,6 +808,13 @@ glad to say so.</p>
 <p><code>systems/_shared/styles/VGA_font/f12.*.png</code> — 12×12 CP437 bitmap font sprites. Generated
   locally by <code>make_fonts.py</code> from Unicode CP437 mappings; the rendered
   glyph shapes derive from public-domain VGA CP437 reference data.</p>
+</li>
+<li>
+<p><code>systems/newbrain/art/fonts/Segment16C-Regular.woff2</code> — <strong>Segment16C</strong>, the
+  sixteen-segment face used for the NewBrain's VF panel, by <strong>Daniel Wikholm</strong>,
+  2017. <strong>CC0 Public Domain</strong> — no rights reserved and no attribution required;
+  credited here anyway. Full text ships beside it in <code>Segment16-LICENCE.txt</code>.
+  Subsetted to <code>U+0020-007E</code> plus <code>U+2588</code> and converted from the original TTF.</p>
 </li>
 <li>
 <p><code>styles/fonts/web437-vga.woff</code> — <strong>Web437 IBM VGA 9×16</strong>, from the Ultimate

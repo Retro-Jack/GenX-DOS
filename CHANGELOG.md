@@ -1,6 +1,24 @@
 ## [Unreleased]
 
 ### Added
+- **The Grundy NewBrain, and a Portable Computers category to hold it.** The
+  NewBrain is the only system here whose emulator is ours: there was no
+  browser-capable NewBrain emulator to port, so the machine is written from
+  scratch — Z80 memory map and video, a COP420 core for the keyboard, cassette
+  and VF panel, and a tape codec. It is published standalone as well, at
+  [`Retro-Jack/newbrain-js`](https://github.com/Retro-Jack/newbrain-js).
+
+  The launcher gains **Portable Computers** as its second entry, and the Tandy
+  Model 100 moves there from under Tandy — its menu row already read "Model 100
+  (Portable)". Both machines ran off batteries and carried their own displays,
+  which is a more useful thing to group by than who made them.
+
+  Six tapes ship: Alpine, BreakOut, Landar, MasterMind, Snake and Tycoon. Only
+  Tycoon's year is known, off its own copyright line; the rest show `(????)`
+  rather than a guess. **The games have no gamedocs yet**, so their keys are
+  listed in `NO_GAMEDOC` and the top-left link is suppressed rather than
+  pointed at a page that does not exist.
+
 - **A NewBrain bezel, with an English keyboard.** `systems/_shared/bezels/NewBrain.png` has sat in the tree untracked since the machine's artwork was first composed, waiting for the system itself. It is committed now, and in a corrected form: the photograph it had been built from is a French NewBrain, AZERTY across the top row with QSDFGHJKLM below it. A bezel is the one place a reader looks to find out where a key is, so a picture of the wrong keyboard is worse than no picture — and the emulator maps a QWERTY matrix regardless of what the artwork shows. Nothing references the file yet; it is an asset held for when the machine arrives.
 
 ### Changed

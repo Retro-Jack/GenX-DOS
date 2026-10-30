@@ -112,6 +112,7 @@ systems/                  game counts below describe the live site; see ROMS.txt
   trs80/                  Tandy TRS-80 Model III — sdltrs built from source to WASM + 10 .cmd
                           games and two bootable system disks (TRSDOS 1.3, LDOS 5.3.1)
   m100/                   Tandy Model 100     — VirtualT core extracted to WASM + 10 .ba games (portable)
+  newbrain/               Grundy NewBrain     — our own Z80 + COP420 emulator + 6 .bas tapes (portable)
   js99er/                 TI-99/4A            — vanilla-JS js99er + 10 .rpk carts
   atari400/               Atari 400           — atari800 WASM, boots OS-B
   atari800/               Atari 800XL         — atari800 WASM, boots OS-XL
@@ -128,7 +129,7 @@ systems/                  game counts below describe the live site; see ROMS.txt
   arcade/                 Arcade              — EmulatorJS + MAME 2003-Plus + 100 romsets, ten makers
 </code></pre>
 <h2 id="where-the-readable-source-is">Where the readable source is</h2>
-<p>The hand-written GenX-DOS code lives in <code>prompt/javascript/</code>, <code>systems/_shared/</code>, <code>systems/_shared-ejs/</code>, each emulator's <code>play.html</code> wrapper, and <code>systems/m100/src/</code> (the Model 100's headless VirtualT build units + recipe) — all formatted for reading.</p>
+<p>The hand-written GenX-DOS code lives in <code>prompt/javascript/</code>, <code>systems/_shared/</code>, <code>systems/_shared-ejs/</code>, each emulator's <code>play.html</code> wrapper, <code>systems/m100/src/</code> (the Model 100's headless VirtualT build units + recipe) and <code>systems/newbrain/src/</code> (the NewBrain machine itself — Z80 glue, COP420 core, tape codec) — all formatted for reading.</p>
 <p>Everything else under <code>systems/&lt;name&gt;/</code> is upstream: emscripten WASM glue (<code>xroar.js</code>, <code>atari800.js</code>, <code>o2em.js</code>, <code>jzintv.js</code>), webpack production bundles (<code>apple1.js</code> — built from our apple1js fork — <code>apple2/dist/*.bundle.js</code>, <code>jsspeccy.js</code>), the stock WebMSX engine (<code>msx1/wmsx.js</code>, <code>msx2/wmsx.js</code>), or hand-written JS from the upstream project (ElkJS, js99er's <code>emu/</code>). For the readable source of those, follow the upstream link in <a href="ATTRIBUTION.html">ATTRIBUTION.md</a> or the per-engine integration story on the <a href="Emulators.html">wiki</a>.</p>
 <h2 id="the-emulator-lineup">The emulator lineup</h2>
 <p>Each engine has its own story page on the wiki — the gotchas we hit, the workarounds we shipped, the dead ends we ruled out. The table below is the quick-reference; click through to <a href="Emulators.html">Emulators</a> for the index.</p>
@@ -214,6 +215,11 @@ systems/                  game counts below describe the live site; see ROMS.txt
 <tr>
 <td>Model 100</td>
 <td>Hurd &amp; Pettit/VirtualT (our own core-only WASM build)</td>
+<td><code>play.html?game=&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td>Grundy NewBrain</td>
+<td>ours — original Z80 + COP420 emulator, no upstream</td>
 <td><code>play.html?game=&lt;key&gt;</code></td>
 </tr>
 <tr>

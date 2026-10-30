@@ -110,6 +110,7 @@ fork rather than the bundle.
 | `systems/apple1/` | apple1js, built from the [`Retro-Jack/apple1js`](https://github.com/Retro-Jack/apple1js) fork (local changes in the fork's `GENX-CHANGES.md`) | Will Scullin (whscullin) | MIT |
 | `systems/apple2/` | apple2js | whscullin | MIT |
 | `systems/bbcmicro/`, `systems/bbcmaster/` | jsbeeb, built from the [`Retro-Jack/jsbeeb`](https://github.com/Retro-Jack/jsbeeb) fork (same engine in two bundles — the Micro bundle boots Model B, the Master bundle boots `model=Master`; local changes in the fork's `GENX-CHANGES.md`) | Matt Godbolt | GPL-3.0-or-later |
+| `systems/newbrain/` | ours — an original Grundy NewBrain emulator (Z80 memory map and video, COP420 core, cassette codec), also published standalone at [`Retro-Jack/newbrain-js`](https://github.com/Retro-Jack/newbrain-js) | GenX-DOS | GPL-3.0-or-later |
 | `systems/electron/` | ElkJS | Darren Coles (6502 core ported from Tom Walker's Elkulator) | © Darren Coles 2013 (no SPDX header in source) |
 | `systems/jsnes/` | EmulatorJS + FCEUmm libretro core | EmulatorJS team; libretro/libretro-fceumm | GPL-3.0 (EmulatorJS), GPL-2.0 (FCEUmm) |
 | `systems/stella/` | EmulatorJS + Stella (`stella2014`) libretro core | EmulatorJS team; stella-emu / libretro | GPL-3.0 (EmulatorJS), GPL-2.0 (Stella) |
@@ -436,6 +437,12 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
 - `systems/_shared/styles/VGA_font/f12.*.png` — 12×12 CP437 bitmap font sprites. Generated
   locally by `make_fonts.py` from Unicode CP437 mappings; the rendered
   glyph shapes derive from public-domain VGA CP437 reference data.
+
+- `systems/newbrain/art/fonts/Segment16C-Regular.woff2` — **Segment16C**, the
+  sixteen-segment face used for the NewBrain's VF panel, by **Daniel Wikholm**,
+  2017. **CC0 Public Domain** — no rights reserved and no attribution required;
+  credited here anyway. Full text ships beside it in `Segment16-LICENCE.txt`.
+  Subsetted to `U+0020-007E` plus `U+2588` and converted from the original TTF.
 
 - `styles/fonts/web437-vga.woff` — **Web437 IBM VGA 9×16**, from the Ultimate
     Oldschool PC Font Pack by **VileR** (<https://int10h.org/oldschool-pc-fonts/>),
