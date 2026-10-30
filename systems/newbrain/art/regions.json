@@ -1,0 +1,46 @@
+{
+  "stage": {
+    "w": 1920,
+    "h": 1080
+  },
+  "cub": {
+    "src": "../_shared/bezels/Microvitec-CUB.png",
+    "w": 835,
+    "h": 719,
+    "place": {
+      "left": -5.5456,
+      "top": 1.9444,
+      "width": 52.888,
+      "height": 80.926
+    },
+    "hole": {
+      "left": 4.7883,
+      "top": 4.5897,
+      "width": 90.8585,
+      "height": 89.4298
+    },
+    "crt": {
+      "left": 10.2949,
+      "top": 9.7357,
+      "width": 79.7257,
+      "height": 79.694
+    }
+  },
+  "machine": {
+    "src": "../_shared/bezels/NewBrain.png",
+    "w": 1060,
+    "h": 634,
+    "place": {
+      "left": 52.2383,
+      "top": 42.1296,
+      "width": 53.3073,
+      "height": 56.6482
+    },
+    "vfd": {
+      "left": 52.0755,
+      "top": 15.9402,
+      "width": 31.6981,
+      "height": 4.7347
+    }
+  }
+}

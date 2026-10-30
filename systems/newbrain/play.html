@@ -1,0 +1,133 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later
+     Part of GenX-DOS. This page loads a GPL-licensed emulator engine, so it is
+     GPL-3.0-or-later rather than the repo's CC BY-NC. -->
+<html lang="en">
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' blob: data:; img-src 'self' data: blob:; media-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <script src="../_shared/genx-bezel-ready.js"></script>
+    <script src="../_shared/genx-audio-banner.js"></script>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../_shared/favicon.ico" />
+    <link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grundy NewBrain</title>
+    <link rel="stylesheet" href="../_shared/styles/genx-frame.css" />
+    <link rel="stylesheet" href="../_shared/styles/genx-noscript.css" />
+    <link rel="stylesheet" href="../_shared/styles/genx-controls-link.css" />
+    <style>
+      /* Two parts, not one bezel. The NewBrain drove a separate monitor and
+         carried a sixteen-character vacuum fluorescent panel of its own, and
+         the panel is half of what the machine looks like — so the monitor and
+         the machine are placed side by side, each carrying its own display,
+         rather than squeezing the whole thing into one screen hole.
+
+         Each part's screen is positioned as a percentage OF THAT PART, taken
+         from art/regions.json, so moving or resizing either carries its screen
+         with it. The monitor is a Microvitec CUB; the machine's VF panel is
+         drawn over the real tube in the photograph. */
+      @font-face {
+        font-family: 'Segment16C';
+        src:
+          url('art/fonts/Segment16C-Regular.woff2') format('woff2'),
+          url('art/fonts/Segment16C-Regular.woff') format('woff');
+        font-display: block;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #000 url('../_shared/textures/70s-bg.png') repeat;
+        background-size: 220px;
+      }
+      #stage {
+        position: relative;
+        width: min(100vw, calc((100dvh - 120px) * 1920 / 1080));
+        aspect-ratio: 1920 / 1080;
+        margin: 0 auto;
+      }
+      #monitor,
+      #machine {
+        position: absolute;
+      }
+      #monitor img,
+      #machine img {
+        display: block;
+        width: 100%;
+        height: auto;
+        pointer-events: none;
+      }
+      /* Black behind the aperture so its rounded corners read as screen
+         rather than as wallpaper showing through. */
+      #screenbg {
+        position: absolute;
+        background: #000;
+        z-index: 0;
+      }
+      #crt {
+        position: absolute;
+        background: transparent;
+        z-index: 1;
+      }
+      #monitor img {
+        position: relative;
+        z-index: 2;
+      }
+      #machine img {
+        position: relative;
+        z-index: 0;
+      }
+      #vfd {
+        position: absolute;
+        z-index: 1;
+      }
+      @media (max-width: 900px) {
+        #stage {
+          aspect-ratio: auto;
+          height: auto;
+          width: 100%;
+          padding: 16px 0;
+        }
+        #monitor,
+        #machine {
+          position: relative;
+          left: 0 !important;
+          top: 0 !important;
+          width: 92% !important;
+          margin: 0 auto 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript
+      ><div class="gx-noscript">
+        <div class="gx-noscript-title">JavaScript Required</div>
+        <div>This site is a client-side DOS terminal and emulator suite.</div>
+        <div>It needs JavaScript to run.</div>
+        <div class="gx-noscript-hint">Enable JavaScript and reload.</div>
+      </div></noscript
+    >
+
+    <div id="stage">
+      <div id="monitor">
+        <div id="screenbg"></div>
+        <canvas id="crt" width="640" height="250"></canvas>
+        <img src="../_shared/bezels/Microvitec-CUB.png" alt="" />
+      </div>
+      <div id="machine">
+        <img src="../_shared/bezels/NewBrain.png" alt="" />
+        <canvas id="vfd"></canvas>
+      </div>
+    </div>
+
+
+    <script src="../_shared/genx-controls-link.js"></script>
+    <script src="../_shared/genx-repo-link.js"></script>
+    <script src="../_shared/genx-gamepad-keys.js"></script>
+    <script type="module" src="genx-newbrain.js"></script>
+  </body>
+</html>

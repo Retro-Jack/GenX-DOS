@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../_shared/favicon.ico"><link rel="icon" type="image/gif" href="../_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grundy NewBrain Controls — GenX-DOS</title>
+  <link rel="stylesheet" href="../../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Grundy · NewBrain AD</div>
+      <h1>Grundy NewBrain — Controls</h1>
+    </div>
+
+    <p class="intro">A Grundy NewBrain AD (1982), running in your browser. It was the machine that nearly became the BBC Micro, and it has a trick none of its rivals had: as well as driving a monitor it carries a sixteen-character vacuum fluorescent panel of its own, so it works with no screen attached at all. Both are on the page — the monitor on the left, the panel on the machine itself. Games load from cassette, and the page does the loading for you.</p>
+
+    <h2>The two displays</h2>
+    <p>The monitor is where programs draw: 40 or 80 columns of text, switched by whatever is running rather than by you. The glowing strip on the machine is the NewBrain's own VF panel, and it is not decoration — the firmware writes to it, so it lights up while the machine works even when the monitor has nothing to show.</p>
+
+    <h2>Keyboard</h2>
+    <p>Letters and digits map straight through, so you can simply type. The NewBrain's keys are mapped by physical position, not by what your own keyboard is set to, so the layout is the same whichever one you use.</p>
+    <table>
+      <tr><th>Your key</th><th>NewBrain key</th></tr>
+      <tr><td><kbd>Enter</kbd></td><td><strong>NEW LINE</strong> — the NewBrain's return key</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td><strong>STOP</strong> — interrupts a running program; the machine answers <code>STOPPED AT</code> and the line number</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td><strong>GRAPHICS</strong> — the NewBrain's graphics key (it does not move you off the page)</td></tr>
+      <tr><td><kbd>&#96;</kbd></td><td><strong>VIDEO TEXT</strong></td></tr>
+      <tr><td><kbd>Home</kbd></td><td>HOME</td></tr>
+      <tr><td><kbd>Insert</kbd></td><td>INSERT</td></tr>
+      <tr><td><kbd>Ctrl</kbd></td><td>CONTROL</td></tr>
+      <tr><td><kbd>Shift</kbd></td><td>SHIFT</td></tr>
+      <tr><td><kbd>&larr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd> <kbd>&rarr;</kbd></td><td>the four cursor keys</td></tr>
+      <tr><td><kbd>Backspace</kbd></td><td>cursor left — the NewBrain has no separate delete key</td></tr>
+    </table>
+
+    <h2>Punctuation worth knowing</h2>
+    <p>The NewBrain puts several characters somewhere a modern keyboard does not, and the keys are mapped by position, so a few come out differently from what is printed on your own keycaps. These are the ones that catch people out:</p>
+    <table>
+      <tr><th>Your key</th><th>You get</th><th>With <kbd>Shift</kbd></th></tr>
+      <tr><td><kbd>[</kbd></td><td><code>(</code></td><td><code>[</code></td></tr>
+      <tr><td><kbd>]</kbd></td><td><code>)</code></td><td><code>]</code></td></tr>
+      <tr><td><kbd>'</kbd></td><td><code>+</code></td><td><code>^</code></td></tr>
+      <tr><td><kbd>-</kbd></td><td><code>-</code></td><td><code>\</code></td></tr>
+      <tr><td><kbd>=</kbd></td><td><code>=</code></td><td><code>@</code></td></tr>
+      <tr><td><kbd>2</kbd></td><td><code>2</code></td><td><code>"</code> — which is how you type <code>LOAD ""</code></td></tr>
+      <tr><td><kbd>7</kbd></td><td><code>7</code></td><td><code>'</code> — the apostrophe lives here, not on the quote key</td></tr>
+    </table>
+    <p class="note">Two of the machine's keys are not reachable from a PC keyboard: <strong>REPEAT</strong>, which had no modern equivalent to borrow, and the <code>&pound;</code>&thinsp;/&thinsp;<code>*</code> key. Nothing bundled here asks for either.</p>
+
+    <h2>Loading a game</h2>
+    <p>Pick a game from the menu and it loads and starts itself. There is nothing to press.</p>
+    <p>Behind that the machine is doing exactly what it always did. A NewBrain has to be told to listen <em>before</em> a tape starts, so the page types <code>LOAD&nbsp;""</code> for it, runs the tape in, waits for the machine to take the last block, and types <code>RUN</code>. You can watch the whole thing happen on screen.</p>
+    <p>It is not instant. These are real cassette signals being decoded a bit at a time, as the machine would have done it, and a long program genuinely takes a while — the largest game here is a little over seventeen thousand bytes, which on real tape was a minute of sitting and waiting. We run the machine flat out until the load is done, so it costs you seconds instead.</p>
+
+    <h2>Sound</h2>
+    <p>There isn't any, and that is the machine rather than the page. A NewBrain AD shipped with no sound hardware — sound was to be an add-on, like the discs — so these games are silent, as they were in 1982. Nothing needs unlocking and there is no volume to find.</p>
+
+    <h2>Tips</h2>
+    <ul>
+      <li>Typing works as soon as the machine has booted, which takes a few seconds — power-up is on a real 5.6&nbsp;second delay, so the first moments after the page opens are the machine genuinely warming up.</li>
+      <li><kbd>Esc</kbd> gets you out of a stuck program and back to the <code>READY</code> prompt.</li>
+      <li>Click the page before typing if the keys seem to do nothing — the machine only sees the keyboard while the page has focus.</li>
+      <li>Open the page without choosing a game and you get the bare machine at its own BASIC prompt, ready to be typed into.</li>
+      <li>If a load ever goes astray, reload the page — the game is fetched and loaded again from the start.</li>
+    </ul>
+
+    <p class="note">Shipped locally from this site; no network calls at runtime.</p>
+
+<div class="footer">
+      part of <a href="https://genx-dos.fun/" target="_blank" rel="noopener">GenX-DOS</a> &middot;
+      <a href="../../docs/wiki/Your-Data.html" target="_blank" rel="noopener">your data</a> &middot;
+      <a href="../../docs/wiki/ATTRIBUTION.html#removal-upon-request" target="_blank" rel="noopener">removal upon request</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "alpine": {
+    "title": "Alpine",
+    "tape": "tapes/alpine.bas"
+  },
+  "breakout": {
+    "title": "BreakOut",
+    "tape": "tapes/breakout.bas"
+  },
+  "landar": {
+    "title": "Landar",
+    "tape": "tapes/landar.bas"
+  },
+  "mastermind": {
+    "title": "MasterMind",
+    "tape": "tapes/mastermind.bas"
+  },
+  "snake": {
+    "title": "Snake",
+    "tape": "tapes/snake.bas"
+  },
+  "tycoon": {
+    "title": "Tycoon",
+    "tape": "tapes/tycoon.bas"
+  }
+}

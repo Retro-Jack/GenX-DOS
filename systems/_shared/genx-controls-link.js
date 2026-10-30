@@ -44,7 +44,17 @@
 // mechanism: an entry here is `platform/key`, and check-doc-counts.sh holds it
 // to the tree in both directions, so a launcher added without a page fails the
 // check rather than shipping another dead link.
-var NO_GAMEDOC = [];
+var NO_GAMEDOC = [
+  // The NewBrain shipped before its gamedocs were written. Listing the keys
+  // here suppresses the top-left link rather than pointing it at a page that
+  // does not exist; remove an entry the moment its page lands.
+  'newbrain/alpine',
+  'newbrain/breakout',
+  'newbrain/landar',
+  'newbrain/mastermind',
+  'newbrain/snake',
+  'newbrain/tycoon',
+];
 
 // A KEYLESS URL IS THE BARE MACHINE, AND THAT HAS A PAGE TOO. Thirteen entries
 // launch with no key at all -- the BBC pages go out as `?disc1=blank.ssd`, the
