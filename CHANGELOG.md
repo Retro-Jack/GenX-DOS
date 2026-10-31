@@ -39,6 +39,24 @@
   it is copied to. The standalone `newbrain-js` holds the authoritative copy and
   the two are kept in step, like `src/`.
 
+### Fixed
+- **Size on disk was quoted as 189&nbsp;MB in the feature article; the tree is
+  190.** The NewBrain's tapes and firmware landed after that figure was written,
+  and `check-doc-counts.sh` does not guard the CHANGELOG prose that the earlier
+  BBC-ROM entry states it in — so the article was the only place the stale
+  number was load-bearing. Stamped from the tree in both places it appears,
+  the numbers block and the prose.
+- **The self-hosted wiki was a commit behind its sources.** `docs/wiki/` is
+  generated from the repo-root Markdown by `docs/wiki-src/build.py`, and
+  ATTRIBUTION and CHANGELOG both changed without it being re-run. Rebuilt, and
+  the build's own dead-link check caught the reason a repo-relative link is the
+  wrong form for an imported page: `resolve()` only recognises a bare root
+  filename, so `systems/newbrain/PROVENANCE.md` fell through to the wiki-page
+  branch and resolved to nothing. Written as a GitHub blob URL it goes through
+  the "other repo files" path instead and comes out as
+  `../../systems/newbrain/PROVENANCE.md`, which resolves in the wiki, on the
+  site and on GitHub alike.
+
 ### Changed
 - **The NewBrain row in ATTRIBUTION now says where the emulator came from.** It
   named the standalone repository but not how the machine was worked out, which

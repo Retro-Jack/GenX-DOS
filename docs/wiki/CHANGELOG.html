@@ -47,11 +47,59 @@
   listed in <code>NO_GAMEDOC</code> and the top-left link is suppressed rather than
   pointed at a page that does not exist.</p>
 <ul>
-<li><strong>A NewBrain bezel, with an English keyboard.</strong> <code>systems/_shared/bezels/NewBrain.png</code> has sat in the tree untracked since the machine's artwork was first composed, waiting for the system itself. It is committed now, and in a corrected form: the photograph it had been built from is a French NewBrain, AZERTY across the top row with QSDFGHJKLM below it. A bezel is the one place a reader looks to find out where a key is, so a picture of the wrong keyboard is worse than no picture — and the emulator maps a QWERTY matrix regardless of what the artwork shows. Nothing references the file yet; it is an asset held for when the machine arrives.</li>
+<li>
+<p><strong>A NewBrain bezel, with an English keyboard.</strong> <code>systems/_shared/bezels/NewBrain.png</code> has sat in the tree untracked since the machine's artwork was first composed, waiting for the system itself. It is committed now, and in a corrected form: the photograph it had been built from is a French NewBrain, AZERTY across the top row with QSDFGHJKLM below it. A bezel is the one place a reader looks to find out where a key is, so a picture of the wrong keyboard is worse than no picture — and the emulator maps a QWERTY matrix regardless of what the artwork shows. Nothing references the file yet; it is an asset held for when the machine arrives.</p>
+</li>
+<li>
+<p><strong><code>systems/newbrain/PROVENANCE.md</code></strong> — a clean-room statement for the one
+  emulator here that is ours. ATTRIBUTION records what was used and under what
+  terms; this records how the machine was worked out: the hardware behaviour
+  read out of MAME's BSD-3-Clause NewBrain driver (Curt Coder) and Grundy's own
+  1981 Software Technical Manual, with the ROMs running settling what those two
+  disagreed on, and nothing taken from the one closed-source NewBrain emulator
+  that predates the work. It lists what a reader can check rather than asking
+  to be believed.</p>
+</li>
+</ul>
+<p>The separation from MAME is not claimed and is not needed — BSD-3 permits
+  reading and adapting it with the notice retained, which ATTRIBUTION does. The
+  separation from closed source is the real one, so the document describes it.</p>
+<p>It sits in the bundle beside <code>COPYING</code>, not at the repo root and not only in
+  the standalone repository, so the bundle carries its own provenance wherever
+  it is copied to. The standalone <code>newbrain-js</code> holds the authoritative copy and
+  the two are kept in step, like <code>src/</code>.</p>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li><strong>Size on disk was quoted as 189&nbsp;MB in the feature article; the tree is
+  190.</strong> The NewBrain's tapes and firmware landed after that figure was written,
+  and <code>check-doc-counts.sh</code> does not guard the CHANGELOG prose that the earlier
+  BBC-ROM entry states it in — so the article was the only place the stale
+  number was load-bearing. Stamped from the tree in both places it appears,
+  the numbers block and the prose.</li>
+<li><strong>The self-hosted wiki was a commit behind its sources.</strong> <code>docs/wiki/</code> is
+  generated from the repo-root Markdown by <code>docs/wiki-src/build.py</code>, and
+  ATTRIBUTION and CHANGELOG both changed without it being re-run. Rebuilt, and
+  the build's own dead-link check caught the reason a repo-relative link is the
+  wrong form for an imported page: <code>resolve()</code> only recognises a bare root
+  filename, so <code>systems/newbrain/PROVENANCE.md</code> fell through to the wiki-page
+  branch and resolved to nothing. Written as a GitHub blob URL it goes through
+  the "other repo files" path instead and comes out as
+  <code>../../systems/newbrain/PROVENANCE.md</code>, which resolves in the wiki, on the
+  site and on GitHub alike.</li>
 </ul>
 <h3 id="changed">Changed</h3>
 <ul>
-<li><strong>The NewBrain bezel's provenance is recorded.</strong> Its body and VF tube come from a Wikimedia Commons photograph by Rama &amp; Musée Bolo, <strong>CC BY-SA 2.0 FR</strong>, which is a binding obligation of the same kind <code>Amstrad.png</code> already carries — so ATTRIBUTION names it and the share-alike is inherited. The replacement keyboard is from the Home Computer Museum, which states no licence and credits no photographer; that part falls under the usual bezel policy and is written down rather than left unsaid.</li>
+<li>
+<p><strong>The NewBrain row in ATTRIBUTION now says where the emulator came from.</strong> It
+  named the standalone repository but not how the machine was worked out, which
+  is the part a reader of a from-scratch emulator is entitled to ask about. It
+  points at the bundle's own <code>PROVENANCE.md</code> and credits Curt Coder's
+  BSD-3-Clause MAME driver and Grundy's 1981 Technical Manual as the sources the
+  behaviour was read from — neither of which this file had named.</p>
+</li>
+<li>
+<p><strong>The NewBrain bezel's provenance is recorded.</strong> Its body and VF tube come from a Wikimedia Commons photograph by Rama &amp; Musée Bolo, <strong>CC BY-SA 2.0 FR</strong>, which is a binding obligation of the same kind <code>Amstrad.png</code> already carries — so ATTRIBUTION names it and the share-alike is inherited. The replacement keyboard is from the Home Computer Museum, which states no licence and credits no photographer; that part falls under the usual bezel policy and is written down rather than left unsaid.</p>
+</li>
 </ul>
 <h3 id="removed">Removed</h3>
 <ul>
@@ -60,7 +108,7 @@
 <p>An earlier audit looked at exactly these files and recorded them as <em>referenced by the model picker, so technically not orphans</em>. That was wrong, and the note has been corrected: the picker reads the same table, so a ROM absent from it is absent from the picker too.</p>
 <p><strong><code>dist/teletext/</code> stays</strong>, though a basename scan flags it the same way and it is 21&nbsp;MB per bundle. The bundle assembles that path as <code>teletext/txt</code> + <em>n</em> + <code>.dat</code>, so no filename ever appears whole; and because the BBC entries launch jsbeeb's own <code>index.html</code> rather than a stripped player, a reader really can open the Ceefax viewer. Reachable, if rarely reached, is not orphaned.</p>
 <h2 id="1121---2026-10-18">[1.12.1] - 2026-10-18</h2>
-<h3 id="fixed">Fixed</h3>
+<h3 id="fixed_1">Fixed</h3>
 <ul>
 <li><strong>The dual licence was never finished.</strong> It landed on 17/08/2026 — the emulator-facing glue GPL-3.0-or-later, everything else CC BY-NC 4.0 — and reached LICENSE.TXT, the SPDX headers and the wiki's <em>Legal</em> page. It reached nothing else. The README, the landing page, the feature article and <em>File Structure</em> all went on describing a single CC BY-NC licence for two months, which is the version most people read. The article was the worst of them: it said <em>the orchestration code is CC BY-NC 4.0</em>, and the orchestration glue is precisely the part that is GPL. All four now state the split, and the README's licence section opens with it rather than leaving it to a linked file. The README carried the error twice over: the paragraph below its licence badge also said the orchestration code was CC BY-NC, and that badge — the one-line summary at the top of what most readers scan — said the same. There are two badges now, <code>License: CC BY-NC 4.0</code> and <code>Glue: GPL-3.0-or-later</code>, the second a local SVG in the same house style as the first, because the badges are kept locally rather than fetched from a shields service at render time.</li>
 <li><strong>A sweep of every remaining licence claim found three more, one of them the contributor terms.</strong> <code>CONTRIBUTING.md</code> told contributors their work would be licensed <strong>CC BY-NC 4.0</strong> — which is wrong for anyone touching a glue file, and that is the document that governs what a contributor actually grants. It now names both licences and which files fall under each, and says a new glue file needs the SPDX header. <code>ATTRIBUTION.md</code> summarised Retro-Jack's original work as CC BY-NC in a list whose own first item is <em>emulator integration wrappers</em> — the glue by another name. And the Vectrex entry rested its case on GenX-DOS being "non-commercial by licence (CC BY-NC 4.0)", which is no longer the whole picture now that part of the repo is GPL; it rests on the site and its instruction pages being NonCommercial, which is both true and the part that matters there.</li>
@@ -89,7 +137,7 @@
 <li><strong>The MS-DOS launcher in the filesystem is <code>MSDOS4.COM</code>, not <code>MSDOS4.EXE</code>.</strong> It is the one entry on the shelf that is a DOS system rather than a game, and a <code>.COM</code> is what that would have been. The prompt already knew the difference — <code>TYPE</code> prints an <code>MZ</code> header for an <code>.EXE</code> and a headerless image for a <code>.COM</code>, because DOS loaded one at offset 0x100 and jumped straight in — so two places needed teaching that a <em>launcher</em> can be a <code>.COM</code> as well: <code>TYPE</code> would otherwise have printed the link's URL, and <code>FIND</code> indexed <code>.exe</code> only, so the machine would have quietly stopped being findable. Running it is unaffected either way; the prompt matches a command on the name before the dot.</li>
 <li><strong>The documentation stopped claiming every launcher is an <code>.exe</code>.</strong> It was true until MS-DOS 4.00 arrived as <code>MSDOS4.COM</code>, and four pages still said otherwise &mdash; the <code>find</code> description, the filesystem's no-HTML rule, and two cross-references. The prompt itself had already been taught the difference; only the prose was behind. The count is 461 <code>.exe</code> and one <code>.com</code>, with <code>COMMAND.COM</code> and <code>VER.COM</code> being built-ins rather than launchers.</li>
 </ul>
-<h3 id="fixed_1">Fixed</h3>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li><strong>The Lynx was throwing away a fifth of its frames.</strong> The Lynx's LCD refresh is programmable and a game picks its own rate, up to 75&nbsp;Hz; the handy core ties emulation to the rate it reports to the front end and defaults that to 60, so anything drawing faster than 60 had frames dropped. California Games' intro and menus run at the full 75 and stuttered visibly because of it. The bundle now asks for 75, which is the machine's ceiling, so nothing it runs can out-pace the setting. Measured rather than eyeballed: 60.2&nbsp;fps before, 75.2&nbsp;after.</li>
 <li><strong>The Acorn Electron was the thirteenth bare machine, and got left out of all three places the other twelve were wired into.</strong> Row seven of its menu is <em>Electron BASIC prompt</em> and launches a keyless <code>play.html</code> exactly as the others do, but <code>BARE_KEY</code> had no entry for it, so the corner link had nothing to resolve and the page it would have pointed at was never written; its controls page stopped at the sixth game where every other computer now ends with its own prompt, and that list was not in menu order either. It has a page now, written from what the machine actually does rather than from the BBC Micro's. The one that matters: <code>MODE 7</code> is not teletext on an Electron &mdash; there is no teletext chip, so the operating system quietly gives you <code>MODE 6</code> instead, which you can see by asking for <code>MODE 7</code> and then printing <code>HIMEM</code> and getting 24576 where a BBC Micro answers 31744. A great many BBC listings open with <code>MODE 7</code>, and that is why they come out wrong here.</li>
@@ -114,7 +162,7 @@
 <li><strong>Sopwith can be flown with the cursor keys.</strong> Up climbs, Down descends, Left slows and Right accelerates — and <code>,</code> <code>/</code> <code>X</code> <code>Z</code> and <code>.</code> still do exactly what they always did, so the game's own manual stays correct. This is not a translation laid over the game: it is twelve lines in the game, in the keyboard interrupt handler, compiled with Turbo C 2.01 and A86 the way it was in 1984 and linked into a DOS executable. The source is GPL — David Clark released it and later relicensed it — so the modified source, notices saying what changed and when, and the recipe for building it are published at <a href="https://github.com/Retro-Jack/sopwith-genx"><code>Retro-Jack/sopwith-genx</code></a>. It starts straight in a single-player game now, rather than asking twice first, and the sound is on from the first frame, which is the source's own default.</li>
 <li><strong><code>.htaccess</code> says what the host actually does about compression.</strong> The block naming the types to compress is not what compresses them here: this host runs LiteSpeed, which uses its own server-wide list — hence CSS and JS arriving as brotli rather than deflate, and <code>application/wasm</code> not being compressed at all despite being named. The directives stay — the release zip is meant to be served by whatever the person downloading it has, Apache included, where they do work — with a note so the next reader doesn't take them at face value here.</li>
 </ul>
-<h3 id="fixed_2">Fixed</h3>
+<h3 id="fixed_3">Fixed</h3>
 <ul>
 <li><strong>The picture is painted whether or not it is being shown yet.</strong> The start-up banner is hidden by covering the screen rather than by withholding the frames, so a decision to uncover it that arrives late — which a browser makes likely, since it throttles timers in a tab you are not looking at — finds the right picture already there instead of an empty canvas waiting for a frame that may never come.</li>
 <li><strong>Sopwith sat on a black screen.</strong> It was running the whole time, waiting at its own menu — the screen was simply never drawn. The emulator sends a frame when the picture changes, so a game that draws a menu and waits for a key sends a couple of frames and then nothing at all; the start-up banner, the clear and the menu all landed inside those, none of them was the blank screen we were waiting for, and once they stopped there was never another frame to draw. The last frame is now kept and drawn the moment the picture is shown, and a picture that has been still for a moment is taken as ready. Anything that keeps moving, like Paratrooper's title, was never affected.</li>
@@ -285,7 +333,7 @@
   Nothing from a cheats, codes or secrets section was used: Space Invaders' saucer trick and Ghosts'n Goblins' tombstone exploit were both found and both left out, and the extractor skips those sections outright.</p>
 </li>
 </ul>
-<h3 id="fixed_3">Fixed</h3>
+<h3 id="fixed_4">Fixed</h3>
 <ul>
 <li><strong>Every arcade cabinet had MAME's buttons 2 and 3 the wrong way round.</strong> The core binds MAME buttons 1-6 to retropad <strong>B, A, Y, X, L, R</strong> — not in pad-button order, which is the trap: retropad index 1 is Y, and Y carries button <strong>3</strong>. The page bound MAME 2 as though it arrived on index 1, so for a week the button all 44 affected pages called RB was really MAME 3, and MAME 2 answered on X. Found when Sinistar's Sinibomb would not fire on the RB its page named.
   The <strong>binding</strong> moved rather than the pages, because the pages were right about the intent: the arcade help page has always said button 2 sits under the index finger on RB, since the cabinets that use it tend to hold it down. One line in <code>systems/arcade/play.html</code> fixes all hundred cabinets, and every gamedoc goes back to saying what it said.
@@ -354,7 +402,7 @@
   Deliberately absent: <em>This program cannot be run in DOS mode.</em> That string belongs to the Windows PE stub, and a machine pretending to be a DOS box has no business printing it.</p>
 </li>
 </ul>
-<h3 id="fixed_4">Fixed</h3>
+<h3 id="fixed_5">Fixed</h3>
 <ul>
 <li>
 <p><strong>Twelve vendored images that nothing used were shipping to every BBC visitor.</strong> jsbeeb's own web UI has an example screenshot, a sidebar, a bottom bar, two disc-drive icons and an app icon; our embedded build uses none of them &mdash; its page asks only for the cub monitor and a placeholder &mdash; but all six were in the tree twice, once per BBC machine, and all twelve reached the web host. Removed. They will come back if the fork is ever re-vendored, so the re-vendor recipe should strip them.</p>
