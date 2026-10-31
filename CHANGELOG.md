@@ -21,6 +21,13 @@
 
 - **A NewBrain bezel, with an English keyboard.** `systems/_shared/bezels/NewBrain.png` has sat in the tree untracked since the machine's artwork was first composed, waiting for the system itself. It is committed now, and in a corrected form: the photograph it had been built from is a French NewBrain, AZERTY across the top row with QSDFGHJKLM below it. A bezel is the one place a reader looks to find out where a key is, so a picture of the wrong keyboard is worse than no picture — and the emulator maps a QWERTY matrix regardless of what the artwork shows. Nothing references the file yet; it is an asset held for when the machine arrives.
 
+- **`check-roms.sh`**, which asks the two questions the position rests on:
+  does the index hold anything a menu entry loads, and does `ROMS.txt` match
+  the set of files that are absent. The first exists because the second cannot
+  do its job — a tracked content file is in neither list, so the manifest
+  comparison passes while the file sits in the repo, which is exactly how
+  Pitfall! and Prince of Persia lasted seven weeks.
+
 ### Changed
 - **The NewBrain bezel's provenance is recorded.** Its body and VF tube come from a Wikimedia Commons photograph by Rama & Musée Bolo, **CC BY-SA 2.0 FR**, which is a binding obligation of the same kind `Amstrad.png` already carries — so ATTRIBUTION names it and the share-alike is inherited. The replacement keyboard is from the Home Computer Museum, which states no licence and credits no photographer; that part falls under the usual bezel policy and is written down rather than left unsaid.
 
@@ -30,6 +37,29 @@
   An earlier audit looked at exactly these files and recorded them as *referenced by the model picker, so technically not orphans*. That was wrong, and the note has been corrected: the picker reads the same table, so a ROM absent from it is absent from the picker too.
 
   **`dist/teletext/` stays**, though a basename scan flags it the same way and it is 21&nbsp;MB per bundle. The bundle assembles that path as `teletext/txt` + *n* + `.dat`, so no filename ever appears whole; and because the BBC entries launch jsbeeb's own `index.html` rather than a stripped player, a reader really can open the Ceefax viewer. Reachable, if rarely reached, is not orphaned.
+
+### Fixed
+- **Eight game files were in the repository, two of them since before the
+  September purge.** The rule is that nothing we supplied ships on GitHub
+  whatever its licence, and `ROMS.txt` lists what a copy from there is
+  missing. `systems/stella/roms/pitfall.a26` and `systems/cpc/games/prince.dsk`
+  were tracked the whole time: they had no `.gitignore` rule, so the purge's
+  file list never saw them, and no `ROMS.txt` line either, so the manifest
+  check could not see them. Pitfall! and Prince of Persia are the tenth
+  entries in two menus whose `ROMS.txt` sections listed nine. Both are now
+  untracked, ignored and listed.
+
+- **The six NewBrain tapes went up with the machine yesterday.** Alpine,
+  BreakOut, Landar, MasterMind, Snake and Tycoon are someone else's BASIC —
+  Tycoon prints its own 1982 copyright line — and the upstream exception
+  cannot reach them, because for this machine the emulator is ours and a
+  project cannot be its own upstream. The standalone repository ships no
+  tapes; this one now matches it.
+
+- **A copy from GitHub had no way to learn what the NewBrain needs.** Its five
+  firmware files were correctly ignored but absent from `ROMS.txt`, the only
+  drift in the manifest. The new section names them with the spellings MAME's
+  set uses, spaces and all, and says which four boot the machine.
 
 ## [1.12.1] - 2026-10-18
 

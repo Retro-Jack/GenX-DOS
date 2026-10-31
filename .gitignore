@@ -86,13 +86,13 @@ GenX-DOS-v*.zip
 /systems/cpc/games/bruce.dsk
 /systems/cpc/games/chasehq.dsk
 /systems/cpc/games/eidolon.dsk
+/systems/cpc/games/prince.dsk
 /systems/cpc/games/rick.dsk
 /systems/cpc/games/roland.dsk
 /systems/cpc/games/rtype.dsk
 /systems/cpc/games/starstrike.dsk
 /systems/cpc/games/tauceti.dsk
 /systems/gamegear/roms/
-/systems/newbrain/roms/
 /systems/gbc/roms/
 /systems/intv/exec.bin
 /systems/intv/grom.bin
@@ -108,6 +108,8 @@ GenX-DOS-v*.zip
 /systems/max/games/
 /systems/msx1/games/
 /systems/msx2/games/
+/systems/newbrain/roms/
+/systems/newbrain/tapes/
 /systems/odyssey2/o2rom.bin
 /systems/odyssey2/games/
 /systems/pet/games/advland.prg
@@ -138,6 +140,7 @@ GenX-DOS-v*.zip
 /systems/stella/roms/invaders.a26
 /systems/stella/roms/missile.a26
 /systems/stella/roms/pacman.a26
+/systems/stella/roms/pitfall.a26
 /systems/stella/roms/riverraid.a26
 /systems/stella/roms/yars.a26
 /systems/trs80/model3.rom

@@ -21,6 +21,7 @@ Amstrad CPC 464
   systems/cpc/games/bruce.dsk                              Bruce Lee (1984)
   systems/cpc/games/chasehq.dsk                            Chase H.Q. (1989)
   systems/cpc/games/eidolon.dsk                            The Eidolon (1986)
+  systems/cpc/games/prince.dsk                             Prince of Persia (1990)
   systems/cpc/games/rick.dsk                               Rick Dangerous (1989)
   systems/cpc/games/roland.dsk                             Roland on the Run (1984)
   systems/cpc/games/rtype.dsk                              R-Type (1988)
@@ -166,6 +167,7 @@ Atari 2600
   systems/stella/roms/invaders.a26                         Space Invaders (1980)
   systems/stella/roms/missile.a26                          Missile Command (1981)
   systems/stella/roms/pacman.a26                           Pac-Man (1982)
+  systems/stella/roms/pitfall.a26                          Pitfall! (1982)
   systems/stella/roms/riverraid.a26                        River Raid (1982)
   systems/stella/roms/yars.a26                             Yars' Revenge (1982)
 
@@ -331,6 +333,26 @@ Commodore VIC-20
   systems/vic20/games/omega.prg                            Omega Race (1982)
   systems/vic20/games/pacman.prg                           Pac-Man (1983)
   systems/vic20/games/ratrace.prg                          Radar Rat Race (1981)
+
+Grundy NewBrain
+---------------
+  systems/newbrain/roms/aben191.ic6                        firmware: NewBrain ROM A/B
+  systems/newbrain/roms/cdi3.ic7                           firmware: NewBrain ROM C/D
+  systems/newbrain/roms/ef iss 1.ic8                       firmware: NewBrain ROM E/F
+  systems/newbrain/roms/char eprom iss 1.ic453             firmware: NewBrain character generator
+  systems/newbrain/roms/cop420-guw.ic419                   firmware: COP420 microcode
+  systems/newbrain/tapes/alpine.bas                        Alpine (????)
+  systems/newbrain/tapes/breakout.bas                      BreakOut (????)
+  systems/newbrain/tapes/landar.bas                        Landar (????)
+  systems/newbrain/tapes/mastermind.bas                    MasterMind (????)
+  systems/newbrain/tapes/snake.bas                         Snake (????)
+  systems/newbrain/tapes/tycoon.bas                        Tycoon (1982)
+
+  The five ROM names are the ones MAME uses for its "newbrain" set, so a
+  copy of that set has all of them; note the spaces in two of the names.
+  The machine boots to BASIC on the first four. The fifth drives the
+  keyboard and the front panel, and without it the machine starts but
+  cannot be typed into.
 
 IBM PC
 ------
