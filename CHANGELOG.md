@@ -21,7 +21,32 @@
 
 - **A NewBrain bezel, with an English keyboard.** `systems/_shared/bezels/NewBrain.png` has sat in the tree untracked since the machine's artwork was first composed, waiting for the system itself. It is committed now, and in a corrected form: the photograph it had been built from is a French NewBrain, AZERTY across the top row with QSDFGHJKLM below it. A bezel is the one place a reader looks to find out where a key is, so a picture of the wrong keyboard is worse than no picture — and the emulator maps a QWERTY matrix regardless of what the artwork shows. Nothing references the file yet; it is an asset held for when the machine arrives.
 
+- **`systems/newbrain/PROVENANCE.md`** — a clean-room statement for the one
+  emulator here that is ours. ATTRIBUTION records what was used and under what
+  terms; this records how the machine was worked out: the hardware behaviour
+  read out of MAME's BSD-3-Clause NewBrain driver (Curt Coder) and Grundy's own
+  1981 Software Technical Manual, with the ROMs running settling what those two
+  disagreed on, and nothing taken from the one closed-source NewBrain emulator
+  that predates the work. It lists what a reader can check rather than asking
+  to be believed.
+
+  The separation from MAME is not claimed and is not needed — BSD-3 permits
+  reading and adapting it with the notice retained, which ATTRIBUTION does. The
+  separation from closed source is the real one, so the document describes it.
+
+  It sits in the bundle beside `COPYING`, not at the repo root and not only in
+  the standalone repository, so the bundle carries its own provenance wherever
+  it is copied to. The standalone `newbrain-js` holds the authoritative copy and
+  the two are kept in step, like `src/`.
+
 ### Changed
+- **The NewBrain row in ATTRIBUTION now says where the emulator came from.** It
+  named the standalone repository but not how the machine was worked out, which
+  is the part a reader of a from-scratch emulator is entitled to ask about. It
+  points at the bundle's own `PROVENANCE.md` and credits Curt Coder's
+  BSD-3-Clause MAME driver and Grundy's 1981 Technical Manual as the sources the
+  behaviour was read from — neither of which this file had named.
+
 - **The NewBrain bezel's provenance is recorded.** Its body and VF tube come from a Wikimedia Commons photograph by Rama & Musée Bolo, **CC BY-SA 2.0 FR**, which is a binding obligation of the same kind `Amstrad.png` already carries — so ATTRIBUTION names it and the share-alike is inherited. The replacement keyboard is from the Home Computer Museum, which states no licence and credits no photographer; that part falls under the usual bezel policy and is written down rather than left unsaid.
 
 ### Removed
