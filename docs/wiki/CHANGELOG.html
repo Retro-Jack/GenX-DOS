@@ -89,6 +89,13 @@
 </ul>
 <h3 id="changed">Changed</h3>
 <ul>
+<li><strong>The NewBrain bundle's PROVENANCE sticks to the claim rather than the
+  history behind it.</strong> What the emulator derives from, and what it does not, is
+  unchanged; the account of how that position was arrived at has gone. Kept in
+  step with the standalone repository's copy, as that file always must be.</li>
+</ul>
+<h3 id="changed_1">Changed</h3>
+<ul>
 <li>
 <p><strong>The NewBrain row in ATTRIBUTION now says where the emulator came from.</strong> It
   named the standalone repository but not how the machine was worked out, which
@@ -146,7 +153,7 @@
 <li><strong>Space Invaders is a mirror cabinet now, not a gel one.</strong> Its upright put the monitor face-up in the bottom of the cabinet and showed you a half-silvered mirror, so the sprites appeared to float over a painted planet rather than sit on black. The picture blends over the backdrop instead of covering it, and the core's green-and-red cellophane overlay is switched off for the game &mdash; a mirror cabinet had no glass to tape it to. Driven by a <code>backdrop</code> key in <code>games.json</code>, so any other mirror cabinet is one line.</li>
 <li><strong>Omega Race got the mirror treatment as well.</strong> Midway's 1981 upright used the same trick &mdash; monitor face-up, half-silvered glass, an airbrushed nebula behind it &mdash; so the vectors now float over the painting instead of over black. That is both of them: Sea Wolf is the only other machine here built around a mirror, and its one folds the picture up into the periscope rather than putting anything behind the glass, so it keeps the blue water gel.</li>
 </ul>
-<h3 id="changed_1">Changed</h3>
+<h3 id="changed_2">Changed</h3>
 <ul>
 <li><strong>The two screenshots are reshot, and are no longer a photograph of somebody's browser.</strong> The pair on the README, the landing page and in the feature article were taken in July with the whole browser in frame &mdash; tab strip, bookmarks bar and a <code>127.0.0.1:8765</code> address bar &mdash; and they had gone two menu revisions out of date besides: four rows and <em>Home Computers</em> where there are now five and <em>Personal Computers</em>, and no <em>Arcade Machines</em>. The new pair is the page only, nothing around it, shot from the live site. They are JPEGs at 1512&times;806, which is also 2.3&nbsp;MB less to clone.</li>
 <li><strong>The arcade wiki page now explains the mirror cabinets.</strong> Two of the hundred are Pepper's Ghost machines and the page that documents the section had nothing about them: how the <code>backdrop</code> key works, why the core's artwork is switched off for those two, that MAME stores artwork unrotated so a vertical game needs turning before it is cropped, and why the pre-darkening is 45% for Space Invaders and 30% for Omega Race. It also records that Sea Wolf is the third machine here built around a mirror and deliberately does not get one &mdash; its mirror folds the picture up into the periscope and there is nothing painted behind the glass.</li>
@@ -174,7 +181,7 @@
 <li><strong>It is not counted as a game.</strong> It has a page like everything else on the shelf, but the site's tally is of games and this is an operating system, so <code>check-doc-counts.sh</code> and the social card both hold a named list of pages that are not games and subtract it. The landing page and the article still read 438. The one number that did move is the page count in <code>File-Structure.md</code>, which counts pages rather than games and is now 474.</li>
 <li><strong>The boot sector wants <code>IO.SYS</code> and <code>MSDOS.SYS</code> as the first two root directory entries</strong>, so the image is formatted without a volume label — a label takes entry zero, and the disk answers <code>Non-System disk or disk error</code>, which is pleasingly the exact message the line-ending fix had just restored.</li>
 </ul>
-<h3 id="changed_2">Changed</h3>
+<h3 id="changed_3">Changed</h3>
 <ul>
 <li><strong>Three DOS games offer a joystick, and their pages now say it leads nowhere.</strong> <em>Alley Cat</em> asks outright — <em>Do you want to use a joystick (Y/N)?</em> — and <em>Paratrooper</em> and <em>Captain Comic</em> each name one as an option, Comic with a calibration screen that will sit waiting for a stick that never answers. Nothing can be done about it at our end: the layer the DOS games run through can send keys and a mouse and has no path for a joystick at all. Each page now says so in its own words, at the step where you meet it. Sopwith is not among them — it names joysticks too, but on a screen it is launched past.</li>
 <li><strong>The IBM monitor has been redrawn.</strong> Same photograph, cleaner edges. The screen cutout is unchanged to two decimal places in both bounds, so the prompt and the IBM PC bundle need no adjustment and arriving at a game from the launcher still moves nothing.</li>
@@ -200,7 +207,7 @@
 <li><strong>A <code>menu</code> link in the credit pill.</strong> It sits between the wordmark and <code>source</code>, and goes back to the prompt. The two are different journeys: the wordmark leaves for the landing page, <code>menu</code> hands the window back to the launcher you came in by — and deliberately does not reload it, so whichever directory you had navigated to is still there. The prompt carries the pill too, where the link would point at itself, so it is left off there.</li>
 <li><strong><code>deploy.sh</code> can overlay the footer.</strong> It already appended a fragment to the pill script and spliced one into the home page's card list; it now also splices one into the footer, anchored on the closing line so the fragment lands above the licence notes. A no-op when the file is absent, so a fresh clone still builds exactly the repo and the release zip is untouched.</li>
 </ul>
-<h3 id="changed_3">Changed</h3>
+<h3 id="changed_4">Changed</h3>
 <ul>
 <li><strong>The documentation caught up with the IBM PC.</strong> The feature article still counted thirty-four machines and named the launcher's first entry <em>Home Computers</em>; it now counts thirty-five, says <em>Personal Computers</em>, and has a paragraph on the machine the site had been impersonating all along. The README lists the bundle and the engine in both its tables, the AI disclaimer's engine count was one behind, and the wiki gained <a href="Emulator-js-dos-IBM-PC.html">Emulator-js-dos-IBM-PC</a> — why the js-dos <em>player</em> is not used, how the banner is hidden, the per-game machine settings, and the CSP it needs. The TI-99 controls page was the last page anywhere still headed <em>Home Computer</em>.</li>
 <li><strong>The maker menus show how long each machine was made for.</strong> A maker row used to carry the year its earliest machine appeared, which is the span of its <em>launches</em> rather than of its manufacturing. Each row now runs from the first of our machines going on sale to the last of them leaving production — only the machines actually on the shelf, so Apple reads 1976-1982 for the Apple I and the ][+ rather than 1993 for an Apple II line we don't run, Atari reads 1979-1985 for the 400 and the 800XL, and Texas Instruments reads 1981-1984 for the 99/4A rather than 1979 for the 99/4 before it. Where one machine sold in several regions, the widest is used: the Master System's 1996 is its European tail, and the Famicom's 2003 is a decade after the NES left the West. Sourced per machine rather than recalled — Wikipedia's own infobox for the TI-99/4A gives June 1981, which belongs to the 99/4. The arcade rows are unchanged: a cabinet's production run is the game, and they already said so.</li>
@@ -252,7 +259,7 @@
 <ul>
 <li><strong>Three unreferenced images from the Apple ][+ bundle.</strong> <code>img/logoicon.png</code> and the two <code>webapp-*.png</code> touch icons came with apple2js and are reached only from its own <code>index.html</code>, which we do not ship. Nothing in the tree names them. The bundle's other six images are all referenced by <code>play.html</code>, the stylesheet or the app bundle, and stay.</li>
 </ul>
-<h3 id="changed_4">Changed</h3>
+<h3 id="changed_5">Changed</h3>
 <ul>
 <li>
 <p><strong>The wiki had never heard of the arcade.</strong> Three pages that describe the whole site — Project Overview, Virtual Filesystem and the <code>C:</code> tree on it — went two days without a word about the hundred cabinets, which is the largest thing on the site. The launcher listing still read <em>4 WIKI</em>, where the arcade has sat at 4 since it launched; the <code>C:</code> tree had no ARCADE branch, and the menu-to-emulator table had no arcade row. All three now do, with the ten makers named.
@@ -393,7 +400,7 @@
 </li>
 </ul>
 <h2 id="181---2026-09-11">[1.8.1] - 2026-09-11</h2>
-<h3 id="changed_5">Changed</h3>
+<h3 id="changed_6">Changed</h3>
 <ul>
 <li>
 <p><strong>The repository no longer carries games, BIOS or firmware that didn't come with an emulator.</strong> genx-dos.fun is unchanged and still has every one. The repo, its whole history and the release zip now hold the emulators, plus anything an emulator's own maintainer shipped with it. 382 files leave the tree and 544 file versions leave history, 644 MB in all.

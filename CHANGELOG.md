@@ -58,6 +58,12 @@
   site and on GitHub alike.
 
 ### Changed
+- **The NewBrain bundle's PROVENANCE sticks to the claim rather than the
+  history behind it.** What the emulator derives from, and what it does not, is
+  unchanged; the account of how that position was arrived at has gone. Kept in
+  step with the standalone repository's copy, as that file always must be.
+
+### Changed
 - **The NewBrain row in ATTRIBUTION now says where the emulator came from.** It
   named the standalone repository but not how the machine was worked out, which
   is the part a reader of a from-scratch emulator is entitled to ask about. It

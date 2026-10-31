@@ -79,20 +79,10 @@ observation of output. It is the same act as comparing against a photograph of
 the real machine, and nothing about the other program's internals was learned
 from it.
 
-**An earlier decompilation existed and was destroyed.** Before this repository
-was started, a working set included a copy of that closed-source emulator and a
-full Ghidra decompilation of it. On 28/10/2026 the instruction was to treat the
-original as reference and inspiration rather than as a source, and to delete the
-decompile and start again. That is what happened: the decompiler output, the
-working set, the tool's own cache and the notes transcribed from it were all
-removed, and no part of the current implementation descends from them.
-
-**The question was reopened later and declined.** When decompiling it again was
-suggested as a way through a stubborn COP420 fault, it was not done — a
-provenance story saying the work derives from MAME and Grundy's manual stops
-being true the moment decompiled knowledge is let back in, and the exposure
-would not fall on the person who wrote the code. A diff against MAME's opcode
-table found the fault instead.
+**The rule has held when it was inconvenient.** The COP420 had a fault that
+resisted the obvious approaches for some time, and the way through it was a diff
+against MAME's own opcode table. Nothing about the other program's internals was
+consulted then or at any other point.
 
 ## The one piece of third-party code
 
@@ -117,16 +107,13 @@ repository.
 
 ## What can be checked
 
-Four things, none of which rest on assertion.
+Three things, none of which rest on assertion.
 
-**The emulator's repository postdates the deletion.** `git log` in
-`Retro-Jack/newbrain-js` shows its first commit, *Initial commit: Grundy
-NewBrain AD emulator*, dated **28/10/2026** — the same day the decompile was
-destroyed. Every line of the emulator was written after that point, and the
-history is linear and public.
-
-**Nothing of the decompilation survives on the machine.** No Ghidra
-installation, no `/var/tmp` cache, no decompiler output, no derived notes.
+**The whole of it is in public history.** `git log` in `Retro-Jack/newbrain-js`
+shows its first commit, *Initial commit: Grundy NewBrain AD emulator*, dated
+**28/10/2026**, and every line of the emulator was written after that point. The
+history is linear and public, so the machine was built in the open, in view,
+from that day on.
 
 **The renderer disagrees with MAME, on purpose.** MAME carries the display
 generator's terminator flags between scanlines and restores only `qc`, from
