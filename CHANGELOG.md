@@ -56,6 +56,13 @@
   project cannot be its own upstream. The standalone repository ships no
   tapes; this one now matches it.
 
+- **`ROMS.txt` stopped being attached to releases after v1.9.0.** It is still
+  inside each zip, so nothing was unobtainable, but the point of attaching it
+  separately is that the notice can be read without downloading 200&nbsp;MB to
+  find out what the download is missing. It is back on v1.10.0 through
+  v1.12.1, and `build-portable.sh --no-roms` now ends by naming the step,
+  which is done by hand.
+
 - **A copy from GitHub had no way to learn what the NewBrain needs.** Its five
   firmware files were correctly ignored but absent from `ROMS.txt`, the only
   drift in the manifest. The new section names them with the spellings MAME's

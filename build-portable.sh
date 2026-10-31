@@ -102,3 +102,12 @@ rsync -a --delete --delete-excluded \
   ./ "$TARGET"/
 
 echo "Portable site built in: $TARGET"
+
+# The zip is only half of a release. ROMS.txt is attached to the release as a
+# file in its own right, so the notice can be read without downloading 200 MB
+# to find out what is missing from it. That step is done by hand and it lapsed
+# for four releases, v1.10.0 to v1.12.1, before anyone noticed.
+if [[ $NO_ROMS == 1 ]]; then
+  echo "Release build — also attach the notice to the release itself:"
+  echo "  gh release upload vX.Y.Z ROMS.txt"
+fi
