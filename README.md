@@ -11,7 +11,7 @@ Live at **[genx-dos.fun](https://genx-dos.fun/)**.
 
 **This repository carries the emulators, not the games we added.** The live site has everything; the repo and the release zip leave out every game, BIOS and firmware file that didn't come with its emulator. Anything an emulator's own maintainer shipped with it, firmware or software, is still here. **[ROMS.txt](ROMS.txt)** lists what's missing and exactly where each file goes, so a local copy can be completed. Sourcing is up to you, and for legal reasons we won't answer questions about it.
 
-We bundle 20 emulator engines covering 35 sub-systems between them, from the Apple I to a hundred arcade cabinets.
+We bundle 19 emulator engines covering 35 sub-systems between them, from the Apple I to a hundred arcade cabinets.
 
 **Scope:** 8-bit *feel* — anything with the look and sound of an 8-bit machine (sprite-based, chiptune, low-res), including the 8-bit-feel handhelds (Game Boy/GBC, Game Gear, Lynx) even where they run into the late 90s. The cutoff is the *aesthetic*, not the calendar or strict CPU width; 16-bit home consoles/computers (Genesis, SNES, Amiga, ST) stay out. See the [Roadmap](https://github.com/Retro-Jack/GenX-DOS/wiki/Roadmap) for what's shipped, planned, and rejected.
 
@@ -102,7 +102,6 @@ systems/                  game counts below describe the live site; see ROMS.txt
   trs80/                  Tandy TRS-80 Model III — sdltrs built from source to WASM + 10 .cmd
                           games and two bootable system disks (TRSDOS 1.3, LDOS 5.3.1)
   m100/                   Tandy Model 100     — VirtualT core extracted to WASM + 10 .ba games (portable)
-  newbrain/               Grundy NewBrain     — our own Z80 + COP420 emulator + 6 .bas tapes (portable)
   js99er/                 TI-99/4A            — vanilla-JS js99er + 10 .rpk carts
   atari400/               Atari 400           — atari800 WASM, boots OS-B
   atari800/               Atari 800XL         — atari800 WASM, boots OS-XL
@@ -121,7 +120,7 @@ systems/                  game counts below describe the live site; see ROMS.txt
 
 ## Where the readable source is
 
-The hand-written GenX-DOS code lives in `prompt/javascript/`, `systems/_shared/`, `systems/_shared-ejs/`, each emulator's `play.html` wrapper, `systems/m100/src/` (the Model 100's headless VirtualT build units + recipe) and `systems/newbrain/src/` (the NewBrain machine itself — Z80 glue, COP420 core, tape codec) — all formatted for reading.
+The hand-written GenX-DOS code lives in `prompt/javascript/`, `systems/_shared/`, `systems/_shared-ejs/`, each emulator's `play.html` wrapper, `systems/m100/src/` (the Model 100's headless VirtualT build units + recipe) — all formatted for reading.
 
 Everything else under `systems/<name>/` is upstream: emscripten WASM glue (`xroar.js`, `atari800.js`, `o2em.js`, `jzintv.js`), webpack production bundles (`apple1.js` — built from our apple1js fork — `apple2/dist/*.bundle.js`, `jsspeccy.js`), the stock WebMSX engine (`msx1/wmsx.js`, `msx2/wmsx.js`), or hand-written JS from the upstream project (ElkJS, js99er's `emu/`). For the readable source of those, follow the upstream link in [ATTRIBUTION.md](ATTRIBUTION.md) or the per-engine integration story on the [wiki](https://github.com/Retro-Jack/GenX-DOS/wiki/Emulators).
 
@@ -146,7 +145,6 @@ Each engine has its own story page on the wiki — the gotchas we hit, the worka
 | Tandy CoCo| Ciaran Anscomb/XRoar                 | `play.html?game=<key>`                   |
 | TRS-80 Model III | jengun/sdltrs (our own WASM build) | `play.html?game=<key>`              |
 | Model 100 | Hurd & Pettit/VirtualT (our own core-only WASM build) | `play.html?game=<key>`     |
-| Grundy NewBrain | ours — original Z80 + COP420 emulator, no upstream | `play.html?game=<key>`   |
 | TI-99/4A  | Rasmus-M/js99er (vanilla-JS build)   | `play.html?game=<key>`                   |
 | Atari 400 / 800XL | atari800/atari800 (our own WASM build; split into `atari400/` + `atari800/` bundles) | `play.html?game=<key>` |
 | VIC-20 / MAX / C64 / C16 / Plus/4 | EmulatorJS + VICE libretro family | `play.html?game=<key>` |

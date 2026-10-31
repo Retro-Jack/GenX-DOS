@@ -103,6 +103,27 @@
 </ul>
 <h3 id="removed">Removed</h3>
 <ul>
+<li><strong>The Grundy NewBrain is held back from the published site, for now.</strong> Its
+  renderer has no pixel-graphics support: three <code>00</code> bytes put the display
+  generator into a bitmap mode for the rest of the frame, and ours resets the
+  terminator flags every scanline so that path is unreachable. Programs that
+  use it — Chess draws its board that way — come out as blocks and stripes
+  rather than a picture. That is not a state to leave on a public site, so the
+  machine comes off it until the renderer is finished.</li>
+</ul>
+<p>Removed from the launcher (Portable Computers keeps the Model 100, renumbered
+  to 1), from the keyless-gamedoc list, from the README, ATTRIBUTION's bundle
+  table, <em>Emulators</em>, <em>Project Overview</em>, <em>Home</em> and the Roadmap, and the
+  <em>Emulator-NewBrain</em> wiki page is gone. <code>build-portable.sh</code> excludes
+  <code>systems/newbrain/</code> so it does not ship at all and cannot be reached by URL.
+  The engine count drops from 20 to 19 everywhere it is quoted.</p>
+<p><strong>The bundle itself stays in the repository</strong>, untouched, so this is one
+  commit to revert when the work lands. Two things are deliberately kept:
+  <code>ATTRIBUTION</code>'s entries for <code>NewBrain.png</code> and the Segment16C font, because
+  those files remain in the tree and the first carries a binding CC BY-SA
+  share-alike, and the historical CHANGELOG entries, which are a dated record
+  rather than an advertisement.</p>
+<ul>
 <li><strong>Thirty-eight BBC ROMs that no model can ask for.</strong> jsbeeb builds every ROM path as <code>roms/</code> plus a name taken from its model table's <code>os:[]</code> arrays. Nineteen files in each of the two BBC bundles appear in no entry of that table, and nowhere else in the bundle, so nothing can request them &mdash; not our launcher, and not jsbeeb's own model picker, which can only offer the models the table defines. They are the Acorn Atom word processor, the Master Compact, the Tube co-processors, the US BBC, and the B+ and A01 OS/BASIC variants: machines the build does not wire up. 592&nbsp;KB, and the size on disk falls from 189 to 188&nbsp;MB.</li>
 </ul>
 <p>An earlier audit looked at exactly these files and recorded them as <em>referenced by the model picker, so technically not orphans</em>. That was wrong, and the note has been corrected: the picker reads the same table, so a ROM absent from it is absent from the picker too.</p>

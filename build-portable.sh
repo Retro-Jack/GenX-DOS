@@ -92,6 +92,11 @@ rsync -a --delete --delete-excluded \
   --exclude='/CODE_OF_CONDUCT.md' --exclude='/AI-DISCLAIMER.md' \
   --exclude='/docs/wiki-src' \
   --exclude='/_paddiag.html' \
+  `# TEMPORARY: the NewBrain is held back from the published site while its
+   # renderer is finished — it has no pixel-graphics support yet, so programs
+   # that use it draw as garbage. The bundle stays in the repo; put this line
+   # back in the ship when the work lands.` \
+  --exclude='/systems/newbrain' \
   --include='/GenX-DOS.sh' \
   --exclude='/*.sh' \
   --exclude='/.htaccess' \

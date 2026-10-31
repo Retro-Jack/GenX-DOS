@@ -3702,66 +3702,6 @@ var fs = [
             name: 'PORTABLE',
             directories: [
               {
-                name: 'NEWBRAIN',
-                directories: [
-                  {
-                    name: 'GAMES',
-                    directories: [],
-                    files: [
-                      {
-                        name: 'menu.bat',
-                        data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º           GRUNDY  NEWBRAIN  GAMES           º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Alpine                         (????) º\necho                 º   2.  BreakOut                       (????) º\necho                 º   3.  Landar                         (????) º\necho                 º   4.  MasterMind                     (????) º\necho                 º   5.  Snake                          (????) º\necho                 º   6.  Tycoon                         (1982) º\necho                 º                                             º\necho                 º  11.  NewBrain BASIC prompt                 º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
-                      },
-                      {
-                        name: '0.bat',
-                        data: '@echo off\ncd ..\ncd ..\nmenu\n',
-                      },
-                      { name: '1.bat', data: 'alpine\n' },
-                      { name: '2.bat', data: 'breakout\n' },
-                      { name: '3.bat', data: 'landar\n' },
-                      { name: '4.bat', data: 'mastrmnd\n' },
-                      { name: '5.bat', data: 'snake\n' },
-                      { name: '6.bat', data: 'tycoon\n' },
-                      { name: '11.bat', data: 'basic\n' },
-                      {
-                        name: 'alpine.exe',
-                        link: '../systems/newbrain/play.html?game=alpine',
-                      },
-                      {
-                        name: 'breakout.exe',
-                        link: '../systems/newbrain/play.html?game=breakout',
-                      },
-                      {
-                        name: 'landar.exe',
-                        link: '../systems/newbrain/play.html?game=landar',
-                      },
-                      {
-                        name: 'mastrmnd.exe',
-                        link: '../systems/newbrain/play.html?game=mastermind',
-                      },
-                      {
-                        name: 'snake.exe',
-                        link: '../systems/newbrain/play.html?game=snake',
-                      },
-                      {
-                        name: 'tycoon.exe',
-                        link: '../systems/newbrain/play.html?game=tycoon',
-                      },
-                      {
-                        name: 'basic.exe',
-                        link: '../systems/newbrain/play.html',
-                      },
-                    ],
-                  },
-                ],
-                files: [
-                  {
-                    name: 'menu.bat',
-                    data: '@echo off\ncd games\nmenu\necho.\n',
-                  },
-                ],
-              },
-              {
                 name: 'M100',
                 directories: [
                   {
@@ -3878,10 +3818,9 @@ var fs = [
             files: [
               {
                 name: 'menu.bat',
-                data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             PORTABLE  COMPUTERS             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Grundy NewBrain                (1982) º\necho                 º                                             º\necho                 º   2.  Tandy Model 100                (1983) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
+                data: '@echo off\ncls\necho                 ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»\necho                 º             PORTABLE  COMPUTERS             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º                                             º\necho                 º   1.  Tandy Model 100                (1983) º\necho                 º                                             º\necho                 º   0.  Back                                  º\necho                 º                                             º\necho                 ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶\necho                 º        Type a number and press ENTER        º\necho                 ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\necho.\n',
               },
-              { name: '1.bat', data: 'cd newbrain\ncd games\nmenu\n' },
-              { name: '2.bat', data: 'cd m100\ncd games\nmenu\n' },
+              { name: '1.bat', data: 'cd m100\ncd games\nmenu\n' },
               { name: '0.bat', data: 'cd ..\nmenu\n' },
             ],
           },

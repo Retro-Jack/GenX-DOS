@@ -12,7 +12,7 @@ Every shipped system has the *feel* of an 8-bit machine — sprite-based, chiptu
 
 ---
 
-## ✅ Shipped (20 emulator engines, 35 sub-systems)
+## ✅ Shipped (19 emulator engines, 35 sub-systems)
 
 | Category | Platform | Year | Dir | Engine | Notes |
 |----------|----------|------|-----|--------|-------|
@@ -81,7 +81,6 @@ Listed for clarity — these are the 16-bit/32-bit transition and beyond.
 *Undated below: never shipped, so no commit dates them — all were recorded when this page was written (05/06/2026).*
 - **Sinclair QL** (1984) — no turn-key bundle; sQLux build is ~4h project
 - **Cambridge Z88** (1988) — OZvm is Java/C++ desktop only
-- **Sinclair NewBrain** (1982) — MAME driver broken (VFD doesn't get data)
 - **Sinclair MK14** (1977) — MAME-only, very obscure (256-byte RAM kit)
 - **Microvision** (1979) — split-CPU emulators don't pair with available ROMs
 - **Commodore 128** (1985) — shipped, then dropped 03/09/2026. In native mode it was never really a games machine: of its ten slots, only *Star Fleet I* was a commercial C128 title, two were C64 games, and six were BASIC type-ins. The 80-column library is mostly Infocom multi-disk sets the launcher cannot mount.

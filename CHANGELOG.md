@@ -68,6 +68,28 @@
 - **The NewBrain bezel's provenance is recorded.** Its body and VF tube come from a Wikimedia Commons photograph by Rama & Musée Bolo, **CC BY-SA 2.0 FR**, which is a binding obligation of the same kind `Amstrad.png` already carries — so ATTRIBUTION names it and the share-alike is inherited. The replacement keyboard is from the Home Computer Museum, which states no licence and credits no photographer; that part falls under the usual bezel policy and is written down rather than left unsaid.
 
 ### Removed
+- **The Grundy NewBrain is held back from the published site, for now.** Its
+  renderer has no pixel-graphics support: three `00` bytes put the display
+  generator into a bitmap mode for the rest of the frame, and ours resets the
+  terminator flags every scanline so that path is unreachable. Programs that
+  use it — Chess draws its board that way — come out as blocks and stripes
+  rather than a picture. That is not a state to leave on a public site, so the
+  machine comes off it until the renderer is finished.
+
+  Removed from the launcher (Portable Computers keeps the Model 100, renumbered
+  to 1), from the keyless-gamedoc list, from the README, ATTRIBUTION's bundle
+  table, *Emulators*, *Project Overview*, *Home* and the Roadmap, and the
+  *Emulator-NewBrain* wiki page is gone. `build-portable.sh` excludes
+  `systems/newbrain/` so it does not ship at all and cannot be reached by URL.
+  The engine count drops from 20 to 19 everywhere it is quoted.
+
+  **The bundle itself stays in the repository**, untouched, so this is one
+  commit to revert when the work lands. Two things are deliberately kept:
+  `ATTRIBUTION`'s entries for `NewBrain.png` and the Segment16C font, because
+  those files remain in the tree and the first carries a binding CC BY-SA
+  share-alike, and the historical CHANGELOG entries, which are a dated record
+  rather than an advertisement.
+
 - **Thirty-eight BBC ROMs that no model can ask for.** jsbeeb builds every ROM path as `roms/` plus a name taken from its model table's `os:[]` arrays. Nineteen files in each of the two BBC bundles appear in no entry of that table, and nowhere else in the bundle, so nothing can request them &mdash; not our launcher, and not jsbeeb's own model picker, which can only offer the models the table defines. They are the Acorn Atom word processor, the Master Compact, the Tube co-processors, the US BBC, and the B+ and A01 OS/BASIC variants: machines the build does not wire up. 592&nbsp;KB, and the size on disk falls from 189 to 188&nbsp;MB.
 
   An earlier audit looked at exactly these files and recorded them as *referenced by the model picker, so technically not orphans*. That was wrong, and the note has been corrected: the picker reads the same table, so a ROM absent from it is absent from the picker too.

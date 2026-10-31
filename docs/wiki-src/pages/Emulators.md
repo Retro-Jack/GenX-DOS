@@ -1,4 +1,4 @@
-20 emulator engines ship with GenX-DOS, driving 35 sub-systems between them. Some of the integrations were one-liners; others took a week of trial and failure. Every engine — plus each libretro core the shared EmulatorJS framework hosts — has its own integration story, so the index below runs to more rows than the engine count: one row per story page.
+19 emulator engines ship with GenX-DOS, driving 35 sub-systems between them. Some of the integrations were one-liners; others took a week of trial and failure. Every engine — plus each libretro core the shared EmulatorJS framework hosts — has its own integration story, so the index below runs to more rows than the engine count: one row per story page.
 
 ## The engines
 
@@ -7,7 +7,6 @@
 | [[Emulator-XRoar-CoCo]] | Tandy Color Computer |
 | [[Emulator-sdltrs-TRS-80]] | Tandy TRS-80 Model III |
 | [[Emulator-VirtualT-Model-100]] | Tandy TRS-80 Model 100 |
-| [[Emulator-NewBrain]] | Grundy NewBrain |
 | [[Emulator-atari800]] | Atari 400, Atari 800XL |
 | [[Emulator-VICE-family]] | VIC-20, MAX, C64, C16, Plus/4 |
 | [[Emulator-pet2001-Skibo]] | Commodore PET 2001 |
