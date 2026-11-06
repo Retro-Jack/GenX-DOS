@@ -88,6 +88,12 @@ rm -f "$STAGE_DIR/GenX-DOS.sh" "$STAGE_DIR/GenX-DOS.bat"
 # would ignore it) but must reach the web host.
 cp .htaccess "$STAGE_DIR/.htaccess"
 
+# The contact form, for the same reason and by the same route: excluded
+# from the portable build, copied in here so it reaches the web host. Its
+# secret is NOT deployed -- that lives outside the web root on the server
+# and is never in the repo, the stage or the zip.
+cp -r contact "$STAGE_DIR/contact"
+
 # Optional local-only overlay. Anything in this file is appended to the deployed
 # copy of genx-repo-link.js, so it reaches the live site but is in neither the
 # repo nor the release zip. Appended rather than patched in, so the repo's own

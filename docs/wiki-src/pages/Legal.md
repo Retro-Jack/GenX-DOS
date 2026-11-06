@@ -7,8 +7,8 @@ connects them. It is a statement of position, not legal advice.
 ## What it rests on
 
 GenX-DOS is a one-person, non-commercial preservation project. It is a static
-site: no server code, no accounts, no payments, no advertising, no sponsorship,
-no analytics and no telemetry. Nothing about it earns money, and there is no
+site but for the contact form: no accounts, no payments, no advertising, no
+sponsorship, no analytics and no telemetry. Nothing about it earns money, and there is no
 mechanism by which it could without being rebuilt.
 
 Since 11/09/2026 its two public surfaces hold different things:

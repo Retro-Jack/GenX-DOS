@@ -1,6 +1,25 @@
 ## [Unreleased]
 
 ### Added
+- **A contact form at `/contact/`**, replacing GitHub Discussions, which is
+  now switched off. It is the one piece of server-side code on the site: a
+  single PHP page that mints a signed token, checks it back on submission and
+  emails the message. No framework, no database, no session and no
+  third-party anti-spam — a captcha would mean a script from somewhere else,
+  and the site makes no external calls.
+
+  Standing in for one: a signed, time-limited token, a honeypot field and a
+  minimum fill time, plus a per-sender rate limit. The limit is the only
+  thing kept between requests, and it is kept as a keyed hash rather than an
+  address. The secret and the counters live outside the web root, and with no
+  secret the form refuses to render rather than falling back to something
+  weaker. CR and LF are refused in every header field, which is how mail
+  injection works.
+
+  The PHP is excluded from the release zip — served by `python3 -m
+  http.server`, it could not run anyway — and copied into the deploy stage
+  the way `.htaccess` already was.
+
 - **The Grundy NewBrain, and a Portable Computers category to hold it.** The
   NewBrain is the only system here whose emulator is ours: there was no
   browser-capable NewBrain emulator to port, so the machine is written from
@@ -58,6 +77,12 @@
   site and on GitHub alike.
 
 ### Changed
+- **"No backend" is no longer true, so it no longer says so.** The README,
+  SECURITY.md, and the Project Overview, Your Data and Legal wiki pages each
+  claimed the site had no server code at all. They now scope that to the
+  contact form. Nothing else changed: no cookies, no accounts, no analytics,
+  no telemetry, and nothing is sent anywhere unless you deliberately send it.
+
 - **The NewBrain bundle's PROVENANCE sticks to the claim rather than the
   history behind it.** What the emulator derives from, and what it does not, is
   unchanged; the account of how that position was arrived at has gone. Kept in

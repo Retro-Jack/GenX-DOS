@@ -1,6 +1,6 @@
 # GenX-DOS
 
-A browser DOS prompt that boots emulators from numbered menus. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs client-side — no backend, no external network calls at runtime. Try it [here](https://genx-dos.fun/).
+A browser DOS prompt that boots emulators from numbered menus. Drop into a fake AMIBIOS POST, get a `C:\>` cursor, type a number, play a game. Everything runs client-side — no external network calls at runtime. The live site's one piece of server-side code is the contact form, which nothing the emulators do ever touches. Try it [here](https://genx-dos.fun/).
 
 <p align="center">
   <img src="docs/images/screenshot-menu.jpg" width="49%" alt="GenX-DOS launcher menu in a CRT bezel, running in a browser">
@@ -31,7 +31,7 @@ python3 -m http.server 8765
 
 Open <http://127.0.0.1:8765/>.
 
-GenX-DOS has no backend, but it **must be hosted over HTTP** — the commands above do that. Don't open the files straight from disk (`file:///…/index.html`): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for `file://` pages. Any static file host does the job — `GenX-DOS.sh`, `python3 -m http.server`, nginx, or whatever your host provides.
+GenX-DOS needs no backend, but it **must be hosted over HTTP** — the commands above do that. Don't open the files straight from disk (`file:///…/index.html`): the DOS shell loads, but games stay blank, because the emulators fetch their ROMs, disc images and WASM as the page loads and browsers block that for `file://` pages. Any static file host does the job — `GenX-DOS.sh`, `python3 -m http.server`, nginx, or whatever your host provides.
 
 ## Download
 

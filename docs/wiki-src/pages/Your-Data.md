@@ -1,4 +1,4 @@
-GenX-DOS is a **static site with no backend** — no accounts, no cookies, no analytics, and nothing you do is ever sent anywhere. A few things, though, are written to your browser's own **semi-permanent storage** (`localStorage` / IndexedDB) so they survive a reload or a return visit. This page is the complete list of what those are and when they're written.
+GenX-DOS is a **static site** — no accounts, no cookies, no analytics, and nothing you do is sent anywhere unless you deliberately send it, which only the contact form does. A few things, though, are written to your browser's own **semi-permanent storage** (`localStorage` / IndexedDB) so they survive a reload or a return visit. This page is the complete list of what those are and when they're written.
 
 | Data | Where it's stored | When it's written | Which bundles |
 |---|---|---|---|
@@ -12,7 +12,7 @@ The first two rows and the last are GenX-DOS's own code (`genx-savestate.js` / `
 
 ## What isn't stored
 
-No cookies, no login, no personal data, no telemetry — the site has no server to send any of it to. Everything in the table lives only in your browser, scoped to the GenX-DOS origin, and never leaves your machine.
+No cookies, no login, no personal data, no telemetry — and none of it is sent anywhere. Everything in the table lives only in your browser, scoped to the GenX-DOS origin, and never leaves your machine.
 
 ## Backing up your saves — and moving them between addresses
 

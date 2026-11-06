@@ -1,0 +1,62 @@
+/* GenX-DOS — the contact form.
+   The document design language plus the few controls it needs. Nothing here
+   is inline, so the page can declare style-src 'self' with no exception. */
+@import url('genx-doc.css');
+
+.gx-form{margin:1.6rem 0 0;display:flex;flex-direction:column}
+
+.gx-form label{
+  font-family:'IBM Plex Mono',monospace;color:var(--green);
+  font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;
+  margin:1.2rem 0 .4rem;
+}
+
+.gx-form input[type=text],
+.gx-form input[type=email],
+.gx-form textarea{
+  font-family:'IBM Plex Mono',monospace;font-size:.92rem;line-height:1.5;
+  color:var(--paper);background:var(--panel);
+  border:1px solid var(--line);border-radius:2px;
+  padding:.6rem .7rem;width:100%;box-sizing:border-box;
+}
+.gx-form textarea{resize:vertical;min-height:11rem}
+.gx-form input:focus-visible,
+.gx-form textarea:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-color:var(--amber)}
+.gx-form input::placeholder,.gx-form textarea::placeholder{color:var(--dim)}
+
+.gx-form .hint{color:var(--dim);font-size:.78rem;margin:.35rem 0 0;text-align:left}
+
+/* The honeypot. Off-screen rather than display:none or type=hidden, both of
+   which a bot can spot; and tabindex=-1 plus no label association keeps it
+   out of the way of anyone using the keyboard or a screen reader. */
+.gx-form .pot{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
+
+.gx-form button{
+  font-family:'IBM Plex Mono',monospace;font-size:.95rem;
+  letter-spacing:.04em;text-transform:uppercase;
+  color:var(--amber);background:transparent;
+  border:2px solid var(--line);border-radius:2px;
+  padding:.65rem 2.2rem;margin:1.9rem 0 0;align-self:flex-start;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease;
+}
+.gx-form button:hover,.gx-form button:focus-visible{background:var(--amber);color:var(--crt);border-color:var(--amber)}
+
+.problem{
+  border:1px solid var(--amber);border-left-width:3px;border-radius:2px;
+  background:var(--panel);padding:.9rem 1.1rem;margin:1.6rem 0 0;
+}
+.problem p{margin:0;color:var(--paper);text-align:left}
+.problem ul{margin:.5rem 0 0 1.2rem}
+.problem li{color:var(--prose)}
+
+/* The links offered after a successful send. */
+.ways{display:flex;gap:.8rem;flex-wrap:wrap;margin:1.8rem 0 0}
+.way{
+  font-family:'IBM Plex Mono',monospace;font-size:.86rem;
+  letter-spacing:.04em;text-transform:uppercase;
+  color:var(--paper);border:1px solid var(--line);border-radius:2px;
+  padding:.55rem 1.3rem;text-decoration:none;
+}
+.way:hover,.way:focus-visible{color:var(--amber);border-color:var(--amber)}
+.way.primary{color:var(--amber)}
+.way.primary:hover,.way.primary:focus-visible{background:var(--amber);color:var(--crt)}
