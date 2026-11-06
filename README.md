@@ -9,7 +9,7 @@ A browser DOS prompt that boots emulators from numbered menus. Drop into a fake 
 
 Live at **[genx-dos.fun](https://genx-dos.fun/)**.
 
-**This repository carries the emulators, not the games we added.** The live site has everything; the repo and the release zip leave out every game, BIOS and firmware file that didn't come with its emulator. Anything an emulator's own maintainer shipped with it, firmware or software, is still here. **[ROMS.txt](ROMS.txt)** lists what's missing and exactly where each file goes, so a local copy can be completed. Sourcing is up to you, and for legal reasons we won't answer questions about it.
+**This repository carries the emulators, not the games we added.** The live site has everything; the repo and the release zip carry every emulator, along with whatever firmware or software its own maintainer shipped with it. The games, and the system firmware a few machines need before they will start, are yours to provide. **[ROMS.txt](ROMS.txt)** lists exactly what to supply and where each file goes, so a local copy can be completed. Sourcing is up to you, and for legal reasons we won't answer questions about it.
 
 We bundle 19 emulator engines covering 35 sub-systems between them, from the Apple I to a hundred arcade cabinets.
 

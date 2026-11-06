@@ -79,8 +79,11 @@
   site and on GitHub alike.
 
 ### Changed
-- Front page: a self-hosted copy is described by what you need to supply
-  rather than by what has been withheld.
+- The front page and the README describe a self-hosted copy by what you
+  need to supply rather than by what has been withheld. The README no
+  longer says the repo "leaves out" the games or that ROMS.txt lists
+  "what's missing"; it says what to provide and where it goes. The legal
+  position on sourcing is unchanged and still stated in the same words.
 
 - **The privacy pages now describe the contact form.** Your Data gains a
   section for it: what you type is emailed and kept nowhere, your address is
