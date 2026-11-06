@@ -1,27 +1,6 @@
 ## [Unreleased]
 
 ### Added
-- **A contact form at `/contact/`**, replacing GitHub Discussions, which is
-  now switched off. It is the one piece of server-side code on the site: a
-  single PHP page that mints a signed token, checks it back on submission and
-  emails the message. No framework, no database, no session and no
-  third-party anti-spam — a captcha would mean a script from somewhere else,
-  and the site makes no external calls.
-
-  Standing in for one: a signed, time-limited token, a honeypot field and a
-  minimum fill time, plus a per-sender rate limit of four an hour. The limit
-  runs after validation, so a mistyped address costs nothing and only a
-  message that would otherwise be sent counts against anyone. It is the only
-  thing kept between requests, and it is kept as a keyed hash rather than an
-  address. The secret and the counters live outside the web root, and with no
-  secret the form refuses to render rather than falling back to something
-  weaker. CR and LF are refused in every header field, which is how mail
-  injection works.
-
-  The PHP is excluded from the release zip — served by `python3 -m
-  http.server`, it could not run anyway — and copied into the deploy stage
-  the way `.htaccess` already was.
-
 - **The Grundy NewBrain, and a Portable Computers category to hold it.** The
   NewBrain is the only system here whose emulator is ours: there was no
   browser-capable NewBrain emulator to port, so the machine is written from
@@ -79,38 +58,21 @@
   site and on GitHub alike.
 
 ### Changed
-- Size on disk in the feature article refreshed: 189 MB to 190 MB.
-
 - The front page and the README describe a self-hosted copy by what you
   need to supply rather than by what has been withheld. The README no
   longer says the repo "leaves out" the games or that ROMS.txt lists
   "what's missing"; it says what to provide and where it goes. The legal
   position on sourcing is unchanged and still stated in the same words.
 
-- **The privacy pages now describe the contact form.** Your Data gains a
-  section for it: what you type is emailed and kept nowhere, your address is
-  never stored — only a keyed hash of it, for an hour, so the form can refuse
-  a flood — and no cookie, session or script is involved. Legal's "personal
-  data: none is collected" is scoped to the site itself, SECURITY.md no
-  longer claims no personal data at all, and the form links to the page from
-  its own footer.
-
 - The NewBrain's shared bezel is held back with the rest of it. The bundle
   was already excluded from the ship; its one asset outside that folder
   was not, and would have gone up as an orphan nothing links to.
-
-- **"No backend" is no longer true, so it no longer says so.** The README,
-  SECURITY.md, and the Project Overview, Your Data and Legal wiki pages each
-  claimed the site had no server code at all. They now scope that to the
-  contact form. Nothing else changed: no cookies, no accounts, no analytics,
-  no telemetry, and nothing is sent anywhere unless you deliberately send it.
 
 - **The NewBrain bundle's PROVENANCE sticks to the claim rather than the
   history behind it.** What the emulator derives from, and what it does not, is
   unchanged; the account of how that position was arrived at has gone. Kept in
   step with the standalone repository's copy, as that file always must be.
 
-### Changed
 - **The NewBrain row in ATTRIBUTION now says where the emulator came from.** It
   named the standalone repository but not how the machine was worked out, which
   is the part a reader of a from-scratch emulator is entitled to ask about. It
@@ -121,6 +83,10 @@
 - **The NewBrain bezel's provenance is recorded.** Its body and VF tube come from a Wikimedia Commons photograph by Rama & Musée Bolo, **CC BY-SA 2.0 FR**, which is a binding obligation of the same kind `Amstrad.png` already carries — so ATTRIBUTION names it and the share-alike is inherited. The replacement keyboard is from the Home Computer Museum, which states no licence and credits no photographer; that part falls under the usual bezel policy and is written down rather than left unsaid.
 
 ### Removed
+- **GitHub Discussions is switched off.** The forum it replaced is gone too.
+  Discord is where to reach us now, linked from the front page and the credit
+  pill on the live site.
+
 - **The Grundy NewBrain is held back from the published site, for now.** Its
   renderer has no pixel-graphics support: three `00` bytes put the display
   generator into a bitmap mode for the rest of the frame, and ours resets the

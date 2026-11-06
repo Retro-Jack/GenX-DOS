@@ -2,9 +2,8 @@
 
 ## Scope
 
-GenX-DOS is a static, client-side site — no accounts, and nothing is collected
-about you as you use it. The live site runs one piece of server-side code, the contact form
-at `/contact/`; it is in scope here, and it is the only thing that is. Anything the site keeps (save-states, the
+GenX-DOS is a static, client-side site — no server, no backend, no accounts,
+and no personal data is collected. Anything the site keeps (save-states, the
 Model 100's battery RAM, emulator settings, one arcade input-config file) lives
 only in your own browser and
 never leaves your machine — see

@@ -7,8 +7,8 @@ connects them. It is a statement of position, not legal advice.
 ## What it rests on
 
 GenX-DOS is a one-person, non-commercial preservation project. It is a static
-site but for the contact form: no accounts, no payments, no advertising, no
-sponsorship, no analytics and no telemetry. Nothing about it earns money, and there is no
+site: no server code, no accounts, no payments, no advertising, no sponsorship,
+no analytics and no telemetry. Nothing about it earns money, and there is no
 mechanism by which it could without being rebuilt.
 
 Since 11/09/2026 its two public surfaces hold different things:
@@ -111,11 +111,9 @@ project's own name is GenX-DOS; the terminal it derives from is credited to LGR.
 
 ## Personal data
 
-None is collected by the site itself. No accounts, no cookies, no analytics, no
-telemetry, and every served page carries a Content-Security-Policy that blocks
-off-site requests at source. The one exception is the contact form, which takes
-the name, address and message you type into it, emails them, and keeps none of
-it; see [[Your-Data]] for exactly what it does and does not retain. What the site stores lives only in your own browser — save states, the
+None is collected. No accounts, no cookies, no analytics, no telemetry, and every
+served page carries a Content-Security-Policy that blocks off-site requests at
+source. What the site stores lives only in your own browser — save states, the
 Model 100's battery RAM, emulator settings, in-game cartridge saves, and one
 20-byte arcade input config — and [[Your-Data]] is the complete list of each and
 when it is written. The web host keeps its own access logs, which we neither read
