@@ -79,6 +79,9 @@
   site and on GitHub alike.
 
 ### Changed
+- Front page: a self-hosted copy is described by what you need to supply
+  rather than by what has been withheld.
+
 - **The privacy pages now describe the contact form.** Your Data gains a
   section for it: what you type is emailed and kept nowhere, your address is
   never stored — only a keyed hash of it, for an hour, so the form can refuse
