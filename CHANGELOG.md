@@ -79,6 +79,8 @@
   site and on GitHub alike.
 
 ### Changed
+- Size on disk in the feature article refreshed: 189 MB to 190 MB.
+
 - The front page and the README describe a self-hosted copy by what you
   need to supply rather than by what has been withheld. The README no
   longer says the repo "leaves out" the games or that ROMS.txt lists
