@@ -113,10 +113,6 @@ if ($secret === '') {
         $errors[] = 'Sorry, that looked automated.';
     }
 
-    if (!$errors && !rate_ok("$store/rate", $who)) {
-        $errors[] = 'That is several messages in a short time. Please try again later.';
-    }
-
     foreach ($values as $k => $_) { $values[$k] = trim((string)($_POST[$k] ?? '')); }
 
     // CR and LF in a header field is how mail injection works. Refuse outright.
@@ -131,6 +127,15 @@ if ($secret === '') {
         if ($values['subject'] === '' || mb_strlen($values['subject']) > 120) $errors[] = 'Please give a subject, up to 120 characters.';
         $len = mb_strlen($values['message']);
         if ($len < 10 || $len > MSG_MAX)                                     $errors[] = 'Please write between 10 and ' . MSG_MAX . ' characters.';
+    }
+
+    // Last, so that only a message that would otherwise be sent counts against
+    // the sender. Checked earlier it punished typos: three goes at an email
+    // address and a real person had spent most of their hour's allowance on
+    // messages that never left the building. The cheap rejections above still
+    // come first, so nothing automated reaches this at all.
+    if (!$errors && !rate_ok("$store/rate", $who)) {
+        $errors[] = 'That is several messages in a short time. Please try again later.';
     }
 
     if (!$errors) {

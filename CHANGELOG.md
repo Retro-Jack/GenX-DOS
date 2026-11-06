@@ -9,7 +9,9 @@
   and the site makes no external calls.
 
   Standing in for one: a signed, time-limited token, a honeypot field and a
-  minimum fill time, plus a per-sender rate limit. The limit is the only
+  minimum fill time, plus a per-sender rate limit of four an hour. The limit
+  runs after validation, so a mistyped address costs nothing and only a
+  message that would otherwise be sent counts against anyone. It is the only
   thing kept between requests, and it is kept as a keyed hash rather than an
   address. The secret and the counters live outside the web root, and with no
   secret the form refuses to render rather than falling back to something
