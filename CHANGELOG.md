@@ -79,6 +79,10 @@
   site and on GitHub alike.
 
 ### Changed
+- The NewBrain's shared bezel is held back with the rest of it. The bundle
+  was already excluded from the ship; its one asset outside that folder
+  was not, and would have gone up as an orphan nothing links to.
+
 - **"No backend" is no longer true, so it no longer says so.** The README,
   SECURITY.md, and the Project Overview, Your Data and Legal wiki pages each
   claimed the site had no server code at all. They now scope that to the

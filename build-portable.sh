@@ -97,6 +97,7 @@ rsync -a --delete --delete-excluded \
    # that use it draw as garbage. The bundle stays in the repo; put this line
    # back in the ship when the work lands.` \
   --exclude='/systems/newbrain' \
+  --exclude='/systems/_shared/bezels/NewBrain.png' \
   --include='/GenX-DOS.sh' \
   --exclude='/*.sh' \
   --exclude='/.htaccess' \
