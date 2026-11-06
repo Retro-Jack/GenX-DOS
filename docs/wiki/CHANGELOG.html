@@ -30,6 +30,26 @@
 <h2 id="unreleased">[Unreleased]</h2>
 <h3 id="added">Added</h3>
 <ul>
+<li><strong>A contact form at <code>/contact/</code></strong>, replacing GitHub Discussions, which is
+  now switched off. It is the one piece of server-side code on the site: a
+  single PHP page that mints a signed token, checks it back on submission and
+  emails the message. No framework, no database, no session and no
+  third-party anti-spam — a captcha would mean a script from somewhere else,
+  and the site makes no external calls.</li>
+</ul>
+<p>Standing in for one: a signed, time-limited token, a honeypot field and a
+  minimum fill time, plus a per-sender rate limit of four an hour. The limit
+  runs after validation, so a mistyped address costs nothing and only a
+  message that would otherwise be sent counts against anyone. It is the only
+  thing kept between requests, and it is kept as a keyed hash rather than an
+  address. The secret and the counters live outside the web root, and with no
+  secret the form refuses to render rather than falling back to something
+  weaker. CR and LF are refused in every header field, which is how mail
+  injection works.</p>
+<p>The PHP is excluded from the release zip — served by <code>python3 -m
+  http.server</code>, it could not run anyway — and copied into the deploy stage
+  the way <code>.htaccess</code> already was.</p>
+<ul>
 <li><strong>The Grundy NewBrain, and a Portable Computers category to hold it.</strong> The
   NewBrain is the only system here whose emulator is ours: there was no
   browser-capable NewBrain emulator to port, so the machine is written from
@@ -89,10 +109,24 @@
 </ul>
 <h3 id="changed">Changed</h3>
 <ul>
-<li><strong>The NewBrain bundle's PROVENANCE sticks to the claim rather than the
+<li>
+<p>The NewBrain's shared bezel is held back with the rest of it. The bundle
+  was already excluded from the ship; its one asset outside that folder
+  was not, and would have gone up as an orphan nothing links to.</p>
+</li>
+<li>
+<p><strong>"No backend" is no longer true, so it no longer says so.</strong> The README,
+  SECURITY.md, and the Project Overview, Your Data and Legal wiki pages each
+  claimed the site had no server code at all. They now scope that to the
+  contact form. Nothing else changed: no cookies, no accounts, no analytics,
+  no telemetry, and nothing is sent anywhere unless you deliberately send it.</p>
+</li>
+<li>
+<p><strong>The NewBrain bundle's PROVENANCE sticks to the claim rather than the
   history behind it.</strong> What the emulator derives from, and what it does not, is
   unchanged; the account of how that position was arrived at has gone. Kept in
-  step with the standalone repository's copy, as that file always must be.</li>
+  step with the standalone repository's copy, as that file always must be.</p>
+</li>
 </ul>
 <h3 id="changed_1">Changed</h3>
 <ul>

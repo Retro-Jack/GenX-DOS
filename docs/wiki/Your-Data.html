@@ -72,7 +72,34 @@
 </table>
 <p>The first two rows and the last are GenX-DOS's own code (<code>genx-savestate.js</code> / <code>genx-savestate-std.js</code>, the Model 100 page wrapper, and <code>genx-ejs-boot.js</code> for the arcade config); the middle two are the bundled <strong>EmulatorJS</strong> engine doing what it normally does. Save-state slots — the first row — can be exported to a file and restored; see <a href="#backing-up-your-saves--and-moving-them-between-addresses">below</a>.</p>
 <h2 id="what-isnt-stored">What isn't stored</h2>
-<p>No cookies, no login, no personal data, no telemetry — and none of it is sent anywhere. Everything in the table lives only in your browser, scoped to the GenX-DOS origin, and never leaves your machine.</p>
+<p>No cookies, no login, no telemetry. Everything in the table lives only in your browser, scoped to the GenX-DOS origin, and never leaves your machine. Nothing on this page is sent anywhere, read by us, or visible to anyone else.</p>
+<h2 id="the-contact-form">The contact form</h2>
+<p><a href="../../contact/">The contact form</a> is the one place on the site that takes anything from you, and the one piece of code that runs on the server rather than in your browser. Nothing reaches it unless you fill it in and press Send.</p>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>What happens to it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Your name, email address, subject and message</strong></td>
+<td>Emailed to the site owner and nowhere else. Not written to a database, a file or a log — the page has none. The address is used to reply to you and is not added to any list.</td>
+</tr>
+<tr>
+<td><strong>Your IP address</strong></td>
+<td><strong>Not stored.</strong> It is passed through a keyed hash, and only that hash is kept, so the stored value cannot be turned back into an address.</td>
+</tr>
+<tr>
+<td><strong>That hash</strong></td>
+<td>A file holding up to four timestamps, so the form can refuse a flood. It expires after an hour and is deleted.</td>
+</tr>
+</tbody>
+</table>
+<p>The form sets no cookies, keeps no session and loads no JavaScript at all — not even its own. There is no captcha, because a captcha means fetching a script from a third party, and no page on this site does that.</p>
+<p>The first twelve characters of the hash are included in the email, so repeated abuse can be recognised as coming from one sender without anyone ever holding the address.</p>
+<p>Your web host — like every web host — keeps its own access logs. Those are the host's, not the site's; we neither read them nor use them.</p>
 <h2 id="backing-up-your-saves--and-moving-them-between-addresses">Backing up your saves — and moving them between addresses</h2>
 <p>Any bundle with the Save / Load buttons also has a <strong>backup</strong> button beside them, holding two things:</p>
 <ul>

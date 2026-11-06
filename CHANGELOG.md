@@ -79,6 +79,14 @@
   site and on GitHub alike.
 
 ### Changed
+- **The privacy pages now describe the contact form.** Your Data gains a
+  section for it: what you type is emailed and kept nowhere, your address is
+  never stored — only a keyed hash of it, for an hour, so the form can refuse
+  a flood — and no cookie, session or script is involved. Legal's "personal
+  data: none is collected" is scoped to the site itself, SECURITY.md no
+  longer claims no personal data at all, and the form links to the page from
+  its own footer.
+
 - The NewBrain's shared bezel is held back with the rest of it. The bundle
   was already excluded from the ship; its one asset outside that folder
   was not, and would have gone up as an orphan nothing links to.

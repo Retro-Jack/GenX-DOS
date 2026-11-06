@@ -230,8 +230,10 @@ $token = $secret === '' ? '' : token_make($secret, sender_key($secret));
 <?php endif; ?>
 
     <p class="note">This is the only part of GenX-DOS with anything running on
-      the server. It keeps no logs of its own, sets no cookies and loads no
-      scripts — your message is emailed and that is the end of it.</p>
+      the server. It sets no cookies and loads no scripts. Your message is
+      emailed and kept nowhere; your address is not stored at all, only a
+      keyed hash of it, for an hour, so the form can refuse a flood.
+      <a href="/docs/wiki/Your-Data.html">What happens to your data</a>.</p>
   </div>
 </body>
 </html>

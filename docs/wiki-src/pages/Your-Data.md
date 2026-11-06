@@ -12,7 +12,23 @@ The first two rows and the last are GenX-DOS's own code (`genx-savestate.js` / `
 
 ## What isn't stored
 
-No cookies, no login, no personal data, no telemetry — and none of it is sent anywhere. Everything in the table lives only in your browser, scoped to the GenX-DOS origin, and never leaves your machine.
+No cookies, no login, no telemetry. Everything in the table lives only in your browser, scoped to the GenX-DOS origin, and never leaves your machine. Nothing on this page is sent anywhere, read by us, or visible to anyone else.
+
+## The contact form
+
+[The contact form](https://genx-dos.fun/contact/) is the one place on the site that takes anything from you, and the one piece of code that runs on the server rather than in your browser. Nothing reaches it unless you fill it in and press Send.
+
+| What | What happens to it |
+|---|---|
+| **Your name, email address, subject and message** | Emailed to the site owner and nowhere else. Not written to a database, a file or a log — the page has none. The address is used to reply to you and is not added to any list. |
+| **Your IP address** | **Not stored.** It is passed through a keyed hash, and only that hash is kept, so the stored value cannot be turned back into an address. |
+| **That hash** | A file holding up to four timestamps, so the form can refuse a flood. It expires after an hour and is deleted. |
+
+The form sets no cookies, keeps no session and loads no JavaScript at all — not even its own. There is no captcha, because a captcha means fetching a script from a third party, and no page on this site does that.
+
+The first twelve characters of the hash are included in the email, so repeated abuse can be recognised as coming from one sender without anyone ever holding the address.
+
+Your web host — like every web host — keeps its own access logs. Those are the host's, not the site's; we neither read them nor use them.
 
 ## Backing up your saves — and moving them between addresses
 
