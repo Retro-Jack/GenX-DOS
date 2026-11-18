@@ -46,6 +46,10 @@ export class NewBrain {
     this.copSo = 0; this.copK6 = 0;
     this.keys = new Uint8Array(16);               // 16 rows x 4 bits, ACTIVE HIGH
     this.digits = new Uint16Array(16);           // 14-segment patterns
+    // What the panel is actually showing, and the command awaiting the COP
+    // interrupt handler. See vfdText().
+    this.vfdLatch = new Uint8Array(16).fill(0x20);
+    this.copPending = 0;
 
     this.cop = roms.cop ? new COP420(roms.cop, {
       readG:  () => this.copGRead(),
@@ -140,7 +144,29 @@ export class NewBrain {
     const bank = this.pwrup ? (addr >> 13) & 0x07 : 7;
     if (bank < 4) {
       const off = (bank << 13) | (addr & 0x1fff);
-      if (off < this.ram.length) this.ram[off] = val & 0xff;
+      if (off < this.ram.length) {
+        this.ram[off] = val & 0xff;
+        // The panel latches on the TRANSFER, not on the request for one.
+        //
+        // WR only asks: it writes DISPCOM to COPCTL and returns. "The transfer
+        // of the data bytes from COPBUFF to the COP is performed by the COP
+        // interrupt handler", which on entry writes NULLCOM back to COPCTL and
+        // then, "if the command was DISPCOM or TIMCOM", moves the bytes. So
+        // the buffer the panel receives is the one standing at handler time,
+        // which can be a step on from the one standing when WR asked.
+        //
+        // Latching on the DISPCOM write instead left the panel one keystroke
+        // behind the screen -- the screen showed abcdefg while the panel still
+        // read ABCDEF.
+        if (off === NewBrain.COPCTL) {
+          const cmd = val & 0xff;
+          if (cmd === NewBrain.NULLCOM && this.copPending === NewBrain.DISPCOM) {
+            this.vfdLatch.set(this.ram.subarray(NewBrain.OUTBUFF,
+                                                NewBrain.OUTBUFF + NewBrain.VFD_COLS));
+          }
+          this.copPending = cmd;
+        }
+      }
     } else if (bank === 4 && this.expansion) {
       this.expansion.hostWrite(addr & 0x1fff, val & 0xff);
     }
@@ -391,14 +417,68 @@ export class NewBrain {
   static COPCTL  = 0x3b;
   static OUTBUFF = 0x3e;
   static VFD_COLS = 16;
+  // COP commands written to COPCTL.
+  //
+  // NULLCOM is D0, read off the scan itself: the manual prints NULLCOM(DOH)
+  // with a SLASHED zero, and both available OCR passes mangle it differently
+  // -- the Internet Archive's text layer makes the slash a 9 ("D9H"), tesseract
+  // makes it an @ ("D@H"). Neither is the page. The slashed zero is used
+  // throughout the manual, so no hex value from either text layer is worth
+  // trusting without looking at the scan.
+  //
+  // DISPCOM is A0, which the manual does not state anywhere it discusses the
+  // transfer, so this one is measured rather than read: across a nine-second
+  // boot COPCTL holds D0 for 1742 samples and A0 for 11, and the A0s land
+  // exactly on the instants the panel changes. The interrupt handler puts
+  // NULLCOM back straight after, as section 2.5.1 describes.
+  static NULLCOM = 0xd0;
+  static DISPCOM = 0xa0;
 
+  // The panel is a LATCH, not a view of RAM, and reading RAM was why messages
+  // flashed past unreadably. The manual is explicit: the COP's next command is
+  // NULLCOM by default, and only "if the command was DISPCOM or TIMCOM" is a
+  // transfer performed -- "For DISPCOM 18 bytes are transferred. The first 2
+  // bytes are don't care, the remaining 16 are the contents of OUTBUFF."
+  // Between transfers the COP goes on showing what it last received.
+  //
+  // Reading OUTBUFF every frame showed every intermediate scribble instead:
+  // measured over a boot, "NEWBRAIN B" appeared for 22ms on its way to a
+  // banner it never finished, and READY for 25ms. The self-test patterns held
+  // 0.7s and read fine, which is what said the panel could hold and the text
+  // path was at fault.
+  //
+  // Latching also brings the ROM's own two behaviours with it for nothing,
+  // because the ROM was always doing them and we were looking past them: WR
+  // copies its 16 bytes from "the window position in the VF or TY buffer" with
+  // SETWIN keeping the cursor inside it, and the VF editor "waits for the user
+  // to press the NEWLINE key before displaying a new line".
+  //
   // OUTBUFF is filled right-to-left: the ROM pushes characters in from the
   // right-hand end of the panel, so the buffer reads back reversed.
+  //
+  // The panel is NOT an ASCII device. The manual: "The vf display character set
+  // consists of the 64 ASCII upper case characters, excepting character 95 for
+  // which the £ sign is substituted, and 64 graphics characters." So 20-5F is
+  // text and 60-7F is graphics -- there is no lower case on this display, and
+  // treating the whole range as ASCII drew the graphics codes as letters. A
+  // cursor sitting on a blank cell arrives as A0 and came out as the letter h.
+  //
+  // Bit 7 is the cursor, not data: "the COP actually sets the cursor at any
+  // character which has bit 7 set". Masked off here, so a cursor shows as
+  // whatever character it sits on.
+  //
+  // The graphics half is deliberately not drawn. Segment16C has no glyphs for
+  // it, and inventing them would be worse than leaving the cell dark.
+  //
+  // Character 95 is the one substitution: where ASCII has an underscore this
+  // display has a pound sign. The font does carry it -- Segment16C covers
+  // cp1252 -- it had simply been subsetted out of the copy shipped here.
   vfdText() {
     let s = '';
     for (let i = NewBrain.VFD_COLS - 1; i >= 0; i--) {
-      const b = this.ram[NewBrain.OUTBUFF + i] & 0x7f;
-      s += (b >= 32 && b < 127) ? String.fromCharCode(b) : ' ';
+      const b = this.vfdLatch[i] & 0x7f;      // bit 7 is the cursor flag
+      if (b < 0x20 || b > 0x5f) { s += ' '; continue; }   // 60-7F is graphics
+      s += (b === 0x5f) ? '\u00a3' : String.fromCharCode(b);
     }
     return s;
   }

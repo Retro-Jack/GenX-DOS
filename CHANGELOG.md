@@ -2,6 +2,33 @@
 
 ### Added
 
+- **The NewBrain takes a paste from the host, and its VF panel reads properly.**
+  Brought over from the standalone, which is where the work was done.
+
+  Ctrl+V types the clipboard onto the machine's own key matrix, one key at a
+  time — nothing injected into memory, nothing hurried. The COP scans every
+  20ms, so each key is held for three scans and a listing arrives at the speed
+  the machine can take it. Esc stops a paste, which is also the machine's STOP
+  key. The character map is of what a key produces on THIS machine rather than
+  what is on the host's keycap: the double quote is shift-2, the apostrophe
+  lives on 7, and the bracket keys give ( and ) unshifted.
+
+  ▲ Ctrl+V collides with the machine twice over. CONTROL and V are both real
+  keys and CONTROL+V is a real editing command, so the shortcut has to be kept
+  off the matrix — but it must be kept off by returning early, never by
+  `preventDefault`, because the browser's default action for that keystroke IS
+  the paste.
+
+  The panel itself now latches on the COP's DISPCOM transfer instead of
+  mirroring the ROM's working buffer, so messages hold instead of flashing past
+  in 20ms, the window follows the cursor, and the VF editor's wait-for-NEWLINE
+  comes through. It also speaks its own character set — 20-5F text, 60-7F
+  graphics left dark, character 95 a pound sign — rather than being treated as
+  ASCII, which had been drawing graphics codes as letters.
+
+  The font gains the pound sign it was missing: Segment16C covers cp1252 and
+  always had it, the subset here had simply dropped it.
+
 - **A TV switch under the CUB.** The NewBrain drove its own sixteen-character
   VF panel whether or not a television was plugged in, and plenty were used
   that way. The switch says which it is: off, the monitor goes dark and the

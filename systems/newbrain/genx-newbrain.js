@@ -268,19 +268,140 @@ const KEYMAP = {
   Tab: [15, 1],
   Backspace: [1, 2],
 };
+// Declared above the handlers because they have to know a paste is running --
+// see "pasting from the host" below.
+let pasting = false;
+
 addEventListener('keydown', (e) => {
+  // Return WITHOUT preventDefault: the browser's default action for this
+  // keystroke IS the paste, so suppressing it kills the paste event. Returning
+  // early is enough to keep V off the matrix, and it has to be kept off --
+  // CONTROL and V are both real keys here and CONTROL+V is a real editing
+  // command, which turns the cursor into an underline and walks it about.
+  if ((e.ctrlKey || e.metaKey) && e.code === 'KeyV') return;
+  // A paste types on the machine's behalf; a key the user is still holding
+  // from the shortcut would land in the middle of it.
+  if (pasting) {
+    e.preventDefault();
+    return;
+  }
   const k = KEYMAP[e.code];
   if (!k) return;
   e.preventDefault();
   machine.setKey(k[0], k[1], true);
 });
 addEventListener('keyup', (e) => {
+  if (pasting) {
+    e.preventDefault();
+    return;
+  }
   const k = KEYMAP[e.code];
   if (!k) return;
   e.preventDefault();
   machine.setKey(k[0], k[1], false);
 });
 addEventListener('blur', () => machine.clearKeys());
+
+// ---- pasting from the host -------------------------------------------------
+// Typed on the machine's own matrix, one key at a time, as a person would.
+// Nothing is injected into memory and nothing is hurried: the COP scans the
+// keyboard every 20ms, so a key is held for three scans and a listing arrives
+// at the speed the machine can take it. Esc stops a paste -- which is also the
+// machine's STOP key, the right thing to reach for if one is going astray.
+//
+// The map is of what a key produces on THIS machine rather than what is on the
+// host's keycap. The NewBrain moves several characters: the double quote is
+// shift-2, the apostrophe lives on 7, and the bracket keys give ( and )
+// unshifted. See controls.html. Anything with no key is skipped rather than
+// guessed -- a wrong character in a listing is worse than a missing one,
+// because it is silent.
+const PASTE_KEY = (() => {
+  const m = {};
+  const plain = (ch, code) => {
+    m[ch] = [code, false];
+  };
+  const shift = (ch, code) => {
+    m[ch] = [code, true];
+  };
+  for (let i = 0; i < 26; i++) {
+    const code = 'Key' + String.fromCharCode(65 + i);
+    plain(String.fromCharCode(97 + i), code);
+    shift(String.fromCharCode(65 + i), code);
+  }
+  for (let d = 0; d <= 9; d++) plain(String(d), 'Digit' + d);
+  plain(' ', 'Space');
+  plain('\n', 'Enter');
+  plain(',', 'Comma');
+  plain('.', 'Period');
+  plain('/', 'Slash');
+  plain(';', 'Semicolon');
+  plain('-', 'Minus');
+  plain('=', 'Equal');
+  plain('(', 'BracketLeft');
+  shift('[', 'BracketLeft');
+  plain(')', 'BracketRight');
+  shift(']', 'BracketRight');
+  plain('+', 'Quote');
+  shift('^', 'Quote');
+  shift('\\', 'Minus');
+  shift('@', 'Equal');
+  shift('"', 'Digit2');
+  shift("'", 'Digit7');
+  shift('#', 'Digit3');
+  return m;
+})();
+
+// The COP's scan is 20ms, so 60ms of hold is three scans and cannot be missed.
+// Shift closes over the keypress with a margin either side; a short overlap is
+// how a closing quote once came out as a 2.
+const PASTE_HOLD = 60,
+  PASTE_GAP = 60,
+  PASTE_SHIFT_LEAD = 90;
+
+async function pasteText(text) {
+  if (pasting) return;
+  pasting = true;
+  // Whatever was held to trigger this -- Ctrl, Shift -- is not part of what
+  // was pasted.
+  machine.clearKeys();
+  const SHIFT = KEYMAP.ShiftLeft;
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  try {
+    for (const raw of text.replace(/\r\n?/g, '\n').replace(/\t/g, ' ')) {
+      if (!pasting) break;
+      const hit = PASTE_KEY[raw];
+      if (!hit) continue;
+      const [code, needShift] = hit;
+      const k = KEYMAP[code];
+      if (!k) continue;
+      if (needShift) {
+        machine.setKey(SHIFT[0], SHIFT[1], true);
+        await wait(PASTE_SHIFT_LEAD);
+      }
+      machine.setKey(k[0], k[1], true);
+      await wait(PASTE_HOLD);
+      machine.setKey(k[0], k[1], false);
+      if (needShift) {
+        await wait(PASTE_SHIFT_LEAD);
+        machine.setKey(SHIFT[0], SHIFT[1], false);
+      }
+      await wait(PASTE_GAP);
+    }
+  } finally {
+    machine.clearKeys();
+    pasting = false;
+  }
+}
+
+addEventListener('paste', (e) => {
+  const text = e.clipboardData && e.clipboardData.getData('text');
+  if (!text) return;
+  e.preventDefault();
+  pasteText(text);
+});
+addEventListener('keydown', (e) => {
+  if (e.code === 'Escape') pasting = false;
+});
 
 // ---- the cassette ----------------------------------------------------------
 // There is no deck on the page. The machine still loads from tape exactly as
