@@ -226,13 +226,20 @@
          so it holds at whatever size the deck is drawn. */
       #tapedeck .key {
         position: absolute;
-        z-index: 1;
+        z-index: 0;
         cursor: pointer;
         background-size: 100% 100%;
         background-repeat: no-repeat;
         transition: transform 0.06s ease-out;
       }
+      /* A pressed key paints above its neighbours. The keys touch, and each
+         sprite reaches to the next key's edge so it carries the dark crevice
+         on either side of it — the shadow that key casts. Lifting it means
+         the crevice sinks WITH the key; leaving it flat would let the
+         neighbour redraw its own copy at full height, stranding a dark line
+         beside a key that is no longer there. */
       #tapedeck .key.down {
+        z-index: 1;
         transform: translateY(var(--keydrop, 25%));
       }
       #tapedeck .key.off {

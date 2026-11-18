@@ -218,6 +218,16 @@
 
 ### Fixed
 
+- **A pressed key on the deck no longer strands a dark line beside it.** The
+  keys touch -- in the photograph the whole row is one unbroken opaque run --
+  so what looks like a gap between two of them is the dark crevice they cast,
+  belonging to neither. Cutting each sprite at a boundary split that crevice,
+  and when one key sank its neighbour redrew its own half at full height,
+  leaving a line standing beside a key that was no longer there.
+
+  Each sprite now reaches to the next key's edge and a pressed key paints above
+  its neighbours, so the crevice sinks with it.
+
 - **The wallpaper shows through a pressed key on the NewBrain's deck, as it
   should.** Yesterday's fix put the deck's own pixels in shadow into the gap a
   pressed key leaves. That removed the black rectangle but filled the gap with
