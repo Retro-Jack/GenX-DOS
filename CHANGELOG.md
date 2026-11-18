@@ -21,7 +21,9 @@
   so they line up by construction and there is no separate figure to keep.
 
 - **The NewBrain is in the launcher, under Portable Computers.** It sits at
-  row 2 beside the Tandy Model 100 as `Grundy NewBrain (1982)`, and opens a
+  row 2 beside the Tandy Model 100 as `Grundy NewBrain (1982)` — blank-line
+  separated, since a chooser with fewer than five items spaces its rows — and
+  opens a
   `GRUNDY  NEWBRAIN  GAMES` menu of the six tapes — Alpine, BreakOut, Landar,
   MasterMind and Snake all `(????)`, Tycoon `(1982)` off its own copyright
   line — with the bare machine on row 11 as `NewBrain BASIC prompt`, the
