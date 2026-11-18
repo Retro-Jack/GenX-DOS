@@ -20,6 +20,17 @@
   standalone's layout the deck and the machine share a left edge and a width,
   so they line up by construction and there is no separate figure to keep.
 
+- **A small menu now takes two blank rows before `0. Back`.** The rule already
+  spaced the items of any chooser with fewer than five of them; once everything
+  is separated by one row, the exit stops reading as a different kind of thing.
+  A second row sets it apart again.
+
+  Applied to all ten small menus — Atari Consoles, the Acorn / Apple / Atari /
+  Sinclair / Tandy / MSX computer choosers, TRS-80 Model III System Disks,
+  Portable Computers and Handheld Consoles. The thirty-nine larger menus keep
+  their single blank row. Re-scanned afterwards: 49 boxes, all with the right
+  count for their size, all still 45 characters wide.
+
 - **The NewBrain is in the launcher, under Portable Computers.** It sits at
   row 2 beside the Tandy Model 100 as `Grundy NewBrain (1982)` — blank-line
   separated, since a chooser with fewer than five items spaces its rows — and
