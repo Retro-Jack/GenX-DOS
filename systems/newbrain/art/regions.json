@@ -103,5 +103,16 @@
         "height": 11.0454
       }
     }
+  },
+  "tvswitch": {
+    "src": "tv-on.webp",
+    "w": 464,
+    "h": 172,
+    "place": {
+      "left": 20.598,
+      "top": 95.4,
+      "width": 6.46,
+      "height": 4.2572
+    }
   }
 }

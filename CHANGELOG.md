@@ -2,6 +2,25 @@
 
 ### Added
 
+- **A TV switch under the CUB.** The NewBrain drove its own sixteen-character
+  VF panel whether or not a television was plugged in, and plenty were used
+  that way. The switch says which it is: off, the monitor goes dark and the
+  panel on the machine is all you have — which is the whole reason the panel
+  is there.
+
+  It gates the drawing rather than the machine. `tvp` is the ROM's own
+  TV-picture bit on ENRG1 and the machine writes it itself, so there is no
+  hardware line to flip; blanking the canvas is the honest equivalent of the
+  television being off, and the machine carries on with no way to know.
+  Verified on staging: switched off, the CRT measures zero lit pixels while
+  typing still reaches the VF panel.
+
+  It sits in the band under the monitor — 55px of otherwise dead stage at
+  nominal size — centred on the CUB to the pixel. Artwork is two states cut
+  from one Pngtree image, credited in ATTRIBUTION.md: the free licence there
+  requires it, which is why it is named despite graphics otherwise not being
+  provenance-tracked.
+
 - **The NewBrain page is laid out like the standalone now.** The monitor, the
   machine and the deck take the placements from
   `Retro-Jack/newbrain-js/art/regions.json` rather than the ones this repo had
