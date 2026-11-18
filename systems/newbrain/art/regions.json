@@ -67,42 +67,43 @@
     },
     "buttons": {
       "eject": {
-        "left": 23.5,
-        "top": 4.3393,
-        "width": 6.4167,
-        "height": 11.0454
+        "left": 23.0833,
+        "top": 3.7475,
+        "width": 7.25,
+        "height": 11.6371
       },
       "next": {
-        "left": 30.5,
-        "top": 4.3393,
-        "width": 6.8333,
-        "height": 11.0454
+        "left": 30.0833,
+        "top": 3.7475,
+        "width": 7.5833,
+        "height": 11.6371
       },
       "rew": {
-        "left": 37.8333,
-        "top": 4.3393,
-        "width": 6.9167,
-        "height": 11.0454
+        "left": 37.3333,
+        "top": 3.7475,
+        "width": 7.8333,
+        "height": 11.6371
       },
       "play": {
-        "left": 45.1667,
-        "top": 4.3393,
-        "width": 6.8333,
-        "height": 11.0454
+        "left": 44.75,
+        "top": 3.7475,
+        "width": 7.6667,
+        "height": 11.6371
       },
       "ff": {
-        "left": 52.4167,
-        "top": 4.3393,
-        "width": 6.8333,
-        "height": 11.0454
+        "left": 52.0,
+        "top": 3.7475,
+        "width": 7.6667,
+        "height": 11.6371
       },
       "rec": {
-        "left": 59.8333,
-        "top": 4.3393,
-        "width": 7.9167,
-        "height": 11.0454
+        "left": 59.3333,
+        "top": 3.7475,
+        "width": 8.8333,
+        "height": 11.6371
       }
-    }
+    },
+    "keyDrop": 25.42
   },
   "tvswitch": {
     "src": "tv-on.webp",

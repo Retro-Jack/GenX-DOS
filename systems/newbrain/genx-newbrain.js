@@ -60,6 +60,11 @@ const reg = await fetch('art/regions.json').then((r) => r.json());
   for (const [k, r] of Object.entries(reg.deck.buttons)) {
     within(document.querySelector(`#tapedeck .key[data-key="${k}"]`), r);
   }
+  // How far a pressed key sinks, measured off the artwork and expressed as a
+  // share of the key's own height, so it holds at any size the deck is drawn.
+  document
+    .getElementById('tapedeck')
+    .style.setProperty('--keydrop', reg.deck.keyDrop + '%');
 }
 
 // ---- ROMs ------------------------------------------------------------------

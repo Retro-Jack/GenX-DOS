@@ -159,12 +159,22 @@
          laid over the first and revealed when the deck is empty, rather than a
          swap of the src: both are in the document from the start, so the bay
          does not arrive a frame late the first time a tape is ejected. */
+      /* The deck owns its stack so its keys can sit behind it: keys 1,
+         deck 2, reels 3. */
+      #tapedeck {
+        isolation: isolate;
+      }
+      #tapedeck img {
+        position: relative;
+        z-index: 2;
+      }
       #tapedeck img.bare {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         opacity: 0;
+        z-index: 2;
       }
       #tapedeck.empty img.bare {
         opacity: 1;
@@ -184,7 +194,7 @@
         animation: deckreels 3.6s steps(36) infinite;
         animation-play-state: paused;
         pointer-events: none;
-        z-index: 1;
+        z-index: 3;
       }
       #tapedeck.on i {
         animation-play-state: running;
@@ -194,50 +204,57 @@
           background-position-y: 100%;
         }
       }
-      /* The deck's own keys. Each is a hit area carrying the picture of that
-         key pressed, shown by raising its opacity — one small image per key
-         rather than a second copy of the whole deck.
+      /* The deck's own keys. Each one is a real picture of that key, cut
+         from the deck photograph, and the deck itself has had its keys taken
+         out — so a key is an object sitting in a hole rather than a patch
+         painted over the top of one. It is the hit area too: the deck images
+         are pointer-events:none, so a click passes through to the key.
 
-         A pressed key sits lower, and the gap it leaves at the top has to
-         hide the un-pressed key underneath, so it cannot simply be
-         transparent. It used to be flattened onto the standalone's dark stage
-         colour, which tied the sprite to one page background — against this
-         site's wallpaper every pressed key grew a black rectangle above it.
+         That is what makes a press work. The key simply SINKS. The stack runs
+         keys, then deck, then reels, so a sinking key slides down behind the
+         deck's ledge and the hole it leaves shows the page behind it — here,
+         the wallpaper.
 
-         The gap now carries the deck's own pixels in shadow, with the deck's
-         own alpha, so it reads as the key sunk into its recess and composites
-         correctly on any background. */
+         The earlier approach painted the pressed key over the top instead, and
+         the gap it left had to hide the un-pressed key still in the deck photo
+         underneath, so it could not be transparent and was flattened onto the
+         standalone's dark stage colour. That tied the artwork to one page
+         background, and against this site's wallpaper every pressed key grew a
+         black rectangle above it.
+
+         The drop is a share of the key's own height rather than a pixel count,
+         so it holds at whatever size the deck is drawn. */
       #tapedeck .key {
         position: absolute;
-        z-index: 3;
+        z-index: 1;
         cursor: pointer;
         background-size: 100% 100%;
         background-repeat: no-repeat;
-        opacity: 0;
+        transition: transform 0.06s ease-out;
       }
       #tapedeck .key.down {
-        opacity: 1;
+        transform: translateY(var(--keydrop, 25%));
       }
       #tapedeck .key.off {
         cursor: default;
       }
       #tapedeck .key[data-key='eject'] {
-        background-image: url('art/btn-eject.webp');
+        background-image: url('art/key-eject.webp');
       }
       #tapedeck .key[data-key='next'] {
-        background-image: url('art/btn-next.webp');
+        background-image: url('art/key-next.webp');
       }
       #tapedeck .key[data-key='rew'] {
-        background-image: url('art/btn-rew.webp');
+        background-image: url('art/key-rew.webp');
       }
       #tapedeck .key[data-key='play'] {
-        background-image: url('art/btn-play.webp');
+        background-image: url('art/key-play.webp');
       }
       #tapedeck .key[data-key='ff'] {
-        background-image: url('art/btn-ff.webp');
+        background-image: url('art/key-ff.webp');
       }
       #tapedeck .key[data-key='rec'] {
-        background-image: url('art/btn-rec.webp');
+        background-image: url('art/key-rec.webp');
       }
       /* The readout in the deck's window. Sized in container units so the type
          scales with the deck rather than with the page — the deck is a

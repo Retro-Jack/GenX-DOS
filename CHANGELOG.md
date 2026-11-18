@@ -218,6 +218,18 @@
 
 ### Fixed
 
+- **The wallpaper shows through a pressed key on the NewBrain's deck, as it
+  should.** Yesterday's fix put the deck's own pixels in shadow into the gap a
+  pressed key leaves. That removed the black rectangle but filled the gap with
+  deck instead of with the page behind it, which is not what is there -- the
+  keys stand proud of the deck with nothing behind them.
+
+  Both that and the stage-colour flattening before it existed to hide the
+  un-pressed key still sitting in the deck photograph underneath. So the key
+  has been taken out of the photograph: each one is now its own sprite in a
+  hole in the deck, and a press is the key sinking behind the deck's ledge.
+  The hole it leaves is simply empty, and the wallpaper shows through it.
+
 - **Every pressed key on the NewBrain's deck had a black rectangle above it.**
   The sprites came from the standalone, where they had been flattened onto that
   page's dark stage colour: fully opaque, top rows at rgb(11,13,17). That is
