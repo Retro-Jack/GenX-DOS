@@ -2,6 +2,24 @@
 
 ### Added
 
+- **The NewBrain is in the launcher, under Portable Computers.** It sits at
+  row 2 beside the Tandy Model 100 as `Grundy NewBrain (1982)`, and opens a
+  `GRUNDY  NEWBRAIN  GAMES` menu of the six tapes — Alpine, BreakOut, Landar,
+  MasterMind and Snake all `(????)`, Tycoon `(1982)` off its own copyright
+  line — with the bare machine on row 11 as `NewBrain BASIC prompt`, the
+  number every other system uses for its prompt entry.
+
+  The six tapes go into `NO_GAMEDOC`, which had been empty: the machine ships
+  without gamedocs, so the corner link is suppressed rather than pointed at a
+  page that is not there. `check-doc-counts.sh` holds that list to the tree in
+  both directions and failed until they were listed. It also reads the array
+  literally, so a comment between the brackets comes back as a bogus entry —
+  the note now sits above it, and says so.
+
+  ▲ **Live cannot serve this yet.** The bundle is still held back from the
+  published site, so until that is lifted the row is there and the system
+  behind it is not. Staging has both.
+
 - **A cassette deck on the NewBrain, on every menu row.** At the prompt it is
   the only way in: eject opens the file picker, play starts the tape, and the
   window in the lid says what is on it and how far through the machine has got.

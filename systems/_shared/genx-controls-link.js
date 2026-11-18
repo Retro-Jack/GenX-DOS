@@ -44,7 +44,19 @@
 // mechanism: an entry here is `platform/key`, and check-doc-counts.sh holds it
 // to the tree in both directions, so a launcher added without a page fails the
 // check rather than shipping another dead link.
+// The NewBrain's six tapes are here because the machine ships without
+// gamedocs: the left-hand link is suppressed rather than pointed at a page
+// that is not there. Remove an entry as each page is written.
+//
+// Keep this array to quoted strings alone -- check-doc-counts.sh reads it
+// literally, and a comment between the brackets comes back as a bogus entry.
 var NO_GAMEDOC = [
+  'newbrain/alpine',
+  'newbrain/breakout',
+  'newbrain/landar',
+  'newbrain/mastermind',
+  'newbrain/snake',
+  'newbrain/tycoon',
 ];
 
 // A KEYLESS URL IS THE BARE MACHINE, AND THAT HAS A PAGE TOO. Thirteen entries
