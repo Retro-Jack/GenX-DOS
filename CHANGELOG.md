@@ -2,6 +2,24 @@
 
 ### Added
 
+- **The NewBrain page is laid out like the standalone now.** The monitor, the
+  machine and the deck take the placements from
+  `Retro-Jack/newbrain-js/art/regions.json` rather than the ones this repo had
+  grown: a larger CUB bleeding off the left edge, and the deck flush above the
+  machine on the same left edge at the same width.
+
+  They transfer exactly, which is worth saying because it was checked rather
+  than hoped: both repos draw from byte-identical artwork — `cub.png` and
+  `NewBrain.png` have the same md5 in each — and both stages are 1920x1080, so
+  the percentages mean the same thing on both. Only the three `place` blocks
+  differed; every sub-region (the aperture, the CRT, the VF panel, the reels,
+  the window, the six keys) was already identical, being measured against its
+  own part. The `src` paths stay as they are, pointing at the shared bezels.
+
+  This supersedes the deck centring from earlier in this entry. In the
+  standalone's layout the deck and the machine share a left edge and a width,
+  so they line up by construction and there is no separate figure to keep.
+
 - **The NewBrain is in the launcher, under Portable Computers.** It sits at
   row 2 beside the Tandy Model 100 as `Grundy NewBrain (1982)`, and opens a
   `GRUNDY  NEWBRAIN  GAMES` menu of the six tapes — Alpine, BreakOut, Landar,
@@ -43,10 +61,7 @@
   `systems/newbrain/genx-deck.js`, pulled in by the glue, with `interactive`
   deciding whether its keys bind at all. The artwork, the reel sprite sheet,
   the six key images and the readout's character face come with it, and
-  `art/regions.json` gains the `deck` block that places them — **centred over
-  the machine**, which needed its own figure rather than the standalone's: this
-  repo draws the machine from the shared bezel, whose placement puts its centre
-  at 78.8920% against the standalone's 81.6772%.
+  `art/regions.json` gains the `deck` block that places them.
 
   The engine came across at the same time — `src/newbrain.js` and
   `src/tape.js`, the same files as the standalone's. The tape now reports where
