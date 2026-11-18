@@ -80,6 +80,17 @@ fi
 # — and in the release zip — for good. `tools/build-softkey-map.py` had been
 # doing exactly that since 18/08/2026. With this, the target is only ever the
 # set below, and adding an exclude actually removes what it names.
+# TEMPORARY: the NewBrain is held back from the PUBLISHED site while its
+# renderer is finished — it had no pixel-graphics support, so programs that use
+# it drew as garbage. Staging is not the published site, and is where the work
+# is looked at, so deploy.sh sets GENX_SHIP_NEWBRAIN=1 for that target only.
+# Drop this block entirely when the work lands and it ships everywhere.
+HELD_BACK=()
+if [[ -z ${GENX_SHIP_NEWBRAIN:-} ]]; then
+  HELD_BACK=(--exclude='/systems/newbrain'
+             --exclude='/systems/_shared/bezels/NewBrain.png')
+fi
+
 rsync -a --delete --delete-excluded \
   "${ROM_RULES[@]}" \
   --exclude='/.git' --exclude='/.github' --exclude='/.claude' \
@@ -92,12 +103,7 @@ rsync -a --delete --delete-excluded \
   --exclude='/CODE_OF_CONDUCT.md' --exclude='/AI-DISCLAIMER.md' \
   --exclude='/docs/wiki-src' \
   --exclude='/_paddiag.html' \
-  `# TEMPORARY: the NewBrain is held back from the published site while its
-   # renderer is finished — it has no pixel-graphics support yet, so programs
-   # that use it draw as garbage. The bundle stays in the repo; put this line
-   # back in the ship when the work lands.` \
-  --exclude='/systems/newbrain' \
-  --exclude='/systems/_shared/bezels/NewBrain.png' \
+  "${HELD_BACK[@]}" \
   --include='/GenX-DOS.sh' \
   --exclude='/*.sh' \
   --exclude='/.htaccess' \

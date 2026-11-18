@@ -1,74 +1,60 @@
 ## [Unreleased]
 
 ### Added
-- **The Grundy NewBrain, and a Portable Computers category to hold it.** The
-  NewBrain is the only system here whose emulator is ours: there was no
-  browser-capable NewBrain emulator to port, so the machine is written from
-  scratch — Z80 memory map and video, a COP420 core for the keyboard, cassette
-  and VF panel, and a tape codec. It is published standalone as well, at
-  [`Retro-Jack/newbrain-js`](https://github.com/Retro-Jack/newbrain-js).
 
-  The launcher gains **Portable Computers** as its second entry, and the Tandy
-  Model 100 moves there from under Tandy — its menu row already read "Model 100
-  (Portable)". Both machines ran off batteries and carried their own displays,
-  which is a more useful thing to group by than who made them.
+- **A cassette deck on the NewBrain, on every menu row.** At the prompt it is
+  the only way in: eject opens the file picker, play starts the tape, and the
+  window in the lid says what is on it and how far through the machine has got.
+  Multi-part tapes, rewind, and saving back what the machine has recorded come
+  with it.
 
-  Six tapes ship: Alpine, BreakOut, Landar, MasterMind, Snake and Tycoon. Only
-  Tycoon's year is known, off its own copyright line; the rest show `(????)`
-  rather than a guess. **The games have no gamedocs yet**, so their keys are
-  listed in `NO_GAMEDOC` and the top-left link is suppressed rather than
-  pointed at a page that does not exist.
+  On a game row it is there to be read rather than pressed. A NewBrain tape
+  loads in real time and the page showed nothing at all while it did, which on
+  a slow one reads as a broken page — so the deck comes along to say otherwise:
+  the glue puts the menu's tape in it, the readout names the file, the bar
+  fills and the reels turn. **All six keys are locked out there**, because that
+  tape belongs to the menu and ejecting it would leave the page with no way
+  back but a reload.
 
-- **A NewBrain bezel, with an English keyboard.** `systems/_shared/bezels/NewBrain.png` has sat in the tree untracked since the machine's artwork was first composed, waiting for the system itself. It is committed now, and in a corrected form: the photograph it had been built from is a French NewBrain, AZERTY across the top row with QSDFGHJKLM below it. A bezel is the one place a reader looks to find out where a key is, so a picture of the wrong keyboard is worse than no picture — and the emulator maps a QWERTY matrix regardless of what the artwork shows. Nothing references the file yet; it is an asset held for when the machine arrives.
+  Measured on staging: the visible loading window is 0.44s for snake.bas (1.9
+  KB) and 5.38s for tycoon.bas (17.8 KB). The glue runs the machine flat out
+  while a tape loads, so the small ones are over almost before the reels move;
+  the big ones are where this earns its place.
 
-- **`systems/newbrain/PROVENANCE.md`** — a clean-room statement for the one
-  emulator here that is ours. ATTRIBUTION records what was used and under what
-  terms; this records how the machine was worked out: the hardware behaviour
-  read out of MAME's BSD-3-Clause NewBrain driver (Curt Coder) and Grundy's own
-  1981 Software Technical Manual, with the ROMs running settling what those two
-  disagreed on, and nothing taken from the one closed-source NewBrain emulator
-  that predates the work. It lists what a reader can check rather than asking
-  to be believed.
+  Ported from the standalone emulator rather than copied: it is
+  `systems/newbrain/genx-deck.js`, pulled in by the glue, with `interactive`
+  deciding whether its keys bind at all. The artwork, the reel sprite sheet,
+  the six key images and the readout's character face come with it, and
+  `art/regions.json` gains the `deck` block that places them — **centred over
+  the machine**, which needed its own figure rather than the standalone's: this
+  repo draws the machine from the shared bezel, whose placement puts its centre
+  at 78.8920% against the standalone's 81.6772%.
 
-  The separation from MAME is not claimed and is not needed — BSD-3 permits
-  reading and adapting it with the notice retained, which ATTRIBUTION does. The
-  separation from closed source is the real one, so the document describes it.
-
-  It sits in the bundle beside `COPYING`, not at the repo root and not only in
-  the standalone repository, so the bundle carries its own provenance wherever
-  it is copied to. The standalone `newbrain-js` holds the authoritative copy and
-  the two are kept in step, like `src/`.
-
-### Fixed
-
-- **The NewBrain's VF panel read dim because its strokes never filled a pixel.**
-  The panel draws around 9px to a character, where Segment16C's strokes are
-  thinner than a pixel, so anti-aliasing spread each one over two pixels at
-  partial coverage and none ever filled — peak alpha 209 of 255, all edge and no
-  core. That is why the lit colour never looked as bright as it is. Each glyph is
-  drawn twice now with a 0.2px stroke, taking total ink over the panel from 415
-  to 765. Rendering larger and scaling down was measured and rejected: it
-  redistributes coverage rather than adding any, and came out slightly worse than
-  doing nothing. Same fix as `Retro-Jack/newbrain-js`, carried across to this
-  copy's own constants.
-- **Size on disk was quoted as 189&nbsp;MB in the feature article; the tree is
-  190.** The NewBrain's tapes and firmware landed after that figure was written,
-  and `check-doc-counts.sh` does not guard the CHANGELOG prose that the earlier
-  BBC-ROM entry states it in — so the article was the only place the stale
-  number was load-bearing. Stamped from the tree in both places it appears,
-  the numbers block and the prose.
-- **The self-hosted wiki was a commit behind its sources.** `docs/wiki/` is
-  generated from the repo-root Markdown by `docs/wiki-src/build.py`, and
-  ATTRIBUTION and CHANGELOG both changed without it being re-run. Rebuilt, and
-  the build's own dead-link check caught the reason a repo-relative link is the
-  wrong form for an imported page: `resolve()` only recognises a bare root
-  filename, so `systems/newbrain/PROVENANCE.md` fell through to the wiki-page
-  branch and resolved to nothing. Written as a GitHub blob URL it goes through
-  the "other repo files" path instead and comes out as
-  `../../systems/newbrain/PROVENANCE.md`, which resolves in the wiki, on the
-  site and on GitHub alike.
+  The engine came across at the same time — `src/newbrain.js` and
+  `src/tape.js`, the same files as the standalone's. The tape now reports where
+  the last block's payload ends rather than where the signal does, which is
+  what lets the bar fill rather than stop just short. **The renderer also
+  gained pixel graphics**, which is the thing the hold-back below was waiting
+  for.
 
 ### Changed
+
+- **The NewBrain hold-back is live-only now.** It was excluded from every
+  build, staging included, which meant the work on it could not be looked at
+  anywhere. The comment always said "held back from the published site", and
+  staging is not the published site — so `build-portable.sh` keeps the
+  exclusion unless `GENX_SHIP_NEWBRAIN` is set, and `deploy.sh` sets it for the
+  staging target alone. Live still ships 1741 files without it; staging ships
+  1782 with it. Measured both ways rather than assumed.
+
+- **`LOAD` is enough on the NewBrain; the quotes have gone.** The bare keyword
+  starts a tape load, so the glue types that and the deck's readout says it.
+  Worth more than brevity: `"` needs Shift held across the keypress on the
+  machine's own matrix, and that is exactly the fault already seen, where a
+  closing quote came out as `2` when the overlap was too short. The auto-load
+  path no longer has a shifted key in it at all. The controls page no longer
+  explains the quote key by what it was needed for.
+
 - The front page and the README describe a self-hosted copy by what you
   need to supply rather than by what has been withheld. The README no
   longer says the repo "leaves out" the games or that ROMS.txt lists

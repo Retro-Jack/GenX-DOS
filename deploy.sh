@@ -75,6 +75,11 @@ STAGE_DIR=$(mktemp -d /tmp/genx-deploy.XXXXXX)
 trap 'rm -rf "$STAGE_DIR"' EXIT
 
 echo "Building the shipping file set..."
+# Staging previews work that is held back from the published site — the
+# NewBrain, while its renderer is finished. See build-portable.sh.
+if [[ $TARGET == staging ]]; then
+    export GENX_SHIP_NEWBRAIN=1
+fi
 ./build-portable.sh "$STAGE_DIR" >/dev/null
 
 # The one place a web deploy legitimately differs from the portable build:

@@ -365,7 +365,7 @@ export class NewBrain {
   // into a signal and presented at TPIN, and the real microcode reads it.
   loadTape(bytes, opts) {
     this.tape = bytes && bytes.length
-      ? new TapePlayer(encodeTape(bytes, opts))
+      ? (({ durations, dataEnd }) => new TapePlayer(durations, dataEnd))(encodeTape(bytes, opts))
       : null;
   }
 
@@ -422,13 +422,13 @@ export class NewBrain {
   static rowStride(columns) { return columns === 80 ? 128 : 64; }
 
   // Length of the first run of 00 bytes in a displayed row, 0 if it has none.
-  // One is a row terminator, two mark the end of the frame.
+  // One is a row terminator, two mark the end of the frame, three or more hand
+  // the rest of the frame over to pixel graphics.
   //
-  // ▲ Three or more mark a graphics line, which is NOT implemented: resetting
-  // the terminator flags per scanline means grLine can never come up, so the
-  // pixel-graphics path below is dead code. Nothing shipped reaches it — the
-  // four tapes are all text — but a program that uses pixel graphics will
-  // render as characters, and this is where to start.
+  // ▲ It reports the FIRST run only. A row that terminates early and happens
+  // to have three 00s later in its unused tail would be read as text, which is
+  // the right answer; a row that deliberately did both would not be. No such
+  // row has been seen.
   zeroRun(rowAddr, columns) {
     for (let c = 0; c < columns; c++) {
       if (this.ram[(rowAddr + c) & 0x7fff] !== 0) continue;
@@ -475,18 +475,39 @@ export class NewBrain {
     // row's 00 blank the same columns on all ten of its scanlines, and the
     // frame end is latched separately below rather than being carried in the
     // flags.
+    //
+    // Pixel graphics need the opposite, though, and that is what the latch
+    // below is for. Three 00 bytes drop qc for good: from there the flags must
+    // NOT be reset, because it is the stale low qb shifting into qc that keeps
+    // every later scanline a graphics line. So the reset applies to text rows
+    // only. Once a row's zero run reaches three the flags are let run exactly
+    // as MAME has them — the one scanline that starts the region begins clean,
+    // its own three 00s bring qc down part way across, and every scanline
+    // after that carries. videoAddr then runs on linearly instead of returning
+    // to the row, the character row counter stops, and each byte is eight
+    // pixels out of grsr, least significant first.
     let p = 0;
     let frameEnded = false, endsAfterThisRow = false;
+    let graphics = false, enteringGraphics = false;
 
     for (let y = 0; y < SCREEN_H; y++) {
-      if (rc === 0) {
+      if (rc === 0 && !graphics) {
         // The marker blanks the rows BELOW it; this row still blanks itself
         // from its own 00 onwards, through the terminator above.
         if (endsAfterThisRow) frameEnded = true;
-        endsAfterThisRow = !frameEnded && this.zeroRun(rowAddr, columns) === 2;
+        const run = this.zeroRun(rowAddr, columns);
+        endsAfterThisRow = !frameEnded && run === 2;
+        // Three or more, and the rest of the frame is a bitmap. Checked once,
+        // on the row that starts it; after that the flags carry it themselves.
+        if (!frameEnded && run >= 3) { graphics = true; enteringGraphics = true; }
       }
 
-      qa = qb = qc = true;
+      if (!graphics || enteringGraphics) {
+        qa = qb = qc = true;
+        enteringGraphics = false;
+      } else if (!qc) {
+        qc = qb;
+      }
 
       const grLine = !qa && !qc;
       if (!grLine) videoAddr = rowAddr;

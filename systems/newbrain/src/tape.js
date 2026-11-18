@@ -49,24 +49,40 @@ export function tapeBlocks(bytes) {
   return out;
 }
 
-// Turns a tape file into a list of half cycle lengths.
+// Turns a tape file into a list of half cycle lengths, and says how far along
+// that list the last block's payload ends.
+//
+// Those are not the same place, and the gap is bigger than it looks. Every
+// block is followed by gap tone, the last one included, and the ROM never
+// plays that final run: it takes the block, sees the last-block flag and stops
+// the motor. Nor does it reach the end of the block — each one carries nine
+// trailer bytes the writer lays down and nobody reads, and the motor stops
+// part way through them, 78 half cycles short, measured on BreakOut. So the
+// mark that means "that is the lot" is the end of the last block's PAYLOAD:
+// count, data, type byte, checksum, with the trailer and the gap behind it.
 export function encodeTape(bytes, opts = {}) {
   const { leaderCells, gapCells } = { ...TAPE_DEFAULTS, ...opts };
   const blocks = tapeBlocks(bytes);
   const out = [];
   const push = a => { for (const v of a) out.push(v); };
+  let dataEnd = 0;
 
-  for (const block of (blocks.length ? blocks : [Uint8Array.from(bytes)])) {
+  const raw = !blocks.length;
+  for (const block of (raw ? [Uint8Array.from(bytes)] : blocks)) {
     for (let i = 0; i < leaderCells; i++) push(LEADER_GROUP);
     out.push(JOIN);
+    const count = block.length >= 3 ? (block[1] | (block[2] << 8)) : 0;
+    const payload = raw ? block.length : Math.min(block.length, 3 + count + 3);
+    let n = 0;
     for (const byte of block) {
       push(ONE);                                        // start
       for (let b = 7; b >= 0; b--) push((byte >> b) & 1 ? ONE : ZERO);
       push(ZERO);                                       // stop
+      if (++n === payload) dataEnd = out.length;
     }
     for (let i = 0; i < gapCells; i++) push(LEADER_GROUP);
   }
-  return Int32Array.from(out);
+  return { durations: Int32Array.from(out), dataEnd };
 }
 
 // Reads back what the machine put on the tape line, which is the exact inverse
@@ -137,16 +153,22 @@ export class TapeRecorder {
 // only moves while the motor is running: the ROM stops it between blocks while
 // it stows one away, and the tape has to wait exactly as a real one would.
 export class TapePlayer {
-  constructor(durations) {
+  constructor(durations, dataEnd = durations.length) {
     this.durations = durations;
+    this.dataEnd = dataEnd;
     this.index = 0;
     this.level = 0;
     this.clock = 0;
     this.nextAt = 0;
   }
 
+  // `finished` is the signal running out; `played` is the last byte of data
+  // having gone past, which is the one a listener wants — see encodeTape.
   get finished() { return this.index >= this.durations.length; }
-  get progress() { return this.durations.length ? this.index / this.durations.length : 1; }
+  get played() { return this.index >= this.dataEnd; }
+  // Measured against the data rather than the signal, so a tape that has been
+  // read right through shows full rather than stopping just short.
+  get progress() { return this.dataEnd ? Math.min(1, this.index / this.dataEnd) : 1; }
 
   // Runs the tape on by `delta` T-states, returning the level now at TPIN.
   advance(delta) {

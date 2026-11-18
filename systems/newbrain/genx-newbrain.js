@@ -7,7 +7,7 @@
 // regions, runs the machine against the clock, and starts whatever ?game= the
 // menu asked for.
 //
-// Loading a tape on a real NewBrain means typing LOAD "" and then pressing
+// Loading a tape on a real NewBrain means typing LOAD and then pressing
 // play, in that order — the machine has to be listening before the tape
 // starts. A visitor picking a game from a menu should not have to know that,
 // so the glue types it and starts the tape itself.
@@ -20,6 +20,12 @@ import { NewBrain, SCREEN_W, SCREEN_H } from './src/newbrain.js';
 // and failures still go somewhere — the console — so a page that cannot find
 // its ROMs can still be diagnosed without being narrated to the visitor.
 const say = (t) => console.log('[newbrain] ' + t);
+
+// Which menu row this is. The prompt entry comes with no game chosen, and it
+// is the only one that gets a cassette deck: every other row has its tape
+// picked already and the glue below loads it unaided.
+const wanted = new URLSearchParams(location.search).get('game');
+const atPrompt = !wanted;
 
 // ---- the two displays, placed from measured regions ------------------------
 const reg = await fetch('art/regions.json').then((r) => r.json());
@@ -40,6 +46,19 @@ const reg = await fetch('art/regions.json').then((r) => r.json());
   within(document.getElementById('screenbg'), reg.cub.hole);
   within(document.getElementById('crt'), reg.cub.crt);
   within(document.getElementById('vfd'), reg.machine.vfd);
+
+  // The deck is on every row. At the prompt it is the only way to get a
+  // tape in; on a game row it is the only thing that shows the load
+  // happening at all, since a NewBrain tape loads in real time and the
+  // screen stays blank throughout. What differs is whether its keys do
+  // anything — see genx-deck.js.
+  document.body.classList.add('deck');
+  put(document.getElementById('tapedeck'), reg.deck.place);
+  within(document.querySelector('#tapedeck i'), reg.deck.reels);
+  within(document.getElementById('tapewin'), reg.deck.window);
+  for (const [k, r] of Object.entries(reg.deck.buttons)) {
+    within(document.querySelector(`#tapedeck .key[data-key="${k}"]`), r);
+  }
 }
 
 // ---- ROMs ------------------------------------------------------------------
@@ -324,6 +343,13 @@ let acc = 0,
 let turbo = false;
 const FRAMES_PER_TICK = () => (turbo ? 60 : 4);
 
+const { initDeck } = await import('./genx-deck.js');
+// The keys are live only at the prompt. On a game row the tape is the
+// menu's, not the visitor's, and ejecting it would leave the page with no
+// way back but a reload — so the deck is there to be read, not pressed.
+const deck = initDeck(sys, { interactive: atPrompt });
+const drawDeck = deck.draw;
+
 function frame() {
   const now = performance.now();
   acc += Math.min(now - prev, 200);
@@ -338,6 +364,7 @@ function frame() {
   }
   if (ran) {
     drawVfd();
+    drawDeck();
     machine.renderInto(img.data);
     sctx.putImageData(img, 0, 0);
     crt.clearRect(0, 0, crtEl.width, crtEl.height);
@@ -358,7 +385,6 @@ function frame() {
 requestAnimationFrame(frame);
 
 // ---- whatever the menu asked for -------------------------------------------
-const wanted = new URLSearchParams(location.search).get('game');
 if (!wanted) {
   say('NewBrain BASIC');
 } else {
@@ -375,6 +401,9 @@ if (!wanted) {
   } else {
     say('Loading ' + game.title + '…');
     tapeBytes = new Uint8Array(await (await fetch(game.tape)).arrayBuffer());
+    // Show it in the deck, named as the tape file is, so the readout has
+    // something to say and the bar something to fill against.
+    deck.insert([{ name: game.tape.replace(/^.*\//, ''), bytes: tapeBytes }]);
 
     // PWRUP is an RC delay of 5.6 seconds on the real machine, and BASIC is
     // not listening until it has passed. Wait it out, tell the machine to
@@ -387,8 +416,9 @@ if (!wanted) {
       turbo = true;
       while (!machine.pwrup) await sleep(100);
       await sleep(4000);
-      await type('LOAD ""\n');
+      await type('LOAD\n');
       await sleep(200);
+      deck.engage(); // the glue is pressing play, so the reels may turn
       startTape();
       say('Loading ' + game.title + '\u2026');
 

@@ -36,6 +36,17 @@
           url('art/fonts/Segment16C-Regular.woff') format('woff');
         font-display: block;
       }
+      /* The deck's readout is a character display, so it wants a character
+         face: 9x16, ascent and descent coming to exactly 1em, which is what
+         lets the character grid and the glyph grid below be the same grid. */
+      @font-face {
+        font-family: 'VGA437';
+        src: url('art/fonts/web437-vga.woff') format('woff');
+        font-display: block;
+      }
+      :root {
+        --green: #35ff6d;
+      }
       html,
       body {
         margin: 0;
@@ -84,6 +95,239 @@
         position: absolute;
         z-index: 1;
       }
+
+      /* ---- the cassette deck ------------------------------------------
+         On every row. At the prompt it is the only way to get a tape in; on a
+         game row it is the only thing that shows the load happening, since a
+         NewBrain tape loads in real time and the screen stays blank
+         throughout. Hidden until genx-newbrain.js has placed it from the
+         regions, so it cannot appear unpositioned for a frame. */
+      #tapedeck {
+        display: none;
+        position: absolute;
+      }
+      body.deck #tapedeck {
+        display: block;
+      }
+      #tapedeck img {
+        display: block;
+        width: 100%;
+        height: auto;
+        pointer-events: none;
+      }
+      /* With nothing in the deck you see the bay itself — spindles, heads,
+         capstan, pinch roller. It is a second photograph of the same machine,
+         laid over the first and revealed when the deck is empty, rather than a
+         swap of the src: both are in the document from the start, so the bay
+         does not arrive a frame late the first time a tape is ejected. */
+      #tapedeck img.bare {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        opacity: 0;
+      }
+      #tapedeck.empty img.bare {
+        opacity: 1;
+      }
+      #tapedeck.empty i {
+        display: none;
+      }
+      /* Only the reels move, so the deck is one still image and the box
+         holding both reels is a sprite sheet stepped by CSS. 37 rows for 36
+         frames: a percentage background-position travels (rows - 1) box
+         heights, so the last row repeats the first and never shows. Without
+         it every step lands between frames. */
+      #tapedeck i {
+        position: absolute;
+        display: block;
+        background: url('art/deck-reels.webp') 0 0 / 100% 3700% no-repeat;
+        animation: deckreels 3.6s steps(36) infinite;
+        animation-play-state: paused;
+        pointer-events: none;
+        z-index: 1;
+      }
+      #tapedeck.on i {
+        animation-play-state: running;
+      }
+      @keyframes deckreels {
+        to {
+          background-position-y: 100%;
+        }
+      }
+      /* The deck's own keys. Each is a hit area carrying the picture of that
+         key pressed, shown by raising its opacity — one small image per key
+         rather than a second copy of the whole deck. They are opaque, and
+         flattened onto the stage colour when cut: a pressed key sits lower,
+         and the gap it leaves at the top has to hide the un-pressed key
+         underneath rather than let it show through. */
+      #tapedeck .key {
+        position: absolute;
+        z-index: 3;
+        cursor: pointer;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        opacity: 0;
+      }
+      #tapedeck .key.down {
+        opacity: 1;
+      }
+      #tapedeck .key.off {
+        cursor: default;
+      }
+      #tapedeck .key[data-key='eject'] {
+        background-image: url('art/btn-eject.webp');
+      }
+      #tapedeck .key[data-key='next'] {
+        background-image: url('art/btn-next.webp');
+      }
+      #tapedeck .key[data-key='rew'] {
+        background-image: url('art/btn-rew.webp');
+      }
+      #tapedeck .key[data-key='play'] {
+        background-image: url('art/btn-play.webp');
+      }
+      #tapedeck .key[data-key='ff'] {
+        background-image: url('art/btn-ff.webp');
+      }
+      #tapedeck .key[data-key='rec'] {
+        background-image: url('art/btn-rec.webp');
+      }
+      /* The readout in the deck's window. Sized in container units so the type
+         scales with the deck rather than with the page — the deck is a
+         percentage of the stage and the stage a percentage of the viewport, so
+         nothing here is in pixels either.
+
+         Seven rows of twenty-one columns, as grid tracks, so the rows are
+         equal because the grid makes them so rather than because a
+         line-height was tuned until they looked it. Each line is pinned to its
+         own row, so a hidden line leaves its row empty instead of pulling the
+         ones under it up. */
+      #tapewin {
+        position: absolute;
+        z-index: 2;
+        container-type: size;
+        display: grid;
+        grid-template-rows: repeat(7, 1fr);
+        grid-template-columns: 100%;
+        box-sizing: border-box;
+        font-family: 'VGA437', ui-monospace, monospace;
+        color: var(--green);
+        text-shadow: 0 0 6px rgba(53, 255, 109, 0.45);
+        line-height: 1;
+        overflow: hidden;
+        pointer-events: none;
+        white-space: pre;
+      }
+      /* 100cqh/7 is a row's height, and it goes on the CHILDREN: #tapewin is
+         the container those units resolve against, and a container query unit
+         used on the container itself resolves against its ancestor instead,
+         which would silently size the type off the wrong box.
+
+         grid-column:1 is not decoration either. Two lines may share a row —
+         "No tape." joins the progress bar — and an item with an explicit row
+         but an automatic column is placed in the next free column rather than
+         stacking, which makes the grid two columns and twice the window wide.
+
+         The top nudge centres the ink rather than the cells: measured across
+         the printable set the ink runs from the very top of the cell to just
+         short of the bottom, leaving the readout top-heavy by 0.138 of a row.
+         Half of that splits the difference, in em so it tracks the type. */
+      #tapewin > * {
+        font-size: calc(100cqh / 7);
+        width: 21ch;
+        grid-column: 1;
+        justify-self: center;
+        text-align: center;
+        position: relative;
+        top: 0.0692em;
+      }
+      #twhint {
+        grid-row: 1;
+      }
+      #twsep {
+        grid-row: 2;
+      }
+      #twname {
+        grid-row: 3;
+      }
+      #twbar {
+        grid-row: 4;
+      }
+      #twrule {
+        grid-row: 5;
+      }
+      #twcount {
+        grid-row: 6;
+      }
+      #twnote {
+        grid-row: 7;
+      }
+      #twname,
+      #twhint {
+        overflow: hidden;
+      }
+      /* vertical-align:top matters more than it looks. An inline-block sits on
+         the baseline, so the line box grows by the strut's descent below it.
+         These rows cannot grow, being grid tracks, so their content would
+         stand taller than the cell holding it and be clipped. */
+      #twname span,
+      #twhint span {
+        display: inline-block;
+        vertical-align: top;
+      }
+      /* No timing function here on purpose: genx-deck.js sets it, because the
+         number of steps is the number of characters and only it knows that. */
+      #twname.scroll span,
+      #twhint.scroll span {
+        animation: tapescroll infinite;
+      }
+      /* -50% is exactly one period — the span holds (text+gap) twice — so a
+         steps() of the period's character count advances precisely one
+         character per step. A real readout shifts its buffer a character at a
+         time; it has no way to move half of one. */
+      @keyframes tapescroll {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      /* Drawn in actual hyphens, not a border: the readout is a character
+         display, so its rules are made of characters like everything in it. */
+      #twrule,
+      #twsep {
+        opacity: 0.55;
+      }
+      #twrule::before,
+      #twsep::before {
+        content: '---------------------';
+      }
+      /* The hint band earns its divider only when it has something to say;
+         otherwise an empty line and a rule sit there looking like a fault. */
+      #tapewin.nohint #twhint,
+      #tapewin.nohint #twsep {
+        display: none;
+      }
+      /* With no tape there is no name, no bar and no count, so the rule would
+         be a line ruled across an empty readout. */
+      #tapewin.notape #twrule {
+        display: none;
+      }
+      #tapewin.notape #twname {
+        grid-row: 3;
+      }
+      #tapewin.notape #twcount {
+        grid-row: 5;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #tapedeck.on i {
+          animation: none;
+        }
+        #twname.scroll span,
+        #twhint.scroll span {
+          animation: none;
+        }
+      }
+
       @media (max-width: 900px) {
         #stage {
           aspect-ratio: auto;
@@ -92,7 +336,8 @@
           padding: 16px 0;
         }
         #monitor,
-        #machine {
+        #machine,
+        body.deck #tapedeck {
           position: relative;
           left: 0 !important;
           top: 0 !important;
@@ -112,7 +357,49 @@
       </div></noscript
     >
 
+    <input
+      id="tapefile"
+      type="file"
+      multiple
+      hidden
+      accept=".bas,.tap,.bin,application/octet-stream"
+    />
+
     <div id="stage">
+      <div id="tapedeck" class="empty" title="Cassette deck">
+        <img src="art/deck.webp" alt="" /><img
+          class="bare"
+          src="art/deck-empty.webp"
+          alt=""
+        /><i></i>
+        <span
+          class="key"
+          data-key="eject"
+          title="Insert a tape, or eject the one in the deck"
+        ></span>
+        <span
+          class="key"
+          data-key="next"
+          title="Add the next part of a multi-part tape"
+        ></span>
+        <span class="key" data-key="rew" title="Rewind"></span>
+        <span class="key" data-key="play" title="Play"></span>
+        <span class="key" data-key="ff" title="Fast forward"></span>
+        <span
+          class="key"
+          data-key="rec"
+          title="Save what the machine has recorded"
+        ></span>
+        <div id="tapewin" class="nohint notape" aria-hidden="true">
+          <div id="twhint"><span></span></div>
+          <div id="twsep"></div>
+          <div id="twname"><span></span></div>
+          <div id="twbar"></div>
+          <div id="twrule"></div>
+          <div id="twcount"></div>
+          <div id="twnote"></div>
+        </div>
+      </div>
       <div id="monitor">
         <div id="screenbg"></div>
         <canvas id="crt" width="640" height="250"></canvas>
@@ -123,7 +410,6 @@
         <canvas id="vfd"></canvas>
       </div>
     </div>
-
 
     <script src="../_shared/genx-controls-link.js"></script>
     <script src="../_shared/genx-repo-link.js"></script>
