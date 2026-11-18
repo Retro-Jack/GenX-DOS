@@ -222,7 +222,8 @@
   between two keys belongs to neither of them -- the keys touch, and it is the
   shadow they cast together -- so whichever key owned it drew it at full height
   when its neighbour sank. It is now its own element, one per boundary, and it
-  is not there unless both of its keys are up.
+  sinks whenever either of its keys does, by the same drop as the key -- the
+  shadow follows the key down and sits at the pressed height.
 
 - **A pressed key on the deck no longer strands a dark line beside it.** The
   keys touch -- in the photograph the whole row is one unbroken opaque run --

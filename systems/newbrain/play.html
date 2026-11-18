@@ -271,16 +271,18 @@
          height, leaving a dark band standing beside a key that was no longer
          there.
 
-         So it is its own element, and it is not there unless BOTH of its keys
-         are up. Done with :has() so it holds however .down gets set; where
-         :has() is missing the seams stay put, which is the old behaviour
-         rather than a broken one. */
+         So it is its own element, and it SINKS whenever either of its keys
+         does, by the same drop as the key itself — the shadow follows the key
+         down rather than standing at full height beside it. Done with :has()
+         so it holds however .down gets set; where :has() is missing the seams
+         stay put, which is the old behaviour rather than a broken one. */
       #tapedeck .seam {
         position: absolute;
         z-index: 0;
         pointer-events: none;
         background-size: 100% 100%;
         background-repeat: no-repeat;
+        transition: transform 0.06s ease-out;
       }
       #tapedeck .seam[data-left='eject'][data-right='next'] {
         background-image: url('art/seam-eject-next.webp');
@@ -309,7 +311,7 @@
       #tapedeck:has(.key[data-key='ff'].down) .seam[data-right='ff'],
       #tapedeck:has(.key[data-key='rec'].down) .seam[data-left='rec'],
       #tapedeck:has(.key[data-key='rec'].down) .seam[data-right='rec'] {
-        opacity: 0;
+        transform: translateY(var(--keydrop, 25%));
       }
       /* The readout in the deck's window. Sized in container units so the type
          scales with the deck rather than with the page — the deck is a
