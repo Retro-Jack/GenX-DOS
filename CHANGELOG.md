@@ -20,6 +20,16 @@
   standalone's layout the deck and the machine share a left edge and a width,
   so they line up by construction and there is no separate figure to keep.
 
+- **The IBM PC games menu's title bar is centred again.** It sat 14 spaces in
+  and 17 out, three characters off, against an invariant that says the title
+  and footer must balance to within one. Now 15 and 16, the odd space on the
+  right as 21 of the other 27 odd-width lines have it.
+
+  It was the only one. A sweep of every centred line in the file — 98 of them
+  across 49 boxes — found no other drift, and all four box invariants now pass
+  clean: 45-character interiors, `echo`+17 prefix, small-menu spacing, and
+  centring within one.
+
 - **A small menu now takes two blank rows before `0. Back`.** The rule already
   spaced the items of any chooser with fewer than five of them; once everything
   is separated by one row, the exit stops reading as a different kind of thing.
