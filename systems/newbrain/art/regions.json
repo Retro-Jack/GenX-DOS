@@ -69,41 +69,83 @@
       "eject": {
         "left": 23.0833,
         "top": 3.7475,
-        "width": 7.4167,
+        "width": 6.8333,
         "height": 11.6371
       },
       "next": {
-        "left": 29.9167,
+        "left": 30.5,
         "top": 3.7475,
-        "width": 7.8333,
+        "width": 6.75,
         "height": 11.6371
       },
       "rew": {
-        "left": 37.25,
+        "left": 37.75,
         "top": 3.7475,
-        "width": 7.9167,
+        "width": 7.0,
         "height": 11.6371
       },
       "play": {
-        "left": 44.75,
+        "left": 45.1667,
         "top": 3.7475,
-        "width": 7.6667,
+        "width": 6.8333,
         "height": 11.6371
       },
       "ff": {
-        "left": 52.0,
+        "left": 52.4167,
         "top": 3.7475,
-        "width": 7.75,
+        "width": 6.8333,
         "height": 11.6371
       },
       "rec": {
-        "left": 59.25,
+        "left": 59.75,
         "top": 3.7475,
-        "width": 8.9167,
+        "width": 8.4167,
         "height": 11.6371
       }
     },
-    "keyDrop": 25.42
+    "keyDrop": 25.42,
+    "seams": [
+      {
+        "from": "eject",
+        "to": "next",
+        "left": 29.9167,
+        "top": 3.7475,
+        "width": 0.5833,
+        "height": 11.6371
+      },
+      {
+        "from": "next",
+        "to": "rew",
+        "left": 37.25,
+        "top": 3.7475,
+        "width": 0.5,
+        "height": 11.6371
+      },
+      {
+        "from": "rew",
+        "to": "play",
+        "left": 44.75,
+        "top": 3.7475,
+        "width": 0.4167,
+        "height": 11.6371
+      },
+      {
+        "from": "play",
+        "to": "ff",
+        "left": 52.0,
+        "top": 3.7475,
+        "width": 0.4167,
+        "height": 11.6371
+      },
+      {
+        "from": "ff",
+        "to": "rec",
+        "left": 59.25,
+        "top": 3.7475,
+        "width": 0.5,
+        "height": 11.6371
+      }
+    ]
   },
   "tvswitch": {
     "src": "tv-on.webp",

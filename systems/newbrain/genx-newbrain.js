@@ -60,6 +60,14 @@ const reg = await fetch('art/regions.json').then((r) => r.json());
   for (const [k, r] of Object.entries(reg.deck.buttons)) {
     within(document.querySelector(`#tapedeck .key[data-key="${k}"]`), r);
   }
+  for (const sm of reg.deck.seams || []) {
+    within(
+      document.querySelector(
+        `#tapedeck .seam[data-left="${sm.from}"][data-right="${sm.to}"]`,
+      ),
+      sm,
+    );
+  }
   // How far a pressed key sinks, measured off the artwork and expressed as a
   // share of the key's own height, so it holds at any size the deck is drawn.
   document

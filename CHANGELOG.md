@@ -218,6 +218,12 @@
 
 ### Fixed
 
+- **The dark vertical bands beside a pressed deck key are gone.** The crevice
+  between two keys belongs to neither of them -- the keys touch, and it is the
+  shadow they cast together -- so whichever key owned it drew it at full height
+  when its neighbour sank. It is now its own element, one per boundary, and it
+  is not there unless both of its keys are up.
+
 - **A pressed key on the deck no longer strands a dark line beside it.** The
   keys touch -- in the photograph the whole row is one unbroken opaque run --
   so what looks like a gap between two of them is the dark crevice they cast,
