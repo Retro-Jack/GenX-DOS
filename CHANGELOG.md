@@ -40,6 +40,17 @@
   the two are kept in step, like `src/`.
 
 ### Fixed
+
+- **The NewBrain's VF panel read dim because its strokes never filled a pixel.**
+  The panel draws around 9px to a character, where Segment16C's strokes are
+  thinner than a pixel, so anti-aliasing spread each one over two pixels at
+  partial coverage and none ever filled — peak alpha 209 of 255, all edge and no
+  core. That is why the lit colour never looked as bright as it is. Each glyph is
+  drawn twice now with a 0.2px stroke, taking total ink over the panel from 415
+  to 765. Rendering larger and scaling down was measured and rejected: it
+  redistributes coverage rather than adding any, and came out slightly worse than
+  doing nothing. Same fix as `Retro-Jack/newbrain-js`, carried across to this
+  copy's own constants.
 - **Size on disk was quoted as 189&nbsp;MB in the feature article; the tree is
   190.** The NewBrain's tapes and firmware landed after that figure was written,
   and `check-doc-counts.sh` does not guard the CHANGELOG prose that the earlier

@@ -111,6 +111,16 @@ const vfdCtx = vfdEl.getContext('2d');
 const VFD_LIT = 'rgb(222,255,236)';
 const VFD_UNLIT = 'rgba(150,210,170,0.13)';
 const VFD_GLOW = 6;
+// The panel draws around 9px to a character, and Segment16C's strokes are
+// thinner than a pixel at that size, so anti-aliasing spreads each one over
+// two pixels at partial coverage and none of them ever fills. Measured peak
+// alpha was 209 of 255 — all edge, no core, which is why the lit colour above
+// never looked as bright as it is. Drawing each glyph more than once, with a
+// hairline stroke widening it toward a whole pixel, puts the core back.
+// Rendering larger and scaling down does not help: it redistributes coverage
+// rather than adding any, and measured slightly worse than doing nothing.
+const VFD_PASSES = 2;
+const VFD_STROKE = 0.2;
 let vfdPrev = null;
 let vfdReady = false;
 document.fonts.load('16px Segment16C').then(() => {
@@ -149,20 +159,27 @@ function drawVfd() {
   vfdCtx.textAlign = 'center';
   vfdCtx.textBaseline = 'middle';
   vfdCtx.font = Math.round(H * 0.92) + 'px Segment16C';
+  vfdCtx.fillStyle = VFD_UNLIT;
   for (let i = 0; i < N; i++) {
-    const x = cw * (i + 0.5),
-      y = H / 2;
-    vfdCtx.fillStyle = VFD_UNLIT;
-    vfdCtx.fillText('█', x, y); // every segment, faint, as an unlit cell reads
-    const ch = text[i];
-    if (ch && ch !== ' ') {
-      vfdCtx.fillStyle = VFD_LIT;
-      vfdCtx.shadowColor = VFD_LIT;
-      vfdCtx.shadowBlur = VFD_GLOW;
+    vfdCtx.fillText('█', cw * (i + 0.5), H / 2); // every segment, faint, as an unlit cell reads
+  }
+  vfdCtx.fillStyle = VFD_LIT;
+  vfdCtx.strokeStyle = VFD_LIT;
+  vfdCtx.lineWidth = VFD_STROKE;
+  vfdCtx.lineJoin = 'round';
+  vfdCtx.shadowColor = VFD_LIT;
+  vfdCtx.shadowBlur = VFD_GLOW;
+  for (let p = 0; p < VFD_PASSES; p++) {
+    for (let i = 0; i < N; i++) {
+      const ch = text[i];
+      if (!ch || ch === ' ') continue;
+      const x = cw * (i + 0.5),
+        y = H / 2;
       vfdCtx.fillText(ch, x, y);
-      vfdCtx.shadowBlur = 0;
+      if (VFD_STROKE) vfdCtx.strokeText(ch, x, y);
     }
   }
+  vfdCtx.shadowBlur = 0;
 }
 
 // ---- keyboard --------------------------------------------------------------
