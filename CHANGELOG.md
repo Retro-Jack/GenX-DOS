@@ -2,6 +2,17 @@
 
 ### Added
 
+- **The ATCC page records how version 1.1 was set free**, with the Wayback
+  captures to back it. In 2007 the download page told you to buy a registration
+  code; by 2009 it simply printed one, and it was still printed in 2016. All
+  three captures are linked, because a claim like that is worth nothing without
+  somewhere to check it.
+
+  ▲ It also says what the giveaway did *not* do. Free to use is not free to
+  pass on: the 1.1 licence has no redistribution clause and none of the
+  installation-package exception 1.0 carries, so the public code unlocked a
+  copy rather than releasing the installer.
+
 - **A page on ATCC, the 1996 freeware en-route radar simulator**, at `/ATCC/`.
   Written in our own words and set in the document design language: no part of
   the original site is reproduced, there is no Xavius branding on it, and it
