@@ -25,6 +25,11 @@
   not. *A Wing and a Prayer* is the IMDb one, and it carries a leading "A" the
   newsletter left off.
 
+  It also says why the sim is as accurate as it is: Xavius's own company page,
+  still live, says ATCC was "developed by an experienced controller", and the
+  newsletters read like shop talk between working controllers rather than
+  marketing.
+
 - **The NewBrain takes a paste from the host, and its VF panel reads properly.**
   Brought over from the standalone, which is where the work was done.
 
