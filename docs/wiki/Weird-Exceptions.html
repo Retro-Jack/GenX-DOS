@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weird exceptions — GenX-DOS Wiki</title>
+<link rel="shortcut icon" href="../../systems/_shared/favicon.ico">
+<link rel="icon" type="image/gif" href="../../systems/_shared/animated_favicon1.gif">
+<link rel="stylesheet" href="../../styles/genx-doc.css">
+<link rel="stylesheet" href="../../styles/wiki.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">GenX&#8209;DOS<span class="w">WIKI</span></a>
+  <span class="out"><a href="Search.html">Search</a><a href="../../prompt/">Prompt</a><a href="../article/">Article</a><a href="../../">&#8617;&nbsp;Site</a></span>
+</header>
+<div class="layout">
+  <nav class="side">
+<div class="grp">GenX-DOS</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li><li><a href="README.html">Readme</a></li><li><a href="ATTRIBUTION.html">Attribution</a></li><li><a href="Legal.html">Legal position</a></li><li><a href="REMOVAL.html">Removal</a></li><li><a href="CHANGELOG.html">Changelog</a></li><li><a href="CONTRIBUTING.html">Contributing</a></li><li><a href="SECURITY.html">Security</a></li><li><a href="CODE_OF_CONDUCT.html">Code of Conduct</a></li><li><a href="AI-DISCLAIMER.html">On the use of AI</a></li><li><a href="LICENSE.html">License</a></li></ul>
+<div class="grp">Internals</div>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li><li><a href="Weird-Exceptions.html" class="active">Weird exceptions</a></li></ul>
+<div class="grp">Emulators</div>
+<ul><li><a href="Emulators.html">Emulators index</a></li></ul>
+<div class="grp">Read more</div>
+<ul><li><a href="../../docs/article/">Feature article: Booting a Museum in a Browser Tab</a></li></ul>
+  </nav>
+  <main class="content">
+<h1 id="weird-exceptions">Weird exceptions</h1>
+<p>Most of what we take on falls into one of two piles: either it can be run in a
+browser tab or it cannot, and either the licence permits what we want or it does
+not. This page is for the ones that landed somewhere else entirely — where the
+answer turned on something nobody would have guessed from the outside.</p>
+<p>Each entry records what the oddity was and how it was settled, so the reasoning
+survives longer than the conversation that produced it.</p>
+<h2 id="atcc--the-talking-version-cannot-come-with-us">ATCC — the talking version cannot come with us</h2>
+<p><a href="../../ATCC/">Air Traffic Control Center</a> is a 1996 en-route
+radar simulator by Xavius Software, built by a working controller and modelling
+real FAA sectors across three centres. It is the kind of thing this project
+exists for. It is also a tangle, and the tangle is instructive.</p>
+<h3 id="its-licence-permits-something-almost-nothing-else-does">Its licence permits something almost nothing else does</h3>
+<p>ATCC 1.0's licence forbids distributing the installed software, then carves out
+an exception by name:</p>
+<blockquote>
+<p>you MAY transfer, assign or distribute copies of the software's INSTALLATION
+PACKAGE (the single-file ATCC.EXE setup executable). This must be the exact,
+unaltered setup file for this software as obtained from www.xavius.com.</p>
+</blockquote>
+<p>That is an express grant from the rights holder, which is rarer than it sounds.
+The condition is exact, so it is worth verifying rather than assuming: the file
+we hold is byte-identical to the one the original site still serves.</p>
+<p>The carve-out is also the reason a browser bundle is a different question. A
+bundle serves the <em>installed</em> files, which is the half the licence refuses, so
+it needs permission rather than inference.</p>
+<h3 id="version-11-was-given-away-and-that-changed-less-than-it-looks">Version 1.1 was given away, and that changed less than it looks</h3>
+<p>1.1 was the paid release. Later it was set free — not by a new licence, but by
+Xavius publishing its unlock code on their own download page. The Internet
+Archive catches the moment: in 2007 the page told you to buy a code, by 2009 it
+simply printed one, and it still did in 2016.</p>
+<p>It is tempting to read that as a release into the wild. It is not. <strong>Free to use
+is not free to pass on.</strong> 1.1's licence has no redistribution clause at all, and
+none of the installation-package exception 1.0 carries. The published code
+unlocked the copy you downloaded from Xavius; it did not make the installer
+yours to hand on.</p>
+<h3 id="the-part-that-actually-settles-it">The part that actually settles it</h3>
+<p>Even with permission, 1.1 could not be made browser-playable in any way worth
+doing — and the reason is in the package rather than the paperwork.</p>
+<p>Open it up and the simulator is still a DOS program, launched through a PIF,
+drawing with the same Borland stroked fonts 1.0 uses. What 1.1 adds is 807
+numbered sound files and a small Windows program whose job is to play them. The
+pilots' voices are not part of the simulator at all; they are a Windows
+companion feeding clips to a DOS program that cannot make a sound itself.</p>
+<p>So the two things always said about 1.1 — that it gained speech, and that modern
+Windows will not run it — are one fact. Run the DOS half under an emulator and
+it behaves exactly like 1.0: same sim, same sectors, silence where the readbacks
+should be. Keep the voices and you are emulating Windows itself, which means
+shipping an operating system that is not ours to ship, from a rights holder with
+no door to knock on.</p>
+<h3 id="where-it-was-left">Where it was left</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A page about it</strong></td>
+<td>Written in our own words, hosting nothing of theirs, linking to the original downloads</td>
+</tr>
+<tr>
+<td><strong>The 1.0 installer</strong></td>
+<td>Redistributable by express permission; verified unaltered</td>
+</tr>
+<tr>
+<td><strong>A browser-playable 1.0</strong></td>
+<td>Needs permission, because it serves installed files</td>
+</tr>
+<tr>
+<td><strong>Anything 1.1</strong></td>
+<td>Installer at most, and only with permission</td>
+</tr>
+<tr>
+<td><strong>A browser-playable 1.1</strong></td>
+<td>Not pursued — it would be 1.0 with extra steps, or Windows</td>
+</tr>
+</tbody>
+</table>
+<p>The Xavius ATC products are now owned and supported by
+<a href="https://www.adacel.com/">Adacel Technologies</a>, so that is where a request goes.</p>
+<p><strong>The lesson worth keeping:</strong> a licence that says <em>freeware</em>, a product that was
+given away, and a program that will run are three separate questions. ATCC
+answers them differently from each other, and the obvious reading is wrong on
+two of the three.</p>
+  </main>
+</div>
+<footer class="foot">
+  <p>GenX&#8209;DOS Wiki &middot; part of the <a href="../../">GenX&#8209;DOS</a> project &middot; regenerated from markdown.</p>
+</footer>
+</body>
+</html>

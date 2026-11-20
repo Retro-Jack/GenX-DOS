@@ -2,6 +2,13 @@
 
 ### Added
 
+- **A "Weird exceptions" page in the wiki**, for the cases that land outside the
+  usual two questions of *can it run* and *does the licence allow it*. ATCC is
+  the first entry: a licence that names an exception almost nothing else grants,
+  a paid version set free by a published unlock code that conferred no
+  redistribution right, and a talking version whose voices turn out to live in a
+  Windows companion rather than the simulator.
+
 - **The ATCC page explains why the talking version needs Windows**, which turns
   out to be the same fact as it having gained speech. The simulator in 1.1 is
   still a DOS program launched through a PIF, drawing with the same Borland

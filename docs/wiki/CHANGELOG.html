@@ -20,7 +20,7 @@
 <div class="grp">GenX-DOS</div>
 <ul><li><a href="index.html">Home</a></li><li><a href="Project-Overview.html">Project Overview</a></li><li><a href="Roadmap.html">Roadmap</a></li><li><a href="README.html">Readme</a></li><li><a href="ATTRIBUTION.html">Attribution</a></li><li><a href="Legal.html">Legal position</a></li><li><a href="REMOVAL.html">Removal</a></li><li><a href="CHANGELOG.html" class="active">Changelog</a></li><li><a href="CONTRIBUTING.html">Contributing</a></li><li><a href="SECURITY.html">Security</a></li><li><a href="CODE_OF_CONDUCT.html">Code of Conduct</a></li><li><a href="AI-DISCLAIMER.html">On the use of AI</a></li><li><a href="LICENSE.html">License</a></li></ul>
 <div class="grp">Internals</div>
-<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li></ul>
+<ul><li><a href="Virtual-Filesystem.html">Virtual Filesystem</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Font-System.html">Font System</a></li><li><a href="File-Structure.html">File Structure</a></li><li><a href="Your-Data.html">Your Data</a></li><li><a href="Customising-the-Filesystem.html">Customising the Filesystem</a></li><li><a href="Weird-Exceptions.html">Weird exceptions</a></li></ul>
 <div class="grp">Emulators</div>
 <ul><li><a href="Emulators.html">Emulators index</a></li></ul>
 <div class="grp">Read more</div>
@@ -30,65 +30,200 @@
 <h2 id="unreleased">[Unreleased]</h2>
 <h3 id="added">Added</h3>
 <ul>
-<li><strong>The Grundy NewBrain, and a Portable Computers category to hold it.</strong> The
-  NewBrain is the only system here whose emulator is ours: there was no
-  browser-capable NewBrain emulator to port, so the machine is written from
-  scratch — Z80 memory map and video, a COP420 core for the keyboard, cassette
-  and VF panel, and a tape codec. It is published standalone as well, at
-  <a href="https://github.com/Retro-Jack/newbrain-js"><code>Retro-Jack/newbrain-js</code></a>.</li>
+<li><strong>The ATCC page explains why the talking version needs Windows</strong>, which turns
+  out to be the same fact as it having gained speech. The simulator in 1.1 is
+  still a DOS program launched through a PIF, drawing with the same Borland
+  stroked fonts 1.0 uses; the voices are 807 numbered clips played by a small
+  Windows program beside it. Run the DOS half alone and it behaves like 1.0,
+  silence included.</li>
 </ul>
-<p>The launcher gains <strong>Portable Computers</strong> as its second entry, and the Tandy
-  Model 100 moves there from under Tandy — its menu row already read "Model 100
-  (Portable)". Both machines ran off batteries and carried their own displays,
-  which is a more useful thing to group by than who made them.</p>
-<p>Six tapes ship: Alpine, BreakOut, Landar, MasterMind, Snake and Tycoon. Only
-  Tycoon's year is known, off its own copyright line; the rest show <code>(????)</code>
-  rather than a guess. <strong>The games have no gamedocs yet</strong>, so their keys are
-  listed in <code>NO_GAMEDOC</code> and the top-left link is suppressed rather than
-  pointed at a page that does not exist.</p>
+<p>That closes off the obvious idea. A browser bundle of 1.1 would be 1.0 with
+  extra steps and a worse licence, and keeping the voices means emulating
+  Windows itself.</p>
 <ul>
-<li>
-<p><strong>A NewBrain bezel, with an English keyboard.</strong> <code>systems/_shared/bezels/NewBrain.png</code> has sat in the tree untracked since the machine's artwork was first composed, waiting for the system itself. It is committed now, and in a corrected form: the photograph it had been built from is a French NewBrain, AZERTY across the top row with QSDFGHJKLM below it. A bezel is the one place a reader looks to find out where a key is, so a picture of the wrong keyboard is worse than no picture — and the emulator maps a QWERTY matrix regardless of what the artwork shows. Nothing references the file yet; it is an asset held for when the machine arrives.</p>
-</li>
-<li>
-<p><strong><code>systems/newbrain/PROVENANCE.md</code></strong> — a clean-room statement for the one
-  emulator here that is ours. ATTRIBUTION records what was used and under what
-  terms; this records how the machine was worked out: the hardware behaviour
-  read out of MAME's BSD-3-Clause NewBrain driver (Curt Coder) and Grundy's own
-  1981 Software Technical Manual, with the ROMs running settling what those two
-  disagreed on, and nothing taken from the one closed-source NewBrain emulator
-  that predates the work. It lists what a reader can check rather than asking
-  to be believed.</p>
-</li>
+<li><strong>The ATCC page records how version 1.1 was set free</strong>, with the Wayback
+  captures to back it. In 2007 the download page told you to buy a registration
+  code; by 2009 it simply printed one, and it was still printed in 2016. All
+  three captures are linked, because a claim like that is worth nothing without
+  somewhere to check it.</li>
 </ul>
-<p>The separation from MAME is not claimed and is not needed — BSD-3 permits
-  reading and adapting it with the notice retained, which ATTRIBUTION does. The
-  separation from closed source is the real one, so the document describes it.</p>
-<p>It sits in the bundle beside <code>COPYING</code>, not at the repo root and not only in
-  the standalone repository, so the bundle carries its own provenance wherever
-  it is copied to. The standalone <code>newbrain-js</code> holds the authoritative copy and
-  the two are kept in step, like <code>src/</code>.</p>
-<h3 id="fixed">Fixed</h3>
+<p>▲ It also says what the giveaway did <em>not</em> do. Free to use is not free to
+  pass on: the 1.1 licence has no redistribution clause and none of the
+  installation-package exception 1.0 carries, so the public code unlocked a
+  copy rather than releasing the installer.</p>
 <ul>
-<li><strong>Size on disk was quoted as 189&nbsp;MB in the feature article; the tree is
-  190.</strong> The NewBrain's tapes and firmware landed after that figure was written,
-  and <code>check-doc-counts.sh</code> does not guard the CHANGELOG prose that the earlier
-  BBC-ROM entry states it in — so the article was the only place the stale
-  number was load-bearing. Stamped from the tree in both places it appears,
-  the numbers block and the prose.</li>
-<li><strong>The self-hosted wiki was a commit behind its sources.</strong> <code>docs/wiki/</code> is
-  generated from the repo-root Markdown by <code>docs/wiki-src/build.py</code>, and
-  ATTRIBUTION and CHANGELOG both changed without it being re-run. Rebuilt, and
-  the build's own dead-link check caught the reason a repo-relative link is the
-  wrong form for an imported page: <code>resolve()</code> only recognises a bare root
-  filename, so <code>systems/newbrain/PROVENANCE.md</code> fell through to the wiki-page
-  branch and resolved to nothing. Written as a GitHub blob URL it goes through
-  the "other repo files" path instead and comes out as
-  <code>../../systems/newbrain/PROVENANCE.md</code>, which resolves in the wiki, on the
-  site and on GitHub alike.</li>
+<li><strong>A page on ATCC, the 1996 freeware en-route radar simulator</strong>, at <code>/ATCC/</code>.
+  Written in our own words and set in the document design language: no part of
+  the original site is reproduced, there is no Xavius branding on it, and it
+  does not speak in their voice. The simulator is still published by its owner,
+  so the page links there rather than hosting anything.</li>
 </ul>
+<p>Six real FAA sectors across three centres -- ZLA 19 and 38, ZNY 66 and 97,
+  ZAU 75 and 82 -- each with its own airways, fixes, frequencies, routes and
+  separation table, which is what lifts it clear of the hobbyist pile. The
+  sector and centre detail is read off the package itself rather than taken on
+  trust.</p>
+<p>It also records where the sim turned up on television. Their own newsletters
+  say the scopes in NBC's <em>Blackout Effect</em> ran a Hollywood version of ATCC,
+  and that the consoles were then reused on <em>Wing and a Prayer</em>, with sectors
+  66 and 97 visible in the background. <em>Ground Control</em> (1998) is
+  Xavius-assisted too -- the claim doing the rounds, that ATCC was on its
+  scopes, is close but attaches to the wrong film.</p>
+<p>Each film links out: Wikipedia where it has an article, IMDb where it does
+  not. <em>A Wing and a Prayer</em> is the IMDb one, and it carries a leading "A" the
+  newsletter left off.</p>
+<p>It also says why the sim is as accurate as it is: Xavius's own company page,
+  still live, says ATCC was "developed by an experienced controller", and the
+  newsletters read like shop talk between working controllers rather than
+  marketing.</p>
+<ul>
+<li><strong>The NewBrain takes a paste from the host, and its VF panel reads properly.</strong>
+  Brought over from the standalone, which is where the work was done.</li>
+</ul>
+<p>Ctrl+V types the clipboard onto the machine's own key matrix, one key at a
+  time — nothing injected into memory, nothing hurried. The COP scans every
+  20ms, so each key is held for three scans and a listing arrives at the speed
+  the machine can take it. Esc stops a paste, which is also the machine's STOP
+  key. The character map is of what a key produces on THIS machine rather than
+  what is on the host's keycap: the double quote is shift-2, the apostrophe
+  lives on 7, and the bracket keys give ( and ) unshifted.</p>
+<p>▲ Ctrl+V collides with the machine twice over. CONTROL and V are both real
+  keys and CONTROL+V is a real editing command, so the shortcut has to be kept
+  off the matrix — but it must be kept off by returning early, never by
+  <code>preventDefault</code>, because the browser's default action for that keystroke IS
+  the paste.</p>
+<p>The panel itself now latches on the COP's DISPCOM transfer instead of
+  mirroring the ROM's working buffer, so messages hold instead of flashing past
+  in 20ms, the window follows the cursor, and the VF editor's wait-for-NEWLINE
+  comes through. It also speaks its own character set — 20-5F text, 60-7F
+  graphics left dark, character 95 a pound sign — rather than being treated as
+  ASCII, which had been drawing graphics codes as letters.</p>
+<p>The font gains the pound sign it was missing: Segment16C covers cp1252 and
+  always had it, the subset here had simply dropped it.</p>
+<ul>
+<li><strong>A TV switch under the CUB.</strong> The NewBrain drove its own sixteen-character
+  VF panel whether or not a television was plugged in, and plenty were used
+  that way. The switch says which it is: off, the monitor goes dark and the
+  panel on the machine is all you have — which is the whole reason the panel
+  is there.</li>
+</ul>
+<p>It gates the drawing rather than the machine. <code>tvp</code> is the ROM's own
+  TV-picture bit on ENRG1 and the machine writes it itself, so there is no
+  hardware line to flip; blanking the canvas is the honest equivalent of the
+  television being off, and the machine carries on with no way to know.
+  Verified on staging: switched off, the CRT measures zero lit pixels while
+  typing still reaches the VF panel.</p>
+<p>It sits in the band under the monitor — 55px of otherwise dead stage at
+  nominal size — centred on the CUB to the pixel. Artwork is two states cut
+  from one Pngtree image, credited in ATTRIBUTION.md: the free licence there
+  requires it, which is why it is named despite graphics otherwise not being
+  provenance-tracked.</p>
+<ul>
+<li><strong>The NewBrain page is laid out like the standalone now.</strong> The monitor, the
+  machine and the deck take the placements from
+  <code>Retro-Jack/newbrain-js/art/regions.json</code> rather than the ones this repo had
+  grown: a larger CUB bleeding off the left edge, and the deck flush above the
+  machine on the same left edge at the same width.</li>
+</ul>
+<p>They transfer exactly, which is worth saying because it was checked rather
+  than hoped: both repos draw from byte-identical artwork — <code>cub.png</code> and
+  <code>NewBrain.png</code> have the same md5 in each — and both stages are 1920x1080, so
+  the percentages mean the same thing on both. Only the three <code>place</code> blocks
+  differed; every sub-region (the aperture, the CRT, the VF panel, the reels,
+  the window, the six keys) was already identical, being measured against its
+  own part. The <code>src</code> paths stay as they are, pointing at the shared bezels.</p>
+<p>This supersedes the deck centring from earlier in this entry. In the
+  standalone's layout the deck and the machine share a left edge and a width,
+  so they line up by construction and there is no separate figure to keep.</p>
+<ul>
+<li><strong>The IBM PC games menu's title bar is centred again.</strong> It sat 14 spaces in
+  and 17 out, three characters off, against an invariant that says the title
+  and footer must balance to within one. Now 15 and 16, the odd space on the
+  right as 21 of the other 27 odd-width lines have it.</li>
+</ul>
+<p>It was the only one. A sweep of every centred line in the file — 98 of them
+  across 49 boxes — found no other drift, and all four box invariants now pass
+  clean: 45-character interiors, <code>echo</code>+17 prefix, small-menu spacing, and
+  centring within one.</p>
+<ul>
+<li><strong>A small menu now takes two blank rows before <code>0. Back</code>.</strong> The rule already
+  spaced the items of any chooser with fewer than five of them; once everything
+  is separated by one row, the exit stops reading as a different kind of thing.
+  A second row sets it apart again.</li>
+</ul>
+<p>Applied to all ten small menus — Atari Consoles, the Acorn / Apple / Atari /
+  Sinclair / Tandy / MSX computer choosers, TRS-80 Model III System Disks,
+  Portable Computers and Handheld Consoles. The thirty-nine larger menus keep
+  their single blank row. Re-scanned afterwards: 49 boxes, all with the right
+  count for their size, all still 45 characters wide.</p>
+<ul>
+<li><strong>The NewBrain is in the launcher, under Portable Computers.</strong> It sits at
+  row 2 beside the Tandy Model 100 as <code>Grundy NewBrain (1982)</code> — blank-line
+  separated, since a chooser with fewer than five items spaces its rows — and
+  opens a
+  <code>GRUNDY  NEWBRAIN  GAMES</code> menu of the six tapes — Alpine, BreakOut, Landar,
+  MasterMind and Snake all <code>(????)</code>, Tycoon <code>(1982)</code> off its own copyright
+  line — with the bare machine on row 11 as <code>NewBrain BASIC prompt</code>, the
+  number every other system uses for its prompt entry.</li>
+</ul>
+<p>The six tapes go into <code>NO_GAMEDOC</code>, which had been empty: the machine ships
+  without gamedocs, so the corner link is suppressed rather than pointed at a
+  page that is not there. <code>check-doc-counts.sh</code> holds that list to the tree in
+  both directions and failed until they were listed. It also reads the array
+  literally, so a comment between the brackets comes back as a bogus entry —
+  the note now sits above it, and says so.</p>
+<p>▲ <strong>Live cannot serve this yet.</strong> The bundle is still held back from the
+  published site, so until that is lifted the row is there and the system
+  behind it is not. Staging has both.</p>
+<ul>
+<li><strong>A cassette deck on the NewBrain, on every menu row.</strong> At the prompt it is
+  the only way in: eject opens the file picker, play starts the tape, and the
+  window in the lid says what is on it and how far through the machine has got.
+  Multi-part tapes, rewind, and saving back what the machine has recorded come
+  with it.</li>
+</ul>
+<p>On a game row it is there to be read rather than pressed. A NewBrain tape
+  loads in real time and the page showed nothing at all while it did, which on
+  a slow one reads as a broken page — so the deck comes along to say otherwise:
+  the glue puts the menu's tape in it, the readout names the file, the bar
+  fills and the reels turn. <strong>All six keys are locked out there</strong>, because that
+  tape belongs to the menu and ejecting it would leave the page with no way
+  back but a reload.</p>
+<p>Measured on staging: the visible loading window is 0.44s for snake.bas (1.9
+  KB) and 5.38s for tycoon.bas (17.8 KB). The glue runs the machine flat out
+  while a tape loads, so the small ones are over almost before the reels move;
+  the big ones are where this earns its place.</p>
+<p>Ported from the standalone emulator rather than copied: it is
+  <code>systems/newbrain/genx-deck.js</code>, pulled in by the glue, with <code>interactive</code>
+  deciding whether its keys bind at all. The artwork, the reel sprite sheet,
+  the six key images and the readout's character face come with it, and
+  <code>art/regions.json</code> gains the <code>deck</code> block that places them.</p>
+<p>The engine came across at the same time — <code>src/newbrain.js</code> and
+  <code>src/tape.js</code>, the same files as the standalone's. The tape now reports where
+  the last block's payload ends rather than where the signal does, which is
+  what lets the bar fill rather than stop just short. <strong>The renderer also
+  gained pixel graphics</strong>, which is the thing the hold-back below was waiting
+  for.</p>
 <h3 id="changed">Changed</h3>
 <ul>
+<li>
+<p><strong>The NewBrain hold-back is live-only now.</strong> It was excluded from every
+  build, staging included, which meant the work on it could not be looked at
+  anywhere. The comment always said "held back from the published site", and
+  staging is not the published site — so <code>build-portable.sh</code> keeps the
+  exclusion unless <code>GENX_SHIP_NEWBRAIN</code> is set, and <code>deploy.sh</code> sets it for the
+  staging target alone. Live still ships 1741 files without it; staging ships
+  1782 with it. Measured both ways rather than assumed.</p>
+</li>
+<li>
+<p><strong><code>LOAD</code> is enough on the NewBrain; the quotes have gone.</strong> The bare keyword
+  starts a tape load, so the glue types that and the deck's readout says it.
+  Worth more than brevity: <code>"</code> needs Shift held across the keypress on the
+  machine's own matrix, and that is exactly the fault already seen, where a
+  closing quote came out as <code>2</code> when the overlap was too short. The auto-load
+  path no longer has a shifted key in it at all. The controls page no longer
+  explains the quote key by what it was needed for.</p>
+</li>
 <li>
 <p>The front page and the README describe a self-hosted copy by what you
   need to supply rather than by what has been withheld. The README no
@@ -154,14 +289,71 @@
 <p>An earlier audit looked at exactly these files and recorded them as <em>referenced by the model picker, so technically not orphans</em>. That was wrong, and the note has been corrected: the picker reads the same table, so a ROM absent from it is absent from the picker too.</p>
 <p><strong><code>dist/teletext/</code> stays</strong>, though a basename scan flags it the same way and it is 21&nbsp;MB per bundle. The bundle assembles that path as <code>teletext/txt</code> + <em>n</em> + <code>.dat</code>, so no filename ever appears whole; and because the BBC entries launch jsbeeb's own <code>index.html</code> rather than a stripped player, a reader really can open the Ceefax viewer. Reachable, if rarely reached, is not orphaned.</p>
 <h2 id="1121---2026-10-18">[1.12.1] - 2026-10-18</h2>
-<h3 id="fixed_1">Fixed</h3>
+<h3 id="fixed">Fixed</h3>
 <ul>
-<li><strong>The dual licence was never finished.</strong> It landed on 17/08/2026 — the emulator-facing glue GPL-3.0-or-later, everything else CC BY-NC 4.0 — and reached LICENSE.TXT, the SPDX headers and the wiki's <em>Legal</em> page. It reached nothing else. The README, the landing page, the feature article and <em>File Structure</em> all went on describing a single CC BY-NC licence for two months, which is the version most people read. The article was the worst of them: it said <em>the orchestration code is CC BY-NC 4.0</em>, and the orchestration glue is precisely the part that is GPL. All four now state the split, and the README's licence section opens with it rather than leaving it to a linked file. The README carried the error twice over: the paragraph below its licence badge also said the orchestration code was CC BY-NC, and that badge — the one-line summary at the top of what most readers scan — said the same. There are two badges now, <code>License: CC BY-NC 4.0</code> and <code>Glue: GPL-3.0-or-later</code>, the second a local SVG in the same house style as the first, because the badges are kept locally rather than fetched from a shields service at render time.</li>
-<li><strong>A sweep of every remaining licence claim found three more, one of them the contributor terms.</strong> <code>CONTRIBUTING.md</code> told contributors their work would be licensed <strong>CC BY-NC 4.0</strong> — which is wrong for anyone touching a glue file, and that is the document that governs what a contributor actually grants. It now names both licences and which files fall under each, and says a new glue file needs the SPDX header. <code>ATTRIBUTION.md</code> summarised Retro-Jack's original work as CC BY-NC in a list whose own first item is <em>emulator integration wrappers</em> — the glue by another name. And the Vectrex entry rested its case on GenX-DOS being "non-commercial by licence (CC BY-NC 4.0)", which is no longer the whole picture now that part of the repo is GPL; it rests on the site and its instruction pages being NonCommercial, which is both true and the part that matters there.</li>
-<li><strong><code>systems/dos/play.html</code> had no SPDX header.</strong> LICENSE.TXT says in terms that every file in the GPL set carries one. Forty-eight did; the IBM PC's, added with the bundle a month after the dual licence, did not — so the licence file made a claim about the repository that the repository did not support. It carries the same banner as the other fifty now.</li>
-<li><strong>Two more things <em>File Structure</em> had never been told about.</strong> <code>_paddiag.html</code> is a gamepad probe that has sat at the repo root unlisted — not an orphan, since <code>build-portable.sh</code> deliberately excludes it from the ship, but the page is a tour of where things live and it was not on the tour. And <code>styles/fonts/</code> was described as "self-hosted woff2" when VGA437 is a <code>.woff</code>; the other two are woff2. This is the omission trap the audit notes warn about: a stale-prose check can only catch wording that is there, never a line that is missing.</li>
-<li><strong><code>COPYING</code> was in neither file tree.</strong> The GPL-3.0 text has sat at the repo root since the split, unlisted by the README's tree and by <em>File Structure</em>, both of which describe LICENSE.TXT as covering "the original work" without qualification. Both list it now, and ATTRIBUTION's table of which licence file covers what — which had rows for all six bundled ones — gained the row for ours.</li>
+<li><strong>The published prompt no longer offers a machine that is not there.</strong> The
+  NewBrain's files are held back from the live site by an rsync exclude, but
+  the prompt's filesystem lives in <code>prompt/javascript/fs.js</code>, which ships
+  either way -- so the published menu listed the NewBrain under Portable
+  Computers, and picking a game from it would have 404'd.</li>
 </ul>
+<p>The build now strips the three places it appears in that filesystem: the
+  NEWBRAIN directory with its games menu and links, the <code>2.bat</code> that walks into
+  it, and its row in the Portable Computers menu. The blank line above the row
+  goes with it, because a menu that short puts a blank between each entry and
+  two before Back -- leaving it would have thrown the spacing out.</p>
+<p>The repo keeps one <code>fs.js</code> with the NewBrain in it, and staging still ships
+  that file untouched. ▲ <code>tools/hold-back-newbrain.py</code> and its call both go
+  when the NewBrain ships everywhere.</p>
+<ul>
+<li>
+<p><strong>The dark vertical bands beside a pressed deck key are gone.</strong> The crevice
+  between two keys belongs to neither of them -- the keys touch, and it is the
+  shadow they cast together -- so whichever key owned it drew it at full height
+  when its neighbour sank. It is now its own element, one per boundary, and it
+  sinks whenever either of its keys does, by the same drop as the key -- the
+  shadow follows the key down and sits at the pressed height.</p>
+</li>
+<li>
+<p><strong>A pressed key on the deck no longer strands a dark line beside it.</strong> The
+  keys touch -- in the photograph the whole row is one unbroken opaque run --
+  so what looks like a gap between two of them is the dark crevice they cast,
+  belonging to neither. Cutting each sprite at a boundary split that crevice,
+  and when one key sank its neighbour redrew its own half at full height,
+  leaving a line standing beside a key that was no longer there.</p>
+</li>
+</ul>
+<p>Each sprite now reaches to the next key's edge and a pressed key paints above
+  its neighbours, so the crevice sinks with it.</p>
+<ul>
+<li><strong>The wallpaper shows through a pressed key on the NewBrain's deck, as it
+  should.</strong> Yesterday's fix put the deck's own pixels in shadow into the gap a
+  pressed key leaves. That removed the black rectangle but filled the gap with
+  deck instead of with the page behind it, which is not what is there -- the
+  keys stand proud of the deck with nothing behind them.</li>
+</ul>
+<p>Both that and the stage-colour flattening before it existed to hide the
+  un-pressed key still sitting in the deck photograph underneath. So the key
+  has been taken out of the photograph: each one is now its own sprite in a
+  hole in the deck, and a press is the key sinking behind the deck's ledge.
+  The hole it leaves is simply empty, and the wallpaper shows through it.</p>
+<ul>
+<li><strong>Every pressed key on the NewBrain's deck had a black rectangle above it.</strong>
+  The sprites came from the standalone, where they had been flattened onto that
+  page's dark stage colour: fully opaque, top rows at rgb(11,13,17). That is
+  invisible on a dark page and obvious on this one, floating above the deck
+  against the wallpaper.</li>
+</ul>
+<p>The gap a pressed key leaves cannot simply be transparent -- it has to hide
+  the un-pressed key underneath. It now carries the deck's own pixels in
+  shadow, with the deck's own alpha, so it is transparent exactly where the
+  deck is and reads as the key sunk into its recess everywhere else. Correct on
+  any background, so it cannot happen again on a third page.
+- <strong>The dual licence was never finished.</strong> It landed on 17/08/2026 — the emulator-facing glue GPL-3.0-or-later, everything else CC BY-NC 4.0 — and reached LICENSE.TXT, the SPDX headers and the wiki's <em>Legal</em> page. It reached nothing else. The README, the landing page, the feature article and <em>File Structure</em> all went on describing a single CC BY-NC licence for two months, which is the version most people read. The article was the worst of them: it said <em>the orchestration code is CC BY-NC 4.0</em>, and the orchestration glue is precisely the part that is GPL. All four now state the split, and the README's licence section opens with it rather than leaving it to a linked file. The README carried the error twice over: the paragraph below its licence badge also said the orchestration code was CC BY-NC, and that badge — the one-line summary at the top of what most readers scan — said the same. There are two badges now, <code>License: CC BY-NC 4.0</code> and <code>Glue: GPL-3.0-or-later</code>, the second a local SVG in the same house style as the first, because the badges are kept locally rather than fetched from a shields service at render time.
+- <strong>A sweep of every remaining licence claim found three more, one of them the contributor terms.</strong> <code>CONTRIBUTING.md</code> told contributors their work would be licensed <strong>CC BY-NC 4.0</strong> — which is wrong for anyone touching a glue file, and that is the document that governs what a contributor actually grants. It now names both licences and which files fall under each, and says a new glue file needs the SPDX header. <code>ATTRIBUTION.md</code> summarised Retro-Jack's original work as CC BY-NC in a list whose own first item is <em>emulator integration wrappers</em> — the glue by another name. And the Vectrex entry rested its case on GenX-DOS being "non-commercial by licence (CC BY-NC 4.0)", which is no longer the whole picture now that part of the repo is GPL; it rests on the site and its instruction pages being NonCommercial, which is both true and the part that matters there.
+- <strong><code>systems/dos/play.html</code> had no SPDX header.</strong> LICENSE.TXT says in terms that every file in the GPL set carries one. Forty-eight did; the IBM PC's, added with the bundle a month after the dual licence, did not — so the licence file made a claim about the repository that the repository did not support. It carries the same banner as the other fifty now.
+- <strong>Two more things <em>File Structure</em> had never been told about.</strong> <code>_paddiag.html</code> is a gamepad probe that has sat at the repo root unlisted — not an orphan, since <code>build-portable.sh</code> deliberately excludes it from the ship, but the page is a tour of where things live and it was not on the tour. And <code>styles/fonts/</code> was described as "self-hosted woff2" when VGA437 is a <code>.woff</code>; the other two are woff2. This is the omission trap the audit notes warn about: a stale-prose check can only catch wording that is there, never a line that is missing.
+- <strong><code>COPYING</code> was in neither file tree.</strong> The GPL-3.0 text has sat at the repo root since the split, unlisted by the README's tree and by <em>File Structure</em>, both of which describe LICENSE.TXT as covering "the original work" without qualification. Both list it now, and ATTRIBUTION's table of which licence file covers what — which had rows for all six bundled ones — gained the row for ours.</p>
 <h2 id="1120---2026-10-12">[1.12.0] - 2026-10-12</h2>
 <h3 id="added_1">Added</h3>
 <ul>
@@ -183,7 +375,7 @@
 <li><strong>The MS-DOS launcher in the filesystem is <code>MSDOS4.COM</code>, not <code>MSDOS4.EXE</code>.</strong> It is the one entry on the shelf that is a DOS system rather than a game, and a <code>.COM</code> is what that would have been. The prompt already knew the difference — <code>TYPE</code> prints an <code>MZ</code> header for an <code>.EXE</code> and a headerless image for a <code>.COM</code>, because DOS loaded one at offset 0x100 and jumped straight in — so two places needed teaching that a <em>launcher</em> can be a <code>.COM</code> as well: <code>TYPE</code> would otherwise have printed the link's URL, and <code>FIND</code> indexed <code>.exe</code> only, so the machine would have quietly stopped being findable. Running it is unaffected either way; the prompt matches a command on the name before the dot.</li>
 <li><strong>The documentation stopped claiming every launcher is an <code>.exe</code>.</strong> It was true until MS-DOS 4.00 arrived as <code>MSDOS4.COM</code>, and four pages still said otherwise &mdash; the <code>find</code> description, the filesystem's no-HTML rule, and two cross-references. The prompt itself had already been taught the difference; only the prose was behind. The count is 461 <code>.exe</code> and one <code>.com</code>, with <code>COMMAND.COM</code> and <code>VER.COM</code> being built-ins rather than launchers.</li>
 </ul>
-<h3 id="fixed_2">Fixed</h3>
+<h3 id="fixed_1">Fixed</h3>
 <ul>
 <li><strong>The Lynx was throwing away a fifth of its frames.</strong> The Lynx's LCD refresh is programmable and a game picks its own rate, up to 75&nbsp;Hz; the handy core ties emulation to the rate it reports to the front end and defaults that to 60, so anything drawing faster than 60 had frames dropped. California Games' intro and menus run at the full 75 and stuttered visibly because of it. The bundle now asks for 75, which is the machine's ceiling, so nothing it runs can out-pace the setting. Measured rather than eyeballed: 60.2&nbsp;fps before, 75.2&nbsp;after.</li>
 <li><strong>The Acorn Electron was the thirteenth bare machine, and got left out of all three places the other twelve were wired into.</strong> Row seven of its menu is <em>Electron BASIC prompt</em> and launches a keyless <code>play.html</code> exactly as the others do, but <code>BARE_KEY</code> had no entry for it, so the corner link had nothing to resolve and the page it would have pointed at was never written; its controls page stopped at the sixth game where every other computer now ends with its own prompt, and that list was not in menu order either. It has a page now, written from what the machine actually does rather than from the BBC Micro's. The one that matters: <code>MODE 7</code> is not teletext on an Electron &mdash; there is no teletext chip, so the operating system quietly gives you <code>MODE 6</code> instead, which you can see by asking for <code>MODE 7</code> and then printing <code>HIMEM</code> and getting 24576 where a BBC Micro answers 31744. A great many BBC listings open with <code>MODE 7</code>, and that is why they come out wrong here.</li>
@@ -208,7 +400,7 @@
 <li><strong>Sopwith can be flown with the cursor keys.</strong> Up climbs, Down descends, Left slows and Right accelerates — and <code>,</code> <code>/</code> <code>X</code> <code>Z</code> and <code>.</code> still do exactly what they always did, so the game's own manual stays correct. This is not a translation laid over the game: it is twelve lines in the game, in the keyboard interrupt handler, compiled with Turbo C 2.01 and A86 the way it was in 1984 and linked into a DOS executable. The source is GPL — David Clark released it and later relicensed it — so the modified source, notices saying what changed and when, and the recipe for building it are published at <a href="https://github.com/Retro-Jack/sopwith-genx"><code>Retro-Jack/sopwith-genx</code></a>. It starts straight in a single-player game now, rather than asking twice first, and the sound is on from the first frame, which is the source's own default.</li>
 <li><strong><code>.htaccess</code> says what the host actually does about compression.</strong> The block naming the types to compress is not what compresses them here: this host runs LiteSpeed, which uses its own server-wide list — hence CSS and JS arriving as brotli rather than deflate, and <code>application/wasm</code> not being compressed at all despite being named. The directives stay — the release zip is meant to be served by whatever the person downloading it has, Apache included, where they do work — with a note so the next reader doesn't take them at face value here.</li>
 </ul>
-<h3 id="fixed_3">Fixed</h3>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li><strong>The picture is painted whether or not it is being shown yet.</strong> The start-up banner is hidden by covering the screen rather than by withholding the frames, so a decision to uncover it that arrives late — which a browser makes likely, since it throttles timers in a tab you are not looking at — finds the right picture already there instead of an empty canvas waiting for a frame that may never come.</li>
 <li><strong>Sopwith sat on a black screen.</strong> It was running the whole time, waiting at its own menu — the screen was simply never drawn. The emulator sends a frame when the picture changes, so a game that draws a menu and waits for a key sends a couple of frames and then nothing at all; the start-up banner, the clear and the menu all landed inside those, none of them was the blank screen we were waiting for, and once they stopped there was never another frame to draw. The last frame is now kept and drawn the moment the picture is shown, and a picture that has been still for a moment is taken as ready. Anything that keeps moving, like Paratrooper's title, was never affected.</li>
@@ -379,7 +571,7 @@
   Nothing from a cheats, codes or secrets section was used: Space Invaders' saucer trick and Ghosts'n Goblins' tombstone exploit were both found and both left out, and the extractor skips those sections outright.</p>
 </li>
 </ul>
-<h3 id="fixed_4">Fixed</h3>
+<h3 id="fixed_3">Fixed</h3>
 <ul>
 <li><strong>Every arcade cabinet had MAME's buttons 2 and 3 the wrong way round.</strong> The core binds MAME buttons 1-6 to retropad <strong>B, A, Y, X, L, R</strong> — not in pad-button order, which is the trap: retropad index 1 is Y, and Y carries button <strong>3</strong>. The page bound MAME 2 as though it arrived on index 1, so for a week the button all 44 affected pages called RB was really MAME 3, and MAME 2 answered on X. Found when Sinistar's Sinibomb would not fire on the RB its page named.
   The <strong>binding</strong> moved rather than the pages, because the pages were right about the intent: the arcade help page has always said button 2 sits under the index finger on RB, since the cabinets that use it tend to hold it down. One line in <code>systems/arcade/play.html</code> fixes all hundred cabinets, and every gamedoc goes back to saying what it said.
@@ -448,7 +640,7 @@
   Deliberately absent: <em>This program cannot be run in DOS mode.</em> That string belongs to the Windows PE stub, and a machine pretending to be a DOS box has no business printing it.</p>
 </li>
 </ul>
-<h3 id="fixed_5">Fixed</h3>
+<h3 id="fixed_4">Fixed</h3>
 <ul>
 <li>
 <p><strong>Twelve vendored images that nothing used were shipping to every BBC visitor.</strong> jsbeeb's own web UI has an example screenshot, a sidebar, a bottom bar, two disc-drive icons and an app icon; our embedded build uses none of them &mdash; its page asks only for the cub monitor and a placeholder &mdash; but all six were in the tree twice, once per BBC machine, and all twelve reached the web host. Removed. They will come back if the fork is ever re-vendored, so the re-vendor recipe should strip them.</p>

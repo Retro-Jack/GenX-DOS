@@ -23,6 +23,8 @@
 - [Your Data](Your-Data)
 - [Customising the Filesystem](Customising-the-Filesystem)
 
+- [Weird exceptions](Weird-Exceptions)
+
 **Emulators**
 
 - [Emulators index](Emulators) — every engine, one page each
