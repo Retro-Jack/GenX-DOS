@@ -17,9 +17,13 @@
   It also records where the sim turned up on television. Their own newsletters
   say the scopes in NBC's *Blackout Effect* ran a Hollywood version of ATCC,
   and that the consoles were then reused on *Wing and a Prayer*, with sectors
-  66 and 97 visible in the background. *Ground Control* is Xavius-assisted
-  too -- the claim doing the rounds, that ATCC was on its scopes, is close but
-  attaches to the wrong film.
+  66 and 97 visible in the background. *Ground Control* (1998) is
+  Xavius-assisted too -- the claim doing the rounds, that ATCC was on its
+  scopes, is close but attaches to the wrong film.
+
+  Each film links out: Wikipedia where it has an article, IMDb where it does
+  not. *A Wing and a Prayer* is the IMDb one, and it carries a leading "A" the
+  newsletter left off.
 
 - **The NewBrain takes a paste from the host, and its VF panel reads properly.**
   Brought over from the standalone, which is where the work was done.
