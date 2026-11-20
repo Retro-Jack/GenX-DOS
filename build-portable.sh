@@ -113,4 +113,11 @@ rsync -a --delete --delete-excluded \
   --exclude='/dist' --exclude='/npm-pkg' --exclude='/_Portable' --exclude='node_modules' \
   ./ "$TARGET"/
 
+# The exclude above takes the NewBrain's FILES out. Its menu entries live in
+# prompt/javascript/fs.js, which ships either way, so without this the
+# published prompt offers a machine that is not there and a game pick 404s.
+if [[ -z ${GENX_SHIP_NEWBRAIN:-} ]]; then
+  python3 tools/hold-back-newbrain.py "$TARGET"
+fi
+
 echo "Portable site built in: $TARGET"

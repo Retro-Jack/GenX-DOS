@@ -246,6 +246,22 @@
 
 ### Fixed
 
+- **The published prompt no longer offers a machine that is not there.** The
+  NewBrain's files are held back from the live site by an rsync exclude, but
+  the prompt's filesystem lives in `prompt/javascript/fs.js`, which ships
+  either way -- so the published menu listed the NewBrain under Portable
+  Computers, and picking a game from it would have 404'd.
+
+  The build now strips the three places it appears in that filesystem: the
+  NEWBRAIN directory with its games menu and links, the `2.bat` that walks into
+  it, and its row in the Portable Computers menu. The blank line above the row
+  goes with it, because a menu that short puts a blank between each entry and
+  two before Back -- leaving it would have thrown the spacing out.
+
+  The repo keeps one `fs.js` with the NewBrain in it, and staging still ships
+  that file untouched. ▲ `tools/hold-back-newbrain.py` and its call both go
+  when the NewBrain ships everywhere.
+
 - **The dark vertical bands beside a pressed deck key are gone.** The crevice
   between two keys belongs to neither of them -- the keys touch, and it is the
   shadow they cast together -- so whichever key owned it drew it at full height
