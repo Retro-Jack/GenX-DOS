@@ -56,6 +56,20 @@
     <p>We have not bundled it into GenX-DOS. This is a page about a piece of software, not a machine we emulate &mdash; and the simulator is still available from the people who made it, which is where it should come from.</p>
     <p class="note">The original downloads, including ATCC, the newsletter archives and the sector documentation, remain online at <a href="http://www.xavius.com/downloads.html" rel="noopener noreferrer">xavius.com/downloads.html</a>.</p>
 
+
+    <h2>Setting up the talking version</h2>
+    <p>Because the voices need Windows, 1.1 wants a machine of its own era. This is what worked here rather than a guaranteed recipe &mdash; period hardware emulation is fussy, and the right answer varies with the machine you emulate.</p>
+    <p>Four things are needed, and two of them are yours to provide:</p>
+    <ol>
+      <li><strong>A PC emulator.</strong> We used PCem; 86Box is the same idea and more actively maintained. Both emulate period hardware properly rather than approximating it, which is the point &mdash; this is software that cares what sound card it is talking to.</li>
+      <li><strong>A machine BIOS for whichever PC you emulate.</strong> Not supplied with the emulators, and not something we can help with: it is copyrighted firmware and yours to source.</li>
+      <li><strong>Windows 98, with a licence for it.</strong> Also yours. 95 should serve as well; the requirement is an operating system that still runs a DOS program under a Windows desktop, which is exactly what the generation after it stopped doing.</li>
+      <li><strong>ATCC 1.1 itself.</strong> No longer on the current Xavius site, but preserved in the <a href="https://web.archive.org/web/20160403185906/http://www.xavius.com/atcc11.html" rel="noopener noreferrer">Internet Archive's capture of its download page</a>, along with the registration code it needs.</li>
+    </ol>
+    <p>Install Windows in the emulator first and get sound working there before ATCC goes anywhere near it &mdash; a silent install of the talking version is indistinguishable from 1.0, and you will not know which half is at fault. Then run the installer inside the guest and give it <code>A318X2229433</code> when it asks for a registration code.</p>
+    <p class="note">One trap is documented by Xavius themselves. The simulator tends to freeze after ten or twenty minutes, and the fix shipped in the package is a batch file that clears the DOS startup files to free conventional memory. It copies <code>config.sys</code> and <code>autoexec.bat</code> to <code>.old</code> and deletes the originals; a second batch file copies them back. Reversible, then, but it is deleting the guest's boot files to do it, so take a snapshot of the virtual disk first &mdash; and note that running the fix twice would overwrite the backups with the empty state.</p>
+    <p>If you only want the simulation and can live without the readbacks, none of this applies: version 1.0 is the same sim, it is the one with permission to be passed around, and it asks far less of you.</p>
+
     <h2>Who made it</h2>
     <p>ATCC is the work of <strong>Xavius Software</strong>, who released it in 1996 and went on to build professional air traffic simulation and radar data processing systems rather than games. The legacy Xavius ATC products are now owned and supported by <a href="https://www.adacel.com/" rel="noopener noreferrer">Adacel Technologies</a>.</p>
     <p class="note-plain">This page is written by GenX-DOS and is not affiliated with, endorsed by, or connected to Xavius Software or Adacel Technologies. All trade marks and the software itself belong to their owners. Nothing here is a copy of their site.</p>

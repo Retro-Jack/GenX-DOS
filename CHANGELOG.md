@@ -2,6 +2,19 @@
 
 ### Added
 
+- **How to set the talking version up yourself**, on the ATCC page. Telling
+  people how to run software they obtain themselves hosts nothing and
+  distributes nothing, so it is the one route to 1.1 that needs no permission
+  from anybody.
+
+  It names what is needed and is straight about which parts are the reader's to
+  find: the machine BIOS and a licensed Windows are theirs, and we do not help
+  with either. The registration code is there, the archive capture that still
+  carries 1.1 is linked, and the freeze workaround is described from the batch
+  file itself -- it copies `config.sys` and `autoexec.bat` aside and deletes the
+  originals, so ▲ snapshot the virtual disk first, and do not run it twice or
+  the backups become the empty state.
+
 - **A "Weird exceptions" page in the wiki**, for the cases that land outside the
   usual two questions of *can it run* and *does the licence allow it*. ATCC is
   the first entry: a licence that names an exception almost nothing else grants,
