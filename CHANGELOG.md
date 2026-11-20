@@ -2,6 +2,17 @@
 
 ### Added
 
+- **The ATCC page explains why the talking version needs Windows**, which turns
+  out to be the same fact as it having gained speech. The simulator in 1.1 is
+  still a DOS program launched through a PIF, drawing with the same Borland
+  stroked fonts 1.0 uses; the voices are 807 numbered clips played by a small
+  Windows program beside it. Run the DOS half alone and it behaves like 1.0,
+  silence included.
+
+  That closes off the obvious idea. A browser bundle of 1.1 would be 1.0 with
+  extra steps and a worse licence, and keeping the voices means emulating
+  Windows itself.
+
 - **The ATCC page records how version 1.1 was set free**, with the Wayback
   captures to back it. In 2007 the download page told you to buy a registration
   code; by 2009 it simply printed one, and it was still printed in 2016. All
