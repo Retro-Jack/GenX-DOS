@@ -2,6 +2,11 @@
 
 ### Added
 
+- **The ATCC page says what it is for**, and points back at the rest. It is a
+  preservation page rather than an emulation one -- and working out *why*
+  something cannot be run is preservation too, since that answer tends to leave
+  with the people who knew it.
+
 - **How to set the talking version up yourself**, on the ATCC page. Telling
   people how to run software they obtain themselves hosts nothing and
   distributes nothing, so it is the one route to 1.1 that needs no permission
