@@ -1,5 +1,24 @@
 ## [Unreleased]
 
+### Fixed
+
+- **The wiki's changelog page has been serving 8 of its 29 releases.** Not a
+  content problem: `sync-wiki.sh` rebuilds through whichever `python3` is first
+  on PATH, which here is Miniforge's, and its markdown 3.10.2 silently swallows
+  most of CHANGELOG.md where 3.11.3 renders it whole. Every release from 1.7.0
+  back simply vanished, and nothing in the output said so -- the live site has
+  been serving the short version.
+
+  Two changes, because either alone would leave the trap set. `build.py` now
+  counts the headings in the source against the headings it produced and
+  refuses to write a page that lost any, naming the interpreter and the
+  markdown version in the error. And the sync script asks for the system python
+  by path rather than taking what PATH offers.
+
+  ▲ Worth knowing generally on this machine: Miniforge is ahead of
+  `/usr/bin/python3`, so any tool that assumes `python3` means the system one
+  is a candidate for the same class of fault.
+
 ### Removed
 
 - **The ATCC page.** `/ATCC/` is gone from the site and the repo. The wiki's

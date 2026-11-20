@@ -49,7 +49,14 @@ done
 # changes nothing or surfaces a staleness you wanted to know about.
 if [[ $BUILD -eq 1 ]]; then
     echo "Rebuilding the in-repo wiki..."
-    python3 docs/wiki-src/build.py | sed 's/^/  /'
+    # The SYSTEM python, not whatever is first on PATH. Miniforge shadows it
+    # here, and its markdown 3.10.2 silently drops most of CHANGELOG.md --
+    # which is how the live wiki ended up serving 8 of 29 releases. build.py
+    # now refuses rather than emitting that, so this picks an interpreter it
+    # will accept, falling back to PATH on a machine without one.
+    WIKI_PY=/usr/bin/python3
+    [[ -x $WIKI_PY ]] || WIKI_PY=$(command -v python3)
+    "$WIKI_PY" docs/wiki-src/build.py | sed 's/^/  /'
     if ! git diff --quiet -- docs/wiki; then
         echo "  note: docs/wiki/ changed — commit it with the source edit"
     fi

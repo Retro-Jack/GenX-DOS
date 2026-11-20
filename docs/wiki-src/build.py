@@ -393,6 +393,22 @@ def main():
         title = first_h1(raw) or slug.replace('-', ' ')
         md = make_md()
         body = md.convert(pre_wikilinks(raw))
+        # Prove the render kept every heading the source had. markdown 3.10.2
+        # silently swallows most of CHANGELOG.md -- 8 release headings survive
+        # out of 29 -- where 3.11.3 renders it whole, and nothing about the
+        # output says so. This page was served truncated on the live site for
+        # exactly that reason, because a build that looks like it worked is
+        # indistinguishable from one that did. Count both ends and refuse.
+        want = len([l for l in raw.splitlines() if l.startswith('## ')])
+        got  = body.count('<h2')
+        if want and got < want:
+            sys.exit(
+                f"build: {slug} lost headings in rendering -- source has {want}, "
+                f"output has {got}.\n"
+                f"  python   {sys.version.split()[0]} ({sys.executable})\n"
+                f"  markdown {markdown.__version__}\n"
+                "  markdown >= 3.11 renders CHANGELOG.md correctly; 3.10.2 does not."
+            )
         body = rewrite_imgs(body)
         body = rewrite_hrefs(body, dead)
         if dead: dead_all[slug] = dead
