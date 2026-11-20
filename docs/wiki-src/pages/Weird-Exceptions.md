@@ -59,9 +59,36 @@ companion feeding clips to a DOS program that cannot make a sound itself.
 So the two things always said about 1.1 — that it gained speech, and that modern
 Windows will not run it — are one fact. Run the DOS half under an emulator and
 it behaves exactly like 1.0: same sim, same sectors, silence where the readbacks
-should be. Keep the voices and you are emulating Windows itself, which means
-shipping an operating system that is not ours to ship, from a rights holder with
-no door to knock on.
+should be. Keep the voices and you are emulating Windows itself.
+
+### What we assumed, and what testing found
+
+The first version of this entry stopped there, on the reasoning that emulating
+Windows means shipping an operating system that is not ours to ship. That is
+true about *shipping* it. It was wrong about possibility, and we only found out
+by trying.
+
+Windows 98 runs in a browser tab, through v86, better than we expected: a cold
+boot to a usable desktop in about **27 seconds**, 13 to 38 mIPS sustained, and
+mouse and keyboard both working. Most importantly **the audio works** — the
+thing the whole question turns on.
+
+Two things are worth writing down for whoever tries next. Mouse input needs
+pointer lock; without it, button presses never reach the guest at all, however
+precisely you place the cursor. And in locked mode v86 applies exactly **2x** to
+pointer movement, so the way to hit anything is to drive the cursor into a
+corner to zero it, then send half the distance you want to travel.
+
+Where our test stopped was a detail of someone else's demo page rather than a
+limit of the technique: that profile will not accept a CD image mid-run, so the
+installer could not be got into the guest. Serving our own instance, both images
+would be mounted at boot.
+
+So the platform is not the obstacle. What stands in the way is that the Windows
+image is not ours to ship -- a visitor could supply their own, as they already
+must for the local route -- and that 1.1's licence has no redistribution clause
+whatever runs it. Added to that is the cost of asking somebody to bring an
+operating system to a site whose whole promise is that you click and it boots.
 
 ### Where it was left
 

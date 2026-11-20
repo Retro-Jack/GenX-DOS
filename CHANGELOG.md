@@ -221,6 +221,21 @@
 
 ### Changed
 
+- **The ATCC entry in Weird exceptions now says what testing found**, not what
+  we assumed. It had stopped at "emulating Windows means shipping an operating
+  system that is not ours to ship" -- true about shipping, wrong by implication
+  about possibility.
+
+  Windows 98 runs in a browser through v86 better than expected: ~27 seconds to
+  a usable desktop, 13-38 mIPS, and the audio works, which is the thing the
+  question turns on. Two findings are recorded for whoever tries next -- mouse
+  buttons need pointer lock to reach the guest at all, and in locked mode v86
+  applies exactly 2x to pointer movement, so you zero against a corner and send
+  half the distance.
+
+  What actually blocks it is licensing, not the platform: the Windows image is
+  not ours to ship, and 1.1 has no redistribution clause whatever runs it.
+
 - **The NewBrain hold-back is live-only now.** It was excluded from every
   build, staging included, which meant the work on it could not be looked at
   anywhere. The comment always said "held back from the published site", and
