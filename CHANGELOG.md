@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+### Removed
+
+- **The ATCC page.** `/ATCC/` is gone from the site and the repo. The wiki's
+  Weird exceptions entry stays -- what was learned there is worth keeping -- but
+  its link to the page is dropped, since the page no longer answers.
+
 ### Added
 
 - **The ATCC page says what it is for**, and points back at the rest. It is a
@@ -278,9 +284,6 @@
 
 ### Removed
 
-- **The ATCC page.** `/ATCC/` is gone from the site and the repo. The wiki's
-  Weird exceptions entry stays -- what was learned there is worth keeping -- but
-  its link to the page is dropped, since the page no longer answers.
 - **GitHub Discussions is switched off.** The forum it replaced is gone too.
   Discord is where to reach us now, linked from the front page and the credit
   pill on the live site.
