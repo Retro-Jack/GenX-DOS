@@ -9,6 +9,11 @@
   redistribution right, and a talking version whose voices turn out to live in a
   Windows companion rather than the simulator.
 
+  Three more joined it: the CoCo's colours, which only exist as an NTSC
+  artefact and so cannot be a global setting; the NES folder named after an
+  emulator it does not contain; and the Apple II disks that ask to be turned
+  over, where detection is not hard but impossible.
+
 - **The ATCC page explains why the talking version needs Windows**, which turns
   out to be the same fact as it having gained speech. The simulator in 1.1 is
   still a DOS program launched through a PIF, drawing with the same Borland

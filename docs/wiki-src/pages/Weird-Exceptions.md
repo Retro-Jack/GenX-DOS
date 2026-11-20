@@ -80,3 +80,52 @@ The Xavius ATC products are now owned and supported by
 given away, and a program that will run are three separate questions. ATCC
 answers them differently from each other, and the obvious reading is wrong on
 two of the three.
+
+## The CoCo's colours were never in the signal
+
+The Tandy CoCo's hi-res modes are two-colour. The games are not. On an NTSC
+television the composite signal turns alternating pixel columns into red and
+blue, and the titles that mattered were drawn *for* that artefact rather than in
+spite of it. Demon Attack is black, white, red and blue on a TV set, and stark
+monochrome without it.
+
+The trap is that accuracy points both ways. Emulate the artefact and Dungeons of
+Daggorath's deliberately clean white line art comes out fringed blue and orange;
+leave it off and Canyon Climber and Mega-Bug — which look like ordinary colour
+games — collapse into unreadable dither. There is no setting that is right for
+the machine, because the machine was never the question.
+
+So it is per game, not global: a `tv` key on the entry, pushed as XRoar's
+`-tv-input` before the module loads. The two values are the artefact's two
+phases, which decide *which* colour lands on which column. Judge it on the
+gameplay screen, too, not the title — several titles wear a hi-res title over
+four-colour play, and look fine either way.
+
+## The NES folder is named after the wrong emulator
+
+`systems/jsnes/` does not contain jsnes. It runs FCEUmm through EmulatorJS, and
+the folder name is a fossil of the build that came before.
+
+Worth knowing because it misleads in two directions. Documentation should say
+"FCEUmm via EmulatorJS" regardless of what the path says — and the keymap
+deliberately swaps B and A against EmulatorJS's own RetroPad default, because
+the old jsnes build mapped them the period-correct way round and the swap keeps
+the muscle memory intact. That block looks like a bug until you know it is a
+decision.
+
+## A disk you have to turn over
+
+Some Apple II games ship across both sides of one floppy, and say so: the game
+stops and asks you to turn the disk over. There is no clean way to emulate a
+physical act, so there is a **Flip Disk** button that swaps the image in the
+running drive with no reset, which is exactly what turning it over did.
+
+The part that cannot be automated is knowing when to offer it. **An image cannot
+be asked whether it has another side.** So the pairs are listed by hand, one
+entry per game, and no entry means no button. Detection is not hard here; it is
+impossible.
+
+It also gives you an unusually clean test. Boot the second side on its own and
+the game itself objects — Oregon Trail answers `PLEASE INSERT SIDE 1 OF YOUR
+OREGON TRAIL DISKETTE`. That complaint is the proof the side is genuine and
+readable, which no amount of checking the filename would give you.
