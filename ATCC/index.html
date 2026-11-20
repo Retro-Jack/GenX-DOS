@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8"><link rel="shortcut icon" href="../systems/_shared/favicon.ico"><link rel="icon" type="image/gif" href="../systems/_shared/animated_favicon1.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Air Traffic Control Center — GenX-DOS</title>
+  <meta name="description" content="ATCC, the 1996 freeware en-route radar simulator by Xavius Software: six real FAA sectors, real airways and fixes, and a manual that teaches you the job.">
+  <link rel="stylesheet" href="../styles/genx-doc.css">
+</head>
+<body>
+  <a class="gx-home" href="../">&#8617;&nbsp;<b>GenX&#8209;DOS</b></a>
+  <div class="wrap">
+    <div class="head">
+      <div class="system">Xavius Software &middot; 1996 &middot; MS-DOS</div>
+      <h1>Air Traffic Control Center</h1>
+    </div>
+
+    <p class="intro">Most air traffic games put you in a tower, turning aeroplanes onto a runway before they run out of fuel. ATCC does something far stranger and far more interesting: it sits you at an en-route radar console in the middle of American airspace and expects you to do the actual job. It is not a game that has been researched. It is a simulator that happens to be free.</p>
+
+    <h2>Not the tower game you remember</h2>
+    <p>En-route control is the part of the system nobody makes games about. You are not sequencing arrivals onto a strip of tarmac; you are holding a volume of sky perhaps two hundred miles across, moving traffic between the centres either side of you, and keeping every pair of aircraft apart by the margins the rules demand. Aircraft arrive on your scope already airborne and leave it still airborne. Success is uneventful.</p>
+    <p>That makes the first ten minutes genuinely hostile. There is no tutorial level. You get a scope, a keyboard, and a manual that tells you — correctly — that there is no way around reading it.</p>
+
+    <h2>The data underneath is real</h2>
+    <p>What lifts ATCC out of the hobbyist pile is that the airspace is not invented. Open the installed folder and the files are sorted by Air Route Traffic Control Center, using the FAA's own identifiers:</p>
+    <table>
+      <tr><th>Centre</th><th>Sectors modelled</th></tr>
+      <tr><td>ZLA &mdash; Los Angeles</td><td>19, 38</td></tr>
+      <tr><td>ZNY &mdash; New York</td><td>66, 97</td></tr>
+      <tr><td>ZAU &mdash; Chicago</td><td>75, 82</td></tr>
+    </table>
+    <p>Each centre brings its own set: airways, fixes, airports, airline callsigns, radio frequencies, preferred routes, and a separation table. Six sectors does not sound generous until you realise each is a real piece of sky with real geometry, and that the sector documentation runs to a map and an information sheet apiece. The aircraft performance data is split between airline types and general aviation, so a light twin does not climb like a 757.</p>
+    <p>The practical consequence is that what you learn transfers. Clearances you issue here use the phraseology and the logic a controller actually uses, which is a rare thing to be able to say about something distributed for nothing.</p>
+
+    <h2>What comes with it</h2>
+    <p>The package is unusually complete for freeware of this vintage. Alongside the simulator you get a full manual, a command reference card, an airline reference card, and for each of the six sectors both an information sheet and a map. The manual doubles as a primer on the wider business of aviation, which is why it is worth reading even if you never fly a single session.</p>
+    <p>Version 1.0 is the free one and it is fully functional. Its only omission is sound: pilots answer you in text rather than speech. Version 1.1 added talking pilots and was the paid upgrade, and it is also the version that has aged worst &mdash; it was a 16-bit application, which modern Windows will not run at all.</p>
+
+    <h2>Running it today</h2>
+    <p>ATCC is a DOS program wearing a Windows installer, and that shows its age in one specific way: left alone, it tends to freeze after ten or twenty minutes. The package ships a small batch file that adjusts the DOS startup settings to suit it, which is the fix, and a second one to put the settings back. Under anything modern you are going into a DOS environment to run it, and the official advice is blunt about that being awkward.</p>
+    <p>The configuration we ran it on was <strong>Windows 98 in a PCem virtual machine</strong> &mdash; a period-correct host, which sidesteps the question of what today's Windows will and will not do with a DOS program of this vintage. If you are going to the trouble of a virtual machine anyway, that is the version of the problem worth solving.</p>
+    <p>We have not bundled it into GenX-DOS. This is a page about a piece of software, not a machine we emulate &mdash; and the simulator is still available from the people who made it, which is where it should come from.</p>
+    <p class="note">The original downloads, including ATCC, the newsletter archives and the sector documentation, remain online at <a href="http://www.xavius.com/downloads.html" rel="noopener noreferrer">xavius.com/downloads.html</a>.</p>
+
+    <h2>Who made it</h2>
+    <p>ATCC is the work of <strong>Xavius Software</strong>, who released it in 1996 and went on to build professional air traffic simulation and radar data processing systems rather than games. The legacy Xavius ATC products are now owned and supported by <a href="https://www.adacel.com/" rel="noopener noreferrer">Adacel Technologies</a>.</p>
+    <p class="note-plain">This page is written by GenX-DOS and is not affiliated with, endorsed by, or connected to Xavius Software or Adacel Technologies. All trade marks and the software itself belong to their owners. Nothing here is a copy of their site.</p>
+  </div>
+</body>
+</html>

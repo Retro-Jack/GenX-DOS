@@ -2,6 +2,18 @@
 
 ### Added
 
+- **A page on ATCC, the 1996 freeware en-route radar simulator**, at `/ATCC/`.
+  Written in our own words and set in the document design language: no part of
+  the original site is reproduced, there is no Xavius branding on it, and it
+  does not speak in their voice. The simulator is still published by its owner,
+  so the page links there rather than hosting anything.
+
+  Six real FAA sectors across three centres -- ZLA 19 and 38, ZNY 66 and 97,
+  ZAU 75 and 82 -- each with its own airways, fixes, frequencies, routes and
+  separation table, which is what lifts it clear of the hobbyist pile. The
+  sector and centre detail is read off the package itself rather than taken on
+  trust.
+
 - **The NewBrain takes a paste from the host, and its VF panel reads properly.**
   Brought over from the standalone, which is where the work was done.
 
