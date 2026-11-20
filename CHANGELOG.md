@@ -1,5 +1,18 @@
 ## [Unreleased]
 
+### Changed
+
+- **README now lists the five scripts it had been silent about.** An audit for
+  files nothing refers to found the tree clean -- no orphan assets at all --
+  but the reverse held in one place: `build-portable.sh`, `deploy.sh`,
+  `sync-wiki.sh`, `tools/beautify-glue.sh` and `tools/hold-back-newbrain.py`
+  all existed without a word describing them. The first three decide what
+  leaves the repo and where it goes, which is not a thing to leave undocumented.
+
+- **The article's size-on-disk figure is 191 MB.** It moved because the wiki's
+  changelog page is whole again rather than truncated, which is a real megabyte
+  the tree did not have while that page was broken.
+
 ### Fixed
 
 - **The wiki's changelog page has been serving 8 of its 29 releases.** Not a

@@ -49,6 +49,13 @@ index.html                home page — intro, spec sheet, links, and the way in
 GenX-DOS.sh / GenX-DOS.bat    local dev server (Linux / Windows), opens the home page
 check-doc-counts.sh       checks the counts quoted in the docs (and on the social card)
                           still match the tree, and that no doc names a renamed file
+build-portable.sh         builds the shipping file set — the single source of truth for
+                          what leaves the repo; deploy.sh and the release zip both go
+                          through it, so an exclude added here takes effect everywhere
+deploy.sh                 pushes that built set to staging or live over rsync-on-SSH;
+                          the target is a required argument, never a default
+sync-wiki.sh              rebuilds the in-repo HTML wiki and mirrors docs/wiki-src/pages
+                          to the published GitHub wiki, skipping _Sidebar.md
 tools/                    developer tooling — not part of the shipping site
   build-softkey-map.py    generates systems/_shared/softkeys.json from the gamedocs
   build-arcade-controls.py  reads the arcade core's own control data into arcade-controls.json
@@ -58,6 +65,11 @@ tools/                    developer tooling — not part of the shipping site
   gamefaqs-lookup.js      console helper that pulls scoring tables out of GameFAQs guides
   social-card.py          draws docs/images/genx-social.png's menu rows and stats line in
                           the prompt's own CP437 font, with the counts measured from the tree
+  beautify-glue.sh        re-formats our own emulator glue after a rebuild; leaves the
+                          vendored engine files exactly as upstream shipped them
+  hold-back-newbrain.py   strips the NewBrain from a built site's prompt filesystem while
+                          the machine is held back — the rsync exclude removes its files,
+                          this removes the menu entries that would point at them
   bezel-test/             one BASIC test card per computer: white border, black
                           playfield, so the edge of an emulator's picture is
                           unambiguous when checking a bezel fits
