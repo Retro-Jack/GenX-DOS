@@ -10,7 +10,7 @@ survives longer than the conversation that produced it.
 
 ## ATCC — the talking version cannot come with us
 
-[Air Traffic Control Center](https://genx-dos.fun/ATCC/) is a 1996 en-route
+Air Traffic Control Center is a 1996 en-route
 radar simulator by Xavius Software, built by a working controller and modelling
 real FAA sectors across three centres. It is the kind of thing this project
 exists for. It is also a tangle, and the tangle is instructive.

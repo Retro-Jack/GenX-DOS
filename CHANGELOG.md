@@ -277,6 +277,10 @@
 - **The NewBrain bezel's provenance is recorded.** Its body and VF tube come from a Wikimedia Commons photograph by Rama & Musée Bolo, **CC BY-SA 2.0 FR**, which is a binding obligation of the same kind `Amstrad.png` already carries — so ATTRIBUTION names it and the share-alike is inherited. The replacement keyboard is from the Home Computer Museum, which states no licence and credits no photographer; that part falls under the usual bezel policy and is written down rather than left unsaid.
 
 ### Removed
+
+- **The ATCC page.** `/ATCC/` is gone from the site and the repo. The wiki's
+  Weird exceptions entry stays -- what was learned there is worth keeping -- but
+  its link to the page is dropped, since the page no longer answers.
 - **GitHub Discussions is switched off.** The forum it replaced is gone too.
   Discord is where to reach us now, linked from the front page and the credit
   pill on the live site.
