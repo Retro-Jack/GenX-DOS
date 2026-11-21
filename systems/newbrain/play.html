@@ -96,45 +96,7 @@
         z-index: 1;
       }
 
-      /* ---- the TV switch ----------------------------------------------
-         The NewBrain drove its own VF panel whether or not a television was
-         plugged in, and plenty were used that way. The switch says which it
-         is: off, the monitor goes dark and the sixteen characters on the
-         machine are all you have, which is what the panel is for.
-
-         It sits in the band under the CUB — 55px of otherwise dead stage at
-         nominal size — centred on the monitor it belongs to. Two images, one
-         per state, swapped by src: both are the same size, so nothing moves
-         when it flips. */
-      #tvswitch {
-        position: absolute;
-        padding: 0;
-        border: 0;
-        background: none;
-        cursor: pointer;
-        line-height: 0;
-      }
-      #tvswitch img {
-        display: block;
-        width: 100%;
-        height: auto;
-      }
-      #tvswitch:focus-visible {
-        outline: 2px solid var(--green);
-        outline-offset: 3px;
-        border-radius: 999px;
-      }
-      @media (max-width: 900px) {
-        #tvswitch {
-          position: relative;
-          left: 0 !important;
-          top: 0 !important;
-          width: 150px !important;
-          margin: 0 auto 20px;
-          display: block;
-        }
-      }
-
+      
       /* ---- the cassette deck ------------------------------------------
          On every row. At the prompt it is the only way to get a tape in; on a
          game row it is the only thing that shows the load happening, since a
@@ -530,14 +492,6 @@
         <canvas id="crt" width="640" height="250"></canvas>
         <img src="../_shared/bezels/Microvitec-CUB.png" alt="" />
       </div>
-      <button
-        id="tvswitch"
-        type="button"
-        aria-pressed="true"
-        title="TV mode — switch off and the machine runs on its own VF panel"
-      >
-        <img src="art/tv-on.webp" alt="TV mode on" />
-      </button>
       <div id="machine">
         <img src="../_shared/bezels/NewBrain.png" alt="" />
         <canvas id="vfd"></canvas>

@@ -46,7 +46,6 @@ const reg = await fetch('art/regions.json').then((r) => r.json());
   within(document.getElementById('screenbg'), reg.cub.hole);
   within(document.getElementById('crt'), reg.cub.crt);
   within(document.getElementById('vfd'), reg.machine.vfd);
-  put(document.getElementById('tvswitch'), reg.tvswitch.place);
 
   // The deck is on every row. At the prompt it is the only way to get a
   // tape in; on a game row it is the only thing that shows the load
@@ -478,25 +477,6 @@ let acc = 0,
 let turbo = false;
 const FRAMES_PER_TICK = () => (turbo ? 60 : 4);
 
-// ---- the TV switch ---------------------------------------------------------
-// `tvp` is the ROM's own TV-picture bit on ENRG1 and the machine writes it
-// itself, so there is no hardware line to flip. This gates the drawing
-// instead, which is the honest equivalent of the television being off: the
-// machine runs on exactly as it did -- it has no way to know -- and its
-// sixteen-character VF panel carries on, which is the whole reason the panel
-// is there. Plenty of NewBrains were used with no television at all.
-const tvEl = document.getElementById('tvswitch');
-const tvImg = tvEl.querySelector('img');
-let tvOn = true;
-tvEl.addEventListener('click', () => {
-  tvOn = !tvOn;
-  tvEl.setAttribute('aria-pressed', String(tvOn));
-  tvImg.src = tvOn ? 'art/tv-on.webp' : 'art/tv-off.webp';
-  tvImg.alt = tvOn ? 'TV mode on' : 'TV mode off';
-  // Clear once on the way out rather than every frame while it is off.
-  if (!tvOn) crt.clearRect(0, 0, crtEl.width, crtEl.height);
-});
-
 const { initDeck } = await import('./genx-deck.js');
 // The keys are live only at the prompt. On a game row the tape is the
 // menu's, not the visitor's, and ejecting it would leave the page with no
@@ -519,22 +499,20 @@ function frame() {
   if (ran) {
     drawVfd();
     drawDeck();
-    if (tvOn) {
-      machine.renderInto(img.data);
-      sctx.putImageData(img, 0, 0);
-      crt.clearRect(0, 0, crtEl.width, crtEl.height);
-      crt.drawImage(
-        src,
-        0,
-        0,
-        SCREEN_W,
-        SCREEN_H,
-        0,
-        0,
-        crtEl.width,
-        crtEl.height,
-      );
-    }
+    machine.renderInto(img.data);
+    sctx.putImageData(img, 0, 0);
+    crt.clearRect(0, 0, crtEl.width, crtEl.height);
+    crt.drawImage(
+      src,
+      0,
+      0,
+      SCREEN_W,
+      SCREEN_H,
+      0,
+      0,
+      crtEl.width,
+      crtEl.height,
+    );
   }
   requestAnimationFrame(frame);
 }

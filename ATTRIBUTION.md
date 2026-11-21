@@ -421,8 +421,6 @@ Per maintainer policy, bezel / wallpaper / texture artwork is **not provenance-t
 
 **Exception — `NewBrain.png`** is likewise source-cleared in part and carries a binding obligation: the machine's body and VF tube are cropped from [File:New Brain IMG 4244.jpg](https://commons.wikimedia.org/wiki/File:New_Brain_IMG_4244.jpg) (Wikimedia Commons) by **Rama & Musée Bolo**, of a machine on display at the Musée Bolo, EPFL, Lausanne, **CC BY-SA 2.0 FR** (or CeCILL v2 at the user's choice). Modifications inherit share-alike. That photograph is of a French machine, so its AZERTY keyboard was replaced with one from the Home Computer Museum's [NewBrain page](https://www.homecomputermuseum.nl/en/collectie/grundy-business-systems-ltd/grundy-newbrain/) — a bezel is where a reader looks to find a key, and the emulator maps QWERTY. That site states no licence and credits no photographer, so that part is not source-cleared and falls under the policy above.
 
-**Exception — `systems/newbrain/art/tv-on.webp` and `tv-off.webp`** carry an attribution obligation and are credited here on that basis, policy above notwithstanding. The NewBrain page's TV switch is cut from ["Off switch button icon design"](https://pngtree.com/freepng/off-switch-button-icon-design_7183829.html) on Pngtree, whose free licence requires the source be credited. The single supplied image holds both states stacked; it was split on the transparent band between them, each half trimmed to its own bounds and resized to 464x172 so the two swap without anything moving.
-
 (Note: jsbeeb's CUB monitor frame lives inside `systems/bbcmicro/dist/` and `systems/bbcmaster/dist/` as part of the upstream build, not this shared set.)
 
 ---
