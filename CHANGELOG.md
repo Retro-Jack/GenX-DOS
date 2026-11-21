@@ -1,5 +1,16 @@
 ## [Unreleased]
 
+### Removed
+
+- **The NewBrain's TV switch, and everything behind it.** The button under the
+  CUB, its two states, the region that placed it, and the `tvOn` flag it set.
+  The screen draws unconditionally now, rather than through a gate that could
+  only ever be false while that switch was off.
+
+  Its attribution goes with it: the artwork came from Pngtree under a licence
+  requiring credit, so with the asset deleted the obligation it carried is
+  deleted too rather than left standing against nothing.
+
 ### Changed
 
 - **README now lists the five scripts it had been silent about.** An audit for
